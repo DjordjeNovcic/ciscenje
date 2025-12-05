@@ -31,8 +31,7 @@
   // ========================================
   // DEFAULT CONTENT INITIALIZATION
   // ========================================
-   function initializeDefaultContent() {
-      // Only initialize if content doesn't exist
+     function initializeDefaultContent() {
       if (!localStorage.getItem('homeContent')) {
           const defaultHome = {
               heroTitle: 'Professional Cleaning Services',
@@ -62,15 +61,12 @@
 
       if (!localStorage.getItem('aboutContent')) {
           const defaultAbout = {
-              paragraph1: 'Founded in 2015, CleanPro started with a simple mission: to provide exceptional cleaning services that make life easier for homeowners and 
-  businesses alike.',
-              paragraph2: 'What began as a small residential cleaning service has grown into a trusted name in both residential and commercial cleaning. Our success 
-  is built on our commitment to quality, reliability, and customer satisfaction.',
-              paragraph3: 'Today, we serve hundreds of satisfied customers across the region, and our team of professional cleaners continues to uphold the high 
-  standards that have made us a leader in the industry.',
+              paragraph1: 'Founded in 2015, CleanPro started with a simple mission to provide exceptional cleaning services.',
+              paragraph2: 'What began as a small residential cleaning service has grown into a trusted name in the industry.',
+              paragraph3: 'Today, we serve hundreds of satisfied customers across the region.',
               companyEmail: 'info@cleanpro.com',
               companyPhone: '(555) 123-4567',
-              companyHours: 'Mon-Fri: 8AM - 6PM\nSat: 9AM - 4PM'
+              companyHours: 'Mon-Fri: 8AM-6PM, Sat: 9AM-4PM'
           };
           localStorage.setItem('aboutContent', JSON.stringify(defaultAbout));
       }
