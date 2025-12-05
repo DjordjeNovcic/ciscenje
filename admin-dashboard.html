@@ -16,8 +16,17 @@
                   <a href="#" class="nav-item active" data-section="dashboard">
                       <span>📊</span> Dashboard
                   </a>
-                  <a href="#" class="nav-item" data-section="bookings">
-                      <span>📅</span> Bookings
+                  <a href="#" class="nav-item" data-section="home">
+                      <span>🏠</span> Edit Home
+                  </a>
+                  <a href="#" class="nav-item" data-section="services">
+                      <span>💼</span> Edit Services
+                  </a>
+                  <a href="#" class="nav-item" data-section="about">
+                      <span>📝</span> Edit About
+                  </a>
+                  <a href="#" class="nav-item" data-section="testimonials">
+                      <span>⭐</span> Testimonials
                   </a>
                   <a href="#" class="nav-item" data-section="gallery">
                       <span>📸</span> Photo Gallery
@@ -40,103 +49,204 @@
               </header>
 
               <div class="dashboard-content">
-                  <!-- Dashboard Section -->
+                  <!-- Dashboard Overview -->
                   <div id="dashboardSection" class="content-section active">
                       <div class="stats-grid">
                           <div class="stat-card">
-                              <div class="stat-icon">📅</div>
+                              <div class="stat-icon">🏠</div>
                               <div class="stat-info">
-                                  <h3>Total Bookings</h3>
-                                  <div class="stat-value" id="totalBookings">0</div>
-                                  <p class="stat-change" id="newBookings">0 new</p>
+                                  <h3>Home Page</h3>
+                                  <div class="stat-value">Live</div>
+                                  <p class="stat-change">Edit content</p>
                               </div>
                           </div>
 
                           <div class="stat-card">
-                              <div class="stat-icon">⏳</div>
+                              <div class="stat-icon">💼</div>
                               <div class="stat-info">
-                                  <h3>Pending</h3>
-                                  <div class="stat-value" id="pendingBookings">0</div>
-                                  <p class="stat-change">Awaiting approval</p>
+                                  <h3>Services</h3>
+                                  <div class="stat-value" id="servicesCount">6</div>
+                                  <p class="stat-change">Available services</p>
                               </div>
                           </div>
 
                           <div class="stat-card">
-                              <div class="stat-icon">✅</div>
+                              <div class="stat-icon">⭐</div>
                               <div class="stat-info">
-                                  <h3>Completed</h3>
-                                  <div class="stat-value" id="completedBookings">0</div>
-                                  <p class="stat-change positive">This month</p>
+                                  <h3>Testimonials</h3>
+                                  <div class="stat-value" id="testimonialsCount">0</div>
+                                  <p class="stat-change">Customer reviews</p>
                               </div>
                           </div>
 
                           <div class="stat-card">
-                              <div class="stat-icon">💰</div>
+                              <div class="stat-icon">📸</div>
                               <div class="stat-info">
-                                  <h3>Total Revenue</h3>
-                                  <div class="stat-value" id="totalRevenue">$0</div>
-                                  <p class="stat-change positive">All time</p>
+                                  <h3>Photos</h3>
+                                  <div class="stat-value" id="photosCount">0</div>
+                                  <p class="stat-change">Gallery images</p>
                               </div>
                           </div>
                       </div>
 
                       <div class="dashboard-section">
-                          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
-                              <h2>Recent Bookings</h2>
-                              <button class="btn btn-primary" id="addBookingBtn">+ New Booking</button>
-                          </div>
-                          <div class="table-container">
-                              <table class="data-table">
-                                  <thead>
-                                      <tr>
-                                          <th>Date</th>
-                                          <th>Customer</th>
-                                          <th>Service</th>
-                                          <th>Status</th>
-                                          <th>Amount</th>
-                                          <th>Actions</th>
-                                      </tr>
-                                  </thead>
-                                  <tbody id="bookingsTableBody">
-                                      <tr>
-                                          <td colspan="6" style="text-align: center; padding: 2rem;">
-                                              No bookings yet. Click "New Booking" to add one.
-                                          </td>
-                                      </tr>
-                                  </tbody>
-                              </table>
+                          <h2>Quick Actions</h2>
+                          <div class="quick-actions">
+                              <button class="btn btn-primary" onclick="goToSection('home')">✏️ Edit Home Page</button>
+                              <button class="btn btn-primary" onclick="goToSection('services')">💼 Edit Services</button>
+                              <button class="btn btn-primary" onclick="goToSection('testimonials')">⭐ Add Testimonial</button>
+                              <button class="btn btn-primary" onclick="goToSection('gallery')">📸 Upload Photo</button>
                           </div>
                       </div>
                   </div>
 
-                  <!-- Bookings Section -->
-                  <div id="bookingsSection" class="content-section">
+                  <!-- Edit Home Page Section -->
+                  <div id="homeSection" class="content-section">
+                      <div class="dashboard-section">
+                          <h2>Edit Home Page Content</h2>
+                          <form id="homeForm" class="cms-form">
+                              <h3>Hero Section</h3>
+                              <div class="form-group">
+                                  <label for="heroTitle">Main Heading</label>
+                                  <input type="text" id="heroTitle" placeholder="Professional Cleaning Services">
+                              </div>
+                              <div class="form-group">
+                                  <label for="heroSubtitle">Subtitle</label>
+                                  <input type="text" id="heroSubtitle" placeholder="Residential & Commercial Excellence">
+                              </div>
+
+                              <h3 style="margin-top: 2rem;">Features Section</h3>
+                              <div class="form-group">
+                                  <label for="feature1Title">Feature 1 - Title</label>
+                                  <input type="text" id="feature1Title" placeholder="Experienced Team">
+                              </div>
+                              <div class="form-group">
+                                  <label for="feature1Text">Feature 1 - Description</label>
+                                  <textarea id="feature1Text" rows="2" placeholder="Professional cleaners with years of experience..."></textarea>
+                              </div>
+
+                              <div class="form-group">
+                                  <label for="feature2Title">Feature 2 - Title</label>
+                                  <input type="text" id="feature2Title" placeholder="Eco-Friendly">
+                              </div>
+                              <div class="form-group">
+                                  <label for="feature2Text">Feature 2 - Description</label>
+                                  <textarea id="feature2Text" rows="2" placeholder="We use environmentally safe cleaning products..."></textarea>
+                              </div>
+
+                              <div class="form-group">
+                                  <label for="feature3Title">Feature 3 - Title</label>
+                                  <input type="text" id="feature3Title" placeholder="Flexible Scheduling">
+                              </div>
+                              <div class="form-group">
+                                  <label for="feature3Text">Feature 3 - Description</label>
+                                  <textarea id="feature3Text" rows="2" placeholder="We work around your schedule..."></textarea>
+                              </div>
+
+                              <div class="form-group">
+                                  <label for="feature4Title">Feature 4 - Title</label>
+                                  <input type="text" id="feature4Title" placeholder="Satisfaction Guaranteed">
+                              </div>
+                              <div class="form-group">
+                                  <label for="feature4Text">Feature 4 - Description</label>
+                                  <textarea id="feature4Text" rows="2" placeholder="100% satisfaction guarantee..."></textarea>
+                              </div>
+
+                              <button type="submit" class="btn btn-primary">💾 Save Home Page</button>
+                          </form>
+                      </div>
+                  </div>
+
+                  <!-- Edit Services Section -->
+                  <div id="servicesSection" class="content-section">
+                      <div class="dashboard-section">
+                          <h2>Edit Services & Pricing</h2>
+                          <form id="servicesForm" class="cms-form">
+                              <h3>Residential Services</h3>
+
+                              <div class="service-editor">
+                                  <div class="form-group">
+                                      <label for="basicCleanPrice">Basic Clean - Price ($)</label>
+                                      <input type="number" id="basicCleanPrice" value="89" min="0">
+                                  </div>
+
+                                  <div class="form-group">
+                                      <label for="deepCleanPrice">Deep Clean - Price ($)</label>
+                                      <input type="number" id="deepCleanPrice" value="149" min="0">
+                                  </div>
+
+                                  <div class="form-group">
+                                      <label for="moveInOutPrice">Move In/Out - Price ($)</label>
+                                      <input type="number" id="moveInOutPrice" value="199" min="0">
+                                  </div>
+                              </div>
+
+                              <h3 style="margin-top: 2rem;">Commercial Services</h3>
+
+                              <div class="service-editor">
+                                  <div class="form-group">
+                                      <label for="officeCleaningPrice">Office Cleaning - Price ($)</label>
+                                      <input type="number" id="officeCleaningPrice" value="299" min="0">
+                                  </div>
+
+                                  <div class="form-group">
+                                      <label for="retailSpacePrice">Retail Space - Price ($)</label>
+                                      <input type="number" id="retailSpacePrice" value="399" min="0">
+                                  </div>
+                              </div>
+
+                              <button type="submit" class="btn btn-primary">💾 Save Services</button>
+                          </form>
+                      </div>
+                  </div>
+
+                  <!-- Edit About Section -->
+                  <div id="aboutSection" class="content-section">
+                      <div class="dashboard-section">
+                          <h2>Edit About Page</h2>
+                          <form id="aboutForm" class="cms-form">
+                              <h3>Company Story</h3>
+                              <div class="form-group">
+                                  <label for="aboutParagraph1">Paragraph 1</label>
+                                  <textarea id="aboutParagraph1" rows="3" placeholder="Founded in 2015, CleanPro started with a simple mission..."></textarea>
+                              </div>
+                              <div class="form-group">
+                                  <label for="aboutParagraph2">Paragraph 2</label>
+                                  <textarea id="aboutParagraph2" rows="3" placeholder="What began as a small residential cleaning service..."></textarea>
+                              </div>
+                              <div class="form-group">
+                                  <label for="aboutParagraph3">Paragraph 3</label>
+                                  <textarea id="aboutParagraph3" rows="3" placeholder="Today, we serve hundreds of satisfied customers..."></textarea>
+                              </div>
+
+                              <h3 style="margin-top: 2rem;">Contact Information</h3>
+                              <div class="form-group">
+                                  <label for="companyEmail">Email</label>
+                                  <input type="email" id="companyEmail" placeholder="info@cleanpro.com">
+                              </div>
+                              <div class="form-group">
+                                  <label for="companyPhone">Phone</label>
+                                  <input type="tel" id="companyPhone" placeholder="(555) 123-4567">
+                              </div>
+                              <div class="form-group">
+                                  <label for="companyHours">Business Hours</label>
+                                  <textarea id="companyHours" rows="2" placeholder="Mon-Fri: 8AM - 6PM&#10;Sat: 9AM - 4PM"></textarea>
+                              </div>
+
+                              <button type="submit" class="btn btn-primary">💾 Save About Page</button>
+                          </form>
+                      </div>
+                  </div>
+
+                  <!-- Testimonials Section -->
+                  <div id="testimonialsSection" class="content-section">
                       <div class="dashboard-section">
                           <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
-                              <h2>All Bookings</h2>
-                              <button class="btn btn-primary" id="addBookingBtn2">+ New Booking</button>
+                              <h2>Manage Testimonials</h2>
+                              <button class="btn btn-primary" id="addTestimonialBtn">+ Add Testimonial</button>
                           </div>
-                          <div class="table-container">
-                              <table class="data-table">
-                                  <thead>
-                                      <tr>
-                                          <th>Date</th>
-                                          <th>Customer</th>
-                                          <th>Phone</th>
-                                          <th>Service</th>
-                                          <th>Status</th>
-                                          <th>Amount</th>
-                                          <th>Actions</th>
-                                      </tr>
-                                  </thead>
-                                  <tbody id="allBookingsTableBody">
-                                      <tr>
-                                          <td colspan="7" style="text-align: center; padding: 2rem;">
-                                              No bookings yet.
-                                          </td>
-                                      </tr>
-                                  </tbody>
-                              </table>
+                          <div id="testimonialsList" class="testimonials-list">
+                              <p style="text-align: center; color: #64748b; padding: 2rem;">No testimonials yet. Click "Add Testimonial" to create one.</p>
                           </div>
                       </div>
                   </div>
@@ -162,15 +272,19 @@
                       <div class="dashboard-section">
                           <h2>Settings</h2>
                           <div class="settings-content">
-                              <h3>Business Information</h3>
-                              <p>Company Name: <strong>CleanPro</strong></p>
-                              <p>Email: <strong>info@cleanpro.com</strong></p>
-                              <p>Phone: <strong>(555) 123-4567</strong></p>
+                              <h3>Website Management</h3>
+                              <p>All changes are saved to your browser's local storage.</p>
+                              <p>Your website visitors will see the updated content immediately.</p>
                               <br>
                               <h3>Data Management</h3>
+                              <button class="btn btn-secondary" id="resetToDefaultBtn">🔄 Reset to Default Content</button>
+                              <p style="color: #64748b; margin-top: 0.5rem; font-size: 0.9rem;">
+                                  This will restore all original content and remove customizations.
+                              </p>
+                              <br>
                               <button class="btn btn-secondary" id="clearDataBtn">🗑️ Clear All Data</button>
                               <p style="color: #64748b; margin-top: 0.5rem; font-size: 0.9rem;">
-                                  This will delete all bookings and photos from your browser.
+                                  This will delete all content, testimonials, and photos.
                               </p>
                           </div>
                       </div>
@@ -179,62 +293,40 @@
           </main>
       </div>
 
-      <!-- Add/Edit Booking Modal -->
-      <div id="bookingModal" class="modal">
+      <!-- Add/Edit Testimonial Modal -->
+      <div id="testimonialModal" class="modal">
           <div class="modal-content">
               <div class="modal-header">
-                  <h2 id="modalTitle">New Booking</h2>
+                  <h2 id="testimonialModalTitle">New Testimonial</h2>
                   <span class="close">&times;</span>
               </div>
-              <form id="bookingForm">
-                  <input type="hidden" id="bookingId">
+              <form id="testimonialForm">
+                  <input type="hidden" id="testimonialId">
                   <div class="form-group">
-                      <label for="customerName">Customer Name *</label>
-                      <input type="text" id="customerName" required>
+                      <label for="testimonialText">Review Text *</label>
+                      <textarea id="testimonialText" rows="4" required placeholder="Share your experience..."></textarea>
                   </div>
                   <div class="form-group">
-                      <label for="customerPhone">Phone Number *</label>
-                      <input type="tel" id="customerPhone" required>
+                      <label for="testimonialAuthor">Customer Name *</label>
+                      <input type="text" id="testimonialAuthor" required placeholder="John Smith">
                   </div>
                   <div class="form-group">
-                      <label for="customerEmail">Email</label>
-                      <input type="email" id="customerEmail">
+                      <label for="testimonialRole">Role/Title</label>
+                      <input type="text" id="testimonialRole" placeholder="Homeowner, Business Owner, etc.">
                   </div>
                   <div class="form-group">
-                      <label for="serviceType">Service Type *</label>
-                      <select id="serviceType" required>
-                          <option value="">Select Service</option>
-                          <option value="Basic Clean">Basic Clean - $89</option>
-                          <option value="Deep Clean">Deep Clean - $149</option>
-                          <option value="Move In/Out">Move In/Out - $199</option>
-                          <option value="Office Cleaning">Office Cleaning - $299</option>
-                          <option value="Retail Space">Retail Space - $399</option>
+                      <label for="testimonialRating">Rating (1-5 stars) *</label>
+                      <select id="testimonialRating" required>
+                          <option value="5">⭐⭐⭐⭐⭐ (5 stars)</option>
+                          <option value="4">⭐⭐⭐⭐ (4 stars)</option>
+                          <option value="3">⭐⭐⭐ (3 stars)</option>
+                          <option value="2">⭐⭐ (2 stars)</option>
+                          <option value="1">⭐ (1 star)</option>
                       </select>
-                  </div>
-                  <div class="form-group">
-                      <label for="bookingDate">Date *</label>
-                      <input type="date" id="bookingDate" required>
-                  </div>
-                  <div class="form-group">
-                      <label for="bookingStatus">Status *</label>
-                      <select id="bookingStatus" required>
-                          <option value="Pending">Pending</option>
-                          <option value="Confirmed">Confirmed</option>
-                          <option value="Completed">Completed</option>
-                          <option value="Cancelled">Cancelled</option>
-                      </select>
-                  </div>
-                  <div class="form-group">
-                      <label for="amount">Amount ($) *</label>
-                      <input type="number" id="amount" min="0" step="1" required>
-                  </div>
-                  <div class="form-group">
-                      <label for="notes">Notes</label>
-                      <textarea id="notes" rows="3"></textarea>
                   </div>
                   <div class="modal-actions">
-                      <button type="submit" class="btn btn-primary">Save Booking</button>
-                      <button type="button" class="btn btn-secondary" id="cancelBookingBtn">Cancel</button>
+                      <button type="submit" class="btn btn-primary">Save Testimonial</button>
+                      <button type="button" class="btn btn-secondary" id="cancelTestimonialBtn">Cancel</button>
                   </div>
               </form>
           </div>
