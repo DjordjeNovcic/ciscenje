@@ -37,7 +37,7 @@
       padding: 0 20px;
   }
 
-  /* ========================================
+   /* ========================================
      NAVIGATION
      ======================================== */
   .navbar {
@@ -59,12 +59,14 @@
       font-size: 1.5rem;
       font-weight: bold;
       color: var(--primary-color);
+      z-index: 1001;
   }
 
   .nav-menu {
       display: flex;
       list-style: none;
       gap: 2rem;
+      align-items: center;
   }
 
   .nav-menu a {
@@ -88,6 +90,8 @@
       display: none;
       flex-direction: column;
       cursor: pointer;
+      z-index: 1001;
+      padding: 10px;
   }
 
   .hamburger span {
@@ -96,6 +100,19 @@
       background: var(--text-dark);
       margin: 3px 0;
       transition: 0.3s;
+      border-radius: 3px;
+  }
+
+  .hamburger.active span:nth-child(1) {
+      transform: rotate(-45deg) translate(-5px, 6px);
+  }
+
+  .hamburger.active span:nth-child(2) {
+      opacity: 0;
+  }
+
+  .hamburger.active span:nth-child(3) {
+      transform: rotate(45deg) translate(-5px, -6px);
   }
 
   /* ========================================
@@ -1178,7 +1195,7 @@
       color: var(--text-light);
   }
 
-  /* ========================================
+ /* ========================================
      RESPONSIVE DESIGN
      ======================================== */
   @media (max-width: 768px) {
@@ -1187,19 +1204,28 @@
       }
 
       .nav-menu {
-          position: absolute;
-          top: 70px;
-          left: -100%;
+          position: fixed;
+          top: 0;
+          right: -100%;
           flex-direction: column;
           background: white;
-          width: 100%;
-          padding: 2rem;
-          box-shadow: var(--shadow-md);
-          transition: left 0.3s;
+          width: 70%;
+          height: 100vh;
+          padding: 5rem 2rem 2rem;
+          box-shadow: -2px 0 10px rgba(0, 0, 0, 0.1);
+          transition: right 0.3s ease-in-out;
+          z-index: 1000;
+          gap: 1rem;
       }
 
       .nav-menu.active {
-          left: 0;
+          right: 0;
+      }
+
+      .nav-menu a {
+          padding: 1rem 0;
+          border-bottom: 1px solid var(--border-color);
+          width: 100%;
       }
 
       .hero h1 {
@@ -1257,7 +1283,12 @@
       .price {
           font-size: 2rem;
       }
+
+      .nav-menu {
+          width: 85%;
+      }
   }
+
 
  /* ========================================
      TESTIMONIAL ITEMS (Admin Dashboard)
