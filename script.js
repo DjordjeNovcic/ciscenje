@@ -1,4 +1,4 @@
- // ========================================
+  // ========================================
   // INITIALIZE APP
   // ========================================
   document.addEventListener('DOMContentLoaded', function() {
@@ -6,6 +6,9 @@
   });
 
   function initializeApp() {
+      // Initialize default content if first time
+      initializeDefaultContent();
+
       // Mobile navigation
       setupMobileNav();
 
@@ -20,6 +23,57 @@
 
       // Smooth scrolling
       setupSmoothScrolling();
+
+      // Load dynamic content on public pages
+      loadPublicPageContent();
+  }
+
+  // ========================================
+  // DEFAULT CONTENT INITIALIZATION
+  // ========================================
+  function initializeDefaultContent() {
+      // Only initialize if content doesn't exist
+      if (!localStorage.getItem('homeContent')) {
+          const defaultHome = {
+              heroTitle: 'Professional Cleaning Services',
+              heroSubtitle: 'Residential & Commercial Excellence',
+              feature1Title: 'Experienced Team',
+              feature1Text: 'Professional cleaners with years of experience in both residential and commercial cleaning.',
+              feature2Title: 'Eco-Friendly',
+              feature2Text: 'We use environmentally safe cleaning products that are tough on dirt but gentle on your space.',
+              feature3Title: 'Flexible Scheduling',
+              feature3Text: 'We work around your schedule with convenient booking times including evenings and weekends.',
+              feature4Title: 'Satisfaction Guaranteed',
+              feature4Text: '100% satisfaction guarantee or we\'ll come back and make it right at no extra cost.'
+          };
+          localStorage.setItem('homeContent', JSON.stringify(defaultHome));
+      }
+
+      if (!localStorage.getItem('servicesContent')) {
+          const defaultServices = {
+              basicCleanPrice: 89,
+              deepCleanPrice: 149,
+              moveInOutPrice: 199,
+              officeCleaningPrice: 299,
+              retailSpacePrice: 399
+          };
+          localStorage.setItem('servicesContent', JSON.stringify(defaultServices));
+      }
+
+      if (!localStorage.getItem('aboutContent')) {
+          const defaultAbout = {
+              paragraph1: 'Founded in 2015, CleanPro started with a simple mission: to provide exceptional cleaning services that make life easier for homeowners and 
+  businesses alike.',
+              paragraph2: 'What began as a small residential cleaning service has grown into a trusted name in both residential and commercial cleaning. Our success 
+  is built on our commitment to quality, reliability, and customer satisfaction.',
+              paragraph3: 'Today, we serve hundreds of satisfied customers across the region, and our team of professional cleaners continues to uphold the high 
+  standards that have made us a leader in the industry.',
+              companyEmail: 'info@cleanpro.com',
+              companyPhone: '(555) 123-4567',
+              companyHours: 'Mon-Fri: 8AM - 6PM\nSat: 9AM - 4PM'
+          };
+          localStorage.setItem('aboutContent', JSON.stringify(defaultAbout));
+      }
   }
 
   // ========================================
@@ -119,12 +173,13 @@
 
       // Initialize dashboard features
       setupSectionNavigation();
-      setupBookingManagement();
+      setupHomeCMS();
+      setupServicesCMS();
+      setupAboutCMS();
+      setupTestimonialManagement();
       setupPhotoGallery();
       setupSettings();
       updateDashboardStats();
-      loadBookings();
-      loadPhotos();
   }
 
   // ========================================
@@ -137,27 +192,20 @@
           item.addEventListener('click', function(e) {
               e.preventDefault();
 
-              // Remove active class from all items
               navItems.forEach(nav => nav.classList.remove('active'));
-
-              // Add active class to clicked item
               this.classList.add('active');
 
-              // Get section to show
               const sectionName = this.getAttribute('data-section');
 
-              // Hide all sections
               document.querySelectorAll('.content-section').forEach(section => {
                   section.classList.remove('active');
               });
 
-              // Show selected section
               const sectionToShow = document.getElementById(sectionName + 'Section');
               if (sectionToShow) {
                   sectionToShow.classList.add('active');
               }
 
-              // Update page title
               const pageTitle = document.getElementById('pageTitle');
               if (pageTitle) {
                   pageTitle.textContent = this.textContent.trim();
@@ -166,266 +214,288 @@
       });
   }
 
-  // ========================================
-  // BOOKING MANAGEMENT
-  // ========================================
-  let currentEditingBookingId = null;
+  function goToSection(sectionName) {
+      const navItem = document.querySelector(`[data-section="${sectionName}"]`);
+      if (navItem) {
+          navItem.click();
+      }
+  }
 
-  function setupBookingManagement() {
-      const addBookingBtn = document.getElementById('addBookingBtn');
-      const addBookingBtn2 = document.getElementById('addBookingBtn2');
-      const bookingModal = document.getElementById('bookingModal');
-      const bookingForm = document.getElementById('bookingForm');
-      const cancelBookingBtn = document.getElementById('cancelBookingBtn');
-      const closeBtn = bookingModal.querySelector('.close');
+  // ========================================
+  // HOME PAGE CMS
+  // ========================================
+  function setupHomeCMS() {
+      const homeForm = document.getElementById('homeForm');
+      if (!homeForm) return;
 
-      // Open modal for new booking
-      [addBookingBtn, addBookingBtn2].forEach(btn => {
-          if (btn) {
-              btn.addEventListener('click', () => openBookingModal());
-          }
+      // Load current content
+      loadHomeContent();
+
+      // Save on submit
+      homeForm.addEventListener('submit', function(e) {
+          e.preventDefault();
+
+          const content = {
+              heroTitle: document.getElementById('heroTitle').value,
+              heroSubtitle: document.getElementById('heroSubtitle').value,
+              feature1Title: document.getElementById('feature1Title').value,
+              feature1Text: document.getElementById('feature1Text').value,
+              feature2Title: document.getElementById('feature2Title').value,
+              feature2Text: document.getElementById('feature2Text').value,
+              feature3Title: document.getElementById('feature3Title').value,
+              feature3Text: document.getElementById('feature3Text').value,
+              feature4Title: document.getElementById('feature4Title').value,
+              feature4Text: document.getElementById('feature4Text').value
+          };
+
+          localStorage.setItem('homeContent', JSON.stringify(content));
+          alert('Home page content saved! Refresh your website to see changes.');
       });
+  }
+
+  function loadHomeContent() {
+      const content = JSON.parse(localStorage.getItem('homeContent'));
+      if (!content) return;
+
+      document.getElementById('heroTitle').value = content.heroTitle || '';
+      document.getElementById('heroSubtitle').value = content.heroSubtitle || '';
+      document.getElementById('feature1Title').value = content.feature1Title || '';
+      document.getElementById('feature1Text').value = content.feature1Text || '';
+      document.getElementById('feature2Title').value = content.feature2Title || '';
+      document.getElementById('feature2Text').value = content.feature2Text || '';
+      document.getElementById('feature3Title').value = content.feature3Title || '';
+      document.getElementById('feature3Text').value = content.feature3Text || '';
+      document.getElementById('feature4Title').value = content.feature4Title || '';
+      document.getElementById('feature4Text').value = content.feature4Text || '';
+  }
+
+  // ========================================
+  // SERVICES CMS
+  // ========================================
+  function setupServicesCMS() {
+      const servicesForm = document.getElementById('servicesForm');
+      if (!servicesForm) return;
+
+      // Load current prices
+      loadServicesContent();
+
+      // Save on submit
+      servicesForm.addEventListener('submit', function(e) {
+          e.preventDefault();
+
+          const content = {
+              basicCleanPrice: parseInt(document.getElementById('basicCleanPrice').value),
+              deepCleanPrice: parseInt(document.getElementById('deepCleanPrice').value),
+              moveInOutPrice: parseInt(document.getElementById('moveInOutPrice').value),
+              officeCleaningPrice: parseInt(document.getElementById('officeCleaningPrice').value),
+              retailSpacePrice: parseInt(document.getElementById('retailSpacePrice').value)
+          };
+
+          localStorage.setItem('servicesContent', JSON.stringify(content));
+          alert('Services pricing saved! Refresh your services page to see changes.');
+      });
+  }
+
+  function loadServicesContent() {
+      const content = JSON.parse(localStorage.getItem('servicesContent'));
+      if (!content) return;
+
+      document.getElementById('basicCleanPrice').value = content.basicCleanPrice || 89;
+      document.getElementById('deepCleanPrice').value = content.deepCleanPrice || 149;
+      document.getElementById('moveInOutPrice').value = content.moveInOutPrice || 199;
+      document.getElementById('officeCleaningPrice').value = content.officeCleaningPrice || 299;
+      document.getElementById('retailSpacePrice').value = content.retailSpacePrice || 399;
+  }
+
+  // ========================================
+  // ABOUT PAGE CMS
+  // ========================================
+  function setupAboutCMS() {
+      const aboutForm = document.getElementById('aboutForm');
+      if (!aboutForm) return;
+
+      // Load current content
+      loadAboutContent();
+
+      // Save on submit
+      aboutForm.addEventListener('submit', function(e) {
+          e.preventDefault();
+
+          const content = {
+              paragraph1: document.getElementById('aboutParagraph1').value,
+              paragraph2: document.getElementById('aboutParagraph2').value,
+              paragraph3: document.getElementById('aboutParagraph3').value,
+              companyEmail: document.getElementById('companyEmail').value,
+              companyPhone: document.getElementById('companyPhone').value,
+              companyHours: document.getElementById('companyHours').value
+          };
+
+          localStorage.setItem('aboutContent', JSON.stringify(content));
+          alert('About page content saved! Refresh your website to see changes.');
+      });
+  }
+
+  function loadAboutContent() {
+      const content = JSON.parse(localStorage.getItem('aboutContent'));
+      if (!content) return;
+
+      document.getElementById('aboutParagraph1').value = content.paragraph1 || '';
+      document.getElementById('aboutParagraph2').value = content.paragraph2 || '';
+      document.getElementById('aboutParagraph3').value = content.paragraph3 || '';
+      document.getElementById('companyEmail').value = content.companyEmail || '';
+      document.getElementById('companyPhone').value = content.companyPhone || '';
+      document.getElementById('companyHours').value = content.companyHours || '';
+  }
+
+  // ========================================
+  // TESTIMONIAL MANAGEMENT
+  // ========================================
+  let currentEditingTestimonialId = null;
+
+  function setupTestimonialManagement() {
+      const addTestimonialBtn = document.getElementById('addTestimonialBtn');
+      const testimonialModal = document.getElementById('testimonialModal');
+      const testimonialForm = document.getElementById('testimonialForm');
+      const cancelTestimonialBtn = document.getElementById('cancelTestimonialBtn');
+      const closeBtn = testimonialModal.querySelector('.close');
+
+      // Load testimonials
+      loadTestimonials();
+
+      // Open modal
+      if (addTestimonialBtn) {
+          addTestimonialBtn.addEventListener('click', () => openTestimonialModal());
+      }
 
       // Close modal
-      [cancelBookingBtn, closeBtn].forEach(btn => {
+      [cancelTestimonialBtn, closeBtn].forEach(btn => {
           if (btn) {
-              btn.addEventListener('click', () => closeBookingModal());
+              btn.addEventListener('click', () => closeTestimonialModal());
           }
       });
 
       // Close on outside click
-      bookingModal.addEventListener('click', function(e) {
-          if (e.target === bookingModal) {
-              closeBookingModal();
+      testimonialModal.addEventListener('click', function(e) {
+          if (e.target === testimonialModal) {
+              closeTestimonialModal();
           }
       });
 
       // Submit form
-      bookingForm.addEventListener('submit', function(e) {
+      testimonialForm.addEventListener('submit', function(e) {
           e.preventDefault();
-          saveBooking();
-      });
-
-      // Auto-fill amount based on service
-      const serviceType = document.getElementById('serviceType');
-      const amountField = document.getElementById('amount');
-
-      serviceType.addEventListener('change', function() {
-          const prices = {
-              'Basic Clean': 89,
-              'Deep Clean': 149,
-              'Move In/Out': 199,
-              'Office Cleaning': 299,
-              'Retail Space': 399
-          };
-
-          const selectedService = this.value;
-          if (prices[selectedService]) {
-              amountField.value = prices[selectedService];
-          }
+          saveTestimonial();
       });
   }
 
-  function openBookingModal(bookingId = null) {
-      const modal = document.getElementById('bookingModal');
-      const modalTitle = document.getElementById('modalTitle');
-      const form = document.getElementById('bookingForm');
+  function openTestimonialModal(testimonialId = null) {
+      const modal = document.getElementById('testimonialModal');
+      const modalTitle = document.getElementById('testimonialModalTitle');
+      const form = document.getElementById('testimonialForm');
 
       form.reset();
-      currentEditingBookingId = bookingId;
+      currentEditingTestimonialId = testimonialId;
 
-      if (bookingId) {
-          // Edit mode
-          modalTitle.textContent = 'Edit Booking';
-          const bookings = getBookings();
-          const booking = bookings.find(b => b.id === bookingId);
+      if (testimonialId) {
+          modalTitle.textContent = 'Edit Testimonial';
+          const testimonials = getTestimonials();
+          const testimonial = testimonials.find(t => t.id === testimonialId);
 
-          if (booking) {
-              document.getElementById('customerName').value = booking.customerName;
-              document.getElementById('customerPhone').value = booking.customerPhone;
-              document.getElementById('customerEmail').value = booking.customerEmail || '';
-              document.getElementById('serviceType').value = booking.serviceType;
-              document.getElementById('bookingDate').value = booking.bookingDate;
-              document.getElementById('bookingStatus').value = booking.status;
-              document.getElementById('amount').value = booking.amount;
-              document.getElementById('notes').value = booking.notes || '';
+          if (testimonial) {
+              document.getElementById('testimonialText').value = testimonial.text;
+              document.getElementById('testimonialAuthor').value = testimonial.author;
+              document.getElementById('testimonialRole').value = testimonial.role;
+              document.getElementById('testimonialRating').value = testimonial.rating;
           }
       } else {
-          // New booking mode
-          modalTitle.textContent = 'New Booking';
-          document.getElementById('bookingStatus').value = 'Pending';
+          modalTitle.textContent = 'New Testimonial';
       }
 
       modal.classList.add('active');
   }
 
-  function closeBookingModal() {
-      const modal = document.getElementById('bookingModal');
+  function closeTestimonialModal() {
+      const modal = document.getElementById('testimonialModal');
       modal.classList.remove('active');
-      currentEditingBookingId = null;
+      currentEditingTestimonialId = null;
   }
 
-  function saveBooking() {
-      const bookings = getBookings();
+  function saveTestimonial() {
+      const testimonials = getTestimonials();
 
-      const booking = {
-          id: currentEditingBookingId || Date.now().toString(),
-          customerName: document.getElementById('customerName').value,
-          customerPhone: document.getElementById('customerPhone').value,
-          customerEmail: document.getElementById('customerEmail').value,
-          serviceType: document.getElementById('serviceType').value,
-          bookingDate: document.getElementById('bookingDate').value,
-          status: document.getElementById('bookingStatus').value,
-          amount: parseFloat(document.getElementById('amount').value),
-          notes: document.getElementById('notes').value,
-          createdAt: currentEditingBookingId ?
-              bookings.find(b => b.id === currentEditingBookingId)?.createdAt :
-              new Date().toISOString()
+      const testimonial = {
+          id: currentEditingTestimonialId || Date.now().toString(),
+          text: document.getElementById('testimonialText').value,
+          author: document.getElementById('testimonialAuthor').value,
+          role: document.getElementById('testimonialRole').value,
+          rating: document.getElementById('testimonialRating').value
       };
 
-      if (currentEditingBookingId) {
-          // Update existing
-          const index = bookings.findIndex(b => b.id === currentEditingBookingId);
+      if (currentEditingTestimonialId) {
+          const index = testimonials.findIndex(t => t.id === currentEditingTestimonialId);
           if (index !== -1) {
-              bookings[index] = booking;
+              testimonials[index] = testimonial;
           }
       } else {
-          // Add new
-          bookings.push(booking);
+          testimonials.push(testimonial);
       }
 
-      localStorage.setItem('bookings', JSON.stringify(bookings));
+      localStorage.setItem('testimonials', JSON.stringify(testimonials));
 
-      closeBookingModal();
-      loadBookings();
+      closeTestimonialModal();
+      loadTestimonials();
       updateDashboardStats();
 
-      alert(currentEditingBookingId ? 'Booking updated successfully!' : 'Booking added successfully!');
+      alert('Testimonial saved! Refresh your about page to see changes.');
   }
 
-  function deleteBooking(bookingId) {
-      if (!confirm('Are you sure you want to delete this booking?')) {
+  function deleteTestimonial(testimonialId) {
+      if (!confirm('Are you sure you want to delete this testimonial?')) {
           return;
       }
 
-      let bookings = getBookings();
-      bookings = bookings.filter(b => b.id !== bookingId);
-      localStorage.setItem('bookings', JSON.stringify(bookings));
+      let testimonials = getTestimonials();
+      testimonials = testimonials.filter(t => t.id !== testimonialId);
+      localStorage.setItem('testimonials', JSON.stringify(testimonials));
 
-      loadBookings();
+      loadTestimonials();
       updateDashboardStats();
 
-      alert('Booking deleted successfully!');
+      alert('Testimonial deleted!');
   }
 
-  function getBookings() {
-      const bookings = localStorage.getItem('bookings');
-      return bookings ? JSON.parse(bookings) : [];
+  function getTestimonials() {
+      const testimonials = localStorage.getItem('testimonials');
+      return testimonials ? JSON.parse(testimonials) : [];
   }
 
-  function loadBookings() {
-      const bookings = getBookings();
+  function loadTestimonials() {
+      const testimonials = getTestimonials();
+      const testimonialsList = document.getElementById('testimonialsList');
 
-      // Load recent bookings (dashboard)
-      const recentTableBody = document.getElementById('bookingsTableBody');
-      if (recentTableBody) {
-          if (bookings.length === 0) {
-              recentTableBody.innerHTML = `
-                  <tr>
-                      <td colspan="6" style="text-align: center; padding: 2rem;">
-                          No bookings yet. Click "New Booking" to add one.
-                      </td>
-                  </tr>
+      if (!testimonialsList) return;
+
+      if (testimonials.length === 0) {
+          testimonialsList.innerHTML = '<p style="text-align: center; color: #64748b; padding: 2rem;">No testimonials yet. Click "Add Testimonial" to create 
+  one.</p>';
+      } else {
+          testimonialsList.innerHTML = testimonials.map(t => {
+              const stars = '⭐'.repeat(parseInt(t.rating));
+              return `
+                  <div class="testimonial-item">
+                      <div class="testimonial-content">
+                          <div class="stars">${stars}</div>
+                          <p>"${t.text}"</p>
+                          <strong>${t.author}</strong>
+                          <span>${t.role || 'Customer'}</span>
+                      </div>
+                      <div class="testimonial-actions">
+                          <button class="btn-icon" onclick="openTestimonialModal('${t.id}')" title="Edit">✏️</button>
+                          <button class="btn-icon" onclick="deleteTestimonial('${t.id}')" title="Delete">🗑️</button>
+                      </div>
+                  </div>
               `;
-          } else {
-              const recentBookings = bookings.slice(-5).reverse();
-              recentTableBody.innerHTML = recentBookings.map(booking => `
-                  <tr>
-                      <td>${formatDate(booking.bookingDate)}</td>
-                      <td>${booking.customerName}</td>
-                      <td>${booking.serviceType}</td>
-                      <td><span class="badge badge-${booking.status.toLowerCase()}">${booking.status}</span></td>
-                      <td>$${booking.amount}</td>
-                      <td>
-                          <button class="btn-icon" onclick="openBookingModal('${booking.id}')" title="Edit">✏️</button>
-                          <button class="btn-icon" onclick="deleteBooking('${booking.id}')" title="Delete">🗑️</button>
-                      </td>
-                  </tr>
-              `).join('');
-          }
-      }
-
-      // Load all bookings
-      const allTableBody = document.getElementById('allBookingsTableBody');
-      if (allTableBody) {
-          if (bookings.length === 0) {
-              allTableBody.innerHTML = `
-                  <tr>
-                      <td colspan="7" style="text-align: center; padding: 2rem;">
-                          No bookings yet.
-                      </td>
-                  </tr>
-              `;
-          } else {
-              allTableBody.innerHTML = bookings.reverse().map(booking => `
-                  <tr>
-                      <td>${formatDate(booking.bookingDate)}</td>
-                      <td>${booking.customerName}</td>
-                      <td>${booking.customerPhone}</td>
-                      <td>${booking.serviceType}</td>
-                      <td><span class="badge badge-${booking.status.toLowerCase()}">${booking.status}</span></td>
-                      <td>$${booking.amount}</td>
-                      <td>
-                          <button class="btn-icon" onclick="openBookingModal('${booking.id}')" title="Edit">✏️</button>
-                          <button class="btn-icon" onclick="deleteBooking('${booking.id}')" title="Delete">🗑️</button>
-                      </td>
-                  </tr>
-              `).join('');
-          }
-      }
-  }
-
-  function updateDashboardStats() {
-      const bookings = getBookings();
-
-      // Total bookings
-      const totalBookings = document.getElementById('totalBookings');
-      if (totalBookings) {
-          totalBookings.textContent = bookings.length;
-      }
-
-      // New bookings (last 7 days)
-      const newBookings = document.getElementById('newBookings');
-      if (newBookings) {
-          const sevenDaysAgo = new Date();
-          sevenDaysAgo.setDate(sevenDaysAgo.getDate() - 7);
-          const recentCount = bookings.filter(b =>
-              new Date(b.createdAt) > sevenDaysAgo
-          ).length;
-          newBookings.textContent = `${recentCount} new`;
-      }
-
-      // Pending bookings
-      const pendingBookings = document.getElementById('pendingBookings');
-      if (pendingBookings) {
-          const pendingCount = bookings.filter(b => b.status === 'Pending').length;
-          pendingBookings.textContent = pendingCount;
-      }
-
-      // Completed bookings
-      const completedBookings = document.getElementById('completedBookings');
-      if (completedBookings) {
-          const completedCount = bookings.filter(b => b.status === 'Completed').length;
-          completedBookings.textContent = completedCount;
-      }
-
-      // Total revenue
-      const totalRevenue = document.getElementById('totalRevenue');
-      if (totalRevenue) {
-          const revenue = bookings
-              .filter(b => b.status === 'Completed')
-              .reduce((sum, b) => sum + b.amount, 0);
-          totalRevenue.textContent = `$${revenue.toLocaleString()}`;
+          }).join('');
       }
   }
 
@@ -440,6 +510,9 @@
       const closeBtn = photoModal.querySelector('.close');
       const photoFile = document.getElementById('photoFile');
       const photoPreview = document.getElementById('photoPreview');
+
+      // Load photos
+      loadPhotos();
 
       // Open modal
       if (uploadPhotoBtn) {
@@ -512,6 +585,7 @@
 
           document.getElementById('photoModal').classList.remove('active');
           loadPhotos();
+          updateDashboardStats();
 
           alert('Photo uploaded successfully!');
       };
@@ -529,6 +603,7 @@
       localStorage.setItem('photos', JSON.stringify(photos));
 
       loadPhotos();
+      updateDashboardStats();
       alert('Photo deleted successfully!');
   }
 
@@ -570,15 +645,38 @@
   // SETTINGS
   // ========================================
   function setupSettings() {
+      const resetToDefaultBtn = document.getElementById('resetToDefaultBtn');
       const clearDataBtn = document.getElementById('clearDataBtn');
+
+      if (resetToDefaultBtn) {
+          resetToDefaultBtn.addEventListener('click', function() {
+              if (confirm('Reset all content to default? Your customizations will be lost.')) {
+                  localStorage.removeItem('homeContent');
+                  localStorage.removeItem('servicesContent');
+                  localStorage.removeItem('aboutContent');
+                  initializeDefaultContent();
+                  loadHomeContent();
+                  loadServicesContent();
+                  loadAboutContent();
+                  alert('Content reset to defaults!');
+              }
+          });
+      }
 
       if (clearDataBtn) {
           clearDataBtn.addEventListener('click', function() {
               if (confirm('Are you sure you want to clear all data? This cannot be undone.')) {
-                  if (confirm('This will delete ALL bookings and photos. Are you absolutely sure?')) {
-                      localStorage.removeItem('bookings');
+                  if (confirm('This will delete ALL content, testimonials and photos. Are you absolutely sure?')) {
+                      localStorage.removeItem('homeContent');
+                      localStorage.removeItem('servicesContent');
+                      localStorage.removeItem('aboutContent');
+                      localStorage.removeItem('testimonials');
                       localStorage.removeItem('photos');
-                      loadBookings();
+                      initializeDefaultContent();
+                      loadHomeContent();
+                      loadServicesContent();
+                      loadAboutContent();
+                      loadTestimonials();
                       loadPhotos();
                       updateDashboardStats();
                       alert('All data has been cleared.');
@@ -586,6 +684,127 @@
               }
           });
       }
+  }
+
+  // ========================================
+  // DASHBOARD STATS
+  // ========================================
+  function updateDashboardStats() {
+      const testimonialsCount = document.getElementById('testimonialsCount');
+      if (testimonialsCount) {
+          testimonialsCount.textContent = getTestimonials().length;
+      }
+
+      const photosCount = document.getElementById('photosCount');
+      if (photosCount) {
+          photosCount.textContent = getPhotos().length;
+      }
+  }
+
+  // ========================================
+  // LOAD CONTENT ON PUBLIC PAGES
+  // ========================================
+  function loadPublicPageContent() {
+      // Only run on public pages (not admin pages)
+      if (document.querySelector('.admin-layout')) return;
+
+      loadHomePageContent();
+      loadServicesPageContent();
+      loadAboutPageContent();
+  }
+
+  function loadHomePageContent() {
+      const content = JSON.parse(localStorage.getItem('homeContent'));
+      if (!content) return;
+
+      // Update hero section
+      const heroTitle = document.querySelector('.hero h1');
+      const heroSubtitle = document.querySelector('.hero p');
+      if (heroTitle) heroTitle.textContent = content.heroTitle;
+      if (heroSubtitle) heroSubtitle.textContent = content.heroSubtitle;
+
+      // Update features
+      const featureCards = document.querySelectorAll('.feature-card');
+      if (featureCards.length >= 4) {
+          featureCards[0].querySelector('h3').textContent = content.feature1Title;
+          featureCards[0].querySelector('p').textContent = content.feature1Text;
+          featureCards[1].querySelector('h3').textContent = content.feature2Title;
+          featureCards[1].querySelector('p').textContent = content.feature2Text;
+          featureCards[2].querySelector('h3').textContent = content.feature3Title;
+          featureCards[2].querySelector('p').textContent = content.feature3Text;
+          featureCards[3].querySelector('h3').textContent = content.feature4Title;
+          featureCards[3].querySelector('p').textContent = content.feature4Text;
+      }
+  }
+
+  function loadServicesPageContent() {
+      const content = JSON.parse(localStorage.getItem('servicesContent'));
+      if (!content) return;
+
+      // Update prices in the page
+      const prices = document.querySelectorAll('.price');
+      if (prices.length >= 5) {
+          prices[0].textContent = '$' + content.basicCleanPrice;
+          prices[1].textContent = '$' + content.deepCleanPrice;
+          prices[2].textContent = '$' + content.moveInOutPrice;
+          prices[3].textContent = '$' + content.officeCleaningPrice;
+          prices[4].textContent = '$' + content.retailSpacePrice;
+      }
+  }
+
+  function loadAboutPageContent() {
+      const content = JSON.parse(localStorage.getItem('aboutContent'));
+      if (!content) return;
+
+      // Update about text
+      const aboutText = document.querySelector('.about-text');
+      if (aboutText) {
+          const paragraphs = aboutText.querySelectorAll('p');
+          if (paragraphs.length >= 3) {
+              paragraphs[0].textContent = content.paragraph1;
+              paragraphs[1].textContent = content.paragraph2;
+              paragraphs[2].textContent = content.paragraph3;
+          }
+      }
+
+      // Update contact info in footer
+      updateFooterContact(content);
+
+      // Load testimonials
+      loadPublicTestimonials();
+  }
+
+  function updateFooterContact(content) {
+      const footerEmail = document.querySelector('.footer-section p');
+      const footerPhone = document.querySelectorAll('.footer-section p')[1];
+
+      if (footerEmail && content.companyEmail) {
+          footerEmail.textContent = 'Email: ' + content.companyEmail;
+      }
+      if (footerPhone && content.companyPhone) {
+          footerPhone.textContent = 'Phone: ' + content.companyPhone;
+      }
+  }
+
+  function loadPublicTestimonials() {
+      const testimonials = getTestimonials();
+      const testimonialsGrid = document.querySelector('.testimonials-grid');
+
+      if (!testimonialsGrid || testimonials.length === 0) return;
+
+      testimonialsGrid.innerHTML = testimonials.map(t => {
+          const stars = '⭐'.repeat(parseInt(t.rating));
+          return `
+              <div class="testimonial-card">
+                  <div class="stars">${stars}</div>
+                  <p>"${t.text}"</p>
+                  <div class="testimonial-author">
+                      <strong>${t.author}</strong>
+                      <span>${t.role || 'Customer'}</span>
+                  </div>
+              </div>
+          `;
+      }).join('');
   }
 
   // ========================================
@@ -619,15 +838,9 @@
   }
 
   // ========================================
-  // UTILITY FUNCTIONS
+  // GLOBAL FUNCTIONS
   // ========================================
-  function formatDate(dateString) {
-      const date = new Date(dateString);
-      const options = { year: 'numeric', month: 'short', day: 'numeric' };
-      return date.toLocaleDateString('en-US', options);
-  }
-
-  // Make functions globally accessible for onclick handlers
-  window.openBookingModal = openBookingModal;
-  window.deleteBooking = deleteBooking;
+  window.openTestimonialModal = openTestimonialModal;
+  window.deleteTestimonial = deleteTestimonial;
   window.deletePhoto = deletePhoto;
+  window.goToSection = goToSection;
