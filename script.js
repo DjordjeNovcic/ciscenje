@@ -1,7 +1,4 @@
- // ========================================
-  // INITIALIZE APP
-  // ========================================
-  document.addEventListener('DOMContentLoaded', function() {
+ document.addEventListener('DOMContentLoaded', function() {
       initializeApp();
   });
 
@@ -15,9 +12,6 @@
       loadPublicPageContent();
   }
 
-  // ========================================
-  // DEFAULT CONTENT
-  // ========================================
   function initializeDefaultContent() {
       if (!localStorage.getItem('homeContent')) {
           const defaultHome = {
@@ -407,12 +401,23 @@
       if (testimonials.length === 0) {
           testimonialsList.innerHTML = '<p style="text-align: center; color: #64748b; padding: 2rem;">No testimonials yet.</p>';
       } else {
-          testimonialsList.innerHTML = testimonials.map(function(t) {
+          var html = '';
+          testimonials.forEach(function(t) {
               const stars = '⭐'.repeat(parseInt(t.rating));
-              return '<div class="testimonial-item"><div class="testimonial-content"><div class="stars">' + stars + '</div><p>"' + t.text + '"</p><strong>' + t.author
-   + '</strong><span>' + (t.role || 'Customer') + '</span></div><div class="testimonial-actions"><button class="btn-icon" onclick="openTestimonialModal(\'' + t.id +
-  '\')" title="Edit">✏️</button><button class="btn-icon" onclick="deleteTestimonial(\'' + t.id + '\')" title="Delete">🗑️</button></div></div>';
-          }).join('');
+              html += '<div class="testimonial-item">';
+              html += '<div class="testimonial-content">';
+              html += '<div class="stars">' + stars + '</div>';
+              html += '<p>"' + t.text + '"</p>';
+              html += '<strong>' + t.author + '</strong>';
+              html += '<span>' + (t.role || 'Customer') + '</span>';
+              html += '</div>';
+              html += '<div class="testimonial-actions">';
+              html += '<button class="btn-icon" onclick="openTestimonialModal(\'' + t.id + '\')" title="Edit">Edit</button>';
+              html += '<button class="btn-icon" onclick="deleteTestimonial(\'' + t.id + '\')" title="Delete">Delete</button>';
+              html += '</div>';
+              html += '</div>';
+          });
+          testimonialsList.innerHTML = html;
       }
   }
 
@@ -535,11 +540,20 @@
       if (photos.length === 0) {
           photoGallery.innerHTML = '<div class="empty-gallery"><p>📷</p><p>No photos yet. Click "Upload Photo" to add images.</p></div>';
       } else {
-          photoGallery.innerHTML = photos.reverse().map(function(photo) {
-              return '<div class="photo-card"><img src="' + photo.imageData + '" alt="' + photo.title + '"><div class="photo-info"><h4>' + photo.title + '</h4><p>' +
-  (photo.description || 'No description') + '</p><div class="photo-actions"><button class="btn btn-secondary" onclick="deletePhoto(\'' + photo.id + '\')">🗑️ 
-  Delete</button></div></div></div>';
-          }).join('');
+          var html = '';
+          photos.reverse().forEach(function(photo) {
+              html += '<div class="photo-card">';
+              html += '<img src="' + photo.imageData + '" alt="' + photo.title + '">';
+              html += '<div class="photo-info">';
+              html += '<h4>' + photo.title + '</h4>';
+              html += '<p>' + (photo.description || 'No description') + '</p>';
+              html += '<div class="photo-actions">';
+              html += '<button class="btn btn-secondary" onclick="deletePhoto(\'' + photo.id + '\')">Delete</button>';
+              html += '</div>';
+              html += '</div>';
+              html += '</div>';
+          });
+          photoGallery.innerHTML = html;
       }
   }
 
@@ -663,11 +677,19 @@
 
       if (!testimonialsGrid || testimonials.length === 0) return;
 
-      testimonialsGrid.innerHTML = testimonials.map(function(t) {
+      var html = '';
+      testimonials.forEach(function(t) {
           const stars = '⭐'.repeat(parseInt(t.rating));
-          return '<div class="testimonial-card"><div class="stars">' + stars + '</div><p>"' + t.text + '"</p><div class="testimonial-author"><strong>' + t.author +
-  '</strong><span>' + (t.role || 'Customer') + '</span></div></div>';
-      }).join('');
+          html += '<div class="testimonial-card">';
+          html += '<div class="stars">' + stars + '</div>';
+          html += '<p>"' + t.text + '"</p>';
+          html += '<div class="testimonial-author">';
+          html += '<strong>' + t.author + '</strong>';
+          html += '<span>' + (t.role || 'Customer') + '</span>';
+          html += '</div>';
+          html += '</div>';
+      });
+      testimonialsGrid.innerHTML = html;
   }
 
   function setupSmoothScrolling() {
