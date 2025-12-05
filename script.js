@@ -31,7 +31,7 @@
   // ========================================
   // DEFAULT CONTENT INITIALIZATION
   // ========================================
-  function initializeDefaultContent() {
+   function initializeDefaultContent() {
       // Only initialize if content doesn't exist
       if (!localStorage.getItem('homeContent')) {
           const defaultHome = {
@@ -44,7 +44,7 @@
               feature3Title: 'Flexible Scheduling',
               feature3Text: 'We work around your schedule with convenient booking times including evenings and weekends.',
               feature4Title: 'Satisfaction Guaranteed',
-              feature4Text: '100% satisfaction guarantee or we\'ll come back and make it right at no extra cost.'
+              feature4Text: '100% satisfaction guarantee or we will come back and make it right at no extra cost.'
           };
           localStorage.setItem('homeContent', JSON.stringify(defaultHome));
       }
