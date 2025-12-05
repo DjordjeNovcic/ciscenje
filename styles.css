@@ -1,0 +1,1155 @@
+/* ========================================
+     RESET & VARIABLES
+     ======================================== */
+  * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+  }
+
+  :root {
+      --primary-color: #2563eb;
+      --primary-dark: #1e40af;
+      --secondary-color: #64748b;
+      --success-color: #10b981;
+      --warning-color: #f59e0b;
+      --danger-color: #ef4444;
+      --text-dark: #1e293b;
+      --text-light: #64748b;
+      --border-color: #e2e8f0;
+      --bg-light: #f8fafc;
+      --bg-white: #ffffff;
+      --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+      --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+      --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  }
+
+  body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+      line-height: 1.6;
+      color: var(--text-dark);
+      background-color: var(--bg-white);
+  }
+
+  .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+  }
+
+  /* ========================================
+     NAVIGATION
+     ======================================== */
+  .navbar {
+      background: var(--bg-white);
+      box-shadow: var(--shadow-sm);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+  }
+
+  .navbar .container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 20px;
+  }
+
+  .logo {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: var(--primary-color);
+  }
+
+  .nav-menu {
+      display: flex;
+      list-style: none;
+      gap: 2rem;
+  }
+
+  .nav-menu a {
+      color: var(--text-dark);
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.3s;
+  }
+
+  .nav-menu a:hover,
+  .nav-menu a.active {
+      color: var(--primary-color);
+  }
+
+  .admin-link {
+      color: var(--secondary-color) !important;
+      font-size: 0.9rem;
+  }
+
+  .hamburger {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+  }
+
+  .hamburger span {
+      width: 25px;
+      height: 3px;
+      background: var(--text-dark);
+      margin: 3px 0;
+      transition: 0.3s;
+  }
+
+  /* ========================================
+     HERO SECTION
+     ======================================== */
+  .hero {
+      background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
+      color: white;
+      padding: 6rem 0;
+      text-align: center;
+  }
+
+  .hero h1 {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+  }
+
+  .hero p {
+      font-size: 1.25rem;
+      margin-bottom: 2rem;
+  }
+
+  .hero-buttons {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+  }
+
+  /* ========================================
+     BUTTONS
+     ======================================== */
+  .btn {
+      display: inline-block;
+      padding: 0.75rem 1.5rem;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: all 0.3s;
+      cursor: pointer;
+      border: none;
+      font-size: 1rem;
+  }
+
+  .btn-primary {
+      background: var(--primary-color);
+      color: white;
+  }
+
+  .btn-primary:hover {
+      background: var(--primary-dark);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-md);
+  }
+
+  .btn-secondary {
+      background: white;
+      color: var(--primary-color);
+      border: 2px solid var(--primary-color);
+  }
+
+  .btn-secondary:hover {
+      background: var(--primary-color);
+      color: white;
+  }
+
+  .btn-link {
+      background: none;
+      color: var(--primary-color);
+      padding: 0.5rem 0;
+      font-weight: 600;
+  }
+
+  .btn-block {
+      width: 100%;
+  }
+
+  .btn-icon {
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-size: 1.2rem;
+      padding: 0.25rem 0.5rem;
+      transition: transform 0.2s;
+  }
+
+  .btn-icon:hover {
+      transform: scale(1.2);
+  }
+
+  /* ========================================
+     FEATURES SECTION
+     ======================================== */
+  .features {
+      padding: 5rem 0;
+      background: var(--bg-white);
+  }
+
+  .features h2 {
+      text-align: center;
+      font-size: 2.5rem;
+      margin-bottom: 3rem;
+  }
+
+  .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+  }
+
+  .feature-card {
+      text-align: center;
+      padding: 2rem;
+      border-radius: 12px;
+      transition: transform 0.3s, box-shadow 0.3s;
+  }
+
+  .feature-card:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-lg);
+  }
+
+  .feature-icon {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+  }
+
+  .feature-card h3 {
+      margin-bottom: 1rem;
+      color: var(--text-dark);
+  }
+
+  .feature-card p {
+      color: var(--text-light);
+  }
+
+  /* ========================================
+     SERVICES SECTIONS
+     ======================================== */
+  .services-preview,
+  .services-section {
+      padding: 5rem 0;
+  }
+
+  .services-preview {
+      background: var(--bg-light);
+  }
+
+  .services-preview h2,
+  .services-section h2 {
+      text-align: center;
+      font-size: 2.5rem;
+      margin-bottom: 3rem;
+  }
+
+  .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+  }
+
+  .service-card {
+      background: white;
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: var(--shadow-md);
+      transition: transform 0.3s;
+  }
+
+  .service-card:hover {
+      transform: translateY(-5px);
+  }
+
+  .service-card h3 {
+      margin-bottom: 1rem;
+      color: var(--primary-color);
+  }
+
+  .service-card p {
+      color: var(--text-light);
+      margin-bottom: 1rem;
+  }
+
+  /* ========================================
+     PRICING CARDS
+     ======================================== */
+  .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+      margin-top: 2rem;
+  }
+
+  .pricing-card {
+      background: white;
+      padding: 2.5rem;
+      border-radius: 12px;
+      box-shadow: var(--shadow-md);
+      text-align: center;
+      position: relative;
+      transition: transform 0.3s, box-shadow 0.3s;
+  }
+
+  .pricing-card:hover {
+      transform: translateY(-10px);
+      box-shadow: var(--shadow-lg);
+  }
+
+  .pricing-card.featured {
+      border: 3px solid var(--primary-color);
+  }
+
+  .badge {
+      position: absolute;
+      top: -15px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--primary-color);
+      color: white;
+      padding: 0.5rem 1rem;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      font-weight: bold;
+  }
+
+  .pricing-card h3 {
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+      color: var(--text-dark);
+  }
+
+  .price {
+      font-size: 3rem;
+      font-weight: bold;
+      color: var(--primary-color);
+      margin: 1rem 0;
+  }
+
+  .price-description {
+      color: var(--text-light);
+      font-size: 0.9rem;
+      margin-bottom: 1.5rem;
+  }
+
+  .features-list {
+      list-style: none;
+      text-align: left;
+      margin: 2rem 0;
+  }
+
+  .features-list li {
+      padding: 0.5rem 0;
+      color: var(--text-dark);
+  }
+
+  /* ========================================
+     ADD-ONS SECTION
+     ======================================== */
+  .add-ons {
+      padding: 5rem 0;
+      background: var(--bg-white);
+  }
+
+  .add-ons h2 {
+      text-align: center;
+      font-size: 2.5rem;
+      margin-bottom: 3rem;
+  }
+
+  .addons-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.5rem;
+  }
+
+  .addon-card {
+      background: var(--bg-light);
+      padding: 1.5rem;
+      border-radius: 8px;
+      text-align: center;
+      transition: transform 0.3s;
+  }
+
+  .addon-card:hover {
+      transform: translateY(-5px);
+      background: white;
+      box-shadow: var(--shadow-md);
+  }
+
+  .addon-card h4 {
+      color: var(--text-dark);
+      margin-bottom: 0.5rem;
+  }
+
+  .addon-card p {
+      color: var(--primary-color);
+      font-weight: bold;
+  }
+
+  /* ========================================
+     CONTACT FORM
+     ======================================== */
+  .contact {
+      padding: 5rem 0;
+      background: var(--bg-white);
+  }
+
+  .contact h2 {
+      text-align: center;
+      font-size: 2.5rem;
+      margin-bottom: 3rem;
+  }
+
+  .contact-form {
+      max-width: 700px;
+      margin: 0 auto;
+      background: white;
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: var(--shadow-md);
+  }
+
+  .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      margin-bottom: 1rem;
+  }
+
+  .contact-form input,
+  .contact-form select,
+  .contact-form textarea {
+      width: 100%;
+      padding: 0.75rem;
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      font-size: 1rem;
+      font-family: inherit;
+      transition: border-color 0.3s;
+  }
+
+  .contact-form input:focus,
+  .contact-form select:focus,
+  .contact-form textarea:focus {
+      outline: none;
+      border-color: var(--primary-color);
+  }
+
+  .contact-form textarea {
+      resize: vertical;
+      margin-bottom: 1rem;
+  }
+
+  /* ========================================
+     PAGE HEADER
+     ======================================== */
+  .page-header {
+      background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
+      color: white;
+      padding: 4rem 0;
+      text-align: center;
+  }
+
+  .page-header h1 {
+      font-size: 2.5rem;
+      margin-bottom: 0.5rem;
+  }
+
+  .page-header p {
+      font-size: 1.1rem;
+  }
+
+  /* ========================================
+     ABOUT PAGE
+     ======================================== */
+  .about-content {
+      padding: 5rem 0;
+  }
+
+  .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: center;
+  }
+
+  .about-text h2 {
+      font-size: 2rem;
+      margin-bottom: 1.5rem;
+  }
+
+  .about-text p {
+      color: var(--text-light);
+      margin-bottom: 1rem;
+      line-height: 1.8;
+  }
+
+  .about-image .placeholder-image {
+      background: var(--bg-light);
+      border-radius: 12px;
+      height: 400px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      font-size: 4rem;
+  }
+
+  .about-image .placeholder-image p:last-child {
+      font-size: 1rem;
+      color: var(--text-light);
+  }
+
+  .alt-bg {
+      background: var(--bg-light);
+  }
+
+  /* ========================================
+     VALUES SECTION
+     ======================================== */
+  .values {
+      padding: 5rem 0;
+  }
+
+  .values h2 {
+      text-align: center;
+      font-size: 2.5rem;
+      margin-bottom: 3rem;
+  }
+
+  .values-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+  }
+
+  .value-card {
+      text-align: center;
+      padding: 2rem;
+  }
+
+  .value-icon {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+  }
+
+  .value-card h3 {
+      margin-bottom: 1rem;
+      color: var(--text-dark);
+  }
+
+  .value-card p {
+      color: var(--text-light);
+  }
+
+  /* ========================================
+     TESTIMONIALS
+     ======================================== */
+  .testimonials {
+      padding: 5rem 0;
+  }
+
+  .testimonials h2 {
+      text-align: center;
+      font-size: 2.5rem;
+      margin-bottom: 3rem;
+  }
+
+  .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+  }
+
+  .testimonial-card {
+      background: white;
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: var(--shadow-md);
+      transition: transform 0.3s;
+  }
+
+  .testimonial-card:hover {
+      transform: translateY(-5px);
+  }
+
+  .stars {
+      color: #fbbf24;
+      margin-bottom: 1rem;
+      font-size: 1.2rem;
+  }
+
+  .testimonial-card p {
+      color: var(--text-light);
+      margin-bottom: 1.5rem;
+      font-style: italic;
+      line-height: 1.8;
+  }
+
+  .testimonial-author strong {
+      display: block;
+      color: var(--text-dark);
+      margin-bottom: 0.25rem;
+  }
+
+  .testimonial-author span {
+      color: var(--text-light);
+      font-size: 0.9rem;
+  }
+
+  /* ========================================
+     CTA SECTION
+     ======================================== */
+  .cta {
+      padding: 5rem 0;
+      background: var(--bg-light);
+      text-align: center;
+  }
+
+  .cta h2 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+  }
+
+  .cta p {
+      color: var(--text-light);
+      margin-bottom: 2rem;
+  }
+
+  /* ========================================
+     FOOTER
+     ======================================== */
+  footer {
+      background: var(--text-dark);
+      color: white;
+      padding: 3rem 0 1rem;
+  }
+
+  .footer-content {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 2rem;
+      margin-bottom: 2rem;
+  }
+
+  .footer-section h4 {
+      margin-bottom: 1rem;
+  }
+
+  .footer-section p {
+      color: #cbd5e1;
+      margin-bottom: 0.5rem;
+  }
+
+  .footer-bottom {
+      text-align: center;
+      padding-top: 2rem;
+      border-top: 1px solid #475569;
+      color: #cbd5e1;
+  }
+
+  /* ========================================
+     ADMIN LOGIN PAGE
+     ======================================== */
+  .login-container {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
+  }
+
+  .login-box {
+      background: white;
+      padding: 3rem;
+      border-radius: 12px;
+      box-shadow: var(--shadow-lg);
+      width: 100%;
+      max-width: 400px;
+  }
+
+  .login-header {
+      text-align: center;
+      margin-bottom: 2rem;
+  }
+
+  .login-header h1 {
+      color: var(--primary-color);
+      margin-bottom: 0.5rem;
+  }
+
+  .login-header p {
+      color: var(--text-light);
+  }
+
+  .login-form .form-group {
+      margin-bottom: 1.5rem;
+  }
+
+  .login-form label {
+      display: block;
+      margin-bottom: 0.5rem;
+      color: var(--text-dark);
+      font-weight: 500;
+  }
+
+  .login-form input {
+      width: 100%;
+      padding: 0.75rem;
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      font-size: 1rem;
+  }
+
+  .login-form input:focus {
+      outline: none;
+      border-color: var(--primary-color);
+  }
+
+  .error-message {
+      background: #fee2e2;
+      color: var(--danger-color);
+      padding: 0.75rem;
+      border-radius: 8px;
+      margin-bottom: 1rem;
+      text-align: center;
+  }
+
+  .login-help {
+      text-align: center;
+      margin-top: 1rem;
+      color: var(--text-light);
+  }
+
+  .login-footer {
+      text-align: center;
+      margin-top: 2rem;
+      padding-top: 1rem;
+      border-top: 1px solid var(--border-color);
+  }
+
+  .login-footer a {
+      color: var(--primary-color);
+      text-decoration: none;
+  }
+
+  /* ========================================
+     ADMIN DASHBOARD
+     ======================================== */
+  .admin-layout {
+      display: flex;
+      min-height: 100vh;
+  }
+
+  .admin-sidebar {
+      width: 250px;
+      background: var(--text-dark);
+      color: white;
+      display: flex;
+      flex-direction: column;
+  }
+
+  .sidebar-header {
+      padding: 1.5rem;
+      border-bottom: 1px solid #475569;
+  }
+
+  .sidebar-header h2 {
+      color: white;
+      font-size: 1.25rem;
+  }
+
+  .sidebar-nav {
+      flex: 1;
+      padding: 1rem 0;
+  }
+
+  .sidebar-nav .nav-item {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 1rem 1.5rem;
+      color: #cbd5e1;
+      text-decoration: none;
+      transition: background 0.3s;
+  }
+
+  .sidebar-nav .nav-item:hover,
+  .sidebar-nav .nav-item.active {
+      background: #334155;
+      color: white;
+  }
+
+  .sidebar-footer {
+      padding: 1rem;
+      border-top: 1px solid #475569;
+  }
+
+  .admin-main {
+      flex: 1;
+      background: var(--bg-light);
+  }
+
+  .admin-header {
+      background: white;
+      padding: 1.5rem 2rem;
+      box-shadow: var(--shadow-sm);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+  }
+
+  .admin-header h1 {
+      font-size: 1.75rem;
+  }
+
+  .admin-user {
+      color: var(--text-light);
+  }
+
+  .dashboard-content {
+      padding: 2rem;
+  }
+
+  /* ========================================
+     STATS CARDS
+     ======================================== */
+  .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+  }
+
+  .stat-card {
+      background: white;
+      padding: 1.5rem;
+      border-radius: 12px;
+      box-shadow: var(--shadow-sm);
+      display: flex;
+      gap: 1rem;
+  }
+
+  .stat-icon {
+      font-size: 2.5rem;
+  }
+
+  .stat-info {
+      flex: 1;
+  }
+
+  .stat-info h3 {
+      font-size: 0.9rem;
+      color: var(--text-light);
+      margin-bottom: 0.5rem;
+  }
+
+  .stat-value {
+      font-size: 2rem;
+      font-weight: bold;
+      color: var(--text-dark);
+      margin-bottom: 0.25rem;
+  }
+
+  .stat-change {
+      font-size: 0.85rem;
+  }
+
+  .stat-change.positive {
+      color: var(--success-color);
+  }
+
+  .stat-change.negative {
+      color: var(--danger-color);
+  }
+
+  /* ========================================
+     DASHBOARD SECTIONS
+     ======================================== */
+  .dashboard-section {
+      background: white;
+      padding: 1.5rem;
+      border-radius: 12px;
+      box-shadow: var(--shadow-sm);
+      margin-bottom: 2rem;
+  }
+
+  .dashboard-section h2 {
+      font-size: 1.5rem;
+      margin-bottom: 1.5rem;
+  }
+
+  /* ========================================
+     DATA TABLE
+     ======================================== */
+  .table-container {
+      overflow-x: auto;
+  }
+
+  .data-table {
+      width: 100%;
+      border-collapse: collapse;
+  }
+
+  .data-table thead {
+      background: var(--bg-light);
+  }
+
+  .data-table th {
+      padding: 1rem;
+      text-align: left;
+      font-weight: 600;
+      color: var(--text-dark);
+      border-bottom: 2px solid var(--border-color);
+  }
+
+  .data-table td {
+      padding: 1rem;
+      border-bottom: 1px solid var(--border-color);
+  }
+
+  .data-table tbody tr:hover {
+      background: var(--bg-light);
+  }
+
+  .badge {
+      display: inline-block;
+      padding: 0.25rem 0.75rem;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      font-weight: 600;
+  }
+
+  .badge-pending {
+      background: #fef3c7;
+      color: #92400e;
+  }
+
+  .badge-confirmed {
+      background: #dbeafe;
+      color: #1e40af;
+  }
+
+  .badge-completed {
+      background: #d1fae5;
+      color: #065f46;
+  }
+
+  /* ========================================
+     QUICK ACTIONS
+     ======================================== */
+  .quick-actions {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+  }
+
+  /* ========================================
+     RESPONSIVE DESIGN
+     ======================================== */
+  @media (max-width: 768px) {
+      .hamburger {
+          display: flex;
+      }
+
+      .nav-menu {
+          position: absolute;
+          top: 70px;
+          left: -100%;
+          flex-direction: column;
+          background: white;
+          width: 100%;
+          padding: 2rem;
+          box-shadow: var(--shadow-md);
+          transition: left 0.3s;
+      }
+
+      .nav-menu.active {
+          left: 0;
+      }
+
+      .hero h1 {
+          font-size: 2rem;
+      }
+
+      .hero-buttons {
+          flex-direction: column;
+      }
+
+      .form-row {
+          grid-template-columns: 1fr;
+      }
+
+      .about-grid {
+          grid-template-columns: 1fr;
+      }
+
+      .admin-layout {
+          flex-direction: column;
+      }
+
+      .admin-sidebar {
+          width: 100%;
+      }
+
+      .stats-grid {
+          grid-template-columns: 1fr;
+      }
+  }
+
+  @media (max-width: 480px) {
+      .hero h1 {
+          font-size: 1.5rem;
+      }
+
+      .features h2,
+      .services-preview h2 {
+          font-size: 1.75rem;
+      }
+
+      .price {
+          font-size: 2rem;
+      }
+  }
+
+  7. script.js (JavaScript Functionality)
+
+  // ========================================
+  // MOBILE NAVIGATION
+  // ========================================
+  document.addEventListener('DOMContentLoaded', function() {
+      const hamburger = document.querySelector('.hamburger');
+      const navMenu = document.querySelector('.nav-menu');
+
+      if (hamburger) {
+          hamburger.addEventListener('click', function() {
+              navMenu.classList.toggle('active');
+          });
+      }
+
+      // ========================================
+      // CONTACT FORM HANDLING
+      // ========================================
+      const contactForm = document.getElementById('contactForm');
+      if (contactForm) {
+          contactForm.addEventListener('submit', function(e) {
+              e.preventDefault();
+
+              // Get form data
+              const formData = new FormData(contactForm);
+              const data = Object.fromEntries(formData);
+
+              // Here you would typically send this to a backend or email service
+              // For now, we'll just show an alert
+              alert('Thank you for your inquiry! We will contact you shortly.\n\nDetails:\n' +
+                    'Name: ' + data.name + '\n' +
+                    'Email: ' + data.email + '\n' +
+                    'Phone: ' + data.phone + '\n' +
+                    'Service: ' + data.serviceType);
+
+              // Reset form
+              contactForm.reset();
+
+              // In production, you might integrate with services like:
+              // - Formspree: https://formspree.io/
+              // - EmailJS: https://www.emailjs.com/
+              // - Your own backend API
+          });
+      }
+
+      // ========================================
+      // ADMIN LOGIN HANDLING
+      // ========================================
+      const loginForm = document.getElementById('loginForm');
+      if (loginForm) {
+          loginForm.addEventListener('submit', function(e) {
+              e.preventDefault();
+
+              const username = document.getElementById('username').value;
+              const password = document.getElementById('password').value;
+              const errorMessage = document.getElementById('loginError');
+
+              // Simple demo authentication (NOT SECURE - for demo only!)
+              // In production, use proper backend authentication
+              if (username === 'admin' && password === 'admin123') {
+                  // Store login state (in production, use JWT or session tokens)
+                  localStorage.setItem('isAdminLoggedIn', 'true');
+                  localStorage.setItem('adminUsername', username);
+
+                  // Redirect to dashboard
+                  window.location.href = 'admin-dashboard.html';
+              } else {
+                  errorMessage.style.display = 'block';
+                  setTimeout(() => {
+                      errorMessage.style.display = 'none';
+                  }, 3000);
+              }
+          });
+      }
+
+      // ========================================
+      // ADMIN DASHBOARD PROTECTION
+      // ========================================
+      const adminLayout = document.querySelector('.admin-layout');
+      if (adminLayout) {
+          // Check if user is logged in
+          const isLoggedIn = localStorage.getItem('isAdminLoggedIn');
+
+          if (!isLoggedIn) {
+              // Redirect to login if not authenticated
+              window.location.href = 'admin-login.html';
+          }
+
+          // Display username
+          const adminUser = document.querySelector('.admin-user span');
+          if (adminUser) {
+              const username = localStorage.getItem('adminUsername');
+              adminUser.textContent = 'Welcome, ' + (username || 'Admin');
+          }
+      }
+
+      // ========================================
+      // LOGOUT FUNCTIONALITY
+      // ========================================
+      const logoutBtn = document.getElementById('logoutBtn');
+      if (logoutBtn) {
+          logoutBtn.addEventListener('click', function() {
+              // Clear login state
+              localStorage.removeItem('isAdminLoggedIn');
+              localStorage.removeItem('adminUsername');
+
+              // Redirect to login
+              window.location.href = 'admin-login.html';
+          });
+      }
+
+      // ========================================
+      // SMOOTH SCROLLING FOR ANCHOR LINKS
+      // ========================================
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+          anchor.addEventListener('click', function (e) {
+              e.preventDefault();
+
+              const target = document.querySelector(this.getAttribute('href'));
+              if (target) {
+                  target.scrollIntoView({
+                      behavior: 'smooth',
+                      block: 'start'
+                  });
+
+                  // Close mobile menu if open
+                  if (navMenu && navMenu.classList.contains('active')) {
+                      navMenu.classList.remove('active');
+                  }
+              }
+          });
+      });
+  });
