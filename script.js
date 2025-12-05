@@ -1,4 +1,4 @@
- document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function() {
       initializeApp();
   });
 
@@ -616,6 +616,7 @@
       loadHomePageContent();
       loadServicesPageContent();
       loadAboutPageContent();
+      updateFooterContent();
   }
 
   function loadHomePageContent() {
@@ -669,6 +670,41 @@
       }
 
       loadPublicTestimonials();
+  }
+
+  function updateFooterContent() {
+      const content = JSON.parse(localStorage.getItem('aboutContent'));
+      if (!content) return;
+
+      const footerSections = document.querySelectorAll('.footer-section');
+
+      footerSections.forEach(function(section) {
+          const heading = section.querySelector('h4');
+          if (!heading) return;
+
+          if (heading.textContent === 'Contact') {
+              const paragraphs = section.querySelectorAll('p');
+              if (paragraphs.length >= 2) {
+                  paragraphs[0].textContent = 'Email: ' + content.companyEmail;
+                  paragraphs[1].textContent = 'Phone: ' + content.companyPhone;
+              }
+          }
+
+          if (heading.textContent === 'Hours') {
+              const paragraphs = section.querySelectorAll('p');
+              if (content.companyHours && paragraphs.length >= 1) {
+                  const hours = content.companyHours.split('\n');
+                  if (hours.length >= 2) {
+                      paragraphs[0].textContent = hours[0];
+                      if (paragraphs[1]) {
+                          paragraphs[1].textContent = hours[1];
+                      }
+                  } else {
+                      paragraphs[0].textContent = content.companyHours;
+                  }
+              }
+          }
+      });
   }
 
   function loadPublicTestimonials() {
