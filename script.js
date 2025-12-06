@@ -95,14 +95,23 @@
   }
 
   // Admin Login
-  function setupAdminLogin() {
+   function setupAdminLogin() {
       const loginForm = document.getElementById('loginForm');
+      if (!loginForm) return; // Add safety check
 
       loginForm.addEventListener('submit', function(e) {
           e.preventDefault();
 
-          const email = document.getElementById('email').value;
-          const password = document.getElementById('password').value;
+          const emailInput = document.getElementById('email');
+          const passwordInput = document.getElementById('password');
+
+          if (!emailInput || !passwordInput) {
+              console.error('Email or password input not found');
+              return;
+          }
+
+          const email = emailInput.value;
+          const password = passwordInput.value;
 
           auth.signInWithEmailAndPassword(email, password)
               .then(function() {
