@@ -46,8 +46,9 @@
       setupMobileNav();
 
       // Load content on public pages
-      if (document.getElementById('heroHeading') || document.getElementById('heroText')) {
-          loadPublicPageContent();
+      const isAdminPage = document.getElementById('loginForm') || document.getElementById('adminContent');
+      if (!isAdminPage) {
+         loadPublicPageContent();
       }
 
       // Update footer on all pages
