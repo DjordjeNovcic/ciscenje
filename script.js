@@ -1,4 +1,4 @@
-// Firebase configuration
+ // Firebase configuration
   const firebaseConfig = {
       apiKey: "AIzaSyAR4ae5zbbqwqgWLRVtbb2V2W3WbwuSCWo",
       authDomain: "mssjaj-20b34.firebaseapp.com",
@@ -15,10 +15,13 @@
   firebase.initializeApp(firebaseConfig);
   const db = firebase.firestore();
   const auth = firebase.auth();
-  // No Firebase Storage needed anymore!
 
   // Initialize app
-  document.addEventListener('DOMContentLoaded', initializeApp);
+  document.addEventListener('DOMContentLoaded', function() {
+      console.log('DOM loaded, initializing...');
+      initializeApp();
+      setupSidebarNavigation();
+  });
 
   function initializeApp() {
       setupMobileNav();
@@ -39,6 +42,46 @@
       }
   }
 
+  // Sidebar Navigation - THIS IS CRITICAL!
+  function setupSidebarNavigation() {
+      console.log('Setting up sidebar navigation...');
+      const navItems = document.querySelectorAll('.nav-item');
+      const sections = document.querySelectorAll('.content-section');
+
+      console.log('Found', navItems.length, 'nav items and', sections.length, 'sections');
+
+      navItems.forEach(item => {
+          item.addEventListener('click', function() {
+              console.log('Nav item clicked:', this.getAttribute('data-section'));
+
+              // Remove active class from all nav items and sections
+              navItems.forEach(nav => nav.classList.remove('active'));
+              sections.forEach(section => section.classList.remove('active'));
+
+              // Add active class to clicked item
+              this.classList.add('active');
+
+              // Show corresponding section
+              const sectionId = this.getAttribute('data-section');
+              const targetSection = document.getElementById(sectionId);
+              if (targetSection) {
+                  targetSection.classList.add('active');
+                  console.log('Showing section:', sectionId);
+              } else {
+                  console.error('Section not found:', sectionId);
+              }
+          });
+      });
+
+      // Upload photo button
+      const uploadPhotoBtn = document.getElementById('uploadPhotoBtn');
+      if (uploadPhotoBtn) {
+          uploadPhotoBtn.addEventListener('click', function() {
+              document.getElementById('photoInput').click();
+          });
+      }
+  }
+
   // Mobile Navigation
   function setupMobileNav() {
       const hamburger = document.getElementById('hamburger');
@@ -46,9 +89,6 @@
 
       if (hamburger && navMenu) {
           hamburger.addEventListener('click', function() {
-              console.log('Hamburger clicked');
-              console.log('Before:', navMenu.classList);
-
               if (navMenu.classList.contains('active')) {
                   navMenu.classList.remove('active');
                   hamburger.classList.remove('active');
@@ -56,8 +96,6 @@
                   navMenu.classList.add('active');
                   hamburger.classList.add('active');
               }
-
-              console.log('After:', navMenu.classList);
           });
 
           document.addEventListener('click', function(e) {
@@ -95,9 +133,9 @@
   }
 
   // Admin Login
-   function setupAdminLogin() {
+  function setupAdminLogin() {
       const loginForm = document.getElementById('loginForm');
-      if (!loginForm) return; // Add safety check
+      if (!loginForm) return;
 
       loginForm.addEventListener('submit', function(e) {
           e.preventDefault();
@@ -133,14 +171,14 @@
 
           loadAdminContent();
           setupAdminForms();
-          setupLogout();
       });
   }
 
   function setupLogout() {
       const logoutBtn = document.getElementById('logoutBtn');
       if (logoutBtn) {
-          logoutBtn.addEventListener('click', function() {
+          logoutBtn.addEventListener('click', function(e) {
+              e.preventDefault();
               auth.signOut().then(function() {
                   window.location.href = 'admin-login.html';
               });
@@ -155,6 +193,7 @@
       loadTestimonialsAdmin();
       loadGalleryAdmin();
       loadContactAdmin();
+      setupLogout();
   }
 
   // HOME CONTENT
@@ -188,7 +227,7 @@
       const heroText = document.getElementById('heroText');
       const featuresContainer = document.getElementById('featuresContainer');
 
-      if (!heroHeading || !heroText || !featuresContainer) return; // Add this check
+      if (!heroHeading || !heroText || !featuresContainer) return;
 
       db.collection('content').doc('home').get().then(function(doc) {
           if (doc.exists) {
@@ -205,7 +244,7 @@
   data-field="title">
                       <textarea placeholder="Opis" data-index="${index}" 
   data-field="description">${feature.description}</textarea>
-                      <button onclick="removeFeature(${index})">Obriši</button>
+                      <button type="button" onclick="removeFeature(${index})">Obriši</button>
                   </div>
               `).join('');
           }
@@ -221,7 +260,7 @@
           <input type="text" placeholder="Icon (emoji)" data-index="${index}" data-field="icon">
           <input type="text" placeholder="Naslov" data-index="${index}" data-field="title">
           <textarea placeholder="Opis" data-index="${index}" data-field="description"></textarea>
-          <button onclick="removeFeature(${index})">Obriši</button>
+          <button type="button" onclick="removeFeature(${index})">Obriši</button>
       `;
       container.appendChild(div);
   }
@@ -233,7 +272,10 @@
           child.querySelectorAll('[data-index]').forEach(el => {
               el.setAttribute('data-index', i);
           });
-          child.querySelector('button').setAttribute('onclick', `removeFeature(${i})`);
+          const button = child.querySelector('button');
+          if (button) {
+              button.setAttribute('onclick', `removeFeature(${i})`);
+          }
       });
   }
 
@@ -279,7 +321,7 @@
 
   function loadServicesAdmin() {
       const servicesList = document.getElementById('servicesList');
-      if (!servicesList) return; // Add this check
+      if (!servicesList) return;
 
       db.collection('services').get().then(function(querySnapshot) {
           servicesList.innerHTML = '';
@@ -319,7 +361,7 @@
           delete form.dataset.serviceId;
       }
 
-      modal.style.display = 'block';
+      modal.style.display = 'flex';
   }
 
   function closeServiceModal() {
@@ -340,11 +382,13 @@
           db.collection('services').doc(serviceId).update(serviceData).then(function() {
               closeServiceModal();
               loadServicesAdmin();
+              alert('Usluga je ažurirana!');
           });
       } else {
           db.collection('services').add(serviceData).then(function() {
               closeServiceModal();
               loadServicesAdmin();
+              alert('Usluga je dodata!');
           });
       }
   }
@@ -357,6 +401,7 @@
       if (confirm('Da li ste sigurni da želite da obrišete ovu uslugu?')) {
           db.collection('services').doc(serviceId).delete().then(function() {
               loadServicesAdmin();
+              alert('Usluga je obrisana!');
           });
       }
   }
@@ -379,7 +424,7 @@
       const aboutHeading = document.getElementById('aboutHeading');
       const aboutText = document.getElementById('aboutText');
 
-      if (!aboutHeading || !aboutText) return; // Add this check
+      if (!aboutHeading || !aboutText) return;
 
       db.collection('content').doc('about').get().then(function(doc) {
           if (doc.exists) {
@@ -389,7 +434,6 @@
           }
       });
   }
-
 
   function saveAboutContent() {
       db.collection('content').doc('about').set({
@@ -420,9 +464,9 @@
       });
   }
 
-   function loadTestimonialsAdmin() {
+  function loadTestimonialsAdmin() {
       const testimonialsList = document.getElementById('testimonialsList');
-      if (!testimonialsList) return; // Add this check
+      if (!testimonialsList) return;
 
       db.collection('testimonials').get().then(function(querySnapshot) {
           testimonialsList.innerHTML = '';
@@ -460,7 +504,7 @@
           delete form.dataset.testimonialId;
       }
 
-      modal.style.display = 'block';
+      modal.style.display = 'flex';
   }
 
   function closeTestimonialModal() {
@@ -480,11 +524,13 @@
           db.collection('testimonials').doc(testimonialId).update(testimonialData).then(function() {
               closeTestimonialModal();
               loadTestimonialsAdmin();
+              alert('Recenzija je ažurirana!');
           });
       } else {
           db.collection('testimonials').add(testimonialData).then(function() {
               closeTestimonialModal();
               loadTestimonialsAdmin();
+              alert('Recenzija je dodata!');
           });
       }
   }
@@ -497,11 +543,12 @@
       if (confirm('Da li ste sigurni da želite da obrišete ovu recenziju?')) {
           db.collection('testimonials').doc(testimonialId).delete().then(function() {
               loadTestimonialsAdmin();
+              alert('Recenzija je obrisana!');
           });
       }
   }
 
-  // GALLERY - NOW USING IMGBB
+  // GALLERY
   function loadGallery() {
       db.collection('gallery').orderBy('uploadedAt', 'desc').get().then(function(querySnapshot) {
           const galleryGrid = document.getElementById('galleryGrid');
@@ -518,9 +565,9 @@
       });
   }
 
-   function loadGalleryAdmin() {
+  function loadGalleryAdmin() {
       const galleryAdmin = document.getElementById('galleryAdmin');
-      if (!galleryAdmin) return; // Add this check
+      if (!galleryAdmin) return;
 
       db.collection('gallery').orderBy('uploadedAt', 'desc').get().then(function(querySnapshot) {
           galleryAdmin.innerHTML = '';
@@ -530,7 +577,7 @@
               div.className = 'gallery-item';
               div.innerHTML = `
                   <img src="${photo.url}" alt="Galerija">
-                  <button onclick="deletePhoto('${doc.id}')">Obriši</button>
+                  <button class="delete-photo" onclick="deletePhoto('${doc.id}')">Obriši</button>
               `;
               galleryAdmin.appendChild(div);
           });
@@ -545,15 +592,12 @@
               const file = e.target.files[0];
               if (!file) return;
 
-              // Show uploading message
               console.log('Uploading to ImgBB...');
 
-              // Read file as base64
               const reader = new FileReader();
               reader.onload = function(event) {
-                  const base64Image = event.target.result.split(',')[1]; // Remove data:image/...;base64, prefix
+                  const base64Image = event.target.result.split(',')[1];
 
-                  // Upload to ImgBB
                   const formData = new FormData();
                   formData.append('key', IMGBB_API_KEY);
                   formData.append('image', base64Image);
@@ -568,7 +612,6 @@
                           const imageUrl = data.data.url;
                           console.log('Image uploaded successfully:', imageUrl);
 
-                          // Save to Firestore
                           db.collection('gallery').add({
                               url: imageUrl,
                               filename: file.name,
@@ -598,6 +641,7 @@
       if (confirm('Da li ste sigurni da želite da obrišete ovu fotografiju?')) {
           db.collection('gallery').doc(photoId).delete().then(function() {
               loadGalleryAdmin();
+              alert('Fotografija je obrisana!');
           });
       }
   }
@@ -608,7 +652,7 @@
       const contactEmail = document.getElementById('contactEmail');
       const contactAddress = document.getElementById('contactAddress');
 
-      if (!contactPhone || !contactEmail || !contactAddress) return; // Add this check
+      if (!contactPhone || !contactEmail || !contactAddress) return;
 
       db.collection('contact').doc('info').get().then(function(doc) {
           if (doc.exists) {
@@ -629,92 +673,4 @@
           alert('Kontakt informacije su sačuvane!');
           updateFooterContent();
       });
-
-     // Sidebar Navigation
-  document.addEventListener('DOMContentLoaded', function() {
-      const navItems = document.querySelectorAll('.nav-item');
-      const sections = document.querySelectorAll('.content-section');
-
-      navItems.forEach(item => {
-          item.addEventListener('click', function() {
-              // Remove active class from all nav items and sections
-              navItems.forEach(nav => nav.classList.remove('active'));
-              sections.forEach(section => section.classList.remove('active'));
-
-              // Add active class to clicked item
-              this.classList.add('active');
-
-              // Show corresponding section
-              const sectionId = this.getAttribute('data-section');
-              const targetSection = document.getElementById(sectionId);
-              if (targetSection) {
-                  targetSection.classList.add('active');
-              }
-          });
-      });
-
-      // Upload photo button
-      const uploadPhotoBtn = document.getElementById('uploadPhotoBtn');
-      if (uploadPhotoBtn) {
-          uploadPhotoBtn.addEventListener('click', function() {
-              document.getElementById('photoInput').click();
-          });
-      }
-
-      // Add testimonial button
-      const addTestimonialBtn = document.getElementById('addTestimonialBtn');
-      if (addTestimonialBtn) {
-          addTestimonialBtn.addEventListener('click', function() {
-              showTestimonialModal();
-          });
-      }
-
-      // Close modal buttons
-      document.querySelectorAll('.close-modal').forEach(btn => {
-          btn.addEventListener('click', function() {
-              closeTestimonialModal();
-              closeServiceModal();
-          });
-      });
-
-      // Click outside modal to close
-      window.addEventListener('click', function(e) {
-          const testimonialModal = document.getElementById('testimonialModal');
-          const serviceModal = document.getElementById('serviceModal');
-
-          if (e.target === testimonialModal) {
-              closeTestimonialModal();
-          }
-          if (e.target === serviceModal) {
-              closeServiceModal();
-          }
-      });
-
-      // Save buttons
-      const saveHomeBtn = document.getElementById('saveHomeBtn');
-      if (saveHomeBtn) {
-          saveHomeBtn.addEventListener('click', saveHomeContent);
-      }
-
-      const saveAboutBtn = document.getElementById('saveAboutBtn');
-      if (saveAboutBtn) {
-          saveAboutBtn.addEventListener('click', saveAboutContent);
-      }
-
-      const saveContactBtn = document.getElementById('saveContactBtn');
-      if (saveContactBtn) {
-          saveContactBtn.addEventListener('click', saveContact);
-      }
-
-      const saveTestimonialBtn = document.getElementById('saveTestimonialBtn');
-      if (saveTestimonialBtn) {
-          saveTestimonialBtn.addEventListener('click', saveTestimonial);
-      }
-
-      const saveServiceBtn = document.getElementById('saveServiceBtn');
-      if (saveServiceBtn) {
-          saveServiceBtn.addEventListener('click', saveService);
-      }
-  });
-
   }
