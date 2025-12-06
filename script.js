@@ -360,16 +360,22 @@
 
           const servicesGrid = document.getElementById('servicesGrid');
           if (servicesGrid) {
-              servicesGrid.innerHTML = services.map(service => `
-                  <div class="service-card">
-                      <h3>${service.name}</h3>
-                      <p class="service-description">${service.description}</p>
-                      <p class="service-price">${service.price}</p>
-                  </div>
-              `).join('');
+              if (services.length === 0) {
+                  servicesGrid.innerHTML = '<p style="text-align: center; color: var(--text-light); grid-column: 
+  1/-1;">Trenutno nema dostupnih usluga. Dodajte usluge preko admin panela.</p>';
+              } else {
+                  servicesGrid.innerHTML = services.map(service => `
+                      <div class="service-card">
+                          <h3>${service.name}</h3>
+                          <p class="service-description">${service.description}</p>
+                          <p class="service-price">${service.price}</p>
+                      </div>
+                  `).join('');
+              }
           }
       });
   }
+
 
   function loadServicesAdmin() {
       const servicesList = document.getElementById('servicesList');
