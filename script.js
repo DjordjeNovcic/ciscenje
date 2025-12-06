@@ -16,12 +16,35 @@
   const db = firebase.firestore();
   const auth = firebase.auth();
 
+  // Quill Editor instance
+  var quillEditor = null;
+
   // Initialize app
   document.addEventListener('DOMContentLoaded', function() {
       console.log('DOM loaded, initializing...');
       initializeApp();
       setupSidebarNavigation();
+      initQuillEditor();
   });
+
+  // Initialize Quill Editor
+  function initQuillEditor() {
+      const editorElement = document.getElementById('serviceDescription');
+      if (editorElement && !quillEditor) {
+          quillEditor = new Quill('#serviceDescription', {
+              theme: 'snow',
+              modules: {
+                  toolbar: [
+                      ['bold', 'italic', 'underline', 'strike'],
+                      [{ 'list': 'ordered'}, { 'list': 'bullet' }],
+                      [{ 'header': [1, 2, 3, false] }],
+                      ['clean']
+                  ]
+              },
+              placeholder: 'Unesite opis usluge...'
+          });
+      }
+  }
 
   function initializeApp() {
       setupMobileNav();
@@ -389,11 +412,12 @@
           const servicesGrid = document.getElementById('servicesGrid');
           if (servicesGrid) {
               if (services.length === 0) {
-                  servicesGrid.innerHTML = '<p style="text-align: center; color: var(--text-light); grid-column: 1/-1;">Trenutno nema dostupnih usluga.</p>';
+                  servicesGrid.innerHTML = '<p style="text-align: center; color: var(--text-light); grid-column: 
+  1/-1;">Trenutno nema dostupnih usluga.</p>';
               } else {
                   servicesGrid.innerHTML = services.map(function(service) {
-                      return '<div class="service-card"><h3>' + service.name + '</h3><p class="service-description">' +
-  service.description + '</p><p class="service-price">' + service.price + '</p></div>';
+                      return '<div class="service-card"><h3>' + service.name + '</h3><div class="service-description">' +
+  service.description + '</div><p class="service-price">' + service.price + '</p></div>';
                   }).join('');
               }
           }
@@ -411,11 +435,34 @@
               const service = doc.data();
               const div = document.createElement('div');
               div.className = 'service-item';
-              div.innerHTML = '<h4>' + service.name + '</h4>' +
-                  '<p>' + service.description + '</p>' +
-                  '<p><strong>' + service.price + '</strong></p>' +
-                  '<button onclick="editService(\'' + doc.id + '\')">Izmeni</button> ' +
-                  '<button onclick="deleteService(\'' + doc.id + '\')">Obrisi</button>';
+
+              const h4 = document.createElement('h4');
+              h4.textContent = service.name;
+
+              const p1 = document.createElement('div');
+              p1.innerHTML = service.description;
+              p1.style.marginBottom = '10px';
+
+              const p2 = document.createElement('p');
+              const strong = document.createElement('strong');
+              strong.textContent = service.price;
+              p2.appendChild(strong);
+
+              const editBtn = document.createElement('button');
+              editBtn.textContent = 'Izmeni';
+              editBtn.onclick = function() { editService(doc.id); };
+
+              const deleteBtn = document.createElement('button');
+              deleteBtn.textContent = 'Obrisi';
+              deleteBtn.onclick = function() { deleteService(doc.id); };
+
+              div.appendChild(h4);
+              div.appendChild(p1);
+              div.appendChild(p2);
+              div.appendChild(editBtn);
+              div.appendChild(document.createTextNode(' '));
+              div.appendChild(deleteBtn);
+
               servicesList.appendChild(div);
           });
       });
@@ -424,19 +471,33 @@
   function showServiceModal(serviceId) {
       const modal = document.getElementById('serviceModal');
       const form = document.getElementById('serviceForm');
+      const modalTitle = document.getElementById('serviceModalTitle');
 
       if (serviceId) {
+          modalTitle.textContent = 'Uredi uslugu';
           db.collection('services').doc(serviceId).get().then(function(doc) {
               if (doc.exists) {
                   const service = doc.data();
                   document.getElementById('serviceName').value = service.name;
-                  document.getElementById('serviceDescription').value = service.description;
+
+                  // Set Quill editor content
+                  if (quillEditor) {
+                      quillEditor.root.innerHTML = service.description || '';
+                  }
+
                   document.getElementById('servicePrice').value = service.price;
                   form.dataset.serviceId = serviceId;
               }
           });
       } else {
+          modalTitle.textContent = 'Dodaj uslugu';
           form.reset();
+
+          // Clear Quill editor
+          if (quillEditor) {
+              quillEditor.setText('');
+          }
+
           delete form.dataset.serviceId;
       }
 
@@ -445,13 +506,22 @@
 
   function closeServiceModal() {
       document.getElementById('serviceModal').style.display = 'none';
+
+      // Clear Quill editor
+      if (quillEditor) {
+          quillEditor.setText('');
+      }
   }
 
   function saveService() {
       const form = document.getElementById('serviceForm');
+
+      // Get HTML content from Quill editor
+      const description = quillEditor ? quillEditor.root.innerHTML : '';
+
       const serviceData = {
           name: document.getElementById('serviceName').value,
-          description: document.getElementById('serviceDescription').value,
+          description: description,
           price: document.getElementById('servicePrice').value
       };
 
@@ -554,14 +624,37 @@
               const testimonial = doc.data();
               const div = document.createElement('div');
               div.className = 'testimonial-item';
-              div.innerHTML = '<div class="testimonial-content">' +
-                  '<p>"' + testimonial.text + '"</p>' +
-                  '<p class="testimonial-author">- ' + testimonial.author + '</p>' +
-                  '</div>' +
-                  '<div class="testimonial-actions">' +
-                  '<button onclick="editTestimonial(\'' + doc.id + '\')">Izmeni</button>' +
-                  '<button onclick="deleteTestimonial(\'' + doc.id + '\')">Obrisi</button>' +
-                  '</div>';
+
+              const contentDiv = document.createElement('div');
+              contentDiv.className = 'testimonial-content';
+
+              const p1 = document.createElement('p');
+              p1.textContent = '"' + testimonial.text + '"';
+
+              const p2 = document.createElement('p');
+              p2.className = 'testimonial-author';
+              p2.textContent = '- ' + testimonial.author;
+
+              contentDiv.appendChild(p1);
+              contentDiv.appendChild(p2);
+
+              const actionsDiv = document.createElement('div');
+              actionsDiv.className = 'testimonial-actions';
+
+              const editBtn = document.createElement('button');
+              editBtn.textContent = 'Izmeni';
+              editBtn.onclick = function() { editTestimonial(doc.id); };
+
+              const deleteBtn = document.createElement('button');
+              deleteBtn.textContent = 'Obrisi';
+              deleteBtn.onclick = function() { deleteTestimonial(doc.id); };
+
+              actionsDiv.appendChild(editBtn);
+              actionsDiv.appendChild(deleteBtn);
+
+              div.appendChild(contentDiv);
+              div.appendChild(actionsDiv);
+
               testimonialsList.appendChild(div);
           });
       });
@@ -656,8 +749,19 @@
               const photo = doc.data();
               const div = document.createElement('div');
               div.className = 'gallery-item';
-              div.innerHTML = '<img src="' + photo.url + '" alt="Galerija">' +
-                  '<button class="delete-photo" onclick="deletePhoto(\'' + doc.id + '\')">Obrisi</button>';
+
+              const img = document.createElement('img');
+              img.src = photo.url;
+              img.alt = 'Galerija';
+
+              const deleteBtn = document.createElement('button');
+              deleteBtn.className = 'delete-photo';
+              deleteBtn.textContent = 'Obrisi';
+              deleteBtn.onclick = function() { deletePhoto(doc.id); };
+
+              div.appendChild(img);
+              div.appendChild(deleteBtn);
+
               galleryAdmin.appendChild(div);
           });
       });
@@ -754,120 +858,51 @@
       });
   }
 
-  function loadServicesAdmin() {
-      const servicesList = document.getElementById('servicesList');
-      if (!servicesList) return;
+  3. Add this to your styles.css
 
-      db.collection('services').get().then(function(querySnapshot) {
-          servicesList.innerHTML = '';
-
-          querySnapshot.forEach(function(doc) {
-              const service = doc.data();
-              const div = document.createElement('div');
-              div.className = 'service-item';
-
-              const h4 = document.createElement('h4');
-              h4.textContent = service.name;
-
-              const p1 = document.createElement('p');
-              p1.textContent = service.description;
-
-              const p2 = document.createElement('p');
-              const strong = document.createElement('strong');
-              strong.textContent = service.price;
-              p2.appendChild(strong);
-
-              const editBtn = document.createElement('button');
-              editBtn.textContent = 'Izmeni';
-              editBtn.onclick = function() { editService(doc.id); };
-
-              const deleteBtn = document.createElement('button');
-              deleteBtn.textContent = 'Obrisi';
-              deleteBtn.onclick = function() { deleteService(doc.id); };
-
-              div.appendChild(h4);
-              div.appendChild(p1);
-              div.appendChild(p2);
-              div.appendChild(editBtn);
-              div.appendChild(document.createTextNode(' '));
-              div.appendChild(deleteBtn);
-
-              servicesList.appendChild(div);
-          });
-      });
+  /* Quill Editor Styling */
+  .ql-toolbar {
+      background: #f8f9fa;
+      border-radius: 8px 8px 0 0;
+      border: 1px solid var(--border-color);
   }
 
-  function loadTestimonialsAdmin() {
-      const testimonialsList = document.getElementById('testimonialsList');
-      if (!testimonialsList) return;
-
-      db.collection('testimonials').get().then(function(querySnapshot) {
-          testimonialsList.innerHTML = '';
-
-          querySnapshot.forEach(function(doc) {
-              const testimonial = doc.data();
-              const div = document.createElement('div');
-              div.className = 'testimonial-item';
-
-              const contentDiv = document.createElement('div');
-              contentDiv.className = 'testimonial-content';
-
-              const p1 = document.createElement('p');
-              p1.textContent = '"' + testimonial.text + '"';
-
-              const p2 = document.createElement('p');
-              p2.className = 'testimonial-author';
-              p2.textContent = '- ' + testimonial.author;
-
-              contentDiv.appendChild(p1);
-              contentDiv.appendChild(p2);
-
-              const actionsDiv = document.createElement('div');
-              actionsDiv.className = 'testimonial-actions';
-
-              const editBtn = document.createElement('button');
-              editBtn.textContent = 'Izmeni';
-              editBtn.onclick = function() { editTestimonial(doc.id); };
-
-              const deleteBtn = document.createElement('button');
-              deleteBtn.textContent = 'Obrisi';
-              deleteBtn.onclick = function() { deleteTestimonial(doc.id); };
-
-              actionsDiv.appendChild(editBtn);
-              actionsDiv.appendChild(deleteBtn);
-
-              div.appendChild(contentDiv);
-              div.appendChild(actionsDiv);
-
-              testimonialsList.appendChild(div);
-          });
-      });
+  .ql-container {
+      border-radius: 0 0 8px 8px;
+      font-size: 14px;
+      border: 1px solid var(--border-color);
+      border-top: none;
   }
 
-  function loadGalleryAdmin() {
-      const galleryAdmin = document.getElementById('galleryAdmin');
-      if (!galleryAdmin) return;
+  #serviceDescription {
+      border-radius: 8px;
+  }
 
-      db.collection('gallery').orderBy('uploadedAt', 'desc').get().then(function(querySnapshot) {
-          galleryAdmin.innerHTML = '';
-          querySnapshot.forEach(function(doc) {
-              const photo = doc.data();
-              const div = document.createElement('div');
-              div.className = 'gallery-item';
+  .ql-editor {
+      min-height: 200px;
+  }
 
-              const img = document.createElement('img');
-              img.src = photo.url;
-              img.alt = 'Galerija';
+  /* Service description display on public pages */
+  .service-description ul,
+  .service-description ol {
+      margin: 10px 0;
+      padding-left: 20px;
+  }
 
-              const deleteBtn = document.createElement('button');
-              deleteBtn.className = 'delete-photo';
-              deleteBtn.textContent = 'Obrisi';
-              deleteBtn.onclick = function() { deletePhoto(doc.id); };
+  .service-description li {
+      margin: 5px 0;
+  }
 
-              div.appendChild(img);
-              div.appendChild(deleteBtn);
+  .service-description strong {
+      font-weight: 600;
+  }
 
-              galleryAdmin.appendChild(div);
-          });
-      });
+  .service-description em {
+      font-style: italic;
+  }
+
+  .service-description h1,
+  .service-description h2,
+  .service-description h3 {
+      margin: 15px 0 10px;
   }
