@@ -399,14 +399,35 @@
           const servicesGrid = document.getElementById('servicesGrid');
           if (!servicesGrid) return;
 
+          servicesGrid.innerHTML = '';
+
           if (services.length === 0) {
-              servicesGrid.innerHTML = '<p style="text-align: center; color: var(--text-light); grid-column: 1/-1;">Trenutno
-   nema dostupnih usluga.</p>';
+              const emptyMsg = document.createElement('p');
+              emptyMsg.style.cssText = 'text-align: center; color: var(--text-light); grid-column: 1/-1;';
+              emptyMsg.textContent = 'Trenutno nema dostupnih usluga.';
+              servicesGrid.appendChild(emptyMsg);
           } else {
-              servicesGrid.innerHTML = services.map(function(service) {
-                  return '<div class="service-card"><h3>' + service.name + '</h3><div class="service-description">' +
-  service.description + '</div><p class="service-price">' + service.price + '</p></div>';
-              }).join('');
+              services.forEach(function(service) {
+                  const card = document.createElement('div');
+                  card.className = 'service-card';
+
+                  const h3 = document.createElement('h3');
+                  h3.textContent = service.name;
+
+                  const desc = document.createElement('div');
+                  desc.className = 'service-description';
+                  desc.innerHTML = service.description;
+
+                  const price = document.createElement('p');
+                  price.className = 'service-price';
+                  price.textContent = service.price;
+
+                  card.appendChild(h3);
+                  card.appendChild(desc);
+                  card.appendChild(price);
+
+                  servicesGrid.appendChild(card);
+              });
           }
       });
   }
@@ -846,16 +867,36 @@
           });
 
           const addonsGrid = document.querySelector('.add-ons-grid');
-          if (addonsGrid) {
-              if (addons.length === 0) {
-                  addonsGrid.innerHTML = '<p style="text-align: center; color: var(--text-light); grid-column: 
-  1/-1;">Trenutno nema dostupnih dodatnih usluga.</p>';
-              } else {
-                  addonsGrid.innerHTML = addons.map(function(addon) {
-                      return '<div class="add-on-item"><h3>' + addon.name + '</h3><p>' + addon.description + '</p><span 
-  class="add-on-price">' + addon.price + '</span></div>';
-                  }).join('');
-              }
+          if (!addonsGrid) return;
+
+          addonsGrid.innerHTML = '';
+
+          if (addons.length === 0) {
+              const emptyMsg = document.createElement('p');
+              emptyMsg.style.cssText = 'text-align: center; color: var(--text-light); grid-column: 1/-1;';
+              emptyMsg.textContent = 'Trenutno nema dostupnih dodatnih usluga.';
+              addonsGrid.appendChild(emptyMsg);
+          } else {
+              addons.forEach(function(addon) {
+                  const item = document.createElement('div');
+                  item.className = 'add-on-item';
+
+                  const h3 = document.createElement('h3');
+                  h3.textContent = addon.name;
+
+                  const p = document.createElement('p');
+                  p.textContent = addon.description;
+
+                  const span = document.createElement('span');
+                  span.className = 'add-on-price';
+                  span.textContent = addon.price;
+
+                  item.appendChild(h3);
+                  item.appendChild(p);
+                  item.appendChild(span);
+
+                  addonsGrid.appendChild(item);
+              });
           }
       });
   }
