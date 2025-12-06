@@ -629,4 +629,92 @@
           alert('Kontakt informacije su sačuvane!');
           updateFooterContent();
       });
+
+     // Sidebar Navigation
+  document.addEventListener('DOMContentLoaded', function() {
+      const navItems = document.querySelectorAll('.nav-item');
+      const sections = document.querySelectorAll('.content-section');
+
+      navItems.forEach(item => {
+          item.addEventListener('click', function() {
+              // Remove active class from all nav items and sections
+              navItems.forEach(nav => nav.classList.remove('active'));
+              sections.forEach(section => section.classList.remove('active'));
+
+              // Add active class to clicked item
+              this.classList.add('active');
+
+              // Show corresponding section
+              const sectionId = this.getAttribute('data-section');
+              const targetSection = document.getElementById(sectionId);
+              if (targetSection) {
+                  targetSection.classList.add('active');
+              }
+          });
+      });
+
+      // Upload photo button
+      const uploadPhotoBtn = document.getElementById('uploadPhotoBtn');
+      if (uploadPhotoBtn) {
+          uploadPhotoBtn.addEventListener('click', function() {
+              document.getElementById('photoInput').click();
+          });
+      }
+
+      // Add testimonial button
+      const addTestimonialBtn = document.getElementById('addTestimonialBtn');
+      if (addTestimonialBtn) {
+          addTestimonialBtn.addEventListener('click', function() {
+              showTestimonialModal();
+          });
+      }
+
+      // Close modal buttons
+      document.querySelectorAll('.close-modal').forEach(btn => {
+          btn.addEventListener('click', function() {
+              closeTestimonialModal();
+              closeServiceModal();
+          });
+      });
+
+      // Click outside modal to close
+      window.addEventListener('click', function(e) {
+          const testimonialModal = document.getElementById('testimonialModal');
+          const serviceModal = document.getElementById('serviceModal');
+
+          if (e.target === testimonialModal) {
+              closeTestimonialModal();
+          }
+          if (e.target === serviceModal) {
+              closeServiceModal();
+          }
+      });
+
+      // Save buttons
+      const saveHomeBtn = document.getElementById('saveHomeBtn');
+      if (saveHomeBtn) {
+          saveHomeBtn.addEventListener('click', saveHomeContent);
+      }
+
+      const saveAboutBtn = document.getElementById('saveAboutBtn');
+      if (saveAboutBtn) {
+          saveAboutBtn.addEventListener('click', saveAboutContent);
+      }
+
+      const saveContactBtn = document.getElementById('saveContactBtn');
+      if (saveContactBtn) {
+          saveContactBtn.addEventListener('click', saveContact);
+      }
+
+      const saveTestimonialBtn = document.getElementById('saveTestimonialBtn');
+      if (saveTestimonialBtn) {
+          saveTestimonialBtn.addEventListener('click', saveTestimonial);
+      }
+
+      const saveServiceBtn = document.getElementById('saveServiceBtn');
+      if (saveServiceBtn) {
+          saveServiceBtn.addEventListener('click', saveService);
+      }
+  });
+
   }
