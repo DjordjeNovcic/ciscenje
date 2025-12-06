@@ -476,10 +476,14 @@
               const div = document.createElement('div');
               div.className = 'testimonial-item';
               div.innerHTML = `
-                  <p>"${testimonial.text}"</p>
-                  <p><strong>- ${testimonial.author}</strong></p>
-                  <button onclick="editTestimonial('${doc.id}')">Izmeni</button>
-                  <button onclick="deleteTestimonial('${doc.id}')">Obriši</button>
+                  <div class="testimonial-content">
+                      <p>"${testimonial.text}"</p>
+                      <p class="testimonial-author">- ${testimonial.author}</p>
+                  </div>
+                  <div class="testimonial-actions">
+                      <button onclick="editTestimonial('${doc.id}')">Izmeni</button>
+                      <button onclick="deleteTestimonial('${doc.id}')">Obriši</button>
+                  </div>
               `;
               testimonialsList.appendChild(div);
           });
