@@ -1,4 +1,4 @@
- /* ========================================
+/* ========================================
      RESET & VARIABLES
      ======================================== */
   * {
@@ -1604,4 +1604,53 @@
       .navbar .container {
           padding: 1rem 15px;
       }
+  }
+
+  /* ========================================
+     QUILL EDITOR STYLING
+     ======================================== */
+  .ql-toolbar {
+      background: #f8f9fa;
+      border-radius: 8px 8px 0 0;
+      border: 1px solid var(--border-color);
+  }
+
+  .ql-container {
+      border-radius: 0 0 8px 8px;
+      font-size: 14px;
+      border: 1px solid var(--border-color);
+      border-top: none;
+  }
+
+  #serviceDescription {
+      border-radius: 8px;
+  }
+
+  .ql-editor {
+      min-height: 200px;
+  }
+
+  /* Service description display on public pages */
+  .service-description ul,
+  .service-description ol {
+      margin: 10px 0;
+      padding-left: 20px;
+  }
+
+  .service-description li {
+      margin: 5px 0;
+  }
+
+  .service-description strong {
+      font-weight: 600;
+  }
+
+  .service-description em {
+      font-style: italic;
+  }
+
+  .service-description h1,
+  .service-description h2,
+  .service-description h3 {
+      margin: 15px 0 10px;
   }
