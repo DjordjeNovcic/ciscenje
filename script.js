@@ -1,704 +1,655 @@
-document.addEventListener('DOMContentLoaded', function() {
+ // Initialize app
+  document.addEventListener('DOMContentLoaded', function() {
+      console.log('DOM loaded');
       initializeApp();
   });
 
   function initializeApp() {
-      initializeDefaultContent();
+      console.log('Initializing app...');
+
+      // Setup mobile navigation
       setupMobileNav();
-      setupContactForm();
-      setupAdminLogin();
-      setupAdminDashboard();
-      setupSmoothScrolling();
-      loadPublicPageContent();
-  }
 
-  function initializeDefaultContent() {
-      if (!localStorage.getItem('homeContent')) {
-          const defaultHome = {
-              heroTitle: 'Professional Cleaning Services',
-              heroSubtitle: 'Residential & Commercial Excellence',
-              feature1Title: 'Experienced Team',
-              feature1Text: 'Professional cleaners with years of experience.',
-              feature2Title: 'Eco-Friendly',
-              feature2Text: 'We use environmentally safe cleaning products.',
-              feature3Title: 'Flexible Scheduling',
-              feature3Text: 'We work around your schedule.',
-              feature4Title: 'Satisfaction Guaranteed',
-              feature4Text: '100% satisfaction guarantee.'
-          };
-          localStorage.setItem('homeContent', JSON.stringify(defaultHome));
+      // Load content on public pages
+      if (document.getElementById('heroHeading') || document.getElementById('heroText')) {
+          loadPublicPageContent();
       }
 
-      if (!localStorage.getItem('servicesContent')) {
-          const defaultServices = {
-              basicCleanPrice: 89,
-              deepCleanPrice: 149,
-              moveInOutPrice: 199,
-              officeCleaningPrice: 299,
-              retailSpacePrice: 399
-          };
-          localStorage.setItem('servicesContent', JSON.stringify(defaultServices));
+      // Update footer on all pages
+      updateFooterContent();
+
+      // Admin login page
+      if (document.getElementById('loginForm')) {
+          setupAdminLogin();
       }
 
-      if (!localStorage.getItem('aboutContent')) {
-          const defaultAbout = {
-              paragraph1: 'Founded in 2015, CleanPro started with a simple mission.',
-              paragraph2: 'What began as a small service has grown into a trusted name.',
-              paragraph3: 'Today, we serve hundreds of satisfied customers.',
-              companyEmail: 'info@cleanpro.com',
-              companyPhone: '(555) 123-4567',
-              companyHours: 'Mon-Fri: 8AM-6PM, Sat: 9AM-4PM'
-          };
-          localStorage.setItem('aboutContent', JSON.stringify(defaultAbout));
+      // Admin dashboard
+      if (document.getElementById('adminContent')) {
+          setupAdminDashboard();
       }
   }
 
-   function setupMobileNav() {
+  // FIXED: Mobile Navigation with direct class manipulation
+  function setupMobileNav() {
       const hamburger = document.getElementById('hamburger');
       const navMenu = document.getElementById('navMenu');
 
+      console.log('Setting up mobile nav...');
+      console.log('Hamburger element:', hamburger);
+      console.log('NavMenu element:', navMenu);
+
       if (hamburger && navMenu) {
-          console.log('Mobile nav initialized');
+          console.log('Mobile nav elements found - setting up click handler');
 
           hamburger.addEventListener('click', function(e) {
-              console.log('Hamburger clicked');
               e.preventDefault();
               e.stopPropagation();
 
-              this.classList.toggle('active');
-              navMenu.classList.toggle('active');
+              console.log('=== HAMBURGER CLICKED ===');
+              console.log('Hamburger classes before:', hamburger.className);
+              console.log('NavMenu classes before:', navMenu.className);
 
-              document.body.style.overflow = navMenu.classList.contains('active') ? 'hidden' : '';
-          });
-
-          document.addEventListener('click', function(e) {
-              if (!hamburger.contains(e.target) && !navMenu.contains(e.target)) {
-                  hamburger.classList.remove('active');
+              // Use direct manipulation instead of toggle
+              if (navMenu.classList.contains('active')) {
+                  console.log('Removing active class');
                   navMenu.classList.remove('active');
+                  hamburger.classList.remove('active');
                   document.body.style.overflow = '';
+              } else {
+                  console.log('Adding active class');
+                  navMenu.classList.add('active');
+                  hamburger.classList.add('active');
+                  document.body.style.overflow = 'hidden';
               }
+
+              console.log('Hamburger classes after:', hamburger.className);
+              console.log('NavMenu classes after:', navMenu.className);
+              console.log('=========================');
           });
 
-          const links = navMenu.querySelectorAll('a');
-          links.forEach(function(link) {
+          // Close menu when clicking on nav links
+          const navLinks = navMenu.querySelectorAll('a');
+          navLinks.forEach(function(link) {
               link.addEventListener('click', function() {
-                  hamburger.classList.remove('active');
+                  console.log('Nav link clicked - closing menu');
                   navMenu.classList.remove('active');
+                  hamburger.classList.remove('active');
                   document.body.style.overflow = '';
               });
           });
-      } else {
-          console.log('Hamburger or navMenu not found');
-      }
-  }
 
-  function setupContactForm() {
-      const contactForm = document.getElementById('contactForm');
-      if (contactForm) {
-          contactForm.addEventListener('submit', function(e) {
-              e.preventDefault();
-              const formData = new FormData(contactForm);
-              const data = Object.fromEntries(formData);
-              alert('Thank you for your inquiry!\n\nName: ' + data.name + '\nEmail: ' + data.email);
-              contactForm.reset();
-          });
-      }
-  }
-
-  function setupAdminLogin() {
-      const loginForm = document.getElementById('loginForm');
-      if (loginForm) {
-          loginForm.addEventListener('submit', function(e) {
-              e.preventDefault();
-              const username = document.getElementById('username').value;
-              const password = document.getElementById('password').value;
-              const errorMessage = document.getElementById('loginError');
-
-              if (username === 'admin' && password === 'admin123') {
-                  localStorage.setItem('isAdminLoggedIn', 'true');
-                  localStorage.setItem('adminUsername', username);
-                  window.location.href = 'admin-dashboard.html';
-              } else {
-                  errorMessage.style.display = 'block';
-                  setTimeout(function() {
-                      errorMessage.style.display = 'none';
-                  }, 3000);
+          // Close menu when clicking outside
+          document.addEventListener('click', function(e) {
+              if (!hamburger.contains(e.target) && !navMenu.contains(e.target)) {
+                  if (navMenu.classList.contains('active')) {
+                      console.log('Clicked outside - closing menu');
+                      navMenu.classList.remove('active');
+                      hamburger.classList.remove('active');
+                      document.body.style.overflow = '';
+                  }
               }
           });
+
+          console.log('Mobile nav setup complete');
+      } else {
+          console.log('Mobile nav elements not found!');
       }
   }
 
-  function setupAdminDashboard() {
-      const adminLayout = document.querySelector('.admin-layout');
-      if (!adminLayout) return;
+  // Admin Login
+  function setupAdminLogin() {
+      const loginForm = document.getElementById('loginForm');
+      const loginError = document.getElementById('loginError');
 
-      const isLoggedIn = localStorage.getItem('isAdminLoggedIn');
-      if (!isLoggedIn) {
+      loginForm.addEventListener('submit', function(e) {
+          e.preventDefault();
+
+          const username = document.getElementById('username').value;
+          const password = document.getElementById('password').value;
+
+          if (username === 'admin' && password === 'admin123') {
+              localStorage.setItem('adminLoggedIn', 'true');
+              window.location.href = 'admin-dashboard.html';
+          } else {
+              loginError.style.display = 'block';
+          }
+      });
+  }
+
+  // Admin Dashboard
+  function setupAdminDashboard() {
+      // Check if logged in
+      if (localStorage.getItem('adminLoggedIn') !== 'true') {
           window.location.href = 'admin-login.html';
           return;
       }
 
-      const adminUser = document.getElementById('adminUsername');
-      if (adminUser) {
-          const username = localStorage.getItem('adminUsername');
-          adminUser.textContent = 'Welcome, ' + (username || 'Admin');
-      }
+      // Setup navigation
+      const navItems = document.querySelectorAll('.nav-item');
+      const sections = document.querySelectorAll('.dashboard-section');
 
+      navItems.forEach(function(item) {
+          item.addEventListener('click', function() {
+              const targetSection = this.getAttribute('data-section');
+
+              navItems.forEach(function(nav) {
+                  nav.classList.remove('active');
+              });
+              this.classList.add('active');
+
+              sections.forEach(function(section) {
+                  section.classList.remove('active');
+              });
+              document.getElementById(targetSection).classList.add('active');
+
+              // Load data when switching sections
+              if (targetSection === 'testimonials-section') {
+                  loadTestimonials();
+              } else if (targetSection === 'gallery-section') {
+                  loadGallery();
+              }
+          });
+      });
+
+      // Logout
       const logoutBtn = document.getElementById('logoutBtn');
       if (logoutBtn) {
-          logoutBtn.addEventListener('click', function() {
-              localStorage.removeItem('isAdminLoggedIn');
-              localStorage.removeItem('adminUsername');
+          logoutBtn.addEventListener('click', function(e) {
+              e.preventDefault();
+              localStorage.removeItem('adminLoggedIn');
               window.location.href = 'admin-login.html';
           });
       }
 
-      setupSectionNavigation();
+      // Initialize all CMS sections
+      initializeDefaultContent();
       setupHomeCMS();
       setupServicesCMS();
       setupAboutCMS();
       setupTestimonialManagement();
       setupPhotoGallery();
       setupSettings();
-      updateDashboardStats();
+
+      // Load dashboard stats
+      loadDashboardStats();
   }
 
-  function setupSectionNavigation() {
-      const navItems = document.querySelectorAll('.sidebar-nav .nav-item');
-      navItems.forEach(function(item) {
-          item.addEventListener('click', function(e) {
-              e.preventDefault();
-              navItems.forEach(function(nav) {
-                  nav.classList.remove('active');
-              });
-              this.classList.add('active');
+  // Initialize default content if not exists
+  function initializeDefaultContent() {
+      if (!localStorage.getItem('homeContent')) {
+          const defaultHome = {
+              heroHeading: 'Professional Cleaning Services You Can Trust',
+              heroText: 'We provide top-quality cleaning services for homes and businesses. Experience the difference of a truly clean space.',
+              features: [
+                  {
+                      title: 'Professional Team',
+                      description: 'Our experienced cleaners are trained and certified professionals.'
+                  },
+                  {
+                      title: 'Eco-Friendly Products',
+                      description: 'We use environmentally safe cleaning products that are effective and safe.'
+                  },
+                  {
+                      title: 'Flexible Scheduling',
+                      description: 'We work around your schedule with convenient booking options.'
+                  }
+              ]
+          };
+          localStorage.setItem('homeContent', JSON.stringify(defaultHome));
+      }
 
-              const sectionName = this.getAttribute('data-section');
-              document.querySelectorAll('.content-section').forEach(function(section) {
-                  section.classList.remove('active');
-              });
-
-              const sectionToShow = document.getElementById(sectionName + 'Section');
-              if (sectionToShow) {
-                  sectionToShow.classList.add('active');
+      if (!localStorage.getItem('servicesContent')) {
+          const defaultServices = {
+              residential: {
+                  price: '99',
+                  features: [
+                      'Deep cleaning of all rooms',
+                      'Kitchen and bathroom sanitization',
+                      'Dusting and vacuuming',
+                      'Window cleaning'
+                  ]
+              },
+              commercial: {
+                  price: '299',
+                  features: [
+                      'Office space cleaning',
+                      'Floor maintenance',
+                      'Restroom sanitization',
+                      'Trash removal'
+                  ]
               }
+          };
+          localStorage.setItem('servicesContent', JSON.stringify(defaultServices));
+      }
 
-              const pageTitle = document.getElementById('pageTitle');
-              if (pageTitle) {
-                  pageTitle.textContent = this.textContent.trim();
-              }
-          });
-      });
-  }
+      if (!localStorage.getItem('aboutContent')) {
+          const defaultAbout = {
+              heading: 'About CleanPro',
+              paragraph1: 'Founded in 2015, CleanPro started with a simple mission.',
+              paragraph2: 'We provide professional cleaning services for homes and businesses.',
+              email: 'info@cleanpro.com',
+              phone: '555-0123'
+          };
+          localStorage.setItem('aboutContent', JSON.stringify(defaultAbout));
+      }
 
-  function goToSection(sectionName) {
-      const navItem = document.querySelector('[data-section="' + sectionName + '"]');
-      if (navItem) {
-          navItem.click();
+      if (!localStorage.getItem('testimonials')) {
+          localStorage.setItem('testimonials', JSON.stringify([]));
+      }
+
+      if (!localStorage.getItem('gallery')) {
+          localStorage.setItem('gallery', JSON.stringify([]));
       }
   }
 
+  // Home Page CMS
   function setupHomeCMS() {
-      const homeForm = document.getElementById('homeForm');
-      if (!homeForm) return;
+      const saveHomeBtn = document.getElementById('saveHomeContent');
+      if (!saveHomeBtn) return;
+
       loadHomeContent();
-      homeForm.addEventListener('submit', function(e) {
-          e.preventDefault();
+
+      saveHomeBtn.addEventListener('click', function() {
           const content = {
-              heroTitle: document.getElementById('heroTitle').value,
-              heroSubtitle: document.getElementById('heroSubtitle').value,
-              feature1Title: document.getElementById('feature1Title').value,
-              feature1Text: document.getElementById('feature1Text').value,
-              feature2Title: document.getElementById('feature2Title').value,
-              feature2Text: document.getElementById('feature2Text').value,
-              feature3Title: document.getElementById('feature3Title').value,
-              feature3Text: document.getElementById('feature3Text').value,
-              feature4Title: document.getElementById('feature4Title').value,
-              feature4Text: document.getElementById('feature4Text').value
+              heroHeading: document.getElementById('heroHeading').value,
+              heroText: document.getElementById('heroText').value,
+              features: [
+                  {
+                      title: document.getElementById('feature1Title').value,
+                      description: document.getElementById('feature1Desc').value
+                  },
+                  {
+                      title: document.getElementById('feature2Title').value,
+                      description: document.getElementById('feature2Desc').value
+                  },
+                  {
+                      title: document.getElementById('feature3Title').value,
+                      description: document.getElementById('feature3Desc').value
+                  }
+              ]
           };
+
           localStorage.setItem('homeContent', JSON.stringify(content));
-          alert('Home page saved! Refresh your website to see changes.');
+          alert('Home page content saved successfully!');
       });
   }
 
   function loadHomeContent() {
       const content = JSON.parse(localStorage.getItem('homeContent'));
       if (!content) return;
-      document.getElementById('heroTitle').value = content.heroTitle || '';
-      document.getElementById('heroSubtitle').value = content.heroSubtitle || '';
-      document.getElementById('feature1Title').value = content.feature1Title || '';
-      document.getElementById('feature1Text').value = content.feature1Text || '';
-      document.getElementById('feature2Title').value = content.feature2Title || '';
-      document.getElementById('feature2Text').value = content.feature2Text || '';
-      document.getElementById('feature3Title').value = content.feature3Title || '';
-      document.getElementById('feature3Text').value = content.feature3Text || '';
-      document.getElementById('feature4Title').value = content.feature4Title || '';
-      document.getElementById('feature4Text').value = content.feature4Text || '';
+
+      document.getElementById('heroHeading').value = content.heroHeading;
+      document.getElementById('heroText').value = content.heroText;
+
+      if (content.features && content.features.length >= 3) {
+          document.getElementById('feature1Title').value = content.features[0].title;
+          document.getElementById('feature1Desc').value = content.features[0].description;
+          document.getElementById('feature2Title').value = content.features[1].title;
+          document.getElementById('feature2Desc').value = content.features[1].description;
+          document.getElementById('feature3Title').value = content.features[2].title;
+          document.getElementById('feature3Desc').value = content.features[2].description;
+      }
   }
 
+  // Services CMS
   function setupServicesCMS() {
-      const servicesForm = document.getElementById('servicesForm');
-      if (!servicesForm) return;
+      const saveServicesBtn = document.getElementById('saveServicesContent');
+      if (!saveServicesBtn) return;
+
       loadServicesContent();
-      servicesForm.addEventListener('submit', function(e) {
-          e.preventDefault();
+
+      saveServicesBtn.addEventListener('click', function() {
           const content = {
-              basicCleanPrice: parseInt(document.getElementById('basicCleanPrice').value),
-              deepCleanPrice: parseInt(document.getElementById('deepCleanPrice').value),
-              moveInOutPrice: parseInt(document.getElementById('moveInOutPrice').value),
-              officeCleaningPrice: parseInt(document.getElementById('officeCleaningPrice').value),
-              retailSpacePrice: parseInt(document.getElementById('retailSpacePrice').value)
+              residential: {
+                  price: document.getElementById('residentialPrice').value,
+                  features: [
+                      document.getElementById('residentialFeature1').value,
+                      document.getElementById('residentialFeature2').value,
+                      document.getElementById('residentialFeature3').value,
+                      document.getElementById('residentialFeature4').value
+                  ]
+              },
+              commercial: {
+                  price: document.getElementById('commercialPrice').value,
+                  features: [
+                      document.getElementById('commercialFeature1').value,
+                      document.getElementById('commercialFeature2').value,
+                      document.getElementById('commercialFeature3').value,
+                      document.getElementById('commercialFeature4').value
+                  ]
+              }
           };
+
           localStorage.setItem('servicesContent', JSON.stringify(content));
-          alert('Services saved! Refresh your services page to see changes.');
+          alert('Services content saved successfully!');
       });
   }
 
   function loadServicesContent() {
       const content = JSON.parse(localStorage.getItem('servicesContent'));
       if (!content) return;
-      document.getElementById('basicCleanPrice').value = content.basicCleanPrice || 89;
-      document.getElementById('deepCleanPrice').value = content.deepCleanPrice || 149;
-      document.getElementById('moveInOutPrice').value = content.moveInOutPrice || 199;
-      document.getElementById('officeCleaningPrice').value = content.officeCleaningPrice || 299;
-      document.getElementById('retailSpacePrice').value = content.retailSpacePrice || 399;
+
+      document.getElementById('residentialPrice').value = content.residential.price;
+      document.getElementById('residentialFeature1').value = content.residential.features[0];
+      document.getElementById('residentialFeature2').value = content.residential.features[1];
+      document.getElementById('residentialFeature3').value = content.residential.features[2];
+      document.getElementById('residentialFeature4').value = content.residential.features[3];
+
+      document.getElementById('commercialPrice').value = content.commercial.price;
+      document.getElementById('commercialFeature1').value = content.commercial.features[0];
+      document.getElementById('commercialFeature2').value = content.commercial.features[1];
+      document.getElementById('commercialFeature3').value = content.commercial.features[2];
+      document.getElementById('commercialFeature4').value = content.commercial.features[3];
   }
 
+  // About Page CMS
   function setupAboutCMS() {
-      const aboutForm = document.getElementById('aboutForm');
-      if (!aboutForm) return;
+      const saveAboutBtn = document.getElementById('saveAboutContent');
+      if (!saveAboutBtn) return;
+
       loadAboutContent();
-      aboutForm.addEventListener('submit', function(e) {
-          e.preventDefault();
+
+      saveAboutBtn.addEventListener('click', function() {
           const content = {
+              heading: document.getElementById('aboutHeading').value,
               paragraph1: document.getElementById('aboutParagraph1').value,
               paragraph2: document.getElementById('aboutParagraph2').value,
-              paragraph3: document.getElementById('aboutParagraph3').value,
-              companyEmail: document.getElementById('companyEmail').value,
-              companyPhone: document.getElementById('companyPhone').value,
-              companyHours: document.getElementById('companyHours').value
+              email: document.getElementById('contactEmail').value,
+              phone: document.getElementById('contactPhone').value
           };
+
           localStorage.setItem('aboutContent', JSON.stringify(content));
-          alert('About page saved! Refresh your website to see changes.');
+          alert('About page content saved successfully!');
       });
   }
 
   function loadAboutContent() {
       const content = JSON.parse(localStorage.getItem('aboutContent'));
       if (!content) return;
-      document.getElementById('aboutParagraph1').value = content.paragraph1 || '';
-      document.getElementById('aboutParagraph2').value = content.paragraph2 || '';
-      document.getElementById('aboutParagraph3').value = content.paragraph3 || '';
-      document.getElementById('companyEmail').value = content.companyEmail || '';
-      document.getElementById('companyPhone').value = content.companyPhone || '';
-      document.getElementById('companyHours').value = content.companyHours || '';
+
+      document.getElementById('aboutHeading').value = content.heading;
+      document.getElementById('aboutParagraph1').value = content.paragraph1;
+      document.getElementById('aboutParagraph2').value = content.paragraph2;
+      document.getElementById('contactEmail').value = content.email;
+      document.getElementById('contactPhone').value = content.phone;
   }
 
-  var currentEditingTestimonialId = null;
-
+  // Testimonial Management
   function setupTestimonialManagement() {
       const addTestimonialBtn = document.getElementById('addTestimonialBtn');
+      const saveTestimonialBtn = document.getElementById('saveTestimonial');
       const testimonialModal = document.getElementById('testimonialModal');
-      const testimonialForm = document.getElementById('testimonialForm');
-      const cancelTestimonialBtn = document.getElementById('cancelTestimonialBtn');
-      const closeBtn = testimonialModal.querySelector('.close');
+      const closeModalBtn = testimonialModal.querySelector('.close-modal');
 
-      loadTestimonials();
-
-      if (addTestimonialBtn) {
-          addTestimonialBtn.addEventListener('click', function() {
-              openTestimonialModal();
-          });
-      }
-
-      if (cancelTestimonialBtn) {
-          cancelTestimonialBtn.addEventListener('click', function() {
-              closeTestimonialModal();
-          });
-      }
-
-      if (closeBtn) {
-          closeBtn.addEventListener('click', function() {
-              closeTestimonialModal();
-          });
-      }
-
-      testimonialModal.addEventListener('click', function(e) {
-          if (e.target === testimonialModal) {
-              closeTestimonialModal();
-          }
+      addTestimonialBtn.addEventListener('click', function() {
+          document.getElementById('testimonialForm').reset();
+          document.getElementById('testimonialId').value = '';
+          testimonialModal.style.display = 'flex';
       });
 
-      testimonialForm.addEventListener('submit', function(e) {
-          e.preventDefault();
-          saveTestimonial();
+      closeModalBtn.addEventListener('click', function() {
+          testimonialModal.style.display = 'none';
       });
-  }
 
-  function openTestimonialModal(testimonialId) {
-      const modal = document.getElementById('testimonialModal');
-      const modalTitle = document.getElementById('testimonialModalTitle');
-      const form = document.getElementById('testimonialForm');
+      saveTestimonialBtn.addEventListener('click', function() {
+          const id = document.getElementById('testimonialId').value;
+          const testimonial = {
+              id: id || Date.now().toString(),
+              name: document.getElementById('testimonialName').value,
+              rating: parseInt(document.getElementById('testimonialRating').value),
+              text: document.getElementById('testimonialText').value
+          };
 
-      form.reset();
-      currentEditingTestimonialId = testimonialId;
+          let testimonials = JSON.parse(localStorage.getItem('testimonials')) || [];
 
-      if (testimonialId) {
-          modalTitle.textContent = 'Edit Testimonial';
-          const testimonials = getTestimonials();
-          const testimonial = testimonials.find(function(t) {
-              return t.id === testimonialId;
-          });
-
-          if (testimonial) {
-              document.getElementById('testimonialText').value = testimonial.text;
-              document.getElementById('testimonialAuthor').value = testimonial.author;
-              document.getElementById('testimonialRole').value = testimonial.role;
-              document.getElementById('testimonialRating').value = testimonial.rating;
-          }
-      } else {
-          modalTitle.textContent = 'New Testimonial';
-      }
-
-      modal.classList.add('active');
-  }
-
-  function closeTestimonialModal() {
-      const modal = document.getElementById('testimonialModal');
-      modal.classList.remove('active');
-      currentEditingTestimonialId = null;
-  }
-
-  function saveTestimonial() {
-      const testimonials = getTestimonials();
-
-      const testimonial = {
-          id: currentEditingTestimonialId || Date.now().toString(),
-          text: document.getElementById('testimonialText').value,
-          author: document.getElementById('testimonialAuthor').value,
-          role: document.getElementById('testimonialRole').value,
-          rating: document.getElementById('testimonialRating').value
-      };
-
-      if (currentEditingTestimonialId) {
-          const index = testimonials.findIndex(function(t) {
-              return t.id === currentEditingTestimonialId;
-          });
-          if (index !== -1) {
+          if (id) {
+              const index = testimonials.findIndex(function(t) {
+                  return t.id === id;
+              });
               testimonials[index] = testimonial;
+          } else {
+              testimonials.push(testimonial);
           }
-      } else {
-          testimonials.push(testimonial);
-      }
 
-      localStorage.setItem('testimonials', JSON.stringify(testimonials));
-
-      closeTestimonialModal();
-      loadTestimonials();
-      updateDashboardStats();
-
-      alert('Testimonial saved! Refresh your about page to see changes.');
-  }
-
-  function deleteTestimonial(testimonialId) {
-      if (!confirm('Are you sure you want to delete this testimonial?')) {
-          return;
-      }
-
-      var testimonials = getTestimonials();
-      testimonials = testimonials.filter(function(t) {
-          return t.id !== testimonialId;
+          localStorage.setItem('testimonials', JSON.stringify(testimonials));
+          testimonialModal.style.display = 'none';
+          loadTestimonials();
+          alert('Testimonial saved successfully!');
       });
-      localStorage.setItem('testimonials', JSON.stringify(testimonials));
 
       loadTestimonials();
-      updateDashboardStats();
-      alert('Testimonial deleted!');
-  }
-
-  function getTestimonials() {
-      const testimonials = localStorage.getItem('testimonials');
-      return testimonials ? JSON.parse(testimonials) : [];
   }
 
   function loadTestimonials() {
-      const testimonials = getTestimonials();
-      const testimonialsList = document.getElementById('testimonialsList');
-
-      if (!testimonialsList) return;
+      const testimonials = JSON.parse(localStorage.getItem('testimonials')) || [];
+      const container = document.getElementById('testimonialsList');
 
       if (testimonials.length === 0) {
-          testimonialsList.innerHTML = '<p style="text-align: center; color: #64748b; padding: 2rem;">No testimonials yet.</p>';
-      } else {
-          var html = '';
-          testimonials.forEach(function(t) {
-              const stars = '⭐'.repeat(parseInt(t.rating));
-              html += '<div class="testimonial-item">';
-              html += '<div class="testimonial-content">';
-              html += '<div class="stars">' + stars + '</div>';
-              html += '<p>"' + t.text + '"</p>';
-              html += '<strong>' + t.author + '</strong>';
-              html += '<span>' + (t.role || 'Customer') + '</span>';
-              html += '</div>';
-              html += '<div class="testimonial-actions">';
-              html += '<button class="btn-icon" onclick="openTestimonialModal(\'' + t.id + '\')" title="Edit">Edit</button>';
-              html += '<button class="btn-icon" onclick="deleteTestimonial(\'' + t.id + '\')" title="Delete">Delete</button>';
-              html += '</div>';
-              html += '</div>';
-          });
-          testimonialsList.innerHTML = html;
+          container.innerHTML = '<p>No testimonials yet. Add your first one!</p>';
+          return;
+      }
+
+      let html = '';
+      testimonials.forEach(function(testimonial) {
+          const stars = '⭐'.repeat(testimonial.rating);
+
+          html += '<div class="testimonial-item">';
+          html += '<div class="testimonial-content">';
+          html += '<div class="stars">' + stars + '</div>';
+          html += '<p>' + testimonial.text + '</p>';
+          html += '<p class="testimonial-author">- ' + testimonial.name + '</p>';
+          html += '</div>';
+          html += '<div class="testimonial-actions">';
+          html += '<button onclick="editTestimonial(\'' + testimonial.id + '\')">Edit</button>';
+          html += '<button onclick="deleteTestimonial(\'' + testimonial.id + '\')">Delete</button>';
+          html += '</div>';
+          html += '</div>';
+      });
+
+      container.innerHTML = html;
+  }
+
+  function editTestimonial(id) {
+      const testimonials = JSON.parse(localStorage.getItem('testimonials')) || [];
+      const testimonial = testimonials.find(function(t) {
+          return t.id === id;
+      });
+
+      if (testimonial) {
+          document.getElementById('testimonialId').value = testimonial.id;
+          document.getElementById('testimonialName').value = testimonial.name;
+          document.getElementById('testimonialRating').value = testimonial.rating;
+          document.getElementById('testimonialText').value = testimonial.text;
+          document.getElementById('testimonialModal').style.display = 'flex';
       }
   }
 
+  function deleteTestimonial(id) {
+      if (confirm('Are you sure you want to delete this testimonial?')) {
+          let testimonials = JSON.parse(localStorage.getItem('testimonials')) || [];
+          testimonials = testimonials.filter(function(t) {
+              return t.id !== id;
+          });
+          localStorage.setItem('testimonials', JSON.stringify(testimonials));
+          loadTestimonials();
+      }
+  }
+
+  // Photo Gallery Management
   function setupPhotoGallery() {
       const uploadPhotoBtn = document.getElementById('uploadPhotoBtn');
-      const photoModal = document.getElementById('photoModal');
-      const photoForm = document.getElementById('photoForm');
-      const cancelPhotoBtn = document.getElementById('cancelPhotoBtn');
-      const closeBtn = photoModal.querySelector('.close');
-      const photoFile = document.getElementById('photoFile');
-      const photoPreview = document.getElementById('photoPreview');
+      const photoInput = document.getElementById('photoInput');
 
-      loadPhotos();
-
-      if (uploadPhotoBtn) {
-          uploadPhotoBtn.addEventListener('click', function() {
-              photoForm.reset();
-              photoPreview.innerHTML = '';
-              photoModal.classList.add('active');
-          });
-      }
-
-      if (cancelPhotoBtn) {
-          cancelPhotoBtn.addEventListener('click', function() {
-              photoModal.classList.remove('active');
-          });
-      }
-
-      if (closeBtn) {
-          closeBtn.addEventListener('click', function() {
-              photoModal.classList.remove('active');
-          });
-      }
-
-      photoModal.addEventListener('click', function(e) {
-          if (e.target === photoModal) {
-              photoModal.classList.remove('active');
-          }
+      uploadPhotoBtn.addEventListener('click', function() {
+          photoInput.click();
       });
 
-      photoFile.addEventListener('change', function(e) {
+      photoInput.addEventListener('change', function(e) {
           const file = e.target.files[0];
           if (file) {
               const reader = new FileReader();
               reader.onload = function(event) {
-                  photoPreview.innerHTML = '<img src="' + event.target.result + '" alt="Preview">';
+                  const photo = {
+                      id: Date.now().toString(),
+                      data: event.target.result
+                  };
+
+                  let gallery = JSON.parse(localStorage.getItem('gallery')) || [];
+                  gallery.push(photo);
+                  localStorage.setItem('gallery', JSON.stringify(gallery));
+                  loadGallery();
               };
               reader.readAsDataURL(file);
           }
       });
 
-      photoForm.addEventListener('submit', function(e) {
-          e.preventDefault();
-          savePhoto();
-      });
+      loadGallery();
   }
 
-  function savePhoto() {
-      const photoFile = document.getElementById('photoFile').files[0];
-      const photoTitle = document.getElementById('photoTitle').value;
-      const photoDescription = document.getElementById('photoDescription').value;
+  function loadGallery() {
+      const gallery = JSON.parse(localStorage.getItem('gallery')) || [];
+      const container = document.getElementById('galleryGrid');
 
-      if (!photoFile) {
-          alert('Please select a photo');
+      if (gallery.length === 0) {
+          container.innerHTML = '<p>No photos yet. Upload your first one!</p>';
           return;
       }
 
-      const reader = new FileReader();
-      reader.onload = function(event) {
-          const photos = getPhotos();
-
-          const photo = {
-              id: Date.now().toString(),
-              title: photoTitle,
-              description: photoDescription,
-              imageData: event.target.result,
-              uploadedAt: new Date().toISOString()
-          };
-
-          photos.push(photo);
-          localStorage.setItem('photos', JSON.stringify(photos));
-
-          document.getElementById('photoModal').classList.remove('active');
-          loadPhotos();
-          updateDashboardStats();
-
-          alert('Photo uploaded successfully!');
-      };
-
-      reader.readAsDataURL(photoFile);
-  }
-
-  function deletePhoto(photoId) {
-      if (!confirm('Are you sure you want to delete this photo?')) {
-          return;
-      }
-
-      var photos = getPhotos();
-      photos = photos.filter(function(p) {
-          return p.id !== photoId;
+      let html = '';
+      gallery.forEach(function(photo) {
+          html += '<div class="gallery-item">';
+          html += '<img src="' + photo.data + '" alt="Gallery photo">';
+          html += '<button class="delete-photo" onclick="deletePhoto(\'' + photo.id + '\')">Delete</button>';
+          html += '</div>';
       });
-      localStorage.setItem('photos', JSON.stringify(photos));
 
-      loadPhotos();
-      updateDashboardStats();
-      alert('Photo deleted successfully!');
+      container.innerHTML = html;
   }
 
-  function getPhotos() {
-      const photos = localStorage.getItem('photos');
-      return photos ? JSON.parse(photos) : [];
-  }
-
-  function loadPhotos() {
-      const photos = getPhotos();
-      const photoGallery = document.getElementById('photoGallery');
-
-      if (!photoGallery) return;
-
-      if (photos.length === 0) {
-          photoGallery.innerHTML = '<div class="empty-gallery"><p>📷</p><p>No photos yet. Click "Upload Photo" to add images.</p></div>';
-      } else {
-          var html = '';
-          photos.reverse().forEach(function(photo) {
-              html += '<div class="photo-card">';
-              html += '<img src="' + photo.imageData + '" alt="' + photo.title + '">';
-              html += '<div class="photo-info">';
-              html += '<h4>' + photo.title + '</h4>';
-              html += '<p>' + (photo.description || 'No description') + '</p>';
-              html += '<div class="photo-actions">';
-              html += '<button class="btn btn-secondary" onclick="deletePhoto(\'' + photo.id + '\')">Delete</button>';
-              html += '</div>';
-              html += '</div>';
-              html += '</div>';
+  function deletePhoto(id) {
+      if (confirm('Are you sure you want to delete this photo?')) {
+          let gallery = JSON.parse(localStorage.getItem('gallery')) || [];
+          gallery = gallery.filter(function(p) {
+              return p.id !== id;
           });
-          photoGallery.innerHTML = html;
+          localStorage.setItem('gallery', JSON.stringify(gallery));
+          loadGallery();
       }
   }
 
+  // Settings
   function setupSettings() {
-      const resetToDefaultBtn = document.getElementById('resetToDefaultBtn');
       const clearDataBtn = document.getElementById('clearDataBtn');
-
-      if (resetToDefaultBtn) {
-          resetToDefaultBtn.addEventListener('click', function() {
-              if (confirm('Reset all content to default?')) {
-                  localStorage.removeItem('homeContent');
-                  localStorage.removeItem('servicesContent');
-                  localStorage.removeItem('aboutContent');
-                  initializeDefaultContent();
-                  loadHomeContent();
-                  loadServicesContent();
-                  loadAboutContent();
-                  alert('Content reset to defaults!');
-              }
-          });
-      }
 
       if (clearDataBtn) {
           clearDataBtn.addEventListener('click', function() {
-              if (confirm('Clear all data? This cannot be undone.')) {
-                  if (confirm('Delete ALL content, testimonials and photos?')) {
-                      localStorage.removeItem('homeContent');
-                      localStorage.removeItem('servicesContent');
-                      localStorage.removeItem('aboutContent');
-                      localStorage.removeItem('testimonials');
-                      localStorage.removeItem('photos');
-                      initializeDefaultContent();
-                      loadHomeContent();
-                      loadServicesContent();
-                      loadAboutContent();
-                      loadTestimonials();
-                      loadPhotos();
-                      updateDashboardStats();
-                      alert('All data cleared.');
-                  }
+              if (confirm('Are you sure you want to clear all data? This cannot be undone!')) {
+                  localStorage.removeItem('homeContent');
+                  localStorage.removeItem('servicesContent');
+                  localStorage.removeItem('aboutContent');
+                  localStorage.removeItem('testimonials');
+                  localStorage.removeItem('gallery');
+                  alert('All data cleared! Reinitializing defaults...');
+                  initializeDefaultContent();
+                  window.location.reload();
               }
           });
       }
   }
 
-  function updateDashboardStats() {
-      const testimonialsCount = document.getElementById('testimonialsCount');
-      if (testimonialsCount) {
-          testimonialsCount.textContent = getTestimonials().length;
-      }
+  // Dashboard Stats
+  function loadDashboardStats() {
+      const testimonials = JSON.parse(localStorage.getItem('testimonials')) || [];
+      const gallery = JSON.parse(localStorage.getItem('gallery')) || [];
 
-      const photosCount = document.getElementById('photosCount');
-      if (photosCount) {
-          photosCount.textContent = getPhotos().length;
-      }
+      document.getElementById('totalTestimonials').textContent = testimonials.length;
+      document.getElementById('totalPhotos').textContent = gallery.length;
   }
 
+  // Load content on public pages
   function loadPublicPageContent() {
-      if (document.querySelector('.admin-layout')) return;
-      loadHomePageContent();
-      loadServicesPageContent();
-      loadAboutPageContent();
-      updateFooterContent();
-  }
+      // Home page
+      if (document.getElementById('heroHeading')) {
+          const homeContent = JSON.parse(localStorage.getItem('homeContent'));
+          if (homeContent) {
+              document.getElementById('heroHeading').textContent = homeContent.heroHeading;
+              document.getElementById('heroText').textContent = homeContent.heroText;
 
-  function loadHomePageContent() {
-      const content = JSON.parse(localStorage.getItem('homeContent'));
-      if (!content) return;
-
-      const heroTitle = document.querySelector('.hero h1');
-      const heroSubtitle = document.querySelector('.hero p');
-      if (heroTitle) heroTitle.textContent = content.heroTitle;
-      if (heroSubtitle) heroSubtitle.textContent = content.heroSubtitle;
-
-      const featureCards = document.querySelectorAll('.feature-card');
-      if (featureCards.length >= 4) {
-          featureCards[0].querySelector('h3').textContent = content.feature1Title;
-          featureCards[0].querySelector('p').textContent = content.feature1Text;
-          featureCards[1].querySelector('h3').textContent = content.feature2Title;
-          featureCards[1].querySelector('p').textContent = content.feature2Text;
-          featureCards[2].querySelector('h3').textContent = content.feature3Title;
-          featureCards[2].querySelector('p').textContent = content.feature3Text;
-          featureCards[3].querySelector('h3').textContent = content.feature4Title;
-          featureCards[3].querySelector('p').textContent = content.feature4Text;
-      }
-  }
-
-  function loadServicesPageContent() {
-      const content = JSON.parse(localStorage.getItem('servicesContent'));
-      if (!content) return;
-
-      const prices = document.querySelectorAll('.price');
-      if (prices.length >= 5) {
-          prices[0].textContent = '$' + content.basicCleanPrice;
-          prices[1].textContent = '$' + content.deepCleanPrice;
-          prices[2].textContent = '$' + content.moveInOutPrice;
-          prices[3].textContent = '$' + content.officeCleaningPrice;
-          prices[4].textContent = '$' + content.retailSpacePrice;
-      }
-  }
-
-  function loadAboutPageContent() {
-      const content = JSON.parse(localStorage.getItem('aboutContent'));
-      if (!content) return;
-
-      const aboutText = document.querySelector('.about-text');
-      if (aboutText) {
-          const paragraphs = aboutText.querySelectorAll('p');
-          if (paragraphs.length >= 3) {
-              paragraphs[0].textContent = content.paragraph1;
-              paragraphs[1].textContent = content.paragraph2;
-              paragraphs[2].textContent = content.paragraph3;
+              if (homeContent.features && homeContent.features.length >= 3) {
+                  const featureCards = document.querySelectorAll('.feature-card');
+                  featureCards[0].querySelector('h3').textContent = homeContent.features[0].title;
+                  featureCards[0].querySelector('p').textContent = homeContent.features[0].description;
+                  featureCards[1].querySelector('h3').textContent = homeContent.features[1].title;
+                  featureCards[1].querySelector('p').textContent = homeContent.features[1].description;
+                  featureCards[2].querySelector('h3').textContent = homeContent.features[2].title;
+                  featureCards[2].querySelector('p').textContent = homeContent.features[2].description;
+              }
           }
       }
 
-      loadPublicTestimonials();
+      // Services page
+      if (document.querySelector('.pricing-card')) {
+          const servicesContent = JSON.parse(localStorage.getItem('servicesContent'));
+          if (servicesContent) {
+              const pricingCards = document.querySelectorAll('.pricing-card');
+
+              pricingCards[0].querySelector('.price').textContent = '$' + servicesContent.residential.price;
+              const residentialFeatures = pricingCards[0].querySelectorAll('.features li');
+              servicesContent.residential.features.forEach(function(feature, index) {
+                  if (residentialFeatures[index]) {
+                      residentialFeatures[index].textContent = feature;
+                  }
+              });
+
+              pricingCards[1].querySelector('.price').textContent = '$' + servicesContent.commercial.price;
+              const commercialFeatures = pricingCards[1].querySelectorAll('.features li');
+              servicesContent.commercial.features.forEach(function(feature, index) {
+                  if (commercialFeatures[index]) {
+                      commercialFeatures[index].textContent = feature;
+                  }
+              });
+          }
+      }
+
+      // About page
+      if (document.querySelector('.about-content')) {
+          const aboutContent = JSON.parse(localStorage.getItem('aboutContent'));
+          if (aboutContent) {
+              const aboutSection = document.querySelector('.about-content');
+              aboutSection.querySelector('h2').textContent = aboutContent.heading;
+              const paragraphs = aboutSection.querySelectorAll('p');
+              paragraphs[0].textContent = aboutContent.paragraph1;
+              paragraphs[1].textContent = aboutContent.paragraph2;
+          }
+
+          // Load testimonials on about page
+          loadPublicTestimonials();
+      }
+  }
+
+  function loadPublicTestimonials() {
+      const container = document.querySelector('.testimonials-grid');
+      if (!container) return;
+
+      const testimonials = JSON.parse(localStorage.getItem('testimonials')) || [];
+
+      if (testimonials.length === 0) {
+          container.innerHTML = '<p>No testimonials yet.</p>';
+          return;
+      }
+
+      let html = '';
+      testimonials.forEach(function(testimonial) {
+          const stars = '⭐'.repeat(testimonial.rating);
+
+          html += '<div class="testimonial-card">';
+          html += '<div class="stars">' + stars + '</div>';
+          html += '<p>' + testimonial.text + '</p>';
+          html += '<p class="author">- ' + testimonial.name + '</p>';
+          html += '</div>';
+      });
+
+      container.innerHTML = html;
   }
 
   function updateFooterContent() {
@@ -706,85 +657,19 @@ document.addEventListener('DOMContentLoaded', function() {
       if (!content) return;
 
       const footerSections = document.querySelectorAll('.footer-section');
-
       footerSections.forEach(function(section) {
           const heading = section.querySelector('h4');
-          if (!heading) return;
-
-          if (heading.textContent === 'Contact') {
-              const paragraphs = section.querySelectorAll('p');
-              if (paragraphs.length >= 2) {
-                  paragraphs[0].textContent = 'Email: ' + content.companyEmail;
-                  paragraphs[1].textContent = 'Phone: ' + content.companyPhone;
-              }
-          }
-
-          if (heading.textContent === 'Hours') {
-              const paragraphs = section.querySelectorAll('p');
-              if (content.companyHours && paragraphs.length >= 1) {
-                  const hours = content.companyHours.split('\n');
-                  if (hours.length >= 2) {
-                      paragraphs[0].textContent = hours[0];
-                      if (paragraphs[1]) {
-                          paragraphs[1].textContent = hours[1];
-                      }
-                  } else {
-                      paragraphs[0].textContent = content.companyHours;
+          if (heading && heading.textContent === 'Contact') {
+              const links = section.querySelectorAll('a');
+              links.forEach(function(link) {
+                  if (link.href.includes('mailto:')) {
+                      link.textContent = content.email;
+                      link.href = 'mailto:' + content.email;
+                  } else if (link.href.includes('tel:')) {
+                      link.textContent = content.phone;
+                      link.href = 'tel:' + content.phone;
                   }
-              }
+              });
           }
       });
   }
-
-  function loadPublicTestimonials() {
-      const testimonials = getTestimonials();
-      const testimonialsGrid = document.querySelector('.testimonials-grid');
-
-      if (!testimonialsGrid || testimonials.length === 0) return;
-
-      var html = '';
-      testimonials.forEach(function(t) {
-          const stars = '⭐'.repeat(parseInt(t.rating));
-          html += '<div class="testimonial-card">';
-          html += '<div class="stars">' + stars + '</div>';
-          html += '<p>"' + t.text + '"</p>';
-          html += '<div class="testimonial-author">';
-          html += '<strong>' + t.author + '</strong>';
-          html += '<span>' + (t.role || 'Customer') + '</span>';
-          html += '</div>';
-          html += '</div>';
-      });
-      testimonialsGrid.innerHTML = html;
-  }
-
-  function setupSmoothScrolling() {
-      document.querySelectorAll('a[href^="#"]').forEach(function(anchor) {
-          anchor.addEventListener('click', function(e) {
-              const href = this.getAttribute('href');
-
-              if (!href || href === '#' || href.length <= 1) {
-                  e.preventDefault();
-                  return;
-              }
-
-              const target = document.querySelector(href);
-              if (target) {
-                  e.preventDefault();
-                  target.scrollIntoView({
-                      behavior: 'smooth',
-                      block: 'start'
-                  });
-
-                  const navMenu = document.querySelector('.nav-menu');
-                  if (navMenu && navMenu.classList.contains('active')) {
-                      navMenu.classList.remove('active');
-                  }
-              }
-          });
-      });
-  }
-
-  window.openTestimonialModal = openTestimonialModal;
-  window.deleteTestimonial = deleteTestimonial;
-  window.deletePhoto = deletePhoto;
-  window.goToSection = goToSection;
