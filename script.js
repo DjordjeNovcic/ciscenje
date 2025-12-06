@@ -389,15 +389,11 @@
           const servicesGrid = document.getElementById('servicesGrid');
           if (servicesGrid) {
               if (services.length === 0) {
-                  servicesGrid.innerHTML = '<p style="text-align: center; color: var(--text-light); grid-column: 
-  1/-1;">Trenutno nema dostupnih usluga.</p>';
+                  servicesGrid.innerHTML = '<p style="text-align: center; color: var(--text-light); grid-column: 1/-1;">Trenutno nema dostupnih usluga.</p>';
               } else {
                   servicesGrid.innerHTML = services.map(function(service) {
-                      return '<div class="service-card">' +
-                      '<h3>' + service.name + '</h3>' +
-                      '<p class="service-description">' + service.description + '</p>' +
-                      '<p class="service-price">' + service.price + '</p>' +
-                      '</div>';
+                      return '<div class="service-card"><h3>' + service.name + '</h3><p class="service-description">' +
+  service.description + '</p><p class="service-price">' + service.price + '</p></div>';
                   }).join('');
               }
           }
