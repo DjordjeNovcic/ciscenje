@@ -754,15 +754,6 @@
       });
   }
 
-  Copy this entire file - no more syntax errors! Everything should work now including the hamburger menu! 🎉
-
-> Uncaught SyntaxError: Invalid or unexpected token (at script.js:392:44) 
-
-⏺ I see the issue - it's with the string escaping in the onclick handlers. Let me give you a FIXED version that avoids these
-   syntax errors by using proper event listeners instead of inline onclick:
-
-  Replace the problematic functions with these FIXED versions:
-
   function loadServicesAdmin() {
       const servicesList = document.getElementById('servicesList');
       if (!servicesList) return;
