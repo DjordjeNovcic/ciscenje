@@ -237,30 +237,77 @@
 
               const features = data.features || [];
               featuresContainer.innerHTML = features.map((feature, index) => `
-                  <div class="feature-item">
-                      <input type="text" value="${feature.icon}" placeholder="Icon (emoji)" data-index="${index}" 
-  data-field="icon">
-                      <input type="text" value="${feature.title}" placeholder="Naslov" data-index="${index}" 
-  data-field="title">
-                      <textarea placeholder="Opis" data-index="${index}" 
+                  <div class="feature-item" style="background: var(--bg-light); padding: 1.5rem; border-radius: 8px; 
+  margin-bottom: 1rem;">
+                      <div class="form-group">
+                          <label>Ikona</label>
+                          <select data-index="${index}" data-field="icon" style="font-size: 1.5rem;">
+                              <option value="✨" ${feature.icon === '✨' ? 'selected' : ''}>✨ Sparkles</option>
+                              <option value="🌿" ${feature.icon === '🌿' ? 'selected' : ''}>🌿 Eco</option>
+                              <option value="📅" ${feature.icon === '📅' ? 'selected' : ''}>📅 Calendar</option>
+                              <option value="⭐" ${feature.icon === '⭐' ? 'selected' : ''}>⭐ Star</option>
+                              <option value="💼" ${feature.icon === '💼' ? 'selected' : ''}>💼 Briefcase</option>
+                              <option value="🏠" ${feature.icon === '🏠' ? 'selected' : ''}>🏠 Home</option>
+                              <option value="💚" ${feature.icon === '💚' ? 'selected' : ''}>💚 Heart</option>
+                              <option value="🤝" ${feature.icon === '🤝' ? 'selected' : ''}>🤝 Handshake</option>
+                              <option value="🧹" ${feature.icon === '🧹' ? 'selected' : ''}>🧹 Broom</option>
+                              <option value="🧼" ${feature.icon === '🧼' ? 'selected' : ''}>🧼 Soap</option>
+                              <option value="✅" ${feature.icon === '✅' ? 'selected' : ''}>✅ Check</option>
+                              <option value="🎯" ${feature.icon === '🎯' ? 'selected' : ''}>🎯 Target</option>
+                          </select>
+                      </div>
+                      <div class="form-group">
+                          <label>Naslov</label>
+                          <input type="text" value="${feature.title}" data-index="${index}" data-field="title">
+                      </div>
+                      <div class="form-group">
+                          <label>Opis</label>
+                          <textarea rows="2" data-index="${index}" 
   data-field="description">${feature.description}</textarea>
-                      <button type="button" onclick="removeFeature(${index})">Obriši</button>
+                      </div>
+                      <button type="button" onclick="removeFeature(${index})" class="btn" style="background: 
+  var(--danger-color); color: white; width: 100%;">Obriši karakteristiku</button>
                   </div>
               `).join('');
           }
       });
   }
 
-  function addFeature() {
+ function addFeature() {
       const container = document.getElementById('featuresContainer');
       const index = container.children.length;
       const div = document.createElement('div');
       div.className = 'feature-item';
+      div.style.cssText = 'background: var(--bg-light); padding: 1.5rem; border-radius: 8px; margin-bottom: 1rem;';
       div.innerHTML = `
-          <input type="text" placeholder="Icon (emoji)" data-index="${index}" data-field="icon">
-          <input type="text" placeholder="Naslov" data-index="${index}" data-field="title">
-          <textarea placeholder="Opis" data-index="${index}" data-field="description"></textarea>
-          <button type="button" onclick="removeFeature(${index})">Obriši</button>
+          <div class="form-group">
+              <label>Ikona</label>
+              <select data-index="${index}" data-field="icon" style="font-size: 1.5rem;">
+                  <option value="✨">✨ Sparkles</option>
+                  <option value="🌿">🌿 Eco</option>
+                  <option value="📅">📅 Calendar</option>
+                  <option value="⭐">⭐ Star</option>
+                  <option value="💼">💼 Briefcase</option>
+                  <option value="🏠">🏠 Home</option>
+                  <option value="💚">💚 Heart</option>
+                  <option value="🤝">🤝 Handshake</option>
+                  <option value="🧹">🧹 Broom</option>
+                  <option value="🧼">🧼 Soap</option>
+                  <option value="✅">✅ Check</option>
+                  <option value="🎯">🎯 Target</option>
+              </select>
+          </div>
+          <div class="form-group">
+              <label>Naslov</label>
+              <input type="text" placeholder="Naslov karakteristike" data-index="${index}" data-field="title">
+          </div>
+          <div class="form-group">
+              <label>Opis</label>
+              <textarea rows="2" placeholder="Opis karakteristike" data-index="${index}" 
+  data-field="description"></textarea>
+          </div>
+          <button type="button" onclick="removeFeature(${index})" class="btn" style="background: var(--danger-color); color:
+   white; width: 100%;">Obriši karakteristiku</button>
       `;
       container.appendChild(div);
   }
@@ -279,13 +326,17 @@
       });
   }
 
-  function saveHomeContent() {
+   function saveHomeContent() {
       const features = [];
       document.querySelectorAll('#featuresContainer .feature-item').forEach(item => {
+          const icon = item.querySelector('[data-field="icon"]').value;
+          const title = item.querySelector('[data-field="title"]').value;
+          const description = item.querySelector('[data-field="description"]').value;
+
           features.push({
-              icon: item.querySelector('[data-field="icon"]').value,
-              title: item.querySelector('[data-field="title"]').value,
-              description: item.querySelector('[data-field="description"]').value
+              icon: icon,
+              title: title,
+              description: description
           });
       });
 
@@ -297,6 +348,7 @@
           alert('Sadržaj početne stranice je sačuvan!');
       });
   }
+
 
   // SERVICES
   function loadServices() {
