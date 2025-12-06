@@ -53,38 +53,44 @@ document.addEventListener('DOMContentLoaded', function() {
       }
   }
 
-  function setupMobileNav() {
-      const hamburger = document.querySelector('.hamburger');
-      const navMenu = document.querySelector('.nav-menu');
+   function setupMobileNav() {
+      const hamburger = document.getElementById('hamburger');
+      const navMenu = document.getElementById('navMenu');
 
       if (hamburger && navMenu) {
+          console.log('Mobile nav initialized');
+
           hamburger.addEventListener('click', function(e) {
+              console.log('Hamburger clicked');
+              e.preventDefault();
               e.stopPropagation();
-              hamburger.classList.toggle('active');
+
+              this.classList.toggle('active');
               navMenu.classList.toggle('active');
+
+              document.body.style.overflow = navMenu.classList.contains('active') ? 'hidden' : '';
           });
 
-          // Close menu when clicking outside
           document.addEventListener('click', function(e) {
-              if (navMenu.classList.contains('active') &&
-                  !navMenu.contains(e.target) &&
-                  !hamburger.contains(e.target)) {
+              if (!hamburger.contains(e.target) && !navMenu.contains(e.target)) {
                   hamburger.classList.remove('active');
                   navMenu.classList.remove('active');
+                  document.body.style.overflow = '';
               }
           });
 
-          // Close menu when clicking a link
-          const navLinks = navMenu.querySelectorAll('a');
-          navLinks.forEach(function(link) {
+          const links = navMenu.querySelectorAll('a');
+          links.forEach(function(link) {
               link.addEventListener('click', function() {
                   hamburger.classList.remove('active');
                   navMenu.classList.remove('active');
+                  document.body.style.overflow = '';
               });
           });
+      } else {
+          console.log('Hamburger or navMenu not found');
       }
   }
-
 
   function setupContactForm() {
       const contactForm = document.getElementById('contactForm');
