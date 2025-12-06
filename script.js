@@ -83,27 +83,39 @@
   }
 
   // Mobile Navigation
-  function setupMobileNav() {
+ function setupMobileNav() {
       const hamburger = document.getElementById('hamburger');
       const navMenu = document.getElementById('navMenu');
 
+      console.log('Setting up mobile nav...', hamburger, navMenu);
+
       if (hamburger && navMenu) {
-          hamburger.addEventListener('click', function() {
-              if (navMenu.classList.contains('active')) {
+          // Remove any existing listeners by cloning
+          const newHamburger = hamburger.cloneNode(true);
+          hamburger.parentNode.replaceChild(newHamburger, hamburger);
+
+          newHamburger.addEventListener('click', function(e) {
+              e.stopPropagation();
+              console.log('Hamburger clicked!');
+              console.log('Before toggle - navMenu classes:', navMenu.className);
+
+              navMenu.classList.toggle('active');
+              newHamburger.classList.toggle('active');
+
+              console.log('After toggle - navMenu classes:', navMenu.className);
+          });
+
+          // Close menu when clicking outside
+          document.addEventListener('click', function(e) {
+              if (!newHamburger.contains(e.target) && !navMenu.contains(e.target)) {
                   navMenu.classList.remove('active');
-                  hamburger.classList.remove('active');
-              } else {
-                  navMenu.classList.add('active');
-                  hamburger.classList.add('active');
+                  newHamburger.classList.remove('active');
               }
           });
 
-          document.addEventListener('click', function(e) {
-              if (!hamburger.contains(e.target) && !navMenu.contains(e.target)) {
-                  navMenu.classList.remove('active');
-                  hamburger.classList.remove('active');
-              }
-          });
+          console.log('Mobile nav setup complete!');
+      } else {
+          console.error('Hamburger or navMenu not found!');
       }
   }
 
@@ -273,12 +285,13 @@
       });
   }
 
- function addFeature() {
+  function addFeature() {
       const container = document.getElementById('featuresContainer');
       const index = container.children.length;
       const div = document.createElement('div');
       div.className = 'feature-item';
       div.style.cssText = 'background: var(--bg-light); padding: 1.5rem; border-radius: 8px; margin-bottom: 1rem;';
+
       div.innerHTML = `
           <div class="form-group">
               <label>Ikona</label>
@@ -309,6 +322,7 @@
           <button type="button" onclick="removeFeature(${index})" class="btn" style="background: var(--danger-color); color:
    white; width: 100%;">Obriši karakteristiku</button>
       `;
+
       container.appendChild(div);
   }
 
