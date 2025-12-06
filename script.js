@@ -1,4 +1,4 @@
- // Firebase configuration
+// Firebase configuration
   const firebaseConfig = {
       apiKey: "AIzaSyAR4ae5zbbqwqgWLRVtbb2V2W3WbwuSCWo",
       authDomain: "mssjaj-20b34.firebaseapp.com",
@@ -8,25 +8,20 @@
       appId: "1:52721755434:web:dc654c159ce6cd226faa53"
   };
 
-  // ImgBB API Key
   const IMGBB_API_KEY = '8e1325002347317ddab99277f90754b0';
 
-  // Initialize Firebase
   firebase.initializeApp(firebaseConfig);
   const db = firebase.firestore();
   const auth = firebase.auth();
 
-  // Quill Editor instance
   var quillEditor = null;
 
-  // Initialize app
   document.addEventListener('DOMContentLoaded', function() {
       initializeApp();
       setupSidebarNavigation();
       initQuillEditor();
   });
 
-  // Initialize Quill Editor
   function initQuillEditor() {
       const editorElement = document.getElementById('serviceDescription');
       if (editorElement && !quillEditor) {
@@ -47,45 +42,34 @@
 
   function initializeApp() {
       setupMobileNav();
-
       const isAdminPage = document.getElementById('loginForm') || document.getElementById('adminContent');
       if (!isAdminPage) {
           loadPublicPageContent();
       }
-
       updateFooterContent();
-
       if (document.getElementById('loginForm')) {
           setupAdminLogin();
       }
-
       if (document.getElementById('adminContent')) {
           setupAdminDashboard();
       }
   }
 
-  // Sidebar Navigation
   function setupSidebarNavigation() {
       const navItems = document.querySelectorAll('.nav-item');
       const sections = document.querySelectorAll('.content-section');
-
       navItems.forEach(item => {
           item.addEventListener('click', function() {
               navItems.forEach(nav => nav.classList.remove('active'));
               sections.forEach(section => section.classList.remove('active'));
-
               this.classList.add('active');
-
               const sectionId = this.getAttribute('data-section');
               const targetSection = document.getElementById(sectionId);
               if (targetSection) {
                   targetSection.classList.add('active');
-              } else {
-                  console.error('Section not found:', sectionId);
               }
           });
       });
-
       const uploadPhotoBtn = document.getElementById('uploadPhotoBtn');
       if (uploadPhotoBtn) {
           uploadPhotoBtn.addEventListener('click', function() {
@@ -94,33 +78,26 @@
       }
   }
 
-  // Mobile Navigation
   function setupMobileNav() {
       const hamburger = document.getElementById('hamburger');
       const navMenu = document.getElementById('navMenu');
-
       if (hamburger && navMenu) {
           const newHamburger = hamburger.cloneNode(true);
           hamburger.parentNode.replaceChild(newHamburger, hamburger);
-
           newHamburger.addEventListener('click', function(e) {
               e.stopPropagation();
               navMenu.classList.toggle('active');
               newHamburger.classList.toggle('active');
           });
-
           document.addEventListener('click', function(e) {
               if (!newHamburger.contains(e.target) && !navMenu.contains(e.target)) {
                   navMenu.classList.remove('active');
                   newHamburger.classList.remove('active');
               }
           });
-      } else {
-          console.error('Hamburger or navMenu not found!');
       }
   }
 
-  // Load public page content
   function loadPublicPageContent() {
       loadHomeContent();
       loadServices();
@@ -130,7 +107,6 @@
       loadAddOns();
   }
 
-  // Update footer content
   function updateFooterContent() {
       db.collection('contact').doc('info').get().then(function(doc) {
           if (doc.exists) {
@@ -138,7 +114,6 @@
               const phoneElements = document.querySelectorAll('.footer-phone');
               const emailElements = document.querySelectorAll('.footer-email');
               const addressElements = document.querySelectorAll('.footer-address');
-
               phoneElements.forEach(el => el.textContent = data.phone || '+381 XX XXX XXXX');
               emailElements.forEach(el => el.textContent = data.email || 'info@mssjaj.rs');
               addressElements.forEach(el => el.textContent = data.address || 'Kragujevac, Srbija');
@@ -146,25 +121,16 @@
       });
   }
 
-  // Admin Login
   function setupAdminLogin() {
       const loginForm = document.getElementById('loginForm');
       if (!loginForm) return;
-
       loginForm.addEventListener('submit', function(e) {
           e.preventDefault();
-
           const emailInput = document.getElementById('email');
           const passwordInput = document.getElementById('password');
-
-          if (!emailInput || !passwordInput) {
-              console.error('Email or password input not found');
-              return;
-          }
-
+          if (!emailInput || !passwordInput) return;
           const email = emailInput.value;
           const password = passwordInput.value;
-
           auth.signInWithEmailAndPassword(email, password)
               .then(function() {
                   window.location.href = 'admin-dashboard.html';
@@ -175,14 +141,12 @@
       });
   }
 
-  // Admin Dashboard
   function setupAdminDashboard() {
       auth.onAuthStateChanged(function(user) {
           if (!user) {
               window.location.href = 'admin-login.html';
               return;
           }
-
           loadAdminContent();
           setupAdminForms();
       });
@@ -211,27 +175,33 @@
       setupLogout();
   }
 
-  // HOME CONTENT
   function loadHomeContent() {
       db.collection('content').doc('home').get().then(function(doc) {
           if (doc.exists) {
               const data = doc.data();
               const heroHeading = document.getElementById('heroHeading');
               const heroText = document.getElementById('heroText');
-
               if (heroHeading) heroHeading.textContent = data.heroHeading || '';
               if (heroText) heroText.textContent = data.heroText || '';
-
               const features = data.features || [];
               const featuresGrid = document.getElementById('featuresGrid');
               if (featuresGrid) {
-                  featuresGrid.innerHTML = features.map(feature =>
-                      '<div class="feature-card">' +
-                      '<div class="feature-icon">' + feature.icon + '</div>' +
-                      '<h3>' + feature.title + '</h3>' +
-                      '<p>' + feature.description + '</p>' +
-                      '</div>'
-                  ).join('');
+                  featuresGrid.innerHTML = '';
+                  features.forEach(function(feature) {
+                      const card = document.createElement('div');
+                      card.className = 'feature-card';
+                      const icon = document.createElement('div');
+                      icon.className = 'feature-icon';
+                      icon.textContent = feature.icon;
+                      const h3 = document.createElement('h3');
+                      h3.textContent = feature.title;
+                      const p = document.createElement('p');
+                      p.textContent = feature.description;
+                      card.appendChild(icon);
+                      card.appendChild(h3);
+                      card.appendChild(p);
+                      featuresGrid.appendChild(card);
+                  });
               }
           }
       });
@@ -241,18 +211,14 @@
       const heroHeading = document.getElementById('heroHeading');
       const heroText = document.getElementById('heroText');
       const featuresContainer = document.getElementById('featuresContainer');
-
       if (!heroHeading || !heroText || !featuresContainer) return;
-
       db.collection('content').doc('home').get().then(function(doc) {
           if (doc.exists) {
               const data = doc.data();
               heroHeading.value = data.heroHeading || '';
               heroText.value = data.heroText || '';
-
               const features = data.features || [];
               featuresContainer.innerHTML = '';
-
               features.forEach(function(feature, index) {
                   addFeatureItem(featuresContainer, feature, index);
               });
@@ -277,16 +243,17 @@
           'check': '\u2705',
           'target': '\uD83C\uDFAF'
       };
-
       const featureDiv = document.createElement('div');
       featureDiv.className = 'feature-item';
       featureDiv.style.cssText = 'background: var(--bg-light); padding: 1.5rem; border-radius: 8px; margin-bottom: 1rem;';
-
+      const iconGroup = document.createElement('div');
+      iconGroup.className = 'form-group';
+      const iconLabel = document.createElement('label');
+      iconLabel.textContent = 'Ikona';
       const iconSelect = document.createElement('select');
       iconSelect.setAttribute('data-index', index);
       iconSelect.setAttribute('data-field', 'icon');
       iconSelect.style.fontSize = '1.5rem';
-
       icons.forEach(function(iconName) {
           const option = document.createElement('option');
           option.value = iconEmojis[iconName];
@@ -296,54 +263,42 @@
           }
           iconSelect.appendChild(option);
       });
-
+      iconGroup.appendChild(iconLabel);
+      iconGroup.appendChild(iconSelect);
+      const titleGroup = document.createElement('div');
+      titleGroup.className = 'form-group';
+      const titleLabel = document.createElement('label');
+      titleLabel.textContent = 'Naslov';
       const titleInput = document.createElement('input');
       titleInput.type = 'text';
       titleInput.value = feature ? (feature.title || '') : '';
       titleInput.setAttribute('data-index', index);
       titleInput.setAttribute('data-field', 'title');
       titleInput.placeholder = 'Naslov';
-
+      titleGroup.appendChild(titleLabel);
+      titleGroup.appendChild(titleInput);
+      const descGroup = document.createElement('div');
+      descGroup.className = 'form-group';
+      const descLabel = document.createElement('label');
+      descLabel.textContent = 'Opis';
       const descTextarea = document.createElement('textarea');
       descTextarea.rows = 2;
       descTextarea.value = feature ? (feature.description || '') : '';
       descTextarea.setAttribute('data-index', index);
       descTextarea.setAttribute('data-field', 'description');
       descTextarea.placeholder = 'Opis';
-
+      descGroup.appendChild(descLabel);
+      descGroup.appendChild(descTextarea);
       const deleteBtn = document.createElement('button');
       deleteBtn.type = 'button';
       deleteBtn.className = 'btn';
       deleteBtn.textContent = 'Obrisi karakteristiku';
       deleteBtn.style.cssText = 'background: var(--danger-color); color: white; width: 100%;';
       deleteBtn.onclick = function() { removeFeature(index); };
-
-      const iconGroup = document.createElement('div');
-      iconGroup.className = 'form-group';
-      const iconLabel = document.createElement('label');
-      iconLabel.textContent = 'Ikona';
-      iconGroup.appendChild(iconLabel);
-      iconGroup.appendChild(iconSelect);
-
-      const titleGroup = document.createElement('div');
-      titleGroup.className = 'form-group';
-      const titleLabel = document.createElement('label');
-      titleLabel.textContent = 'Naslov';
-      titleGroup.appendChild(titleLabel);
-      titleGroup.appendChild(titleInput);
-
-      const descGroup = document.createElement('div');
-      descGroup.className = 'form-group';
-      const descLabel = document.createElement('label');
-      descLabel.textContent = 'Opis';
-      descGroup.appendChild(descLabel);
-      descGroup.appendChild(descTextarea);
-
       featureDiv.appendChild(iconGroup);
       featureDiv.appendChild(titleGroup);
       featureDiv.appendChild(descGroup);
       featureDiv.appendChild(deleteBtn);
-
       container.appendChild(featureDiv);
   }
 
@@ -378,7 +333,6 @@
               description: item.querySelector('[data-field="description"]').value
           });
       });
-
       db.collection('content').doc('home').set({
           heroHeading: document.getElementById('heroHeading').value,
           heroText: document.getElementById('heroText').value,
@@ -388,19 +342,15 @@
       });
   }
 
-  // SERVICES
   function loadServices() {
       db.collection('services').get().then(function(querySnapshot) {
           const services = [];
           querySnapshot.forEach(function(doc) {
               services.push({ id: doc.id, ...doc.data() });
           });
-
           const servicesGrid = document.getElementById('servicesGrid');
           if (!servicesGrid) return;
-
           servicesGrid.innerHTML = '';
-
           if (services.length === 0) {
               const emptyMsg = document.createElement('p');
               emptyMsg.style.cssText = 'text-align: center; color: var(--text-light); grid-column: 1/-1;';
@@ -410,22 +360,17 @@
               services.forEach(function(service) {
                   const card = document.createElement('div');
                   card.className = 'service-card';
-
                   const h3 = document.createElement('h3');
                   h3.textContent = service.name;
-
                   const desc = document.createElement('div');
                   desc.className = 'service-description';
                   desc.innerHTML = service.description;
-
                   const price = document.createElement('p');
                   price.className = 'service-price';
                   price.textContent = service.price;
-
                   card.appendChild(h3);
                   card.appendChild(desc);
                   card.appendChild(price);
-
                   servicesGrid.appendChild(card);
               });
           }
@@ -435,42 +380,33 @@
   function loadServicesAdmin() {
       const servicesList = document.getElementById('servicesList');
       if (!servicesList) return;
-
       db.collection('services').get().then(function(querySnapshot) {
           servicesList.innerHTML = '';
-
           querySnapshot.forEach(function(doc) {
               const service = doc.data();
               const div = document.createElement('div');
               div.className = 'service-item';
-
               const h4 = document.createElement('h4');
               h4.textContent = service.name;
-
               const p1 = document.createElement('div');
               p1.innerHTML = service.description;
               p1.style.marginBottom = '10px';
-
               const p2 = document.createElement('p');
               const strong = document.createElement('strong');
               strong.textContent = service.price;
               p2.appendChild(strong);
-
               const editBtn = document.createElement('button');
               editBtn.textContent = 'Izmeni';
               editBtn.onclick = function() { editService(doc.id); };
-
               const deleteBtn = document.createElement('button');
               deleteBtn.textContent = 'Obrisi';
               deleteBtn.onclick = function() { deleteService(doc.id); };
-
               div.appendChild(h4);
               div.appendChild(p1);
               div.appendChild(p2);
               div.appendChild(editBtn);
               div.appendChild(document.createTextNode(' '));
               div.appendChild(deleteBtn);
-
               servicesList.appendChild(div);
           });
       });
@@ -480,18 +416,15 @@
       const modal = document.getElementById('serviceModal');
       const form = document.getElementById('serviceForm');
       const modalTitle = document.getElementById('serviceModalTitle');
-
       if (serviceId) {
           modalTitle.textContent = 'Uredi uslugu';
           db.collection('services').doc(serviceId).get().then(function(doc) {
               if (doc.exists) {
                   const service = doc.data();
                   document.getElementById('serviceName').value = service.name;
-
                   if (quillEditor) {
                       quillEditor.root.innerHTML = service.description || '';
                   }
-
                   document.getElementById('servicePrice').value = service.price;
                   form.dataset.serviceId = serviceId;
               }
@@ -499,20 +432,16 @@
       } else {
           modalTitle.textContent = 'Dodaj uslugu';
           form.reset();
-
           if (quillEditor) {
               quillEditor.setText('');
           }
-
           delete form.dataset.serviceId;
       }
-
       modal.style.display = 'flex';
   }
 
   function closeServiceModal() {
       document.getElementById('serviceModal').style.display = 'none';
-
       if (quillEditor) {
           quillEditor.setText('');
       }
@@ -521,15 +450,12 @@
   function saveService() {
       const form = document.getElementById('serviceForm');
       const description = quillEditor ? quillEditor.root.innerHTML : '';
-
       const serviceData = {
           name: document.getElementById('serviceName').value,
           description: description,
           price: document.getElementById('servicePrice').value
       };
-
       const serviceId = form.dataset.serviceId;
-
       if (serviceId) {
           db.collection('services').doc(serviceId).update(serviceData).then(function() {
               closeServiceModal();
@@ -558,14 +484,12 @@
       }
   }
 
-  // ABOUT CONTENT
   function loadAboutContent() {
       db.collection('content').doc('about').get().then(function(doc) {
           if (doc.exists) {
               const data = doc.data();
               const aboutHeading = document.getElementById('aboutHeading');
               const aboutText = document.getElementById('aboutText');
-
               if (aboutHeading) aboutHeading.textContent = data.heading || '';
               if (aboutText) aboutText.textContent = data.text || '';
           }
@@ -575,9 +499,7 @@
   function loadAboutContentAdmin() {
       const aboutHeading = document.getElementById('aboutHeading');
       const aboutText = document.getElementById('aboutText');
-
       if (!aboutHeading || !aboutText) return;
-
       db.collection('content').doc('about').get().then(function(doc) {
           if (doc.exists) {
               const data = doc.data();
@@ -596,22 +518,28 @@
       });
   }
 
-  // TESTIMONIALS
   function loadTestimonials() {
       db.collection('testimonials').get().then(function(querySnapshot) {
           const testimonials = [];
           querySnapshot.forEach(function(doc) {
               testimonials.push({ id: doc.id, ...doc.data() });
           });
-
           const testimonialsGrid = document.getElementById('testimonialsGrid');
           if (testimonialsGrid) {
-              testimonialsGrid.innerHTML = testimonials.map(function(testimonial) {
-                  return '<div class="testimonial-card">' +
-                  '<p class="testimonial-text">"' + testimonial.text + '"</p>' +
-                  '<p class="testimonial-author">- ' + testimonial.author + '</p>' +
-                  '</div>';
-              }).join('');
+              testimonialsGrid.innerHTML = '';
+              testimonials.forEach(function(testimonial) {
+                  const card = document.createElement('div');
+                  card.className = 'testimonial-card';
+                  const text = document.createElement('p');
+                  text.className = 'testimonial-text';
+                  text.textContent = '"' + testimonial.text + '"';
+                  const author = document.createElement('p');
+                  author.className = 'testimonial-author';
+                  author.textContent = '- ' + testimonial.author;
+                  card.appendChild(text);
+                  card.appendChild(author);
+                  testimonialsGrid.appendChild(card);
+              });
           }
       });
   }
@@ -619,45 +547,33 @@
   function loadTestimonialsAdmin() {
       const testimonialsList = document.getElementById('testimonialsList');
       if (!testimonialsList) return;
-
       db.collection('testimonials').get().then(function(querySnapshot) {
           testimonialsList.innerHTML = '';
-
           querySnapshot.forEach(function(doc) {
               const testimonial = doc.data();
               const div = document.createElement('div');
               div.className = 'testimonial-item';
-
               const contentDiv = document.createElement('div');
               contentDiv.className = 'testimonial-content';
-
               const p1 = document.createElement('p');
               p1.textContent = '"' + testimonial.text + '"';
-
               const p2 = document.createElement('p');
               p2.className = 'testimonial-author';
               p2.textContent = '- ' + testimonial.author;
-
               contentDiv.appendChild(p1);
               contentDiv.appendChild(p2);
-
               const actionsDiv = document.createElement('div');
               actionsDiv.className = 'testimonial-actions';
-
               const editBtn = document.createElement('button');
               editBtn.textContent = 'Izmeni';
               editBtn.onclick = function() { editTestimonial(doc.id); };
-
               const deleteBtn = document.createElement('button');
               deleteBtn.textContent = 'Obrisi';
               deleteBtn.onclick = function() { deleteTestimonial(doc.id); };
-
               actionsDiv.appendChild(editBtn);
               actionsDiv.appendChild(deleteBtn);
-
               div.appendChild(contentDiv);
               div.appendChild(actionsDiv);
-
               testimonialsList.appendChild(div);
           });
       });
@@ -666,7 +582,6 @@
   function showTestimonialModal(testimonialId) {
       const modal = document.getElementById('testimonialModal');
       const form = document.getElementById('testimonialForm');
-
       if (testimonialId) {
           db.collection('testimonials').doc(testimonialId).get().then(function(doc) {
               if (doc.exists) {
@@ -680,7 +595,6 @@
           form.reset();
           delete form.dataset.testimonialId;
       }
-
       modal.style.display = 'flex';
   }
 
@@ -694,9 +608,7 @@
           text: document.getElementById('testimonialText').value,
           author: document.getElementById('testimonialAuthor').value
       };
-
       const testimonialId = form.dataset.testimonialId;
-
       if (testimonialId) {
           db.collection('testimonials').doc(testimonialId).update(testimonialData).then(function() {
               closeTestimonialModal();
@@ -725,7 +637,6 @@
       }
   }
 
-  // GALLERY
   function loadGallery() {
       db.collection('gallery').orderBy('uploadedAt', 'desc').get().then(function(querySnapshot) {
           const galleryGrid = document.getElementById('galleryGrid');
@@ -735,7 +646,10 @@
                   const photo = doc.data();
                   const div = document.createElement('div');
                   div.className = 'gallery-item';
-                  div.innerHTML = '<img src="' + photo.url + '" alt="Galerija">';
+                  const img = document.createElement('img');
+                  img.src = photo.url;
+                  img.alt = 'Galerija';
+                  div.appendChild(img);
                   galleryGrid.appendChild(div);
               });
           }
@@ -745,47 +659,38 @@
   function loadGalleryAdmin() {
       const galleryAdmin = document.getElementById('galleryAdmin');
       if (!galleryAdmin) return;
-
       db.collection('gallery').orderBy('uploadedAt', 'desc').get().then(function(querySnapshot) {
           galleryAdmin.innerHTML = '';
           querySnapshot.forEach(function(doc) {
               const photo = doc.data();
               const div = document.createElement('div');
               div.className = 'gallery-item';
-
               const img = document.createElement('img');
               img.src = photo.url;
               img.alt = 'Galerija';
-
               const deleteBtn = document.createElement('button');
               deleteBtn.className = 'delete-photo';
               deleteBtn.textContent = 'Obrisi';
               deleteBtn.onclick = function() { deletePhoto(doc.id); };
-
               div.appendChild(img);
               div.appendChild(deleteBtn);
-
               galleryAdmin.appendChild(div);
           });
       });
   }
 
-  // Upload photo using ImgBB API
   function setupAdminForms() {
       const photoInput = document.getElementById('photoInput');
       if (photoInput) {
           photoInput.addEventListener('change', function(e) {
               const file = e.target.files[0];
               if (!file) return;
-
               const reader = new FileReader();
               reader.onload = function(event) {
                   const base64Image = event.target.result.split(',')[1];
-
                   const formData = new FormData();
                   formData.append('key', IMGBB_API_KEY);
                   formData.append('image', base64Image);
-
                   fetch('https://api.imgbb.com/1/upload', {
                       method: 'POST',
                       body: formData
@@ -794,7 +699,6 @@
                   .then(data => {
                       if (data.success) {
                           const imageUrl = data.data.url;
-
                           db.collection('gallery').add({
                               url: imageUrl,
                               filename: file.name,
@@ -805,16 +709,13 @@
                               alert('Fotografija je uspesno otpremljena!');
                           });
                       } else {
-                          console.error('ImgBB upload error:', data);
                           alert('Greska pri otpremanju fotografije.');
                       }
                   })
                   .catch(error => {
-                      console.error('Upload error:', error);
                       alert('Greska pri otpremanju fotografije.');
                   });
               };
-
               reader.readAsDataURL(file);
           });
       }
@@ -829,14 +730,11 @@
       }
   }
 
-  // CONTACT INFO
   function loadContactAdmin() {
       const contactPhone = document.getElementById('contactPhone');
       const contactEmail = document.getElementById('contactEmail');
       const contactAddress = document.getElementById('contactAddress');
-
       if (!contactPhone || !contactEmail || !contactAddress) return;
-
       db.collection('contact').doc('info').get().then(function(doc) {
           if (doc.exists) {
               const data = doc.data();
@@ -858,19 +756,15 @@
       });
   }
 
-  // ADD-ONS MANAGEMENT
   function loadAddOns() {
       db.collection('addons').get().then(function(querySnapshot) {
           const addons = [];
           querySnapshot.forEach(function(doc) {
               addons.push({ id: doc.id, ...doc.data() });
           });
-
           const addonsGrid = document.querySelector('.add-ons-grid');
           if (!addonsGrid) return;
-
           addonsGrid.innerHTML = '';
-
           if (addons.length === 0) {
               const emptyMsg = document.createElement('p');
               emptyMsg.style.cssText = 'text-align: center; color: var(--text-light); grid-column: 1/-1;';
@@ -880,21 +774,16 @@
               addons.forEach(function(addon) {
                   const item = document.createElement('div');
                   item.className = 'add-on-item';
-
                   const h3 = document.createElement('h3');
                   h3.textContent = addon.name;
-
                   const p = document.createElement('p');
                   p.textContent = addon.description;
-
                   const span = document.createElement('span');
                   span.className = 'add-on-price';
                   span.textContent = addon.price;
-
                   item.appendChild(h3);
                   item.appendChild(p);
                   item.appendChild(span);
-
                   addonsGrid.appendChild(item);
               });
           }
@@ -904,48 +793,40 @@
   function loadAddOnsAdmin() {
       const addonsList = document.getElementById('addonsList');
       if (!addonsList) return;
-
       db.collection('addons').get().then(function(querySnapshot) {
           addonsList.innerHTML = '';
-
           if (querySnapshot.empty) {
-              addonsList.innerHTML = '<p style="text-align: center; color: var(--text-light); padding: 2rem;">Nema dodatnih 
-  usluga. Kliknite "Dodaj novu dodatnu uslugu" da biste dodali prvu.</p>';
+              const emptyMsg = document.createElement('p');
+              emptyMsg.style.cssText = 'text-align: center; color: var(--text-light); padding: 2rem;';
+              emptyMsg.textContent = 'Nema dodatnih usluga. Kliknite "Dodaj novu dodatnu uslugu" da biste dodali prvu.';
+              addonsList.appendChild(emptyMsg);
               return;
           }
-
           querySnapshot.forEach(function(doc) {
               const addon = doc.data();
               const div = document.createElement('div');
               div.className = 'service-item';
-
               const h4 = document.createElement('h4');
               h4.textContent = addon.name;
-
               const p1 = document.createElement('p');
               p1.textContent = addon.description;
               p1.style.marginBottom = '10px';
-
               const p2 = document.createElement('p');
               const strong = document.createElement('strong');
               strong.textContent = addon.price;
               p2.appendChild(strong);
-
               const editBtn = document.createElement('button');
               editBtn.textContent = 'Izmeni';
               editBtn.onclick = function() { editAddOn(doc.id); };
-
               const deleteBtn = document.createElement('button');
               deleteBtn.textContent = 'Obrisi';
               deleteBtn.onclick = function() { deleteAddOn(doc.id); };
-
               div.appendChild(h4);
               div.appendChild(p1);
               div.appendChild(p2);
               div.appendChild(editBtn);
               div.appendChild(document.createTextNode(' '));
               div.appendChild(deleteBtn);
-
               addonsList.appendChild(div);
           });
       });
@@ -955,7 +836,6 @@
       const modal = document.getElementById('addonModal');
       const form = document.getElementById('addonForm');
       const modalTitle = document.getElementById('addonModalTitle');
-
       if (addonId) {
           modalTitle.textContent = 'Uredi dodatnu uslugu';
           db.collection('addons').doc(addonId).get().then(function(doc) {
@@ -972,7 +852,6 @@
           form.reset();
           delete form.dataset.addonId;
       }
-
       modal.style.display = 'flex';
   }
 
@@ -987,9 +866,7 @@
           description: document.getElementById('addonDescription').value,
           price: document.getElementById('addonPrice').value
       };
-
       const addonId = form.dataset.addonId;
-
       if (addonId) {
           db.collection('addons').doc(addonId).update(addonData).then(function() {
               closeAddOnModal();
