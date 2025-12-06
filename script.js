@@ -21,7 +21,6 @@
 
   // Initialize app
   document.addEventListener('DOMContentLoaded', function() {
-      console.log('DOM loaded, initializing...');
       initializeApp();
       setupSidebarNavigation();
       initQuillEditor();
@@ -67,15 +66,11 @@
 
   // Sidebar Navigation
   function setupSidebarNavigation() {
-      console.log('Setting up sidebar navigation...');
       const navItems = document.querySelectorAll('.nav-item');
       const sections = document.querySelectorAll('.content-section');
 
-      console.log('Found', navItems.length, 'nav items and', sections.length, 'sections');
-
       navItems.forEach(item => {
           item.addEventListener('click', function() {
-              console.log('Nav item clicked:', this.getAttribute('data-section'));
 
               navItems.forEach(nav => nav.classList.remove('active'));
               sections.forEach(section => section.classList.remove('active'));
@@ -86,7 +81,6 @@
               const targetSection = document.getElementById(sectionId);
               if (targetSection) {
                   targetSection.classList.add('active');
-                  console.log('Showing section:', sectionId);
               } else {
                   console.error('Section not found:', sectionId);
               }
@@ -106,20 +100,16 @@
       const hamburger = document.getElementById('hamburger');
       const navMenu = document.getElementById('navMenu');
 
-      console.log('Setting up mobile nav...', hamburger, navMenu);
-
       if (hamburger && navMenu) {
           const newHamburger = hamburger.cloneNode(true);
           hamburger.parentNode.replaceChild(newHamburger, hamburger);
 
           newHamburger.addEventListener('click', function(e) {
               e.stopPropagation();
-              console.log('Hamburger clicked!');
 
               navMenu.classList.toggle('active');
               newHamburger.classList.toggle('active');
 
-              console.log('NavMenu classes:', navMenu.className);
           });
 
           document.addEventListener('click', function(e) {
@@ -129,7 +119,6 @@
               }
           });
 
-          console.log('Mobile nav setup complete!');
       } else {
           console.error('Hamburger or navMenu not found!');
       }
@@ -784,8 +773,6 @@ function loadServices() {
               const file = e.target.files[0];
               if (!file) return;
 
-              console.log('Uploading to ImgBB...');
-
               const reader = new FileReader();
               reader.onload = function(event) {
                   const base64Image = event.target.result.split(',')[1];
@@ -802,7 +789,6 @@ function loadServices() {
                   .then(data => {
                       if (data.success) {
                           const imageUrl = data.data.url;
-                          console.log('Image uploaded successfully:', imageUrl);
 
                           db.collection('gallery').add({
                               url: imageUrl,
