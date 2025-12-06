@@ -1,4 +1,4 @@
-/* ========================================
+ /* ========================================
      RESET & VARIABLES
      ======================================== */
   * {
@@ -1425,16 +1425,159 @@
       color: var(--text-dark);
   }
 
+  /* ========================================
+     ADMIN SERVICES & ADD-ONS LIST STYLING
+     ======================================== */
+  #servicesList {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+  }
+
   .service-item {
-      background: var(--bg-light);
+      background: white;
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
       padding: 1.5rem;
+      margin-bottom: 0;
+      box-shadow: var(--shadow-sm);
+      transition: box-shadow 0.3s;
+  }
+
+  .service-item:hover {
+      box-shadow: var(--shadow-md);
+  }
+
+  .service-item h4 {
+      color: var(--primary-color);
+      margin: 0 0 0.75rem 0;
+      font-size: 1.25rem;
+      font-weight: 600;
+  }
+
+  .service-item .service-description {
+      color: var(--text-color);
+      margin: 0.75rem 0 1rem 0;
+      line-height: 1.6;
+      padding: 1rem;
+      background: var(--bg-light);
       border-radius: 8px;
-      margin-bottom: 1rem;
+  }
+
+  .service-item .service-price {
+      color: var(--primary-color);
+      font-weight: bold;
+      font-size: 1.15rem;
+      margin: 1rem 0 1.25rem 0;
+      display: block;
   }
 
   .service-item button {
-      margin-right: 0.5rem;
-      margin-top: 0.5rem;
+      padding: 0.6rem 1.25rem;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 0.95rem;
+      font-weight: 500;
+      transition: all 0.3s;
+      margin-right: 0.75rem;
+      margin-top: 0;
+  }
+
+  .service-item button:first-of-type {
+      background: var(--primary-color);
+      color: white;
+  }
+
+  .service-item button:first-of-type:hover {
+      background: var(--primary-dark);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 8px rgba(37, 99, 235, 0.3);
+  }
+
+  .service-item button:last-of-type {
+      background: #dc3545;
+      color: white;
+  }
+
+  .service-item button:last-of-type:hover {
+      background: #c82333;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 8px rgba(220, 53, 69, 0.3);
+  }
+
+  /* Admin Add-ons List Styling */
+  #addonsList {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+  }
+
+  .addon-item {
+      background: white;
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 1.5rem;
+      box-shadow: var(--shadow-sm);
+      transition: box-shadow 0.3s;
+  }
+
+  .addon-item:hover {
+      box-shadow: var(--shadow-md);
+  }
+
+  .addon-item h4 {
+      color: var(--primary-color);
+      margin: 0 0 0.75rem 0;
+      font-size: 1.15rem;
+      font-weight: 600;
+  }
+
+  .addon-item p {
+      color: var(--text-color);
+      margin: 0.5rem 0 1rem 0;
+      line-height: 1.6;
+  }
+
+  .addon-item .addon-price {
+      color: var(--primary-color);
+      font-weight: bold;
+      display: block;
+      margin: 1rem 0 1.25rem 0;
+      font-size: 1.1rem;
+  }
+
+  .addon-item button {
+      padding: 0.6rem 1.25rem;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 0.95rem;
+      font-weight: 500;
+      transition: all 0.3s;
+      margin-right: 0.75rem;
+  }
+
+  .addon-item button:first-of-type {
+      background: var(--primary-color);
+      color: white;
+  }
+
+  .addon-item button:first-of-type:hover {
+      background: var(--primary-dark);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 8px rgba(37, 99, 235, 0.3);
+  }
+
+  .addon-item button:last-of-type {
+      background: #dc3545;
+      color: white;
+  }
+
+  .addon-item button:last-of-type:hover {
+      background: #c82333;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 8px rgba(220, 53, 69, 0.3);
   }
 
   /* ========================================
