@@ -1464,20 +1464,24 @@
       border-radius: 8px;
   }
 
-  .service-item .service-price {
-      display: inline-block;
-      background: var(--bg-light);
-      color: var(--text-dark);
+  /* Admin dashboard service price - ONLY affects admin dashboard */
+  #servicesList .service-item .service-price {
+      color: var(--text-light);
       font-weight: 500;
-      font-size: 0.85rem;
-      padding: 0.35rem 0.75rem;
-      border-radius: 4px;
+      font-size: 0.9rem;
       margin: 0.5rem 0 1rem 0;
+      display: block;
   }
 
-  .service-item .service-price::before {
+  #servicesList .service-item .service-price::before {
       content: 'Cena: ';
-      color: var(--text-light);
+      font-weight: 400;
+  }
+
+ .service-card .service-price {
+      color: var(--primary-color);
+      font-weight: bold;
+      font-size: 1.1rem;
   }
 
   .service-item button {
