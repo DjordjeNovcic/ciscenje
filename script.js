@@ -42,7 +42,7 @@
       }
   }
 
-  // Sidebar Navigation - THIS IS CRITICAL!
+  // Sidebar Navigation
   function setupSidebarNavigation() {
       console.log('Setting up sidebar navigation...');
       const navItems = document.querySelectorAll('.nav-item');
@@ -54,14 +54,11 @@
           item.addEventListener('click', function() {
               console.log('Nav item clicked:', this.getAttribute('data-section'));
 
-              // Remove active class from all nav items and sections
               navItems.forEach(nav => nav.classList.remove('active'));
               sections.forEach(section => section.classList.remove('active'));
 
-              // Add active class to clicked item
               this.classList.add('active');
 
-              // Show corresponding section
               const sectionId = this.getAttribute('data-section');
               const targetSection = document.getElementById(sectionId);
               if (targetSection) {
@@ -73,7 +70,6 @@
           });
       });
 
-      // Upload photo button
       const uploadPhotoBtn = document.getElementById('uploadPhotoBtn');
       if (uploadPhotoBtn) {
           uploadPhotoBtn.addEventListener('click', function() {
@@ -83,29 +79,26 @@
   }
 
   // Mobile Navigation
- function setupMobileNav() {
+  function setupMobileNav() {
       const hamburger = document.getElementById('hamburger');
       const navMenu = document.getElementById('navMenu');
 
       console.log('Setting up mobile nav...', hamburger, navMenu);
 
       if (hamburger && navMenu) {
-          // Remove any existing listeners by cloning
           const newHamburger = hamburger.cloneNode(true);
           hamburger.parentNode.replaceChild(newHamburger, hamburger);
 
           newHamburger.addEventListener('click', function(e) {
               e.stopPropagation();
               console.log('Hamburger clicked!');
-              console.log('Before toggle - navMenu classes:', navMenu.className);
 
               navMenu.classList.toggle('active');
               newHamburger.classList.toggle('active');
 
-              console.log('After toggle - navMenu classes:', navMenu.className);
+              console.log('NavMenu classes:', navMenu.className);
           });
 
-          // Close menu when clicking outside
           document.addEventListener('click', function(e) {
               if (!newHamburger.contains(e.target) && !navMenu.contains(e.target)) {
                   navMenu.classList.remove('active');
@@ -168,7 +161,7 @@
                   window.location.href = 'admin-dashboard.html';
               })
               .catch(function(error) {
-                  alert('Greška pri prijavi: ' + error.message);
+                  alert('Greska pri prijavi: ' + error.message);
               });
       });
   }
@@ -222,13 +215,13 @@
               const features = data.features || [];
               const featuresGrid = document.getElementById('featuresGrid');
               if (featuresGrid) {
-                  featuresGrid.innerHTML = features.map(feature => `
-                      <div class="feature-card">
-                          <div class="feature-icon">${feature.icon}</div>
-                          <h3>${feature.title}</h3>
-                          <p>${feature.description}</p>
-                      </div>
-                  `).join('');
+                  featuresGrid.innerHTML = features.map(feature =>
+                      '<div class="feature-card">' +
+                      '<div class="feature-icon">' + feature.icon + '</div>' +
+                      '<h3>' + feature.title + '</h3>' +
+                      '<p>' + feature.description + '</p>' +
+                      '</div>'
+                  ).join('');
               }
           }
       });
@@ -248,109 +241,131 @@
               heroText.value = data.heroText || '';
 
               const features = data.features || [];
-              featuresContainer.innerHTML = features.map((feature, index) => `
-                  <div class="feature-item" style="background: var(--bg-light); padding: 1.5rem; border-radius: 8px; 
-  margin-bottom: 1rem;">
-                      <div class="form-group">
-                          <label>Ikona</label>
-                          <select data-index="${index}" data-field="icon" style="font-size: 1.5rem;">
-                              <option value="✨" ${feature.icon === '✨' ? 'selected' : ''}>✨ Sparkles</option>
-                              <option value="🌿" ${feature.icon === '🌿' ? 'selected' : ''}>🌿 Eco</option>
-                              <option value="📅" ${feature.icon === '📅' ? 'selected' : ''}>📅 Calendar</option>
-                              <option value="⭐" ${feature.icon === '⭐' ? 'selected' : ''}>⭐ Star</option>
-                              <option value="💼" ${feature.icon === '💼' ? 'selected' : ''}>💼 Briefcase</option>
-                              <option value="🏠" ${feature.icon === '🏠' ? 'selected' : ''}>🏠 Home</option>
-                              <option value="💚" ${feature.icon === '💚' ? 'selected' : ''}>💚 Heart</option>
-                              <option value="🤝" ${feature.icon === '🤝' ? 'selected' : ''}>🤝 Handshake</option>
-                              <option value="🧹" ${feature.icon === '🧹' ? 'selected' : ''}>🧹 Broom</option>
-                              <option value="🧼" ${feature.icon === '🧼' ? 'selected' : ''}>🧼 Soap</option>
-                              <option value="✅" ${feature.icon === '✅' ? 'selected' : ''}>✅ Check</option>
-                              <option value="🎯" ${feature.icon === '🎯' ? 'selected' : ''}>🎯 Target</option>
-                          </select>
-                      </div>
-                      <div class="form-group">
-                          <label>Naslov</label>
-                          <input type="text" value="${feature.title}" data-index="${index}" data-field="title">
-                      </div>
-                      <div class="form-group">
-                          <label>Opis</label>
-                          <textarea rows="2" data-index="${index}" 
-  data-field="description">${feature.description}</textarea>
-                      </div>
-                      <button type="button" onclick="removeFeature(${index})" class="btn" style="background: 
-  var(--danger-color); color: white; width: 100%;">Obriši karakteristiku</button>
-                  </div>
-              `).join('');
+              featuresContainer.innerHTML = '';
+
+              features.forEach(function(feature, index) {
+                  addFeatureItem(featuresContainer, feature, index);
+              });
           }
       });
+  }
+
+  function addFeatureItem(container, feature, index) {
+      const icons = ['sparkles', 'eco', 'calendar', 'star', 'briefcase', 'home', 'heart', 'handshake', 'broom', 'soap',
+  'check', 'target'];
+      const iconEmojis = {
+          'sparkles': '\u2728',
+          'eco': '\u127F',
+          'calendar': '\uD83D\uDCC5',
+          'star': '\u2B50',
+          'briefcase': '\uD83D\uDCBC',
+          'home': '\uD83C\uDFE0',
+          'heart': '\uD83D\uDC9A',
+          'handshake': '\uD83E\uDD1D',
+          'broom': '\uD83E\uDDF9',
+          'soap': '\uD83E\uDDFC',
+          'check': '\u2705',
+          'target': '\uD83C\uDFAF'
+      };
+
+      const featureDiv = document.createElement('div');
+      featureDiv.className = 'feature-item';
+      featureDiv.style.cssText = 'background: var(--bg-light); padding: 1.5rem; border-radius: 8px; margin-bottom: 1rem;';
+
+      const iconSelect = document.createElement('select');
+      iconSelect.setAttribute('data-index', index);
+      iconSelect.setAttribute('data-field', 'icon');
+      iconSelect.style.fontSize = '1.5rem';
+
+      icons.forEach(function(iconName) {
+          const option = document.createElement('option');
+          option.value = iconEmojis[iconName];
+          option.textContent = iconEmojis[iconName] + ' ' + iconName;
+          if (feature && feature.icon === iconEmojis[iconName]) {
+              option.selected = true;
+          }
+          iconSelect.appendChild(option);
+      });
+
+      const titleInput = document.createElement('input');
+      titleInput.type = 'text';
+      titleInput.value = feature ? (feature.title || '') : '';
+      titleInput.setAttribute('data-index', index);
+      titleInput.setAttribute('data-field', 'title');
+      titleInput.placeholder = 'Naslov';
+
+      const descTextarea = document.createElement('textarea');
+      descTextarea.rows = 2;
+      descTextarea.value = feature ? (feature.description || '') : '';
+      descTextarea.setAttribute('data-index', index);
+      descTextarea.setAttribute('data-field', 'description');
+      descTextarea.placeholder = 'Opis';
+
+      const deleteBtn = document.createElement('button');
+      deleteBtn.type = 'button';
+      deleteBtn.className = 'btn';
+      deleteBtn.textContent = 'Obrisi karakteristiku';
+      deleteBtn.style.cssText = 'background: var(--danger-color); color: white; width: 100%;';
+      deleteBtn.onclick = function() { removeFeature(index); };
+
+      const iconGroup = document.createElement('div');
+      iconGroup.className = 'form-group';
+      const iconLabel = document.createElement('label');
+      iconLabel.textContent = 'Ikona';
+      iconGroup.appendChild(iconLabel);
+      iconGroup.appendChild(iconSelect);
+
+      const titleGroup = document.createElement('div');
+      titleGroup.className = 'form-group';
+      const titleLabel = document.createElement('label');
+      titleLabel.textContent = 'Naslov';
+      titleGroup.appendChild(titleLabel);
+      titleGroup.appendChild(titleInput);
+
+      const descGroup = document.createElement('div');
+      descGroup.className = 'form-group';
+      const descLabel = document.createElement('label');
+      descLabel.textContent = 'Opis';
+      descGroup.appendChild(descLabel);
+      descGroup.appendChild(descTextarea);
+
+      featureDiv.appendChild(iconGroup);
+      featureDiv.appendChild(titleGroup);
+      featureDiv.appendChild(descGroup);
+      featureDiv.appendChild(deleteBtn);
+
+      container.appendChild(featureDiv);
   }
 
   function addFeature() {
       const container = document.getElementById('featuresContainer');
       const index = container.children.length;
-      const div = document.createElement('div');
-      div.className = 'feature-item';
-      div.style.cssText = 'background: var(--bg-light); padding: 1.5rem; border-radius: 8px; margin-bottom: 1rem;';
-
-      div.innerHTML = `
-          <div class="form-group">
-              <label>Ikona</label>
-              <select data-index="${index}" data-field="icon" style="font-size: 1.5rem;">
-                  <option value="✨">✨ Sparkles</option>
-                  <option value="🌿">🌿 Eco</option>
-                  <option value="📅">📅 Calendar</option>
-                  <option value="⭐">⭐ Star</option>
-                  <option value="💼">💼 Briefcase</option>
-                  <option value="🏠">🏠 Home</option>
-                  <option value="💚">💚 Heart</option>
-                  <option value="🤝">🤝 Handshake</option>
-                  <option value="🧹">🧹 Broom</option>
-                  <option value="🧼">🧼 Soap</option>
-                  <option value="✅">✅ Check</option>
-                  <option value="🎯">🎯 Target</option>
-              </select>
-          </div>
-          <div class="form-group">
-              <label>Naslov</label>
-              <input type="text" placeholder="Naslov karakteristike" data-index="${index}" data-field="title">
-          </div>
-          <div class="form-group">
-              <label>Opis</label>
-              <textarea rows="2" placeholder="Opis karakteristike" data-index="${index}" 
-  data-field="description"></textarea>
-          </div>
-          <button type="button" onclick="removeFeature(${index})" class="btn" style="background: var(--danger-color); color:
-   white; width: 100%;">Obriši karakteristiku</button>
-      `;
-
-      container.appendChild(div);
+      addFeatureItem(container, null, index);
   }
 
   function removeFeature(index) {
       const container = document.getElementById('featuresContainer');
-      container.children[index].remove();
-      Array.from(container.children).forEach((child, i) => {
-          child.querySelectorAll('[data-index]').forEach(el => {
+      if (container.children[index]) {
+          container.children[index].remove();
+      }
+      Array.from(container.children).forEach(function(child, i) {
+          child.querySelectorAll('[data-index]').forEach(function(el) {
               el.setAttribute('data-index', i);
           });
           const button = child.querySelector('button');
           if (button) {
-              button.setAttribute('onclick', `removeFeature(${i})`);
+              button.onclick = function() { removeFeature(i); };
           }
       });
   }
 
-   function saveHomeContent() {
+  function saveHomeContent() {
       const features = [];
-      document.querySelectorAll('#featuresContainer .feature-item').forEach(item => {
-          const icon = item.querySelector('[data-field="icon"]').value;
-          const title = item.querySelector('[data-field="title"]').value;
-          const description = item.querySelector('[data-field="description"]').value;
-
+      document.querySelectorAll('#featuresContainer .feature-item').forEach(function(item) {
           features.push({
-              icon: icon,
-              title: title,
-              description: description
+              icon: item.querySelector('[data-field="icon"]').value,
+              title: item.querySelector('[data-field="title"]').value,
+              description: item.querySelector('[data-field="description"]').value
           });
       });
 
@@ -359,10 +374,9 @@
           heroText: document.getElementById('heroText').value,
           features: features
       }).then(function() {
-          alert('Sadržaj početne stranice je sačuvan!');
+          alert('Sadrzaj pocetne stranice je sacuvan!');
       });
   }
-
 
   // SERVICES
   function loadServices() {
@@ -376,20 +390,19 @@
           if (servicesGrid) {
               if (services.length === 0) {
                   servicesGrid.innerHTML = '<p style="text-align: center; color: var(--text-light); grid-column: 
-  1/-1;">Trenutno nema dostupnih usluga. Dodajte usluge preko admin panela.</p>';
+  1/-1;">Trenutno nema dostupnih usluga.</p>';
               } else {
-                  servicesGrid.innerHTML = services.map(service => `
-                      <div class="service-card">
-                          <h3>${service.name}</h3>
-                          <p class="service-description">${service.description}</p>
-                          <p class="service-price">${service.price}</p>
-                      </div>
-                  `).join('');
+                  servicesGrid.innerHTML = services.map(function(service) {
+                      return '<div class="service-card">' +
+                      '<h3>' + service.name + '</h3>' +
+                      '<p class="service-description">' + service.description + '</p>' +
+                      '<p class="service-price">' + service.price + '</p>' +
+                      '</div>';
+                  }).join('');
               }
           }
       });
   }
-
 
   function loadServicesAdmin() {
       const servicesList = document.getElementById('servicesList');
@@ -402,19 +415,17 @@
               const service = doc.data();
               const div = document.createElement('div');
               div.className = 'service-item';
-              div.innerHTML = `
-                  <h4>${service.name}</h4>
-                  <p>${service.description}</p>
-                  <p><strong>${service.price}</strong></p>
-                  <button onclick="editService('${doc.id}')">Izmeni</button>
-                  <button onclick="deleteService('${doc.id}')">Obriši</button>
-              `;
+              div.innerHTML = '<h4>' + service.name + '</h4>' +
+                  '<p>' + service.description + '</p>' +
+                  '<p><strong>' + service.price + '</strong></p>' +
+                  '<button onclick="editService(\'' + doc.id + '\')">Izmeni</button> ' +
+                  '<button onclick="deleteService(\'' + doc.id + '\')">Obrisi</button>';
               servicesList.appendChild(div);
           });
       });
   }
 
-  function showServiceModal(serviceId = null) {
+  function showServiceModal(serviceId) {
       const modal = document.getElementById('serviceModal');
       const form = document.getElementById('serviceForm');
 
@@ -454,7 +465,7 @@
           db.collection('services').doc(serviceId).update(serviceData).then(function() {
               closeServiceModal();
               loadServicesAdmin();
-              alert('Usluga je ažurirana!');
+              alert('Usluga je azurirana!');
           });
       } else {
           db.collection('services').add(serviceData).then(function() {
@@ -470,7 +481,7 @@
   }
 
   function deleteService(serviceId) {
-      if (confirm('Da li ste sigurni da želite da obrišete ovu uslugu?')) {
+      if (confirm('Da li ste sigurni da zelite da obrisete ovu uslugu?')) {
           db.collection('services').doc(serviceId).delete().then(function() {
               loadServicesAdmin();
               alert('Usluga je obrisana!');
@@ -512,7 +523,7 @@
           heading: document.getElementById('aboutHeading').value,
           text: document.getElementById('aboutText').value
       }).then(function() {
-          alert('Sadržaj O nama stranice je sačuvan!');
+          alert('Sadrzaj O nama stranice je sacuvan!');
       });
   }
 
@@ -526,12 +537,12 @@
 
           const testimonialsGrid = document.getElementById('testimonialsGrid');
           if (testimonialsGrid) {
-              testimonialsGrid.innerHTML = testimonials.map(testimonial => `
-                  <div class="testimonial-card">
-                      <p class="testimonial-text">"${testimonial.text}"</p>
-                      <p class="testimonial-author">- ${testimonial.author}</p>
-                  </div>
-              `).join('');
+              testimonialsGrid.innerHTML = testimonials.map(function(testimonial) {
+                  return '<div class="testimonial-card">' +
+                  '<p class="testimonial-text">"' + testimonial.text + '"</p>' +
+                  '<p class="testimonial-author">- ' + testimonial.author + '</p>' +
+                  '</div>';
+              }).join('');
           }
       });
   }
@@ -547,22 +558,20 @@
               const testimonial = doc.data();
               const div = document.createElement('div');
               div.className = 'testimonial-item';
-              div.innerHTML = `
-                  <div class="testimonial-content">
-                      <p>"${testimonial.text}"</p>
-                      <p class="testimonial-author">- ${testimonial.author}</p>
-                  </div>
-                  <div class="testimonial-actions">
-                      <button onclick="editTestimonial('${doc.id}')">Izmeni</button>
-                      <button onclick="deleteTestimonial('${doc.id}')">Obriši</button>
-                  </div>
-              `;
+              div.innerHTML = '<div class="testimonial-content">' +
+                  '<p>"' + testimonial.text + '"</p>' +
+                  '<p class="testimonial-author">- ' + testimonial.author + '</p>' +
+                  '</div>' +
+                  '<div class="testimonial-actions">' +
+                  '<button onclick="editTestimonial(\'' + doc.id + '\')">Izmeni</button>' +
+                  '<button onclick="deleteTestimonial(\'' + doc.id + '\')">Obrisi</button>' +
+                  '</div>';
               testimonialsList.appendChild(div);
           });
       });
   }
 
-  function showTestimonialModal(testimonialId = null) {
+  function showTestimonialModal(testimonialId) {
       const modal = document.getElementById('testimonialModal');
       const form = document.getElementById('testimonialForm');
 
@@ -600,7 +609,7 @@
           db.collection('testimonials').doc(testimonialId).update(testimonialData).then(function() {
               closeTestimonialModal();
               loadTestimonialsAdmin();
-              alert('Recenzija je ažurirana!');
+              alert('Recenzija je azurirana!');
           });
       } else {
           db.collection('testimonials').add(testimonialData).then(function() {
@@ -616,7 +625,7 @@
   }
 
   function deleteTestimonial(testimonialId) {
-      if (confirm('Da li ste sigurni da želite da obrišete ovu recenziju?')) {
+      if (confirm('Da li ste sigurni da zelite da obrisete ovu recenziju?')) {
           db.collection('testimonials').doc(testimonialId).delete().then(function() {
               loadTestimonialsAdmin();
               alert('Recenzija je obrisana!');
@@ -634,7 +643,7 @@
                   const photo = doc.data();
                   const div = document.createElement('div');
                   div.className = 'gallery-item';
-                  div.innerHTML = `<img src="${photo.url}" alt="Galerija">`;
+                  div.innerHTML = '<img src="' + photo.url + '" alt="Galerija">';
                   galleryGrid.appendChild(div);
               });
           }
@@ -651,10 +660,8 @@
               const photo = doc.data();
               const div = document.createElement('div');
               div.className = 'gallery-item';
-              div.innerHTML = `
-                  <img src="${photo.url}" alt="Galerija">
-                  <button class="delete-photo" onclick="deletePhoto('${doc.id}')">Obriši</button>
-              `;
+              div.innerHTML = '<img src="' + photo.url + '" alt="Galerija">' +
+                  '<button class="delete-photo" onclick="deletePhoto(\'' + doc.id + '\')">Obrisi</button>';
               galleryAdmin.appendChild(div);
           });
       });
@@ -695,16 +702,16 @@
                           }).then(function() {
                               photoInput.value = '';
                               loadGalleryAdmin();
-                              alert('Fotografija je uspešno otpremljena!');
+                              alert('Fotografija je uspesno otpremljena!');
                           });
                       } else {
                           console.error('ImgBB upload error:', data);
-                          alert('Greška pri otpremanju fotografije. Pokušajte ponovo.');
+                          alert('Greska pri otpremanju fotografije.');
                       }
                   })
                   .catch(error => {
                       console.error('Upload error:', error);
-                      alert('Greška pri otpremanju fotografije. Pokušajte ponovo.');
+                      alert('Greska pri otpremanju fotografije.');
                   });
               };
 
@@ -714,7 +721,7 @@
   }
 
   function deletePhoto(photoId) {
-      if (confirm('Da li ste sigurni da želite da obrišete ovu fotografiju?')) {
+      if (confirm('Da li ste sigurni da zelite da obrisete ovu fotografiju?')) {
           db.collection('gallery').doc(photoId).delete().then(function() {
               loadGalleryAdmin();
               alert('Fotografija je obrisana!');
@@ -746,7 +753,7 @@
           email: document.getElementById('contactEmail').value,
           address: document.getElementById('contactAddress').value
       }).then(function() {
-          alert('Kontakt informacije su sačuvane!');
+          alert('Kontakt informacije su sacuvane!');
           updateFooterContent();
       });
   }
