@@ -26,6 +26,9 @@
                   <div class="nav-item" data-section="services-section">
                       <span>💼</span> Usluge
                   </div>
+                   <div class="nav-item" data-section="addons-section">
+                      <span>➕</span> Dodatne usluge
+                  </div>
                   <div class="nav-item" data-section="about-section">
                       <span>ℹ️</span> O nama
                   </div>
@@ -128,6 +131,18 @@
                               <button type="button" id="saveAboutBtn" onclick="saveAboutContent()" class="btn 
   btn-primary">Sačuvaj izmene</button>
                           </form>
+                      </div>
+                  </div>
+
+                 <!-- Edit Add-ons Page -->
+                 <div id="addons-section" class="content-section">
+                    <div class="dashboard-section">
+                          <h2>Uredi dodatne usluge</h2>
+                          <button onclick="showAddOnModal()" class="btn btn-primary" style="margin-bottom: 1rem;">Dodaj novu dodatnu
+                          uslugu</button>
+                      <div id="addonsList">
+                        <p>Učitavanje dodatnih usluga...</p>
+                      </div>
                       </div>
                   </div>
 
@@ -236,6 +251,34 @@
               </form>
           </div>
       </div>
+
+    <!-- Add-on Modal -->
+  <div id="addonModal" class="modal">
+      <div class="modal-content">
+          <div class="modal-header">
+              <h2 id="addonModalTitle">Dodaj dodatnu uslugu</h2>
+              <button class="close-modal" onclick="closeAddOnModal()">&times;</button>
+          </div>
+          <form id="addonForm">
+              <div class="form-group">
+                  <label for="addonName">Naziv dodatne usluge</label>
+                  <input type="text" id="addonName" required>
+              </div>
+              <div class="form-group">
+                  <label for="addonDescription">Opis</label>
+                  <textarea id="addonDescription" rows="2" required></textarea>
+              </div>
+              <div class="form-group">
+                  <label for="addonPrice">Cena</label>
+                  <input type="text" id="addonPrice" placeholder="npr. Od 2.000 RSD" required>
+              </div>
+              <div class="modal-actions">
+                  <button type="button" class="btn btn-secondary" onclick="closeAddOnModal()">Otkaži</button>
+                  <button type="button" id="saveAddOnBtn" onclick="saveAddOn()" class="btn btn-primary">Sačuvaj</button>
+              </div>
+          </form>
+      </div>
+  </div>
 
       <!-- Firebase SDK -->
       <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
