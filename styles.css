@@ -1465,11 +1465,19 @@
   }
 
   .service-item .service-price {
-      color: var(--primary-color);
-      font-weight: bold;
-      font-size: 1.15rem;
-      margin: 1rem 0 1.25rem 0;
-      display: block;
+      display: inline-block;
+      background: var(--bg-light);
+      color: var(--text-dark);
+      font-weight: 500;
+      font-size: 0.85rem;
+      padding: 0.35rem 0.75rem;
+      border-radius: 4px;
+      margin: 0.5rem 0 1rem 0;
+  }
+
+  .service-item .service-price::before {
+      content: 'Cena: ';
+      color: var(--text-light);
   }
 
   .service-item button {
