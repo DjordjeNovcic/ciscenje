@@ -1,65 +1,39 @@
- // Firebase Configuration
+// Firebase configuration
   const firebaseConfig = {
-    apiKey: "AIzaSyAR4ae5zbbqwqgWLRVtbb2V2W3WbwuSCWo",
-    authDomain: "mssjaj-20b34.firebaseapp.com",
-    projectId: "mssjaj-20b34",
-    storageBucket: "mssjaj-20b34.firebasestorage.app",
-    messagingSenderId: "52721755434",
-    appId: "1:52721755434:web:dc654c159ce6cd226faa53"
+      apiKey: "AIzaSyAR4ae5zbbqwqgWLRVtbb2V2W3WbwuSCWo",
+      authDomain: "mssjaj-20b34.firebaseapp.com",
+      projectId: "mssjaj-20b34",
+      storageBucket: "mssjaj-20b34.firebasestorage.app",
+      messagingSenderId: "52721755434",
+      appId: "1:52721755434:web:dc654c159ce6cd226faa53"
   };
 
-  // Initialize Firebase (will be done after SDK loads)
-  let db, auth, storage;
+  // ImgBB API Key
+  const IMGBB_API_KEY = '8e1325002347317ddab99277f90754b0';
 
-  // Wait for Firebase SDK to load
-  function initFirebase() {
-      if (typeof firebase === 'undefined') {
-          console.error('Firebase SDK not loaded yet');
-          setTimeout(initFirebase, 100);
-          return;
-      }
-
-      // Initialize Firebase
-      firebase.initializeApp(firebaseConfig);
-
-      // Initialize services
-      db = firebase.firestore();
-      auth = firebase.auth();
-      storage = firebase.storage();
-
-      console.log('Firebase initialized successfully');
-
-      // Now initialize the app
-      initializeApp();
-  }
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+  const db = firebase.firestore();
+  const auth = firebase.auth();
+  // No Firebase Storage needed anymore!
 
   // Initialize app
-  document.addEventListener('DOMContentLoaded', function() {
-      console.log('DOM loaded');
-      initFirebase();
-  });
+  document.addEventListener('DOMContentLoaded', initializeApp);
 
   function initializeApp() {
-      console.log('Initializing app...');
-
-      // Setup mobile navigation
       setupMobileNav();
 
-      // Load content on public pages
       const isAdminPage = document.getElementById('loginForm') || document.getElementById('adminContent');
       if (!isAdminPage) {
-         loadPublicPageContent();
+          loadPublicPageContent();
       }
 
-      // Update footer on all pages
       updateFooterContent();
 
-      // Admin login page
       if (document.getElementById('loginForm')) {
           setupAdminLogin();
       }
 
-      // Admin dashboard
       if (document.getElementById('adminContent')) {
           setupAdminDashboard();
       }
@@ -71,110 +45,93 @@
       const navMenu = document.getElementById('navMenu');
 
       if (hamburger && navMenu) {
-          hamburger.addEventListener('click', function(e) {
-              e.preventDefault();
-              e.stopPropagation();
+          hamburger.addEventListener('click', function() {
+              console.log('Hamburger clicked');
+              console.log('Before:', navMenu.classList);
 
               if (navMenu.classList.contains('active')) {
                   navMenu.classList.remove('active');
                   hamburger.classList.remove('active');
-                  document.body.style.overflow = '';
               } else {
                   navMenu.classList.add('active');
                   hamburger.classList.add('active');
-                  document.body.style.overflow = 'hidden';
               }
+
+              console.log('After:', navMenu.classList);
           });
 
-          // Close menu when clicking on nav links
-          const navLinks = navMenu.querySelectorAll('a');
-          navLinks.forEach(function(link) {
-              link.addEventListener('click', function() {
-                  navMenu.classList.remove('active');
-                  hamburger.classList.remove('active');
-                  document.body.style.overflow = '';
-              });
-          });
-
-          // Close menu when clicking outside
           document.addEventListener('click', function(e) {
               if (!hamburger.contains(e.target) && !navMenu.contains(e.target)) {
-                  if (navMenu.classList.contains('active')) {
-                      navMenu.classList.remove('active');
-                      hamburger.classList.remove('active');
-                      document.body.style.overflow = '';
-                  }
+                  navMenu.classList.remove('active');
+                  hamburger.classList.remove('active');
               }
           });
       }
   }
 
+  // Load public page content
+  function loadPublicPageContent() {
+      loadHomeContent();
+      loadServices();
+      loadAboutContent();
+      loadTestimonials();
+      loadGallery();
+  }
+
+  // Update footer content
+  function updateFooterContent() {
+      db.collection('contact').doc('info').get().then(function(doc) {
+          if (doc.exists) {
+              const data = doc.data();
+              const phoneElements = document.querySelectorAll('.footer-phone');
+              const emailElements = document.querySelectorAll('.footer-email');
+              const addressElements = document.querySelectorAll('.footer-address');
+
+              phoneElements.forEach(el => el.textContent = data.phone || '+381 XX XXX XXXX');
+              emailElements.forEach(el => el.textContent = data.email || 'info@mssjaj.rs');
+              addressElements.forEach(el => el.textContent = data.address || 'Kragujevac, Srbija');
+          }
+      });
+  }
+
   // Admin Login
   function setupAdminLogin() {
       const loginForm = document.getElementById('loginForm');
-      const loginError = document.getElementById('loginError');
 
       loginForm.addEventListener('submit', function(e) {
           e.preventDefault();
 
-          const username = document.getElementById('username').value;
-          const password = document.getElementById('password').value; // FIXED: removed ()
+          const email = document.getElementById('email').value;
+          const password = document.getElementById('password').value;
 
-          // For demo: check if it's the demo credentials
-          if (username === 'admin' && password === 'admin123') {
-              // Sign in or create demo account
-              auth.signInWithEmailAndPassword('admin@cleanpro.com', 'admin123')
-                  .then(function() {
-                      window.location.href = 'admin-dashboard.html';
-                  })
-                  .catch(function(error) {
-                      // If account doesn't exist, create it
-                      if (error.code === 'auth/user-not-found') {
-                          return auth.createUserWithEmailAndPassword('admin@cleanpro.com', 'admin123')
-                              .then(function() {
-                                  window.location.href = 'admin-dashboard.html';
-                              });
-                      }
-                      throw error;
-                  })
-                  .catch(function(error) {
-                      console.error('Login error:', error);
-                      loginError.style.display = 'block';
-                  });
-          } else {
-              loginError.style.display = 'block';
-          }
+          auth.signInWithEmailAndPassword(email, password)
+              .then(function() {
+                  window.location.href = 'admin-dashboard.html';
+              })
+              .catch(function(error) {
+                  alert('Greška pri prijavi: ' + error.message);
+              });
       });
   }
 
   // Admin Dashboard
   function setupAdminDashboard() {
-      // Check if logged in
       auth.onAuthStateChanged(function(user) {
           if (!user) {
               window.location.href = 'admin-login.html';
               return;
           }
 
-          console.log('User logged in:', user.email);
-
-          // User is logged in, setup dashboard
-          setupDashboardNavigation();
-          initializeDefaultContent();
-          setupHomeCMS();
-          setupServicesCMS();
-          setupAboutCMS();
-          setupTestimonialManagement();
-          setupPhotoGallery();
-          setupSettings();
-          loadDashboardStats();
+          loadAdminContent();
+          setupAdminForms();
+          setupLogout();
       });
+  }
 
-      // Logout
+  function setupLogout() {
       const logoutBtn = document.getElementById('logoutBtn');
       if (logoutBtn) {
-          logoutBtn.addEventListener('click', function(e) {
-              e.preventDefault();
+          logoutBtn.addEventListener('click', function() {
               auth.signOut().then(function() {
                   window.location.href = 'admin-login.html';
               });
@@ -182,671 +139,464 @@
       }
   }
 
-  function setupDashboardNavigation() {
-      const navItems = document.querySelectorAll('.nav-item');
-      const sections = document.querySelectorAll('.content-section');
-
-      navItems.forEach(function(item) {
-          item.addEventListener('click', function() {
-              const targetSection = this.getAttribute('data-section');
-
-              navItems.forEach(function(nav) {
-                  nav.classList.remove('active');
-              });
-              this.classList.add('active');
-
-              sections.forEach(function(section) {
-                  section.classList.remove('active');
-              });
-              document.getElementById(targetSection).classList.add('active');
-
-              // Load data when switching sections
-              if (targetSection === 'testimonials-section') {
-                  loadTestimonials();
-              } else if (targetSection === 'gallery-section') {
-                  loadGallery();
-              }
-          });
-      });
+  function loadAdminContent() {
+      loadHomeContentAdmin();
+      loadServicesAdmin();
+      loadAboutContentAdmin();
+      loadTestimonialsAdmin();
+      loadGalleryAdmin();
+      loadContactAdmin();
   }
 
-  // Initialize default content in Firestore
-  function initializeDefaultContent() {
-      // Check if content exists, if not create defaults
-      db.collection('settings').doc('homeContent').get()
-          .then(function(doc) {
-              if (!doc.exists) {
-                  const defaultHome = {
-                      heroHeading: 'Professional Cleaning Services You Can Trust',
-                      heroText: 'We provide top-quality cleaning services for homes and businesses. Experience the difference of a truly clean space.',
-                      features: [
-                          {
-                              title: 'Professional Team',
-                              description: 'Our experienced cleaners are trained and certified professionals.'
-                          },
-                          {
-                              title: 'Eco-Friendly Products',
-                              description: 'We use environmentally safe cleaning products that are effective and safe.'
-                          },
-                          {
-                              title: 'Flexible Scheduling',
-                              description: 'We work around your schedule with convenient booking options.'
-                          }
-                      ]
-                  };
-                  return db.collection('settings').doc('homeContent').set(defaultHome);
-              }
-          });
-
-      db.collection('settings').doc('servicesContent').get()
-          .then(function(doc) {
-              if (!doc.exists) {
-                  const defaultServices = {
-                      residential: {
-                          price: '99',
-                          features: [
-                              'Deep cleaning of all rooms',
-                              'Kitchen and bathroom sanitization',
-                              'Dusting and vacuuming',
-                              'Window cleaning'
-                          ]
-                      },
-                      commercial: {
-                          price: '299',
-                          features: [
-                              'Office space cleaning',
-                              'Floor maintenance',
-                              'Restroom sanitization',
-                              'Trash removal'
-                          ]
-                      }
-                  };
-                  return db.collection('settings').doc('servicesContent').set(defaultServices);
-              }
-          });
-
-      db.collection('settings').doc('aboutContent').get()
-          .then(function(doc) {
-              if (!doc.exists) {
-                  const defaultAbout = {
-                      heading: 'About CleanPro',
-                      paragraph1: 'Founded in 2015, CleanPro started with a simple mission.',
-                      paragraph2: 'We provide professional cleaning services for homes and businesses.',
-                      email: 'info@cleanpro.com',
-                      phone: '555-0123'
-                  };
-                  return db.collection('settings').doc('aboutContent').set(defaultAbout);
-              }
-          });
-  }
-
-  // Home Page CMS
-  function setupHomeCMS() {
-      const saveHomeBtn = document.getElementById('saveHomeContent');
-      if (!saveHomeBtn) return;
-
-      loadHomeContent();
-
-      saveHomeBtn.addEventListener('click', function() {
-          const content = {
-              heroHeading: document.getElementById('heroHeading').value,
-              heroText: document.getElementById('heroText').value,
-              features: [
-                  {
-                      title: document.getElementById('feature1Title').value,
-                      description: document.getElementById('feature1Desc').value
-                  },
-                  {
-                      title: document.getElementById('feature2Title').value,
-                      description: document.getElementById('feature2Desc').value
-                  },
-                  {
-                      title: document.getElementById('feature3Title').value,
-                      description: document.getElementById('feature3Desc').value
-                  }
-              ]
-          };
-
-          db.collection('settings').doc('homeContent').set(content)
-              .then(function() {
-                  alert('Home page content saved successfully!');
-              })
-              .catch(function(error) {
-                  console.error('Error saving:', error);
-                  alert('Error saving content. Please try again.');
-              });
-      });
-  }
-
+  // HOME CONTENT
   function loadHomeContent() {
-      db.collection('settings').doc('homeContent').get()
-          .then(function(doc) {
-              if (!doc.exists) return;
+      db.collection('content').doc('home').get().then(function(doc) {
+          if (doc.exists) {
+              const data = doc.data();
+              const heroHeading = document.getElementById('heroHeading');
+              const heroText = document.getElementById('heroText');
 
-              const content = doc.data();
-              document.getElementById('heroHeading').value = content.heroHeading || '';
-              document.getElementById('heroText').value = content.heroText || '';
+              if (heroHeading) heroHeading.textContent = data.heroHeading || '';
+              if (heroText) heroText.textContent = data.heroText || '';
 
-              if (content.features && content.features.length >= 3) {
-                  document.getElementById('feature1Title').value = content.features[0].title || '';
-                  document.getElementById('feature1Desc').value = content.features[0].description || '';
-                  document.getElementById('feature2Title').value = content.features[1].title || '';
-                  document.getElementById('feature2Desc').value = content.features[1].description || '';
-                  document.getElementById('feature3Title').value = content.features[2].title || '';
-                  document.getElementById('feature3Desc').value = content.features[2].description || '';
+              const features = data.features || [];
+              const featuresGrid = document.getElementById('featuresGrid');
+              if (featuresGrid) {
+                  featuresGrid.innerHTML = features.map(feature => `
+                      <div class="feature-card">
+                          <div class="feature-icon">${feature.icon}</div>
+                          <h3>${feature.title}</h3>
+                          <p>${feature.description}</p>
+                      </div>
+                  `).join('');
               }
-          })
-          .catch(function(error) {
-              console.error('Error loading home content:', error);
-          });
-  }
-
-  // Services CMS
-  function setupServicesCMS() {
-      const saveServicesBtn = document.getElementById('saveServicesContent');
-      if (!saveServicesBtn) return;
-
-      loadServicesContent();
-
-      saveServicesBtn.addEventListener('click', function() {
-          const content = {
-              residential: {
-                  price: document.getElementById('residentialPrice').value,
-                  features: [
-                      document.getElementById('residentialFeature1').value,
-                      document.getElementById('residentialFeature2').value,
-                      document.getElementById('residentialFeature3').value,
-                      document.getElementById('residentialFeature4').value
-                  ]
-              },
-              commercial: {
-                  price: document.getElementById('commercialPrice').value,
-                  features: [
-                      document.getElementById('commercialFeature1').value,
-                      document.getElementById('commercialFeature2').value,
-                      document.getElementById('commercialFeature3').value,
-                      document.getElementById('commercialFeature4').value
-                  ]
-              }
-          };
-
-          db.collection('settings').doc('servicesContent').set(content)
-              .then(function() {
-                  alert('Services content saved successfully!');
-              })
-              .catch(function(error) {
-                  console.error('Error saving:', error);
-                  alert('Error saving content. Please try again.');
-              });
-      });
-  }
-
-  function loadServicesContent() {
-      db.collection('settings').doc('servicesContent').get()
-          .then(function(doc) {
-              if (!doc.exists) return;
-
-              const content = doc.data();
-              document.getElementById('residentialPrice').value = content.residential.price || '';
-              document.getElementById('residentialFeature1').value = content.residential.features[0] || '';
-              document.getElementById('residentialFeature2').value = content.residential.features[1] || '';
-              document.getElementById('residentialFeature3').value = content.residential.features[2] || '';
-              document.getElementById('residentialFeature4').value = content.residential.features[3] || '';
-
-              document.getElementById('commercialPrice').value = content.commercial.price || '';
-              document.getElementById('commercialFeature1').value = content.commercial.features[0] || '';
-              document.getElementById('commercialFeature2').value = content.commercial.features[1] || '';
-              document.getElementById('commercialFeature3').value = content.commercial.features[2] || '';
-              document.getElementById('commercialFeature4').value = content.commercial.features[3] || '';
-          })
-          .catch(function(error) {
-              console.error('Error loading services content:', error);
-          });
-  }
-
-  // About Page CMS
-  function setupAboutCMS() {
-      const saveAboutBtn = document.getElementById('saveAboutContent');
-      if (!saveAboutBtn) return;
-
-      loadAboutContent();
-
-      saveAboutBtn.addEventListener('click', function() {
-          const content = {
-              heading: document.getElementById('aboutHeading').value,
-              paragraph1: document.getElementById('aboutParagraph1').value,
-              paragraph2: document.getElementById('aboutParagraph2').value,
-              email: document.getElementById('contactEmail').value,
-              phone: document.getElementById('contactPhone').value
-          };
-
-          db.collection('settings').doc('aboutContent').set(content)
-              .then(function() {
-                  alert('About page content saved successfully!');
-              })
-              .catch(function(error) {
-                  console.error('Error saving:', error);
-                  alert('Error saving content. Please try again.');
-              });
-      });
-  }
-
-  function loadAboutContent() {
-      db.collection('settings').doc('aboutContent').get()
-          .then(function(doc) {
-              if (!doc.exists) return;
-
-              const content = doc.data();
-              document.getElementById('aboutHeading').value = content.heading || '';
-              document.getElementById('aboutParagraph1').value = content.paragraph1 || '';
-              document.getElementById('aboutParagraph2').value = content.paragraph2 || '';
-              document.getElementById('contactEmail').value = content.email || '';
-              document.getElementById('contactPhone').value = content.phone || '';
-          })
-          .catch(function(error) {
-              console.error('Error loading about content:', error);
-          });
-  }
-
-  // Testimonial Management
-  function setupTestimonialManagement() {
-      const addTestimonialBtn = document.getElementById('addTestimonialBtn');
-      const saveTestimonialBtn = document.getElementById('saveTestimonial');
-      const testimonialModal = document.getElementById('testimonialModal');
-      const closeModalBtns = testimonialModal.querySelectorAll('.close-modal');
-
-      addTestimonialBtn.addEventListener('click', function() {
-          document.getElementById('testimonialForm').reset();
-          document.getElementById('testimonialId').value = '';
-          testimonialModal.style.display = 'flex';
-      });
-
-      closeModalBtns.forEach(function(btn) {
-          btn.addEventListener('click', function() {
-              testimonialModal.style.display = 'none';
-          });
-      });
-
-      // Close modal when clicking outside
-      testimonialModal.addEventListener('click', function(e) {
-          if (e.target === testimonialModal) {
-              testimonialModal.style.display = 'none';
           }
       });
+  }
 
-      saveTestimonialBtn.addEventListener('click', function() {
-          const id = document.getElementById('testimonialId').value;
-          const testimonial = {
-              name: document.getElementById('testimonialName').value,
-              rating: parseInt(document.getElementById('testimonialRating').value),
-              text: document.getElementById('testimonialText').value,
-              createdAt: id ? undefined : firebase.firestore.FieldValue.serverTimestamp()
-          };
+  function loadHomeContentAdmin() {
+      db.collection('content').doc('home').get().then(function(doc) {
+          if (doc.exists) {
+              const data = doc.data();
+              document.getElementById('heroHeading').value = data.heroHeading || '';
+              document.getElementById('heroText').value = data.heroText || '';
 
-          // Remove undefined values
-          if (testimonial.createdAt === undefined) {
-              delete testimonial.createdAt;
+              const features = data.features || [];
+              const featuresContainer = document.getElementById('featuresContainer');
+              featuresContainer.innerHTML = features.map((feature, index) => `
+                  <div class="feature-item">
+                      <input type="text" value="${feature.icon}" placeholder="Icon (emoji)" data-index="${index}" 
+  data-field="icon">
+                      <input type="text" value="${feature.title}" placeholder="Naslov" data-index="${index}" 
+  data-field="title">
+                      <textarea placeholder="Opis" data-index="${index}" 
+  data-field="description">${feature.description}</textarea>
+                      <button onclick="removeFeature(${index})">Obriši</button>
+                  </div>
+              `).join('');
           }
+      });
+  }
 
-          const promise = id ?
-              db.collection('testimonials').doc(id).update(testimonial) :
-              db.collection('testimonials').add(testimonial);
+  function addFeature() {
+      const container = document.getElementById('featuresContainer');
+      const index = container.children.length;
+      const div = document.createElement('div');
+      div.className = 'feature-item';
+      div.innerHTML = `
+          <input type="text" placeholder="Icon (emoji)" data-index="${index}" data-field="icon">
+          <input type="text" placeholder="Naslov" data-index="${index}" data-field="title">
+          <textarea placeholder="Opis" data-index="${index}" data-field="description"></textarea>
+          <button onclick="removeFeature(${index})">Obriši</button>
+      `;
+      container.appendChild(div);
+  }
 
-          promise.then(function() {
-                  testimonialModal.style.display = 'none';
-                  loadTestimonials();
-                  alert('Testimonial saved successfully!');
-              })
-              .catch(function(error) {
-                  console.error('Error saving testimonial:', error);
-                  alert('Error saving testimonial. Please try again.');
-              });
+  function removeFeature(index) {
+      const container = document.getElementById('featuresContainer');
+      container.children[index].remove();
+      Array.from(container.children).forEach((child, i) => {
+          child.querySelectorAll('[data-index]').forEach(el => {
+              el.setAttribute('data-index', i);
+          });
+          child.querySelector('button').setAttribute('onclick', `removeFeature(${i})`);
+      });
+  }
+
+  function saveHomeContent() {
+      const features = [];
+      document.querySelectorAll('#featuresContainer .feature-item').forEach(item => {
+          features.push({
+              icon: item.querySelector('[data-field="icon"]').value,
+              title: item.querySelector('[data-field="title"]').value,
+              description: item.querySelector('[data-field="description"]').value
+          });
       });
 
-      loadTestimonials();
+      db.collection('content').doc('home').set({
+          heroHeading: document.getElementById('heroHeading').value,
+          heroText: document.getElementById('heroText').value,
+          features: features
+      }).then(function() {
+          alert('Sadržaj početne stranice je sačuvan!');
+      });
   }
 
-  function loadTestimonials() {
-      const container = document.getElementById('testimonialsList');
+  // SERVICES
+  function loadServices() {
+      db.collection('services').get().then(function(querySnapshot) {
+          const services = [];
+          querySnapshot.forEach(function(doc) {
+              services.push({ id: doc.id, ...doc.data() });
+          });
 
-      db.collection('testimonials').get()
-          .then(function(querySnapshot) {
-              if (querySnapshot.empty) {
-                  container.innerHTML = '<p>No testimonials yet. Add your first one!</p>';
-                  return;
+          const servicesGrid = document.getElementById('servicesGrid');
+          if (servicesGrid) {
+              servicesGrid.innerHTML = services.map(service => `
+                  <div class="service-card">
+                      <h3>${service.name}</h3>
+                      <p class="service-description">${service.description}</p>
+                      <p class="service-price">${service.price}</p>
+                  </div>
+              `).join('');
+          }
+      });
+  }
+
+  function loadServicesAdmin() {
+      db.collection('services').get().then(function(querySnapshot) {
+          const servicesList = document.getElementById('servicesList');
+          servicesList.innerHTML = '';
+
+          querySnapshot.forEach(function(doc) {
+              const service = doc.data();
+              const div = document.createElement('div');
+              div.className = 'service-item';
+              div.innerHTML = `
+                  <h4>${service.name}</h4>
+                  <p>${service.description}</p>
+                  <p><strong>${service.price}</strong></p>
+                  <button onclick="editService('${doc.id}')">Izmeni</button>
+                  <button onclick="deleteService('${doc.id}')">Obriši</button>
+              `;
+              servicesList.appendChild(div);
+          });
+      });
+  }
+
+  function showServiceModal(serviceId = null) {
+      const modal = document.getElementById('serviceModal');
+      const form = document.getElementById('serviceForm');
+
+      if (serviceId) {
+          db.collection('services').doc(serviceId).get().then(function(doc) {
+              if (doc.exists) {
+                  const service = doc.data();
+                  document.getElementById('serviceName').value = service.name;
+                  document.getElementById('serviceDescription').value = service.description;
+                  document.getElementById('servicePrice').value = service.price;
+                  form.dataset.serviceId = serviceId;
               }
-
-              let html = '';
-              querySnapshot.forEach(function(doc) {
-                  const testimonial = doc.data();
-                  const stars = '⭐'.repeat(testimonial.rating);
-
-                  html += '<div class="testimonial-item">';
-                  html += '<div class="testimonial-content">';
-                  html += '<div class="stars">' + stars + '</div>';
-                  html += '<p>' + testimonial.text + '</p>';
-                  html += '<p class="testimonial-author">- ' + testimonial.name + '</p>';
-                  html += '</div>';
-                  html += '<div class="testimonial-actions">';
-                  html += '<button onclick="editTestimonial(\'' + doc.id + '\')">Edit</button>';
-                  html += '<button onclick="deleteTestimonial(\'' + doc.id + '\')">Delete</button>';
-                  html += '</div>';
-                  html += '</div>';
-              });
-
-              container.innerHTML = html;
-          })
-          .catch(function(error) {
-              console.error('Error loading testimonials:', error);
-              container.innerHTML = '<p>Error loading testimonials.</p>';
           });
+      } else {
+          form.reset();
+          delete form.dataset.serviceId;
+      }
+
+      modal.style.display = 'block';
   }
 
-  function editTestimonial(id) {
-      db.collection('testimonials').doc(id).get()
-          .then(function(doc) {
-              if (!doc.exists) return;
-
-              const testimonial = doc.data();
-              document.getElementById('testimonialId').value = doc.id;
-              document.getElementById('testimonialName').value = testimonial.name;
-              document.getElementById('testimonialRating').value = testimonial.rating;
-              document.getElementById('testimonialText').value = testimonial.text;
-              document.getElementById('testimonialModal').style.display = 'flex';
-          });
+  function closeServiceModal() {
+      document.getElementById('serviceModal').style.display = 'none';
   }
 
-  function deleteTestimonial(id) {
-      if (confirm('Are you sure you want to delete this testimonial?')) {
-          db.collection('testimonials').doc(id).delete()
-              .then(function() {
-                  loadTestimonials();
-              })
-              .catch(function(error) {
-                  console.error('Error deleting testimonial:', error);
-                  alert('Error deleting testimonial. Please try again.');
-              });
+  function saveService() {
+      const form = document.getElementById('serviceForm');
+      const serviceData = {
+          name: document.getElementById('serviceName').value,
+          description: document.getElementById('serviceDescription').value,
+          price: document.getElementById('servicePrice').value
+      };
+
+      const serviceId = form.dataset.serviceId;
+
+      if (serviceId) {
+          db.collection('services').doc(serviceId).update(serviceData).then(function() {
+              closeServiceModal();
+              loadServicesAdmin();
+          });
+      } else {
+          db.collection('services').add(serviceData).then(function() {
+              closeServiceModal();
+              loadServicesAdmin();
+          });
       }
   }
 
-  // Photo Gallery Management
-  function setupPhotoGallery() {
-      const uploadPhotoBtn = document.getElementById('uploadPhotoBtn');
-      const photoInput = document.getElementById('photoInput');
-
-      uploadPhotoBtn.addEventListener('click', function() {
-          photoInput.click();
-      });
-
-      photoInput.addEventListener('change', function(e) {
-          const file = e.target.files[0];
-          if (!file) return;
-
-          // Show uploading message
-          const container = document.getElementById('galleryGrid');
-          container.innerHTML = '<p>Uploading photo...</p>';
-
-          // Upload to Firebase Storage
-          const storageRef = storage.ref('gallery/' + Date.now() + '_' + file.name);
-          const uploadTask = storageRef.put(file);
-
-          uploadTask.on('state_changed',
-              function(snapshot) {
-                  // Progress
-                  const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-                  console.log('Upload is ' + progress + '% done');
-              },
-              function(error) {
-                  console.error('Upload error:', error);
-                  alert('Error uploading photo. Please try again.');
-                  loadGallery();
-              },
-              function() {
-                  // Complete
-                  uploadTask.snapshot.ref.getDownloadURL().then(function(downloadURL) {
-                      // Save to Firestore
-                      db.collection('gallery').add({
-                          url: downloadURL,
-                          filename: file.name,
-                          uploadedAt: firebase.firestore.FieldValue.serverTimestamp()
-                      }).then(function() {
-                          photoInput.value = '';
-                          loadGallery();
-                      });
-                  });
-              }
-          );
-      });
-
-      loadGallery();
+  function editService(serviceId) {
+      showServiceModal(serviceId);
   }
 
-  function loadGallery() {
-      const container = document.getElementById('galleryGrid');
+  function deleteService(serviceId) {
+      if (confirm('Da li ste sigurni da želite da obrišete ovu uslugu?')) {
+          db.collection('services').doc(serviceId).delete().then(function() {
+              loadServicesAdmin();
+          });
+      }
+  }
 
-      db.collection('gallery').get()
-          .then(function(querySnapshot) {
-              if (querySnapshot.empty) {
-                  container.innerHTML = '<p>No photos yet. Upload your first one!</p>';
-                  return;
+  // ABOUT CONTENT
+  function loadAboutContent() {
+      db.collection('content').doc('about').get().then(function(doc) {
+          if (doc.exists) {
+              const data = doc.data();
+              const aboutHeading = document.getElementById('aboutHeading');
+              const aboutText = document.getElementById('aboutText');
+
+              if (aboutHeading) aboutHeading.textContent = data.heading || '';
+              if (aboutText) aboutText.textContent = data.text || '';
+          }
+      });
+  }
+
+  function loadAboutContentAdmin() {
+      db.collection('content').doc('about').get().then(function(doc) {
+          if (doc.exists) {
+              const data = doc.data();
+              document.getElementById('aboutHeading').value = data.heading || '';
+              document.getElementById('aboutText').value = data.text || '';
+          }
+      });
+  }
+
+  function saveAboutContent() {
+      db.collection('content').doc('about').set({
+          heading: document.getElementById('aboutHeading').value,
+          text: document.getElementById('aboutText').value
+      }).then(function() {
+          alert('Sadržaj O nama stranice je sačuvan!');
+      });
+  }
+
+  // TESTIMONIALS
+  function loadTestimonials() {
+      db.collection('testimonials').get().then(function(querySnapshot) {
+          const testimonials = [];
+          querySnapshot.forEach(function(doc) {
+              testimonials.push({ id: doc.id, ...doc.data() });
+          });
+
+          const testimonialsGrid = document.getElementById('testimonialsGrid');
+          if (testimonialsGrid) {
+              testimonialsGrid.innerHTML = testimonials.map(testimonial => `
+                  <div class="testimonial-card">
+                      <p class="testimonial-text">"${testimonial.text}"</p>
+                      <p class="testimonial-author">- ${testimonial.author}</p>
+                  </div>
+              `).join('');
+          }
+      });
+  }
+
+  function loadTestimonialsAdmin() {
+      db.collection('testimonials').get().then(function(querySnapshot) {
+          const testimonialsList = document.getElementById('testimonialsList');
+          testimonialsList.innerHTML = '';
+
+          querySnapshot.forEach(function(doc) {
+              const testimonial = doc.data();
+              const div = document.createElement('div');
+              div.className = 'testimonial-item';
+              div.innerHTML = `
+                  <p>"${testimonial.text}"</p>
+                  <p><strong>- ${testimonial.author}</strong></p>
+                  <button onclick="editTestimonial('${doc.id}')">Izmeni</button>
+                  <button onclick="deleteTestimonial('${doc.id}')">Obriši</button>
+              `;
+              testimonialsList.appendChild(div);
+          });
+      });
+  }
+
+  function showTestimonialModal(testimonialId = null) {
+      const modal = document.getElementById('testimonialModal');
+      const form = document.getElementById('testimonialForm');
+
+      if (testimonialId) {
+          db.collection('testimonials').doc(testimonialId).get().then(function(doc) {
+              if (doc.exists) {
+                  const testimonial = doc.data();
+                  document.getElementById('testimonialText').value = testimonial.text;
+                  document.getElementById('testimonialAuthor').value = testimonial.author;
+                  form.dataset.testimonialId = testimonialId;
               }
+          });
+      } else {
+          form.reset();
+          delete form.dataset.testimonialId;
+      }
 
-              let html = '';
+      modal.style.display = 'block';
+  }
+
+  function closeTestimonialModal() {
+      document.getElementById('testimonialModal').style.display = 'none';
+  }
+
+  function saveTestimonial() {
+      const form = document.getElementById('testimonialForm');
+      const testimonialData = {
+          text: document.getElementById('testimonialText').value,
+          author: document.getElementById('testimonialAuthor').value
+      };
+
+      const testimonialId = form.dataset.testimonialId;
+
+      if (testimonialId) {
+          db.collection('testimonials').doc(testimonialId).update(testimonialData).then(function() {
+              closeTestimonialModal();
+              loadTestimonialsAdmin();
+          });
+      } else {
+          db.collection('testimonials').add(testimonialData).then(function() {
+              closeTestimonialModal();
+              loadTestimonialsAdmin();
+          });
+      }
+  }
+
+  function editTestimonial(testimonialId) {
+      showTestimonialModal(testimonialId);
+  }
+
+  function deleteTestimonial(testimonialId) {
+      if (confirm('Da li ste sigurni da želite da obrišete ovu recenziju?')) {
+          db.collection('testimonials').doc(testimonialId).delete().then(function() {
+              loadTestimonialsAdmin();
+          });
+      }
+  }
+
+  // GALLERY - NOW USING IMGBB
+  function loadGallery() {
+      db.collection('gallery').orderBy('uploadedAt', 'desc').get().then(function(querySnapshot) {
+          const galleryGrid = document.getElementById('galleryGrid');
+          if (galleryGrid) {
+              galleryGrid.innerHTML = '';
               querySnapshot.forEach(function(doc) {
                   const photo = doc.data();
-                  html += '<div class="gallery-item">';
-                  html += '<img src="' + photo.url + '" alt="Gallery photo">';
-                  html += '<button class="delete-photo" onclick="deletePhoto(\'' + doc.id + '\', \'' + photo.url + '\')">Delete</button>';
-                  html += '</div>';
+                  const div = document.createElement('div');
+                  div.className = 'gallery-item';
+                  div.innerHTML = `<img src="${photo.url}" alt="Galerija">`;
+                  galleryGrid.appendChild(div);
               });
-
-              container.innerHTML = html;
-          })
-          .catch(function(error) {
-              console.error('Error loading gallery:', error);
-              container.innerHTML = '<p>Error loading gallery.</p>';
-          });
-  }
-
-  function deletePhoto(id, url) {
-      if (confirm('Are you sure you want to delete this photo?')) {
-          // Delete from Storage
-          const storageRef = storage.refFromURL(url);
-          storageRef.delete()
-              .then(function() {
-                  // Delete from Firestore
-                  return db.collection('gallery').doc(id).delete();
-              })
-              .then(function() {
-                  loadGallery();
-              })
-              .catch(function(error) {
-                  console.error('Error deleting photo:', error);
-                  alert('Error deleting photo. Please try again.');
-              });
-      }
-  }
-
-  // Settings
-  function setupSettings() {
-      const clearDataBtn = document.getElementById('clearDataBtn');
-
-      if (clearDataBtn) {
-          clearDataBtn.addEventListener('click', function() {
-              if (confirm('Are you sure you want to clear all data? This cannot be undone!')) {
-                  Promise.all([
-                      db.collection('testimonials').get().then(function(snapshot) {
-                          const batch = db.batch();
-                          snapshot.docs.forEach(function(doc) {
-                              batch.delete(doc.ref);
-                          });
-                          return batch.commit();
-                      }),
-                      db.collection('gallery').get().then(function(snapshot) {
-                          const deletePromises = [];
-                          snapshot.docs.forEach(function(doc) {
-                              const photo = doc.data();
-                              const storageRef = storage.refFromURL(photo.url);
-                              deletePromises.push(storageRef.delete());
-                              deletePromises.push(doc.ref.delete());
-                          });
-                          return Promise.all(deletePromises);
-                      })
-                  ]).then(function() {
-                      alert('All data cleared! Reinitializing defaults...');
-                      initializeDefaultContent();
-                      setTimeout(function() {
-                          window.location.reload();
-                      }, 1000);
-                  }).catch(function(error) {
-                      console.error('Error clearing data:', error);
-                      alert('Error clearing data. Please try again.');
-                  });
-              }
-          });
-      }
-  }
-
-  // Dashboard Stats
-  function loadDashboardStats() {
-      db.collection('testimonials').get().then(function(snapshot) {
-          document.getElementById('totalTestimonials').textContent = snapshot.size;
-      });
-
-      db.collection('gallery').get().then(function(snapshot) {
-          document.getElementById('totalPhotos').textContent = snapshot.size;
+          }
       });
   }
 
-  // Load content on public pages
-  function loadPublicPageContent() {
-      // Home page
-      if (document.getElementById('heroHeading')) {
-          db.collection('settings').doc('homeContent').get()
-              .then(function(doc) {
-                  if (!doc.exists) return;
-
-                  const homeContent = doc.data();
-                  const heroHeading = document.getElementById('heroHeading');
-                  const heroText = document.getElementById('heroText');
-
-                  if (heroHeading) heroHeading.textContent = homeContent.heroHeading || '';
-                  if (heroText) heroText.textContent = homeContent.heroText || '';
-
-                  if (homeContent.features && homeContent.features.length >= 3) {
-                      const featureCards = document.querySelectorAll('.feature-card');
-                      if (featureCards.length >= 3) {
-                          featureCards[0].querySelector('h3').textContent = homeContent.features[0].title;
-                          featureCards[0].querySelector('p').textContent = homeContent.features[0].description;
-                          featureCards[1].querySelector('h3').textContent = homeContent.features[1].title;
-                          featureCards[1].querySelector('p').textContent = homeContent.features[1].description;
-                          featureCards[2].querySelector('h3').textContent = homeContent.features[2].title;
-                          featureCards[2].querySelector('p').textContent = homeContent.features[2].description;
-                      }
-                  }
-              });
-      }
-
-      // Services page
-      if (document.querySelector('.pricing-card')) {
-          db.collection('settings').doc('servicesContent').get()
-              .then(function(doc) {
-                  if (!doc.exists) return;
-
-                  const servicesContent = doc.data();
-                  const pricingCards = document.querySelectorAll('.pricing-card');
-
-                  if (pricingCards.length >= 2) {
-                      pricingCards[0].querySelector('.price').textContent = '$' + servicesContent.residential.price;
-                      const residentialFeatures = pricingCards[0].querySelectorAll('.features-list li');
-                      servicesContent.residential.features.forEach(function(feature, index) {
-                          if (residentialFeatures[index]) {
-                              residentialFeatures[index].textContent = '✓ ' + feature;
-                          }
-                      });
-
-                      pricingCards[1].querySelector('.price').textContent = '$' + servicesContent.commercial.price;
-                      const commercialFeatures = pricingCards[1].querySelectorAll('.features-list li');
-                      servicesContent.commercial.features.forEach(function(feature, index) {
-                          if (commercialFeatures[index]) {
-                              commercialFeatures[index].textContent = '✓ ' + feature;
-                          }
-                      });
-                  }
-              });
-      }
-
-      // About page
-      if (document.querySelector('.about-content')) {
-          db.collection('settings').doc('aboutContent').get()
-              .then(function(doc) {
-                  if (!doc.exists) return;
-
-                  const aboutContent = doc.data();
-                  const aboutSection = document.querySelector('.about-text');
-                  if (aboutSection) {
-                      const h2 = aboutSection.querySelector('h2');
-                      if (h2) h2.textContent = aboutContent.heading;
-
-                      const paragraphs = aboutSection.querySelectorAll('p');
-                      if (paragraphs[0]) paragraphs[0].textContent = aboutContent.paragraph1;
-                      if (paragraphs[1]) paragraphs[1].textContent = aboutContent.paragraph2;
-                  }
-
-                  // Load testimonials on about page
-                  loadPublicTestimonials();
-              });
-      }
-  }
-
-  function loadPublicTestimonials() {
-      const container = document.querySelector('.testimonials-grid');
-      if (!container) return;
-
-      db.collection('testimonials').get()
-          .then(function(querySnapshot) {
-              if (querySnapshot.empty) {
-                  container.innerHTML = '<p>No testimonials yet.</p>';
-                  return;
-              }
-
-              let html = '';
+  function loadGalleryAdmin() {
+      db.collection('gallery').orderBy('uploadedAt', 'desc').get().then(function(querySnapshot) {
+          const galleryAdmin = document.getElementById('galleryAdmin');
+          if (galleryAdmin) {
+              galleryAdmin.innerHTML = '';
               querySnapshot.forEach(function(doc) {
-                  const testimonial = doc.data();
-                  const stars = '⭐'.repeat(testimonial.rating);
-
-                  html += '<div class="testimonial-card">';
-                  html += '<div class="stars">' + stars + '</div>';
-                  html += '<p>' + testimonial.text + '</p>';
-                  html += '<p class="author">- ' + testimonial.name + '</p>';
-                  html += '</div>';
+                  const photo = doc.data();
+                  const div = document.createElement('div');
+                  div.className = 'gallery-item';
+                  div.innerHTML = `
+                      <img src="${photo.url}" alt="Galerija">
+                      <button onclick="deletePhoto('${doc.id}')">Obriši</button>
+                  `;
+                  galleryAdmin.appendChild(div);
               });
-
-              container.innerHTML = html;
-          });
+          }
+      });
   }
 
-  function updateFooterContent() {
-      db.collection('settings').doc('aboutContent').get()
-          .then(function(doc) {
-              if (!doc.exists) return;
+  // Upload photo using ImgBB API
+  function setupAdminForms() {
+      const photoInput = document.getElementById('photoInput');
+      if (photoInput) {
+          photoInput.addEventListener('change', function(e) {
+              const file = e.target.files[0];
+              if (!file) return;
 
-              const content = doc.data();
-              const footerSections = document.querySelectorAll('.footer-section');
-              footerSections.forEach(function(section) {
-                  const heading = section.querySelector('h4');
-                  if (heading && heading.textContent === 'Contact') {
-                      const links = section.querySelectorAll('a');
-                      links.forEach(function(link) {
-                          if (link.href.includes('mailto:')) {
-                              link.textContent = content.email;
-                              link.href = 'mailto:' + content.email;
-                          } else if (link.href.includes('tel:')) {
-                              link.textContent = content.phone;
-                              link.href = 'tel:' + content.phone;
-                          }
-                      });
-                  }
-              });
+              // Show uploading message
+              console.log('Uploading to ImgBB...');
+
+              // Read file as base64
+              const reader = new FileReader();
+              reader.onload = function(event) {
+                  const base64Image = event.target.result.split(',')[1]; // Remove data:image/...;base64, prefix
+
+                  // Upload to ImgBB
+                  const formData = new FormData();
+                  formData.append('key', IMGBB_API_KEY);
+                  formData.append('image', base64Image);
+
+                  fetch('https://api.imgbb.com/1/upload', {
+                      method: 'POST',
+                      body: formData
+                  })
+                  .then(response => response.json())
+                  .then(data => {
+                      if (data.success) {
+                          const imageUrl = data.data.url;
+                          console.log('Image uploaded successfully:', imageUrl);
+
+                          // Save to Firestore
+                          db.collection('gallery').add({
+                              url: imageUrl,
+                              filename: file.name,
+                              uploadedAt: firebase.firestore.FieldValue.serverTimestamp()
+                          }).then(function() {
+                              photoInput.value = '';
+                              loadGalleryAdmin();
+                              alert('Fotografija je uspešno otpremljena!');
+                          });
+                      } else {
+                          console.error('ImgBB upload error:', data);
+                          alert('Greška pri otpremanju fotografije. Pokušajte ponovo.');
+                      }
+                  })
+                  .catch(error => {
+                      console.error('Upload error:', error);
+                      alert('Greška pri otpremanju fotografije. Pokušajte ponovo.');
+                  });
+              };
+
+              reader.readAsDataURL(file);
           });
+      }
+  }
+
+  function deletePhoto(photoId) {
+      if (confirm('Da li ste sigurni da želite da obrišete ovu fotografiju?')) {
+          db.collection('gallery').doc(photoId).delete().then(function() {
+              loadGalleryAdmin();
+          });
+      }
+  }
+
+  // CONTACT INFO
+  function loadContactAdmin() {
+      db.collection('contact').doc('info').get().then(function(doc) {
+          if (doc.exists) {
+              const data = doc.data();
+              document.getElementById('contactPhone').value = data.phone || '';
+              document.getElementById('contactEmail').value = data.email || '';
+              document.getElementById('contactAddress').value = data.address || '';
+          }
+      });
+  }
+
+  function saveContact() {
+      db.collection('contact').doc('info').set({
+          phone: document.getElementById('contactPhone').value,
+          email: document.getElementById('contactEmail').value,
+          address: document.getElementById('contactAddress').value
+      }).then(function() {
+          alert('Kontakt informacije su sačuvane!');
+          updateFooterContent();
+      });
   }
