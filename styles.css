@@ -37,7 +37,7 @@
       padding: 0 20px;
   }
 
-   /* ========================================
+    /* ========================================
      NAVIGATION
      ======================================== */
   .navbar {
@@ -53,20 +53,21 @@
       justify-content: space-between;
       align-items: center;
       padding: 1rem 20px;
+      position: relative;
   }
 
   .logo {
       font-size: 1.5rem;
       font-weight: bold;
       color: var(--primary-color);
-      z-index: 1001;
   }
 
   .nav-menu {
       display: flex;
       list-style: none;
       gap: 2rem;
-      align-items: center;
+      margin: 0;
+      padding: 0;
   }
 
   .nav-menu a {
@@ -74,6 +75,7 @@
       text-decoration: none;
       font-weight: 500;
       transition: color 0.3s;
+      display: block;
   }
 
   .nav-menu a:hover,
@@ -90,21 +92,23 @@
       display: none;
       flex-direction: column;
       cursor: pointer;
+      background: none;
+      border: none;
+      padding: 5px;
       z-index: 1001;
-      padding: 10px;
   }
 
   .hamburger span {
-      width: 25px;
+      width: 30px;
       height: 3px;
       background: var(--text-dark);
-      margin: 3px 0;
-      transition: 0.3s;
-      border-radius: 3px;
+      margin: 4px 0;
+      transition: all 0.3s ease;
+      display: block;
   }
 
   .hamburger.active span:nth-child(1) {
-      transform: rotate(-45deg) translate(-5px, 6px);
+      transform: rotate(-45deg) translate(-8px, 6px);
   }
 
   .hamburger.active span:nth-child(2) {
@@ -112,7 +116,84 @@
   }
 
   .hamburger.active span:nth-child(3) {
-      transform: rotate(45deg) translate(-5px, -6px);
+      transform: rotate(45deg) translate(-8px, -6px);
+  }
+
+  4. Update RESPONSIVE section in styles.css:
+
+  @media (max-width: 768px) {
+      .hamburger {
+          display: flex !important;
+      }
+
+      .nav-menu {
+          position: fixed;
+          left: -100%;
+          top: 70px;
+          flex-direction: column;
+          background-color: var(--bg-white);
+          width: 100%;
+          text-align: center;
+          transition: 0.3s;
+          box-shadow: 0 10px 27px rgba(0, 0, 0, 0.05);
+          padding: 2rem 0;
+          gap: 0;
+      }
+
+      .nav-menu.active {
+          left: 0;
+      }
+
+      .nav-menu li {
+          margin: 0;
+      }
+
+      .nav-menu a {
+          padding: 1.5rem;
+          display: block;
+          border-bottom: 1px solid var(--border-color);
+      }
+
+      .hero h1 {
+          font-size: 2rem;
+      }
+
+      .hero-buttons {
+          flex-direction: column;
+      }
+
+      .form-row {
+          grid-template-columns: 1fr;
+      }
+
+      .about-grid {
+          grid-template-columns: 1fr;
+      }
+
+      .admin-layout {
+          flex-direction: column;
+      }
+
+      .admin-sidebar {
+          width: 100%;
+      }
+
+      .stats-grid {
+          grid-template-columns: 1fr;
+      }
+
+      .modal-content {
+          width: 95%;
+          max-height: 85vh;
+      }
+
+      .modal-actions {
+          flex-direction: column;
+      }
+
+      .photo-gallery {
+          grid-template-columns: 1fr;
+      }
   }
 
   /* ========================================
