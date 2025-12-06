@@ -175,14 +175,19 @@
   }
 
   function loadHomeContentAdmin() {
+      const heroHeading = document.getElementById('heroHeading');
+      const heroText = document.getElementById('heroText');
+      const featuresContainer = document.getElementById('featuresContainer');
+
+      if (!heroHeading || !heroText || !featuresContainer) return; // Add this check
+
       db.collection('content').doc('home').get().then(function(doc) {
           if (doc.exists) {
               const data = doc.data();
-              document.getElementById('heroHeading').value = data.heroHeading || '';
-              document.getElementById('heroText').value = data.heroText || '';
+              heroHeading.value = data.heroHeading || '';
+              heroText.value = data.heroText || '';
 
               const features = data.features || [];
-              const featuresContainer = document.getElementById('featuresContainer');
               featuresContainer.innerHTML = features.map((feature, index) => `
                   <div class="feature-item">
                       <input type="text" value="${feature.icon}" placeholder="Icon (emoji)" data-index="${index}" 
@@ -264,8 +269,10 @@
   }
 
   function loadServicesAdmin() {
+      const servicesList = document.getElementById('servicesList');
+      if (!servicesList) return; // Add this check
+
       db.collection('services').get().then(function(querySnapshot) {
-          const servicesList = document.getElementById('servicesList');
           servicesList.innerHTML = '';
 
           querySnapshot.forEach(function(doc) {
@@ -360,14 +367,20 @@
   }
 
   function loadAboutContentAdmin() {
+      const aboutHeading = document.getElementById('aboutHeading');
+      const aboutText = document.getElementById('aboutText');
+
+      if (!aboutHeading || !aboutText) return; // Add this check
+
       db.collection('content').doc('about').get().then(function(doc) {
           if (doc.exists) {
               const data = doc.data();
-              document.getElementById('aboutHeading').value = data.heading || '';
-              document.getElementById('aboutText').value = data.text || '';
+              aboutHeading.value = data.heading || '';
+              aboutText.value = data.text || '';
           }
       });
   }
+
 
   function saveAboutContent() {
       db.collection('content').doc('about').set({
@@ -398,9 +411,11 @@
       });
   }
 
-  function loadTestimonialsAdmin() {
+   function loadTestimonialsAdmin() {
+      const testimonialsList = document.getElementById('testimonialsList');
+      if (!testimonialsList) return; // Add this check
+
       db.collection('testimonials').get().then(function(querySnapshot) {
-          const testimonialsList = document.getElementById('testimonialsList');
           testimonialsList.innerHTML = '';
 
           querySnapshot.forEach(function(doc) {
@@ -494,22 +509,22 @@
       });
   }
 
-  function loadGalleryAdmin() {
+   function loadGalleryAdmin() {
+      const galleryAdmin = document.getElementById('galleryAdmin');
+      if (!galleryAdmin) return; // Add this check
+
       db.collection('gallery').orderBy('uploadedAt', 'desc').get().then(function(querySnapshot) {
-          const galleryAdmin = document.getElementById('galleryAdmin');
-          if (galleryAdmin) {
-              galleryAdmin.innerHTML = '';
-              querySnapshot.forEach(function(doc) {
-                  const photo = doc.data();
-                  const div = document.createElement('div');
-                  div.className = 'gallery-item';
-                  div.innerHTML = `
-                      <img src="${photo.url}" alt="Galerija">
-                      <button onclick="deletePhoto('${doc.id}')">Obriši</button>
-                  `;
-                  galleryAdmin.appendChild(div);
-              });
-          }
+          galleryAdmin.innerHTML = '';
+          querySnapshot.forEach(function(doc) {
+              const photo = doc.data();
+              const div = document.createElement('div');
+              div.className = 'gallery-item';
+              div.innerHTML = `
+                  <img src="${photo.url}" alt="Galerija">
+                  <button onclick="deletePhoto('${doc.id}')">Obriši</button>
+              `;
+              galleryAdmin.appendChild(div);
+          });
       });
   }
 
@@ -580,12 +595,18 @@
 
   // CONTACT INFO
   function loadContactAdmin() {
+      const contactPhone = document.getElementById('contactPhone');
+      const contactEmail = document.getElementById('contactEmail');
+      const contactAddress = document.getElementById('contactAddress');
+
+      if (!contactPhone || !contactEmail || !contactAddress) return; // Add this check
+
       db.collection('contact').doc('info').get().then(function(doc) {
           if (doc.exists) {
               const data = doc.data();
-              document.getElementById('contactPhone').value = data.phone || '';
-              document.getElementById('contactEmail').value = data.email || '';
-              document.getElementById('contactAddress').value = data.address || '';
+              contactPhone.value = data.phone || '';
+              contactEmail.value = data.email || '';
+              contactAddress.value = data.address || '';
           }
       });
   }
