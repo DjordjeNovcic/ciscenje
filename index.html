@@ -29,7 +29,8 @@
       <section class="hero">
           <div class="container">
               <h1 id="heroHeading">Profesionalne usluge čišćenja kojima možete verovati</h1>
-              <p id="heroText">Pružamo vrhunske usluge čišćenja za domove i firme. Doživite razliku istinski čistog prostora.</p>
+              <p id="heroText">Pružamo vrhunske usluge čišćenja za domove i firme. Doživite razliku istinski čistog
+  prostora.</p>
               <div class="hero-buttons">
                   <a href="services.html" class="btn btn-primary">Pogledajte usluge</a>
                   <a href="#contact" class="btn btn-secondary">Kontaktirajte nas</a>
@@ -41,22 +42,8 @@
       <section class="features">
           <div class="container">
               <h2>Zašto izabrati MS Sjaj?</h2>
-              <div class="features-grid">
-                  <div class="feature-card">
-                      <div class="feature-icon">✨</div>
-                      <h3>Profesionalni tim</h3>
-                      <p>Naši iskusni čistači su obučeni i sertifikovani profesionalci.</p>
-                  </div>
-                  <div class="feature-card">
-                      <div class="feature-icon">🌿</div>
-                      <h3>Ekološki proizvodi</h3>
-                      <p>Koristimo ekološki bezbedne proizvode za čišćenje koji su efikasni i sigurni.</p>
-                  </div>
-                  <div class="feature-card">
-                      <div class="feature-icon">📅</div>
-                      <h3>Fleksibilno zakazivanje</h3>
-                      <p>Radimo po vašem rasporedu sa pogodnim opcijama rezervacije.</p>
-                  </div>
+              <div class="features-grid" id="featuresGrid">
+                  <!-- Features will be loaded from Firebase -->
               </div>
           </div>
       </section>
@@ -65,22 +52,20 @@
       <section class="services-preview">
           <div class="container">
               <h2>Naše usluge</h2>
-              <div class="services-grid">
-                  <div class="service-card">
-                      <h3>Čišćenje stanova i kuća</h3>
-                      <p>Kompletan servis čišćenja doma uključujući kuhinje, kupatila, spavaće sobe i dnevne prostorije.</p>
-                      <a href="services.html" class="btn btn-primary">Saznajte više</a>
-                  </div>
-                  <div class="service-card">
-                      <h3>Čišćenje poslovnih prostora</h3>
-                      <p>Profesionalno čišćenje kancelarija i poslovnih prostora kako bi se održalo besprekorno radno okruženje.</p>
-                      <a href="services.html" class="btn btn-primary">Saznajte više</a>
-                  </div>
-                  <div class="service-card">
-                      <h3>Dubinsko čišćenje</h3>
-                      <p>Temeljne usluge dubinskog čišćenja za useljenje, iseljenje i sezonsko čišćenje.</p>
-                      <a href="services.html" class="btn btn-primary">Saznajte više</a>
-                  </div>
+              <div class="services-grid" id="servicesGrid">
+                  <!-- Services will be loaded from Firebase -->
+              </div>
+          </div>
+      </section>
+
+      <!-- Photo Gallery Section -->
+      <section class="testimonials">
+          <div class="container">
+              <h2>Naši radovi</h2>
+              <p style="text-align: center; color: var(--text-light); margin-bottom: 2rem;">Pogledajte primere našeg
+  rada</p>
+              <div class="photo-gallery" id="galleryGrid">
+                  <!-- Gallery photos will be loaded from Firebase -->
               </div>
           </div>
       </section>
@@ -110,49 +95,57 @@
       </section>
 
       <!-- Footer -->
-  <footer>
-      <div class="container">
-          <div class="footer-content">
-              <div class="footer-section">
-                  <h4>MS Sjaj</h4>
-                  <p>Profesionalne usluge čišćenja kojima možete verovati. Donoseći sjaj u vaš dom i poslovni prostor.</p>
-                  <div class="social-links">
-                      <a href="https://www.instagram.com/mssjaj.kg?igsh=ZjlzajBydXIxemMy" target="_blank" rel="noopener" title="Instagram" aria-label="Instagram">
-                          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                              <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 
-  4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 
-  0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 
-  6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 
-  6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 
-  0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 
-  4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
-                          </svg>
-                      </a>
+      <footer>
+          <div class="container">
+              <div class="footer-content">
+                  <div class="footer-section">
+                      <h4>MS Sjaj</h4>
+                      <p>Profesionalne usluge čišćenja kojima možete verovati. Donoseći sjaj u vaš dom i poslovni
+  prostor.</p>
+                      <div class="social-links">
+                          <a href="https://www.instagram.com/mssjaj.kg?igsh=ZjlzajBydXIxemMy" target="_blank" rel="noopener"
+   title="Instagram" aria-label="Instagram">
+                              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                  <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 
+  1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 
+  4.919-1.266.058-1.644.07-4.85.07-3.204 
+  0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 
+  0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 
+  0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 
+  2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 
+  6.979-6.98.059-1.28.073-1.689.073-4.948 
+  0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 
+  2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 
+  0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441
+   1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                              </svg>
+                          </a>
+                      </div>
+                  </div>
+                  <div class="footer-section">
+                      <h4>Brzi linkovi</h4>
+                      <p><a href="index.html">Početna</a></p>
+                      <p><a href="services.html">Usluge</a></p>
+                      <p><a href="about.html">O nama</a></p>
+                  </div>
+                  <div class="footer-section">
+                      <h4>Kontakt</h4>
+                      <p class="footer-email"><a href="mailto:11mssjaj@gmail.com">11mssjaj@gmail.com</a></p>
+                      <p class="footer-phone"><a href="tel:0643937000">064/3937000</a></p>
+                      <p class="footer-address">Kragujevac, Srbija</p>
+                  </div>
+                  <div class="footer-section">
+                      <h4>Radno vreme</h4>
+                      <p>Ponedeljak - Petak</p>
+                      <p>08:00 - 20:00</p>
+                      <p>Subota: 09:00 - 15:00</p>
                   </div>
               </div>
-              <div class="footer-section">
-                  <h4>Brzi linkovi</h4>
-                  <p><a href="index.html">Početna</a></p>
-                  <p><a href="services.html">Usluge</a></p>
-                  <p><a href="about.html">O nama</a></p>
-              </div>
-              <div class="footer-section">
-                  <h4>Kontakt</h4>
-                  <p><a href="mailto:11mssjaj@gmail.com">11mssjaj@gmail.com</a></p>
-                  <p><a href="tel:0643937000">064/3937000</a></p>
-              </div>
-              <div class="footer-section">
-                  <h4>Radno vreme</h4>
-                  <p>Ponedeljak - Petak</p>
-                  <p>08:00 - 20:00</p>
-                  <p>Subota: 09:00 - 15:00</p>
+              <div class="footer-bottom">
+                  <p>&copy; 2025 MS Sjaj. Sva prava zadržana.</p>
               </div>
           </div>
-          <div class="footer-bottom">
-              <p>&copy; 2025 MS Sjaj. Sva prava zadržana.</p>
-          </div>
-      </div>
-  </footer>
+      </footer>
 
       <!-- Firebase SDK -->
       <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
