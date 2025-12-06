@@ -867,8 +867,6 @@ function loadServices() {
       });
   }
 
-  3. Add this to your styles.css
-
   /* Quill Editor Styling */
   .ql-toolbar {
       background: #f8f9fa;
