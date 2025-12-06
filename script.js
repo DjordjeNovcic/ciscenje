@@ -131,6 +131,7 @@
       loadAboutContent();
       loadTestimonials();
       loadGallery();
+      loadAddOns();
   }
 
   // Update footer content
@@ -210,6 +211,7 @@
       loadTestimonialsAdmin();
       loadGalleryAdmin();
       loadContactAdmin();
+      loadAddOnsAdmin();
       setupLogout();
   }
 
@@ -851,4 +853,149 @@ function loadServices() {
           alert('Kontakt informacije su sacuvane!');
           updateFooterContent();
       });
+  }
+
+ // ADD-ONS MANAGEMENT
+  function loadAddOns() {
+      db.collection('addons').get().then(function(querySnapshot) {
+          const addons = [];
+          querySnapshot.forEach(function(doc) {
+              addons.push({ id: doc.id, ...doc.data() });
+          });
+
+          const addonsGrid = document.querySelector('.add-ons-grid');
+          if (addonsGrid) {
+              if (addons.length === 0) {
+                  addonsGrid.innerHTML = '<p style="text-align: center; color: var(--text-light); grid-column: 
+  1/-1;">Trenutno nema dostupnih dodatnih usluga.</p>';
+              } else {
+                  addonsGrid.innerHTML = addons.map(function(addon) {
+                      return `
+                          <div class="add-on-item">
+                              <h3>${addon.name}</h3>
+                              <p>${addon.description}</p>
+                              <span class="add-on-price">${addon.price}</span>
+                          </div>
+                      `;
+                  }).join('');
+              }
+          }
+      });
+  }
+
+  function loadAddOnsAdmin() {
+      const addonsList = document.getElementById('addonsList');
+      if (!addonsList) return;
+
+      db.collection('addons').get().then(function(querySnapshot) {
+          addonsList.innerHTML = '';
+
+          if (querySnapshot.empty) {
+              addonsList.innerHTML = '<p style="text-align: center; color: var(--text-light); padding: 2rem;">Nema dodatnih 
+  usluga. Kliknite "Dodaj novu dodatnu uslugu" da biste dodali prvu.</p>';
+              return;
+          }
+
+          querySnapshot.forEach(function(doc) {
+              const addon = doc.data();
+              const div = document.createElement('div');
+              div.className = 'service-item';
+
+              const h4 = document.createElement('h4');
+              h4.textContent = addon.name;
+
+              const p1 = document.createElement('p');
+              p1.textContent = addon.description;
+              p1.style.marginBottom = '10px';
+
+              const p2 = document.createElement('p');
+              const strong = document.createElement('strong');
+              strong.textContent = addon.price;
+              p2.appendChild(strong);
+
+              const editBtn = document.createElement('button');
+              editBtn.textContent = 'Izmeni';
+              editBtn.onclick = function() { editAddOn(doc.id); };
+
+              const deleteBtn = document.createElement('button');
+              deleteBtn.textContent = 'Obrisi';
+              deleteBtn.onclick = function() { deleteAddOn(doc.id); };
+
+              div.appendChild(h4);
+              div.appendChild(p1);
+              div.appendChild(p2);
+              div.appendChild(editBtn);
+              div.appendChild(document.createTextNode(' '));
+              div.appendChild(deleteBtn);
+
+              addonsList.appendChild(div);
+          });
+      });
+  }
+
+  function showAddOnModal(addonId) {
+      const modal = document.getElementById('addonModal');
+      const form = document.getElementById('addonForm');
+      const modalTitle = document.getElementById('addonModalTitle');
+
+      if (addonId) {
+          modalTitle.textContent = 'Uredi dodatnu uslugu';
+          db.collection('addons').doc(addonId).get().then(function(doc) {
+              if (doc.exists) {
+                  const addon = doc.data();
+                  document.getElementById('addonName').value = addon.name;
+                  document.getElementById('addonDescription').value = addon.description;
+                  document.getElementById('addonPrice').value = addon.price;
+                  form.dataset.addonId = addonId;
+              }
+          });
+      } else {
+          modalTitle.textContent = 'Dodaj dodatnu uslugu';
+          form.reset();
+          delete form.dataset.addonId;
+      }
+
+      modal.style.display = 'flex';
+  }
+
+  function closeAddOnModal() {
+      document.getElementById('addonModal').style.display = 'none';
+  }
+
+  function saveAddOn() {
+      const form = document.getElementById('addonForm');
+      const addonData = {
+          name: document.getElementById('addonName').value,
+          description: document.getElementById('addonDescription').value,
+          price: document.getElementById('addonPrice').value
+      };
+
+      const addonId = form.dataset.addonId;
+
+      if (addonId) {
+          db.collection('addons').doc(addonId).update(addonData).then(function() {
+              closeAddOnModal();
+              loadAddOnsAdmin();
+              alert('Dodatna usluga je azurirana!');
+          });
+      } else {
+          db.collection('addons').add(addonData).then(function() {
+              closeAddOnModal();
+              loadAddOnsAdmin();
+              alert('Dodatna usluga je dodata!');
+          });
+      }
+  }
+
+  function editAddOn(addonId) {
+      showAddOnModal(addonId);
+  }
+
+  function deleteAddOn(addonId) {
+      if (confirm('Da li ste sigurni da zelite da obrisete ovu dodatnu uslugu?')) {
+          db.collection('addons').doc(addonId).delete().then(function() {
+              loadAddOnsAdmin();
+              alert('Dodatna usluga je obrisana!');
+          });
+      }
   }
