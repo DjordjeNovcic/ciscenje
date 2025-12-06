@@ -1,9 +1,9 @@
  <!DOCTYPE html>
-  <html lang="en">
+  <html lang="sr">
   <head>
       <meta charset="UTF-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <title>Admin Dashboard - CleanPro</title>
+      <title>Admin kontrolna tabla - MS Sjaj</title>
       <link rel="stylesheet" href="styles.css">
   </head>
   <body>
@@ -11,42 +11,42 @@
           <!-- Sidebar -->
           <aside class="admin-sidebar">
               <div class="sidebar-header">
-                  <h2>CleanPro Admin</h2>
+                  <h2>MS Sjaj Admin</h2>
               </div>
 
               <nav class="sidebar-nav">
                   <div class="nav-item active" data-section="dashboard-section">
-                      <span>📊</span> Dashboard
+                      <span>📊</span> Kontrolna tabla
                   </div>
                   <div class="nav-item" data-section="home-section">
-                      <span>🏠</span> Edit Home
+                      <span>🏠</span> Početna
                   </div>
                   <div class="nav-item" data-section="services-section">
-                      <span>💼</span> Edit Services
+                      <span>💼</span> Usluge
                   </div>
                   <div class="nav-item" data-section="about-section">
-                      <span>ℹ️</span> Edit About
+                      <span>ℹ️</span> O nama
                   </div>
                   <div class="nav-item" data-section="testimonials-section">
-                      <span>⭐</span> Testimonials
+                      <span>⭐</span> Recenzije
                   </div>
                   <div class="nav-item" data-section="gallery-section">
-                      <span>📸</span> Photo Gallery
+                      <span>📸</span> Galerija
                   </div>
-                  <div class="nav-item" data-section="settings-section">
-                      <span>⚙️</span> Settings
+                  <div class="nav-item" data-section="contact-section">
+                      <span>📞</span> Kontakt
                   </div>
               </nav>
 
               <div class="sidebar-footer">
-                  <a href="#" id="logoutBtn" class="btn btn-secondary btn-block">Logout</a>
+                  <button id="logoutBtn" class="btn btn-secondary btn-block">Odjavi se</button>
               </div>
           </aside>
 
           <!-- Main Content -->
           <main class="admin-main">
               <header class="admin-header">
-                  <h1 id="adminContent">Dashboard</h1>
+                  <h1 id="adminContent">Kontrolna tabla</h1>
                   <div class="admin-user">
                       <span>👤 Admin</span>
                   </div>
@@ -55,30 +55,17 @@
               <div class="dashboard-content">
                   <!-- Dashboard Overview -->
                   <div id="dashboard-section" class="content-section active">
-                      <div class="stats-grid">
-                          <div class="stat-card">
-                              <div class="stat-icon">⭐</div>
-                              <div class="stat-info">
-                                  <h3>Total Testimonials</h3>
-                                  <div class="stat-value" id="totalTestimonials">0</div>
-                              </div>
-                          </div>
-                          <div class="stat-card">
-                              <div class="stat-icon">📸</div>
-                              <div class="stat-info">
-                                  <h3>Gallery Photos</h3>
-                                  <div class="stat-value" id="totalPhotos">0</div>
-                              </div>
-                          </div>
-                      </div>
-
                       <div class="dashboard-section">
-                          <h2>Quick Actions</h2>
-                          <div class="quick-actions">
-                              <button class="btn btn-primary" onclick="document.querySelector('[data-section=home-section]').click()">Edit Home Page</button>
-                              <button class="btn btn-primary" onclick="document.querySelector('[data-section=services-section]').click()">Edit Services</button>
-                              <button class="btn btn-primary" onclick="document.querySelector('[data-section=testimonials-section]').click()">Manage
-  Testimonials</button>
+                          <h2>Pregled</h2>
+                          <p>Dobrodošli u admin kontrolnu tablu MS Sjaj</p>
+
+                          <div class="quick-actions" style="margin-top: 2rem;">
+                              <button class="btn btn-primary" 
+  onclick="document.querySelector('[data-section=home-section]').click()">Uredi početnu</button>
+                              <button class="btn btn-primary" 
+  onclick="document.querySelector('[data-section=services-section]').click()">Uredi usluge</button>
+                              <button class="btn btn-primary" 
+  onclick="document.querySelector('[data-section=testimonials-section]').click()">Uredi recenzije</button>
                           </div>
                       </div>
                   </div>
@@ -86,46 +73,26 @@
                   <!-- Edit Home Page -->
                   <div id="home-section" class="content-section">
                       <div class="dashboard-section">
-                          <h2>Edit Home Page Content</h2>
+                          <h2>Uredi početnu stranicu</h2>
                           <form class="cms-form">
                               <div class="form-group">
-                                  <label for="heroHeading">Hero Heading</label>
-                                  <input type="text" id="heroHeading" placeholder="Main heading">
+                                  <label for="heroHeading">Glavni naslov</label>
+                                  <input type="text" id="heroHeading" placeholder="Glavni naslov">
                               </div>
                               <div class="form-group">
-                                  <label for="heroText">Hero Text</label>
-                                  <textarea id="heroText" rows="3" placeholder="Hero description"></textarea>
+                                  <label for="heroText">Tekst opisa</label>
+                                  <textarea id="heroText" rows="3" placeholder="Tekst ispod naslova"></textarea>
                               </div>
 
-                              <h3>Features Section</h3>
-                              <div class="form-group">
-                                  <label for="feature1Title">Feature 1 Title</label>
-                                  <input type="text" id="feature1Title" placeholder="Feature title">
+                              <h3>Karakteristike</h3>
+                              <div id="featuresContainer">
+                                  <!-- Features will be loaded here -->
                               </div>
-                              <div class="form-group">
-                                  <label for="feature1Desc">Feature 1 Description</label>
-                                  <textarea id="feature1Desc" rows="2" placeholder="Feature description"></textarea>
-                              </div>
+                              <button type="button" onclick="addFeature()" class="btn btn-secondary" style="margin-bottom: 
+  1rem;">Dodaj karakteristiku</button>
 
-                              <div class="form-group">
-                                  <label for="feature2Title">Feature 2 Title</label>
-                                  <input type="text" id="feature2Title" placeholder="Feature title">
-                              </div>
-                              <div class="form-group">
-                                  <label for="feature2Desc">Feature 2 Description</label>
-                                  <textarea id="feature2Desc" rows="2" placeholder="Feature description"></textarea>
-                              </div>
-
-                              <div class="form-group">
-                                  <label for="feature3Title">Feature 3 Title</label>
-                                  <input type="text" id="feature3Title" placeholder="Feature title">
-                              </div>
-                              <div class="form-group">
-                                  <label for="feature3Desc">Feature 3 Description</label>
-                                  <textarea id="feature3Desc" rows="2" placeholder="Feature description"></textarea>
-                              </div>
-
-                              <button type="button" id="saveHomeContent" class="btn btn-primary">Save Changes</button>
+                              <button type="button" id="saveHomeBtn" onclick="saveHomeContent()" class="btn 
+  btn-primary">Sačuvaj izmene</button>
                           </form>
                       </div>
                   </div>
@@ -133,74 +100,31 @@
                   <!-- Edit Services Page -->
                   <div id="services-section" class="content-section">
                       <div class="dashboard-section">
-                          <h2>Edit Services & Pricing</h2>
-                          <form class="cms-form">
-                              <div class="service-editor">
-                                  <div class="service-section">
-                                      <h3>Residential Cleaning</h3>
-                                      <div class="form-group">
-                                          <label for="residentialPrice">Price</label>
-                                          <input type="number" id="residentialPrice" placeholder="99">
-                                      </div>
-                                      <div class="form-group">
-                                          <label>Features</label>
-                                          <input type="text" id="residentialFeature1" placeholder="Feature 1" style="margin-bottom: 0.5rem;">
-                                          <input type="text" id="residentialFeature2" placeholder="Feature 2" style="margin-bottom: 0.5rem;">
-                                          <input type="text" id="residentialFeature3" placeholder="Feature 3" style="margin-bottom: 0.5rem;">
-                                          <input type="text" id="residentialFeature4" placeholder="Feature 4">
-                                      </div>
-                                  </div>
-
-                                  <div class="service-section">
-                                      <h3>Commercial Cleaning</h3>
-                                      <div class="form-group">
-                                          <label for="commercialPrice">Price</label>
-                                          <input type="number" id="commercialPrice" placeholder="299">
-                                      </div>
-                                      <div class="form-group">
-                                          <label>Features</label>
-                                          <input type="text" id="commercialFeature1" placeholder="Feature 1" style="margin-bottom: 0.5rem;">
-                                          <input type="text" id="commercialFeature2" placeholder="Feature 2" style="margin-bottom: 0.5rem;">
-                                          <input type="text" id="commercialFeature3" placeholder="Feature 3" style="margin-bottom: 0.5rem;">
-                                          <input type="text" id="commercialFeature4" placeholder="Feature 4">
-                                      </div>
-                                  </div>
-                              </div>
-
-                              <button type="button" id="saveServicesContent" class="btn btn-primary">Save Changes</button>
-                          </form>
+                          <h2>Uredi usluge</h2>
+                          <button onclick="showServiceModal()" class="btn btn-primary" style="margin-bottom: 1rem;">Dodaj
+  novu uslugu</button>
+                          <div id="servicesList">
+                              <p>Učitavanje usluga...</p>
+                          </div>
                       </div>
                   </div>
 
                   <!-- Edit About Page -->
                   <div id="about-section" class="content-section">
                       <div class="dashboard-section">
-                          <h2>Edit About Page</h2>
+                          <h2>Uredi O nama stranicu</h2>
                           <form class="cms-form">
                               <div class="form-group">
-                                  <label for="aboutHeading">About Heading</label>
-                                  <input type="text" id="aboutHeading" placeholder="About heading">
+                                  <label for="aboutHeading">Naslov</label>
+                                  <input type="text" id="aboutHeading" placeholder="Naslov O nama sekcije">
                               </div>
                               <div class="form-group">
-                                  <label for="aboutParagraph1">Paragraph 1</label>
-                                  <textarea id="aboutParagraph1" rows="3" placeholder="First paragraph"></textarea>
-                              </div>
-                              <div class="form-group">
-                                  <label for="aboutParagraph2">Paragraph 2</label>
-                                  <textarea id="aboutParagraph2" rows="3" placeholder="Second paragraph"></textarea>
+                                  <label for="aboutText">Tekst</label>
+                                  <textarea id="aboutText" rows="5" placeholder="Opis kompanije"></textarea>
                               </div>
 
-                              <h3>Contact Information</h3>
-                              <div class="form-group">
-                                  <label for="contactEmail">Email</label>
-                                  <input type="email" id="contactEmail" placeholder="info@cleanpro.com">
-                              </div>
-                              <div class="form-group">
-                                  <label for="contactPhone">Phone</label>
-                                  <input type="tel" id="contactPhone" placeholder="555-0123">
-                              </div>
-
-                              <button type="button" id="saveAboutContent" class="btn btn-primary">Save Changes</button>
+                              <button type="button" id="saveAboutBtn" onclick="saveAboutContent()" class="btn 
+  btn-primary">Sačuvaj izmene</button>
                           </form>
                       </div>
                   </div>
@@ -208,10 +132,11 @@
                   <!-- Manage Testimonials -->
                   <div id="testimonials-section" class="content-section">
                       <div class="dashboard-section">
-                          <h2>Manage Testimonials</h2>
-                          <button id="addTestimonialBtn" class="btn btn-primary" style="margin-bottom: 1rem;">Add New Testimonial</button>
+                          <h2>Recenzije kupaca</h2>
+                          <button onclick="showTestimonialModal()" class="btn btn-primary" style="margin-bottom: 
+  1rem;">Dodaj novu recenziju</button>
                           <div id="testimonialsList" class="testimonials-list">
-                              <p>Loading testimonials...</p>
+                              <p>Učitavanje recenzija...</p>
                           </div>
                       </div>
                   </div>
@@ -219,70 +144,101 @@
                   <!-- Photo Gallery -->
                   <div id="gallery-section" class="content-section">
                       <div class="dashboard-section">
-                          <h2>Photo Gallery</h2>
+                          <h2>Galerija fotografija</h2>
                           <input type="file" id="photoInput" accept="image/*" style="display: none;">
-                          <button id="uploadPhotoBtn" class="btn btn-primary" style="margin-bottom: 1rem;">Upload Photo</button>
-                          <div id="galleryGrid" class="photo-gallery">
-                              <p>Loading gallery...</p>
+                          <button id="uploadPhotoBtn" class="btn btn-primary" style="margin-bottom: 1rem;">Otpremi
+  fotografiju</button>
+                          <div id="galleryAdmin" class="photo-gallery">
+                              <p>Učitavanje galerije...</p>
                           </div>
                       </div>
                   </div>
 
-                  <!-- Settings -->
-                  <div id="settings-section" class="content-section">
+                  <!-- Contact Info -->
+                  <div id="contact-section" class="content-section">
                       <div class="dashboard-section">
-                          <div class="settings-content">
-                              <h2>Settings</h2>
-                              <h3>Data Management</h3>
-                              <p>Clear all website content and reset to defaults.</p>
-                              <p style="color: var(--danger-color); margin-bottom: 1rem;">⚠️ Warning: This action cannot be undone!</p>
-                              <button id="clearDataBtn" class="btn" style="background: var(--danger-color); color: white;">Clear All Data</button>
-                          </div>
+                          <h2>Kontakt informacije</h2>
+                          <form class="cms-form">
+                              <div class="form-group">
+                                  <label for="contactPhone">Telefon</label>
+                                  <input type="tel" id="contactPhone" placeholder="+381 XX XXX XXXX">
+                              </div>
+                              <div class="form-group">
+                                  <label for="contactEmail">Email</label>
+                                  <input type="email" id="contactEmail" placeholder="info@mssjaj.rs">
+                              </div>
+                              <div class="form-group">
+                                  <label for="contactAddress">Adresa</label>
+                                  <input type="text" id="contactAddress" placeholder="Kragujevac, Srbija">
+                              </div>
+
+                              <button type="button" id="saveContactBtn" onclick="saveContact()" class="btn 
+  btn-primary">Sačuvaj izmene</button>
+                          </form>
                       </div>
                   </div>
               </div>
           </main>
       </div>
 
-      <!-- Testimonial Modal -->
-      <div id="testimonialModal" class="modal">
+      <!-- Service Modal -->
+      <div id="serviceModal" class="modal">
           <div class="modal-content">
               <div class="modal-header">
-                  <h2>Add/Edit Testimonial</h2>
-                  <button class="close-modal">&times;</button>
+                  <h2>Dodaj/Uredi uslugu</h2>
+                  <button class="close-modal" onclick="closeServiceModal()">&times;</button>
               </div>
-              <form id="testimonialForm">
-                  <input type="hidden" id="testimonialId">
+              <form id="serviceForm">
                   <div class="form-group">
-                      <label for="testimonialName">Customer Name</label>
-                      <input type="text" id="testimonialName" required>
+                      <label for="serviceName">Naziv usluge</label>
+                      <input type="text" id="serviceName" required>
                   </div>
                   <div class="form-group">
-                      <label for="testimonialRating">Rating</label>
-                      <select id="testimonialRating" required>
-                          <option value="5">5 Stars</option>
-                          <option value="4">4 Stars</option>
-                          <option value="3">3 Stars</option>
-                          <option value="2">2 Stars</option>
-                          <option value="1">1 Star</option>
-                      </select>
+                      <label for="serviceDescription">Opis</label>
+                      <textarea id="serviceDescription" rows="3" required></textarea>
                   </div>
                   <div class="form-group">
-                      <label for="testimonialText">Testimonial</label>
-                      <textarea id="testimonialText" rows="4" required></textarea>
+                      <label for="servicePrice">Cena</label>
+                      <input type="text" id="servicePrice" placeholder="npr. 3000 RSD" required>
                   </div>
                   <div class="modal-actions">
-                      <button type="button" class="btn btn-secondary close-modal">Cancel</button>
-                      <button type="button" id="saveTestimonial" class="btn btn-primary">Save</button>
+                      <button type="button" class="btn btn-secondary" onclick="closeServiceModal()">Otkaži</button>
+                      <button type="button" id="saveServiceBtn" onclick="saveService()" class="btn 
+  btn-primary">Sačuvaj</button>
                   </div>
               </form>
           </div>
       </div>
-     <!-- Firebase SDK -->
+
+      <!-- Testimonial Modal -->
+      <div id="testimonialModal" class="modal">
+          <div class="modal-content">
+              <div class="modal-header">
+                  <h2>Dodaj/Uredi recenziju</h2>
+                  <button class="close-modal" onclick="closeTestimonialModal()">&times;</button>
+              </div>
+              <form id="testimonialForm">
+                  <div class="form-group">
+                      <label for="testimonialText">Tekst recenzije</label>
+                      <textarea id="testimonialText" rows="4" required></textarea>
+                  </div>
+                  <div class="form-group">
+                      <label for="testimonialAuthor">Ime kupca</label>
+                      <input type="text" id="testimonialAuthor" required>
+                  </div>
+                  <div class="modal-actions">
+                      <button type="button" class="btn btn-secondary" onclick="closeTestimonialModal()">Otkaži</button>
+                      <button type="button" id="saveTestimonialBtn" onclick="saveTestimonial()" class="btn 
+  btn-primary">Sačuvaj</button>
+                  </div>
+              </form>
+          </div>
+      </div>
+
+      <!-- Firebase SDK -->
       <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
       <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
       <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
-      <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-storage-compat.js"></script>
       <script src="script.js"></script>
   </body>
   </html>
