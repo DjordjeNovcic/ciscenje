@@ -1,4 +1,4 @@
-// Firebase configuration
+ // Firebase configuration
   const firebaseConfig = {
       apiKey: "AIzaSyAR4ae5zbbqwqgWLRVtbb2V2W3WbwuSCWo",
       authDomain: "mssjaj-20b34.firebaseapp.com",
@@ -71,7 +71,6 @@
 
       navItems.forEach(item => {
           item.addEventListener('click', function() {
-
               navItems.forEach(nav => nav.classList.remove('active'));
               sections.forEach(section => section.classList.remove('active'));
 
@@ -106,10 +105,8 @@
 
           newHamburger.addEventListener('click', function(e) {
               e.stopPropagation();
-
               navMenu.classList.toggle('active');
               newHamburger.classList.toggle('active');
-
           });
 
           document.addEventListener('click', function(e) {
@@ -118,7 +115,6 @@
                   newHamburger.classList.remove('active');
               }
           });
-
       } else {
           console.error('Hamburger or navMenu not found!');
       }
@@ -392,37 +388,28 @@
       });
   }
 
- // SERVICES
-function loadServices() {
-    db.collection('services').get().then(function(querySnapshot) {
-        const services = [];
-        querySnapshot.forEach(function(doc) {
-            services.push({ id: doc.id, ...doc.data() });
-        });
+  // SERVICES
+  function loadServices() {
+      db.collection('services').get().then(function(querySnapshot) {
+          const services = [];
+          querySnapshot.forEach(function(doc) {
+              services.push({ id: doc.id, ...doc.data() });
+          });
 
-        const servicesGrid = document.getElementById('servicesGrid');
-        if (!servicesGrid) return;
+          const servicesGrid = document.getElementById('servicesGrid');
+          if (!servicesGrid) return;
 
-        if (services.length === 0) {
-            servicesGrid.innerHTML = `
-                <p style="text-align: center; color: var(--text-light); grid-column: 1/-1;">
-                    Trenutno nema dostupnih usluga.
-                </p>
-            `;
-        } else {
-            servicesGrid.innerHTML = services.map(function(service) {
-                return `
-                    <div class="service-card">
-                        <h3>${service.name}</h3>
-                        <div class="service-description">${service.description}</div>
-                        <p class="service-price">${service.price}</p>
-                    </div>
-                `;
-            }).join('');
-        }
-    });
-}
-
+          if (services.length === 0) {
+              servicesGrid.innerHTML = '<p style="text-align: center; color: var(--text-light); grid-column: 1/-1;">Trenutno
+   nema dostupnih usluga.</p>';
+          } else {
+              servicesGrid.innerHTML = services.map(function(service) {
+                  return '<div class="service-card"><h3>' + service.name + '</h3><div class="service-description">' +
+  service.description + '</div><p class="service-price">' + service.price + '</p></div>';
+              }).join('');
+          }
+      });
+  }
 
   function loadServicesAdmin() {
       const servicesList = document.getElementById('servicesList');
@@ -480,7 +467,6 @@ function loadServices() {
                   const service = doc.data();
                   document.getElementById('serviceName').value = service.name;
 
-                  // Set Quill editor content
                   if (quillEditor) {
                       quillEditor.root.innerHTML = service.description || '';
                   }
@@ -493,7 +479,6 @@ function loadServices() {
           modalTitle.textContent = 'Dodaj uslugu';
           form.reset();
 
-          // Clear Quill editor
           if (quillEditor) {
               quillEditor.setText('');
           }
@@ -507,7 +492,6 @@ function loadServices() {
   function closeServiceModal() {
       document.getElementById('serviceModal').style.display = 'none';
 
-      // Clear Quill editor
       if (quillEditor) {
           quillEditor.setText('');
       }
@@ -515,8 +499,6 @@ function loadServices() {
 
   function saveService() {
       const form = document.getElementById('serviceForm');
-
-      // Get HTML content from Quill editor
       const description = quillEditor ? quillEditor.root.innerHTML : '';
 
       const serviceData = {
@@ -855,7 +837,7 @@ function loadServices() {
       });
   }
 
- // ADD-ONS MANAGEMENT
+  // ADD-ONS MANAGEMENT
   function loadAddOns() {
       db.collection('addons').get().then(function(querySnapshot) {
           const addons = [];
@@ -870,13 +852,8 @@ function loadServices() {
   1/-1;">Trenutno nema dostupnih dodatnih usluga.</p>';
               } else {
                   addonsGrid.innerHTML = addons.map(function(addon) {
-                      return `
-                          <div class="add-on-item">
-                              <h3>${addon.name}</h3>
-                              <p>${addon.description}</p>
-                              <span class="add-on-price">${addon.price}</span>
-                          </div>
-                      `;
+                      return '<div class="add-on-item"><h3>' + addon.name + '</h3><p>' + addon.description + '</p><span 
+  class="add-on-price">' + addon.price + '</span></div>';
                   }).join('');
               }
           }
@@ -999,4 +976,3 @@ function loadServices() {
           });
       }
   }
-}
