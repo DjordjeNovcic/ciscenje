@@ -1104,7 +1104,15 @@
       height: 100%;
       background-color: rgba(0, 0, 0, 0.5);
       animation: fadeIn 0.3s;
+      align-items: center;
+      justify-content: center;
   }
+
+  .modal[style*="display: flex"],
+  .modal.active {
+      display: flex !important;
+  }
+
 
   @keyframes fadeIn {
       from { opacity: 0; }
