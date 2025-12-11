@@ -200,28 +200,50 @@
       setupLogout();
   }
 
-  function loadHomeContent() {
+   function loadHomeContent() {
+      const heroHeading = document.getElementById('heroHeading');
+      const heroText = document.getElementById('heroText');
+      const featuresGrid = document.getElementById('featuresGrid');
+
+      if (!featuresGrid) return;
+
+      // Show loading for features
+      showLoading('featuresGrid');
+
       db.collection('content').doc('home').get().then(function(doc) {
           if (doc.exists) {
               const data = doc.data();
-              const heroHeading = document.getElementById('heroHeading');
-              const heroText = document.getElementById('heroText');
-              if (heroHeading) heroHeading.textContent = data.heroHeading || '';
-              if (heroText) heroText.textContent = data.heroText || '';
+
+              if (heroHeading) {
+                  heroHeading.className = 'fade-in';
+                  heroHeading.textContent = data.heroHeading || '';
+              }
+              if (heroText) {
+                  heroText.className = 'fade-in';
+                  heroText.textContent = data.heroText || '';
+              }
+
               const features = data.features || [];
-              const featuresGrid = document.getElementById('featuresGrid');
-              if (featuresGrid) {
-                  featuresGrid.innerHTML = '';
-                  features.forEach(function(feature) {
+              featuresGrid.innerHTML = '';
+
+              if (features.length === 0) {
+                  showEmptyState('featuresGrid', 'Trenutno nema dostupnih karakteristika.');
+              } else {
+                  features.forEach(function(feature, index) {
                       const card = document.createElement('div');
-                      card.className = 'feature-card';
+                      card.className = 'feature-card fade-in';
+                      card.style.animationDelay = (index * 0.1) + 's';
+
                       const icon = document.createElement('div');
                       icon.className = 'feature-icon';
                       icon.textContent = feature.icon;
+
                       const h3 = document.createElement('h3');
                       h3.textContent = feature.title;
+
                       const p = document.createElement('p');
                       p.textContent = feature.description;
+
                       card.appendChild(icon);
                       card.appendChild(h3);
                       card.appendChild(p);
@@ -229,6 +251,13 @@
                   });
               }
           }
+      }).catch(function(error) {
+          console.error('Error loading home content:', error);
+          featuresGrid.innerHTML = `
+              <p style="text-align: center; color: var(--danger-color); padding: 2rem; grid-column: 1/-1;">
+                  Greška pri učitavanju sadržaja. Molimo osvežite stranicu.
+              </p>
+          `;
       });
   }
 
@@ -525,15 +554,37 @@
       }
   }
 
-  function loadAboutContent() {
+   function loadAboutContent() {
+      const aboutHeading = document.getElementById('aboutHeading');
+      const aboutText = document.getElementById('aboutText');
+
+      if (!aboutHeading || !aboutText) return;
+
+      // Show loading state
+      aboutHeading.innerHTML = '<div class="loading-spinner" style="width: 30px; height: 30px; border-width: 3px;"></div>';
+      aboutText.innerHTML = '<div class="loading-spinner" style="width: 30px; height: 30px; border-width: 3px;"></div>';
+
       db.collection('content').doc('about').get().then(function(doc) {
           if (doc.exists) {
               const data = doc.data();
-              const aboutHeading = document.getElementById('aboutHeading');
-              const aboutText = document.getElementById('aboutText');
-              if (aboutHeading) aboutHeading.textContent = data.heading || '';
-              if (aboutText) aboutText.textContent = data.text || '';
+
+              // Add fade-in effect
+              aboutHeading.className = 'fade-in';
+              aboutText.className = 'fade-in';
+
+              aboutHeading.textContent = data.heading || 'O nama - MS Sjaj';
+              aboutText.textContent = data.text || 'Osnovani 2015. godine, MS Sjaj je započeo sa jednostavnom misijom - pružanje profesionalnih usluga čišćenja za 
+  domove i firme.';
+          } else {
+              // No data found - show defaults
+              aboutHeading.textContent = 'O nama - MS Sjaj';
+              aboutText.textContent = 'Osnovani 2015. godine, MS Sjaj je započeo sa jednostavnom misijom - pružanje profesionalnih usluga čišćenja za domove i firme.';
           }
+      }).catch(function(error) {
+          console.error('Error loading about content:', error);
+          aboutHeading.textContent = 'O nama - MS Sjaj';
+          aboutText.textContent = 'Greška pri učitavanju sadržaja. Molimo osvežite stranicu.';
+          aboutText.style.color = 'var(--danger-color)';
       });
   }
 
@@ -559,29 +610,49 @@
       });
   }
 
-  function loadTestimonials() {
+   function loadTestimonials() {
+      const testimonialsGrid = document.getElementById('testimonialsGrid');
+      if (!testimonialsGrid) return;
+
+      // Show loading spinner
+      showLoading('testimonialsGrid');
+
       db.collection('testimonials').get().then(function(querySnapshot) {
           const testimonials = [];
           querySnapshot.forEach(function(doc) {
               testimonials.push({ id: doc.id, ...doc.data() });
           });
-          const testimonialsGrid = document.getElementById('testimonialsGrid');
-          if (testimonialsGrid) {
-              testimonialsGrid.innerHTML = '';
-              testimonials.forEach(function(testimonial) {
+
+          testimonialsGrid.innerHTML = '';
+
+          if (testimonials.length === 0) {
+              showEmptyState('testimonialsGrid', 'Trenutno nema dostupnih recenzija.');
+          } else {
+              testimonials.forEach(function(testimonial, index) {
                   const card = document.createElement('div');
-                  card.className = 'testimonial-card';
+                  card.className = 'testimonial-card fade-in';
+                  card.style.animationDelay = (index * 0.1) + 's'; // Stagger animation
+
                   const text = document.createElement('p');
                   text.className = 'testimonial-text';
                   text.textContent = '"' + testimonial.text + '"';
+
                   const author = document.createElement('p');
                   author.className = 'testimonial-author';
                   author.textContent = '- ' + testimonial.author;
+
                   card.appendChild(text);
                   card.appendChild(author);
                   testimonialsGrid.appendChild(card);
               });
           }
+      }).catch(function(error) {
+          console.error('Error loading testimonials:', error);
+          testimonialsGrid.innerHTML = `
+              <p style="text-align: center; color: var(--danger-color); padding: 2rem; grid-column: 1/-1;">
+                  Greška pri učitavanju recenzija. Molimo osvežite stranicu.
+              </p>
+          `;
       });
   }
 
@@ -678,24 +749,43 @@
       }
   }
 
-  function loadGallery() {
+   function loadGallery() {
+      const galleryGrid = document.getElementById('galleryGrid');
+      if (!galleryGrid) return;
+
+      // Show loading spinner
+      showLoading('galleryGrid');
+
       db.collection('gallery').orderBy('uploadedAt', 'desc').get().then(function(querySnapshot) {
-          const galleryGrid = document.getElementById('galleryGrid');
-          if (galleryGrid) {
-              galleryGrid.innerHTML = '';
-              querySnapshot.forEach(function(doc) {
+          galleryGrid.innerHTML = '';
+
+          if (querySnapshot.empty) {
+              showEmptyState('galleryGrid', 'Trenutno nema fotografija u galeriji.');
+          } else {
+              querySnapshot.forEach(function(doc, index) {
                   const photo = doc.data();
                   const div = document.createElement('div');
-                  div.className = 'gallery-item';
+                  div.className = 'gallery-item fade-in';
+                  div.style.animationDelay = (index * 0.05) + 's'; // Faster stagger for images
+
                   const img = document.createElement('img');
                   img.src = photo.url;
                   img.alt = 'Galerija';
+
                   div.appendChild(img);
                   galleryGrid.appendChild(div);
               });
           }
+      }).catch(function(error) {
+          console.error('Error loading gallery:', error);
+          galleryGrid.innerHTML = `
+              <p style="text-align: center; color: var(--danger-color); padding: 2rem; grid-column: 1/-1;">
+                  Greška pri učitavanju galerije. Molimo osvežite stranicu.
+              </p>
+          `;
       });
   }
+
 
   function loadGalleryAdmin() {
       const galleryAdmin = document.getElementById('galleryAdmin');
