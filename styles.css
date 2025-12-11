@@ -909,6 +909,23 @@
       margin-left: 0.5rem;
   }
 
+ /* Testimonial Rating Stars */
+  .testimonial-rating {
+      color: #fbbf24;
+      font-size: 1.2rem;
+      letter-spacing: 2px;
+      margin: 0.5rem 0;
+  }
+
+  .testimonial-author-section {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-top: auto;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--border-color);
+  }
+
   /* ========================================
      CTA SECTION
      ======================================== */
