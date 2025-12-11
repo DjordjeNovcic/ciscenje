@@ -1,4 +1,4 @@
-// Firebase configuration
+  // Firebase configuration
   const firebaseConfig = {
       apiKey: "AIzaSyAR4ae5zbbqwqgWLRVtbb2V2W3WbwuSCWo",
       authDomain: "mssjaj-20b34.firebaseapp.com",
@@ -227,8 +227,7 @@
   }
 
   function addFeatureItem(container, feature, index) {
-      const icons = ['sparkles', 'eco', 'calendar', 'star', 'briefcase', 'home', 'heart', 'handshake', 'broom', 'soap',
-  'check', 'target'];
+      const icons = ['sparkles', 'eco', 'calendar', 'star', 'briefcase', 'home', 'heart', 'handshake', 'broom', 'soap', 'check', 'target'];
       const iconEmojis = {
           'sparkles': '\u2728',
           'eco': '\u127F',
@@ -365,9 +364,9 @@
                   const desc = document.createElement('div');
                   desc.className = 'service-description';
                   desc.innerHTML = service.description;
-                  const price = document.createElement('p');
+                  const price = document.createElement('span');
                   price.className = 'service-price';
-                  price.textContent = service.price;
+                  price.textContent = service.price + ' RSD';
                   card.appendChild(h3);
                   card.appendChild(desc);
                   card.appendChild(price);
@@ -389,9 +388,11 @@
               const h4 = document.createElement('h4');
               h4.textContent = service.name;
               const p1 = document.createElement('div');
+              p1.className = 'service-description';
               p1.innerHTML = service.description;
               p1.style.marginBottom = '10px';
               const p2 = document.createElement('p');
+              p2.className = 'service-price';
               const strong = document.createElement('strong');
               strong.textContent = service.price;
               p2.appendChild(strong);
@@ -762,7 +763,7 @@
           querySnapshot.forEach(function(doc) {
               addons.push({ id: doc.id, ...doc.data() });
           });
-          const addonsGrid = document.querySelector('.add-ons-grid');
+          const addonsGrid = document.getElementById('addonsGrid');
           if (!addonsGrid) return;
           addonsGrid.innerHTML = '';
           if (addons.length === 0) {
@@ -772,19 +773,15 @@
               addonsGrid.appendChild(emptyMsg);
           } else {
               addons.forEach(function(addon) {
-                  const item = document.createElement('div');
-                  item.className = 'add-on-item';
-                  const h3 = document.createElement('h3');
-                  h3.textContent = addon.name;
+                  const card = document.createElement('div');
+                  card.className = 'addon-card';
+                  const h4 = document.createElement('h4');
+                  h4.textContent = addon.name;
                   const p = document.createElement('p');
-                  p.textContent = addon.description;
-                  const span = document.createElement('span');
-                  span.className = 'add-on-price';
-                  span.textContent = addon.price;
-                  item.appendChild(h3);
-                  item.appendChild(p);
-                  item.appendChild(span);
-                  addonsGrid.appendChild(item);
+                  p.textContent = addon.price + ' RSD';
+                  card.appendChild(h4);
+                  card.appendChild(p);
+                  addonsGrid.appendChild(card);
               });
           }
       });
@@ -805,13 +802,14 @@
           querySnapshot.forEach(function(doc) {
               const addon = doc.data();
               const div = document.createElement('div');
-              div.className = 'service-item';
+              div.className = 'addon-item';
               const h4 = document.createElement('h4');
               h4.textContent = addon.name;
               const p1 = document.createElement('p');
               p1.textContent = addon.description;
               p1.style.marginBottom = '10px';
               const p2 = document.createElement('p');
+              p2.className = 'addon-price';
               const strong = document.createElement('strong');
               strong.textContent = addon.price;
               p2.appendChild(strong);
