@@ -1287,12 +1287,18 @@
       min-height: 100vh;
   }
 
-  .admin-sidebar {
+   .admin-sidebar {
       width: 250px;
       background: var(--text-dark);
       color: white;
       display: flex;
       flex-direction: column;
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 100vh;
+      overflow-y: auto;
+      z-index: 100;
   }
 
   .sidebar-header {
@@ -1335,6 +1341,8 @@
   .admin-main {
       flex: 1;
       background: var(--bg-light);
+      margin-left: 250px;
+      width: calc(100% - 250px);
   }
 
   .admin-header {
