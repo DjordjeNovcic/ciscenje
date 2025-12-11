@@ -386,11 +386,11 @@
       font-size: 1rem;
   }
 
-   .service-card .service-price {
+  .service-card .service-price {
       display: block;
       text-align: center;
-      font-size: 1.5rem;        /* ← Smaller size */
-      font-weight: 700;         /* ← Slightly less bold */
+      font-size: 1.5rem;
+      font-weight: 700;
       color: var(--primary-color);
       margin: 1.5rem 0 2rem 0;
       letter-spacing: -0.5px;
@@ -592,10 +592,10 @@
       line-height: 1.4;
   }
 
-   .addon-card p {
+  .addon-card p {
       color: var(--primary-color);
-      font-weight: 700;         /* ← Slightly less bold */
-      font-size: 1.25rem;       /* ← Smaller size */
+      font-weight: 700;
+      font-size: 1.25rem;
       margin-top: 1rem;
       letter-spacing: -0.5px;
   }
@@ -757,58 +757,156 @@
   }
 
   /* ========================================
-     TESTIMONIALS
+     TESTIMONIALS - MODERN & PREMIUM
      ======================================== */
   .testimonials {
       padding: 5rem 0;
+      background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
+      position: relative;
+  }
+
+  .testimonials::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100px;
+      height: 4px;
+      background: linear-gradient(90deg, var(--primary-color), #3b82f6);
+      border-radius: 2px;
   }
 
   .testimonials h2 {
       text-align: center;
       font-size: 2.5rem;
+      margin-bottom: 1rem;
+      color: var(--text-dark);
+      font-weight: 700;
+  }
+
+  .testimonials > .container > p {
+      text-align: center;
+      color: var(--text-light);
+      font-size: 1.1rem;
       margin-bottom: 3rem;
   }
 
   .testimonials-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 2rem;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 2.5rem;
+      margin-top: 3rem;
   }
 
   .testimonial-card {
       background: white;
-      padding: 2rem;
-      border-radius: 12px;
-      box-shadow: var(--shadow-md);
-      transition: transform 0.3s;
+      padding: 2.5rem;
+      border-radius: 20px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      border: 1px solid rgba(37, 99, 235, 0.1);
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+  }
+
+  .testimonial-card::before {
+      content: '"';
+      position: absolute;
+      top: -10px;
+      left: 20px;
+      font-size: 6rem;
+      color: var(--primary-color);
+      opacity: 0.1;
+      font-family: Georgia, serif;
+      line-height: 1;
   }
 
   .testimonial-card:hover {
-      transform: translateY(-5px);
+      transform: translateY(-10px);
+      box-shadow: 0 12px 40px rgba(37, 99, 235, 0.15);
+      border-color: var(--primary-color);
   }
 
   .stars {
+      display: flex;
+      gap: 0.25rem;
+      font-size: 1.25rem;
       color: #fbbf24;
-      margin-bottom: 1rem;
-      font-size: 1.2rem;
   }
 
-  .testimonial-card p {
-      color: var(--text-light);
-      margin-bottom: 1.5rem;
-      font-style: italic;
+  .stars::before {
+      content: '⭐⭐⭐⭐⭐';
+      letter-spacing: 0.25rem;
+  }
+
+  .testimonial-card .testimonial-text {
+      color: var(--text-dark);
+      font-size: 1.05rem;
       line-height: 1.8;
+      font-style: normal;
+      margin: 0;
+      position: relative;
+      z-index: 1;
+  }
+
+  .testimonial-author {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-top: auto;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--border-color);
+  }
+
+  .author-avatar {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--primary-color), #3b82f6);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 1.5rem;
+      font-weight: 700;
+      flex-shrink: 0;
+  }
+
+  .author-info {
+      display: flex;
+      flex-direction: column;
   }
 
   .testimonial-author strong {
       display: block;
       color: var(--text-dark);
-      margin-bottom: 0.25rem;
+      font-size: 1.05rem;
+      font-weight: 600;
+      margin: 0;
   }
 
   .testimonial-author span {
       color: var(--text-light);
       font-size: 0.9rem;
+      margin-top: 0.25rem;
+  }
+
+  .testimonial-card.verified .testimonial-author::after {
+      content: '✓';
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 20px;
+      height: 20px;
+      background: var(--success-color);
+      color: white;
+      border-radius: 50%;
+      font-size: 0.75rem;
+      font-weight: bold;
+      margin-left: 0.5rem;
   }
 
   /* ========================================
@@ -1597,7 +1695,6 @@
       border-radius: 8px;
   }
 
-  /* Admin dashboard service price - ONLY affects admin dashboard */
   #servicesList .service-item .service-price {
       color: var(--text-light);
       font-weight: 500;
@@ -1645,7 +1742,6 @@
       box-shadow: 0 4px 8px rgba(220, 53, 69, 0.3);
   }
 
-  /* Admin Add-ons List Styling */
   #addonsList {
       display: flex;
       flex-direction: column;
@@ -1717,6 +1813,90 @@
       background: #c82333;
       transform: translateY(-2px);
       box-shadow: 0 4px 8px rgba(220, 53, 69, 0.3);
+  }
+
+  /* ========================================
+     LOADING ANIMATIONS
+     ======================================== */
+  .loading-spinner {
+      display: inline-block;
+      width: 50px;
+      height: 50px;
+      border: 4px solid var(--border-color);
+      border-top: 4px solid var(--primary-color);
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+      margin: 2rem auto;
+  }
+
+  @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+  }
+
+  .loading-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 3rem;
+      min-height: 200px;
+  }
+
+  .loading-text {
+      margin-top: 1rem;
+      color: var(--text-light);
+      font-size: 0.9rem;
+  }
+
+  .fade-in {
+      animation: fadeInAnim 0.5s ease-in;
+  }
+
+  @keyframes fadeInAnim {
+      from {
+          opacity: 0;
+          transform: translateY(10px);
+      }
+      to {
+          opacity: 1;
+          transform: translateY(0);
+      }
+  }
+
+  .skeleton {
+      background: linear-gradient(90deg, var(--bg-light) 25%, #e5e7eb 50%, var(--bg-light) 75%);
+      background-size: 200% 100%;
+      animation: loading 1.5s ease-in-out infinite;
+      border-radius: 8px;
+  }
+
+  @keyframes loading {
+      0% { background-position: 200% 0; }
+      100% { background-position: -200% 0; }
+  }
+
+  .skeleton-card {
+      padding: 2rem;
+      margin-bottom: 1rem;
+  }
+
+  .skeleton-title {
+      height: 24px;
+      width: 60%;
+      margin-bottom: 1rem;
+  }
+
+  .skeleton-text {
+      height: 16px;
+      width: 100%;
+      margin-bottom: 0.5rem;
+  }
+
+  .skeleton-price {
+      height: 32px;
+      width: 40%;
+      margin: 1rem auto;
   }
 
   /* ========================================
@@ -1868,7 +2048,6 @@
           padding: 3rem 0 1.5rem;
       }
 
-      /* Services responsive */
       .services-grid {
           grid-template-columns: 1fr;
           gap: 2rem;
@@ -1883,10 +2062,9 @@
       }
 
       .service-card .service-price {
-           font-size: 1.25rem;
+          font-size: 1.25rem;
       }
 
-      /* Add-ons responsive */
       .add-ons-grid,
       .addons-grid {
           grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -1902,7 +2080,11 @@
       }
 
       .addon-card p {
-          font-size: 1.1rem
+          font-size: 1.1rem;
+      }
+
+      .testimonials-grid {
+          grid-template-columns: 1fr;
       }
   }
 
@@ -1934,7 +2116,7 @@
       }
 
       .addon-card p {
-           font-size: 1rem;   
+          font-size: 1rem;
       }
   }
 
@@ -1962,7 +2144,6 @@
       min-height: 200px;
   }
 
-  /* Service description display on public pages */
   .service-description ul,
   .service-description ol {
       margin: 10px 0;
@@ -1986,95 +2167,3 @@
   .service-description h3 {
       margin: 15px 0 10px;
   }
-
- /* ========================================
-     LOADING ANIMATIONS
-     ======================================== */
-
-  /* Loading spinner */
-  .loading-spinner {
-      display: inline-block;
-      width: 50px;
-      height: 50px;
-      border: 4px solid var(--border-color);
-      border-top: 4px solid var(--primary-color);
-      border-radius: 50%;
-      animation: spin 1s linear infinite;
-      margin: 2rem auto;
-  }
-
-  @keyframes spin {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
-  }
-
-  .loading-container {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      padding: 3rem;
-      min-height: 200px;
-  }
-
-  .loading-text {
-      margin-top: 1rem;
-      color: var(--text-light);
-      font-size: 0.9rem;
-  }
-
-  /* Fade-in animation when content loads */
-  .fade-in {
-      animation: fadeIn 0.5s ease-in;
-  }
-
-  @keyframes fadeIn {
-      from {
-          opacity: 0;
-          transform: translateY(10px);
-      }
-      to {
-          opacity: 1;
-          transform: translateY(0);
-      }
-  }
-
-  /* Skeleton loading (optional alternative) */
-  .skeleton {
-      background: linear-gradient(90deg,
-          var(--bg-light) 25%,
-          #e5e7eb 50%,
-          var(--bg-light) 75%);
-      background-size: 200% 100%;
-      animation: loading 1.5s ease-in-out infinite;
-      border-radius: 8px;
-  }
-
-  @keyframes loading {
-      0% { background-position: 200% 0; }
-      100% { background-position: -200% 0; }
-  }
-
-  .skeleton-card {
-      padding: 2rem;
-      margin-bottom: 1rem;
-  }
-
-  .skeleton-title {
-      height: 24px;
-      width: 60%;
-      margin-bottom: 1rem;
-  }
-
-  .skeleton-text {
-      height: 16px;
-      width: 100%;
-      margin-bottom: 0.5rem;
-  }
-
-  .skeleton-price {
-      height: 32px;
-      width: 40%;
-      margin: 1rem auto;
-  }
-
