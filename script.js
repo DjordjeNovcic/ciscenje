@@ -641,10 +641,7 @@
 
                   const authorName = document.createElement('strong');
                   authorName.textContent = testimonial.author;
-
-                  const authorTitle = document.createElement('span');
-                  authorTitle.textContent = 'Verified Customer';
-
+             
                   authorInfo.appendChild(authorName);
                   authorInfo.appendChild(authorTitle);
 
