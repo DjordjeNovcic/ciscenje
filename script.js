@@ -22,6 +22,31 @@
       initQuillEditor();
   });
 
+ // Helper function to show loading spinner
+  function showLoading(containerId) {
+      const container = document.getElementById(containerId);
+      if (!container) return;
+
+      container.innerHTML = `
+          <div class="loading-container">
+              <div class="loading-spinner"></div>
+              <p class="loading-text">Učitavanje...</p>
+          </div>
+      `;
+  }
+
+  // Helper function to show empty state
+  function showEmptyState(containerId, message) {
+      const container = document.getElementById(containerId);
+      if (!container) return;
+
+      container.innerHTML = `
+          <p style="text-align: center; color: var(--text-light); padding: 2rem; grid-column: 1/-1;">
+              ${message}
+          </p>
+      `;
+  }
+
   function initQuillEditor() {
       const editorElement = document.getElementById('serviceDescription');
       if (editorElement && !quillEditor) {
@@ -342,37 +367,52 @@
   }
 
   function loadServices() {
+      const servicesGrid = document.getElementById('servicesGrid');
+      if (!servicesGrid) return;
+
+      // Show loading spinner
+      showLoading('servicesGrid');
+
       db.collection('services').get().then(function(querySnapshot) {
           const services = [];
           querySnapshot.forEach(function(doc) {
               services.push({ id: doc.id, ...doc.data() });
           });
-          const servicesGrid = document.getElementById('servicesGrid');
-          if (!servicesGrid) return;
+
           servicesGrid.innerHTML = '';
+
           if (services.length === 0) {
-              const emptyMsg = document.createElement('p');
-              emptyMsg.style.cssText = 'text-align: center; color: var(--text-light); grid-column: 1/-1;';
-              emptyMsg.textContent = 'Trenutno nema dostupnih usluga.';
-              servicesGrid.appendChild(emptyMsg);
+              showEmptyState('servicesGrid', 'Trenutno nema dostupnih usluga.');
           } else {
-              services.forEach(function(service) {
+              services.forEach(function(service, index) {
                   const card = document.createElement('div');
-                  card.className = 'service-card';
+                  card.className = 'service-card fade-in';
+                  card.style.animationDelay = (index * 0.1) + 's'; // Stagger animation
+
                   const h3 = document.createElement('h3');
                   h3.textContent = service.name;
+
                   const desc = document.createElement('div');
                   desc.className = 'service-description';
                   desc.innerHTML = service.description;
+
                   const price = document.createElement('span');
                   price.className = 'service-price';
                   price.textContent = service.price + ' RSD';
+
                   card.appendChild(h3);
                   card.appendChild(desc);
                   card.appendChild(price);
                   servicesGrid.appendChild(card);
               });
           }
+      }).catch(function(error) {
+          console.error('Error loading services:', error);
+          servicesGrid.innerHTML = `
+              <p style="text-align: center; color: var(--danger-color); padding: 2rem; grid-column: 1/-1;">
+                  Greška pri učitavanju usluga. Molimo osvežite stranicu.
+              </p>
+          `;
       });
   }
 
@@ -758,32 +798,46 @@
   }
 
   function loadAddOns() {
+      const addonsGrid = document.getElementById('addonsGrid');
+      if (!addonsGrid) return;
+
+      // Show loading spinner
+      showLoading('addonsGrid');
+
       db.collection('addons').get().then(function(querySnapshot) {
           const addons = [];
           querySnapshot.forEach(function(doc) {
               addons.push({ id: doc.id, ...doc.data() });
           });
-          const addonsGrid = document.getElementById('addonsGrid');
-          if (!addonsGrid) return;
+
           addonsGrid.innerHTML = '';
+
           if (addons.length === 0) {
-              const emptyMsg = document.createElement('p');
-              emptyMsg.style.cssText = 'text-align: center; color: var(--text-light); grid-column: 1/-1;';
-              emptyMsg.textContent = 'Trenutno nema dostupnih dodatnih usluga.';
-              addonsGrid.appendChild(emptyMsg);
+              showEmptyState('addonsGrid', 'Trenutno nema dostupnih dodatnih usluga.');
           } else {
-              addons.forEach(function(addon) {
+              addons.forEach(function(addon, index) {
                   const card = document.createElement('div');
-                  card.className = 'addon-card';
+                  card.className = 'addon-card fade-in';
+                  card.style.animationDelay = (index * 0.1) + 's'; // Stagger animation
+
                   const h4 = document.createElement('h4');
                   h4.textContent = addon.name;
+
                   const p = document.createElement('p');
                   p.textContent = addon.price + ' RSD';
+
                   card.appendChild(h4);
                   card.appendChild(p);
                   addonsGrid.appendChild(card);
               });
           }
+      }).catch(function(error) {
+          console.error('Error loading add-ons:', error);
+          addonsGrid.innerHTML = `
+              <p style="text-align: center; color: var(--danger-color); padding: 2rem; grid-column: 1/-1;">
+                  Greška pri učitavanju dodatnih usluga. Molimo osvežite stranicu.
+              </p>
+          `;
       });
   }
 
