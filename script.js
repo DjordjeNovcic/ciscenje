@@ -623,14 +623,6 @@
       });
   }
 
-  function saveAboutContent() {
-      db.collection('content').doc('about').set({
-          heading: document.getElementById('aboutHeading').value,
-          text: document.getElementById('aboutText').value
-      }).then(function() {
-          alert('Sadrzaj O nama stranice je sacuvan!');
-      });
-  }
 
  // Load About Content Admin with Stats and Reasons
   function loadAboutContentAdmin() {
