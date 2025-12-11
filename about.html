@@ -1,4 +1,4 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
   <html lang="sr">
   <head>
       <meta charset="UTF-8">
@@ -33,20 +33,74 @@
           </div>
       </section>
 
-      <!-- About Content -->
+      <!-- About Content - Modern Design -->
       <section class="about-content">
           <div class="container">
-              <div class="about-grid">
-                  <div class="about-text">
-                      <h2>Naša priča</h2>
-                      <p id="aboutText">Osnovani 2015. godine, MS Sjaj je započeo sa jednostavnom misijom - pružanje
-  profesionalnih usluga čišćenja za domove i firme.</p>
+              <div class="about-story">
+                  <div class="story-content">
+                      <span class="story-badge">Naša priča</span>
+                      <h2>Posvećeni kvalitetu od 2015. godine</h2>
+                      <p id="aboutText" class="story-text"> Osnovani 2015. godine, MS Sjaj je započeo sa jednostavnom misijom - pružanje profesionalnih usluga čišćenja za domove i firme. Tokom godina, izrasli smo u tim od pouzdanih profesionalaca koji donose sjaj i čistoću u vaš prostor.
+                      </p>
                   </div>
-                  <div class="about-image">
-                      <div class="placeholder-image">
-                          🏢
-                          <p>Naš tim</p>
+
+                  <!-- Stats Section -->
+                  <div class="stats-section">
+                      <div class="stat-box">
+                          <div class="stat-number">500+</div>
+                          <div class="stat-label">Zadovoljnih klijenata</div>
                       </div>
+                      <div class="stat-box">
+                          <div class="stat-number">10</div>
+                          <div class="stat-label">Godina iskustva</div>
+                      </div>
+                      <div class="stat-box">
+                          <div class="stat-number">100%</div>
+                          <div class="stat-label">Eco-friendly proizvodi</div>
+                      </div>
+                      <div class="stat-box">
+                          <div class="stat-number">24/7</div>
+                          <div class="stat-label">Podrška</div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </section>
+
+      <!-- Why Choose Us -->
+      <section class="why-choose-us">
+          <div class="container">
+              <h2>Zašto izabrati MS Sjaj?</h2>
+              <div class="reasons-grid">
+                  <div class="reason-card">
+                      <div class="reason-icon">✨</div>
+                      <h3>Profesionalan tim</h3>
+                      <p>Naš tim se sastoji od obučenih i sertifikovanih profesionalaca sa dugogodišnjim iskustvom.</p>
+                  </div>
+                  <div class="reason-card">
+                      <div class="reason-icon">🌿</div>
+                      <h3>Ekološki proizvodi</h3>
+                      <p>Koristimo samo ekološke proizvode koji su bezbedni za vašu porodicu i životnu sredinu.</p>
+                  </div>
+                  <div class="reason-card">
+                      <div class="reason-icon">💎</div>
+                      <h3>Vrhunski kvalitet</h3>
+                      <p>Garantujemo najviši standard čistoće i detaljnosti u svakom projektu.</p>
+                  </div>
+                  <div class="reason-card">
+                      <div class="reason-icon">⏰</div>
+                      <h3>Fleksibilno radno vreme</h3>
+                      <p>Prilagođavamo se vašem rasporedu - radimo kada vama odgovara.</p>
+                  </div>
+                  <div class="reason-card">
+                      <div class="reason-icon">🛡️</div>
+                      <h3>Osiguran rad</h3>
+                      <p>Potpuno smo osigurani, vaš prostor i vaša imovina su u sigurnim rukama.</p>
+                  </div>
+                  <div class="reason-card">
+                      <div class="reason-icon">💰</div>
+                      <h3>Konkurentne cene</h3>
+                      <p>Najbolji odnos cene i kvaliteta na tržištu, bez skrivenih troškova.</p>
                   </div>
               </div>
           </div>
@@ -80,6 +134,7 @@
       <section class="testimonials">
           <div class="container">
               <h2>Šta naši klijenti kažu</h2>
+              <p>Pročitajte iskustva naših zadovoljnih klijenata</p>
               <div class="testimonials-grid" id="testimonialsGrid">
                   <!-- Testimonials will be loaded from Firebase -->
               </div>
@@ -101,24 +156,17 @@
               <div class="footer-content">
                   <div class="footer-section">
                       <h4>MS Sjaj</h4>
-                      <p>Profesionalne usluge čišćenja kojima možete verovati. Donoseći sjaj u vaš dom i poslovni
-  prostor.</p>
+                      <p>Profesionalne usluge čišćenja kojima možete verovati. Donoseći sjaj u vaš dom i poslovni prostor.</p>
                       <div class="social-links">
-                          <a href="https://www.instagram.com/mssjaj.kg?igsh=ZjlzajBydXIxemMy" target="_blank" rel="noopener"
-   title="Instagram" aria-label="Instagram">
+                          <a href="https://www.instagram.com/mssjaj.kg?igsh=ZjlzajBydXIxemMy" target="_blank" rel="noopener" title="Instagram" aria-label="Instagram">
                               <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                  <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 
-  1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 
-  4.919-1.266.058-1.644.07-4.85.07-3.204 
-  0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 
-  0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 
-  0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 
-  2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 
-  6.979-6.98.059-1.28.073-1.689.073-4.948 
-  0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 
-  2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 
-  0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441
-   1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                                  <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 
+  4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 
+  0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059
+   1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 
+  6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 
+  0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4
+   4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
                               </svg>
                           </a>
                       </div>
