@@ -618,16 +618,44 @@
                   card.className = 'testimonial-card fade-in';
                   card.style.animationDelay = (index * 0.1) + 's';
 
+                  // Testimonial text
                   const text = document.createElement('p');
                   text.className = 'testimonial-text';
-                  text.textContent = '"' + testimonial.text + '"';
+                  text.textContent = testimonial.text;
 
-                  const author = document.createElement('p');
-                  author.className = 'testimonial-author';
-                  author.textContent = '- ' + testimonial.author;
+                  // Star rating
+                  const rating = document.createElement('div');
+                  rating.className = 'testimonial-rating';
+                  rating.innerHTML = '★★★★★';
 
+                  // Author section with avatar
+                  const authorSection = document.createElement('div');
+                  authorSection.className = 'testimonial-author-section';
+
+                  const avatar = document.createElement('div');
+                  avatar.className = 'author-avatar';
+                  avatar.textContent = testimonial.author.charAt(0).toUpperCase();
+
+                  const authorInfo = document.createElement('div');
+                  authorInfo.className = 'author-info';
+
+                  const authorName = document.createElement('strong');
+                  authorName.textContent = testimonial.author;
+
+                  const authorTitle = document.createElement('span');
+                  authorTitle.textContent = 'Verified Customer';
+
+                  authorInfo.appendChild(authorName);
+                  authorInfo.appendChild(authorTitle);
+
+                  authorSection.appendChild(avatar);
+                  authorSection.appendChild(authorInfo);
+
+                  // Append all elements to card
                   card.appendChild(text);
-                  card.appendChild(author);
+                  card.appendChild(rating);
+                  card.appendChild(authorSection);
+
                   testimonialsGrid.appendChild(card);
               });
           }
