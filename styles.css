@@ -1,4 +1,4 @@
-/* ========================================
+  /* ========================================
      RESET & VARIABLES
      ======================================== */
   * {
@@ -674,10 +674,147 @@
   }
 
   /* ========================================
-     ABOUT PAGE
+     ABOUT PAGE - MODERN REDESIGN
      ======================================== */
   .about-content {
       padding: 5rem 0;
+  }
+
+  .about-story {
+      max-width: 1000px;
+      margin: 0 auto;
+      text-align: center;
+  }
+
+  .story-content {
+      margin-bottom: 4rem;
+  }
+
+  .story-badge {
+      display: inline-block;
+      background: linear-gradient(135deg, var(--primary-color), #3b82f6);
+      color: white;
+      padding: 0.5rem 1.5rem;
+      border-radius: 50px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      margin-bottom: 1.5rem;
+      letter-spacing: 0.5px;
+  }
+
+  .story-content h2 {
+      font-size: 2.5rem;
+      color: var(--text-dark);
+      margin-bottom: 1.5rem;
+      font-weight: 700;
+      line-height: 1.3;
+  }
+
+  .story-text {
+      font-size: 1.15rem;
+      color: var(--text-light);
+      line-height: 1.8;
+      max-width: 800px;
+      margin: 0 auto;
+  }
+
+  /* Stats Section */
+  .stats-section {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 2rem;
+      margin-top: 3rem;
+  }
+
+  .stat-box {
+      background: white;
+      padding: 2.5rem 2rem;
+      border-radius: 16px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+      transition: all 0.3s ease;
+      border: 2px solid transparent;
+  }
+
+  .stat-box:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 12px 35px rgba(37, 99, 235, 0.15);
+      border-color: var(--primary-color);
+  }
+
+  .stat-number {
+      font-size: 3rem;
+      font-weight: 700;
+      background: linear-gradient(135deg, var(--primary-color), #3b82f6);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 0.5rem;
+  }
+
+  .stat-label {
+      color: var(--text-light);
+      font-size: 1rem;
+      font-weight: 500;
+  }
+
+  /* Why Choose Us Section */
+  .why-choose-us {
+      padding: 5rem 0;
+      background: var(--bg-light);
+  }
+
+  .why-choose-us h2 {
+      text-align: center;
+      font-size: 2.5rem;
+      margin-bottom: 3rem;
+      color: var(--text-dark);
+      font-weight: 700;
+  }
+
+  .reasons-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+  }
+
+  .reason-card {
+      background: white;
+      padding: 2.5rem;
+      border-radius: 16px;
+      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+      transition: all 0.3s ease;
+      border: 2px solid transparent;
+      text-align: center;
+  }
+
+  .reason-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 12px 35px rgba(37, 99, 235, 0.12);
+      border-color: var(--primary-color);
+  }
+
+  .reason-icon {
+      font-size: 3.5rem;
+      margin-bottom: 1.5rem;
+      display: inline-block;
+      transition: transform 0.3s ease;
+  }
+
+  .reason-card:hover .reason-icon {
+      transform: scale(1.1);
+  }
+
+  .reason-card h3 {
+      font-size: 1.4rem;
+      color: var(--text-dark);
+      margin-bottom: 1rem;
+      font-weight: 600;
+  }
+
+  .reason-card p {
+      color: var(--text-light);
+      line-height: 1.7;
+      font-size: 1rem;
   }
 
   .about-grid {
@@ -852,6 +989,23 @@
       z-index: 1;
   }
 
+  /* Testimonial Rating Stars */
+  .testimonial-rating {
+      color: #fbbf24;
+      font-size: 1.2rem;
+      letter-spacing: 2px;
+      margin: 0.5rem 0;
+  }
+
+  .testimonial-author-section {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-top: auto;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--border-color);
+  }
+
   .testimonial-author {
       display: flex;
       align-items: center;
@@ -907,23 +1061,6 @@
       font-size: 0.75rem;
       font-weight: bold;
       margin-left: 0.5rem;
-  }
-
- /* Testimonial Rating Stars */
-  .testimonial-rating {
-      color: #fbbf24;
-      font-size: 1.2rem;
-      letter-spacing: 2px;
-      margin: 0.5rem 0;
-  }
-
-  .testimonial-author-section {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-      margin-top: auto;
-      padding-top: 1.5rem;
-      border-top: 1px solid var(--border-color);
   }
 
   /* ========================================
@@ -2103,6 +2240,18 @@
       .testimonials-grid {
           grid-template-columns: 1fr;
       }
+
+      .stats-section {
+          grid-template-columns: 1fr;
+      }
+
+      .reasons-grid {
+          grid-template-columns: 1fr;
+      }
+
+      .story-content h2 {
+          font-size: 2rem;
+      }
   }
 
   @media (max-width: 480px) {
@@ -2134,6 +2283,14 @@
 
       .addon-card p {
           font-size: 1rem;
+      }
+
+      .story-content h2 {
+          font-size: 1.75rem;
+      }
+
+      .stat-number {
+          font-size: 2.5rem;
       }
   }
 
