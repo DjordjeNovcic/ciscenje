@@ -1,4 +1,4 @@
-  // Firebase configuration
+ // Firebase configuration
   const firebaseConfig = {
       apiKey: "AIzaSyAR4ae5zbbqwqgWLRVtbb2V2W3WbwuSCWo",
       authDomain: "mssjaj-20b34.firebaseapp.com",
@@ -16,13 +16,7 @@
 
   var quillEditor = null;
 
-  document.addEventListener('DOMContentLoaded', function() {
-      initializeApp();
-      setupSidebarNavigation();
-      initQuillEditor();
-  });
-
- // Helper function to show loading spinner
+  // Helper function to show loading spinner
   function showLoading(containerId) {
       const container = document.getElementById(containerId);
       if (!container) return;
@@ -46,6 +40,12 @@
           </p>
       `;
   }
+
+  document.addEventListener('DOMContentLoaded', function() {
+      initializeApp();
+      setupSidebarNavigation();
+      initQuillEditor();
+  });
 
   function initQuillEditor() {
       const editorElement = document.getElementById('serviceDescription');
@@ -200,14 +200,13 @@
       setupLogout();
   }
 
-   function loadHomeContent() {
+  function loadHomeContent() {
       const heroHeading = document.getElementById('heroHeading');
       const heroText = document.getElementById('heroText');
       const featuresGrid = document.getElementById('featuresGrid');
 
       if (!featuresGrid) return;
 
-      // Show loading for features
       showLoading('featuresGrid');
 
       db.collection('content').doc('home').get().then(function(doc) {
@@ -253,11 +252,8 @@
           }
       }).catch(function(error) {
           console.error('Error loading home content:', error);
-          featuresGrid.innerHTML = `
-              <p style="text-align: center; color: var(--danger-color); padding: 2rem; grid-column: 1/-1;">
-                  Greška pri učitavanju sadržaja. Molimo osvežite stranicu.
-              </p>
-          `;
+          featuresGrid.innerHTML = '<p style="text-align: center; color: var(--danger-color); padding: 2rem; grid-column: 1/-1;">Greška pri učitavanju sadržaja. Molimo
+   osvežite stranicu.</p>';
       });
   }
 
@@ -399,7 +395,6 @@
       const servicesGrid = document.getElementById('servicesGrid');
       if (!servicesGrid) return;
 
-      // Show loading spinner
       showLoading('servicesGrid');
 
       db.collection('services').get().then(function(querySnapshot) {
@@ -416,7 +411,7 @@
               services.forEach(function(service, index) {
                   const card = document.createElement('div');
                   card.className = 'service-card fade-in';
-                  card.style.animationDelay = (index * 0.1) + 's'; // Stagger animation
+                  card.style.animationDelay = (index * 0.1) + 's';
 
                   const h3 = document.createElement('h3');
                   h3.textContent = service.name;
@@ -437,11 +432,8 @@
           }
       }).catch(function(error) {
           console.error('Error loading services:', error);
-          servicesGrid.innerHTML = `
-              <p style="text-align: center; color: var(--danger-color); padding: 2rem; grid-column: 1/-1;">
-                  Greška pri učitavanju usluga. Molimo osvežite stranicu.
-              </p>
-          `;
+          servicesGrid.innerHTML = '<p style="text-align: center; color: var(--danger-color); padding: 2rem; grid-column: 1/-1;">Greška pri učitavanju usluga. Molimo 
+  osvežite stranicu.</p>';
       });
   }
 
@@ -554,13 +546,12 @@
       }
   }
 
-   function loadAboutContent() {
+  function loadAboutContent() {
       const aboutHeading = document.getElementById('aboutHeading');
       const aboutText = document.getElementById('aboutText');
 
       if (!aboutHeading || !aboutText) return;
 
-      // Show loading state
       aboutHeading.innerHTML = '<div class="loading-spinner" style="width: 30px; height: 30px; border-width: 3px;"></div>';
       aboutText.innerHTML = '<div class="loading-spinner" style="width: 30px; height: 30px; border-width: 3px;"></div>';
 
@@ -568,7 +559,6 @@
           if (doc.exists) {
               const data = doc.data();
 
-              // Add fade-in effect
               aboutHeading.className = 'fade-in';
               aboutText.className = 'fade-in';
 
@@ -576,7 +566,6 @@
               aboutText.textContent = data.text || 'Osnovani 2015. godine, MS Sjaj je započeo sa jednostavnom misijom - pružanje profesionalnih usluga čišćenja za 
   domove i firme.';
           } else {
-              // No data found - show defaults
               aboutHeading.textContent = 'O nama - MS Sjaj';
               aboutText.textContent = 'Osnovani 2015. godine, MS Sjaj je započeo sa jednostavnom misijom - pružanje profesionalnih usluga čišćenja za domove i firme.';
           }
@@ -610,11 +599,10 @@
       });
   }
 
-   function loadTestimonials() {
+  function loadTestimonials() {
       const testimonialsGrid = document.getElementById('testimonialsGrid');
       if (!testimonialsGrid) return;
 
-      // Show loading spinner
       showLoading('testimonialsGrid');
 
       db.collection('testimonials').get().then(function(querySnapshot) {
@@ -631,7 +619,7 @@
               testimonials.forEach(function(testimonial, index) {
                   const card = document.createElement('div');
                   card.className = 'testimonial-card fade-in';
-                  card.style.animationDelay = (index * 0.1) + 's'; // Stagger animation
+                  card.style.animationDelay = (index * 0.1) + 's';
 
                   const text = document.createElement('p');
                   text.className = 'testimonial-text';
@@ -648,11 +636,8 @@
           }
       }).catch(function(error) {
           console.error('Error loading testimonials:', error);
-          testimonialsGrid.innerHTML = `
-              <p style="text-align: center; color: var(--danger-color); padding: 2rem; grid-column: 1/-1;">
-                  Greška pri učitavanju recenzija. Molimo osvežite stranicu.
-              </p>
-          `;
+          testimonialsGrid.innerHTML = '<p style="text-align: center; color: var(--danger-color); padding: 2rem; grid-column: 1/-1;">Greška pri učitavanju recenzija. 
+  Molimo osvežite stranicu.</p>';
       });
   }
 
@@ -749,11 +734,10 @@
       }
   }
 
-   function loadGallery() {
+  function loadGallery() {
       const galleryGrid = document.getElementById('galleryGrid');
       if (!galleryGrid) return;
 
-      // Show loading spinner
       showLoading('galleryGrid');
 
       db.collection('gallery').orderBy('uploadedAt', 'desc').get().then(function(querySnapshot) {
@@ -766,7 +750,7 @@
                   const photo = doc.data();
                   const div = document.createElement('div');
                   div.className = 'gallery-item fade-in';
-                  div.style.animationDelay = (index * 0.05) + 's'; // Faster stagger for images
+                  div.style.animationDelay = (index * 0.05) + 's';
 
                   const img = document.createElement('img');
                   img.src = photo.url;
@@ -778,14 +762,10 @@
           }
       }).catch(function(error) {
           console.error('Error loading gallery:', error);
-          galleryGrid.innerHTML = `
-              <p style="text-align: center; color: var(--danger-color); padding: 2rem; grid-column: 1/-1;">
-                  Greška pri učitavanju galerije. Molimo osvežite stranicu.
-              </p>
-          `;
+          galleryGrid.innerHTML = '<p style="text-align: center; color: var(--danger-color); padding: 2rem; grid-column: 1/-1;">Greška pri učitavanju galerije. Molimo 
+  osvežite stranicu.</p>';
       });
   }
-
 
   function loadGalleryAdmin() {
       const galleryAdmin = document.getElementById('galleryAdmin');
@@ -891,7 +871,6 @@
       const addonsGrid = document.getElementById('addonsGrid');
       if (!addonsGrid) return;
 
-      // Show loading spinner
       showLoading('addonsGrid');
 
       db.collection('addons').get().then(function(querySnapshot) {
@@ -908,7 +887,7 @@
               addons.forEach(function(addon, index) {
                   const card = document.createElement('div');
                   card.className = 'addon-card fade-in';
-                  card.style.animationDelay = (index * 0.1) + 's'; // Stagger animation
+                  card.style.animationDelay = (index * 0.1) + 's';
 
                   const h4 = document.createElement('h4');
                   h4.textContent = addon.name;
@@ -923,11 +902,8 @@
           }
       }).catch(function(error) {
           console.error('Error loading add-ons:', error);
-          addonsGrid.innerHTML = `
-              <p style="text-align: center; color: var(--danger-color); padding: 2rem; grid-column: 1/-1;">
-                  Greška pri učitavanju dodatnih usluga. Molimo osvežite stranicu.
-              </p>
-          `;
+          addonsGrid.innerHTML = '<p style="text-align: center; color: var(--danger-color); padding: 2rem; grid-column: 1/-1;">Greška pri učitavanju dodatnih usluga. 
+  Molimo osvežite stranicu.</p>';
       });
   }
 
