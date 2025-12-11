@@ -596,7 +596,7 @@
       });
   }
 
-  function loadTestimonials() {
+   function loadTestimonials() {
       const testimonialsGrid = document.getElementById('testimonialsGrid');
       if (!testimonialsGrid) return;
 
@@ -623,10 +623,13 @@
                   text.className = 'testimonial-text';
                   text.textContent = testimonial.text;
 
-                  // Star rating
+                  // Star rating (dynamic based on database value)
                   const rating = document.createElement('div');
                   rating.className = 'testimonial-rating';
-                  rating.innerHTML = '★★★★★';
+                  const ratingValue = testimonial.rating || 5; // Default to 5 if not set
+                  const fullStars = '★'.repeat(ratingValue);
+                  const emptyStars = '☆'.repeat(5 - ratingValue);
+                  rating.innerHTML = fullStars + emptyStars;
 
                   // Author section with avatar
                   const authorSection = document.createElement('div');
@@ -641,7 +644,10 @@
 
                   const authorName = document.createElement('strong');
                   authorName.textContent = testimonial.author;
-             
+
+                  const authorTitle = document.createElement('span');
+                  authorTitle.textContent = 'Verified Customer';
+
                   authorInfo.appendChild(authorName);
                   authorInfo.appendChild(authorTitle);
 
@@ -673,13 +679,26 @@
               div.className = 'testimonial-item';
               const contentDiv = document.createElement('div');
               contentDiv.className = 'testimonial-content';
+
               const p1 = document.createElement('p');
               p1.textContent = '"' + testimonial.text + '"';
+
+              const ratingP = document.createElement('p');
+              const ratingValue = testimonial.rating || 5;
+              const fullStars = '★'.repeat(ratingValue);
+              const emptyStars = '☆'.repeat(5 - ratingValue);
+              ratingP.innerHTML = '<strong>Ocena:</strong> ' + fullStars + emptyStars;
+              ratingP.style.color = '#fbbf24';
+              ratingP.style.fontSize = '1.2rem';
+
               const p2 = document.createElement('p');
               p2.className = 'testimonial-author';
               p2.textContent = '- ' + testimonial.author;
+
               contentDiv.appendChild(p1);
+              contentDiv.appendChild(ratingP);
               contentDiv.appendChild(p2);
+
               const actionsDiv = document.createElement('div');
               actionsDiv.className = 'testimonial-actions';
               const editBtn = document.createElement('button');
@@ -706,11 +725,13 @@
                   const testimonial = doc.data();
                   document.getElementById('testimonialText').value = testimonial.text;
                   document.getElementById('testimonialAuthor').value = testimonial.author;
+                  document.getElementById('testimonialRating').value = testimonial.rating || 5;
                   form.dataset.testimonialId = testimonialId;
               }
           });
       } else {
           form.reset();
+          document.getElementById('testimonialRating').value = 5; // Default to 5 stars
           delete form.dataset.testimonialId;
       }
       modal.style.display = 'flex';
@@ -724,7 +745,8 @@
       const form = document.getElementById('testimonialForm');
       const testimonialData = {
           text: document.getElementById('testimonialText').value,
-          author: document.getElementById('testimonialAuthor').value
+          author: document.getElementById('testimonialAuthor').value,
+          rating: parseInt(document.getElementById('testimonialRating').value)
       };
       const testimonialId = form.dataset.testimonialId;
       if (testimonialId) {
