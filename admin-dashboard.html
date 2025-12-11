@@ -114,25 +114,40 @@
                       </div>
                   </div>
 
-                  <!-- Edit About Page -->
-                  <div id="about-section" class="content-section">
-                      <div class="dashboard-section">
-                          <h2>Uredi O nama stranicu</h2>
-                          <form class="cms-form">
-                              <div class="form-group">
-                                  <label for="aboutHeading">Naslov</label>
-                                  <input type="text" id="aboutHeading" placeholder="Naslov O nama sekcije">
-                              </div>
-                              <div class="form-group">
-                                  <label for="aboutText">Tekst</label>
-                                  <textarea id="aboutText" rows="5" placeholder="Opis kompanije"></textarea>
-                              </div>
+                <!-- Edit About Page -->
+  <div id="about-section" class="content-section">
+      <div class="dashboard-section">
+          <h2>Uredi O nama stranicu</h2>
+          <form class="cms-form">
+              <!-- Story Section -->
+              <h3>Priča</h3>
+              <div class="form-group">
+                  <label for="aboutHeading">Naslov</label>
+                  <input type="text" id="aboutHeading" placeholder="Naslov O nama sekcije">
+              </div>
+              <div class="form-group">
+                  <label for="aboutText">Tekst</label>
+                  <textarea id="aboutText" rows="5" placeholder="Opis kompanije"></textarea>
+              </div>
 
-                              <button type="button" id="saveAboutBtn" onclick="saveAboutContent()" class="btn 
-  btn-primary">Sačuvaj izmene</button>
-                          </form>
-                      </div>
-                  </div>
+              <!-- Stats Section -->
+              <h3 style="margin-top: 2rem;">Statistika (4 kutije)</h3>
+              <div id="statsContainer">
+                  <!-- Stats will be loaded here -->
+              </div>
+              <button type="button" onclick="addStat()" class="btn btn-secondary" style="margin-bottom: 1rem;">Dodaj statistiku</button>
+
+              <!-- Why Choose Us Section -->
+              <h3 style="margin-top: 2rem;">Zašto izabrati nas (do 6 razloga)</h3>
+              <div id="reasonsContainer">
+                  <!-- Reasons will be loaded here -->
+              </div>
+              <button type="button" onclick="addReason()" class="btn btn-secondary" style="margin-bottom: 1rem;">Dodaj razlog</button>
+
+              <button type="button" id="saveAboutBtn" onclick="saveAboutContent()" class="btn btn-primary">Sačuvaj izmene</button>
+          </form>
+      </div>
+  </div>
 
                  <!-- Edit Add-ons Page -->
                  <div id="addons-section" class="content-section">
