@@ -544,7 +544,7 @@
       }
   }
 
-  function loadAboutContent() {
+   function loadAboutContent() {
       const aboutHeading = document.getElementById('aboutHeading');
       const aboutText = document.getElementById('aboutText');
 
@@ -558,10 +558,59 @@
               const data = doc.data();
 
               aboutHeading.className = 'fade-in';
-              aboutText.className = 'fade-in';
+              aboutText.className = 'fade-in story-text';
 
               aboutHeading.textContent = data.heading || 'O nama - MS Sjaj';
               aboutText.textContent = data.text || 'Osnovani 2015. godine, MS Sjaj je započeo sa jednostavnom misijom - pružanje profesionalnih usluga čišćenja za domove i firme.';
+
+              // Load stats if exists
+              const statsSection = document.querySelector('.stats-section');
+              if (statsSection && data.stats) {
+                  statsSection.innerHTML = '';
+                  data.stats.forEach(function(stat, index) {
+                      const statBox = document.createElement('div');
+                      statBox.className = 'stat-box fade-in';
+                      statBox.style.animationDelay = (index * 0.1) + 's';
+
+                      const statNumber = document.createElement('div');
+                      statNumber.className = 'stat-number';
+                      statNumber.textContent = stat.number;
+
+                      const statLabel = document.createElement('div');
+                      statLabel.className = 'stat-label';
+                      statLabel.textContent = stat.label;
+
+                      statBox.appendChild(statNumber);
+                      statBox.appendChild(statLabel);
+                      statsSection.appendChild(statBox);
+                  });
+              }
+
+              // Load reasons if exists
+              const reasonsGrid = document.querySelector('.reasons-grid');
+              if (reasonsGrid && data.reasons) {
+                  reasonsGrid.innerHTML = '';
+                  data.reasons.forEach(function(reason, index) {
+                      const reasonCard = document.createElement('div');
+                      reasonCard.className = 'reason-card fade-in';
+                      reasonCard.style.animationDelay = (index * 0.1) + 's';
+
+                      const reasonIcon = document.createElement('div');
+                      reasonIcon.className = 'reason-icon';
+                      reasonIcon.textContent = reason.icon;
+
+                      const reasonTitle = document.createElement('h3');
+                      reasonTitle.textContent = reason.title;
+
+                      const reasonDesc = document.createElement('p');
+                      reasonDesc.textContent = reason.description;
+
+                      reasonCard.appendChild(reasonIcon);
+                      reasonCard.appendChild(reasonTitle);
+                      reasonCard.appendChild(reasonDesc);
+                      reasonsGrid.appendChild(reasonCard);
+                  });
+              }
           } else {
               aboutHeading.textContent = 'O nama - MS Sjaj';
               aboutText.textContent = 'Osnovani 2015. godine, MS Sjaj je započeo sa jednostavnom misijom - pružanje profesionalnih usluga čišćenja za domove i firme.';
@@ -574,19 +623,6 @@
       });
   }
 
-  function loadAboutContentAdmin() {
-      const aboutHeading = document.getElementById('aboutHeading');
-      const aboutText = document.getElementById('aboutText');
-      if (!aboutHeading || !aboutText) return;
-      db.collection('content').doc('about').get().then(function(doc) {
-          if (doc.exists) {
-              const data = doc.data();
-              aboutHeading.value = data.heading || '';
-              aboutText.value = data.text || '';
-          }
-      });
-  }
-
   function saveAboutContent() {
       db.collection('content').doc('about').set({
           heading: document.getElementById('aboutHeading').value,
@@ -595,6 +631,248 @@
           alert('Sadrzaj O nama stranice je sacuvan!');
       });
   }
+
+ // Load About Content Admin with Stats and Reasons
+  function loadAboutContentAdmin() {
+      const aboutHeading = document.getElementById('aboutHeading');
+      const aboutText = document.getElementById('aboutText');
+      const statsContainer = document.getElementById('statsContainer');
+      const reasonsContainer = document.getElementById('reasonsContainer');
+
+      if (!aboutHeading || !aboutText) return;
+
+      db.collection('content').doc('about').get().then(function(doc) {
+          if (doc.exists) {
+              const data = doc.data();
+              aboutHeading.value = data.heading || '';
+              aboutText.value = data.text || '';
+
+              // Load stats
+              if (statsContainer) {
+                  statsContainer.innerHTML = '';
+                  const stats = data.stats || [];
+                  stats.forEach(function(stat, index) {
+                      addStatItem(statsContainer, stat, index);
+                  });
+              }
+
+              // Load reasons
+              if (reasonsContainer) {
+                  reasonsContainer.innerHTML = '';
+                  const reasons = data.reasons || [];
+                  reasons.forEach(function(reason, index) {
+                      addReasonItem(reasonsContainer, reason, index);
+                  });
+              }
+          }
+      });
+  }
+
+  // Add Stat Item to Admin
+  function addStatItem(container, stat, index) {
+      const statDiv = document.createElement('div');
+      statDiv.className = 'feature-item';
+      statDiv.style.cssText = 'background: var(--bg-light); padding: 1.5rem; border-radius: 8px; margin-bottom: 1rem;';
+
+      const numberGroup = document.createElement('div');
+      numberGroup.className = 'form-group';
+      const numberLabel = document.createElement('label');
+      numberLabel.textContent = 'Broj/Vrednost (npr. 500+, 10, 100%, 24/7)';
+      const numberInput = document.createElement('input');
+      numberInput.type = 'text';
+      numberInput.value = stat ? (stat.number || '') : '';
+      numberInput.setAttribute('data-index', index);
+      numberInput.setAttribute('data-field', 'number');
+      numberInput.placeholder = 'npr. 500+';
+      numberGroup.appendChild(numberLabel);
+      numberGroup.appendChild(numberInput);
+
+      const labelGroup = document.createElement('div');
+      labelGroup.className = 'form-group';
+      const labelLabel = document.createElement('label');
+      labelLabel.textContent = 'Oznaka';
+      const labelInput = document.createElement('input');
+      labelInput.type = 'text';
+      labelInput.value = stat ? (stat.label || '') : '';
+      labelInput.setAttribute('data-index', index);
+      labelInput.setAttribute('data-field', 'label');
+      labelInput.placeholder = 'npr. Zadovoljnih klijenata';
+      labelGroup.appendChild(labelLabel);
+      labelGroup.appendChild(labelInput);
+
+      const deleteBtn = document.createElement('button');
+      deleteBtn.type = 'button';
+      deleteBtn.className = 'btn';
+      deleteBtn.textContent = 'Obriši statistiku';
+      deleteBtn.style.cssText = 'background: var(--danger-color); color: white; width: 100%;';
+      deleteBtn.onclick = function() { removeStat(index); };
+
+      statDiv.appendChild(numberGroup);
+      statDiv.appendChild(labelGroup);
+      statDiv.appendChild(deleteBtn);
+      container.appendChild(statDiv);
+  }
+
+  // Add new stat
+  function addStat() {
+      const container = document.getElementById('statsContainer');
+      const index = container.children.length;
+      addStatItem(container, null, index);
+  }
+
+  // Remove stat
+  function removeStat(index) {
+      const container = document.getElementById('statsContainer');
+      if (container.children[index]) {
+          container.children[index].remove();
+      }
+      Array.from(container.children).forEach(function(child, i) {
+          child.querySelectorAll('[data-index]').forEach(function(el) {
+              el.setAttribute('data-index', i);
+          });
+          const button = child.querySelector('button');
+          if (button) {
+              button.onclick = function() { removeStat(i); };
+          }
+      });
+  }
+
+  // Add Reason Item to Admin
+  function addReasonItem(container, reason, index) {
+      const icons = ['✨', '🌿', '💎', '⏰', '🛡️', '💰', '⭐', '🤝', '💚', '🏆', '🎯', '📊'];
+
+      const reasonDiv = document.createElement('div');
+      reasonDiv.className = 'feature-item';
+      reasonDiv.style.cssText = 'background: var(--bg-light); padding: 1.5rem; border-radius: 8px; margin-bottom: 1rem;';
+
+      const iconGroup = document.createElement('div');
+      iconGroup.className = 'form-group';
+      const iconLabel = document.createElement('label');
+      iconLabel.textContent = 'Ikona';
+      const iconSelect = document.createElement('select');
+      iconSelect.setAttribute('data-index', index);
+      iconSelect.setAttribute('data-field', 'icon');
+      iconSelect.style.fontSize = '1.5rem';
+      icons.forEach(function(icon) {
+          const option = document.createElement('option');
+          option.value = icon;
+          option.textContent = icon;
+          if (reason && reason.icon === icon) {
+              option.selected = true;
+          }
+          iconSelect.appendChild(option);
+      });
+      iconGroup.appendChild(iconLabel);
+      iconGroup.appendChild(iconSelect);
+
+      const titleGroup = document.createElement('div');
+      titleGroup.className = 'form-group';
+      const titleLabel = document.createElement('label');
+      titleLabel.textContent = 'Naslov';
+      const titleInput = document.createElement('input');
+      titleInput.type = 'text';
+      titleInput.value = reason ? (reason.title || '') : '';
+      titleInput.setAttribute('data-index', index);
+      titleInput.setAttribute('data-field', 'title');
+      titleInput.placeholder = 'Naslov razloga';
+      titleGroup.appendChild(titleLabel);
+      titleGroup.appendChild(titleInput);
+
+      const descGroup = document.createElement('div');
+      descGroup.className = 'form-group';
+      const descLabel = document.createElement('label');
+      descLabel.textContent = 'Opis';
+      const descTextarea = document.createElement('textarea');
+      descTextarea.rows = 3;
+      descTextarea.value = reason ? (reason.description || '') : '';
+      descTextarea.setAttribute('data-index', index);
+      descTextarea.setAttribute('data-field', 'description');
+      descTextarea.placeholder = 'Opis razloga';
+      descGroup.appendChild(descLabel);
+      descGroup.appendChild(descTextarea);
+
+      const deleteBtn = document.createElement('button');
+      deleteBtn.type = 'button';
+      deleteBtn.className = 'btn';
+      deleteBtn.textContent = 'Obriši razlog';
+      deleteBtn.style.cssText = 'background: var(--danger-color); color: white; width: 100%;';
+      deleteBtn.onclick = function() { removeReason(index); };
+
+      reasonDiv.appendChild(iconGroup);
+      reasonDiv.appendChild(titleGroup);
+      reasonDiv.appendChild(descGroup);
+      reasonDiv.appendChild(deleteBtn);
+      container.appendChild(reasonDiv);
+  }
+
+  // Add new reason
+  function addReason() {
+      const container = document.getElementById('reasonsContainer');
+      const index = container.children.length;
+      if (index >= 6) {
+          alert('Možete dodati maksimalno 6 razloga.');
+          return;
+      }
+      addReasonItem(container, null, index);
+  }
+
+  // Remove reason
+  function removeReason(index) {
+      const container = document.getElementById('reasonsContainer');
+      if (container.children[index]) {
+          container.children[index].remove();
+      }
+      Array.from(container.children).forEach(function(child, i) {
+          child.querySelectorAll('[data-index]').forEach(function(el) {
+              el.setAttribute('data-index', i);
+          });
+          const button = child.querySelector('button');
+          if (button) {
+              button.onclick = function() { removeReason(i); };
+          }
+      });
+  }
+
+  // Updated Save About Content
+  function saveAboutContent() {
+      const statsContainer = document.getElementById('statsContainer');
+      const reasonsContainer = document.getElementById('reasonsContainer');
+
+      const stats = [];
+      const reasons = [];
+
+      // Collect stats
+      if (statsContainer) {
+          statsContainer.querySelectorAll('.feature-item').forEach(function(item) {
+              stats.push({
+                  number: item.querySelector('[data-field="number"]').value,
+                  label: item.querySelector('[data-field="label"]').value
+              });
+          });
+      }
+
+      // Collect reasons
+      if (reasonsContainer) {
+          reasonsContainer.querySelectorAll('.feature-item').forEach(function(item) {
+              reasons.push({
+                  icon: item.querySelector('[data-field="icon"]').value,
+                  title: item.querySelector('[data-field="title"]').value,
+                  description: item.querySelector('[data-field="description"]').value
+              });
+          });
+      }
+
+      db.collection('content').doc('about').set({
+          heading: document.getElementById('aboutHeading').value,
+          text: document.getElementById('aboutText').value,
+          stats: stats,
+          reasons: reasons
+      }).then(function() {
+          alert('Sadržaj O nama stranice je sačuvan!');
+      });
+  }
+
+
 
    function loadTestimonials() {
       const testimonialsGrid = document.getElementById('testimonialsGrid');
