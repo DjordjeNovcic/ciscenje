@@ -626,7 +626,7 @@
                   // Star rating (dynamic based on database value)
                   const rating = document.createElement('div');
                   rating.className = 'testimonial-rating';
-                  const ratingValue = testimonial.rating || 5; // Default to 5 if not set
+                  const ratingValue = testimonial.rating || 5;
                   const fullStars = '★'.repeat(ratingValue);
                   const emptyStars = '☆'.repeat(5 - ratingValue);
                   rating.innerHTML = fullStars + emptyStars;
@@ -645,11 +645,8 @@
                   const authorName = document.createElement('strong');
                   authorName.textContent = testimonial.author;
 
-                  const authorTitle = document.createElement('span');
-                  authorTitle.textContent = 'Verified Customer';
-
                   authorInfo.appendChild(authorName);
-                  authorInfo.appendChild(authorTitle);
+                  // No authorTitle added!
 
                   authorSection.appendChild(avatar);
                   authorSection.appendChild(authorInfo);
