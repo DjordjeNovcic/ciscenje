@@ -252,8 +252,7 @@
           }
       }).catch(function(error) {
           console.error('Error loading home content:', error);
-          featuresGrid.innerHTML = '<p style="text-align: center; color: var(--danger-color); padding: 2rem; grid-column: 1/-1;">Greška pri učitavanju sadržaja. Molimo
-   osvežite stranicu.</p>';
+          featuresGrid.innerHTML = '<p style="text-align: center; color: var(--danger-color); padding: 2rem; grid-column: 1/-1;">Greška pri učitavanju sadržaja. Molimo osvežite stranicu.</p>';
       });
   }
 
@@ -432,8 +431,7 @@
           }
       }).catch(function(error) {
           console.error('Error loading services:', error);
-          servicesGrid.innerHTML = '<p style="text-align: center; color: var(--danger-color); padding: 2rem; grid-column: 1/-1;">Greška pri učitavanju usluga. Molimo 
-  osvežite stranicu.</p>';
+          servicesGrid.innerHTML = '<p style="text-align: center; color: var(--danger-color); padding: 2rem; grid-column: 1/-1;">Greška pri učitavanju usluga. Molimo osvežite stranicu.</p>';
       });
   }
 
@@ -563,8 +561,7 @@
               aboutText.className = 'fade-in';
 
               aboutHeading.textContent = data.heading || 'O nama - MS Sjaj';
-              aboutText.textContent = data.text || 'Osnovani 2015. godine, MS Sjaj je započeo sa jednostavnom misijom - pružanje profesionalnih usluga čišćenja za 
-  domove i firme.';
+              aboutText.textContent = data.text || 'Osnovani 2015. godine, MS Sjaj je započeo sa jednostavnom misijom - pružanje profesionalnih usluga čišćenja za domove i firme.';
           } else {
               aboutHeading.textContent = 'O nama - MS Sjaj';
               aboutText.textContent = 'Osnovani 2015. godine, MS Sjaj je započeo sa jednostavnom misijom - pružanje profesionalnih usluga čišćenja za domove i firme.';
@@ -636,8 +633,7 @@
           }
       }).catch(function(error) {
           console.error('Error loading testimonials:', error);
-          testimonialsGrid.innerHTML = '<p style="text-align: center; color: var(--danger-color); padding: 2rem; grid-column: 1/-1;">Greška pri učitavanju recenzija. 
-  Molimo osvežite stranicu.</p>';
+          testimonialsGrid.innerHTML = '<p style="text-align: center; color: var(--danger-color); padding: 2rem; grid-column: 1/-1;">Greška pri učitavanju recenzija. Molimo osvežite stranicu.</p>';
       });
   }
 
@@ -762,8 +758,7 @@
           }
       }).catch(function(error) {
           console.error('Error loading gallery:', error);
-          galleryGrid.innerHTML = '<p style="text-align: center; color: var(--danger-color); padding: 2rem; grid-column: 1/-1;">Greška pri učitavanju galerije. Molimo 
-  osvežite stranicu.</p>';
+          galleryGrid.innerHTML = '<p style="text-align: center; color: var(--danger-color); padding: 2rem; grid-column: 1/-1;">Greška pri učitavanju galerije. Molimo osvežite stranicu.</p>';
       });
   }
 
@@ -902,8 +897,7 @@
           }
       }).catch(function(error) {
           console.error('Error loading add-ons:', error);
-          addonsGrid.innerHTML = '<p style="text-align: center; color: var(--danger-color); padding: 2rem; grid-column: 1/-1;">Greška pri učitavanju dodatnih usluga. 
-  Molimo osvežite stranicu.</p>';
+          addonsGrid.innerHTML = '<p style="text-align: center; color: var(--danger-color); padding: 2rem; grid-column: 1/-1;">Greška pri učitavanju dodatnih usluga. Molimo osvežite stranicu.</p>';
       });
   }
 
