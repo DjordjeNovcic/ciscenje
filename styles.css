@@ -386,11 +386,11 @@
       font-size: 1rem;
   }
 
-  .service-card .service-price {
+   .service-card .service-price {
       display: block;
       text-align: center;
-      font-size: 2.5rem;
-      font-weight: 800;
+      font-size: 1.5rem;        /* ← Smaller size */
+      font-weight: 700;         /* ← Slightly less bold */
       color: var(--primary-color);
       margin: 1.5rem 0 2rem 0;
       letter-spacing: -0.5px;
@@ -592,10 +592,10 @@
       line-height: 1.4;
   }
 
-  .addon-card p {
+   .addon-card p {
       color: var(--primary-color);
-      font-weight: 800;
-      font-size: 2rem;
+      font-weight: 700;         /* ← Slightly less bold */
+      font-size: 1.25rem;       /* ← Smaller size */
       margin-top: 1rem;
       letter-spacing: -0.5px;
   }
@@ -1883,7 +1883,7 @@
       }
 
       .service-card .service-price {
-          font-size: 2rem;
+           font-size: 1.25rem;
       }
 
       /* Add-ons responsive */
@@ -1902,7 +1902,7 @@
       }
 
       .addon-card p {
-          font-size: 1.75rem;
+          font-size: 1.1rem
       }
   }
 
@@ -1930,11 +1930,11 @@
       }
 
       .service-card .service-price {
-          font-size: 1.75rem;
+          font-size: 1.1rem;
       }
 
       .addon-card p {
-          font-size: 1.5rem;
+           font-size: 1rem;   
       }
   }
 
