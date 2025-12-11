@@ -548,20 +548,23 @@
       const aboutHeading = document.getElementById('aboutHeading');
       const aboutText = document.getElementById('aboutText');
 
-      if (!aboutHeading || !aboutText) return;
-
-      aboutHeading.innerHTML = '<div class="loading-spinner" style="width: 30px; height: 30px; border-width: 3px;"></div>';
-      aboutText.innerHTML = '<div class="loading-spinner" style="width: 30px; height: 30px; border-width: 3px;"></div>';
+      // Load heading and text if they exist (about.html page)
+      if (aboutHeading && aboutText) {
+          aboutHeading.innerHTML = '<div class="loading-spinner" style="width: 30px; height: 30px; border-width: 3px;"></div>';
+          aboutText.innerHTML = '<div class="loading-spinner" style="width: 30px; height: 30px; border-width: 3px;"></div>';
+      }
 
       db.collection('content').doc('about').get().then(function(doc) {
           if (doc.exists) {
               const data = doc.data();
 
-              aboutHeading.className = 'fade-in';
-              aboutText.className = 'fade-in story-text';
-
-              aboutHeading.textContent = data.heading || 'O nama - MS Sjaj';
-              aboutText.textContent = data.text || 'Osnovani 2015. godine, MS Sjaj je započeo sa jednostavnom misijom - pružanje profesionalnih usluga čišćenja za domove i firme.';
+              // Update heading and text if elements exist
+              if (aboutHeading && aboutText) {
+                  aboutHeading.className = 'fade-in';
+                  aboutText.className = 'fade-in story-text';
+                  aboutHeading.textContent = data.heading || 'O nama - MS Sjaj';
+                  aboutText.textContent = data.text || 'Osnovani 2015. godine, MS Sjaj je započeo sa jednostavnom misijom - pružanje profesionalnih usluga čišćenja za domove i firme.';
+              }
 
               // Load stats if exists
               const statsSection = document.querySelector('.stats-section');
@@ -586,7 +589,7 @@
                   });
               }
 
-              // Load reasons if exists
+              // Load reasons if exists (works on both index.html AND about.html)
               const reasonsGrid = document.querySelector('.reasons-grid');
               if (reasonsGrid && data.reasons) {
                   reasonsGrid.innerHTML = '';
@@ -611,15 +614,14 @@
                       reasonsGrid.appendChild(reasonCard);
                   });
               }
-          } else {
-              aboutHeading.textContent = 'O nama - MS Sjaj';
-              aboutText.textContent = 'Osnovani 2015. godine, MS Sjaj je započeo sa jednostavnom misijom - pružanje profesionalnih usluga čišćenja za domove i firme.';
           }
       }).catch(function(error) {
           console.error('Error loading about content:', error);
-          aboutHeading.textContent = 'O nama - MS Sjaj';
-          aboutText.textContent = 'Greška pri učitavanju sadržaja. Molimo osvežite stranicu.';
-          aboutText.style.color = 'var(--danger-color)';
+          if (aboutHeading && aboutText) {
+              aboutHeading.textContent = 'O nama - MS Sjaj';
+              aboutText.textContent = 'Greška pri učitavanju sadržaja. Molimo osvežite stranicu.';
+              aboutText.style.color = 'var(--danger-color)';
+          }
       });
   }
 
