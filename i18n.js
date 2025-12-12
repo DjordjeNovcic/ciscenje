@@ -1,6 +1,4 @@
-// i18n.js
-  // Import translations (make sure translations.js is loaded first)
-
+// i18n.js - Internationalization Helper
   document.addEventListener('DOMContentLoaded', function() {
       initLanguage();
       setupLanguageSwitcher();
@@ -9,8 +7,8 @@
 
   function initLanguage() {
       const currentLang = getCurrentLanguage();
+      document.documentElement.lang = currentLang;
 
-      // Set active language button
       document.querySelectorAll('.lang-btn').forEach(btn => {
           if (btn.dataset.lang === currentLang) {
               btn.classList.add('active');
@@ -30,32 +28,46 @@
   }
 
   function translatePage() {
-      // Translate all elements with data-i18n attribute
+      // Translate elements with data-i18n
       document.querySelectorAll('[data-i18n]').forEach(element => {
           const key = element.getAttribute('data-i18n');
           const translation = t(key);
-
-          // Check if element has placeholder attribute
-          if (element.hasAttribute('placeholder')) {
-              element.setAttribute('placeholder', translation);
-          } else {
-              element.textContent = translation;
-          }
+          element.textContent = translation;
       });
 
-      // Translate elements with innerHTML (for HTML content like <br>)
+      // Translate placeholders
+      document.querySelectorAll('[data-i18n-placeholder]').forEach(element => {
+          const key = element.getAttribute('data-i18n-placeholder');
+          const translation = t(key);
+          element.setAttribute('placeholder', translation);
+      });
+
+      // Translate HTML content
       document.querySelectorAll('[data-i18n-html]').forEach(element => {
           const key = element.getAttribute('data-i18n-html');
           const translation = t(key);
           element.innerHTML = translation;
       });
+
+      // Translate select options
+      document.querySelectorAll('select option[data-i18n]').forEach(option => {
+          const key = option.getAttribute('data-i18n');
+          const translation = t(key);
+          option.textContent = translation;
+      });
   }
 
-  // Function to get translated content from Firebase based on current language
+  // Get localized field from Firebase document
   function getLocalizedField(item, field) {
       const lang = getCurrentLanguage();
-      const localizedField = `${field}_${lang}`;
 
-      // Return localized version if exists, otherwise fall back to default
-      return item[localizedField] || item[field];
+      if (lang === 'en' && item[field + '_en']) {
+          return item[field + '_en'];
+      }
+
+      if (lang === 'sr' && item[field + '_sr']) {
+          return item[field + '_sr'];
+      }
+
+      return item[field] || '';
   }
