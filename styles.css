@@ -2795,11 +2795,13 @@
         /* Show language switcher inside mobile menu */
         .nav-menu > li.language-switcher {
             display: flex !important;
-            justify-content: center;
-            padding: 1.5rem 2rem;
-            border-top: 2px solid var(--border-color);
-            margin-top: 1rem;
-            background: var(--bg-light);
+    justify-content: center;
+    align-items: center;
+    gap: 1.5rem;
+    padding: 1.5rem 0;
+    margin: 0;
+    border-top: 2px solid var(--border-color);
+    background: var(--bg-light);
         }
 
         .nav-menu .lang-btn {
