@@ -23,6 +23,9 @@
                   <div class="nav-item" data-section="home-section">
                       <span>🏠</span> Početna
                   </div>
+                  <button class="nav-item" data-section="slideshow">
+                      <i class="fas fa-images"></i>Slideshow
+                  </button>
                   <div class="nav-item" data-section="services-section">
                       <span>💼</span> Usluge
                   </div>
@@ -274,6 +277,21 @@
   btn-primary">Sačuvaj</button>
               </div>
           </form>
+      </div>
+  </div>
+
+      <!-- Slideshow Management Section -->
+  <div id="slideshow" class="content-section">
+      <h2>Upravljanje Slideshow-om</h2>
+      <p>Dodajte slike za pozadinski slideshow na početnoj stranici.</p>
+
+      <button onclick="document.getElementById('slideshowInput').click()" class="btn btn-primary">
+          <i class="fas fa-upload"></i> Dodaj sliku u slideshow
+      </button>
+      <input type="file" id="slideshowInput" accept="image/*" style="display: none;">
+
+      <div id="slideshowAdmin" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 1rem; margin-top: 2rem;">
+          <!-- Slideshow images will load here -->
       </div>
   </div>
 
