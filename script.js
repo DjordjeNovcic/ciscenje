@@ -1756,7 +1756,7 @@
 
 
  // ========================================
-  // THEME MANAGEMENT
+  // THEME MANAGEMENT - UPDATED WITH TEXT COLORS
   // ========================================
 
   const defaultColors = {
@@ -1764,40 +1764,22 @@
       primaryDark: '#ea580c',
       secondaryColor: '#2d2d2d',
       successColor: '#10b981',
-      bgLight: '#fffbeb'
+      bgLight: '#fffbeb',
+      textDark: '#1f2937',      // ← NEW
+      textLight: '#6b7280'      // ← NEW
   };
-
-  // Load theme on page load
-  function loadTheme() {
-      db.collection('settings').doc('theme').get()
-          .then(doc => {
-              if (doc.exists) {
-                  const colors = doc.data();
-                  applyTheme(colors);
-              }
-          })
-          .catch(error => console.error('Error loading theme:', error));
-  }
 
   // Apply theme colors to CSS variables
   function applyTheme(colors) {
       const root = document.documentElement;
 
-      if (colors.primaryColor) {
-          root.style.setProperty('--primary-color', colors.primaryColor);
-      }
-      if (colors.primaryDark) {
-          root.style.setProperty('--primary-dark', colors.primaryDark);
-      }
-      if (colors.secondaryColor) {
-          root.style.setProperty('--secondary-color', colors.secondaryColor);
-      }
-      if (colors.successColor) {
-          root.style.setProperty('--success-color', colors.successColor);
-      }
-      if (colors.bgLight) {
-          root.style.setProperty('--bg-light', colors.bgLight);
-      }
+      if (colors.primaryColor) root.style.setProperty('--primary-color', colors.primaryColor);
+      if (colors.primaryDark) root.style.setProperty('--primary-dark', colors.primaryDark);
+      if (colors.secondaryColor) root.style.setProperty('--secondary-color', colors.secondaryColor);
+      if (colors.successColor) root.style.setProperty('--success-color', colors.successColor);
+      if (colors.bgLight) root.style.setProperty('--bg-light', colors.bgLight);
+      if (colors.textDark) root.style.setProperty('--text-dark', colors.textDark);       // ← NEW
+      if (colors.textLight) root.style.setProperty('--text-light', colors.textLight);   // ← NEW
 
       // Update gradient
       if (colors.primaryColor && colors.primaryDark) {
@@ -1835,39 +1817,34 @@
           });
   }
 
-  // Preview theme (apply temporarily without saving)
+  // Preview theme
   function previewTheme() {
       const colors = {
           primaryColor: document.getElementById('primaryColor').value,
           primaryDark: document.getElementById('primaryDark').value,
           secondaryColor: document.getElementById('secondaryColor').value,
           successColor: document.getElementById('successColor').value,
-          bgLight: document.getElementById('bgLight').value
+          bgLight: document.getElementById('bgLight').value,
+          textDark: document.getElementById('textDark').value,       // ← NEW
+          textLight: document.getElementById('textLight').value      // ← NEW
       };
 
       applyTheme(colors);
 
-      // Show preview notification
       const notification = document.createElement('div');
       notification.textContent = '👁️ Pregled tema - promene nisu sačuvane';
       notification.style.cssText = `
-          position: fixed;
-          top: 20px;
-          right: 20px;
-          background: #3b82f6;
-          color: white;
-          padding: 1rem 2rem;
-          border-radius: 8px;
+          position: fixed; top: 20px; right: 20px;
+          background: #3b82f6; color: white;
+          padding: 1rem 2rem; border-radius: 8px;
           box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-          z-index: 10000;
-          animation: slideIn 0.3s ease;
+          z-index: 10000; animation: slideIn 0.3s ease;
       `;
       document.body.appendChild(notification);
-
       setTimeout(() => notification.remove(), 3000);
   }
 
-  // Save theme to Firebase
+  // Save theme
   function saveTheme() {
       const colors = {
           primaryColor: document.getElementById('primaryColor').value,
@@ -1875,6 +1852,8 @@
           secondaryColor: document.getElementById('secondaryColor').value,
           successColor: document.getElementById('successColor').value,
           bgLight: document.getElementById('bgLight').value,
+          textDark: document.getElementById('textDark').value,       // ← NEW
+          textLight: document.getElementById('textLight').value,     // ← NEW
           updatedAt: new Date().toISOString()
       };
 
@@ -1894,7 +1873,9 @@
       const colorMap = {
           'primary': 'primaryColor',
           'primaryDark': 'primaryDark',
-          'secondary': 'secondaryColor'
+          'secondary': 'secondaryColor',
+          'textDark': 'textDark',      // ← NEW
+          'textLight': 'textLight'     // ← NEW
       };
 
       const key = colorMap[colorType];
@@ -1904,7 +1885,7 @@
       }
   }
 
-  // Reset all colors to default
+  // Reset all colors
   function resetAllColors() {
       if (confirm('Da li ste sigurni da želite da resetujete sve boje na podrazumevane vrednosti?')) {
           updateColorPickers(defaultColors);
@@ -1912,9 +1893,9 @@
       }
   }
 
-  // Update text input when color picker changes
+  // Update text inputs when color pickers change
   document.addEventListener('DOMContentLoaded', () => {
-      const colorInputs = ['primaryColor', 'primaryDark', 'secondaryColor', 'successColor', 'bgLight'];
+      const colorInputs = ['primaryColor', 'primaryDark', 'secondaryColor', 'successColor', 'bgLight', 'textDark', 'textLight'];
 
       colorInputs.forEach(id => {
           const colorInput = document.getElementById(id);
