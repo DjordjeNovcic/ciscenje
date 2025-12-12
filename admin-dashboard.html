@@ -85,6 +85,9 @@
                   <div class="nav-item" data-section="contact-section">
                       <span>📞</span> Kontakt
                   </div>
+               <div class="nav-item" data-section="theme-section">
+      <span>🎨</span> Tema
+  </div>
               </nav>
               <div class="sidebar-footer">
                   <button id="logoutBtn" class="btn btn-secondary btn-block">Odjavi se</button>
@@ -296,6 +299,99 @@
                           </form>
                       </div>
                   </div>
+
+                <!-- Theme Settings Section -->
+  <div id="theme-section" class="content-section">
+      <div class="dashboard-section">
+          <h2>Podešavanja Tema</h2>
+          <p>Izaberite boje za vaš sajt. Promene će biti odmah primenjene na ceo sajt.</p>
+
+          <form class="cms-form" style="max-width: 700px;">
+              <div class="dual-lang-group">
+                  <h3>🎨 Glavne Boje</h3>
+
+                  <div class="form-group">
+                      <label for="primaryColor">Primarna Boja (Dugmad, Linkovi)</label>
+                      <div style="display: flex; gap: 1rem; align-items: center;">
+                          <input type="color" id="primaryColor" value="#f59e0b" 
+                                 style="width: 80px; height: 50px; border: 2px solid var(--border-color); border-radius: 8px; cursor: pointer;">
+                          <input type="text" id="primaryColorText" value="#f59e0b" 
+                                 style="flex: 1; font-family: monospace;" readonly>
+                          <button type="button" onclick="resetColor('primary')" class="btn btn-secondary">Reset</button>
+                      </div>
+                  </div>
+
+                  <div class="form-group">
+                      <label for="primaryDark">Tamnija Primarna (Hover Efekat)</label>
+                      <div style="display: flex; gap: 1rem; align-items: center;">
+                          <input type="color" id="primaryDark" value="#ea580c" 
+                                 style="width: 80px; height: 50px; border: 2px solid var(--border-color); border-radius: 8px; cursor: pointer;">
+                          <input type="text" id="primaryDarkText" value="#ea580c" 
+                                 style="flex: 1; font-family: monospace;" readonly>
+                          <button type="button" onclick="resetColor('primaryDark')" class="btn btn-secondary">Reset</button>
+                      </div>
+                  </div>
+
+                  <div class="form-group">
+                      <label for="secondaryColor">Sekundarna Boja</label>
+                      <div style="display: flex; gap: 1rem; align-items: center;">
+                          <input type="color" id="secondaryColor" value="#2d2d2d" 
+                                 style="width: 80px; height: 50px; border: 2px solid var(--border-color); border-radius: 8px; cursor: pointer;">
+                          <input type="text" id="secondaryColorText" value="#2d2d2d" 
+                                 style="flex: 1; font-family: monospace;" readonly>
+                          <button type="button" onclick="resetColor('secondary')" class="btn btn-secondary">Reset</button>
+                      </div>
+                  </div>
+              </div>
+
+              <div class="dual-lang-group">
+                  <h3>🎯 Dodatne Boje</h3>
+
+                  <div class="form-group">
+                      <label for="successColor">Boja Uspeha</label>
+                      <div style="display: flex; gap: 1rem; align-items: center;">
+                          <input type="color" id="successColor" value="#10b981" 
+                                 style="width: 80px; height: 50px; border: 2px solid var(--border-color); border-radius: 8px; cursor: pointer;">
+                          <input type="text" id="successColorText" value="#10b981" 
+                                 style="flex: 1; font-family: monospace;" readonly>
+                      </div>
+                  </div>
+
+                  <div class="form-group">
+                      <label for="bgLight">Svetla Pozadina</label>
+                      <div style="display: flex; gap: 1rem; align-items: center;">
+                          <input type="color" id="bgLight" value="#fffbeb" 
+                                 style="width: 80px; height: 50px; border: 2px solid var(--border-color); border-radius: 8px; cursor: pointer;">
+                          <input type="text" id="bgLightText" value="#fffbeb" 
+                                 style="flex: 1; font-family: monospace;" readonly>
+                      </div>
+                  </div>
+              </div>
+
+              <div class="form-group">
+                  <button type="button" onclick="previewTheme()" class="btn btn-secondary" style="margin-right: 1rem;">
+                      👁️ Pregled
+                  </button>
+                  <button type="button" onclick="saveTheme()" class="btn btn-primary" style="margin-right: 1rem;">
+                      💾 Sačuvaj Temu
+                  </button>
+                  <button type="button" onclick="resetAllColors()" class="btn btn-secondary">
+                      🔄 Reset Sve
+                  </button>
+              </div>
+          </form>
+
+          <div class="dual-lang-group" style="margin-top: 2rem;">
+              <h3>📋 Pregled Boja</h3>
+              <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 1rem;">
+                  <div class="btn btn-primary" style="cursor: default;">Primary Button</div>
+                  <div class="btn btn-secondary" style="cursor: default;">Secondary Button</div>
+                  <div style="padding: 1rem; background: var(--bg-light); border-radius: 8px; text-align: center;">Light BG</div>
+                  <div style="padding: 1rem; background: var(--success-color); color: white; border-radius: 8px; text-align: center;">Success</div>
+              </div>
+          </div>
+      </div>
+  </div>
               </div>
           </main>
       </div>
