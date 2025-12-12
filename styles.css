@@ -2804,6 +2804,15 @@
     background: var(--bg-light);
         }
 
+     /* FIX: lang buttons alignment */
+.nav-menu > li.language-switcher .lang-btn {
+    width: 80px;                 /* ← OVO JE KLJUČ */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+}
+
         .nav-menu .lang-btn {
             padding: 0.5rem 1rem;
             font-size: 0.9rem;
