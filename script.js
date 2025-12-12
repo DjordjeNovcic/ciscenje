@@ -198,6 +198,7 @@
       loadGalleryAdmin();
       loadContactAdmin();
       loadAddOnsAdmin();
+      loadSlideshowAdmin();
       setupLogout();
   }
 
@@ -1142,6 +1143,7 @@
               reader.readAsDataURL(file);
           });
       }
+     setupSlideshowUpload();
   }
 
   function deletePhoto(photoId) {
@@ -1386,4 +1388,106 @@
       if (slideshowInterval) {
           clearInterval(slideshowInterval);
       }
+  }
+
+ // Load slideshow admin
+  function loadSlideshowAdmin() {
+      const slideshowAdmin = document.getElementById('slideshowAdmin');
+      if (!slideshowAdmin) return;
+
+      db.collection('slideshow').orderBy('order', 'asc').get().then(function(querySnapshot) {
+          slideshowAdmin.innerHTML = '';
+
+          if (querySnapshot.empty) {
+              slideshowAdmin.innerHTML = '<p style="grid-column: 1/-1; text-align: center; color: var(--text-light); padding: 2rem;">Nema slika u slideshow-u. Kliknite "Dodaj sliku" da dodate prvu.</p>';
+              return;
+          }
+
+          querySnapshot.forEach(function(doc) {
+              const image = doc.data();
+              const div = document.createElement('div');
+              div.className = 'gallery-item';
+
+              const img = document.createElement('img');
+              img.src = image.url;
+              img.alt = 'Slideshow';
+
+              const deleteBtn = document.createElement('button');
+              deleteBtn.className = 'delete-photo';
+              deleteBtn.textContent = 'Obriši';
+              deleteBtn.onclick = function() { deleteSlideshowImage(doc.id); };
+
+              div.appendChild(img);
+              div.appendChild(deleteBtn);
+              slideshowAdmin.appendChild(div);
+          });
+      });
+  }
+
+  // Delete slideshow image
+  function deleteSlideshowImage(imageId) {
+      if (confirm('Da li ste sigurni da želite da obrišete ovu sliku iz slideshow-a?')) {
+          db.collection('slideshow').doc(imageId).delete().then(function() {
+              loadSlideshowAdmin();
+              alert('Slika je obrisana!');
+          });
+      }
+  }
+
+  // Setup slideshow upload
+  function setupSlideshowUpload() {
+      const slideshowInput = document.getElementById('slideshowInput');
+      if (!slideshowInput) return;
+
+      slideshowInput.addEventListener('change', function(e) {
+          const file = e.target.files[0];
+          if (!file) return;
+
+          const reader = new FileReader();
+          reader.onload = function(event) {
+              const base64Image = event.target.result.split(',')[1];
+              const formData = new FormData();
+              formData.append('key', IMGBB_API_KEY);
+              formData.append('image', base64Image);
+
+              fetch('https://api.imgbb.com/1/upload', {
+                  method: 'POST',
+                  body: formData
+              })
+              .then(response => response.json())
+              .then(data => {
+                  if (data.success) {
+                      const imageUrl = data.data.url;
+
+                      // Get current max order
+                      db.collection('slideshow').orderBy('order', 'desc').limit(1).get()
+                          .then(function(querySnapshot) {
+                              let maxOrder = 0;
+                              querySnapshot.forEach(function(doc) {
+                                  maxOrder = doc.data().order || 0;
+                              });
+
+                              // Add new image with order
+                              db.collection('slideshow').add({
+                                  url: imageUrl,
+                                  filename: file.name,
+                                  order: maxOrder + 1,
+                                  uploadedAt: firebase.firestore.FieldValue.serverTimestamp()
+                              }).then(function() {
+                                  slideshowInput.value = '';
+                                  loadSlideshowAdmin();
+                                  alert('Slika je uspešno dodana u slideshow!');
+                              });
+                          });
+                  } else {
+                      alert('Greška pri otpremanju slike.');
+                  }
+              })
+              .catch(error => {
+                  alert('Greška pri otpremanju slike.');
+                  console.error('Upload error:', error);
+              });
+          };
+          reader.readAsDataURL(file);
+      });
   }
