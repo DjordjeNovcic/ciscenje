@@ -448,7 +448,7 @@
      HERO SECTION
      ======================================== */
   .hero {
-      background: var(--primary-gradient);
+      background: linear-gradient(135deg, #1f2937 0%, #111827 100%);
       color: white;
       padding: 6rem 0;
       text-align: center;
