@@ -120,6 +120,7 @@
 
     .phone-wrapper {
         position: relative;
+        flex: 1;
     }
 
     .phone-trigger {
