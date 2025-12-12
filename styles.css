@@ -245,6 +245,13 @@
         color: var(--primary-color);
     }
 
+/* FIX: Right side navbar alignment */
+.nav-right {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+}
+
     .admin-link {
         color: var(--secondary-color) !important;
         font-size: 0.9rem;
