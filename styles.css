@@ -357,7 +357,7 @@
 /* Push language switcher to far right ONLY inside nav-right */
 .nav-right > .language-switcher {
     margin-left: auto;
-    padding-left: 7rem;
+    padding-left: 4rem;
 }
 
 
