@@ -1491,3 +1491,24 @@
           reader.readAsDataURL(file);
       });
   }
+
+document.addEventListener('DOMContentLoaded', function () {
+    const phoneTrigger = document.querySelector('.phone-trigger');
+    const phoneWrapper = document.querySelector('.phone-wrapper');
+
+    if (!phoneTrigger || !phoneWrapper) return;
+
+    phoneTrigger.addEventListener('click', function (e) {
+        if (window.innerWidth <= 768) {
+            e.preventDefault();
+            phoneWrapper.classList.toggle('active');
+        }
+    });
+
+    document.addEventListener('click', function (e) {
+        if (window.innerWidth <= 768 && !phoneWrapper.contains(e.target)) {
+            phoneWrapper.classList.remove('active');
+        }
+    });
+});
+
