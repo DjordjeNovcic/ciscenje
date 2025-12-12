@@ -2360,7 +2360,11 @@
     }
 
     .phone-dropdown {
-        display: none !important;
+       display: none;
+    }
+
+    .phone-wrapper.active .phone-dropdown {
+        display: block;
     }
 
       .nav-menu {
