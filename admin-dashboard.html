@@ -23,13 +23,13 @@
                   <div class="nav-item" data-section="home-section">
                       <span>🏠</span> Početna
                   </div>
-                  <button class="nav-item" data-section="slideshow">
-                      <i class="fas fa-images"></i>Slideshow
-                  </button>
+                  <div class="nav-item" data-section="slideshow-section">
+                      <span>🖼️</span> Slideshow
+                  </div>
                   <div class="nav-item" data-section="services-section">
                       <span>💼</span> Usluge
                   </div>
-                   <div class="nav-item" data-section="addons-section">
+                  <div class="nav-item" data-section="addons-section">
                       <span>➕</span> Dodatne usluge
                   </div>
                   <div class="nav-item" data-section="about-section">
@@ -68,12 +68,10 @@
                           <p>Dobrodošli u admin kontrolnu tablu MS Sjaj</p>
 
                           <div class="quick-actions" style="margin-top: 2rem;">
-                              <button class="btn btn-primary" 
-  onclick="document.querySelector('[data-section=home-section]').click()">Uredi početnu</button>
-                              <button class="btn btn-primary" 
-  onclick="document.querySelector('[data-section=services-section]').click()">Uredi usluge</button>
-                              <button class="btn btn-primary" 
-  onclick="document.querySelector('[data-section=testimonials-section]').click()">Uredi recenzije</button>
+                              <button class="btn btn-primary" onclick="document.querySelector('[data-section=home-section]').click()">Uredi početnu</button>
+                              <button class="btn btn-primary" onclick="document.querySelector('[data-section=slideshow-section]').click()">Uredi slideshow</button>
+                              <button class="btn btn-primary" onclick="document.querySelector('[data-section=services-section]').click()">Uredi usluge</button>
+                              <button class="btn btn-primary" onclick="document.querySelector('[data-section=testimonials-section]').click()">Uredi recenzije</button>
                           </div>
                       </div>
                   </div>
@@ -96,12 +94,27 @@
                               <div id="featuresContainer">
                                   <!-- Features will be loaded here -->
                               </div>
-                              <button type="button" onclick="addFeature()" class="btn btn-secondary" style="margin-bottom: 
-  1rem;">Dodaj karakteristiku</button>
+                              <button type="button" onclick="addFeature()" class="btn btn-secondary" style="margin-bottom: 1rem;">Dodaj karakteristiku</button>
 
-                              <button type="button" id="saveHomeBtn" onclick="saveHomeContent()" class="btn 
-  btn-primary">Sačuvaj izmene</button>
+                              <button type="button" id="saveHomeBtn" onclick="saveHomeContent()" class="btn btn-primary">Sačuvaj izmene</button>
                           </form>
+                      </div>
+                  </div>
+
+                  <!-- Slideshow Management Section -->
+                  <div id="slideshow-section" class="content-section">
+                      <div class="dashboard-section">
+                          <h2>Upravljanje Slideshow-om</h2>
+                          <p>Dodajte slike za pozadinski slideshow na početnoj stranici. Slike će se automatski prikazivati u pozadini loga.</p>
+
+                          <button onclick="document.getElementById('slideshowInput').click()" class="btn btn-primary" style="margin-bottom: 2rem;">
+                              <span>📤</span> Dodaj sliku u slideshow
+                          </button>
+                          <input type="file" id="slideshowInput" accept="image/*" style="display: none;">
+
+                          <div id="slideshowAdmin" class="photo-gallery">
+                              <p>Učitavanje slideshow slika...</p>
+                          </div>
                       </div>
                   </div>
 
@@ -109,58 +122,56 @@
                   <div id="services-section" class="content-section">
                       <div class="dashboard-section">
                           <h2>Uredi usluge</h2>
-                          <button onclick="showServiceModal()" class="btn btn-primary" style="margin-bottom: 1rem;">Dodaj
-  novu uslugu</button>
+                          <button onclick="showServiceModal()" class="btn btn-primary" style="margin-bottom: 1rem;">Dodaj novu uslugu</button>
                           <div id="servicesList">
                               <p>Učitavanje usluga...</p>
                           </div>
                       </div>
                   </div>
 
-                <!-- Edit About Page -->
-  <div id="about-section" class="content-section">
-      <div class="dashboard-section">
-          <h2>Uredi O nama stranicu</h2>
-          <form class="cms-form">
-              <!-- Story Section -->
-              <h3>Priča</h3>
-              <div class="form-group">
-                  <label for="aboutHeading">Naslov</label>
-                  <input type="text" id="aboutHeading" placeholder="Naslov O nama sekcije">
-              </div>
-              <div class="form-group">
-                  <label for="aboutText">Tekst</label>
-                  <textarea id="aboutText" rows="5" placeholder="Opis kompanije"></textarea>
-              </div>
-
-              <!-- Stats Section -->
-              <h3 style="margin-top: 2rem;">Statistika (4 kutije)</h3>
-              <div id="statsContainer">
-                  <!-- Stats will be loaded here -->
-              </div>
-              <button type="button" onclick="addStat()" class="btn btn-secondary" style="margin-bottom: 1rem;">Dodaj statistiku</button>
-
-              <!-- Why Choose Us Section -->
-              <h3 style="margin-top: 2rem;">Zašto izabrati nas (do 6 razloga)</h3>
-              <div id="reasonsContainer">
-                  <!-- Reasons will be loaded here -->
-              </div>
-              <button type="button" onclick="addReason()" class="btn btn-secondary" style="margin-bottom: 1rem;">Dodaj razlog</button>
-
-              <button type="button" id="saveAboutBtn" onclick="saveAboutContent()" class="btn btn-primary">Sačuvaj izmene</button>
-          </form>
-      </div>
-  </div>
-
-                 <!-- Edit Add-ons Page -->
-                 <div id="addons-section" class="content-section">
-                    <div class="dashboard-section">
+                  <!-- Edit Add-ons Page -->
+                  <div id="addons-section" class="content-section">
+                      <div class="dashboard-section">
                           <h2>Uredi dodatne usluge</h2>
-                          <button onclick="showAddOnModal()" class="btn btn-primary" style="margin-bottom: 1rem;">Dodaj novu dodatnu
-                          uslugu</button>
-                      <div id="addonsList">
-                        <p>Učitavanje dodatnih usluga...</p>
+                          <button onclick="showAddOnModal()" class="btn btn-primary" style="margin-bottom: 1rem;">Dodaj novu dodatnu uslugu</button>
+                          <div id="addonsList">
+                              <p>Učitavanje dodatnih usluga...</p>
+                          </div>
                       </div>
+                  </div>
+
+                  <!-- Edit About Page -->
+                  <div id="about-section" class="content-section">
+                      <div class="dashboard-section">
+                          <h2>Uredi O nama stranicu</h2>
+                          <form class="cms-form">
+                              <!-- Story Section -->
+                              <h3>Priča</h3>
+                              <div class="form-group">
+                                  <label for="aboutHeading">Naslov</label>
+                                  <input type="text" id="aboutHeading" placeholder="Naslov O nama sekcije">
+                              </div>
+                              <div class="form-group">
+                                  <label for="aboutText">Tekst</label>
+                                  <textarea id="aboutText" rows="5" placeholder="Opis kompanije"></textarea>
+                              </div>
+
+                              <!-- Stats Section -->
+                              <h3 style="margin-top: 2rem;">Statistika (4 kutije)</h3>
+                              <div id="statsContainer">
+                                  <!-- Stats will be loaded here -->
+                              </div>
+                              <button type="button" onclick="addStat()" class="btn btn-secondary" style="margin-bottom: 1rem;">Dodaj statistiku</button>
+
+                              <!-- Why Choose Us Section -->
+                              <h3 style="margin-top: 2rem;">Zašto izabrati nas (do 6 razloga)</h3>
+                              <div id="reasonsContainer">
+                                  <!-- Reasons will be loaded here -->
+                              </div>
+                              <button type="button" onclick="addReason()" class="btn btn-secondary" style="margin-bottom: 1rem;">Dodaj razlog</button>
+
+                              <button type="button" id="saveAboutBtn" onclick="saveAboutContent()" class="btn btn-primary">Sačuvaj izmene</button>
+                          </form>
                       </div>
                   </div>
 
@@ -168,8 +179,7 @@
                   <div id="testimonials-section" class="content-section">
                       <div class="dashboard-section">
                           <h2>Recenzije kupaca</h2>
-                          <button onclick="showTestimonialModal()" class="btn btn-primary" style="margin-bottom: 
-  1rem;">Dodaj novu recenziju</button>
+                          <button onclick="showTestimonialModal()" class="btn btn-primary" style="margin-bottom: 1rem;">Dodaj novu recenziju</button>
                           <div id="testimonialsList" class="testimonials-list">
                               <p>Učitavanje recenzija...</p>
                           </div>
@@ -181,8 +191,7 @@
                       <div class="dashboard-section">
                           <h2>Galerija fotografija</h2>
                           <input type="file" id="photoInput" accept="image/*" style="display: none;">
-                          <button id="uploadPhotoBtn" class="btn btn-primary" style="margin-bottom: 1rem;">Otpremi
-  fotografiju</button>
+                          <button id="uploadPhotoBtn" class="btn btn-primary" style="margin-bottom: 1rem;">Otpremi fotografiju</button>
                           <div id="galleryAdmin" class="photo-gallery">
                               <p>Učitavanje galerije...</p>
                           </div>
@@ -207,8 +216,7 @@
                                   <input type="text" id="contactAddress" placeholder="Kragujevac, Srbija">
                               </div>
 
-                              <button type="button" id="saveContactBtn" onclick="saveContact()" class="btn 
-  btn-primary">Sačuvaj izmene</button>
+                              <button type="button" id="saveContactBtn" onclick="saveContact()" class="btn btn-primary">Sačuvaj izmene</button>
                           </form>
                       </div>
                   </div>
@@ -238,90 +246,73 @@
                   </div>
                   <div class="modal-actions">
                       <button type="button" class="btn btn-secondary" onclick="closeServiceModal()">Otkaži</button>
-                      <button type="button" id="saveServiceBtn" onclick="saveService()" class="btn 
-  btn-primary">Sačuvaj</button>
+                      <button type="button" id="saveServiceBtn" onclick="saveService()" class="btn btn-primary">Sačuvaj</button>
+                  </div>
+              </form>
+          </div>
+      </div>
+
+      <!-- Add-on Modal -->
+      <div id="addonModal" class="modal">
+          <div class="modal-content">
+              <div class="modal-header">
+                  <h2 id="addonModalTitle">Dodaj dodatnu uslugu</h2>
+                  <button class="close-modal" onclick="closeAddOnModal()">&times;</button>
+              </div>
+              <form id="addonForm">
+                  <div class="form-group">
+                      <label for="addonName">Naziv dodatne usluge</label>
+                      <input type="text" id="addonName" required>
+                  </div>
+                  <div class="form-group">
+                      <label for="addonDescription">Opis</label>
+                      <textarea id="addonDescription" rows="2" required></textarea>
+                  </div>
+                  <div class="form-group">
+                      <label for="addonPrice">Cena</label>
+                      <input type="text" id="addonPrice" placeholder="npr. Od 2.000 RSD" required>
+                  </div>
+                  <div class="modal-actions">
+                      <button type="button" class="btn btn-secondary" onclick="closeAddOnModal()">Otkaži</button>
+                      <button type="button" id="saveAddOnBtn" onclick="saveAddOn()" class="btn btn-primary">Sačuvaj</button>
                   </div>
               </form>
           </div>
       </div>
 
       <!-- Testimonial Modal -->
-  <div id="testimonialModal" class="modal">
-      <div class="modal-content">
-          <div class="modal-header">
-              <h2>Dodaj/Uredi recenziju</h2>
-              <button class="close-modal" onclick="closeTestimonialModal()">&times;</button>
+      <div id="testimonialModal" class="modal">
+          <div class="modal-content">
+              <div class="modal-header">
+                  <h2>Dodaj/Uredi recenziju</h2>
+                  <button class="close-modal" onclick="closeTestimonialModal()">&times;</button>
+              </div>
+              <form id="testimonialForm">
+                  <div class="form-group">
+                      <label for="testimonialText">Tekst recenzije</label>
+                      <textarea id="testimonialText" rows="4" required></textarea>
+                  </div>
+                  <div class="form-group">
+                      <label for="testimonialAuthor">Ime kupca</label>
+                      <input type="text" id="testimonialAuthor" required>
+                  </div>
+                  <div class="form-group">
+                      <label for="testimonialRating">Ocena</label>
+                      <select id="testimonialRating" required>
+                          <option value="5">★★★★★ (5 zvezda)</option>
+                          <option value="4">★★★★☆ (4 zvezde)</option>
+                          <option value="3">★★★☆☆ (3 zvezde)</option>
+                          <option value="2">★★☆☆☆ (2 zvezde)</option>
+                          <option value="1">★☆☆☆☆ (1 zvezda)</option>
+                      </select>
+                  </div>
+                  <div class="modal-actions">
+                      <button type="button" class="btn btn-secondary" onclick="closeTestimonialModal()">Otkaži</button>
+                      <button type="button" id="saveTestimonialBtn" onclick="saveTestimonial()" class="btn btn-primary">Sačuvaj</button>
+                  </div>
+              </form>
           </div>
-          <form id="testimonialForm">
-              <div class="form-group">
-                  <label for="testimonialText">Tekst recenzije</label>
-                  <textarea id="testimonialText" rows="4" required></textarea>
-              </div>
-              <div class="form-group">
-                  <label for="testimonialAuthor">Ime kupca</label>
-                  <input type="text" id="testimonialAuthor" required>
-              </div>
-              <div class="form-group">
-                  <label for="testimonialRating">Ocena</label>
-                  <select id="testimonialRating" required>
-                      <option value="5">★★★★★ (5 zvezda)</option>
-                      <option value="4">★★★★☆ (4 zvezde)</option>
-                      <option value="3">★★★☆☆ (3 zvezde)</option>
-                      <option value="2">★★☆☆☆ (2 zvezde)</option>
-                      <option value="1">★☆☆☆☆ (1 zvezda)</option>
-                  </select>
-              </div>
-              <div class="modal-actions">
-                  <button type="button" class="btn btn-secondary" onclick="closeTestimonialModal()">Otkaži</button>
-                  <button type="button" id="saveTestimonialBtn" onclick="saveTestimonial()" class="btn 
-  btn-primary">Sačuvaj</button>
-              </div>
-          </form>
       </div>
-  </div>
-
-      <!-- Slideshow Management Section -->
-  <div id="slideshow" class="content-section">
-      <h2>Upravljanje Slideshow-om</h2>
-      <p>Dodajte slike za pozadinski slideshow na početnoj stranici.</p>
-
-      <button onclick="document.getElementById('slideshowInput').click()" class="btn btn-primary">
-          <i class="fas fa-upload"></i> Dodaj sliku u slideshow
-      </button>
-      <input type="file" id="slideshowInput" accept="image/*" style="display: none;">
-
-      <div id="slideshowAdmin" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 1rem; margin-top: 2rem;">
-          <!-- Slideshow images will load here -->
-      </div>
-  </div>
-
-    <!-- Add-on Modal -->
-  <div id="addonModal" class="modal">
-      <div class="modal-content">
-          <div class="modal-header">
-              <h2 id="addonModalTitle">Dodaj dodatnu uslugu</h2>
-              <button class="close-modal" onclick="closeAddOnModal()">&times;</button>
-          </div>
-          <form id="addonForm">
-              <div class="form-group">
-                  <label for="addonName">Naziv dodatne usluge</label>
-                  <input type="text" id="addonName" required>
-              </div>
-              <div class="form-group">
-                  <label for="addonDescription">Opis</label>
-                  <textarea id="addonDescription" rows="2" required></textarea>
-              </div>
-              <div class="form-group">
-                  <label for="addonPrice">Cena</label>
-                  <input type="text" id="addonPrice" placeholder="npr. Od 2.000 RSD" required>
-              </div>
-              <div class="modal-actions">
-                  <button type="button" class="btn btn-secondary" onclick="closeAddOnModal()">Otkaži</button>
-                  <button type="button" id="saveAddOnBtn" onclick="saveAddOn()" class="btn btn-primary">Sačuvaj</button>
-              </div>
-          </form>
-      </div>
-  </div>
 
       <!-- Firebase SDK -->
       <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
