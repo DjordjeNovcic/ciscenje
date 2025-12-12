@@ -257,7 +257,7 @@
     display: flex;
     align-items: center;
     gap: 0.75rem;
-    margin-left: 2rem;
+    margin-left: auto;
 }
 
    .lang-btn {
