@@ -1,4 +1,4 @@
- // Firebase configuration
+  // Firebase configuration
   const firebaseConfig = {
       apiKey: "AIzaSyAR4ae5zbbqwqgWLRVtbb2V2W3WbwuSCWo",
       authDomain: "mssjaj-20b34.firebaseapp.com",
@@ -14,7 +14,26 @@
   const db = firebase.firestore();
   const auth = firebase.auth();
 
-  var quillEditor = null;
+  var quillEditorSr = null;
+  var quillEditorEn = null;
+
+  // Language Helper Function
+  function getLocalizedField(item, field) {
+      const lang = localStorage.getItem('language') || 'sr';
+
+      // If English, try _en version first
+      if (lang === 'en' && item[field + '_en']) {
+          return item[field + '_en'];
+      }
+
+      // If Serbian, try _sr version first
+      if (lang === 'sr' && item[field + '_sr']) {
+          return item[field + '_sr'];
+      }
+
+      // Fallback to field without suffix
+      return item[field] || '';
+  }
 
   // Helper function to show loading spinner
   function showLoading(containerId) {
@@ -48,9 +67,11 @@
   });
 
   function initQuillEditor() {
-      const editorElement = document.getElementById('serviceDescription');
-      if (editorElement && !quillEditor) {
-          quillEditor = new Quill('#serviceDescription', {
+      const editorElementSr = document.getElementById('serviceDescription_sr');
+      const editorElementEn = document.getElementById('serviceDescription_en');
+
+      if (editorElementSr && !quillEditorSr) {
+          quillEditorSr = new Quill('#serviceDescription_sr', {
               theme: 'snow',
               modules: {
                   toolbar: [
@@ -60,7 +81,22 @@
                       ['clean']
                   ]
               },
-              placeholder: 'Unesite opis usluge...'
+              placeholder: 'Unesite opis usluge na srpskom...'
+          });
+      }
+
+      if (editorElementEn && !quillEditorEn) {
+          quillEditorEn = new Quill('#serviceDescription_en', {
+              theme: 'snow',
+              modules: {
+                  toolbar: [
+                      ['bold', 'italic', 'underline', 'strike'],
+                      [{ 'list': 'ordered'}, { 'list': 'bullet' }],
+                      [{ 'header': [1, 2, 3, false] }],
+                      ['clean']
+                  ]
+              },
+              placeholder: 'Enter service description in English...'
           });
       }
   }
@@ -202,6 +238,10 @@
       setupLogout();
   }
 
+  // ============================================
+  // HOME CONTENT
+  // ============================================
+
   function loadHomeContent() {
       const heroHeading = document.getElementById('heroHeading');
       const heroText = document.getElementById('heroText');
@@ -217,11 +257,13 @@
 
               if (heroHeading) {
                   heroHeading.className = 'fade-in';
-                  heroHeading.textContent = data.heroHeading || '';
+                  const heading = getLocalizedField(data, 'heroHeading');
+                  heroHeading.textContent = heading || '';
               }
               if (heroText) {
                   heroText.className = 'fade-in';
-                  heroText.textContent = data.heroText || '';
+                  const text = getLocalizedField(data, 'heroText');
+                  heroText.textContent = text || '';
               }
 
               const features = data.features || [];
@@ -240,10 +282,10 @@
                       icon.textContent = feature.icon;
 
                       const h3 = document.createElement('h3');
-                      h3.textContent = feature.title;
+                      h3.textContent = getLocalizedField(feature, 'title');
 
                       const p = document.createElement('p');
-                      p.textContent = feature.description;
+                      p.textContent = getLocalizedField(feature, 'description');
 
                       card.appendChild(icon);
                       card.appendChild(h3);
@@ -259,43 +301,44 @@
   }
 
   function loadHomeContentAdmin() {
-      const heroHeading = document.getElementById('heroHeading');
-      const heroText = document.getElementById('heroText');
+      const heroHeadingSr = document.getElementById('heroHeading_sr');
+      const heroHeadingEn = document.getElementById('heroHeading_en');
+      const heroTextSr = document.getElementById('heroText_sr');
+      const heroTextEn = document.getElementById('heroText_en');
       const featuresContainer = document.getElementById('featuresContainer');
-      if (!heroHeading || !heroText || !featuresContainer) return;
+
+      if (!heroHeadingSr || !heroTextSr) return;
+
       db.collection('content').doc('home').get().then(function(doc) {
           if (doc.exists) {
               const data = doc.data();
-              heroHeading.value = data.heroHeading || '';
-              heroText.value = data.heroText || '';
+
+              // Load Serbian fields
+              heroHeadingSr.value = data.heroHeading_sr || '';
+              heroTextSr.value = data.heroText_sr || '';
+
+              // Load English fields
+              if (heroHeadingEn) heroHeadingEn.value = data.heroHeading_en || '';
+              if (heroTextEn) heroTextEn.value = data.heroText_en || '';
+
               const features = data.features || [];
-              featuresContainer.innerHTML = '';
-              features.forEach(function(feature, index) {
-                  addFeatureItem(featuresContainer, feature, index);
-              });
+              if (featuresContainer) {
+                  featuresContainer.innerHTML = '';
+                  features.forEach(function(feature, index) {
+                      addFeatureItem(featuresContainer, feature, index);
+                  });
+              }
           }
       });
   }
 
   function addFeatureItem(container, feature, index) {
-      const icons = ['sparkles', 'eco', 'calendar', 'star', 'briefcase', 'home', 'heart', 'handshake', 'broom', 'soap', 'check', 'target'];
-      const iconEmojis = {
-          'sparkles': '\u2728',
-          'eco': '\u127F',
-          'calendar': '\uD83D\uDCC5',
-          'star': '\u2B50',
-          'briefcase': '\uD83D\uDCBC',
-          'home': '\uD83C\uDFE0',
-          'heart': '\uD83D\uDC9A',
-          'handshake': '\uD83E\uDD1D',
-          'broom': '\uD83E\uDDF9',
-          'soap': '\uD83E\uDDFC',
-          'check': '\u2705',
-          'target': '\uD83C\uDFAF'
-      };
+      const icons = ['✨', '🌿', '📅', '⭐', '💼', '🏠', '💚', '🤝', '🧹', '🧼', '✅', '🎯'];
+
       const featureDiv = document.createElement('div');
       featureDiv.className = 'feature-item';
       featureDiv.style.cssText = 'background: var(--bg-light); padding: 1.5rem; border-radius: 8px; margin-bottom: 1rem;';
+
       const iconGroup = document.createElement('div');
       iconGroup.className = 'form-group';
       const iconLabel = document.createElement('label');
@@ -304,50 +347,86 @@
       iconSelect.setAttribute('data-index', index);
       iconSelect.setAttribute('data-field', 'icon');
       iconSelect.style.fontSize = '1.5rem';
-      icons.forEach(function(iconName) {
+      icons.forEach(function(icon) {
           const option = document.createElement('option');
-          option.value = iconEmojis[iconName];
-          option.textContent = iconEmojis[iconName] + ' ' + iconName;
-          if (feature && feature.icon === iconEmojis[iconName]) {
+          option.value = icon;
+          option.textContent = icon;
+          if (feature && feature.icon === icon) {
               option.selected = true;
           }
           iconSelect.appendChild(option);
       });
       iconGroup.appendChild(iconLabel);
       iconGroup.appendChild(iconSelect);
-      const titleGroup = document.createElement('div');
-      titleGroup.className = 'form-group';
-      const titleLabel = document.createElement('label');
-      titleLabel.textContent = 'Naslov';
-      const titleInput = document.createElement('input');
-      titleInput.type = 'text';
-      titleInput.value = feature ? (feature.title || '') : '';
-      titleInput.setAttribute('data-index', index);
-      titleInput.setAttribute('data-field', 'title');
-      titleInput.placeholder = 'Naslov';
-      titleGroup.appendChild(titleLabel);
-      titleGroup.appendChild(titleInput);
-      const descGroup = document.createElement('div');
-      descGroup.className = 'form-group';
-      const descLabel = document.createElement('label');
-      descLabel.textContent = 'Opis';
-      const descTextarea = document.createElement('textarea');
-      descTextarea.rows = 2;
-      descTextarea.value = feature ? (feature.description || '') : '';
-      descTextarea.setAttribute('data-index', index);
-      descTextarea.setAttribute('data-field', 'description');
-      descTextarea.placeholder = 'Opis';
-      descGroup.appendChild(descLabel);
-      descGroup.appendChild(descTextarea);
+
+      // Serbian Title
+      const titleGroupSr = document.createElement('div');
+      titleGroupSr.className = 'form-group';
+      const titleLabelSr = document.createElement('label');
+      titleLabelSr.textContent = 'Naslov (Srpski)';
+      const titleInputSr = document.createElement('input');
+      titleInputSr.type = 'text';
+      titleInputSr.value = feature ? (feature.title_sr || '') : '';
+      titleInputSr.setAttribute('data-index', index);
+      titleInputSr.setAttribute('data-field', 'title_sr');
+      titleInputSr.placeholder = 'Naslov';
+      titleGroupSr.appendChild(titleLabelSr);
+      titleGroupSr.appendChild(titleInputSr);
+
+      // English Title
+      const titleGroupEn = document.createElement('div');
+      titleGroupEn.className = 'form-group';
+      const titleLabelEn = document.createElement('label');
+      titleLabelEn.textContent = 'Naslov (English)';
+      const titleInputEn = document.createElement('input');
+      titleInputEn.type = 'text';
+      titleInputEn.value = feature ? (feature.title_en || '') : '';
+      titleInputEn.setAttribute('data-index', index);
+      titleInputEn.setAttribute('data-field', 'title_en');
+      titleInputEn.placeholder = 'Title';
+      titleGroupEn.appendChild(titleLabelEn);
+      titleGroupEn.appendChild(titleInputEn);
+
+      // Serbian Description
+      const descGroupSr = document.createElement('div');
+      descGroupSr.className = 'form-group';
+      const descLabelSr = document.createElement('label');
+      descLabelSr.textContent = 'Opis (Srpski)';
+      const descTextareaSr = document.createElement('textarea');
+      descTextareaSr.rows = 2;
+      descTextareaSr.value = feature ? (feature.description_sr || '') : '';
+      descTextareaSr.setAttribute('data-index', index);
+      descTextareaSr.setAttribute('data-field', 'description_sr');
+      descTextareaSr.placeholder = 'Opis';
+      descGroupSr.appendChild(descLabelSr);
+      descGroupSr.appendChild(descTextareaSr);
+
+      // English Description
+      const descGroupEn = document.createElement('div');
+      descGroupEn.className = 'form-group';
+      const descLabelEn = document.createElement('label');
+      descLabelEn.textContent = 'Opis (English)';
+      const descTextareaEn = document.createElement('textarea');
+      descTextareaEn.rows = 2;
+      descTextareaEn.value = feature ? (feature.description_en || '') : '';
+      descTextareaEn.setAttribute('data-index', index);
+      descTextareaEn.setAttribute('data-field', 'description_en');
+      descTextareaEn.placeholder = 'Description';
+      descGroupEn.appendChild(descLabelEn);
+      descGroupEn.appendChild(descTextareaEn);
+
       const deleteBtn = document.createElement('button');
       deleteBtn.type = 'button';
       deleteBtn.className = 'btn';
       deleteBtn.textContent = 'Obrisi karakteristiku';
       deleteBtn.style.cssText = 'background: var(--danger-color); color: white; width: 100%;';
       deleteBtn.onclick = function() { removeFeature(index); };
+
       featureDiv.appendChild(iconGroup);
-      featureDiv.appendChild(titleGroup);
-      featureDiv.appendChild(descGroup);
+      featureDiv.appendChild(titleGroupSr);
+      featureDiv.appendChild(titleGroupEn);
+      featureDiv.appendChild(descGroupSr);
+      featureDiv.appendChild(descGroupEn);
       featureDiv.appendChild(deleteBtn);
       container.appendChild(featureDiv);
   }
@@ -379,18 +458,27 @@
       document.querySelectorAll('#featuresContainer .feature-item').forEach(function(item) {
           features.push({
               icon: item.querySelector('[data-field="icon"]').value,
-              title: item.querySelector('[data-field="title"]').value,
-              description: item.querySelector('[data-field="description"]').value
+              title_sr: item.querySelector('[data-field="title_sr"]').value,
+              title_en: item.querySelector('[data-field="title_en"]').value,
+              description_sr: item.querySelector('[data-field="description_sr"]').value,
+              description_en: item.querySelector('[data-field="description_en"]').value
           });
       });
+
       db.collection('content').doc('home').set({
-          heroHeading: document.getElementById('heroHeading').value,
-          heroText: document.getElementById('heroText').value,
+          heroHeading_sr: document.getElementById('heroHeading_sr').value,
+          heroHeading_en: document.getElementById('heroHeading_en').value,
+          heroText_sr: document.getElementById('heroText_sr').value,
+          heroText_en: document.getElementById('heroText_en').value,
           features: features
       }).then(function() {
           alert('Sadrzaj pocetne stranice je sacuvan!');
       });
   }
+
+  // ============================================
+  // SERVICES
+  // ============================================
 
   function loadServices() {
       const servicesGrid = document.getElementById('servicesGrid');
@@ -415,15 +503,15 @@
                   card.style.animationDelay = (index * 0.1) + 's';
 
                   const h3 = document.createElement('h3');
-                  h3.textContent = service.name;
+                  h3.textContent = getLocalizedField(service, 'name');
 
                   const desc = document.createElement('div');
                   desc.className = 'service-description';
-                  desc.innerHTML = service.description;
+                  desc.innerHTML = getLocalizedField(service, 'description');
 
                   const price = document.createElement('span');
                   price.className = 'service-price';
-                  price.textContent = service.price + ' RSD';
+                  price.textContent = getLocalizedField(service, 'price');
 
                   card.appendChild(h3);
                   card.appendChild(desc);
@@ -447,15 +535,15 @@
               const div = document.createElement('div');
               div.className = 'service-item';
               const h4 = document.createElement('h4');
-              h4.textContent = service.name;
+              h4.textContent = service.name_sr || 'N/A';
               const p1 = document.createElement('div');
               p1.className = 'service-description';
-              p1.innerHTML = service.description;
+              p1.innerHTML = (service.description_sr || 'N/A').substring(0, 100) + '...';
               p1.style.marginBottom = '10px';
               const p2 = document.createElement('p');
               p2.className = 'service-price';
               const strong = document.createElement('strong');
-              strong.textContent = service.price;
+              strong.textContent = 'SR: ' + (service.price_sr || 'N/A') + ' | EN: ' + (service.price_en || 'N/A');
               p2.appendChild(strong);
               const editBtn = document.createElement('button');
               editBtn.textContent = 'Izmeni';
@@ -478,24 +566,69 @@
       const modal = document.getElementById('serviceModal');
       const form = document.getElementById('serviceForm');
       const modalTitle = document.getElementById('serviceModalTitle');
+
+      // Initialize Quill editors
+      if (!quillEditorSr) {
+          quillEditorSr = new Quill('#serviceDescription_sr', {
+              theme: 'snow',
+              modules: {
+                  toolbar: [
+                      ['bold', 'italic', 'underline', 'strike'],
+                      [{ 'list': 'ordered'}, { 'list': 'bullet' }],
+                      [{ 'header': [1, 2, 3, false] }],
+                      ['clean']
+                  ]
+              },
+              placeholder: 'Unesite opis usluge na srpskom...'
+          });
+      }
+
+      if (!quillEditorEn) {
+          quillEditorEn = new Quill('#serviceDescription_en', {
+              theme: 'snow',
+              modules: {
+                  toolbar: [
+                      ['bold', 'italic', 'underline', 'strike'],
+                      [{ 'list': 'ordered'}, { 'list': 'bullet' }],
+                      [{ 'header': [1, 2, 3, false] }],
+                      ['clean']
+                  ]
+              },
+              placeholder: 'Enter service description in English...'
+          });
+      }
+
       if (serviceId) {
           modalTitle.textContent = 'Uredi uslugu';
           db.collection('services').doc(serviceId).get().then(function(doc) {
               if (doc.exists) {
                   const service = doc.data();
-                  document.getElementById('serviceName').value = service.name;
-                  if (quillEditor) {
-                      quillEditor.root.innerHTML = service.description || '';
+
+                  // Load Serbian fields
+                  document.getElementById('serviceName_sr').value = service.name_sr || '';
+                  if (quillEditorSr) {
+                      quillEditorSr.root.innerHTML = service.description_sr || '';
                   }
-                  document.getElementById('servicePrice').value = service.price;
+                  document.getElementById('servicePrice_sr').value = service.price_sr || '';
+
+                  // Load English fields
+                  document.getElementById('serviceName_en').value = service.name_en || '';
+                  if (quillEditorEn) {
+                      quillEditorEn.root.innerHTML = service.description_en || '';
+                  }
+                  document.getElementById('servicePrice_en').value = service.price_en || '';
+
                   form.dataset.serviceId = serviceId;
               }
           });
       } else {
           modalTitle.textContent = 'Dodaj uslugu';
           form.reset();
-          if (quillEditor) {
-              quillEditor.setText('');
+          if (quillEditorSr) {
+              quillEditorSr.setText('');
+          }
+          if (quillEditorEn) {
+              quillEditorEn.setText('');
           }
           delete form.dataset.serviceId;
       }
@@ -504,19 +637,28 @@
 
   function closeServiceModal() {
       document.getElementById('serviceModal').style.display = 'none';
-      if (quillEditor) {
-          quillEditor.setText('');
+      if (quillEditorSr) {
+          quillEditorSr.setText('');
+      }
+      if (quillEditorEn) {
+          quillEditorEn.setText('');
       }
   }
 
   function saveService() {
       const form = document.getElementById('serviceForm');
-      const description = quillEditor ? quillEditor.root.innerHTML : '';
+      const descriptionSr = quillEditorSr ? quillEditorSr.root.innerHTML : '';
+      const descriptionEn = quillEditorEn ? quillEditorEn.root.innerHTML : '';
+
       const serviceData = {
-          name: document.getElementById('serviceName').value,
-          description: description,
-          price: document.getElementById('servicePrice').value
+          name_sr: document.getElementById('serviceName_sr').value,
+          description_sr: descriptionSr,
+          price_sr: document.getElementById('servicePrice_sr').value,
+          name_en: document.getElementById('serviceName_en').value,
+          description_en: descriptionEn,
+          price_en: document.getElementById('servicePrice_en').value
       };
+
       const serviceId = form.dataset.serviceId;
       if (serviceId) {
           db.collection('services').doc(serviceId).update(serviceData).then(function() {
@@ -546,7 +688,11 @@
       }
   }
 
-   function loadAboutContent() {
+  // ============================================
+  // ABOUT CONTENT
+  // ============================================
+
+  function loadAboutContent() {
       const aboutHeading = document.getElementById('aboutHeading');
       const aboutText = document.getElementById('aboutText');
 
@@ -564,8 +710,8 @@
               if (aboutHeading && aboutText) {
                   aboutHeading.className = 'fade-in';
                   aboutText.className = 'fade-in story-text';
-                  aboutHeading.textContent = data.heading || 'O nama - MS Sjaj';
-                  aboutText.textContent = data.text || 'Osnovani 2015. godine, MS Sjaj je započeo sa jednostavnom misijom - pružanje profesionalnih usluga čišćenja za domove i firme.';
+                  aboutHeading.textContent = getLocalizedField(data, 'heading') || 'O nama - MS Sjaj';
+                  aboutText.textContent = getLocalizedField(data, 'text') || 'Osnovani 2015. godine, MS Sjaj je započeo sa jednostavnom misijom - pružanje profesionalnih usluga čišćenja za domove i firme.';
               }
 
               // Load stats if exists
@@ -583,7 +729,7 @@
 
                       const statLabel = document.createElement('div');
                       statLabel.className = 'stat-label';
-                      statLabel.textContent = stat.label;
+                      statLabel.textContent = getLocalizedField(stat, 'label');
 
                       statBox.appendChild(statNumber);
                       statBox.appendChild(statLabel);
@@ -605,10 +751,10 @@
                       reasonIcon.textContent = reason.icon;
 
                       const reasonTitle = document.createElement('h3');
-                      reasonTitle.textContent = reason.title;
+                      reasonTitle.textContent = getLocalizedField(reason, 'title');
 
                       const reasonDesc = document.createElement('p');
-                      reasonDesc.textContent = reason.description;
+                      reasonDesc.textContent = getLocalizedField(reason, 'description');
 
                       reasonCard.appendChild(reasonIcon);
                       reasonCard.appendChild(reasonTitle);
@@ -627,21 +773,27 @@
       });
   }
 
-
- // Load About Content Admin with Stats and Reasons
   function loadAboutContentAdmin() {
-      const aboutHeading = document.getElementById('aboutHeading');
-      const aboutText = document.getElementById('aboutText');
+      const aboutHeadingSr = document.getElementById('aboutHeading_sr');
+      const aboutHeadingEn = document.getElementById('aboutHeading_en');
+      const aboutTextSr = document.getElementById('aboutText_sr');
+      const aboutTextEn = document.getElementById('aboutText_en');
       const statsContainer = document.getElementById('statsContainer');
       const reasonsContainer = document.getElementById('reasonsContainer');
 
-      if (!aboutHeading || !aboutText) return;
+      if (!aboutHeadingSr || !aboutTextSr) return;
 
       db.collection('content').doc('about').get().then(function(doc) {
           if (doc.exists) {
               const data = doc.data();
-              aboutHeading.value = data.heading || '';
-              aboutText.value = data.text || '';
+
+              // Load Serbian fields
+              aboutHeadingSr.value = data.heading_sr || '';
+              aboutTextSr.value = data.text_sr || '';
+
+              // Load English fields
+              if (aboutHeadingEn) aboutHeadingEn.value = data.heading_en || '';
+              if (aboutTextEn) aboutTextEn.value = data.text_en || '';
 
               // Load stats
               if (statsContainer) {
@@ -664,7 +816,6 @@
       });
   }
 
-  // Add Stat Item to Admin
   function addStatItem(container, stat, index) {
       const statDiv = document.createElement('div');
       statDiv.className = 'feature-item';
@@ -683,18 +834,33 @@
       numberGroup.appendChild(numberLabel);
       numberGroup.appendChild(numberInput);
 
-      const labelGroup = document.createElement('div');
-      labelGroup.className = 'form-group';
-      const labelLabel = document.createElement('label');
-      labelLabel.textContent = 'Oznaka';
-      const labelInput = document.createElement('input');
-      labelInput.type = 'text';
-      labelInput.value = stat ? (stat.label || '') : '';
-      labelInput.setAttribute('data-index', index);
-      labelInput.setAttribute('data-field', 'label');
-      labelInput.placeholder = 'npr. Zadovoljnih klijenata';
-      labelGroup.appendChild(labelLabel);
-      labelGroup.appendChild(labelInput);
+      // Serbian Label
+      const labelGroupSr = document.createElement('div');
+      labelGroupSr.className = 'form-group';
+      const labelLabelSr = document.createElement('label');
+      labelLabelSr.textContent = 'Oznaka (Srpski)';
+      const labelInputSr = document.createElement('input');
+      labelInputSr.type = 'text';
+      labelInputSr.value = stat ? (stat.label_sr || '') : '';
+      labelInputSr.setAttribute('data-index', index);
+      labelInputSr.setAttribute('data-field', 'label_sr');
+      labelInputSr.placeholder = 'npr. Zadovoljnih klijenata';
+      labelGroupSr.appendChild(labelLabelSr);
+      labelGroupSr.appendChild(labelInputSr);
+
+      // English Label
+      const labelGroupEn = document.createElement('div');
+      labelGroupEn.className = 'form-group';
+      const labelLabelEn = document.createElement('label');
+      labelLabelEn.textContent = 'Oznaka (English)';
+      const labelInputEn = document.createElement('input');
+      labelInputEn.type = 'text';
+      labelInputEn.value = stat ? (stat.label_en || '') : '';
+      labelInputEn.setAttribute('data-index', index);
+      labelInputEn.setAttribute('data-field', 'label_en');
+      labelInputEn.placeholder = 'e.g. Satisfied Clients';
+      labelGroupEn.appendChild(labelLabelEn);
+      labelGroupEn.appendChild(labelInputEn);
 
       const deleteBtn = document.createElement('button');
       deleteBtn.type = 'button';
@@ -704,19 +870,18 @@
       deleteBtn.onclick = function() { removeStat(index); };
 
       statDiv.appendChild(numberGroup);
-      statDiv.appendChild(labelGroup);
+      statDiv.appendChild(labelGroupSr);
+      statDiv.appendChild(labelGroupEn);
       statDiv.appendChild(deleteBtn);
       container.appendChild(statDiv);
   }
 
-  // Add new stat
   function addStat() {
       const container = document.getElementById('statsContainer');
       const index = container.children.length;
       addStatItem(container, null, index);
   }
 
-  // Remove stat
   function removeStat(index) {
       const container = document.getElementById('statsContainer');
       if (container.children[index]) {
@@ -733,7 +898,6 @@
       });
   }
 
-  // Add Reason Item to Admin
   function addReasonItem(container, reason, index) {
       const icons = ['✨', '🌿', '💎', '⏰', '🛡️', '💰', '⭐', '🤝', '💚', '🏆', '🎯', '📊'];
 
@@ -761,31 +925,61 @@
       iconGroup.appendChild(iconLabel);
       iconGroup.appendChild(iconSelect);
 
-      const titleGroup = document.createElement('div');
-      titleGroup.className = 'form-group';
-      const titleLabel = document.createElement('label');
-      titleLabel.textContent = 'Naslov';
-      const titleInput = document.createElement('input');
-      titleInput.type = 'text';
-      titleInput.value = reason ? (reason.title || '') : '';
-      titleInput.setAttribute('data-index', index);
-      titleInput.setAttribute('data-field', 'title');
-      titleInput.placeholder = 'Naslov razloga';
-      titleGroup.appendChild(titleLabel);
-      titleGroup.appendChild(titleInput);
+      // Serbian Title
+      const titleGroupSr = document.createElement('div');
+      titleGroupSr.className = 'form-group';
+      const titleLabelSr = document.createElement('label');
+      titleLabelSr.textContent = 'Naslov (Srpski)';
+      const titleInputSr = document.createElement('input');
+      titleInputSr.type = 'text';
+      titleInputSr.value = reason ? (reason.title_sr || '') : '';
+      titleInputSr.setAttribute('data-index', index);
+      titleInputSr.setAttribute('data-field', 'title_sr');
+      titleInputSr.placeholder = 'Naslov razloga';
+      titleGroupSr.appendChild(titleLabelSr);
+      titleGroupSr.appendChild(titleInputSr);
 
-      const descGroup = document.createElement('div');
-      descGroup.className = 'form-group';
-      const descLabel = document.createElement('label');
-      descLabel.textContent = 'Opis';
-      const descTextarea = document.createElement('textarea');
-      descTextarea.rows = 3;
-      descTextarea.value = reason ? (reason.description || '') : '';
-      descTextarea.setAttribute('data-index', index);
-      descTextarea.setAttribute('data-field', 'description');
-      descTextarea.placeholder = 'Opis razloga';
-      descGroup.appendChild(descLabel);
-      descGroup.appendChild(descTextarea);
+      // English Title
+      const titleGroupEn = document.createElement('div');
+      titleGroupEn.className = 'form-group';
+      const titleLabelEn = document.createElement('label');
+      titleLabelEn.textContent = 'Naslov (English)';
+      const titleInputEn = document.createElement('input');
+      titleInputEn.type = 'text';
+      titleInputEn.value = reason ? (reason.title_en || '') : '';
+      titleInputEn.setAttribute('data-index', index);
+      titleInputEn.setAttribute('data-field', 'title_en');
+      titleInputEn.placeholder = 'Reason title';
+      titleGroupEn.appendChild(titleLabelEn);
+      titleGroupEn.appendChild(titleInputEn);
+
+      // Serbian Description
+      const descGroupSr = document.createElement('div');
+      descGroupSr.className = 'form-group';
+      const descLabelSr = document.createElement('label');
+      descLabelSr.textContent = 'Opis (Srpski)';
+      const descTextareaSr = document.createElement('textarea');
+      descTextareaSr.rows = 3;
+      descTextareaSr.value = reason ? (reason.description_sr || '') : '';
+      descTextareaSr.setAttribute('data-index', index);
+      descTextareaSr.setAttribute('data-field', 'description_sr');
+      descTextareaSr.placeholder = 'Opis razloga';
+      descGroupSr.appendChild(descLabelSr);
+      descGroupSr.appendChild(descTextareaSr);
+
+      // English Description
+      const descGroupEn = document.createElement('div');
+      descGroupEn.className = 'form-group';
+      const descLabelEn = document.createElement('label');
+      descLabelEn.textContent = 'Opis (English)';
+      const descTextareaEn = document.createElement('textarea');
+      descTextareaEn.rows = 3;
+      descTextareaEn.value = reason ? (reason.description_en || '') : '';
+      descTextareaEn.setAttribute('data-index', index);
+      descTextareaEn.setAttribute('data-field', 'description_en');
+      descTextareaEn.placeholder = 'Reason description';
+      descGroupEn.appendChild(descLabelEn);
+      descGroupEn.appendChild(descTextareaEn);
 
       const deleteBtn = document.createElement('button');
       deleteBtn.type = 'button';
@@ -795,13 +989,14 @@
       deleteBtn.onclick = function() { removeReason(index); };
 
       reasonDiv.appendChild(iconGroup);
-      reasonDiv.appendChild(titleGroup);
-      reasonDiv.appendChild(descGroup);
+      reasonDiv.appendChild(titleGroupSr);
+      reasonDiv.appendChild(titleGroupEn);
+      reasonDiv.appendChild(descGroupSr);
+      reasonDiv.appendChild(descGroupEn);
       reasonDiv.appendChild(deleteBtn);
       container.appendChild(reasonDiv);
   }
 
-  // Add new reason
   function addReason() {
       const container = document.getElementById('reasonsContainer');
       const index = container.children.length;
@@ -812,7 +1007,6 @@
       addReasonItem(container, null, index);
   }
 
-  // Remove reason
   function removeReason(index) {
       const container = document.getElementById('reasonsContainer');
       if (container.children[index]) {
@@ -829,7 +1023,6 @@
       });
   }
 
-  // Updated Save About Content
   function saveAboutContent() {
       const statsContainer = document.getElementById('statsContainer');
       const reasonsContainer = document.getElementById('reasonsContainer');
@@ -842,7 +1035,8 @@
           statsContainer.querySelectorAll('.feature-item').forEach(function(item) {
               stats.push({
                   number: item.querySelector('[data-field="number"]').value,
-                  label: item.querySelector('[data-field="label"]').value
+                  label_sr: item.querySelector('[data-field="label_sr"]').value,
+                  label_en: item.querySelector('[data-field="label_en"]').value
               });
           });
       }
@@ -852,15 +1046,19 @@
           reasonsContainer.querySelectorAll('.feature-item').forEach(function(item) {
               reasons.push({
                   icon: item.querySelector('[data-field="icon"]').value,
-                  title: item.querySelector('[data-field="title"]').value,
-                  description: item.querySelector('[data-field="description"]').value
+                  title_sr: item.querySelector('[data-field="title_sr"]').value,
+                  title_en: item.querySelector('[data-field="title_en"]').value,
+                  description_sr: item.querySelector('[data-field="description_sr"]').value,
+                  description_en: item.querySelector('[data-field="description_en"]').value
               });
           });
       }
 
       db.collection('content').doc('about').set({
-          heading: document.getElementById('aboutHeading').value,
-          text: document.getElementById('aboutText').value,
+          heading_sr: document.getElementById('aboutHeading_sr').value,
+          heading_en: document.getElementById('aboutHeading_en').value,
+          text_sr: document.getElementById('aboutText_sr').value,
+          text_en: document.getElementById('aboutText_en').value,
           stats: stats,
           reasons: reasons
       }).then(function() {
@@ -868,9 +1066,11 @@
       });
   }
 
+  // ============================================
+  // TESTIMONIALS
+  // ============================================
 
-
-   function loadTestimonials() {
+  function loadTestimonials() {
       const testimonialsGrid = document.getElementById('testimonialsGrid');
       if (!testimonialsGrid) return;
 
@@ -895,7 +1095,7 @@
                   // Testimonial text
                   const text = document.createElement('p');
                   text.className = 'testimonial-text';
-                  text.textContent = testimonial.text;
+                  text.textContent = getLocalizedField(testimonial, 'text');
 
                   // Star rating (dynamic based on database value)
                   const rating = document.createElement('div');
@@ -920,7 +1120,6 @@
                   authorName.textContent = testimonial.author;
 
                   authorInfo.appendChild(authorName);
-                  // No authorTitle added!
 
                   authorSection.appendChild(avatar);
                   authorSection.appendChild(authorInfo);
@@ -952,7 +1151,7 @@
               contentDiv.className = 'testimonial-content';
 
               const p1 = document.createElement('p');
-              p1.textContent = '"' + testimonial.text + '"';
+              p1.textContent = '"' + (testimonial.text_sr || 'N/A') + '"';
 
               const ratingP = document.createElement('p');
               const ratingValue = testimonial.rating || 5;
@@ -994,15 +1193,16 @@
           db.collection('testimonials').doc(testimonialId).get().then(function(doc) {
               if (doc.exists) {
                   const testimonial = doc.data();
-                  document.getElementById('testimonialText').value = testimonial.text;
-                  document.getElementById('testimonialAuthor').value = testimonial.author;
+                  document.getElementById('testimonialText_sr').value = testimonial.text_sr || '';
+                  document.getElementById('testimonialText_en').value = testimonial.text_en || '';
+                  document.getElementById('testimonialAuthor').value = testimonial.author || '';
                   document.getElementById('testimonialRating').value = testimonial.rating || 5;
                   form.dataset.testimonialId = testimonialId;
               }
           });
       } else {
           form.reset();
-          document.getElementById('testimonialRating').value = 5; // Default to 5 stars
+          document.getElementById('testimonialRating').value = 5;
           delete form.dataset.testimonialId;
       }
       modal.style.display = 'flex';
@@ -1015,7 +1215,8 @@
   function saveTestimonial() {
       const form = document.getElementById('testimonialForm');
       const testimonialData = {
-          text: document.getElementById('testimonialText').value,
+          text_sr: document.getElementById('testimonialText_sr').value,
+          text_en: document.getElementById('testimonialText_en').value,
           author: document.getElementById('testimonialAuthor').value,
           rating: parseInt(document.getElementById('testimonialRating').value)
       };
@@ -1047,6 +1248,10 @@
           });
       }
   }
+
+  // ============================================
+  // GALLERY
+  // ============================================
 
   function loadGallery() {
       const galleryGrid = document.getElementById('galleryGrid');
@@ -1143,7 +1348,7 @@
               reader.readAsDataURL(file);
           });
       }
-     setupSlideshowUpload();
+      setupSlideshowUpload();
   }
 
   function deletePhoto(photoId) {
@@ -1181,6 +1386,10 @@
       });
   }
 
+  // ============================================
+  // ADD-ONS
+  // ============================================
+
   function loadAddOns() {
       const addonsGrid = document.getElementById('addonsGrid');
       if (!addonsGrid) return;
@@ -1204,10 +1413,10 @@
                   card.style.animationDelay = (index * 0.1) + 's';
 
                   const h4 = document.createElement('h4');
-                  h4.textContent = addon.name;
+                  h4.textContent = getLocalizedField(addon, 'name');
 
                   const p = document.createElement('p');
-                  p.textContent = addon.price + ' RSD';
+                  p.textContent = getLocalizedField(addon, 'price');
 
                   card.appendChild(h4);
                   card.appendChild(p);
@@ -1237,14 +1446,14 @@
               const div = document.createElement('div');
               div.className = 'addon-item';
               const h4 = document.createElement('h4');
-              h4.textContent = addon.name;
+              h4.textContent = addon.name_sr || 'N/A';
               const p1 = document.createElement('p');
-              p1.textContent = addon.description;
+              p1.textContent = (addon.description_sr || 'N/A');
               p1.style.marginBottom = '10px';
               const p2 = document.createElement('p');
               p2.className = 'addon-price';
               const strong = document.createElement('strong');
-              strong.textContent = addon.price;
+              strong.textContent = 'SR: ' + (addon.price_sr || 'N/A') + ' | EN: ' + (addon.price_en || 'N/A');
               p2.appendChild(strong);
               const editBtn = document.createElement('button');
               editBtn.textContent = 'Izmeni';
@@ -1272,9 +1481,12 @@
           db.collection('addons').doc(addonId).get().then(function(doc) {
               if (doc.exists) {
                   const addon = doc.data();
-                  document.getElementById('addonName').value = addon.name;
-                  document.getElementById('addonDescription').value = addon.description;
-                  document.getElementById('addonPrice').value = addon.price;
+                  document.getElementById('addonName_sr').value = addon.name_sr || '';
+                  document.getElementById('addonName_en').value = addon.name_en || '';
+                  document.getElementById('addonDescription_sr').value = addon.description_sr || '';
+                  document.getElementById('addonDescription_en').value = addon.description_en || '';
+                  document.getElementById('addonPrice_sr').value = addon.price_sr || '';
+                  document.getElementById('addonPrice_en').value = addon.price_en || '';
                   form.dataset.addonId = addonId;
               }
           });
@@ -1293,9 +1505,12 @@
   function saveAddOn() {
       const form = document.getElementById('addonForm');
       const addonData = {
-          name: document.getElementById('addonName').value,
-          description: document.getElementById('addonDescription').value,
-          price: document.getElementById('addonPrice').value
+          name_sr: document.getElementById('addonName_sr').value,
+          name_en: document.getElementById('addonName_en').value,
+          description_sr: document.getElementById('addonDescription_sr').value,
+          description_en: document.getElementById('addonDescription_en').value,
+          price_sr: document.getElementById('addonPrice_sr').value,
+          price_en: document.getElementById('addonPrice_en').value
       };
       const addonId = form.dataset.addonId;
       if (addonId) {
@@ -1326,12 +1541,14 @@
       }
   }
 
- // Global slideshow variable
+  // ============================================
+  // SLIDESHOW
+  // ============================================
+
   var slideshowImages = [];
   var currentSlideIndex = 0;
   var slideshowInterval;
 
-  // Load slideshow images
   function loadSlideshowImages() {
       const slideshowBackground = document.getElementById('slideshowBackground');
       if (!slideshowBackground) return;
@@ -1341,7 +1558,6 @@
           slideshowBackground.innerHTML = '';
 
           if (querySnapshot.empty) {
-              // If no slideshow images, show a default gradient background
               slideshowBackground.style.background = 'linear-gradient(135deg, #2563eb 0%, #1e40af 100%)';
               return;
           }
@@ -1357,7 +1573,6 @@
               slideshowBackground.appendChild(img);
           });
 
-          // Start slideshow if we have images
           if (slideshowImages.length > 0) {
               startSlideshow();
           }
@@ -1366,16 +1581,13 @@
       });
   }
 
-  // Start the slideshow
   function startSlideshow() {
       const images = document.querySelectorAll('.slideshow-image');
       if (images.length === 0) return;
 
-      // Show first image
       images[0].classList.add('active');
       currentSlideIndex = 0;
 
-      // Change image every 5 seconds
       slideshowInterval = setInterval(function() {
           images[currentSlideIndex].classList.remove('active');
           currentSlideIndex = (currentSlideIndex + 1) % images.length;
@@ -1383,14 +1595,12 @@
       }, 5000);
   }
 
-  // Stop slideshow (useful for cleanup)
   function stopSlideshow() {
       if (slideshowInterval) {
           clearInterval(slideshowInterval);
       }
   }
 
- // Load slideshow admin
   function loadSlideshowAdmin() {
       const slideshowAdmin = document.getElementById('slideshowAdmin');
       if (!slideshowAdmin) return;
@@ -1424,7 +1634,6 @@
       });
   }
 
-  // Delete slideshow image
   function deleteSlideshowImage(imageId) {
       if (confirm('Da li ste sigurni da želite da obrišete ovu sliku iz slideshow-a?')) {
           db.collection('slideshow').doc(imageId).delete().then(function() {
@@ -1434,7 +1643,6 @@
       }
   }
 
-  // Setup slideshow upload
   function setupSlideshowUpload() {
       const slideshowInput = document.getElementById('slideshowInput');
       if (!slideshowInput) return;
@@ -1459,7 +1667,6 @@
                   if (data.success) {
                       const imageUrl = data.data.url;
 
-                      // Get current max order
                       db.collection('slideshow').orderBy('order', 'desc').limit(1).get()
                           .then(function(querySnapshot) {
                               let maxOrder = 0;
@@ -1467,7 +1674,6 @@
                                   maxOrder = doc.data().order || 0;
                               });
 
-                              // Add new image with order
                               db.collection('slideshow').add({
                                   url: imageUrl,
                                   filename: file.name,
@@ -1492,23 +1698,58 @@
       });
   }
 
-document.addEventListener('DOMContentLoaded', function () {
-    const phoneTrigger = document.querySelector('.phone-trigger');
-    const phoneWrapper = document.querySelector('.phone-wrapper');
+  // ============================================
+  // MODAL LANGUAGE TABS
+  // ============================================
 
-    if (!phoneTrigger || !phoneWrapper) return;
+  function switchModalLang(event, lang) {
+      const modal = event.target.closest('.modal');
 
-    phoneTrigger.addEventListener('click', function (e) {
-        if (window.innerWidth <= 768) {
-            e.preventDefault();
-            phoneWrapper.classList.toggle('active');
-        }
-    });
+      modal.querySelectorAll('.language-tab').forEach(tab => {
+          tab.classList.remove('active');
+      });
+      event.target.classList.add('active');
 
-    document.addEventListener('click', function (e) {
-        if (window.innerWidth <= 768 && !phoneWrapper.contains(e.target)) {
-            phoneWrapper.classList.remove('active');
-        }
-    });
-});
+      modal.querySelectorAll('.lang-section').forEach(section => {
+          section.classList.remove('active');
+      });
+      modal.querySelector(`.lang-section[data-lang="${lang}"]`).classList.add('active');
+  }
 
+  function switchLang(event, lang) {
+      const container = event.target.closest('form') || event.target.closest('.dashboard-section');
+
+      container.querySelectorAll('.language-tab').forEach(tab => {
+          tab.classList.remove('active');
+      });
+      event.target.classList.add('active');
+
+      container.querySelectorAll('.lang-section').forEach(section => {
+          section.classList.remove('active');
+      });
+      container.querySelector(`.lang-section[data-lang="${lang}"]`).classList.add('active');
+  }
+
+  // ============================================
+  // PHONE DROPDOWN (Mobile)
+  // ============================================
+
+  document.addEventListener('DOMContentLoaded', function () {
+      const phoneTrigger = document.querySelector('.phone-trigger');
+      const phoneWrapper = document.querySelector('.phone-wrapper');
+
+      if (!phoneTrigger || !phoneWrapper) return;
+
+      phoneTrigger.addEventListener('click', function (e) {
+          if (window.innerWidth <= 768) {
+              e.preventDefault();
+              phoneWrapper.classList.toggle('active');
+          }
+      });
+
+      document.addEventListener('click', function (e) {
+          if (window.innerWidth <= 768 && !phoneWrapper.contains(e.target)) {
+              phoneWrapper.classList.remove('active');
+          }
+      });
+  });
