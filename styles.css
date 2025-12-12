@@ -240,19 +240,18 @@
   }
 
   .landing-logo {
-      margin-bottom: 0.25rem;
-      padding: 0
-      display: inline-block;
-  }
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+}
 
   .landing-logo img {
-      width: 450px;
-      height: 450px;
-      object-fit: contain;
-      display: block;  
-      filter: drop-shadow(0 10px 30px rgba(0, 0, 0, 0.3));
-      animation: float 3s ease-in-out infinite;
-  }
+    width: 360px;      
+    height: auto;
+    display: block;
+}
 
   @keyframes float {
       0%, 100% {
@@ -2207,15 +2206,13 @@
   }
 
   @keyframes fadeInAnim {
-      from {
-          opacity: 0;
-          transform: translateY(10px);
-      }
-      to {
-          opacity: 1;
-          transform: translateY(0);
-      }
-  }
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
 
   .skeleton {
       background: linear-gradient(90deg, var(--bg-light) 25%, #e5e7eb 50%, var(--bg-light) 75%);
