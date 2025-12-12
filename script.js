@@ -1753,3 +1753,180 @@
           }
       });
   });
+
+
+ // ========================================
+  // THEME MANAGEMENT
+  // ========================================
+
+  const defaultColors = {
+      primaryColor: '#f59e0b',
+      primaryDark: '#ea580c',
+      secondaryColor: '#2d2d2d',
+      successColor: '#10b981',
+      bgLight: '#fffbeb'
+  };
+
+  // Load theme on page load
+  function loadTheme() {
+      db.collection('settings').doc('theme').get()
+          .then(doc => {
+              if (doc.exists) {
+                  const colors = doc.data();
+                  applyTheme(colors);
+              }
+          })
+          .catch(error => console.error('Error loading theme:', error));
+  }
+
+  // Apply theme colors to CSS variables
+  function applyTheme(colors) {
+      const root = document.documentElement;
+
+      if (colors.primaryColor) {
+          root.style.setProperty('--primary-color', colors.primaryColor);
+      }
+      if (colors.primaryDark) {
+          root.style.setProperty('--primary-dark', colors.primaryDark);
+      }
+      if (colors.secondaryColor) {
+          root.style.setProperty('--secondary-color', colors.secondaryColor);
+      }
+      if (colors.successColor) {
+          root.style.setProperty('--success-color', colors.successColor);
+      }
+      if (colors.bgLight) {
+          root.style.setProperty('--bg-light', colors.bgLight);
+      }
+
+      // Update gradient
+      if (colors.primaryColor && colors.primaryDark) {
+          root.style.setProperty('--primary-gradient',
+              `linear-gradient(135deg, ${colors.primaryColor} 0%, ${colors.primaryDark} 100%)`);
+      }
+  }
+
+  // Update color picker displays
+  function updateColorPickers(colors) {
+      Object.keys(colors).forEach(key => {
+          const colorInput = document.getElementById(key);
+          const textInput = document.getElementById(key + 'Text');
+
+          if (colorInput) colorInput.value = colors[key];
+          if (textInput) textInput.value = colors[key];
+      });
+  }
+
+  // Load theme settings in admin
+  function loadThemeSettings() {
+      db.collection('settings').doc('theme').get()
+          .then(doc => {
+              if (doc.exists) {
+                  const colors = doc.data();
+                  updateColorPickers(colors);
+                  applyTheme(colors);
+              } else {
+                  updateColorPickers(defaultColors);
+              }
+          })
+          .catch(error => {
+              console.error('Error loading theme settings:', error);
+              alert('Greška pri učitavanju tema');
+          });
+  }
+
+  // Preview theme (apply temporarily without saving)
+  function previewTheme() {
+      const colors = {
+          primaryColor: document.getElementById('primaryColor').value,
+          primaryDark: document.getElementById('primaryDark').value,
+          secondaryColor: document.getElementById('secondaryColor').value,
+          successColor: document.getElementById('successColor').value,
+          bgLight: document.getElementById('bgLight').value
+      };
+
+      applyTheme(colors);
+
+      // Show preview notification
+      const notification = document.createElement('div');
+      notification.textContent = '👁️ Pregled tema - promene nisu sačuvane';
+      notification.style.cssText = `
+          position: fixed;
+          top: 20px;
+          right: 20px;
+          background: #3b82f6;
+          color: white;
+          padding: 1rem 2rem;
+          border-radius: 8px;
+          box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+          z-index: 10000;
+          animation: slideIn 0.3s ease;
+      `;
+      document.body.appendChild(notification);
+
+      setTimeout(() => notification.remove(), 3000);
+  }
+
+  // Save theme to Firebase
+  function saveTheme() {
+      const colors = {
+          primaryColor: document.getElementById('primaryColor').value,
+          primaryDark: document.getElementById('primaryDark').value,
+          secondaryColor: document.getElementById('secondaryColor').value,
+          successColor: document.getElementById('successColor').value,
+          bgLight: document.getElementById('bgLight').value,
+          updatedAt: new Date().toISOString()
+      };
+
+      db.collection('settings').doc('theme').set(colors)
+          .then(() => {
+              applyTheme(colors);
+              alert('✅ Tema je uspešno sačuvana!');
+          })
+          .catch(error => {
+              console.error('Error saving theme:', error);
+              alert('❌ Greška pri čuvanju tema');
+          });
+  }
+
+  // Reset single color
+  function resetColor(colorType) {
+      const colorMap = {
+          'primary': 'primaryColor',
+          'primaryDark': 'primaryDark',
+          'secondary': 'secondaryColor'
+      };
+
+      const key = colorMap[colorType];
+      if (key && defaultColors[key]) {
+          document.getElementById(key).value = defaultColors[key];
+          document.getElementById(key + 'Text').value = defaultColors[key];
+      }
+  }
+
+  // Reset all colors to default
+  function resetAllColors() {
+      if (confirm('Da li ste sigurni da želite da resetujete sve boje na podrazumevane vrednosti?')) {
+          updateColorPickers(defaultColors);
+          applyTheme(defaultColors);
+      }
+  }
+
+  // Update text input when color picker changes
+  document.addEventListener('DOMContentLoaded', () => {
+      const colorInputs = ['primaryColor', 'primaryDark', 'secondaryColor', 'successColor', 'bgLight'];
+
+      colorInputs.forEach(id => {
+          const colorInput = document.getElementById(id);
+          const textInput = document.getElementById(id + 'Text');
+
+          if (colorInput && textInput) {
+              colorInput.addEventListener('input', (e) => {
+                  textInput.value = e.target.value;
+              });
+          }
+      });
+  });
+
+  // Load theme when theme section is opened
+  document.querySelector('[data-section="theme-section"]')?.addEventListener('click', loadThemeSettings);
