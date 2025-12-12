@@ -1,5 +1,5 @@
-<!DOCTYPE html>
-  <html lang="sr">
+ <!DOCTYPE html>
+  <html lang="sr" id="htmlLang">
   <head>
       <meta charset="UTF-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,44 +8,48 @@
       <link rel="icon" type="image/x-icon" href="favicon.ico">
   </head>
   <body>
-       <!-- Navigation -->
+      <!-- Navigation -->
       <nav class="navbar">
           <div class="container">
               <div class="phone-wrapper">
-    <button class="phone-trigger" aria-label="Pozovite MS Sjaj">
-        <svg viewBox="0 0 24 24">
-            <path d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 011.01-.24c1.12.37 2.33.57 3.58.57a1 1 0 011 1v3.5a1 1 0 01-1 1C10.07 21 3 13.93 3 5.5a1 1 0 011-1H7.5a1 1 0 011 1c0 1.25.2 2.46.57 3.59a1 1 0 01-.25 1.01l-2.2 2.19z"/>
-        </svg>
-        <span class="phone-text">Pozovite nas</span>
-    </button>
+                  <button class="phone-trigger" aria-label="Pozovite MS Sjaj">
+                      <svg viewBox="0 0 24 24">
+                          <path d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 011.01-.24c1.12.37 2.33.57 3.58.57a1 1 0 011 1v3.5a1 1 0 01-1 1C10.07 21 3 13.93
+   3 5.5a1 1 0 011-1H7.5a1 1 0 011 1c0 1.25.2 2.46.57 3.59a1 1 0 01-.25 1.01l-2.2 2.19z"/>
+                      </svg>
+                      <!-- ✨ UPDATED: Added data-i18n -->
+                      <span class="phone-text" data-i18n="nav.callUs">Pozovite nas</span>
+                  </button>
 
-                 <!-- Language Switcher -->
-          <div class="language-switcher">
-              <button class="lang-btn" data-lang="sr">
-                  <img src="https://flagcdn.com/w20/rs.png" alt="Serbian" width="20">
-                  <span>SR</span>
-              </button>
-              <button class="lang-btn" data-lang="en">
-                  <img src="https://flagcdn.com/w20/gb.png" alt="English" width="20">
-                  <span>EN</span>
-              </button>
-          </div>
+                  <!-- Language Switcher (already added - good!) -->
+                  <div class="language-switcher">
+                      <button class="lang-btn" data-lang="sr" aria-label="Srpski">
+                          <img src="https://flagcdn.com/w20/rs.png" alt="Serbian" width="20">
+                          <span>SR</span>
+                      </button>
+                      <button class="lang-btn" data-lang="en" aria-label="English">
+                          <img src="https://flagcdn.com/w20/gb.png" alt="English" width="20">
+                          <span>EN</span>
+                      </button>
+                  </div>
 
-    <div class="phone-dropdown">
-        <a href="tel:0643937000">📞 064 / 393-7000</a>
-        <a href="tel:0655625876">📞 065 / 562-5876</a>
-    </div>
-</div>
+                  <div class="phone-dropdown">
+                      <a href="tel:0643937000">📞 064 / 393-7000</a>
+                      <a href="tel:0655625876">📞 065 / 562-5876</a>
+                  </div>
+              </div>
 
               <button class="hamburger" id="hamburger">
                   <span></span>
                   <span></span>
                   <span></span>
               </button>
+
+              <!-- ✨ UPDATED: Added data-i18n to nav links -->
               <ul class="nav-menu" id="navMenu">
-                  <li><a href="index.html">Početna</a></li>
-                  <li><a href="services.html">Usluge</a></li>
-                  <li><a href="about.html" class="active">O nama</a></li>
+                  <li><a href="index.html" data-i18n="nav.home">Početna</a></li>
+                  <li><a href="services.html" data-i18n="nav.services">Usluge</a></li>
+                  <li><a href="about.html" class="active" data-i18n="nav.about">O nama</a></li>
               </ul>
           </div>
       </nav>
@@ -53,60 +57,68 @@
       <!-- Page Header -->
       <section class="page-header">
           <div class="container">
-              <h1 id="aboutHeading">O nama - MS Sjaj</h1>
-              <p>Vaš pouzdan partner u profesionalnom čišćenju</p>
+              <!-- ✨ UPDATED: Added data-i18n -->
+              <h1 id="aboutHeading" data-i18n="aboutPage.title">O nama - MS Sjaj</h1>
+              <p data-i18n="aboutPage.subtitle">Vaš pouzdan partner u profesionalnom čišćenju</p>
           </div>
       </section>
 
-       <!-- About Content - Modern Design -->
-  <section class="about-content">
-      <div class="container">
-          <div class="about-story">
-              <div class="story-content">
-                  <span class="story-badge">Naša priča</span>
-                  <h2>Posvećeni kvalitetu od 2015. godine</h2>
-                  <p id="aboutText" class="story-text">
-                      Osnovani 2015. godine, MS Sjaj je započeo sa jednostavnom misijom - pružanje profesionalnih usluga čišćenja za domove i firme. Tokom godina, izrasli smo u tim od pouzdanih profesionalaca koji donose sjaj i čistoću u vaš prostor.
-                  </p>
-              </div>
+      <!-- About Content - Modern Design -->
+      <section class="about-content">
+          <div class="container">
+              <div class="about-story">
+                  <div class="story-content">
+                      <!-- ✨ UPDATED: Added data-i18n -->
+                      <span class="story-badge" data-i18n="aboutPage.storyBadge">Naša priča</span>
+                      <h2 data-i18n="aboutPage.storyTitle">Posvećeni kvalitetu od 2015. godine</h2>
+                      <p id="aboutText" class="story-text" data-i18n="aboutPage.storyText">
+                          Osnovani 2015. godine, MS Sjaj je započeo sa jednostavnom misijom - pružanje profesionalnih usluga čišćenja za domove i firme. Tokom godina,
+  izrasli smo u tim od pouzdanih profesionalaca koji donose sjaj i čistoću u vaš prostor.
+                      </p>
+                  </div>
 
-              <!-- Stats Section -->
-              <div class="stats-section">
-                  <!-- Stats will be loaded from Firebase -->
+                  <!-- Stats Section -->
+                  <div class="stats-section">
+                      <!-- Stats will be loaded from Firebase -->
+                  </div>
               </div>
           </div>
-      </div>
-  </section>
+      </section>
 
-  <!-- Why Choose Us -->
-  <section class="why-choose-us">
-      <div class="container">
-          <h2>Zašto izabrati MS Sjaj?</h2>
-          <div class="reasons-grid">
-              <!-- Reasons will be loaded from Firebase -->
+      <!-- Why Choose Us -->
+      <section class="why-choose-us">
+          <div class="container">
+              <!-- ✨ UPDATED: Added data-i18n -->
+              <h2 data-i18n="whyChoose.title">Zašto izabrati MS Sjaj?</h2>
+              <div class="reasons-grid">
+                  <!-- Reasons will be loaded from Firebase -->
+              </div>
           </div>
-      </div>
-  </section>
+      </section>
 
       <!-- Values Section -->
       <section class="values alt-bg">
           <div class="container">
-              <h2>Naše vrednosti</h2>
+              <!-- ✨ UPDATED: Added data-i18n -->
+              <h2 data-i18n="values.title">Naše vrednosti</h2>
               <div class="values-grid">
                   <div class="value-card">
                       <div class="value-icon">⭐</div>
-                      <h3>Kvalitet</h3>
-                      <p>Nikada ne pravimo kompromis po pitanju kvaliteta naših usluga čišćenja.</p>
+                      <!-- ✨ UPDATED: Added data-i18n -->
+                      <h3 data-i18n="values.quality.title">Kvalitet</h3>
+                      <p data-i18n="values.quality.text">Nikada ne pravimo kompromis po pitanju kvaliteta naših usluga čišćenja.</p>
                   </div>
                   <div class="value-card">
                       <div class="value-icon">🤝</div>
-                      <h3>Poverenje</h3>
-                      <p>Gradimo dugotrajne odnose kroz pouzdanost i transparentnost.</p>
+                      <!-- ✨ UPDATED: Added data-i18n -->
+                      <h3 data-i18n="values.trust.title">Poverenje</h3>
+                      <p data-i18n="values.trust.text">Gradimo dugotrajne odnose kroz pouzdanost i transparentnost.</p>
                   </div>
                   <div class="value-card">
                       <div class="value-icon">💚</div>
-                      <h3>Održivost</h3>
-                      <p>Koristimo ekološke proizvode koji štite našu životnu sredinu.</p>
+                      <!-- ✨ UPDATED: Added data-i18n -->
+                      <h3 data-i18n="values.sustainability.title">Održivost</h3>
+                      <p data-i18n="values.sustainability.text">Koristimo ekološke proizvode koji štite našu životnu sredinu.</p>
                   </div>
               </div>
           </div>
@@ -115,8 +127,9 @@
       <!-- Testimonials Section -->
       <section class="testimonials">
           <div class="container">
-              <h2>Šta naši klijenti kažu</h2>
-              <p>Pročitajte iskustva naših zadovoljnih klijenata</p>
+              <!-- ✨ UPDATED: Added data-i18n -->
+              <h2 data-i18n="testimonials.title">Šta naši klijenti kažu</h2>
+              <p data-i18n="testimonials.subtitle">Pročitajte iskustva naših zadovoljnih klijenata</p>
               <div class="testimonials-grid" id="testimonialsGrid">
                   <!-- Testimonials will be loaded from Firebase -->
               </div>
@@ -126,9 +139,10 @@
       <!-- CTA Section -->
       <section class="cta">
           <div class="container">
-              <h2>Spremni da iskusite MS Sjaj?</h2>
-              <p>Pridružite se stotinama zadovoljnih klijenata koji nam veruju svoje potrebe za čišćenje.</p>
-              <a href="index.html#contact" class="btn btn-primary">Počnite danas</a>
+              <!-- ✨ UPDATED: Added data-i18n -->
+              <h2 data-i18n="cta.aboutTitle">Spremni da iskusite MS Sjaj?</h2>
+              <p data-i18n="cta.aboutSubtitle">Pridružite se stotinama zadovoljnih klijenata koji nam veruju svoje potrebe za čišćenje.</p>
+              <a href="index.html#contact" class="btn btn-primary" data-i18n="cta.aboutButton">Počnite danas</a>
           </div>
       </section>
 
@@ -138,7 +152,8 @@
               <div class="footer-content">
                   <div class="footer-section">
                       <h4>MS Sjaj</h4>
-                      <p>Profesionalne usluge čišćenja kojima možete verovati. Donoseći sjaj u vaš dom i poslovni prostor.</p>
+                      <!-- ✨ UPDATED: Added data-i18n -->
+                      <p data-i18n="footer.about">Profesionalne usluge čišćenja kojima možete verovati. Donoseći sjaj u vaš dom i poslovni prostor.</p>
                       <div class="social-links">
                           <a href="https://www.instagram.com/mssjaj.kg?igsh=ZjlzajBydXIxemMy" target="_blank" rel="noopener" title="Instagram" aria-label="Instagram">
                               <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -154,26 +169,30 @@
                       </div>
                   </div>
                   <div class="footer-section">
-                      <h4>Brzi linkovi</h4>
-                      <p><a href="index.html">Početna</a></p>
-                      <p><a href="services.html">Usluge</a></p>
-                      <p><a href="about.html">O nama</a></p>
+                      <!-- ✨ UPDATED: Added data-i18n -->
+                      <h4 data-i18n="footer.quickLinks">Brzi linkovi</h4>
+                      <p><a href="index.html" data-i18n="nav.home">Početna</a></p>
+                      <p><a href="services.html" data-i18n="nav.services">Usluge</a></p>
+                      <p><a href="about.html" data-i18n="nav.about">O nama</a></p>
                   </div>
                   <div class="footer-section">
-                      <h4>Kontakt</h4>
+                      <!-- ✨ UPDATED: Added data-i18n -->
+                      <h4 data-i18n="footer.contactTitle">Kontakt</h4>
                       <p class="footer-email"><a href="mailto:11mssjaj@gmail.com">11mssjaj@gmail.com</a></p>
                       <p class="footer-phone"><a href="tel:0643937000">064/3937000</a></p>
                       <p class="footer-address">Kragujevac, Srbija</p>
                   </div>
                   <div class="footer-section">
-                      <h4>Radno vreme</h4>
-                      <p>Ponedeljak - Petak</p>
+                      <!-- ✨ UPDATED: Added data-i18n -->
+                      <h4 data-i18n="footer.hoursTitle">Radno vreme</h4>
+                      <p data-i18n="footer.weekdays">Ponedeljak - Petak</p>
                       <p>08:00 - 20:00</p>
-                      <p>Subota: 09:00 - 15:00</p>
+                      <p data-i18n="footer.saturday">Subota: 09:00 - 15:00</p>
                   </div>
               </div>
               <div class="footer-bottom">
-                  <p>&copy; 2025 MS Sjaj. Sva prava zadržana.</p>
+                  <!-- ✨ UPDATED: Added data-i18n -->
+                  <p data-i18n="footer.copyright">&copy; 2025 MS Sjaj. Sva prava zadržana.</p>
               </div>
           </div>
       </footer>
@@ -182,6 +201,12 @@
       <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
       <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
       <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+
+      <!-- ✨ NEW: Translation Scripts (MUST load before script.js) -->
+      <script src="translations.js"></script>
+      <script src="i18n.js"></script>
+
+      <!-- Your main script -->
       <script src="script.js"></script>
   </body>
   </html>
