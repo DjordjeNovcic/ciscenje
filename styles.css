@@ -68,6 +68,58 @@
       background-clip: text;
   }
 
+.phone-wrapper {
+    position: relative;
+}
+
+.phone-trigger {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-weight: 600;
+    color: var(--primary-color);
+}
+
+.phone-trigger svg {
+    width: 24px;
+    height: 24px;
+    fill: currentColor;
+}
+
+.phone-dropdown {
+    position: absolute;
+    top: 120%;
+    left: 0;
+    background: white;
+    border-radius: 12px;
+    box-shadow: var(--shadow-md);
+    padding: 0.5rem 0;
+    display: none;
+    min-width: 180px;
+    z-index: 2000;
+}
+
+.phone-dropdown a {
+    display: block;
+    padding: 0.75rem 1rem;
+    text-decoration: none;
+    color: var(--text-dark);
+    font-weight: 500;
+}
+
+.phone-dropdown a:hover {
+    background: var(--bg-light);
+    color: var(--primary-color);
+}
+
+.phone-wrapper:hover .phone-dropdown {
+    display: block;
+}
+
+
 .phone-link {
     display: flex;
     align-items: center;
