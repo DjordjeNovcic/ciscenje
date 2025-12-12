@@ -264,7 +264,6 @@
     display: flex;
     align-items: center;
     gap: 0.75rem;
-    padding-left: 2rem;
 }
 
 
@@ -355,10 +354,11 @@
         transform: translateY(50%) rotate(-45deg);
     }
 
-/* Force language switcher to far right (desktop) */
-.language-switcher {
+/* Push language switcher to far right ONLY inside nav-right */
+.nav-right > .language-switcher {
     margin-left: auto;
 }
+
 
     /* ========================================
        LANDING SECTION WITH SLIDESHOW
