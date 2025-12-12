@@ -2876,3 +2876,62 @@
   .service-description h3 {
       margin: 15px 0 10px;
   }
+
+ /* ========================================
+     LANGUAGE SWITCHER
+     ======================================== */
+  .language-switcher {
+      display: flex;
+      gap: 0.5rem;
+      align-items: center;
+  }
+
+  .lang-btn {
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+      padding: 0.4rem 0.75rem;
+      background: white;
+      border: 2px solid var(--border-color);
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 0.85rem;
+      transition: all 0.3s ease;
+      color: var(--text-dark);
+  }
+
+  .lang-btn img {
+      width: 20px;
+      height: auto;
+      display: block;
+  }
+
+  .lang-btn:hover {
+      border-color: var(--primary-color);
+      background: var(--bg-light);
+      color: var(--primary-color);
+  }
+
+  .lang-btn.active {
+      background: var(--primary-color);
+      border-color: var(--primary-color);
+      color: white;
+  }
+
+  @media (max-width: 768px) {
+      .language-switcher {
+          order: 2;
+          margin-left: auto;
+          margin-right: 1rem;
+      }
+
+      .lang-btn {
+          padding: 0.35rem 0.6rem;
+          font-size: 0.8rem;
+      }
+
+      .lang-btn img {
+          width: 18px;
+      }
+  }
