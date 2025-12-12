@@ -241,13 +241,15 @@
 
   .landing-logo {
       margin-bottom: 1rem;
-      animation: fadeInUp 1s ease-out;
+      padding: 0
+      display: inline-block;
   }
 
   .landing-logo img {
       width: 400px;
       height: 400px;
       object-fit: contain;
+      display: block;  
       filter: drop-shadow(0 10px 30px rgba(0, 0, 0, 0.3));
       animation: float 3s ease-in-out infinite;
   }
