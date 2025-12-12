@@ -137,6 +137,14 @@
         height: auto;
     }
 
+.desktop-only {
+    display: flex;
+}
+
+.mobile-only {
+    display: none;
+}
+
     .phone-text {
         display: inline-block;
         font-size: 1.15rem;
@@ -2698,6 +2706,16 @@
             min-width: 44px;
         }
 
+     .desktop-only {
+        display: none !important;
+    }
+
+    .mobile-only {
+        display: flex !important;
+    }
+
+     
+
         .hamburger {
             display: flex !important;
             order: 3;
@@ -2722,12 +2740,7 @@
 
         .phone-wrapper.active .phone-dropdown {
             display: block;
-        }
-
-        /* Hide language switcher in main navbar on mobile */
-        .navbar .container > .language-switcher {
-            display: none;
-        }
+        }     
 
         .nav-menu {
             position: fixed !important;
