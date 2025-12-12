@@ -265,6 +265,7 @@
     display: flex;
     align-items: center;
     gap: 0.75rem;
+     margin-left: 2rem;
 }
 
 
@@ -357,8 +358,7 @@
 
 /* Push language switcher to far right ONLY inside nav-right */
 .nav-right > .language-switcher {
-    margin-left: auto;
-    padding-left: 2rem;
+   margin-left: 2rem;
 }
 
 
