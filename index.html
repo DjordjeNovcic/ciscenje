@@ -242,9 +242,8 @@
 
       <!-- Your main script -->
       <script src="script.js"></script>
-    <!-- Theme Loader -->
+  <!-- Theme Loader - UPDATED WITH TEXT COLORS -->
   <script>
-      // Load custom theme colors
       (function() {
           const db = firebase.firestore();
 
@@ -259,6 +258,8 @@
                       if (colors.secondaryColor) root.style.setProperty('--secondary-color', colors.secondaryColor);
                       if (colors.successColor) root.style.setProperty('--success-color', colors.successColor);
                       if (colors.bgLight) root.style.setProperty('--bg-light', colors.bgLight);
+                      if (colors.textDark) root.style.setProperty('--text-dark', colors.textDark);       // ← NEW
+                      if (colors.textLight) root.style.setProperty('--text-light', colors.textLight);   // ← NEW
 
                       if (colors.primaryColor && colors.primaryDark) {
                           root.style.setProperty('--primary-gradient',
