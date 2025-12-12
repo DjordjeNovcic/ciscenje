@@ -257,9 +257,9 @@
     display: flex;
     align-items: center;
     gap: 0.75rem;
-    margin-left: auto;
     padding-left: 2rem;
 }
+
 
    .lang-btn {
     background: none;
@@ -347,6 +347,11 @@
         bottom: 50%;
         transform: translateY(50%) rotate(-45deg);
     }
+
+/* Force language switcher to far right (desktop) */
+.language-switcher {
+    margin-left: auto;
+}
 
     /* ========================================
        LANDING SECTION WITH SLIDESHOW
