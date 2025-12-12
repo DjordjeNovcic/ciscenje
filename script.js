@@ -130,6 +130,7 @@
       loadTestimonials();
       loadGallery();
       loadAddOns();
+      loadSlideshowImages();
   }
 
   function updateFooterContent() {
@@ -1320,5 +1321,69 @@
               loadAddOnsAdmin();
               alert('Dodatna usluga je obrisana!');
           });
+      }
+  }
+
+ // Global slideshow variable
+  var slideshowImages = [];
+  var currentSlideIndex = 0;
+  var slideshowInterval;
+
+  // Load slideshow images
+  function loadSlideshowImages() {
+      const slideshowBackground = document.getElementById('slideshowBackground');
+      if (!slideshowBackground) return;
+
+      db.collection('slideshow').orderBy('order', 'asc').get().then(function(querySnapshot) {
+          slideshowImages = [];
+          slideshowBackground.innerHTML = '';
+
+          if (querySnapshot.empty) {
+              // If no slideshow images, show a default gradient background
+              slideshowBackground.style.background = 'linear-gradient(135deg, #2563eb 0%, #1e40af 100%)';
+              return;
+          }
+
+          querySnapshot.forEach(function(doc) {
+              const imageData = doc.data();
+              slideshowImages.push(imageData.url);
+
+              const img = document.createElement('img');
+              img.src = imageData.url;
+              img.className = 'slideshow-image';
+              img.alt = 'Slideshow';
+              slideshowBackground.appendChild(img);
+          });
+
+          // Start slideshow if we have images
+          if (slideshowImages.length > 0) {
+              startSlideshow();
+          }
+      }).catch(function(error) {
+          console.error('Error loading slideshow images:', error);
+      });
+  }
+
+  // Start the slideshow
+  function startSlideshow() {
+      const images = document.querySelectorAll('.slideshow-image');
+      if (images.length === 0) return;
+
+      // Show first image
+      images[0].classList.add('active');
+      currentSlideIndex = 0;
+
+      // Change image every 5 seconds
+      slideshowInterval = setInterval(function() {
+          images[currentSlideIndex].classList.remove('active');
+          currentSlideIndex = (currentSlideIndex + 1) % images.length;
+          images[currentSlideIndex].classList.add('active');
+      }, 5000);
+  }
+
+  // Stop slideshow (useful for cleanup)
+  function stopSlideshow() {
+      if (slideshowInterval) {
+          clearInterval(slideshowInterval);
       }
   }
