@@ -81,12 +81,17 @@
     cursor: pointer;
     font-weight: 600;
     color: var(--primary-color);
+
+    padding: 0;       
+    line-height: 1;    
+    height: auto;
 }
 
 .phone-trigger svg {
     width: 24px;
     height: 24px;
     fill: currentColor;
+    display: block;  
 }
 
 .phone-dropdown {
