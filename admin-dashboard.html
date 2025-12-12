@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
   <html lang="sr">
   <head>
       <meta charset="UTF-8">
@@ -7,15 +7,56 @@
       <link rel="stylesheet" href="styles.css">
       <!-- Quill Editor -->
       <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+      <style>
+          /* Dual Language Form Styling */
+          .language-tabs {
+              display: flex;
+              gap: 0.5rem;
+              margin-bottom: 1rem;
+              border-bottom: 2px solid var(--border-color);
+          }
+          .language-tab {
+              padding: 0.75rem 1.5rem;
+              background: none;
+              border: none;
+              cursor: pointer;
+              font-weight: 600;
+              color: var(--text-light);
+              border-bottom: 3px solid transparent;
+              transition: all 0.3s;
+          }
+          .language-tab.active {
+              color: var(--primary-color);
+              border-bottom-color: var(--primary-color);
+          }
+          .language-tab:hover {
+              color: var(--primary-color);
+          }
+          .lang-section {
+              display: none;
+          }
+          .lang-section.active {
+              display: block;
+          }
+          .dual-lang-group {
+              background: var(--bg-light);
+              padding: 1.5rem;
+              border-radius: 8px;
+              margin-bottom: 1.5rem;
+          }
+          .lang-flag {
+              font-size: 1.2rem;
+              margin-right: 0.5rem;
+          }
+      </style>
   </head>
   <body>
       <div class="admin-layout">
-          <!-- Sidebar -->
+          <!-- Sidebar (unchanged) -->
           <aside class="admin-sidebar">
               <div class="sidebar-header">
                   <h2>MS Sjaj Admin</h2>
               </div>
-
               <nav class="sidebar-nav">
                   <div class="nav-item active" data-section="dashboard-section">
                       <span>📊</span> Kontrolna tabla
@@ -45,7 +86,6 @@
                       <span>📞</span> Kontakt
                   </div>
               </nav>
-
               <div class="sidebar-footer">
                   <button id="logoutBtn" class="btn btn-secondary btn-block">Odjavi se</button>
               </div>
@@ -66,7 +106,6 @@
                       <div class="dashboard-section">
                           <h2>Pregled</h2>
                           <p>Dobrodošli u admin kontrolnu tablu MS Sjaj</p>
-
                           <div class="quick-actions" style="margin-top: 2rem;">
                               <button class="btn btn-primary" onclick="document.querySelector('[data-section=home-section]').click()">Uredi početnu</button>
                               <button class="btn btn-primary" onclick="document.querySelector('[data-section=slideshow-section]').click()">Uredi slideshow</button>
@@ -76,49 +115,72 @@
                       </div>
                   </div>
 
-                  <!-- Edit Home Page -->
+                  <!-- Edit Home Page - DUAL LANGUAGE -->
                   <div id="home-section" class="content-section">
                       <div class="dashboard-section">
                           <h2>Uredi početnu stranicu</h2>
                           <form class="cms-form">
-                              <div class="form-group">
-                                  <label for="heroHeading">Glavni naslov</label>
-                                  <input type="text" id="heroHeading" placeholder="Glavni naslov">
-                              </div>
-                              <div class="form-group">
-                                  <label for="heroText">Tekst opisa</label>
-                                  <textarea id="heroText" rows="3" placeholder="Tekst ispod naslova"></textarea>
+                              <!-- Language Tabs -->
+                              <div class="language-tabs">
+                                  <button type="button" class="language-tab active" onclick="switchLang(event, 'sr')">
+                                      🇷🇸 Srpski
+                                  </button>
+                                  <button type="button" class="language-tab" onclick="switchLang(event, 'en')">
+                                      🇬🇧 English
+                                  </button>
                               </div>
 
-                              <h3>Karakteristike</h3>
-                              <div id="featuresContainer">
-                                  <!-- Features will be loaded here -->
+                              <!-- Serbian Content -->
+                              <div class="lang-section active" data-lang="sr">
+                                  <div class="dual-lang-group">
+                                      <h3><span class="lang-flag">🇷🇸</span>Srpski sadržaj</h3>
+                                      <div class="form-group">
+                                          <label for="heroHeading_sr">Glavni naslov</label>
+                                          <input type="text" id="heroHeading_sr" placeholder="Profesionalne usluge čišćenja...">
+                                      </div>
+                                      <div class="form-group">
+                                          <label for="heroText_sr">Tekst opisa</label>
+                                          <textarea id="heroText_sr" rows="3" placeholder="Pružamo vrhunske usluge čišćenja..."></textarea>
+                                      </div>
+                                  </div>
                               </div>
-                              <button type="button" onclick="addFeature()" class="btn btn-secondary" style="margin-bottom: 1rem;">Dodaj karakteristiku</button>
+
+                              <!-- English Content -->
+                              <div class="lang-section" data-lang="en">
+                                  <div class="dual-lang-group">
+                                      <h3><span class="lang-flag">🇬🇧</span>English Content</h3>
+                                      <div class="form-group">
+                                          <label for="heroHeading_en">Main Heading</label>
+                                          <input type="text" id="heroHeading_en" placeholder="Professional cleaning services...">
+                                      </div>
+                                      <div class="form-group">
+                                          <label for="heroText_en">Description Text</label>
+                                          <textarea id="heroText_en" rows="3" placeholder="We provide premium cleaning services..."></textarea>
+                                      </div>
+                                  </div>
+                              </div>
 
                               <button type="button" id="saveHomeBtn" onclick="saveHomeContent()" class="btn btn-primary">Sačuvaj izmene</button>
                           </form>
                       </div>
                   </div>
 
-                  <!-- Slideshow Management Section -->
+                  <!-- Slideshow Management Section (unchanged - images don't need translation) -->
                   <div id="slideshow-section" class="content-section">
                       <div class="dashboard-section">
                           <h2>Upravljanje Slideshow-om</h2>
-                          <p>Dodajte slike za pozadinski slideshow na početnoj stranici. Slike će se automatski prikazivati u pozadini loga.</p>
-
+                          <p>Dodajte slike za pozadinski slideshow na početnoj stranici.</p>
                           <button onclick="document.getElementById('slideshowInput').click()" class="btn btn-primary" style="margin-bottom: 2rem;">
                               <span>📤</span> Dodaj sliku u slideshow
                           </button>
                           <input type="file" id="slideshowInput" accept="image/*" style="display: none;">
-
                           <div id="slideshowAdmin" class="photo-gallery">
                               <p>Učitavanje slideshow slika...</p>
                           </div>
                       </div>
                   </div>
 
-                  <!-- Edit Services Page -->
+                  <!-- Edit Services - DUAL LANGUAGE -->
                   <div id="services-section" class="content-section">
                       <div class="dashboard-section">
                           <h2>Uredi usluge</h2>
@@ -129,7 +191,7 @@
                       </div>
                   </div>
 
-                  <!-- Edit Add-ons Page -->
+                  <!-- Edit Add-ons - DUAL LANGUAGE -->
                   <div id="addons-section" class="content-section">
                       <div class="dashboard-section">
                           <h2>Uredi dodatne usluge</h2>
@@ -140,42 +202,57 @@
                       </div>
                   </div>
 
-                  <!-- Edit About Page -->
+                  <!-- Edit About Page - DUAL LANGUAGE -->
                   <div id="about-section" class="content-section">
                       <div class="dashboard-section">
                           <h2>Uredi O nama stranicu</h2>
                           <form class="cms-form">
-                              <!-- Story Section -->
-                              <h3>Priča</h3>
-                              <div class="form-group">
-                                  <label for="aboutHeading">Naslov</label>
-                                  <input type="text" id="aboutHeading" placeholder="Naslov O nama sekcije">
-                              </div>
-                              <div class="form-group">
-                                  <label for="aboutText">Tekst</label>
-                                  <textarea id="aboutText" rows="5" placeholder="Opis kompanije"></textarea>
+                              <!-- Language Tabs -->
+                              <div class="language-tabs">
+                                  <button type="button" class="language-tab active" onclick="switchLang(event, 'sr')">
+                                      🇷🇸 Srpski
+                                  </button>
+                                  <button type="button" class="language-tab" onclick="switchLang(event, 'en')">
+                                      🇬🇧 English
+                                  </button>
                               </div>
 
-                              <!-- Stats Section -->
-                              <h3 style="margin-top: 2rem;">Statistika (4 kutije)</h3>
-                              <div id="statsContainer">
-                                  <!-- Stats will be loaded here -->
+                              <!-- Serbian Content -->
+                              <div class="lang-section active" data-lang="sr">
+                                  <div class="dual-lang-group">
+                                      <h3><span class="lang-flag">🇷🇸</span>Priča - Srpski</h3>
+                                      <div class="form-group">
+                                          <label for="aboutHeading_sr">Naslov</label>
+                                          <input type="text" id="aboutHeading_sr" placeholder="Posvećeni kvalitetu od 2015. godine">
+                                      </div>
+                                      <div class="form-group">
+                                          <label for="aboutText_sr">Tekst</label>
+                                          <textarea id="aboutText_sr" rows="5" placeholder="Osnovani 2015. godine..."></textarea>
+                                      </div>
+                                  </div>
                               </div>
-                              <button type="button" onclick="addStat()" class="btn btn-secondary" style="margin-bottom: 1rem;">Dodaj statistiku</button>
 
-                              <!-- Why Choose Us Section -->
-                              <h3 style="margin-top: 2rem;">Zašto izabrati nas (do 6 razloga)</h3>
-                              <div id="reasonsContainer">
-                                  <!-- Reasons will be loaded here -->
+                              <!-- English Content -->
+                              <div class="lang-section" data-lang="en">
+                                  <div class="dual-lang-group">
+                                      <h3><span class="lang-flag">🇬🇧</span>Story - English</h3>
+                                      <div class="form-group">
+                                          <label for="aboutHeading_en">Heading</label>
+                                          <input type="text" id="aboutHeading_en" placeholder="Committed to Quality Since 2015">
+                                      </div>
+                                      <div class="form-group">
+                                          <label for="aboutText_en">Text</label>
+                                          <textarea id="aboutText_en" rows="5" placeholder="Founded in 2015..."></textarea>
+                                      </div>
+                                  </div>
                               </div>
-                              <button type="button" onclick="addReason()" class="btn btn-secondary" style="margin-bottom: 1rem;">Dodaj razlog</button>
 
                               <button type="button" id="saveAboutBtn" onclick="saveAboutContent()" class="btn btn-primary">Sačuvaj izmene</button>
                           </form>
                       </div>
                   </div>
 
-                  <!-- Manage Testimonials -->
+                  <!-- Testimonials - DUAL LANGUAGE -->
                   <div id="testimonials-section" class="content-section">
                       <div class="dashboard-section">
                           <h2>Recenzije kupaca</h2>
@@ -186,7 +263,7 @@
                       </div>
                   </div>
 
-                  <!-- Photo Gallery -->
+                  <!-- Photo Gallery (unchanged) -->
                   <div id="gallery-section" class="content-section">
                       <div class="dashboard-section">
                           <h2>Galerija fotografija</h2>
@@ -198,7 +275,7 @@
                       </div>
                   </div>
 
-                  <!-- Contact Info -->
+                  <!-- Contact Info (unchanged - universal) -->
                   <div id="contact-section" class="content-section">
                       <div class="dashboard-section">
                           <h2>Kontakt informacije</h2>
@@ -215,7 +292,6 @@
                                   <label for="contactAddress">Adresa</label>
                                   <input type="text" id="contactAddress" placeholder="Kragujevac, Srbija">
                               </div>
-
                               <button type="button" id="saveContactBtn" onclick="saveContact()" class="btn btn-primary">Sačuvaj izmene</button>
                           </form>
                       </div>
@@ -224,26 +300,71 @@
           </main>
       </div>
 
-      <!-- Service Modal -->
+      <!-- Service Modal - DUAL LANGUAGE -->
       <div id="serviceModal" class="modal">
-          <div class="modal-content">
+          <div class="modal-content" style="max-width: 800px;">
               <div class="modal-header">
                   <h2 id="serviceModalTitle">Dodaj uslugu</h2>
                   <button class="close-modal" onclick="closeServiceModal()">&times;</button>
               </div>
               <form id="serviceForm">
+                  <input type="hidden" id="serviceId">
+
+                  <!-- Icon (universal) -->
                   <div class="form-group">
-                      <label for="serviceName">Naziv usluge</label>
-                      <input type="text" id="serviceName" required>
+                      <label for="serviceIcon">Ikona (Font Awesome)</label>
+                      <input type="text" id="serviceIcon" placeholder="fas fa-home" value="fas fa-broom">
+                      <small>Primeri: fas fa-home, fas fa-building, fas fa-broom, fas fa-paint-roller</small>
                   </div>
-                  <div class="form-group">
-                      <label for="serviceDescription">Opis</label>
-                      <div id="serviceDescription" style="background: white; min-height: 200px;"></div>
+
+                  <!-- Language Tabs -->
+                  <div class="language-tabs">
+                      <button type="button" class="language-tab active" onclick="switchModalLang(event, 'sr')">
+                          🇷🇸 Srpski
+                      </button>
+                      <button type="button" class="language-tab" onclick="switchModalLang(event, 'en')">
+                          🇬🇧 English
+                      </button>
                   </div>
-                  <div class="form-group">
-                      <label for="servicePrice">Cena</label>
-                      <input type="text" id="servicePrice" placeholder="npr. 3000 RSD" required>
+
+                  <!-- Serbian Fields -->
+                  <div class="lang-section active" data-lang="sr">
+                      <div class="dual-lang-group">
+                          <h3><span class="lang-flag">🇷🇸</span>Srpski</h3>
+                          <div class="form-group">
+                              <label for="serviceName_sr">Naziv usluge</label>
+                              <input type="text" id="serviceName_sr" placeholder="Čišćenje Stana" required>
+                          </div>
+                          <div class="form-group">
+                              <label for="serviceDescription_sr">Opis</label>
+                              <div id="serviceDescription_sr" style="background: white; min-height: 200px;"></div>
+                          </div>
+                          <div class="form-group">
+                              <label for="servicePrice_sr">Cena</label>
+                              <input type="text" id="servicePrice_sr" placeholder="od 3.000 RSD" required>
+                          </div>
+                      </div>
                   </div>
+
+                  <!-- English Fields -->
+                  <div class="lang-section" data-lang="en">
+                      <div class="dual-lang-group">
+                          <h3><span class="lang-flag">🇬🇧</span>English</h3>
+                          <div class="form-group">
+                              <label for="serviceName_en">Service Name</label>
+                              <input type="text" id="serviceName_en" placeholder="Apartment Cleaning" required>
+                          </div>
+                          <div class="form-group">
+                              <label for="serviceDescription_en">Description</label>
+                              <div id="serviceDescription_en" style="background: white; min-height: 200px;"></div>
+                          </div>
+                          <div class="form-group">
+                              <label for="servicePrice_en">Price</label>
+                              <input type="text" id="servicePrice_en" placeholder="from 3,000 RSD" required>
+                          </div>
+                      </div>
+                  </div>
+
                   <div class="modal-actions">
                       <button type="button" class="btn btn-secondary" onclick="closeServiceModal()">Otkaži</button>
                       <button type="button" id="saveServiceBtn" onclick="saveService()" class="btn btn-primary">Sačuvaj</button>
@@ -252,7 +373,7 @@
           </div>
       </div>
 
-      <!-- Add-on Modal -->
+      <!-- Add-on Modal - DUAL LANGUAGE -->
       <div id="addonModal" class="modal">
           <div class="modal-content">
               <div class="modal-header">
@@ -260,18 +381,61 @@
                   <button class="close-modal" onclick="closeAddOnModal()">&times;</button>
               </div>
               <form id="addonForm">
+                  <input type="hidden" id="addonId">
+
                   <div class="form-group">
-                      <label for="addonName">Naziv dodatne usluge</label>
-                      <input type="text" id="addonName" required>
+                      <label for="addonIcon">Ikona</label>
+                      <input type="text" id="addonIcon" placeholder="fas fa-window-maximize" value="fas fa-plus-circle">
                   </div>
-                  <div class="form-group">
-                      <label for="addonDescription">Opis</label>
-                      <textarea id="addonDescription" rows="2" required></textarea>
+
+                  <!-- Language Tabs -->
+                  <div class="language-tabs">
+                      <button type="button" class="language-tab active" onclick="switchModalLang(event, 'sr')">
+                          🇷🇸 Srpski
+                      </button>
+                      <button type="button" class="language-tab" onclick="switchModalLang(event, 'en')">
+                          🇬🇧 English
+                      </button>
                   </div>
-                  <div class="form-group">
-                      <label for="addonPrice">Cena</label>
-                      <input type="text" id="addonPrice" placeholder="npr. Od 2.000 RSD" required>
+
+                  <!-- Serbian -->
+                  <div class="lang-section active" data-lang="sr">
+                      <div class="dual-lang-group">
+                          <h3><span class="lang-flag">🇷🇸</span>Srpski</h3>
+                          <div class="form-group">
+                              <label for="addonName_sr">Naziv</label>
+                              <input type="text" id="addonName_sr" placeholder="Pranje Prozora" required>
+                          </div>
+                          <div class="form-group">
+                              <label for="addonDescription_sr">Opis</label>
+                              <textarea id="addonDescription_sr" rows="3" placeholder="Profesionalno pranje prozora..." required></textarea>
+                          </div>
+                          <div class="form-group">
+                              <label for="addonPrice_sr">Cena</label>
+                              <input type="text" id="addonPrice_sr" placeholder="500 RSD po prozoru" required>
+                          </div>
+                      </div>
                   </div>
+
+                  <!-- English -->
+                  <div class="lang-section" data-lang="en">
+                      <div class="dual-lang-group">
+                          <h3><span class="lang-flag">🇬🇧</span>English</h3>
+                          <div class="form-group">
+                              <label for="addonName_en">Name</label>
+                              <input type="text" id="addonName_en" placeholder="Window Washing" required>
+                          </div>
+                          <div class="form-group">
+                              <label for="addonDescription_en">Description</label>
+                              <textarea id="addonDescription_en" rows="3" placeholder="Professional window washing..." required></textarea>
+                          </div>
+                          <div class="form-group">
+                              <label for="addonPrice_en">Price</label>
+                              <input type="text" id="addonPrice_en" placeholder="500 RSD per window" required>
+                          </div>
+                      </div>
+                  </div>
+
                   <div class="modal-actions">
                       <button type="button" class="btn btn-secondary" onclick="closeAddOnModal()">Otkaži</button>
                       <button type="button" id="saveAddOnBtn" onclick="saveAddOn()" class="btn btn-primary">Sačuvaj</button>
@@ -280,7 +444,7 @@
           </div>
       </div>
 
-      <!-- Testimonial Modal -->
+      <!-- Testimonial Modal - DUAL LANGUAGE -->
       <div id="testimonialModal" class="modal">
           <div class="modal-content">
               <div class="modal-header">
@@ -288,24 +452,54 @@
                   <button class="close-modal" onclick="closeTestimonialModal()">&times;</button>
               </div>
               <form id="testimonialForm">
+                  <input type="hidden" id="testimonialId">
+
                   <div class="form-group">
-                      <label for="testimonialText">Tekst recenzije</label>
-                      <textarea id="testimonialText" rows="4" required></textarea>
+                      <label for="testimonialAuthor">Ime kupca (universal)</label>
+                      <input type="text" id="testimonialAuthor" placeholder="Marija Petrović" required>
                   </div>
-                  <div class="form-group">
-                      <label for="testimonialAuthor">Ime kupca</label>
-                      <input type="text" id="testimonialAuthor" required>
-                  </div>
+
                   <div class="form-group">
                       <label for="testimonialRating">Ocena</label>
                       <select id="testimonialRating" required>
                           <option value="5">★★★★★ (5 zvezda)</option>
                           <option value="4">★★★★☆ (4 zvezde)</option>
                           <option value="3">★★★☆☆ (3 zvezde)</option>
-                          <option value="2">★★☆☆☆ (2 zvezde)</option>
-                          <option value="1">★☆☆☆☆ (1 zvezda)</option>
                       </select>
                   </div>
+
+                  <!-- Language Tabs -->
+                  <div class="language-tabs">
+                      <button type="button" class="language-tab active" onclick="switchModalLang(event, 'sr')">
+                          🇷🇸 Srpski
+                      </button>
+                      <button type="button" class="language-tab" onclick="switchModalLang(event, 'en')">
+                          🇬🇧 English
+                      </button>
+                  </div>
+
+                  <!-- Serbian -->
+                  <div class="lang-section active" data-lang="sr">
+                      <div class="dual-lang-group">
+                          <h3><span class="lang-flag">🇷🇸</span>Srpski tekst</h3>
+                          <div class="form-group">
+                              <label for="testimonialText_sr">Tekst recenzije</label>
+                              <textarea id="testimonialText_sr" rows="4" placeholder="Odličan servis! Veoma sam zadovoljna..." required></textarea>
+                          </div>
+                      </div>
+                  </div>
+
+                  <!-- English -->
+                  <div class="lang-section" data-lang="en">
+                      <div class="dual-lang-group">
+                          <h3><span class="lang-flag">🇬🇧</span>English text</h3>
+                          <div class="form-group">
+                              <label for="testimonialText_en">Review Text</label>
+                              <textarea id="testimonialText_en" rows="4" placeholder="Excellent service! Very satisfied..." required></textarea>
+                          </div>
+                      </div>
+                  </div>
+
                   <div class="modal-actions">
                       <button type="button" class="btn btn-secondary" onclick="closeTestimonialModal()">Otkaži</button>
                       <button type="button" id="saveTestimonialBtn" onclick="saveTestimonial()" class="btn btn-primary">Sačuvaj</button>
@@ -319,6 +513,44 @@
       <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
       <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
       <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+
+      <!-- Language Switcher Script -->
+      <script>
+          // Switch language tabs in sections
+          function switchLang(event, lang) {
+              const container = event.target.closest('form') || event.target.closest('.dashboard-section');
+
+              // Update tab buttons
+              container.querySelectorAll('.language-tab').forEach(tab => {
+                  tab.classList.remove('active');
+              });
+              event.target.classList.add('active');
+
+              // Show/hide language sections
+              container.querySelectorAll('.lang-section').forEach(section => {
+                  section.classList.remove('active');
+              });
+              container.querySelector(`.lang-section[data-lang="${lang}"]`).classList.add('active');
+          }
+
+          // Switch language tabs in modals
+          function switchModalLang(event, lang) {
+              const modal = event.target.closest('.modal');
+
+              // Update tab buttons
+              modal.querySelectorAll('.language-tab').forEach(tab => {
+                  tab.classList.remove('active');
+              });
+              event.target.classList.add('active');
+
+              // Show/hide language sections
+              modal.querySelectorAll('.lang-section').forEach(section => {
+                  section.classList.remove('active');
+              });
+              modal.querySelector(`.lang-section[data-lang="${lang}"]`).classList.add('active');
+          }
+      </script>
+
       <script src="script.js"></script>
   </body>
-  </html>
+  </htm
