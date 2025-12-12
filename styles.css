@@ -87,6 +87,14 @@
     height: auto;
 }
 
+.phone-text {
+    display: inline-block;    
+    font-size: 1.15rem;        
+    font-weight: 700;
+    line-height: 1;
+    white-space: nowrap;
+}
+
 .phone-trigger svg {
     width: 24px;
     height: 24px;
