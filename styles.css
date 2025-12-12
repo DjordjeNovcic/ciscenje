@@ -2354,7 +2354,13 @@
       }
 
    .phone-text {
-        display: none;
+        display: inline-block;
+        font-size: 1rem;
+        font-weight: 600;
+    }
+
+    .phone-dropdown {
+        display: none !important;
     }
 
       .nav-menu {
