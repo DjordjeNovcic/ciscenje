@@ -7,18 +7,31 @@
       <link rel="stylesheet" href="styles.css">
   </head>
   <body>
-      <!-- Navigation -->
+       <!-- Navigation -->
       <nav class="navbar">
           <div class="container">
-              <div class="logo">MS Sjaj</div>
+              <div class="phone-wrapper">
+    <button class="phone-trigger" aria-label="Pozovite MS Sjaj">
+        <svg viewBox="0 0 24 24">
+            <path d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 011.01-.24c1.12.37 2.33.57 3.58.57a1 1 0 011 1v3.5a1 1 0 01-1 1C10.07 21 3 13.93 3 5.5a1 1 0 011-1H7.5a1 1 0 011 1c0 1.25.2 2.46.57 3.59a1 1 0 01-.25 1.01l-2.2 2.19z"/>
+        </svg>
+        <span class="phone-text">Pozovite nas</span>
+    </button>
+
+    <div class="phone-dropdown">
+        <a href="tel:0643937000">📞 064 / 393-7000</a>
+        <a href="tel:0655625876">📞 065 / 562-5876</a>
+    </div>
+</div>
+
               <button class="hamburger" id="hamburger">
                   <span></span>
                   <span></span>
                   <span></span>
               </button>
               <ul class="nav-menu" id="navMenu">
-                  <li><a href="index.html">Početna</a></li>
-                  <li><a href="services.html" class="active">Usluge</a></li>
+                  <li><a href="index.html" class="active">Početna</a></li>
+                  <li><a href="services.html">Usluge</a></li>
                   <li><a href="about.html">O nama</a></li>
                   <li><a href="admin-login.html" class="admin-link">Admin</a></li>
               </ul>
