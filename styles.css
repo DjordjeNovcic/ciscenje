@@ -249,7 +249,8 @@
 .nav-right {
     display: flex;
     align-items: center;
-    gap: 2rem;
+    gap: 1.5rem;
+    padding-left: 2.5rem;
 }
 
     .admin-link {
