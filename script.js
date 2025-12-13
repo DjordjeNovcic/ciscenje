@@ -17,9 +17,6 @@
   const db = firebase.firestore();
   const auth = firebase.auth();
 
-  var quillEditorSr = null;
-  var quillEditorEn = null;
-
   // Language Helper Function
   function getLocalizedField(item, field) {
       const lang = localStorage.getItem('language') || 'sr';
@@ -66,43 +63,7 @@
   document.addEventListener('DOMContentLoaded', function() {
       initializeApp();
       setupSidebarNavigation();
-      initQuillEditor();
   });
-
-  function initQuillEditor() {
-      const editorElementSr = document.getElementById('serviceDescription_sr');
-      const editorElementEn = document.getElementById('serviceDescription_en');
-
-      if (editorElementSr && !quillEditorSr) {
-          quillEditorSr = new Quill('#serviceDescription_sr', {
-              theme: 'snow',
-              modules: {
-                  toolbar: [
-                      ['bold', 'italic', 'underline', 'strike'],
-                      [{ 'list': 'ordered'}, { 'list': 'bullet' }],
-                      [{ 'header': [1, 2, 3, false] }],
-                      ['clean']
-                  ]
-              },
-              placeholder: 'Unesite opis usluge na srpskom...'
-          });
-      }
-
-      if (editorElementEn && !quillEditorEn) {
-          quillEditorEn = new Quill('#serviceDescription_en', {
-              theme: 'snow',
-              modules: {
-                  toolbar: [
-                      ['bold', 'italic', 'underline', 'strike'],
-                      [{ 'list': 'ordered'}, { 'list': 'bullet' }],
-                      [{ 'header': [1, 2, 3, false] }],
-                      ['clean']
-                  ]
-              },
-              placeholder: 'Enter service description in English...'
-          });
-      }
-  }
 
   function initializeApp() {
       setupMobileNav();
@@ -565,41 +526,10 @@
       });
   }
 
-  function showServiceModal(serviceId) {
+   function showServiceModal(serviceId) {
       const modal = document.getElementById('serviceModal');
       const form = document.getElementById('serviceForm');
       const modalTitle = document.getElementById('serviceModalTitle');
-
-      // Initialize Quill editors
-      if (!quillEditorSr) {
-          quillEditorSr = new Quill('#serviceDescription_sr', {
-              theme: 'snow',
-              modules: {
-                  toolbar: [
-                      ['bold', 'italic', 'underline', 'strike'],
-                      [{ 'list': 'ordered'}, { 'list': 'bullet' }],
-                      [{ 'header': [1, 2, 3, false] }],
-                      ['clean']
-                  ]
-              },
-              placeholder: 'Unesite opis usluge na srpskom...'
-          });
-      }
-
-      if (!quillEditorEn) {
-          quillEditorEn = new Quill('#serviceDescription_en', {
-              theme: 'snow',
-              modules: {
-                  toolbar: [
-                      ['bold', 'italic', 'underline', 'strike'],
-                      [{ 'list': 'ordered'}, { 'list': 'bullet' }],
-                      [{ 'header': [1, 2, 3, false] }],
-                      ['clean']
-                  ]
-              },
-              placeholder: 'Enter service description in English...'
-          });
-      }
 
       if (serviceId) {
           modalTitle.textContent = 'Uredi uslugu';
@@ -609,16 +539,12 @@
 
                   // Load Serbian fields
                   document.getElementById('serviceName_sr').value = service.name_sr || '';
-                  if (quillEditorSr) {
-                      quillEditorSr.root.innerHTML = service.description_sr || '';
-                  }
+                  document.getElementById('serviceDescription_sr').value = service.description_sr || '';
                   document.getElementById('servicePrice_sr').value = service.price_sr || '';
 
                   // Load English fields
                   document.getElementById('serviceName_en').value = service.name_en || '';
-                  if (quillEditorEn) {
-                      quillEditorEn.root.innerHTML = service.description_en || '';
-                  }
+                  document.getElementById('serviceDescription_en').value = service.description_en || '';
                   document.getElementById('servicePrice_en').value = service.price_en || '';
 
                   form.dataset.serviceId = serviceId;
@@ -627,12 +553,6 @@
       } else {
           modalTitle.textContent = 'Dodaj uslugu';
           form.reset();
-          if (quillEditorSr) {
-              quillEditorSr.setText('');
-          }
-          if (quillEditorEn) {
-              quillEditorEn.setText('');
-          }
           delete form.dataset.serviceId;
       }
       modal.style.display = 'flex';
@@ -640,25 +560,17 @@
 
   function closeServiceModal() {
       document.getElementById('serviceModal').style.display = 'none';
-      if (quillEditorSr) {
-          quillEditorSr.setText('');
-      }
-      if (quillEditorEn) {
-          quillEditorEn.setText('');
-      }
   }
 
-  function saveService() {
+   function saveService() {
       const form = document.getElementById('serviceForm');
-      const descriptionSr = quillEditorSr ? quillEditorSr.root.innerHTML : '';
-      const descriptionEn = quillEditorEn ? quillEditorEn.root.innerHTML : '';
 
       const serviceData = {
           name_sr: document.getElementById('serviceName_sr').value,
-          description_sr: descriptionSr,
+          description_sr: document.getElementById('serviceDescription_sr').value,
           price_sr: document.getElementById('servicePrice_sr').value,
           name_en: document.getElementById('serviceName_en').value,
-          description_en: descriptionEn,
+          description_en: document.getElementById('serviceDescription_en').value,
           price_en: document.getElementById('servicePrice_en').value
       };
 
