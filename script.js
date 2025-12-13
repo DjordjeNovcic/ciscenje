@@ -1256,7 +1256,7 @@
   // GALLERY
   // ============================================
 
-  function loadGallery() {
+   function loadGallery() {
       const galleryGrid = document.getElementById('galleryGrid');
       if (!galleryGrid) return;
 
@@ -1264,33 +1264,49 @@
 
       db.collection('gallery').orderBy('uploadedAt', 'desc').get().then(function(querySnapshot) {
           galleryGrid.innerHTML = '';
-          galleryImages = []; 
-        
+          galleryImages = []; // Reset the array
+
+          console.log('📸 Loading gallery, found', querySnapshot.size, 'photos'); // DEBUG
+
           if (querySnapshot.empty) {
               showEmptyState('galleryGrid', 'Trenutno nema fotografija u galeriji.');
           } else {
               querySnapshot.forEach(function(doc, index) {
                   const photo = doc.data();
+                  const imageUrl = photo.url;
 
-                  // ✨ ADD IMAGE URL TO ARRAY
-                  galleryImages.push(photo.url);
+                  console.log(`Photo ${index}:`, imageUrl); // DEBUG - check if URL exists
 
-                  const div = document.createElement('div');
-                  div.className = 'gallery-item fade-in';
-                  div.style.animationDelay = (index * 0.05) + 's';
+                  // ✨ ONLY ADD if URL exists
+                  if (imageUrl) {
+                      galleryImages.push(imageUrl);
 
-                  const img = document.createElement('img');
-                  img.src = photo.url;
-                  img.alt = 'Galerija';
+                      const div = document.createElement('div');
+                      div.className = 'gallery-item fade-in';
+                      div.style.animationDelay = (index * 0.05) + 's';
 
-                  // ✨ ADD CLICK HANDLER FOR LIGHTBOX
-                  div.addEventListener('click', function() {
-                       openLightbox(index);
-                  });
+                      const img = document.createElement('img');
+                      img.src = imageUrl;
+                      img.alt = 'Galerija';
 
-                  div.appendChild(img);
-                  galleryGrid.appendChild(div);
+                      // ✨ IMPORTANT: Capture the correct index
+                      const currentIndex = galleryImages.length - 1;
+                      div.addEventListener('click', function() {
+                          console.log('🖱️ Clicked image at index:', currentIndex); // DEBUG
+                          console.log('📦 Gallery array length:', galleryImages.length); // DEBUG
+                          console.log('🖼️ Image URL:', galleryImages[currentIndex]); // DEBUG
+                          openLightbox(currentIndex);
+                      });
+
+                      div.appendChild(img);
+                      galleryGrid.appendChild(div);
+                  } else {
+                      console.error('❌ Photo has no URL:', photo); // DEBUG
+                  }
               });
+
+              console.log('✅ Gallery loaded. Total images:', galleryImages.length); // DEBUG
+              console.log('📦 Gallery array:', galleryImages); // DEBUG
           }
       }).catch(function(error) {
           console.error('Error loading gallery:', error);
