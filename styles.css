@@ -1768,6 +1768,7 @@
       text-decoration: none;
       transition: background 0.3s;
       cursor: pointer;
+      flex-shrink: 0;
   }
 
   .sidebar-nav .nav-item:hover,
@@ -2946,11 +2947,31 @@
 
   /* Sidebar Nav - EXACT HEIGHT WITH CALC */
   .sidebar-nav {
-      height: calc(100dvh - 150px);
-      overflow-y: auto;
+     height: calc(100dvh - 150px);
+      overflow-y: auto !important;
       overflow-x: hidden;
       -webkit-overflow-scrolling: touch;
       padding: 0;
+
+     scrollbar-width: thin;  
+      scrollbar-color: var(--primary-color) rgba(255, 255, 255, 0.1); 
+  }
+
+  .sidebar-nav::-webkit-scrollbar {
+      width: 6px;
+  }
+
+       .sidebar-nav::-webkit-scrollbar-thumb {
+      background: var(--primary-color);
+      border-radius: 3px;
+  }
+
+  .sidebar-nav::-webkit-scrollbar-thumb:hover {
+      background: var(--primary-dark);
+  }
+
+  .sidebar-nav::-webkit-scrollbar-track {
+      background: rgba(255, 255, 255, 0.05);
   }
 
   /* Sidebar Footer - FIXED 70px AT BOTTOM */
