@@ -2393,8 +2393,8 @@ footer::before,
 	padding: 0;
 	border-radius: 12px;
 	width: 90%;
-	max-width: 640px;
-	max-height: 85vh;
+	max-width: 580px;
+	max-height: 82vh;
 	overflow-y: auto;
 	animation: slideUp 0.3s;
 	box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
@@ -2416,7 +2416,7 @@ footer::before,
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-	padding: 1rem 1.25rem;
+	padding: 1rem 1.2rem;
 	border-bottom: 1px solid var(--border-color);
 }
 
@@ -2452,7 +2452,7 @@ footer::before,
 
 .form-group label {
 	display: block;
-	margin-bottom: 0.5rem;
+	margin-bottom: 0.25rem;
 	font-weight: 600;
 	color: var(--text-dark);
 }
@@ -2464,7 +2464,7 @@ footer::before,
 	padding: 0.75rem;
 	border: 1px solid var(--border-color);
 	border-radius: 8px;
-	font-size: 1rem;
+	font-size: 0.9rem;
 	font-family: inherit;
 }
 
@@ -2484,6 +2484,8 @@ footer::before,
 
 .modal-actions .btn {
 	flex: 1;
+	padding: 0.45rem 1rem; 
+	font-size: 0.85rem;
 }
 
 /* ----------------------------------------------------
@@ -2599,6 +2601,7 @@ footer::before,
 	border-radius: 8px 8px 0 0;
 	border: 1px solid var(--border-color);
 	border-bottom: none;
+	padding: 4px;
 }
 
 .ql-container {
@@ -2614,7 +2617,7 @@ footer::before,
 }
 
 .ql-editor {
-	min-height: 140px;
+	min-height: 120px;
 	line-height: 1.6;
 	font-size: 15px;
   	color: var(--text-dark);
