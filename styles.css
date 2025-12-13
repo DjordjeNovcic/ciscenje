@@ -1808,7 +1808,7 @@
   }
 
   .dashboard-content {
-      padding: 2rem;
+     padding: 1rem !important;
   }
 
   .stats-grid {
@@ -2827,12 +2827,14 @@
   /* Admin Layout */
   .admin-layout {
       flex-direction: column;
+     padding-left: 0 !important;
   }
 
   /* Admin Main - Remove left margin */
   .admin-main {
       margin-left: 0 !important;
       width: 100% !important;
+        padding-left: 0 !important;
   }
 
   /* Admin Header */
