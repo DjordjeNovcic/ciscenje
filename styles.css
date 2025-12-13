@@ -2864,6 +2864,7 @@
       z-index: 1;
       flex-shrink: 0;
       order: 2;
+     position: relative;
   }
 
   .admin-hamburger span {
@@ -2885,11 +2886,10 @@
       left: -100%;
       top: 0;
       width: 100%;
-      height: 100vh;
+      height: 100dvh;
       transition: left 0.3s ease;
       z-index: 2000;
       background: var(--text-dark);
-      overflow: hidden;
   }
 
   .admin-sidebar.active {
@@ -2941,7 +2941,7 @@
 
   /* Sidebar Nav - EXACT HEIGHT WITH CALC */
   .sidebar-nav {
-      height: calc(100vh - 150px); /* 100vh - header(80px) - footer(70px) */
+      height: calc(100dvh - 150px);
       overflow-y: auto;
       overflow-x: hidden;
       -webkit-overflow-scrolling: touch;
