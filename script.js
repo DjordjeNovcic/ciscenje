@@ -1277,7 +1277,7 @@
 
                   // ✨ ADD CLICK HANDLER FOR LIGHTBOX
                   div.addEventListener('click', function() {
-                      openLightbox(photo.url, index);
+                       openLightbox(index);
                   });
 
                   div.appendChild(img);
