@@ -912,5 +912,35 @@
              });
          });
       </script>
+      <script>
+         document.querySelectorAll('.sidebar-nav .nav-item').forEach(item => {
+           item.addEventListener('click', () => {
+             const sectionId = item.dataset.section;
+         
+             // 1. Sidebar active state
+             document.querySelectorAll('.sidebar-nav .nav-item')
+               .forEach(i => i.classList.remove('active'));
+             item.classList.add('active');
+         
+             // 2. Hide all sections
+             document.querySelectorAll('.content-section')
+               .forEach(section => section.classList.remove('active'));
+         
+             // 3. Show target section
+             const targetSection = document.getElementById(sectionId);
+             if (targetSection) {
+               targetSection.classList.add('active');
+             } else {
+               console.error('Missing section:', sectionId);
+             }
+         
+             // 4. Update header title
+             const header = document.getElementById('adminContent');
+             if (header) {
+               header.textContent = item.innerText.trim();
+             }
+           });
+         });
+      </script>
    </body>
 </html>
