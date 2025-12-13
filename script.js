@@ -14,9 +14,6 @@
   const db = firebase.firestore();
   const auth = firebase.auth();
 
-  let galleryImages = [];
-  let currentLightboxIndex = 0;
-
   var quillEditorSr = null;
   var quillEditorEn = null;
 
