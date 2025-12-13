@@ -1844,7 +1844,7 @@
       setTimeout(() => notification.remove(), 3000);
   }
 
-  // Save theme
+  // Save theme to Firebase
   function saveTheme() {
       const colors = {
           primaryColor: document.getElementById('primaryColor').value,
@@ -1852,13 +1852,15 @@
           secondaryColor: document.getElementById('secondaryColor').value,
           successColor: document.getElementById('successColor').value,
           bgLight: document.getElementById('bgLight').value,
-          textDark: document.getElementById('textDark').value,       // ← NEW
-          textLight: document.getElementById('textLight').value,     // ← NEW
+          textDark: document.getElementById('textDark').value,
+          textLight: document.getElementById('textLight').value,
           updatedAt: new Date().toISOString()
       };
 
       db.collection('settings').doc('theme').set(colors)
           .then(() => {
+              // Update localStorage immediately
+              localStorage.setItem('mssjaj_theme', JSON.stringify(colors));
               applyTheme(colors);
               alert('✅ Tema je uspešno sačuvana!');
           })
