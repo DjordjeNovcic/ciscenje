@@ -1275,6 +1275,11 @@
                   img.src = photo.url;
                   img.alt = 'Galerija';
 
+                  // ✨ ADD CLICK HANDLER FOR LIGHTBOX
+                  div.addEventListener('click', function() {
+                      openLightbox(photo.url, index);
+                  });
+
                   div.appendChild(img);
                   galleryGrid.appendChild(div);
               });
@@ -1913,3 +1918,84 @@
 
   // Load theme when theme section is opened
   document.querySelector('[data-section="theme-section"]')?.addEventListener('click', loadThemeSettings);
+
+
+ // ============================================
+  // IMAGE LIGHTBOX / PREVIEW MODE
+  // ============================================
+
+  let lightboxImages = [];
+  let currentLightboxIndex = 0;
+
+  function openLightbox(imageUrl, index) {
+      const lightbox = document.getElementById('lightbox');
+      const lightboxImage = document.getElementById('lightboxImage');
+      const lightboxCounter = document.getElementById('lightboxCounter');
+
+      // Store current image index and all gallery images
+      currentLightboxIndex = index;
+      lightboxImages = Array.from(document.querySelectorAll('#galleryGrid .gallery-item img')).map(img => img.src);
+
+      // Set image and show lightbox
+      lightboxImage.src = imageUrl;
+      lightbox.classList.add('active');
+
+      // Update counter
+      updateLightboxCounter();
+
+      // Prevent body scrolling
+      document.body.style.overflow = 'hidden';
+  }
+
+  function closeLightbox() {
+      const lightbox = document.getElementById('lightbox');
+      lightbox.classList.remove('active');
+      document.body.style.overflow = '';
+  }
+
+  function navigateLightbox(direction) {
+      currentLightboxIndex += direction;
+
+      // Loop around
+      if (currentLightboxIndex < 0) {
+          currentLightboxIndex = lightboxImages.length - 1;
+      } else if (currentLightboxIndex >= lightboxImages.length) {
+          currentLightboxIndex = 0;
+      }
+
+      // Update image with animation
+      const lightboxImage = document.getElementById('lightboxImage');
+      lightboxImage.style.animation = 'none';
+      setTimeout(() => {
+          lightboxImage.src = lightboxImages[currentLightboxIndex];
+          lightboxImage.style.animation = 'zoomIn 0.3s ease';
+          updateLightboxCounter();
+      }, 50);
+  }
+
+  function updateLightboxCounter() {
+      const lightboxCounter = document.getElementById('lightboxCounter');
+      lightboxCounter.textContent = `${currentLightboxIndex + 1} / ${lightboxImages.length}`;
+  }
+
+  // Keyboard navigation
+  document.addEventListener('keydown', function(e) {
+      const lightbox = document.getElementById('lightbox');
+      if (!lightbox.classList.contains('active')) return;
+
+      if (e.key === 'Escape') {
+          closeLightbox();
+      } else if (e.key === 'ArrowLeft') {
+          navigateLightbox(-1);
+      } else if (e.key === 'ArrowRight') {
+          navigateLightbox(1);
+      }
+  });
+
+  // Close lightbox when clicking outside image
+  document.getElementById('lightbox')?.addEventListener('click', function(e) {
+      if (e.target === this) {
+          closeLightbox();
+      }
+  });
+
