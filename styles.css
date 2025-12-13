@@ -1815,7 +1815,7 @@
 
  /* Dashboard Overview Container */
   .dashboard-overview {
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      background: var(--bg-light);
       min-height: calc(100vh - 140px);
       padding: 3rem 2rem;
       border-radius: 0;
