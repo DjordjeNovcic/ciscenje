@@ -744,7 +744,6 @@
   // Toggle admin sidebar on mobile
   function toggleAdminSidebar() {
       const sidebar = document.querySelector('.admin-sidebar');
-      const hamburger = document.querySelector('.admin-hamburger');
       const overlay = document.querySelector('.sidebar-overlay');
 
       const isActive = sidebar.classList.contains('active');
@@ -752,13 +751,11 @@
       if (isActive) {
           // Close sidebar
           sidebar.classList.remove('active');
-          hamburger.classList.remove('active');
           overlay.classList.remove('active');
           document.body.style.overflow = '';
       } else {
           // Open sidebar
           sidebar.classList.add('active');
-          hamburger.classList.add('active');
           overlay.classList.add('active');
           document.body.style.overflow = 'hidden';
       }
@@ -770,7 +767,10 @@
           if (window.innerWidth <= 768) {
               // Small delay so user sees the selection before closing
               setTimeout(() => {
-                  toggleAdminSidebar();
+                  const sidebar = document.querySelector('.admin-sidebar');
+                  if (sidebar.classList.contains('active')) {
+                      toggleAdminSidebar();
+                  }
               }, 200);
           }
       });
@@ -790,11 +790,9 @@
   window.addEventListener('resize', function() {
       if (window.innerWidth > 768) {
           const sidebar = document.querySelector('.admin-sidebar');
-          const hamburger = document.querySelector('.admin-hamburger');
           const overlay = document.querySelector('.sidebar-overlay');
 
           sidebar.classList.remove('active');
-          hamburger.classList.remove('active');
           overlay.classList.remove('active');
           document.body.style.overflow = '';
       }
