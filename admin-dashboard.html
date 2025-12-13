@@ -74,6 +74,9 @@
                   <div class="nav-item" data-section="services-section">
                       <span>💼</span> Usluge
                   </div>
+                  <div class="nav-item" data-section="features-section">
+                       <span>⭐</span> Karakteristike
+                  </div>
                   <div class="nav-item" data-section="addons-section">
                       <span>➕</span> Dodatne usluge
                   </div>
@@ -129,6 +132,7 @@
                               <button class="btn btn-primary" onclick="document.querySelector('[data-section=home-section]').click()">Uredi početnu</button>
                               <button class="btn btn-primary" onclick="document.querySelector('[data-section=slideshow-section]').click()">Uredi slideshow</button>
                               <button class="btn btn-primary" onclick="document.querySelector('[data-section=services-section]').click()">Uredi usluge</button>
+                              <button class="btn btn-primary" onclick="document.querySelector('[data-section=features-section]').click()">Dodaj karakteristike</button>
                               <button class="btn btn-primary" onclick="document.querySelector('[data-section=addons-section]').click()">Uredi dodatne usluge</button>
                               <button class="btn btn-primary" onclick="document.querySelector('[data-section=about-section]').click()">Uredi o nama</button>
                               <button class="btn btn-primary" onclick="document.querySelector('[data-section=testimonials-section]').click()">Uredi recenzije</button>                      
@@ -214,6 +218,22 @@
                           </div>
                       </div>
                   </div>
+
+                 <div id="features-section" class="content-section">
+                     <div class="dashboard-section">
+                        <h2>⭐ Karakteristike (Zašto izabrati nas)</h2>
+                       <div id="featuresContainer"></div>
+
+                        <div style="margin-top: 1.5rem;">
+                        <button onclick="addFeature()" class="btn btn-secondary">
+                              ➕ Dodaj karakteristiku
+                         </button>
+                      <button onclick="saveHomeContent()" class="btn btn-primary">
+                💾 Sačuvaj izmene
+                 </button>
+              </div>
+             </div>
+             </div>
 
                   <!-- Edit Add-ons - DUAL LANGUAGE -->
                   <div id="addons-section" class="content-section">
