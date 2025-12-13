@@ -2393,8 +2393,8 @@ footer::before,
 	padding: 0;
 	border-radius: 12px;
 	width: 90%;
-	max-width: 600px;
-	max-height: 90vh;
+	max-width: 640px;
+	max-height: 85vh;
 	overflow-y: auto;
 	animation: slideUp 0.3s;
 	box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
@@ -2416,13 +2416,13 @@ footer::before,
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-	padding: 1.5rem;
+	padding: 1rem 1.25rem;
 	border-bottom: 1px solid var(--border-color);
 }
 
 .modal-header h2 {
 	margin: 0;
-	font-size: 1.5rem;
+	font-size: 1.25rem;
 }
 
 .close,
@@ -2614,8 +2614,9 @@ footer::before,
 }
 
 .ql-editor {
-	min-height: 200px;
+	min-height: 140px;
 	line-height: 1.6;
+	font-size: 15px;
   	color: var(--text-dark);
 }
 
