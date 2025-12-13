@@ -1272,8 +1272,7 @@
               querySnapshot.forEach(function(doc, index) {
                   const photo = doc.data();
                   const imageUrl = photo.url;
-
-                  console.log(`Photo ${index}:`, imageUrl); // DEBUG - check if URL exists
+                
 
                   // ✨ ONLY ADD if URL exists
                   if (imageUrl) {
