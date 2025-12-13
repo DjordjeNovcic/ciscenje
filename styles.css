@@ -2688,31 +2688,33 @@
           display: block;
       }
 
-      .nav-menu {
-          position: fixed !important;
-          left: 0 !important;
-          top: 70px !important;
-          flex-direction: column !important;
-          background: rgba(255, 255, 255, 0.95) !important;
-          backdrop-filter: blur(20px) !important;
-          -webkit-backdrop-filter: blur(20px) !important;
-          width: 100% !important;
-          max-height: 0 !important;
-          overflow: hidden !important;
-          transition: max-height 0.4s ease-in-out !important;
-          box-shadow: 0 10px 27px rgba(0, 0, 0, 0.1) !important;
-          z-index: 1000 !important;
-          padding: 0 !important;
-          margin: 0 !important;
-          gap: 0 !important;
-          border-bottom: 1px solid rgba(255, 255, 255, 0.18) !important;
-      }
+      /* Navigation (Mobile) */
+  .nav-menu {
+      position: fixed !important;
+      left: 0 !important;
+      top: 70px !important;
+      flex-direction: column !important;
+      background: rgba(255, 255, 255, 0.95) !important;
+      backdrop-filter: blur(20px) !important;
+      -webkit-backdrop-filter: blur(20px) !important;
+      width: 100% !important;
+      max-height: 0 !important;
+      overflow: hidden !important;
+      transition: max-height 0.4s ease-in-out !important;
+      box-shadow: 0 10px 27px rgba(0, 0, 0, 0.1) !important;
+      z-index: 1000 !important;
+      padding: 0 !important;
+      margin: 0 !important;
+      gap: 0 !important;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.18) !important;
+  }
 
       .nav-menu.active {
-          max-height: 500px !important;
-          padding: 1rem 0 !important;
-          overflow-y: auto !important;
-      }
+      max-height: calc(100vh - 70px) !important;  /* ← CHANGED from 500px */
+      padding: 1rem 0 !important;
+      overflow-y: auto !important;
+      -webkit-overflow-scrolling: touch !important;  /* ← ADDED for smooth iOS scrolling */
+  }
 
       .nav-menu li {
           margin: 0 !important;
