@@ -10,6 +10,9 @@
 
   const IMGBB_API_KEY = '8e1325002347317ddab99277f90754b0';
 
+  let galleryImages = [];
+  let currentLightboxIndex = 0;
+
   firebase.initializeApp(firebaseConfig);
   const db = firebase.firestore();
   const auth = firebase.auth();
@@ -1261,12 +1264,17 @@
 
       db.collection('gallery').orderBy('uploadedAt', 'desc').get().then(function(querySnapshot) {
           galleryGrid.innerHTML = '';
-
+          galleryImages = []; 
+        
           if (querySnapshot.empty) {
               showEmptyState('galleryGrid', 'Trenutno nema fotografija u galeriji.');
           } else {
               querySnapshot.forEach(function(doc, index) {
                   const photo = doc.data();
+
+                  // ✨ ADD IMAGE URL TO ARRAY
+                  galleryImages.push(photo.url);
+
                   const div = document.createElement('div');
                   div.className = 'gallery-item fade-in';
                   div.style.animationDelay = (index * 0.05) + 's';
@@ -1923,8 +1931,6 @@
  // ============================================
   // IMAGE LIGHTBOX / PREVIEW MODE - FIXED
   // ============================================
-
-  let currentLightboxIndex = 0;
 
   function openLightbox(index) {
       const lightbox = document.getElementById('lightbox');
