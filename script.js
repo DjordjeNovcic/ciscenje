@@ -1921,23 +1921,23 @@
 
 
  // ============================================
-  // IMAGE LIGHTBOX / PREVIEW MODE
+  // IMAGE LIGHTBOX / PREVIEW MODE - FIXED
   // ============================================
 
-  let lightboxImages = [];
   let currentLightboxIndex = 0;
 
-  function openLightbox(imageUrl, index) {
+  function openLightbox(index) {
       const lightbox = document.getElementById('lightbox');
       const lightboxImage = document.getElementById('lightboxImage');
-      const lightboxCounter = document.getElementById('lightboxCounter');
 
-      // Store current image index and all gallery images
+      if (!lightbox || !lightboxImage) return;
+      if (galleryImages.length === 0) return;
+
+      // Set current index
       currentLightboxIndex = index;
-      lightboxImages = Array.from(document.querySelectorAll('#galleryGrid .gallery-item img')).map(img => img.src);
 
       // Set image and show lightbox
-      lightboxImage.src = imageUrl;
+      lightboxImage.src = galleryImages[currentLightboxIndex];
       lightbox.classList.add('active');
 
       // Update counter
@@ -1949,25 +1949,31 @@
 
   function closeLightbox() {
       const lightbox = document.getElementById('lightbox');
+      if (!lightbox) return;
+
       lightbox.classList.remove('active');
       document.body.style.overflow = '';
   }
 
   function navigateLightbox(direction) {
+      if (galleryImages.length === 0) return;
+
       currentLightboxIndex += direction;
 
       // Loop around
       if (currentLightboxIndex < 0) {
-          currentLightboxIndex = lightboxImages.length - 1;
-      } else if (currentLightboxIndex >= lightboxImages.length) {
+          currentLightboxIndex = galleryImages.length - 1;
+      } else if (currentLightboxIndex >= galleryImages.length) {
           currentLightboxIndex = 0;
       }
 
       // Update image with animation
       const lightboxImage = document.getElementById('lightboxImage');
+      if (!lightboxImage) return;
+
       lightboxImage.style.animation = 'none';
       setTimeout(() => {
-          lightboxImage.src = lightboxImages[currentLightboxIndex];
+          lightboxImage.src = galleryImages[currentLightboxIndex];
           lightboxImage.style.animation = 'zoomIn 0.3s ease';
           updateLightboxCounter();
       }, 50);
@@ -1975,13 +1981,17 @@
 
   function updateLightboxCounter() {
       const lightboxCounter = document.getElementById('lightboxCounter');
-      lightboxCounter.textContent = `${currentLightboxIndex + 1} / ${lightboxImages.length}`;
+      if (!lightboxCounter) return;
+
+      if (galleryImages.length > 0) {
+          lightboxCounter.textContent = `${currentLightboxIndex + 1} / ${galleryImages.length}`;
+      }
   }
 
   // Keyboard navigation
   document.addEventListener('keydown', function(e) {
       const lightbox = document.getElementById('lightbox');
-      if (!lightbox.classList.contains('active')) return;
+      if (!lightbox || !lightbox.classList.contains('active')) return;
 
       if (e.key === 'Escape') {
           closeLightbox();
@@ -1993,9 +2003,15 @@
   });
 
   // Close lightbox when clicking outside image
-  document.getElementById('lightbox')?.addEventListener('click', function(e) {
-      if (e.target === this) {
-          closeLightbox();
+  document.addEventListener('DOMContentLoaded', function() {
+      const lightbox = document.getElementById('lightbox');
+      if (lightbox) {
+          lightbox.addEventListener('click', function(e) {
+              if (e.target === this) {
+                  closeLightbox();
+              }
+          });
       }
   });
+
 
