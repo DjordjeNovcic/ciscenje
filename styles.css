@@ -1736,7 +1736,8 @@
   }
 
  /* Hide hamburger on desktop */
-  .admin-hamburger {
+   .admin-hamburger,
+  .sidebar-close {
       display: none;
   }
 
