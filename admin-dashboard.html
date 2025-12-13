@@ -101,9 +101,9 @@
 
           <!-- Main Content -->
           <main class="admin-main">
-               <header class="admin-header">
+                <header class="admin-header">
       <!-- Hamburger Menu (Mobile Only) -->
-      <button class="admin-hamburger" onclick="toggleAdminSidebar()" style="display: none;">
+      <button class="admin-hamburger" onclick="toggleAdminSidebar()">
           <span></span>
           <span></span>
           <span></span>
@@ -738,35 +738,53 @@
       })();
   </script>
 
-    <script>
+  <script>
   // Toggle admin sidebar on mobile
   function toggleAdminSidebar() {
       const sidebar = document.querySelector('.admin-sidebar');
       const hamburger = document.querySelector('.admin-hamburger');
       const overlay = document.querySelector('.sidebar-overlay');
 
-      sidebar.classList.toggle('active');
-      hamburger.classList.toggle('active');
-      overlay.classList.toggle('active');
+      const isActive = sidebar.classList.contains('active');
 
-      // Prevent body scroll when sidebar is open
-      if (sidebar.classList.contains('active')) {
-          document.body.style.overflow = 'hidden';
-      } else {
+      if (isActive) {
+          // Close sidebar
+          sidebar.classList.remove('active');
+          hamburger.classList.remove('active');
+          overlay.classList.remove('active');
           document.body.style.overflow = '';
+      } else {
+          // Open sidebar
+          sidebar.classList.add('active');
+          hamburger.classList.add('active');
+          overlay.classList.add('active');
+          document.body.style.overflow = 'hidden';
       }
   }
 
-  // Close sidebar when clicking on nav items (mobile)
+  // Close sidebar when clicking on nav items (mobile only)
   document.querySelectorAll('.sidebar-nav .nav-item').forEach(item => {
       item.addEventListener('click', function() {
           if (window.innerWidth <= 768) {
-              toggleAdminSidebar();
+              // Small delay so user sees the selection before closing
+              setTimeout(() => {
+                  toggleAdminSidebar();
+              }, 200);
           }
       });
   });
 
-  // Close sidebar on window resize if mobile → desktop
+  // Close sidebar when clicking logout button (mobile)
+  document.getElementById('logoutBtn')?.addEventListener('click', function() {
+      if (window.innerWidth <= 768) {
+          const sidebar = document.querySelector('.admin-sidebar');
+          if (sidebar.classList.contains('active')) {
+              toggleAdminSidebar();
+          }
+      }
+  });
+
+  // Close sidebar on window resize if switching from mobile to desktop
   window.addEventListener('resize', function() {
       if (window.innerWidth > 768) {
           const sidebar = document.querySelector('.admin-sidebar');
