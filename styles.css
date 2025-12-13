@@ -2819,7 +2819,7 @@
           grid-template-columns: 1fr;
       }
 
-  /* =====================================================
+   /* =====================================================
      ADMIN DASHBOARD (MOBILE)
      ===================================================== */
 
@@ -2834,12 +2834,11 @@
       width: 100% !important;
   }
 
-  /* Admin Header - Flexbox layout */
+  /* Admin Header */
   .admin-header {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      position: relative;
       padding: 1rem 1.5rem !important;
   }
 
@@ -2849,7 +2848,7 @@
       margin: 0;
   }
 
-  /* Hamburger Button - Top Right */
+  /* Hamburger - Top Right */
   .admin-hamburger {
       display: flex !important;
       flex-direction: column;
@@ -2862,7 +2861,6 @@
       width: 44px;
       height: 44px;
       border-radius: 8px;
-      position: relative;
       z-index: 1;
       flex-shrink: 0;
       order: 2;
@@ -2877,51 +2875,44 @@
       position: absolute;
   }
 
-  .admin-hamburger span:nth-child(1) {
-      top: 14px;
-  }
+  .admin-hamburger span:nth-child(1) { top: 14px; }
+  .admin-hamburger span:nth-child(2) { top: 50%; transform: translateY(-50%); }
+  .admin-hamburger span:nth-child(3) { bottom: 14px; }
 
-  .admin-hamburger span:nth-child(2) {
-      top: 50%;
-      transform: translateY(-50%);
-  }
-
-  .admin-hamburger span:nth-child(3) {
-      bottom: 14px;
-  }
-
-  /* Sidebar - Full Screen with Flexbox */
+  /* Sidebar - SIMPLE APPROACH */
   .admin-sidebar {
       position: fixed;
       left: -100%;
       top: 0;
       width: 100%;
       height: 100vh;
-      max-height: 100vh; /* Important! */
       transition: left 0.3s ease;
       z-index: 2000;
-      display: flex;
-      flex-direction: column;
-      overflow: hidden; /* Prevent body scroll */
+      background: var(--text-dark);
+      overflow: hidden;
   }
 
   .admin-sidebar.active {
       left: 0;
   }
 
-  /* Sidebar Header - Fixed height */
+  /* Sidebar Header - FIXED 80px */
   .sidebar-header {
       position: relative;
       padding: 1.5rem;
       border-bottom: 1px solid #475569;
+      height: 80px;
       display: flex;
       align-items: center;
-      justify-content: space-between;
-      flex-shrink: 0;
-      min-height: 80px; /* Fixed height */
   }
 
-  /* Close Button (X) - Top Right of Sidebar */
+  .sidebar-header h2 {
+      color: white;
+      font-size: 1.25rem;
+      margin: 0;
+  }
+
+  /* Close Button */
   .sidebar-close {
       display: none;
       position: absolute;
@@ -2937,7 +2928,6 @@
       line-height: 1;
       padding: 0;
       transition: all 0.3s ease;
-      z-index: 10;
   }
 
   .sidebar-close:hover {
@@ -2949,31 +2939,33 @@
       display: block !important;
   }
 
-  /* Sidebar Nav - Scrollable with calculated max-height */
+  /* Sidebar Nav - EXACT HEIGHT WITH CALC */
   .sidebar-nav {
-      flex: 1 1 auto;
+      height: calc(100vh - 150px); /* 100vh - header(80px) - footer(70px) */
       overflow-y: auto;
       overflow-x: hidden;
+      -webkit-overflow-scrolling: touch;
       padding: 0;
-      /* Allow nav to take remaining space between header and footer */
-      min-height: 0; /* Important for flexbox scrolling */
-      -webkit-overflow-scrolling: touch; /* Smooth scroll on iOS */
   }
 
-  /* Sidebar Footer - Fixed height at bottom */
+  /* Sidebar Footer - FIXED 70px AT BOTTOM */
   .sidebar-footer {
-      flex-shrink: 0;
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 70px;
       padding: 1rem;
       background: var(--text-dark);
       border-top: 1px solid #475569;
-      min-height: 70px; /* Fixed height */
+      display: flex;
+      align-items: center;
+      justify-content: center;
   }
 
-  /* Make logout button more visible */
   .sidebar-footer .btn {
       width: 100%;
-      padding: 0.75rem;
-      font-size: 1rem;
+      max-width: 200px;
   }
 
   /* Overlay */
@@ -2992,7 +2984,7 @@
       display: block;
   }
 
-  /* Hide Admin User on Mobile */
+  /* Hide Admin User */
   .admin-user {
       display: none;
   }
