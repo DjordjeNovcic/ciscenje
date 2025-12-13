@@ -1811,6 +1811,7 @@
 
   .dashboard-content {
       padding: 0 !important;
+      min-height: calc(100vh - 80px);
   }
 
  /* Dashboard Overview Container */
@@ -1969,6 +1970,7 @@
       border-radius: 12px;
       box-shadow: var(--shadow-sm);
       margin-bottom: 2rem;
+      min-height: 300px;
   }
 
   .dashboard-section h2 {
