@@ -130,139 +130,128 @@
                           </div>
 
                           <div class="quick-actions-grid">
-                              <!-- Card 1: Uredi početnu -->
-                              <div class="action-card">
-                                  <div class="card-icon">
-                                      <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                          <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
-                                          <polyline points="9 22 9 12 15 12 15 22"></polyline>
-                                      </svg>
-                                  </div>
-                                  <h3>Uredi početnu</h3>
-                                  <p>Izmeni sadržaj početne stranice</p>
-                                  <button class="btn-card" onclick="document.querySelector('[data-section=home-section]').click()">Otvori</button>
-                              </div>
 
-                              <!-- Card 2: Uredi slideshow -->
-                              <div class="action-card">
-                                  <div class="card-icon">
-                                      <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                          <rect x="2" y="2" width="20" height="20" rx="2.18" ry="2.18"></rect>
-                                          <line x1="7" y1="2" x2="7" y2="22"></line>
-                                          <line x1="17" y1="2" x2="17" y2="22"></line>
-                                          <line x1="2" y1="12" x2="22" y2="12"></line>
-                                      </svg>
-                                  </div>
-                                  <h3>Uredi slideshow</h3>
-                                  <p>Upravljaj slikama u slideshow-u</p>
-                                  <button class="btn-card" onclick="document.querySelector('[data-section=slideshow-section]').click()">Otvori</button>
-                              </div>
+    <!-- Card 1: Uredi početnu -->
+    <div class="action-card" data-section="home-section" tabindex="0" role="button">
+        <div class="card-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                <polyline points="9 22 9 12 15 12 15 22"></polyline>
+            </svg>
+        </div>
+        <h3>Uredi početnu</h3>
+        <p>Izmeni sadržaj početne stranice</p>
+    </div>
 
-                              <!-- Card 3: Uredi usluge -->
-                              <div class="action-card">
-                                  <div class="card-icon">
-                                      <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                          <path d="M20.2 7.8l-7.7 7.7-4-4-5.7 5.7"></path>
-                                          <path d="M15 7h6v6"></path>
-                                      </svg>
-                                  </div>
-                                  <h3>Uredi usluge</h3>
-                                  <p>Dodaj ili izmeni usluge čišćenja</p>
-                                  <button class="btn-card" onclick="document.querySelector('[data-section=services-section]').click()">Otvori</button>
-                              </div>
+    <!-- Card 2: Uredi slideshow -->
+    <div class="action-card" data-section="slideshow-section" tabindex="0" role="button">
+        <div class="card-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="2" y="2" width="20" height="20" rx="2"></rect>
+                <line x1="7" y1="2" x2="7" y2="22"></line>
+                <line x1="17" y1="2" x2="17" y2="22"></line>
+                <line x1="2" y1="12" x2="22" y2="12"></line>
+            </svg>
+        </div>
+        <h3>Uredi slideshow</h3>
+        <p>Upravljaj slikama u slideshow-u</p>
+    </div>
 
-                              <!-- Card 4: Dodaj karakteristike -->
-                              <div class="action-card">
-                                  <div class="card-icon">
-                                      <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                          <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
-                                      </svg>
-                                  </div>
-                                  <h3>Dodaj karakteristike</h3>
-                                  <p>Upravljaj karakteristikama sajta</p>
-                                  <button class="btn-card" onclick="document.querySelector('[data-section=features-section]').click()">Otvori</button>
-                              </div>
+    <!-- Card 3: Uredi usluge -->
+    <div class="action-card" data-section="services-section" tabindex="0" role="button">
+        <div class="card-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M20.2 7.8l-7.7 7.7-4-4-5.7 5.7"></path>
+                <path d="M15 7h6v6"></path>
+            </svg>
+        </div>
+        <h3>Uredi usluge</h3>
+        <p>Dodaj ili izmeni usluge čišćenja</p>
+    </div>
 
-                              <!-- Card 5: Uredi dodatne usluge -->
-                              <div class="action-card">
-                                  <div class="card-icon">
-                                      <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                          <circle cx="12" cy="12" r="10"></circle>
-                                          <line x1="12" y1="8" x2="12" y2="16"></line>
-                                          <line x1="8" y1="12" x2="16" y2="12"></line>
-                                      </svg>
-                                  </div>
-                                  <h3>Uredi dodatne usluge</h3>
-                                  <p>Dodaj ili izmeni dodatne usluge</p>
-                                  <button class="btn-card" onclick="document.querySelector('[data-section=addons-section]').click()">Otvori</button>
-                              </div>
+    <!-- Card 4: Karakteristike -->
+    <div class="action-card" data-section="features-section" tabindex="0" role="button">
+        <div class="card-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polygon points="12 2 15 8 22 9 17 14 18 21 12 18 6 21 7 14 2 9 9 8"></polygon>
+            </svg>
+        </div>
+        <h3>Karakteristike</h3>
+        <p>Upravljaj karakteristikama sajta</p>
+    </div>
 
-                              <!-- Card 6: Uredi o nama -->
-                              <div class="action-card">
-                                  <div class="card-icon">
-                                      <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                          <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
-                                          <circle cx="12" cy="7" r="4"></circle>
-                                      </svg>
-                                  </div>
-                                  <h3>Uredi o nama</h3>
-                                  <p>Izmeni informacije o kompaniji</p>
-                                  <button class="btn-card" onclick="document.querySelector('[data-section=about-section]').click()">Otvori</button>
-                              </div>
+    <!-- Card 5: Dodatne usluge -->
+    <div class="action-card" data-section="addons-section" tabindex="0" role="button">
+        <div class="card-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="10"></circle>
+                <line x1="12" y1="8" x2="12" y2="16"></line>
+                <line x1="8" y1="12" x2="16" y2="12"></line>
+            </svg>
+        </div>
+        <h3>Dodatne usluge</h3>
+        <p>Dodaj ili izmeni dodatne usluge</p>
+    </div>
 
-                              <!-- Card 7: Uredi recenzije -->
-                              <div class="action-card">
-                                  <div class="card-icon">
-                                      <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                          <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
-                                      </svg>
-                                  </div>
-                                  <h3>Uredi recenzije</h3>
-                                  <p>Upravljaj korisničkim recenzijama</p>
-                                  <button class="btn-card" onclick="document.querySelector('[data-section=testimonials-section]').click()">Otvori</button>
-                              </div>
+    <!-- Card 6: O nama -->
+    <div class="action-card" data-section="about-section" tabindex="0" role="button">
+        <div class="card-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="7" r="4"></circle>
+                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+            </svg>
+        </div>
+        <h3>O nama</h3>
+        <p>Izmeni informacije o kompaniji</p>
+    </div>
 
-                              <!-- Card 8: Uredi galeriju -->
-                              <div class="action-card">
-                                  <div class="card-icon">
-                                      <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                          <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
-                                          <circle cx="8.5" cy="8.5" r="1.5"></circle>
-                                          <polyline points="21 15 16 10 5 21"></polyline>
-                                      </svg>
-                                  </div>
-                                  <h3>Uredi galeriju</h3>
-                                  <p>Upravljaj galerijom fotografija</p>
-                                  <button class="btn-card" onclick="document.querySelector('[data-section=gallery-section]').click()">Otvori</button>
-                              </div>
+    <!-- Card 7: Recenzije -->
+    <div class="action-card" data-section="testimonials-section" tabindex="0" role="button">
+        <div class="card-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+            </svg>
+        </div>
+        <h3>Recenzije</h3>
+        <p>Upravljaj korisničkim recenzijama</p>
+    </div>
 
-                              <!-- Card 9: Uredi kontakt -->
-                              <div class="action-card">
-                                  <div class="card-icon">
-                                      <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                          <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 
-  4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 
-  16.92z"></path>
-                                      </svg>
-                                  </div>
-                                  <h3>Uredi kontakt</h3>
-                                  <p>Izmeni kontakt informacije</p>
-                                  <button class="btn-card" onclick="document.querySelector('[data-section=contact-section]').click()">Otvori</button>
-                              </div>
+    <!-- Card 8: Galerija -->
+    <div class="action-card" data-section="gallery-section" tabindex="0" role="button">
+        <div class="card-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="3" y="3" width="18" height="18" rx="2"></rect>
+                <circle cx="8.5" cy="8.5" r="1.5"></circle>
+                <polyline points="21 15 16 10 5 21"></polyline>
+            </svg>
+        </div>
+        <h3>Galerija</h3>
+        <p>Upravljaj galerijom fotografija</p>
+    </div>
 
-                              <!-- Card 10: Izaberi temu -->
-                              <div class="action-card">
-                                  <div class="card-icon">
-                                      <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                          <path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"></path>
-                                      </svg>
-                                  </div>
-                                  <h3>Izaberi temu</h3>
-                                  <p>Prilagodi boje i izgled sajta</p>
-                                  <button class="btn-card" onclick="document.querySelector('[data-section=theme-section]').click()">Otvori</button>
-                              </div>
-                          </div>
-                      </div>
+    <!-- Card 9: Kontakt -->
+    <div class="action-card" data-section="contact-section" tabindex="0" role="button">
+        <div class="card-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07"></path>
+            </svg>
+        </div>
+        <h3>Kontakt</h3>
+        <p>Izmeni kontakt informacije</p>
+    </div>
+
+    <!-- Card 10: Tema -->
+    <div class="action-card" data-section="theme-section" tabindex="0" role="button">
+        <div class="card-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"></path>
+            </svg>
+        </div>
+        <h3>Tema</h3>
+        <p>Prilagodi boje i izgled sajta</p>
+    </div>
+
+</div>
                   </div>
 
                   <!-- Edit Home Page - DUAL LANGUAGE -->
@@ -977,5 +966,21 @@
               }
           });
       </script>
+
+    <script>
+    document.querySelectorAll('.action-card').forEach(card => {
+        card.addEventListener('click', () => {
+            const section = card.dataset.section;
+            document.querySelector(`[data-section="${section}"]`)?.click();
+        });
+
+        card.addEventListener('keydown', e => {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                card.click();
+            }
+        });
+    });
+</script>
   </body>
   </html>
