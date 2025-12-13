@@ -113,7 +113,7 @@
 
           // Footer
           footer: {
-              about: 'Profesionalne usluge čišćenja kojima možete verovati. Donoseći sjaj u vaš dom i poslovni prostor.',
+              about: 'Profesionalne usluge čišćenja kojima možete verovati.',
               quickLinks: 'Brzi linkovi',
               contactTitle: 'Kontakt',
               hoursTitle: 'Radno vreme',
@@ -239,7 +239,7 @@
 
           // Footer
           footer: {
-              about: 'Professional cleaning services you can trust. Bringing shine to your home and business space.',
+              about: 'Professional cleaning services you can trust.',
               quickLinks: 'Quick Links',
               contactTitle: 'Contact',
               hoursTitle: 'Working Hours',
