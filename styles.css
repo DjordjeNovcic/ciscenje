@@ -3089,6 +3089,102 @@
           font-size: 1.75rem;
       }
 
+
+        /* =====================================================
+     THEME SECTION (MOBILE)
+     ===================================================== */
+
+  /* Theme form - remove max-width constraint */
+  #theme-section .cms-form {
+      max-width: 100% !important;
+  }
+
+  /* Stack color picker rows vertically */
+  #theme-section .form-group > div[style*="display: flex"] {
+      display: flex !important;
+      flex-direction: column !important;
+      gap: 0.75rem !important;
+      align-items: stretch !important;
+  }
+
+  /* Color input wrapper */
+  #theme-section .form-group > div > div {
+      display: flex;
+      gap: 0.75rem;
+      align-items: center;
+  }
+
+  /* Color picker */
+  #theme-section input[type="color"] {
+      width: 60px !important;
+      height: 60px !important;
+      flex-shrink: 0;
+  }
+
+  /* Hex text input */
+  #theme-section input[type="text"][readonly] {
+      flex: 1 !important;
+      min-width: 0;
+      font-size: 0.9rem !important;
+  }
+
+  /* Reset buttons - make full width */
+  #theme-section .form-group button.btn-secondary {
+      width: 100% !important;
+      margin: 0 !important;
+  }
+
+  /* Dual-lang-group spacing */
+  #theme-section .dual-lang-group {
+      padding: 1rem;
+      margin-bottom: 1rem;
+  }
+
+  #theme-section .dual-lang-group h3 {
+      font-size: 1.1rem;
+      margin-bottom: 1rem;
+  }
+
+  /* Form group spacing */
+  #theme-section .form-group {
+      margin-bottom: 1.5rem;
+  }
+
+  #theme-section .form-group label {
+      font-size: 0.95rem;
+      margin-bottom: 0.5rem;
+  }
+
+  /* Action buttons at bottom */
+  #theme-section .form-group:last-child {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      margin-top: 2rem;
+  }
+
+  #theme-section .form-group:last-child .btn {
+      width: 100% !important;
+      margin: 0 !important;
+  }
+
+  /* Preview section */
+  #theme-section .dual-lang-group:last-child {
+      margin-top: 2rem;
+  }
+
+  #theme-section .dual-lang-group:last-child > div {
+      padding: 1.5rem !important;
+  }
+
+  #theme-section .dual-lang-group:last-child > div > div {
+      grid-template-columns: 1fr !important;
+  }
+
+  #theme-section .dual-lang-group:last-child .btn {
+      margin-bottom: 0.75rem;
+  }
+
   /* =====================================================
      SECTION 6: EXTRA SMALL MOBILE (MAX-WIDTH: 480px)
      ===================================================== */
