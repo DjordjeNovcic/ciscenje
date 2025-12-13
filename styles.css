@@ -2845,21 +2845,21 @@
   }
 
   /* Mobile Admin Header - Flexbox layout */
-   .admin-header {
+    .admin-header {
       display: flex;
       align-items: center;
-      gap: 1rem;
+      justify-content: space-between;
       position: relative;
       padding: 1rem 1.5rem !important;
   }
 
-   .admin-header h1 {
+  .admin-header h1 {
       flex: 1;
       font-size: 1.25rem !important;
       margin: 0;
   }
 
- /* Hamburger Menu Button (Mobile Only) - For OPENING */
+ /* Hamburger Menu Button (Mobile Only) - TOP RIGHT */
   .admin-hamburger {
       display: flex !important;
       flex-direction: column;
@@ -2875,9 +2875,10 @@
       position: relative;
       z-index: 1;
       flex-shrink: 0;
+      order: 2; /* Push to right */
   }
 
-  .admin-hamburger span {
+   .admin-hamburger span {
       width: 24px;
       height: 3px;
       background: white;
@@ -2909,7 +2910,7 @@
       justify-content: space-between;
   }
 
- /* Close button (X) - Inside sidebar, top-right */
+  /* Close button (X) - Inside sidebar, top-right (same position as hamburger) */
   .sidebar-close {
       display: none; /* Hidden on desktop */
       position: absolute;
@@ -2928,7 +2929,7 @@
       z-index: 10;
   }
 
-  .sidebar-close:hover {
+   .sidebar-close:hover {
       color: var(--primary-color);
       transform: rotate(90deg);
   }
@@ -2938,7 +2939,13 @@
       display: block !important;
   }
 
-       /* Sidebar - Full screen on mobile */
+  /* Hide hamburger when sidebar is open */
+  .admin-sidebar.active ~ .admin-main .admin-hamburger {
+      opacity: 0;
+      pointer-events: none;
+  }
+
+  /* Sidebar - Full screen on mobile */
   .admin-sidebar {
       position: fixed;
       left: -100%;
@@ -2951,6 +2958,12 @@
 
   .admin-sidebar.active {
       left: 0;
+  }
+
+   /* Fix: Remove sidebar margin on mobile */
+  .admin-main {
+      margin-left: 0 !important;
+      width: 100% !important;
   }
 
   /* Sidebar Overlay (Mobile) */
