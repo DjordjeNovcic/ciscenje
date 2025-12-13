@@ -1719,6 +1719,7 @@
   .admin-layout {
       display: flex;
       min-height: 100vh;
+     padding-left: 250px;
   }
 
   .admin-sidebar {
@@ -1781,13 +1782,13 @@
       flex-shrink: 0; /* Don't shrink */
       background: var(--text-dark); /* Ensure background */
   }
+
   .admin-main {
-      flex: 1;
-      background: var(--bg-light);
-      margin-left: 250px;
-      width: calc(100% - 250px);
-      min-height: 100vh;
-  }
+    flex: 1;
+    background: var(--bg-light);
+    width: 100%;
+    min-height: 100vh;
+}
 
   .admin-header {
       background: white;
