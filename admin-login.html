@@ -1,100 +1,93 @@
- <!DOCTYPE html>
-  <html lang="sr">
-  <head>
+<!DOCTYPE html>
+<html lang="sr">
+   <head>
       <meta charset="UTF-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <title>Admin prijava - MS Sjaj</title>
       <link rel="stylesheet" href="styles.css">
       <link rel="icon" href="./favicon.ico">
       <link rel="icon" type="image/png" sizes="32x32" href="./favicon-32.png">
-  </head>
-  <body>
+   </head>
+   <body>
       <div class="login-container">
-          <div class="login-box">
-              <div class="login-header">
-                  <h1>Admin prijava</h1>
-                  <p>Unesite svoje podatke za pristup kontrolnoj tabli</p>
-              </div>
-
-              <form id="loginForm" class="login-form">
-                  <div class="form-group">
-                      <label for="email">Email</label>
-                      <input type="email" id="email" required>
-                  </div>
-
-                  <div class="form-group">
-                      <label for="password">Lozinka</label>
-                      <input type="password" id="password" required>
-                  </div>
-
-                  <div id="loginError" class="error-message" style="display: none;">
-                      Pogrešan email ili lozinka
-                  </div>
-
-                  <button type="submit" class="btn btn-primary btn-block">Prijavi se</button>
-
-                  <div class="login-help">
-                      Demo pristup: admin@cleanpro.com / admin123
-                  </div>
-              </form>
-
-              <div class="login-footer">
-                  <a href="index.html">Nazad na sajt</a>
-              </div>
-          </div>
+         <div class="login-box">
+            <div class="login-header">
+               <h1>Admin prijava</h1>
+               <p>Unesite svoje podatke za pristup kontrolnoj tabli</p>
+            </div>
+            <form id="loginForm" class="login-form">
+               <div class="form-group">
+                  <label for="email">Email</label>
+                  <input type="email" id="email" required>
+               </div>
+               <div class="form-group">
+                  <label for="password">Lozinka</label>
+                  <input type="password" id="password" required>
+               </div>
+               <div id="loginError" class="error-message" style="display: none;">
+                  Pogrešan email ili lozinka
+               </div>
+               <button type="submit" class="btn btn-primary btn-block">Prijavi se</button>
+               <div class="login-help">
+                  Demo pristup: admin@cleanpro.com / admin123
+               </div>
+            </form>
+            <div class="login-footer">
+               <a href="index.html">Nazad na sajt</a>
+            </div>
+         </div>
       </div>
-
       <!-- Firebase SDK -->
       <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
       <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
       <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
       <script src="script.js"></script>
-   <!-- Theme Loader - INSTANT LOAD WITH LOCALSTORAGE -->
-  <script>
-      (function() {
-          // STEP 1: Apply theme from localStorage IMMEDIATELY (no flash!)
-          const cachedTheme = localStorage.getItem('mssjaj_theme');
-          if (cachedTheme) {
-              try {
-                  const colors = JSON.parse(cachedTheme);
-                  applyThemeColors(colors);
-              } catch (e) {
-                  console.error('Error parsing cached theme:', e);
-              }
-          }
-
-          // STEP 2: Update from Firebase in background (for future loads)
-          const db = firebase.firestore();
-          db.collection('settings').doc('theme').get()
-              .then(doc => {
-                  if (doc.exists) {
-                      const colors = doc.data();
-                      // Save to localStorage for next time
-                      localStorage.setItem('mssjaj_theme', JSON.stringify(colors));
-                      // Apply colors (in case they changed)
-                      applyThemeColors(colors);
-                  }
-              })
-              .catch(error => console.error('Error loading theme:', error));
-
-          // Helper function to apply colors
-          function applyThemeColors(colors) {
-              const root = document.documentElement;
-
-              if (colors.primaryColor) root.style.setProperty('--primary-color', colors.primaryColor);
-              if (colors.primaryDark) root.style.setProperty('--primary-dark', colors.primaryDark);
-              if (colors.secondaryColor) root.style.setProperty('--secondary-color', colors.secondaryColor);
-              if (colors.successColor) root.style.setProperty('--success-color', colors.successColor);
-              if (colors.bgLight) root.style.setProperty('--bg-light', colors.bgLight);
-              if (colors.textDark) root.style.setProperty('--text-dark', colors.textDark);
-              if (colors.textLight) root.style.setProperty('--text-light', colors.textLight);
-
-              if (colors.primaryColor && colors.primaryDark) {
-                  root.style.setProperty('--primary-gradient',
-                      `linear-gradient(135deg, ${colors.primaryColor} 0%, ${colors.primaryDark} 100%)`);
-              }
-          }
-      })();
-  </script>
-  </body>
-  </html>
+      <!-- Theme Loader - INSTANT LOAD WITH LOCALSTORAGE -->
+      <script>
+         (function() {
+             // STEP 1: Apply theme from localStorage IMMEDIATELY (no flash!)
+             const cachedTheme = localStorage.getItem('mssjaj_theme');
+             if (cachedTheme) {
+                 try {
+                     const colors = JSON.parse(cachedTheme);
+                     applyThemeColors(colors);
+                 } catch (e) {
+                     console.error('Error parsing cached theme:', e);
+                 }
+             }
+         
+             // STEP 2: Update from Firebase in background (for future loads)
+             const db = firebase.firestore();
+             db.collection('settings').doc('theme').get()
+                 .then(doc => {
+                     if (doc.exists) {
+                         const colors = doc.data();
+                         // Save to localStorage for next time
+                         localStorage.setItem('mssjaj_theme', JSON.stringify(colors));
+                         // Apply colors (in case they changed)
+                         applyThemeColors(colors);
+                     }
+                 })
+                 .catch(error => console.error('Error loading theme:', error));
+         
+             // Helper function to apply colors
+             function applyThemeColors(colors) {
+                 const root = document.documentElement;
+         
+                 if (colors.primaryColor) root.style.setProperty('--primary-color', colors.primaryColor);
+                 if (colors.primaryDark) root.style.setProperty('--primary-dark', colors.primaryDark);
+                 if (colors.secondaryColor) root.style.setProperty('--secondary-color', colors.secondaryColor);
+                 if (colors.successColor) root.style.setProperty('--success-color', colors.successColor);
+                 if (colors.bgLight) root.style.setProperty('--bg-light', colors.bgLight);
+                 if (colors.textDark) root.style.setProperty('--text-dark', colors.textDark);
+                 if (colors.textLight) root.style.setProperty('--text-light', colors.textLight);
+         
+                 if (colors.primaryColor && colors.primaryDark) {
+                     root.style.setProperty('--primary-gradient',
+                         `linear-gradient(135deg, ${colors.primaryColor} 0%, ${colors.primaryDark} 100%)`);
+                 }
+             }
+         })();
+      </script>
+   </body>
+</html>
