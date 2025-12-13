@@ -243,31 +243,51 @@
       <!-- Your main script -->
       <script src="script.js"></script>
   <!-- Theme Loader - UPDATED WITH TEXT COLORS -->
+ <!-- Theme Loader - INSTANT LOAD WITH LOCALSTORAGE -->
   <script>
       (function() {
-          const db = firebase.firestore();
+          // STEP 1: Apply theme from localStorage IMMEDIATELY (no flash!)
+          const cachedTheme = localStorage.getItem('mssjaj_theme');
+          if (cachedTheme) {
+              try {
+                  const colors = JSON.parse(cachedTheme);
+                  applyThemeColors(colors);
+              } catch (e) {
+                  console.error('Error parsing cached theme:', e);
+              }
+          }
 
+          // STEP 2: Update from Firebase in background (for future loads)
+          const db = firebase.firestore();
           db.collection('settings').doc('theme').get()
               .then(doc => {
                   if (doc.exists) {
                       const colors = doc.data();
-                      const root = document.documentElement;
-
-                      if (colors.primaryColor) root.style.setProperty('--primary-color', colors.primaryColor);
-                      if (colors.primaryDark) root.style.setProperty('--primary-dark', colors.primaryDark);
-                      if (colors.secondaryColor) root.style.setProperty('--secondary-color', colors.secondaryColor);
-                      if (colors.successColor) root.style.setProperty('--success-color', colors.successColor);
-                      if (colors.bgLight) root.style.setProperty('--bg-light', colors.bgLight);
-                      if (colors.textDark) root.style.setProperty('--text-dark', colors.textDark);       // ← NEW
-                      if (colors.textLight) root.style.setProperty('--text-light', colors.textLight);   // ← NEW
-
-                      if (colors.primaryColor && colors.primaryDark) {
-                          root.style.setProperty('--primary-gradient',
-                              `linear-gradient(135deg, ${colors.primaryColor} 0%, ${colors.primaryDark} 100%)`);
-                      }
+                      // Save to localStorage for next time
+                      localStorage.setItem('mssjaj_theme', JSON.stringify(colors));
+                      // Apply colors (in case they changed)
+                      applyThemeColors(colors);
                   }
               })
               .catch(error => console.error('Error loading theme:', error));
+
+          // Helper function to apply colors
+          function applyThemeColors(colors) {
+              const root = document.documentElement;
+
+              if (colors.primaryColor) root.style.setProperty('--primary-color', colors.primaryColor);
+              if (colors.primaryDark) root.style.setProperty('--primary-dark', colors.primaryDark);
+              if (colors.secondaryColor) root.style.setProperty('--secondary-color', colors.secondaryColor);
+              if (colors.successColor) root.style.setProperty('--success-color', colors.successColor);
+              if (colors.bgLight) root.style.setProperty('--bg-light', colors.bgLight);
+              if (colors.textDark) root.style.setProperty('--text-dark', colors.textDark);
+              if (colors.textLight) root.style.setProperty('--text-light', colors.textLight);
+
+              if (colors.primaryColor && colors.primaryDark) {
+                  root.style.setProperty('--primary-gradient',
+                      `linear-gradient(135deg, ${colors.primaryColor} 0%, ${colors.primaryDark} 100%)`);
+              }
+          }
       })();
   </script>
   </body>
