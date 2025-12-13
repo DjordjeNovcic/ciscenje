@@ -1266,8 +1266,6 @@
           galleryGrid.innerHTML = '';
           galleryImages = []; // Reset the array
 
-          console.log('📸 Loading gallery, found', querySnapshot.size, 'photos'); // DEBUG
-
           if (querySnapshot.empty) {
               showEmptyState('galleryGrid', 'Trenutno nema fotografija u galeriji.');
           } else {
@@ -1291,10 +1289,7 @@
 
                       // ✨ IMPORTANT: Capture the correct index
                       const currentIndex = galleryImages.length - 1;
-                      div.addEventListener('click', function() {
-                          console.log('🖱️ Clicked image at index:', currentIndex); // DEBUG
-                          console.log('📦 Gallery array length:', galleryImages.length); // DEBUG
-                          console.log('🖼️ Image URL:', galleryImages[currentIndex]); // DEBUG
+                      div.addEventListener('click', function() {                                 
                           openLightbox(currentIndex);
                       });
 
@@ -1305,8 +1300,7 @@
                   }
               });
 
-              console.log('✅ Gallery loaded. Total images:', galleryImages.length); // DEBUG
-              console.log('📦 Gallery array:', galleryImages); // DEBUG
+              
           }
       }).catch(function(error) {
           console.error('Error loading gallery:', error);
