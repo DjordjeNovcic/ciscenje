@@ -246,55 +246,81 @@
                       </div>
                   </div>
 
-                  <!-- Edit About Page - DUAL LANGUAGE -->
-                  <div id="about-section" class="content-section">
-                      <div class="dashboard-section">
-                          <h2>Uredi O nama stranicu</h2>
-                          <form class="cms-form">
-                              <!-- Language Tabs -->
-                              <div class="language-tabs">
-                                  <button type="button" class="language-tab active" onclick="switchLang(event, 'sr')">
-                                      🇷🇸 Srpski
-                                  </button>
-                                  <button type="button" class="language-tab" onclick="switchLang(event, 'en')">
-                                      🇬🇧 English
-                                  </button>
-                              </div>
+                   <!-- Edit About Page - DUAL LANGUAGE -->
+  <div id="about-section" class="content-section">
+      <div class="dashboard-section">
+          <h2>Uredi O nama stranicu</h2>
+          <form class="cms-form">
+              <!-- Language Tabs -->
+              <div class="language-tabs">
+                  <button type="button" class="language-tab active" onclick="switchLang(event, 'sr')">
+                      🇷🇸 Srpski
+                  </button>
+                  <button type="button" class="language-tab" onclick="switchLang(event, 'en')">
+                      🇬🇧 English
+                  </button>
+              </div>
 
-                              <!-- Serbian Content -->
-                              <div class="lang-section active" data-lang="sr">
-                                  <div class="dual-lang-group">
-                                      <h3><span class="lang-flag">🇷🇸</span>Priča - Srpski</h3>
-                                      <div class="form-group">
-                                          <label for="aboutHeading_sr">Naslov</label>
-                                          <input type="text" id="aboutHeading_sr" placeholder="Posvećeni kvalitetu od 2015. godine">
-                                      </div>
-                                      <div class="form-group">
-                                          <label for="aboutText_sr">Tekst</label>
-                                          <textarea id="aboutText_sr" rows="5" placeholder="Osnovani 2015. godine..."></textarea>
-                                      </div>
-                                  </div>
-                              </div>
-
-                              <!-- English Content -->
-                              <div class="lang-section" data-lang="en">
-                                  <div class="dual-lang-group">
-                                      <h3><span class="lang-flag">🇬🇧</span>Story - English</h3>
-                                      <div class="form-group">
-                                          <label for="aboutHeading_en">Heading</label>
-                                          <input type="text" id="aboutHeading_en" placeholder="Committed to Quality Since 2015">
-                                      </div>
-                                      <div class="form-group">
-                                          <label for="aboutText_en">Text</label>
-                                          <textarea id="aboutText_en" rows="5" placeholder="Founded in 2015..."></textarea>
-                                      </div>
-                                  </div>
-                              </div>
-
-                              <button type="button" id="saveAboutBtn" onclick="saveAboutContent()" class="btn btn-primary">Sačuvaj izmene</button>
-                          </form>
+              <!-- Serbian Content -->
+              <div class="lang-section active" data-lang="sr">
+                  <div class="dual-lang-group">
+                      <h3><span class="lang-flag">🇷🇸</span>Priča - Srpski</h3>
+                      <div class="form-group">
+                          <label for="aboutHeading_sr">Naslov</label>
+                          <input type="text" id="aboutHeading_sr" placeholder="Posvećeni kvalitetu od 2015. godine">
+                      </div>
+                      <div class="form-group">
+                          <label for="aboutText_sr">Tekst</label>
+                          <textarea id="aboutText_sr" rows="5" placeholder="Osnovani 2015. godine..."></textarea>
                       </div>
                   </div>
+              </div>
+
+              <!-- English Content -->
+              <div class="lang-section" data-lang="en">
+                  <div class="dual-lang-group">
+                      <h3><span class="lang-flag">🇬🇧</span>Story - English</h3>
+                      <div class="form-group">
+                          <label for="aboutHeading_en">Heading</label>
+                          <input type="text" id="aboutHeading_en" placeholder="Committed to Quality Since 2015">
+                      </div>
+                      <div class="form-group">
+                          <label for="aboutText_en">Text</label>
+                          <textarea id="aboutText_en" rows="5" placeholder="Founded in 2015..."></textarea>
+                      </div>
+                  </div>
+              </div>
+
+              <!-- ✨ NEW: STATS SECTION -->
+              <div class="dual-lang-group" style="margin-top: 2rem;">
+                  <h3>📊 Statistike (500+, 10 godina, itd.)</h3>
+                  <p style="color: var(--text-light); margin-bottom: 1rem;">
+                      Ove brojke se prikazuju na O nama stranici kao "stat boxes"
+                  </p>
+                  <div id="statsContainer"></div>
+                  <button type="button" onclick="addStat()" class="btn btn-secondary" style="margin-top: 1rem;">
+                      ➕ Dodaj statistiku
+                  </button>
+              </div>
+
+              <!-- ✨ NEW: REASONS SECTION -->
+              <div class="dual-lang-group" style="margin-top: 2rem;">
+                  <h3>⭐ Razlozi (Zašto izabrati MS Sjaj?)</h3>
+                  <p style="color: var(--text-light); margin-bottom: 1rem;">
+                      Ovi razlozi se prikazuju na početnoj i O nama stranici
+                  </p>
+                  <div id="reasonsContainer"></div>
+                  <button type="button" onclick="addReason()" class="btn btn-secondary" style="margin-top: 1rem;">
+                      ➕ Dodaj razlog
+                  </button>
+              </div>
+
+              <button type="button" id="saveAboutBtn" onclick="saveAboutContent()" class="btn btn-primary" style="margin-top: 2rem;">
+                  💾 Sačuvaj sve izmene
+              </button>
+          </form>
+      </div>
+  </div>
 
                   <!-- Testimonials - DUAL LANGUAGE -->
                   <div id="testimonials-section" class="content-section">
