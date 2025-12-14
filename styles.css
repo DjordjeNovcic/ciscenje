@@ -1036,6 +1036,10 @@ textarea:focus-visible {
 	font-weight: 700;
 }
 
+.gallery-section {
+    padding: 6rem 0;
+}
+
 /* ---------------------------------------------------- 4.9 PRICING CARDS (DESKTOP) ---------------------------------------------------- */
 .pricing-grid {
 	display: grid;
