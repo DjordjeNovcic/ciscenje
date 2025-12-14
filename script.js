@@ -445,60 +445,80 @@
   // ============================================
 
   function loadServices() {
-      const servicesGrid = document.getElementById('servicesGrid');
-      if (!servicesGrid) return;
+  const servicesGrid = document.getElementById('servicesGrid');
+  if (!servicesGrid) return;
 
-      showLoading('servicesGrid');
+  showLoading('servicesGrid');
 
-      db.collection('services').get().then(function(querySnapshot) {
-          const services = [];
-          querySnapshot.forEach(function(doc) {
-              services.push({ id: doc.id, ...doc.data() });
-          });
+  db.collection('services').get().then(function(querySnapshot) {
+    const services = [];
+    querySnapshot.forEach(function(doc) {
+      services.push({ id: doc.id, ...doc.data() });
+    });
 
-          servicesGrid.innerHTML = '';
+    servicesGrid.innerHTML = '';
 
-          if (services.length === 0) {
-              showEmptyState('servicesGrid', 'Trenutno nema dostupnih usluga.');
-          } else {
-              services.forEach(function(service, index) {
-                  const card = document.createElement('div');
-                  card.className = 'pricing-card fade-in';
-                  card.style.animationDelay = (index * 0.1) + 's';
+    if (services.length === 0) {
+      showEmptyState('servicesGrid', 'Trenutno nema dostupnih usluga.');
+      return;
+    }
 
-                  const h3 = document.createElement('h3');
-                  h3.textContent = getLocalizedField(service, 'name');
+    services.forEach(function(service, index) {
+      const card = document.createElement('div');
+      card.className = 'pricing-card fade-in';
+      card.style.animationDelay = (index * 0.1) + 's';
 
-                  const descList = document.createElement('ul');
-                  descList.className = 'service-features';
+      // ⭐ srednja kartica kao featured (ako ih ima 3)
+      if (services.length >= 3 && index === 1) {
+        card.classList.add('featured');
+      }
 
-                  const rawDescription = getLocalizedField(service, 'description') || '';
+      // TITLE
+      const h3 = document.createElement('h3');
+      h3.textContent = getLocalizedField(service, 'name');
 
-                  rawDescription
-                  .split('\n')               // ENTER = nova stavka
-                  .map(line => line.trim())
-                  .filter(Boolean)
-                  .forEach(text => {
-                  const li = document.createElement('li');
-                  li.textContent = text;
-                  descList.appendChild(li);
-                  });
+      // PRICE
+      const price = document.createElement('span');
+      price.className = 'service-price';
+      price.textContent = getLocalizedField(service, 'price') + ' RSD';
 
-                  const price = document.createElement('span');
-                  price.className = 'service-price';
-                  price.textContent = getLocalizedField(service, 'price');
+      // DIVIDER
+      const divider = document.createElement('div');
+      divider.className = 'features-divider';
 
-                  card.appendChild(h3);
-                  card.appendChild(price);
-                  card.appendChild(descList);                
-                  servicesGrid.appendChild(card);
-              });
-          }
-      }).catch(function(error) {
-          console.error('Error loading services:', error);
-          servicesGrid.innerHTML = '<p style="text-align: center; color: var(--danger-color); padding: 2rem; grid-column: 1/-1;">Greška pri učitavanju usluga. Molimo osvežite stranicu.</p>';
-      });
-  }
+      // FEATURES
+      const descList = document.createElement('ul');
+      descList.className = 'service-features';
+
+      const rawDescription = getLocalizedField(service, 'description') || '';
+
+      rawDescription
+        .split('\n')
+        .map(line => line.trim())
+        .filter(Boolean)
+        .forEach(text => {
+          const li = document.createElement('li');
+          li.textContent = text;
+          descList.appendChild(li);
+        });
+
+      // APPEND
+      card.appendChild(h3);
+      card.appendChild(price);
+      card.appendChild(divider);
+      card.appendChild(descList);
+
+      servicesGrid.appendChild(card);
+    });
+
+  }).catch(function(error) {
+    console.error('Error loading services:', error);
+    servicesGrid.innerHTML = `
+      <p style="text-align:center;color:var(--danger-color);padding:2rem;grid-column:1/-1;">
+        Greška pri učitavanju usluga. Molimo osvežite stranicu.
+      </p>`;
+  });
+}
 
   function loadServicesAdmin() {
       const servicesList = document.getElementById('servicesList');
