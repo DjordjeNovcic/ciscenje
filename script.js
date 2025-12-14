@@ -508,6 +508,15 @@
       card.appendChild(divider);
       card.appendChild(descList);
 
+      const ctaBtn = document.createElement('a');
+      ctaBtn.href = 'index.html#contact';
+      ctaBtn.className = 'btn';
+      ctaBtn.textContent = getCurrentLanguage() === 'en'
+      ? 'Book now'
+      : 'Zakaži termin';
+
+      card.appendChild(ctaBtn);
+
       servicesGrid.appendChild(card);
     });
 
