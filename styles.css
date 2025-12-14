@@ -835,6 +835,8 @@ textarea:focus-visible {
 	font-weight: 800;
 	color: var(--text-dark);
 	letter-spacing: -1px;
+	margin: 0.75rem 0 0.75rem;
+	line-height: 1.2; 
 }
 
 .pricing-card .price-note {
