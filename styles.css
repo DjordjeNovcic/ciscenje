@@ -850,8 +850,17 @@ textarea:focus-visible {
   margin: 2rem 0 0;
 }
 
-.pricing-card .service-features li {
+.pricing-card .service-features li::before {
   content: '✓';
+  position: absolute;
+  left: 0;
+  top: 0.85em;   
+  transform: translateY(-50%);
+  color: var(--success-color);
+  font-weight: 700;
+}
+
+.pricing-card .service-features li {
   padding: 0.5rem 0 0.5rem 1.75rem;
   color: var(--text-dark);
   position: relative;
