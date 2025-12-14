@@ -846,11 +846,12 @@ textarea:focus-visible {
 }
 
 .service-card .service-price {
+	display: block;
 	text-align: center;
 	font-size: 2.2rem;
 	font-weight: 800;
 	color: var(--text-dark);
-	margin: 0.75rem 0 1.75rem;
+	margin: 0.75rem 0 1.5rem;
 	letter-spacing: -1px;
 }
 
@@ -875,6 +876,7 @@ textarea:focus-visible {
 	list-style: none;   
 	margin: 1.25rem 0;
 	padding-left: 0;
+	margin-top: 0.75rem;
 }
 
 .service-card .service-description li {
