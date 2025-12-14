@@ -1002,25 +1002,30 @@ textarea:focus-visible {
 	line-height: 1.4;
 }
 
-.addon-card p {
+.addon-price {
+	display: inline-block;
+	margin-top: 1rem;
+	padding: 0.35rem 0.85rem;
+	border-radius: 999px;
+	background: rgba(20, 184, 166, 0.12);
 	color: var(--primary-color);
 	font-weight: 700;
-	font-size: 1.25rem;
-	margin-top: 1rem;
-	letter-spacing: -0.5px;
+	font-size: 0.95rem;
+	letter-spacing: -0.3px;
 }
 
 .addon-icon {
-	width: 60px;
-	height: 60px;
+	width: 52px;
+	height: 52px;
 	background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
 	border-radius: 50%;
 	display: flex;
 	align-items: center;
 	justify-content: center;
 	margin: 0 auto 1rem;
+	margin-bottom: 0.75rem;
 	color: white;
-	font-size: 1.5rem;
+	font-size: 1.35rem;
 }
 
 .gallery-section h2 {
