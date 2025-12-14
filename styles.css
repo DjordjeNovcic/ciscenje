@@ -889,15 +889,15 @@ textarea:focus-visible {
   width: 60%;
   height: 1px;
   background: var(--border-color);
-  margin: 1.25rem auto;
+  margin: 0;
   opacity: 0.6;
 }
 
 .pricing-card .features-divider {
 	height: 1px;
 	background: var(--border-color);
-	margin: 1.5rem 0;
-	opacity: 0.6;
+	margin: 0.75rem auto 1rem;
+	opacity: 0.5;
 }
 
 .service-card .service-description {
