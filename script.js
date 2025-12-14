@@ -489,8 +489,8 @@
                   price.textContent = getLocalizedField(service, 'price');
 
                   card.appendChild(h3);
-                  card.appendChild(descList);
                   card.appendChild(price);
+                  card.appendChild(descList);                
                   servicesGrid.appendChild(card);
               });
           }
