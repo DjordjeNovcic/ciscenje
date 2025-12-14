@@ -3108,7 +3108,7 @@ footer::before,
 	}
 
 	.landing-logo img {
-		width: clamp(200px, 50vw, 320px);
+		width: clamp(150px, 50vw, 210px);
 	}
 
 	/* Cards & Components (Mobile) */
@@ -3637,7 +3637,7 @@ footer::before,
 
 @media (max-width: 480px) {
 	.landing-logo img {
-		width: clamp(180px, 60vw, 280px);
+		width: clamp(130px, 40vw, 220px);
 	}
 
 	.navbar .container {
