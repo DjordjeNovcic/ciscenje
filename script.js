@@ -463,22 +463,33 @@
           } else {
               services.forEach(function(service, index) {
                   const card = document.createElement('div');
-                  card.className = 'service-card fade-in';
+                  card.className = 'pricing-card fade-in';
                   card.style.animationDelay = (index * 0.1) + 's';
 
                   const h3 = document.createElement('h3');
                   h3.textContent = getLocalizedField(service, 'name');
 
-                  const desc = document.createElement('div');
-                  desc.className = 'service-description';
-                  desc.innerHTML = getLocalizedField(service, 'description');
+                  const descList = document.createElement('ul');
+                  descList.className = 'service-features';
+
+                  const rawDescription = getLocalizedField(service, 'description') || '';
+
+                  rawDescription
+                  .split('\n')               // ENTER = nova stavka
+                  .map(line => line.trim())
+                  .filter(Boolean)
+                  .forEach(text => {
+                  const li = document.createElement('li');
+                  li.textContent = text;
+                  descList.appendChild(li);
+                  });
 
                   const price = document.createElement('span');
                   price.className = 'service-price';
                   price.textContent = getLocalizedField(service, 'price');
 
                   card.appendChild(h3);
-                  card.appendChild(desc);
+                  card.appendChild(descList);
                   card.appendChild(price);
                   servicesGrid.appendChild(card);
               });
@@ -502,7 +513,11 @@
               h4.textContent = service.name_sr || 'N/A';
               const p1 = document.createElement('div');
               p1.className = 'service-description';
-              p1.innerHTML = (service.description_sr || 'N/A').substring(0, 100) + '...';
+              p1.textContent =
+              (service.description_sr || 'N/A')
+              .split('\n')
+              .slice(0, 2)
+              .join(' • ') + '...';
               p1.style.marginBottom = '10px';
               const p2 = document.createElement('p');
               p2.className = 'service-price';
