@@ -868,12 +868,21 @@ textarea:focus-visible {
 }
 
 .pricing-card .btn {
-	margin: 0 auto 1.5rem;
-	padding: 0.65rem 1.5rem;
-	border-radius: 999px;
-	font-weight: 600;
-	font-size: 0.9rem;
-	margin-top: auto;
+	margin: 1.5rem auto 0;
+    padding: 0.75rem 1.75rem;
+    border-radius: 999px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    background: transparent;
+    border: 2px solid var(--primary-color);
+    color: var(--primary-color);
+    cursor: pointer;
+    transition: all 0.25s ease;
+}
+
+.pricing-card .btn:hover {
+    background: var(--primary-color);
+    color: #fff;
 }
 
 .pricing-card .service-price::after {
@@ -1062,52 +1071,13 @@ textarea:focus-visible {
 
 .pricing-card.featured .btn {
 	background: var(--primary-color);
-	color: white;
-	border: none;
+    color: white;
+    border: 2px solid var(--primary-color);
 }
 
-.pricing-badge {
-	position: absolute;
-	top: 1rem;
-	right: 1rem;
-	background: var(--primary-color);
-	color: white;
-	font-size: 0.7rem;
-	padding: 0.3rem 0.6rem;
-	border-radius: 999px;
-}
-
-.badge {
-	position: absolute;
-	top: -15px;
-	left: 50%;
-	transform: translateX(-50%);
-	background: var(--primary-color);
-	color: white;
-	padding: 0.5rem 1rem;
-	border-radius: 20px;
-	font-size: 0.85rem;
-	font-weight: bold;
-}
-
-.badge-pending {
-	background: #fef3c7;
-	color: #92400e;
-}
-
-.badge-confirmed {
-	background: #dbeafe;
-	color: #1e40af;
-}
-
-.badge-completed {
-	background: #d1fae5;
-	color: #065f46;
-}
-
-.badge-cancelled {
-	background: #fee2e2;
-	color: #991b1b;
+.pricing-card.featured .btn:hover {
+    background: var(--primary-dark);
+    border-color: var(--primary-dark);
 }
 
 .pricing-card h3 {
