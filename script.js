@@ -1393,11 +1393,12 @@
                   const h4 = document.createElement('h4');
                   h4.textContent = getLocalizedField(addon, 'name');
 
-                  const p = document.createElement('p');
-                  p.textContent = getLocalizedField(addon, 'price');
+                  const price = document.createElement('span');
+                  price.className = 'addon-price';
+                  price.textContent = getLocalizedField(addon, 'price') + ' RSD';
 
                   card.appendChild(h4);
-                  card.appendChild(p);
+                  card.appendChild(price);
                   addonsGrid.appendChild(card);
               });
           }
