@@ -887,16 +887,6 @@ textarea:focus-visible {
     color: #fff;
 }
 
-.pricing-card .service-price::after {
-	content: '';
-	display: block;
-	width: 64%;
-	height: 1px;
-	background: var(--border-color);
-	margin: 1.25rem auto 0;
-	opacity: 0.7;
-}
-
 .service-card .service-description {
 	color: var(--text-dark);
 	line-height: 1.55;
