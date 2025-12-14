@@ -1049,7 +1049,7 @@ textarea:focus-visible {
 }
 
 .pricing-card {
-	background: #fff;
+	background: var(--bg-light);
 	border-radius: 18px;
 	padding: 2.5rem 2rem;
 	box-shadow: 0 10px 30px rgba(0, 0, 0, .06);
