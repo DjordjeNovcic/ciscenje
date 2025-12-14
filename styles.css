@@ -885,14 +885,6 @@ textarea:focus-visible {
 	opacity: 0.7;
 }
 
-.features-divider {
-  width: 60%;
-  height: 1px;
-  background: var(--border-color);
-  margin: 1.25rem auto;
-  opacity: 0.6;
-}
-
 .pricing-card .features-divider {
 	height: 1px;
 	background: var(--border-color);
