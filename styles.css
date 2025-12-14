@@ -831,10 +831,9 @@ textarea:focus-visible {
 .pricing-card .service-price {
 	display: block;
 	text-align: center;
-	font-size: 3rem;
+	font-size: 2.5rem;
 	font-weight: 800;
 	color: var(--text-dark);
-	margin: 1rem 0;
 	letter-spacing: -1px;
 }
 
@@ -883,21 +882,6 @@ textarea:focus-visible {
 	background: var(--border-color);
 	margin: 1.25rem auto 0;
 	opacity: 0.7;
-}
-
-.features-divider {
-  width: 60%;
-  height: 1px;
-  background: var(--border-color);
-  margin: 0;
-  opacity: 0.6;
-}
-
-.pricing-card .features-divider {
-	height: 1px;
-	background: var(--border-color);
-	margin: 0.75rem auto 1rem;
-	opacity: 0.5;
 }
 
 .service-card .service-description {
