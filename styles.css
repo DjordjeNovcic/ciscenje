@@ -854,7 +854,7 @@ textarea:focus-visible {
   content: '✓';
   position: absolute;
   left: 0;
-  top: 0.85em;   
+  top: 1.4em;   
   transform: translateY(-50%);
   color: var(--success-color);
   font-weight: 700;
