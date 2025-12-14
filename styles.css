@@ -831,11 +831,26 @@ textarea:focus-visible {
 .pricing-card .service-price {
 	display: block;
 	text-align: center;
-	font-size: 2.4rem;
+	font-size: 2.6rem;
 	font-weight: 800;
 	color: var(--text-dark);
-	margin: 0.75rem 0 1.75rem;
+	margin: 1rem 0 0.5rem;
 	letter-spacing: -1px;
+}
+
+.pricing-card .price-note {
+	text-align: center;
+	font-size: 0.85rem;
+	color: var(--text-light);
+	margin-bottom: 1.25rem;
+}
+
+.pricing-card .btn {
+	margin: 0 auto 1.5rem;
+	padding: 0.65rem 1.5rem;
+	border-radius: 999px;
+	font-weight: 600;
+	font-size: 0.9rem;
 }
 
 .pricing-card .service-price::after {
@@ -846,6 +861,13 @@ textarea:focus-visible {
 	background: var(--border-color);
 	margin: 1.25rem auto 0;
 	opacity: 0.7;
+}
+
+.pricing-card .features-divider {
+	height: 1px;
+	background: var(--border-color);
+	margin: 1.5rem 0;
+	opacity: 0.6;
 }
 
 .service-card .service-description {
@@ -864,10 +886,12 @@ textarea:focus-visible {
 }
 
 .service-card .service-description li {
-	margin: 0.6rem 0;
 	color: var(--text-dark);
 	position: relative;
 	padding-left: 1.75rem;
+	font-size: 0.95rem;
+	line-height: 1.6;
+	margin: 0.75rem 0;
 }
 
 .services-detail {
@@ -988,100 +1012,6 @@ textarea:focus-visible {
 	margin-bottom: 1rem;
 	color: var(--text-dark);
 	font-weight: 700;
-}
-
-/* ----------------------------------------------------
-     4.9 PRICING CARDS (DESKTOP)
-     ---------------------------------------------------- */
-.pricing-grid {
-	display: grid;
-	grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-	gap: 2rem;
-	margin-top: 2rem;
-}
-
-.pricing-card {
-	background: #fff;
-  	border-radius: 18px;
-  	padding: 2.5rem 2rem;
-  	box-shadow: 0 10px 30px rgba(0,0,0,.06);
-  	display: flex;
-  	flex-direction: column;
-  	transition: transform .25s ease, box-shadow .25s ease;
-}
-
-.pricing-card:hover {
-	transform: translateY(-6px);
-  	box-shadow: 0 20px 40px rgba(0,0,0,.12);
-}
-
-.pricing-card.featured {
-	border: 3px solid var(--primary-color);
-}
-
-.badge {
-	position: absolute;
-	top: -15px;
-	left: 50%;
-	transform: translateX(-50%);
-	background: var(--primary-color);
-	color: white;
-	padding: 0.5rem 1rem;
-	border-radius: 20px;
-	font-size: 0.85rem;
-	font-weight: bold;
-}
-
-.badge-pending {
-	background: #fef3c7;
-	color: #92400e;
-}
-
-.badge-confirmed {
-	background: #dbeafe;
-	color: #1e40af;
-}
-
-.badge-completed {
-	background: #d1fae5;
-	color: #065f46;
-}
-
-.badge-cancelled {
-	background: #fee2e2;
-	color: #991b1b;
-}
-
-.pricing-card h3 {
-	font-size: 1.4rem;
-  	font-weight: 700;
-  	color: var(--primary-color);
-  	margin-bottom: 1.5rem;
-  	text-align: center;
-}
-
-.price {
-	font-size: 3rem;
-	font-weight: bold;
-	color: var(--primary-color);
-	margin: 1rem 0;
-}
-
-.price-description {
-	color: var(--text-light);
-	font-size: 0.9rem;
-	margin-bottom: 1.5rem;
-}
-
-.features-list {
-	list-style: none;
-	text-align: left;
-	margin: 2rem 0;
-}
-
-.features-list li {
-	padding: 0.5rem 0;
-	color: var(--text-dark);
 }
 
 /* ----------------------------------------------------
