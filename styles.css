@@ -831,7 +831,7 @@ textarea:focus-visible {
 .pricing-card .service-price {
 	display: block;
 	text-align: center;
-	font-size: 2.5rem;
+	font-size: 2.1rem;
 	font-weight: 800;
 	color: var(--text-dark);
 	letter-spacing: -1px;
