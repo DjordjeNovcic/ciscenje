@@ -482,10 +482,6 @@
       price.className = 'service-price';
       price.textContent = getLocalizedField(service, 'price') + ' RSD';
 
-      // DIVIDER
-      const divider = document.createElement('div');
-      divider.className = 'features-divider';
-
       // FEATURES
       const descList = document.createElement('ul');
       descList.className = 'service-features';
