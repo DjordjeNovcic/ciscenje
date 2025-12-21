@@ -1,8 +1,9 @@
 // i18n.js - Internationalization Helper
   document.addEventListener('DOMContentLoaded', function() {
-      initLanguage();
       setupLanguageSwitcher();
-      translatePage();
+      applyLanguage();
+
+      document.body.classList.add('loaded');
   });
 
   function initLanguage() {
@@ -55,6 +56,21 @@
           const translation = t(key);
           option.textContent = translation;
       });
+  }
+
+  function applyLanguage() {
+    const currentLang = getCurrentLanguage();
+
+    // <html lang="">
+    document.documentElement.lang = currentLang;
+
+    // Active state on language buttons
+    document.querySelectorAll('.lang-btn').forEach(btn => {
+        btn.classList.toggle('active', btn.dataset.lang === currentLang);
+    });
+
+    // Apply translations
+    translatePage();
   }
 
   // Get localized field from Firebase document
