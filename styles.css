@@ -465,12 +465,12 @@ textarea:focus-visible {
 }
 
 .landing-logo img {
-	width: clamp(200px, 20vw, 300px);
+	width: clamp(160px, 18vw, 240px);
 	height: auto;
 	aspect-ratio: 1 / 1;
 	object-fit: contain;
 	display: block;
-	filter: drop-shadow(0 15px 40px rgba(0, 0, 0, 0.4));
+	filter: drop-shadow(0 12px 32px rgba(0, 0, 0, 0.35));
 	animation: float 3s ease-in-out infinite;
 	will-change: transform;
 }
@@ -3637,7 +3637,7 @@ footer::before,
 
 @media (max-width: 480px) {
 	.landing-logo img {
-		width: clamp(130px, 40vw, 220px);
+		width: clamp(140px, 45vw, 190px);
 	}
 
 	.navbar .container {
