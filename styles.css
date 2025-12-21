@@ -535,8 +535,13 @@ textarea:focus-visible {
      4.3 HERO SECTION (DESKTOP)
      ---------------------------------------------------- */
 .hero {
-	background: linear-gradient(135deg, #1f2937 0%, #111827 100%);
-	color: white;
+	background: linear-gradient(
+		135deg,
+		#e8eef5 0%,
+		#dbe5f0 40%,
+		#cfdbea 100%
+	);
+	color: #1f2937;
 	padding: clamp(4rem, 8vw, 7rem) 0;
 	text-align: center;
 	position: relative;
@@ -549,8 +554,8 @@ textarea:focus-visible {
 	inset: 0;
 	background: radial-gradient(
 		circle at top,
-		rgba(255, 255, 255, 0.08),
-		transparent 60%
+		rgba(255, 255, 255, 0.6),
+		transparent 65%
 	);
 	pointer-events: none;
 }
@@ -571,7 +576,7 @@ textarea:focus-visible {
 	font-size: clamp(1.05rem, 2.5vw, 1.25rem);
 	max-width: 600px;
 	margin: 0 auto 2.5rem;
-	color: rgba(255, 255, 255, 0.85);
+	color: #374151;
 }
 
 .hero-buttons {
