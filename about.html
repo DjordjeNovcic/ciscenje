@@ -14,7 +14,7 @@
 
   <div id="page-loader"></div>
 
-  <!-- HEADER (loaded from partial) -->
+  <!-- HEADER (loaded via script.js) -->
   <div id="site-header"></div>
 
   <!-- Page Header -->
@@ -120,7 +120,7 @@
     </div>
   </section>
 
-  <!-- FOOTER (loaded from partial) -->
+  <!-- FOOTER (loaded via script.js) -->
   <div id="site-footer"></div>
 
   <!-- Firebase -->
@@ -132,23 +132,8 @@
   <script src="translations.js"></script>
   <script src="i18n.js"></script>
 
-  <!-- Main JS -->
+  <!-- Main JS (loads header/footer internally) -->
   <script src="script.js"></script>
-
-  <!-- Load header/footer partials -->
-  <script>
-    function loadPartial(id, file) {
-      fetch(file)
-        .then(r => r.text())
-        .then(html => document.getElementById(id).innerHTML = html)
-        .catch(e => console.error('Partial load error:', file, e));
-    }
-
-    document.addEventListener('DOMContentLoaded', () => {
-      loadPartial('site-header', 'partials/header.html');
-      loadPartial('site-footer', 'partials/footer.html');
-    });
-  </script>
 
 </body>
 </html>
