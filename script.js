@@ -27,7 +27,6 @@ let addonsCache = null;
 let homeCache = null;
 let aboutCache = null;
 let slideshowCache = null;
-let publicLoaded = false;
 
 
 function initializeApp() {
@@ -55,46 +54,34 @@ function loadPartials() {
   const headerEl = document.getElementById('site-header');
   const footerEl = document.getElementById('site-footer');
 
-  if (headerEl) {
-    fetch('partials/header.html')
-      .then(res => res.text())
-      .then(html => {
-        headerEl.innerHTML = html;
+  const headerPromise = headerEl
+    ? fetch('partials/header.html')
+        .then(r => r.text())
+        .then(html => {
+          headerEl.innerHTML = html;
+          setupMobileNav();
+          setActiveNavLink();
+        })
+    : Promise.resolve();
 
-        // UI koji zavisi od headera
-        setupMobileNav();
-        setActiveNavLink();
+  const footerPromise = footerEl
+    ? fetch('partials/footer.html')
+        .then(r => r.text())
+        .then(html => {
+          footerEl.innerHTML = html;
+          const yearEl = document.getElementById('currentYear');
+          if (yearEl) yearEl.textContent = new Date().getFullYear();
+        })
+    : Promise.resolve();
 
-        // ⬇️ KRITIČNO: sadržaj tek SAD
-        loadPublicPageContent();
-      })
-      .catch(err => console.error('Header load error', err));
-  } else {
-    // fallback ako nema headera (edge case)
+  // ⬇️ OVO JE KLJUČ
+  Promise.all([headerPromise, footerPromise]).then(() => {
     loadPublicPageContent();
-  }
-
-  if (footerEl) {
-    fetch('partials/footer.html')
-      .then(res => res.text())
-      .then(html => {
-        footerEl.innerHTML = html;
-
-        const yearEl = document.getElementById('currentYear');
-        if (yearEl) {
-          yearEl.textContent = new Date().getFullYear();
-        }
-      })
-      .catch(err => console.error('Footer load error', err));
-  }
+  });
 }
 
-function shouldLoadSection(sectionKey) {
-   if (sessionStorage.getItem(sectionKey + '_loaded') === 'true') {
-      return false;
-   }
-   sessionStorage.setItem(sectionKey + '_loaded', 'true');
-   return true;
+function shouldLoadSection() {
+  return true;
 }
 
 function getCachedData(key) {
@@ -213,9 +200,6 @@ function setupMobileNav() {
 }
 
 function loadPublicPageContent() {
-   if (publicLoaded) return;
-   publicLoaded = true;
-
    loadHomeContent();
    loadServices();
    loadAboutContent();
@@ -557,7 +541,6 @@ function saveHomeContent() {
       features: features
    }).then(function () {
       homeCache = null;
-      publicLoaded = false;
       alert('Sadrzaj pocetne stranice je sacuvan!');
    });
 }
@@ -756,7 +739,6 @@ function saveService() {
    if (serviceId) {
       db.collection('services').doc(serviceId).update(serviceData).then(function () {
          servicesCache = null;
-         publicLoaded = false;
          closeServiceModal();
          loadServicesAdmin();
          alert('Usluga je azurirana!');
@@ -764,7 +746,6 @@ function saveService() {
    } else {
       db.collection('services').add(serviceData).then(function () {
          servicesCache = null;
-         publicLoaded = false;
          closeServiceModal();
          loadServicesAdmin();
          alert('Usluga je dodata!');
@@ -780,7 +761,6 @@ function deleteService(serviceId) {
    if (confirm('Da li ste sigurni da zelite da obrisete ovu uslugu?')) {
       db.collection('services').doc(serviceId).delete().then(function () {
          servicesCache = null;
-         publicLoaded = false;
          loadServicesAdmin();
          alert('Usluga je obrisana!');
       });
@@ -1169,7 +1149,6 @@ function saveAboutContent() {
       reasons: reasons
    }).then(function () {
       aboutCache = null;
-      publicLoaded = false;
       alert('Sadržaj O nama stranice je sačuvan!');
    });
 }
@@ -1334,7 +1313,6 @@ function saveTestimonial() {
    if (testimonialId) {
       db.collection('testimonials').doc(testimonialId).update(testimonialData).then(function () {
          testimonialsCache = null;
-         publicLoaded = false;
          closeTestimonialModal();
          loadTestimonialsAdmin();
          alert('Recenzija je azurirana!');
@@ -1342,7 +1320,6 @@ function saveTestimonial() {
    } else {
       db.collection('testimonials').add(testimonialData).then(function () {
          testimonialsCache = null;
-         publicLoaded = false;
          closeTestimonialModal();
          loadTestimonialsAdmin();
          alert('Recenzija je dodata!');
@@ -1358,7 +1335,6 @@ function deleteTestimonial(testimonialId) {
    if (confirm('Da li ste sigurni da zelite da obrisete ovu recenziju?')) {
       db.collection('testimonials').doc(testimonialId).delete().then(function () {
          testimonialsCache = null;
-         publicLoaded = false;
          loadTestimonialsAdmin();
          alert('Recenzija je obrisana!');
       });
@@ -1476,7 +1452,6 @@ function setupAdminForms() {
                         uploadedAt: firebase.firestore.FieldValue.serverTimestamp()
                      }).then(function () {
                         galleryCache = null;
-                        publicLoaded = false;
                         photoInput.value = '';
                         loadGalleryAdmin();
                         alert('Fotografija je uspesno otpremljena!');
@@ -1499,7 +1474,6 @@ function deletePhoto(photoId) {
    if (confirm('Da li ste sigurni da zelite da obrisete ovu fotografiju?')) {
       db.collection('gallery').doc(photoId).delete().then(function () {
          galleryCache = null;
-         publicLoaded = false;
          loadGalleryAdmin();
          alert('Fotografija je obrisana!');
       });
@@ -1528,7 +1502,6 @@ function saveContact() {
       address: document.getElementById('contactAddress').value
    }).then(function () {
       alert('Kontakt informacije su sacuvane!');
-      publicLoaded = false;
       updateFooterContent();
    });
 }
@@ -1686,7 +1659,6 @@ function saveAddOn() {
    if (addonId) {
       db.collection('addons').doc(addonId).update(addonData).then(function () {
          addonsCache = null;
-         publicLoaded = false;
          closeAddOnModal();
          loadAddOnsAdmin();
          alert('Dodatna usluga je azurirana!');
@@ -1694,7 +1666,6 @@ function saveAddOn() {
    } else {
       db.collection('addons').add(addonData).then(function () {
          addonsCache = null;
-         publicLoaded = false;
          closeAddOnModal();
          loadAddOnsAdmin();
          alert('Dodatna usluga je dodata!');
@@ -1710,7 +1681,6 @@ function deleteAddOn(addonId) {
    if (confirm('Da li ste sigurni da zelite da obrisete ovu dodatnu uslugu?')) {
       db.collection('addons').doc(addonId).delete().then(function () {
          addonsCache = null;
-         publicLoaded = false;
          loadAddOnsAdmin();
          alert('Dodatna usluga je obrisana!');
       });
@@ -1841,7 +1811,6 @@ function loadSlideshowAdmin() {
 function deleteSlideshowImage(imageId) {
    if (confirm('Da li ste sigurni da želite da obrišete ovu sliku iz slideshow-a?')) {
       db.collection('slideshow').doc(imageId).delete().then(function () {
-         publicLoaded = false;
          loadSlideshowAdmin();
          alert('Slika je obrisana!');
       });
