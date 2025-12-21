@@ -37,10 +37,6 @@ function initializeApp() {
     document.getElementById('loginForm') ||
     document.getElementById('adminContent');
 
-  if (!isAdminPage) {
-    loadPublicPageContent();
-  }
-
   if (document.getElementById('loginForm')) {
     setupAdminLogin();
   }
@@ -51,7 +47,6 @@ function initializeApp() {
 
   document.body.classList.add('loaded');
 }
-
 
 // =====================
 // HEADER & FOOTER PARTIALS
@@ -65,10 +60,18 @@ function loadPartials() {
       .then(res => res.text())
       .then(html => {
         headerEl.innerHTML = html;
+
+        // UI koji zavisi od headera
         setupMobileNav();
         setActiveNavLink();
+
+        // ⬇️ KRITIČNO: sadržaj tek SAD
+        loadPublicPageContent();
       })
       .catch(err => console.error('Header load error', err));
+  } else {
+    // fallback ako nema headera (edge case)
+    loadPublicPageContent();
   }
 
   if (footerEl) {
@@ -85,7 +88,6 @@ function loadPartials() {
       .catch(err => console.error('Footer load error', err));
   }
 }
-
 
 function shouldLoadSection(sectionKey) {
    if (sessionStorage.getItem(sectionKey + '_loaded') === 'true') {
