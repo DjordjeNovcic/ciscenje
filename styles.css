@@ -1187,7 +1187,7 @@ textarea:focus-visible {
 	grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
 	gap: 2rem;
 	margin-top: 3rem;
-	padding-bottom: clamp(3rem, 6vw, 5rem);
+	padding-bottom: clamp(3rem, 6vw, 1rem);
 }
 
 .stat-box {
