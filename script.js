@@ -26,8 +26,24 @@ let testimonialsCache = null;
 let addonsCache = null;
 let homeCache = null;
 let aboutCache = null;
+let slideshowCache = null;
 
 let publicLoaded = false;
+
+function getCachedData(key) {
+   const raw = sessionStorage.getItem(key);
+   if (!raw) return null;
+
+   try {
+      return JSON.parse(raw);
+   } catch {
+      return null;
+   }
+}
+
+function setCachedData(key, data) {
+   sessionStorage.setItem(key, JSON.stringify(data));
+}
 
 
 // Language Helper Function
@@ -234,7 +250,15 @@ function loadHomeContent() {
    const featuresGrid = document.getElementById('featuresGrid');
    if (!featuresGrid) return;
 
-   // ✅ AKO VEĆ IMA PODATAKA → NEMA LOADERA
+   // ✅ SESSION STORAGE CACHE
+   const cached = getCachedData('home');
+   if (cached) {
+      homeCache = cached;
+      renderHomeContent(cached);
+      return;
+   }
+
+   // fallback na memory cache
    if (homeCache) {
       renderHomeContent(homeCache);
       return;
@@ -248,19 +272,16 @@ function loadHomeContent() {
 
          const data = doc.data();
 
-         // ✅ UPIS U CACHE
          homeCache = data;
+         setCachedData('home', data); // ✅ OVO JE KLJUČNO
 
          renderHomeContent(data);
       })
       .catch(error => {
-         console.error('Error loading home content:', error);
-         featuresGrid.innerHTML = `
-            <p style="text-align:center;color:var(--danger-color);padding:2rem;grid-column:1/-1;">
-               Greška pri učitavanju sadržaja. Molimo osvežite stranicu.
-            </p>`;
+         console.error(error);
       });
 }
+
 
 function renderHomeContent(data) {
    const heroHeading = document.getElementById('heroHeading');
@@ -495,36 +516,33 @@ function loadServices() {
    const servicesGrid = document.getElementById('servicesGrid');
    if (!servicesGrid) return;
 
-   if (servicesCache) {
-      renderServices(servicesCache);
+   // 1️⃣ sessionStorage cache
+   const cached = getCachedData('services');
+   if (cached) {
+      servicesCache = cached;
+      renderServices(cached);
       return;
    }
 
    showLoading('servicesGrid');
 
    db.collection('services').get()
-      .then(function (querySnapshot) {
+      .then(snapshot => {
          const services = [];
-         querySnapshot.forEach(function (doc) {
-            services.push({
-               id: doc.id,
-               ...doc.data()
-            });
-         });
+         snapshot.forEach(doc => services.push({ id: doc.id, ...doc.data() }));
 
-         // ✅ UPIS U CACHE (KLJUČNA STVAR)
+         // 2️⃣ upis u oba cache-a
          servicesCache = services;
+         setCachedData('services', services);
 
          renderServices(services);
       })
-      .catch(function (error) {
-         console.error('Error loading services:', error);
-         servicesGrid.innerHTML = `
-        <p style="text-align:center;color:var(--danger-color);padding:2rem;grid-column:1/-1;">
-          Greška pri učitavanju usluga. Molimo osvežite stranicu.
-        </p>`;
+      .catch(err => {
+         console.error(err);
+         servicesGrid.innerHTML = '<p>Greška pri učitavanju</p>';
       });
 }
+
 
 function renderServices(services) {
    const servicesGrid = document.getElementById('servicesGrid');
@@ -718,26 +736,28 @@ function deleteService(serviceId) {
 // ============================================
 
 function loadAboutContent() {
-   const aboutHeading = document.getElementById('aboutHeading');
-   const aboutText = document.getElementById('aboutText');
+   const cached = getCachedData('about');
+   if (cached) {
+      aboutCache = cached;
+      renderAboutContent(cached);
+      return;
+   }
 
    if (aboutCache) {
       renderAboutContent(aboutCache);
       return;
    }
 
-   if (aboutHeading && aboutText) {
-      aboutHeading.innerHTML = '';
-      aboutText.innerHTML = '';
-   }
-
    db.collection('content').doc('about').get().then(doc => {
       if (!doc.exists) return;
 
       aboutCache = doc.data();
+      setCachedData('about', aboutCache);
+
       renderAboutContent(aboutCache);
    });
 }
+
 
 function loadAboutContentAdmin() {
    const aboutHeadingSr = document.getElementById('aboutHeading_sr');
@@ -1104,6 +1124,15 @@ function loadTestimonials() {
    const testimonialsGrid = document.getElementById('testimonialsGrid');
    if (!testimonialsGrid) return;
 
+   // ✅ sessionStorage cache
+   const cached = getCachedData('testimonials');
+   if (cached) {
+      testimonialsCache = cached;
+      renderTestimonials(cached);
+      return;
+   }
+
+   // fallback memory cache
    if (testimonialsCache) {
       renderTestimonials(testimonialsCache);
       return;
@@ -1112,23 +1141,23 @@ function loadTestimonials() {
    showLoading('testimonialsGrid');
 
    db.collection('testimonials').get()
-      .then(querySnapshot => {
+      .then(snapshot => {
          const testimonials = [];
-         querySnapshot.forEach(doc => {
-            testimonials.push({
-               id: doc.id,
-               ...doc.data()
-            });
+         snapshot.forEach(doc => {
+            testimonials.push({ id: doc.id, ...doc.data() });
          });
 
          testimonialsCache = testimonials;
+         setCachedData('testimonials', testimonials); // ✅ OVO FALI
+
          renderTestimonials(testimonials);
       })
       .catch(error => {
-         console.error('Error loading testimonials:', error);
-         testimonialsGrid.innerHTML = `<p style="color:red">Greška pri učitavanju</p>`;
+         console.error(error);
+         testimonialsGrid.innerHTML = '<p>Greška pri učitavanju</p>';
       });
 }
+
 
 function renderTestimonials(testimonials) {
    const testimonialsGrid = document.getElementById('testimonialsGrid');
@@ -1284,8 +1313,10 @@ function loadGallery() {
    const galleryGrid = document.getElementById('galleryGrid');
    if (!galleryGrid) return;
 
-   if (galleryCache) {
-      renderGallery(galleryCache);
+   const cached = getCachedData('gallery');
+   if (cached) {
+      galleryCache = cached;
+      renderGallery(cached);
       return;
    }
 
@@ -1297,13 +1328,12 @@ function loadGallery() {
          snapshot.forEach(doc => photos.push(doc.data()));
 
          galleryCache = photos;
+         setCachedData('gallery', photos);
+
          renderGallery(photos);
-      })
-      .catch(error => {
-         console.error('Error loading gallery:', error);
-         galleryGrid.innerHTML = '<p style="color:red">Greška</p>';
       });
 }
+
 
 function loadGalleryAdmin() {
    const galleryAdmin = document.getElementById('galleryAdmin');
@@ -1449,6 +1479,14 @@ function loadAddOns() {
    const addonsGrid = document.getElementById('addonsGrid');
    if (!addonsGrid) return;
 
+   // ✅ sessionStorage cache
+   const cached = getCachedData('addons');
+   if (cached) {
+      addonsCache = cached;
+      renderAddOns(cached);
+      return;
+   }
+
    if (addonsCache) {
       renderAddOns(addonsCache);
       return;
@@ -1459,14 +1497,15 @@ function loadAddOns() {
    db.collection('addons').get()
       .then(snapshot => {
          const addons = [];
-         snapshot.forEach(doc => addons.push({
-            id: doc.id,
-            ...doc.data()
-         }));
+         snapshot.forEach(doc => addons.push({ id: doc.id, ...doc.data() }));
+
          addonsCache = addons;
+         setCachedData('addons', addons); // ✅ OVO FALI
+
          renderAddOns(addons);
       });
 }
+
 
 function renderAddOns(addons) {
    const addonsGrid = document.getElementById('addonsGrid');
@@ -1626,33 +1665,55 @@ function loadSlideshowImages() {
    const slideshowBackground = document.getElementById('slideshowBackground');
    if (!slideshowBackground) return;
 
-   db.collection('slideshow').orderBy('order', 'asc').get().then(function (querySnapshot) {
-      slideshowImages = [];
-      slideshowBackground.innerHTML = '';
+   // ✅ sessionStorage cache
+   const cached = getCachedData('slideshow');
+   if (cached) {
+      slideshowCache = cached;
+      renderSlideshow(cached);
+      return;
+   }
 
-      if (querySnapshot.empty) {
-         slideshowBackground.style.background = 'linear-gradient(135deg, #2563eb 0%, #1e40af 100%)';
-         return;
-      }
+   if (slideshowCache) {
+      renderSlideshow(slideshowCache);
+      return;
+   }
 
-      querySnapshot.forEach(function (doc) {
-         const imageData = doc.data();
-         slideshowImages.push(imageData.url);
+   db.collection('slideshow').orderBy('order', 'asc').get()
+      .then(snapshot => {
+         const images = [];
+         snapshot.forEach(doc => images.push(doc.data().url));
 
-         const img = document.createElement('img');
-         img.src = imageData.url;
-         img.className = 'slideshow-image';
-         img.alt = 'Slideshow';
-         slideshowBackground.appendChild(img);
-      });
+         slideshowCache = images;
+         setCachedData('slideshow', images);
 
-      if (slideshowImages.length > 0) {
-         startSlideshow();
-      }
-   }).catch(function (error) {
-      console.error('Error loading slideshow images:', error);
-   });
+         renderSlideshow(images);
+      })
+      .catch(err => console.error(err));
 }
+
+function renderSlideshow(images) {
+   const slideshowBackground = document.getElementById('slideshowBackground');
+   if (!slideshowBackground) return;
+
+   slideshowBackground.innerHTML = '';
+   slideshowImages = images;
+
+   if (!images.length) {
+      slideshowBackground.style.background =
+         'linear-gradient(135deg, #2563eb 0%, #1e40af 100%)';
+      return;
+   }
+
+   images.forEach(url => {
+      const img = document.createElement('img');
+      img.src = url;
+      img.className = 'slideshow-image';
+      slideshowBackground.appendChild(img);
+   });
+
+   startSlideshow();
+}
+
 
 function startSlideshow() {
    stopSlideshow();
