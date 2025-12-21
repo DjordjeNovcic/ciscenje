@@ -29,6 +29,30 @@ let aboutCache = null;
 let slideshowCache = null;
 let publicLoaded = false;
 
+
+function initializeApp() {
+   loadPartials();
+   setActiveNavLink();
+
+   const isAdminPage =
+      document.getElementById('loginForm') ||
+      document.getElementById('adminContent');
+
+   if (!isAdminPage) {
+      loadPublicPageContent();
+   }
+
+   if (document.getElementById('loginForm')) {
+      setupAdminLogin();
+   }
+
+   if (document.getElementById('adminContent')) {
+      setupAdminDashboard();
+   }
+
+   document.body.classList.add('loaded');
+}
+
 // =====================
 // HEADER & FOOTER PARTIALS
 // =====================
@@ -143,28 +167,6 @@ document.addEventListener('DOMContentLoaded', function () {
    initializeApp();
    setupSidebarNavigation();
 });
-
-function initializeApp() {
-   loadPartials(); 
-   setActiveNavLink();
-   
-   const isAdminPage =
-      document.getElementById('loginForm') ||
-      document.getElementById('adminContent');
-
-   if (!isAdminPage) {
-      loadPublicPageContent();
-   }
-
-   if (document.getElementById('loginForm')) {
-      setupAdminLogin();
-   }
-
-   if (document.getElementById('adminContent')) {
-      setupAdminDashboard();
-   }
-}
-
 
 function setupSidebarNavigation() {
    const navItems = document.querySelectorAll('.nav-item');
