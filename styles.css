@@ -1647,7 +1647,7 @@ footer::before,
 
 .footer-section a:hover {
 	color: var(--primary-color);
-	transform: translateX(5px);
+	transform: none;
 }
 
 .footer-section i {
@@ -1680,8 +1680,8 @@ footer::before,
 .social-links a:hover {
 	background: var(--primary-color);
 	border-color: var(--primary-color);
-	transform: translateY(-5px);
-	box-shadow: 0 10px 20px rgba(245, 158, 11, 0.3);
+	transform: translateY(-3px);
+	box-shadow: 0 6px 14px rgba(245, 158, 11, 0.25);
 }
 
 .social-links svg {
@@ -1699,6 +1699,11 @@ footer::before,
 
 .footer-bottom p {
 	margin: 0;
+}
+
+.footer-phone a {
+	color: white;
+	font-weight: 600;
 }
 
 /* ----------------------------------------------------
@@ -3106,6 +3111,7 @@ footer::before,
 	/* Social Links (Mobile) */
 	.social-links {
 		margin-top: 1.5rem;
+		justify-content: center;
 	}
 
 	.social-links a {
@@ -3437,10 +3443,16 @@ footer::before,
 	.footer-content {
 		grid-template-columns: 1fr;
 		gap: 2rem;
+		text-align: center;
 	}
 
 	footer {
 		padding: 3rem 0 1.5rem;
+	}
+
+	.footer-section h4::after {
+		left: 50%;
+		transform: translateX(-50%);
 	}
 
 	/* Services Grid (Mobile) */
