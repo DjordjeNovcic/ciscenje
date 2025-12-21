@@ -31,27 +31,27 @@ let publicLoaded = false;
 
 
 function initializeApp() {
-   loadPartials();
-   setActiveNavLink();
+  loadPartials();
 
-   const isAdminPage =
-      document.getElementById('loginForm') ||
-      document.getElementById('adminContent');
+  const isAdminPage =
+    document.getElementById('loginForm') ||
+    document.getElementById('adminContent');
 
-   if (!isAdminPage) {
-      loadPublicPageContent();
-   }
+  if (!isAdminPage) {
+    loadPublicPageContent();
+  }
 
-   if (document.getElementById('loginForm')) {
-      setupAdminLogin();
-   }
+  if (document.getElementById('loginForm')) {
+    setupAdminLogin();
+  }
 
-   if (document.getElementById('adminContent')) {
-      setupAdminDashboard();
-   }
+  if (document.getElementById('adminContent')) {
+    setupAdminDashboard();
+  }
 
-   document.body.classList.add('loaded');
+  document.body.classList.add('loaded');
 }
+
 
 // =====================
 // HEADER & FOOTER PARTIALS
@@ -65,8 +65,8 @@ function loadPartials() {
       .then(res => res.text())
       .then(html => {
         headerEl.innerHTML = html;
-        setupMobileNav();      // hamburger
-        setActiveNavLink();    // active page
+        setupMobileNav();
+        setActiveNavLink();
       })
       .catch(err => console.error('Header load error', err));
   }
@@ -81,12 +81,11 @@ function loadPartials() {
         if (yearEl) {
           yearEl.textContent = new Date().getFullYear();
         }
-
-        updateFooterContent(); // Firebase kontakt
       })
       .catch(err => console.error('Footer load error', err));
   }
 }
+
 
 function shouldLoadSection(sectionKey) {
    if (sessionStorage.getItem(sectionKey + '_loaded') === 'true') {
