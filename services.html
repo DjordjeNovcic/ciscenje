@@ -1,211 +1,95 @@
 <!DOCTYPE html>
 <html lang="sr" id="htmlLang">
-   <head>
-      <meta charset="UTF-8">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <title>Usluge - MS Sjaj</title>
-      <link rel="stylesheet" href="styles.css">
-      <link rel="icon" href="./favicon.ico">
-      <link rel="icon" type="image/png" sizes="32x32" href="./favicon-32.png">
-   </head>
-   <body>
-      <div id="page-loader"></div> 
-      <nav class="navbar">
-         <div class="container">
-            <!-- LEFT -->
-            <div class="phone-wrapper">
-               <button class="phone-trigger" aria-label="Pozovite MS Sjaj">
-                  <svg viewBox="0 0 24 24">
-                     <path d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 011.01-.24c1.12.37 2.33.57 3.58.57a1 1 0 011 1v3.5a1 1 0 01-1 1C10.07 21 3 13.93 3 5.5a1 1 0 011-1H7.5a1 1 0 011 1c0 1.25.2 2.46.57 3.59a1 1 0 01-.25 1.01l-2.2 2.19z"/>
-                  </svg>
-                  <span class="phone-text" data-i18n="nav.callUs">Pozovite nas</span>
-               </button>
-               <div class="phone-dropdown">
-                  <a href="tel:0643937000">📞 064 / 393-7000</a>
-                  <a href="tel:0655625876">📞 065 / 562-5876</a>
-               </div>
-            </div>
-            <!-- RIGHT -->
-            <div class="nav-right">
-               <!-- NAV -->
-               <ul class="nav-menu" id="navMenu">
-                  <li><a href="index.html" data-i18n="nav.home">Početna</a></li>
-                  <li><a href="services.html" class="active" data-i18n="nav.services">Usluge</a></li>
-                  <li><a href="about.html" data-i18n="nav.about">O nama</a></li>
-                  <!-- LANGUAGE (MOBILE ONLY) -->
-                  <li class="language-switcher mobile-only">
-                     <button class="lang-btn" data-lang="sr">
-                     <img src="https://flagcdn.com/w20/rs.png" alt="Serbian">
-                     <span>SR</span>
-                     </button>
-                     <button class="lang-btn" data-lang="en">
-                     <img src="https://flagcdn.com/w20/gb.png" alt="English">
-                     <span>EN</span>
-                     </button>
-                  </li>
-               </ul>
-               <!-- LANGUAGE (DESKTOP ONLY) -->
-               <div class="language-switcher desktop-only">
-                  <button class="lang-btn" data-lang="sr">
-                  <img src="https://flagcdn.com/w20/rs.png" alt="Serbian">
-                  <span>SR</span>
-                  </button>
-                  <button class="lang-btn" data-lang="en">
-                  <img src="https://flagcdn.com/w20/gb.png" alt="English">
-                  <span>EN</span>
-                  </button>
-               </div>
-               <!-- HAMBURGER -->
-               <button class="hamburger" id="hamburger">
-               <span></span>
-               <span></span>
-               <span></span>
-               </button>
-            </div>
-         </div>
-      </nav>
-      <!-- Services Hero Section -->
-      <section class="page-header">
-         <div class="container">
-            <!-- ✨ UPDATED: Added data-i18n -->
-            <h1 data-i18n="servicesPage.title">Naše usluge</h1>
-            <p data-i18n="servicesPage.subtitle">Profesionalno čišćenje prilagođeno vašim potrebama</p>
-         </div>
-      </section>
-      <!-- Main Services Section -->
-      <section class="services-section">
-         <div class="container">
-            <!-- ✨ UPDATED: Added data-i18n -->
-            <h2 data-i18n="servicesPage.choosePackage">Izaberite paket koji vam odgovara</h2>
-            <div class="services-grid pricing-grid" id="servicesGrid">
-               <!-- Services will be loaded from Firebase -->
-            </div>
-         </div>
-      </section>
-      <!-- Add-ons Section -->
-      <section class="add-ons">
-         <div class="container">
-            <!-- ✨ UPDATED: Added data-i18n -->
-            <h2 data-i18n="servicesPage.addonsTitle">Dodatne usluge</h2>
-            <div class="add-ons-grid" id="addonsGrid">
-               <!-- Add-ons will be loaded from Firebase -->
-            </div>
-         </div>
-      </section>
-      <!-- CTA Section -->
-      <section class="cta">
-         <div class="container">
-            <!-- ✨ UPDATED: Added data-i18n -->
-            <h2 data-i18n="cta.servicesTitle">Spremni za čist prostor?</h2>
-            <p data-i18n="cta.servicesSubtitle">Kontaktirajte nas za besplatnu procenu</p>
-            <a href="index.html#cta-contact" class="btn btn-primary" data-i18n="cta.servicesButton">Zatražite ponudu</a>
-         </div>
-      </section>
-      <!-- Footer -->
-      <footer>
-         <div class="container">
-            <div class="footer-content">
-               <div class="footer-section">
-                  <h4>MS Sjaj</h4>
-                  <!-- ✨ UPDATED: Added data-i18n -->
-                  <p data-i18n="footer.about">Profesionalne usluge čišćenja kojima možete verovati.</p>
-                  <div class="social-links">
-                     <a href="https://www.instagram.com/mssjaj.kg?igsh=ZjlzajBydXIxemMy" target="_blank" rel="noopener" title="Instagram" aria-label="Instagram">
-                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                           <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 
-                              4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 
-                              0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059
-                              1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 
-                              6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 
-                              0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4
-                              4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
-                        </svg>
-                     </a>
-                  </div>
-               </div>
-               <div class="footer-section">
-                  <!-- ✨ UPDATED: Added data-i18n -->
-                  <h4 data-i18n="footer.quickLinks">Brzi linkovi</h4>
-                  <p><a href="index.html" data-i18n="nav.home">Početna</a></p>
-                  <p><a href="services.html" data-i18n="nav.services">Usluge</a></p>
-                  <p><a href="about.html" data-i18n="nav.about">O nama</a></p>
-               </div>
-               <div class="footer-section">
-                  <!-- ✨ UPDATED: Added data-i18n -->
-                  <h4 data-i18n="footer.contactTitle">Kontakt</h4>
-                  <p class="footer-email"><a href="mailto:11mssjaj@gmail.com">11mssjaj@gmail.com</a></p>
-                  <p class="footer-phone"><a href="tel:0643937000">064/3937000</a></p>
-                  <p class="footer-address">Kragujevac, Srbija</p>
-               </div>
-               <div class="footer-section">
-                  <!-- ✨ UPDATED: Added data-i18n -->
-                  <h4 data-i18n="footer.hoursTitle">Radno vreme</h4>
-                  <p data-i18n="footer.weekdays">Ponedeljak - Petak</p>
-                  <p>08:00 - 20:00</p>
-                  <p data-i18n="footer.saturday">Subota: 09:00 - 15:00</p>
-               </div>
-            </div>
-            <div class="footer-bottom">
-               <!-- ✨ UPDATED: Added data-i18n -->
-               <p data-i18n="footer.copyright">&copy; 2025 MS Sjaj. Sva prava zadržana.</p>
-            </div>
-         </div>
-      </footer>
-      <!-- Firebase SDK -->
-      <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
-      <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
-      <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
-      <!-- ✨ NEW: Translation Scripts (MUST load before script.js) -->
-      <script src="translations.js"></script>
-      <script src="i18n.js"></script>
-      <!-- Your main script -->
-      <script src="script.js"></script>
-      <!-- Theme Loader - INSTANT LOAD WITH LOCALSTORAGE -->
-      <script>
-         (function() {
-             // STEP 1: Apply theme from localStorage IMMEDIATELY (no flash!)
-             const cachedTheme = localStorage.getItem('mssjaj_theme');
-             if (cachedTheme) {
-                 try {
-                     const colors = JSON.parse(cachedTheme);
-                     applyThemeColors(colors);
-                 } catch (e) {
-                     console.error('Error parsing cached theme:', e);
-                 }
-             }
-         
-             // STEP 2: Update from Firebase in background (for future loads)
-             const db = firebase.firestore();
-             db.collection('settings').doc('theme').get()
-                 .then(doc => {
-                     if (doc.exists) {
-                         const colors = doc.data();
-                         // Save to localStorage for next time
-                         localStorage.setItem('mssjaj_theme', JSON.stringify(colors));
-                         // Apply colors (in case they changed)
-                         applyThemeColors(colors);
-                     }
-                 })
-                 .catch(error => console.error('Error loading theme:', error));
-         
-             // Helper function to apply colors
-             function applyThemeColors(colors) {
-                 const root = document.documentElement;
-         
-                 if (colors.primaryColor) root.style.setProperty('--primary-color', colors.primaryColor);
-                 if (colors.primaryDark) root.style.setProperty('--primary-dark', colors.primaryDark);
-                 if (colors.secondaryColor) root.style.setProperty('--secondary-color', colors.secondaryColor);
-                 if (colors.successColor) root.style.setProperty('--success-color', colors.successColor);
-                 if (colors.bgLight) root.style.setProperty('--bg-light', colors.bgLight);
-                 if (colors.textDark) root.style.setProperty('--text-dark', colors.textDark);
-                 if (colors.textLight) root.style.setProperty('--text-light', colors.textLight);
-         
-                 if (colors.primaryColor && colors.primaryDark) {
-                     root.style.setProperty('--primary-gradient',
-                         `linear-gradient(135deg, ${colors.primaryColor} 0%, ${colors.primaryDark} 100%)`);
-                 }
-             }
-         })();
-      </script>
-   </body>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Usluge - MS Sjaj</title>
+
+  <link rel="stylesheet" href="styles.css">
+  <link rel="icon" href="./favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="./favicon-32.png">
+</head>
+
+<body>
+
+  <div id="page-loader"></div>
+
+  <!-- HEADER (partial) -->
+  <div id="site-header"></div>
+
+  <!-- Services Hero -->
+  <section class="page-header">
+    <div class="container">
+      <h1 data-i18n="servicesPage.title">Naše usluge</h1>
+      <p data-i18n="servicesPage.subtitle">
+        Profesionalno čišćenje prilagođeno vašim potrebama
+      </p>
+    </div>
+  </section>
+
+  <!-- Services -->
+  <section class="services-section">
+    <div class="container">
+      <h2 data-i18n="servicesPage.choosePackage">
+        Izaberite paket koji vam odgovara
+      </h2>
+
+      <div class="services-grid pricing-grid" id="servicesGrid"></div>
+    </div>
+  </section>
+
+  <!-- Add-ons -->
+  <section class="add-ons">
+    <div class="container">
+      <h2 data-i18n="servicesPage.addonsTitle">Dodatne usluge</h2>
+      <div class="add-ons-grid" id="addonsGrid"></div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta">
+    <div class="container">
+      <h2 data-i18n="cta.servicesTitle">Spremni za čist prostor?</h2>
+      <p data-i18n="cta.servicesSubtitle">
+        Kontaktirajte nas za besplatnu procenu
+      </p>
+      <a href="index.html#cta-contact"
+         class="btn btn-primary"
+         data-i18n="cta.servicesButton">
+        Zatražite ponudu
+      </a>
+    </div>
+  </section>
+
+  <!-- FOOTER (partial) -->
+  <div id="site-footer"></div>
+
+  <!-- Firebase -->
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+
+  <!-- i18n -->
+  <script src="translations.js"></script>
+  <script src="i18n.js"></script>
+
+  <!-- Main -->
+  <script src="script.js"></script>
+
+  <!-- Load header/footer -->
+  <script>
+    function loadPartial(id, file) {
+      fetch(file)
+        .then(r => r.text())
+        .then(html => document.getElementById(id).innerHTML = html)
+        .catch(e => console.error('Partial load error:', file, e));
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      loadPartial('site-header', 'partials/header.html');
+      loadPartial('site-footer', 'partials/footer.html');
+    });
+  </script>
+
+</body>
 </html>
