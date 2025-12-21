@@ -742,34 +742,46 @@ textarea:focus-visible {
 
 .features-grid {
 	display: grid;
-	grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+	grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
 	gap: 2rem;
 }
 
 .feature-card {
+	padding: 2.5rem;
+	border-radius: 16px;
+	background: white;
+	box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+	border: 2px solid transparent;
+	transition: all 0.3s ease;
 	text-align: center;
-	padding: 2rem;
-	border-radius: 12px;
-	transition: transform 0.3s, box-shadow 0.3s;
 }
 
 .feature-card:hover {
-	transform: translateY(-5px);
-	box-shadow: var(--shadow-lg);
+	transform: translateY(-8px);
+	box-shadow: 0 12px 35px rgba(245, 158, 11, 0.12);
+	border-color: var(--primary-color);
 }
 
 .feature-icon {
-	font-size: 3rem;
-	margin-bottom: 1rem;
+	margin-bottom: 1.5rem;
+	font-size: 3.5rem;
+	transition: transform 0.3s ease;
 }
 
 .feature-card h3 {
-	margin-bottom: 1rem;
+	font-size: 1.4rem;
 	color: var(--text-dark);
+	font-weight: 600;
 }
 
 .feature-card p {
 	color: var(--text-light);
+	line-height: 1.7;
+	font-size: 1rem;
+}
+
+.feature-card:hover .feature-icon {
+	transform: scale(1.1);
 }
 
 /* ----------------------------------------------------
