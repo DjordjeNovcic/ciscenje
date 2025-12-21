@@ -2949,8 +2949,13 @@ footer::before,
 .cta-buttons {
 	display: flex;
 	justify-content: center;
+	align-items: center;
 	gap: 1rem;
 	flex-wrap: wrap;
+}
+
+.cta-buttons .btn-link {
+	padding: 0.75rem 0;
 }
 
 .cta-buttons .btn-primary {
