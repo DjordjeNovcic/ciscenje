@@ -156,8 +156,9 @@ textarea:focus-visible {
 }
 
 .phone-wrapper {
-	position: relative;
-	flex: 1;
+  position: relative;
+  flex: 0 0 auto;
+  min-width: 180px;
 }
 
 .phone-trigger {
