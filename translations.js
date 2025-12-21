@@ -103,12 +103,19 @@
               title: 'Spremni za savršeno čist prostor?',
               subtitle: 'Kontaktirajte nas danas i zakažite termin',
               button: 'Zakažite Čišćenje',
+           
               aboutTitle: 'Spremni da iskusite MS Sjaj?',
-              aboutSubtitle: 'Pridružite se stotinama zadovoljnih klijenata koji nam veruju svoje potrebe za čišćenje.',
+              aboutSubtitle: 'Pridružite se stotinama zadovoljnih klijenata koji nam veruju svoje potrebe za čišćenje.',     
               aboutButton: 'Počnite danas',
+           
               servicesTitle: 'Spremni za čist prostor?',
               servicesSubtitle: 'Kontaktirajte nas za besplatnu procenu',
-              servicesButton: 'Zakažite termin'
+              servicesButton: 'Zakažite termin',
+           
+              call: 'Pozovite nas',
+	             whatsapp: 'WhatsApp',
+	             viber: 'Viber',
+	             contactSubtitle: 'Kontaktirajte nas i dobićete ponudu bez obaveze.'
           },
 
           // Footer
@@ -229,12 +236,19 @@
               title: 'Ready for a Perfectly Clean Space?',
               subtitle: 'Contact us today and schedule an appointment',
               button: 'Book Cleaning',
+           
               aboutTitle: 'Ready to Experience MS Sjaj?',
               aboutSubtitle: 'Join hundreds of satisfied clients who trust us with their cleaning needs.',
               aboutButton: 'Start Today',
+           
               servicesTitle: 'Ready for a Clean Space?',
               servicesSubtitle: 'Contact us for a free estimate',
-              servicesButton: 'Schedule Appointment'
+              servicesButton: 'Schedule Appointment',
+
+              call: 'Call Us',
+	             whatsapp: 'WhatsApp',
+	             viber: 'Viber',
+	             contactSubtitle: 'Contact us and get a free, no-obligation quote.'
           },
 
           // Footer
