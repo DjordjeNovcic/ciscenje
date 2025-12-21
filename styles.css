@@ -1540,61 +1540,7 @@ textarea:focus-visible {
 }
 
 /* ----------------------------------------------------
-     4.13 CONTACT FORM (DESKTOP)
-     ---------------------------------------------------- */
-.contact {
-	padding: 5rem 0;
-	background: var(--bg-white);
-}
-
-.contact h2 {
-	text-align: center;
-	font-size: clamp(1.75rem, 3vw, 2.5rem);
-	margin-bottom: 3rem;
-}
-
-.contact-form {
-	max-width: 700px;
-	margin: 0 auto;
-	background: white;
-	padding: 2rem;
-	border-radius: 12px;
-	box-shadow: var(--shadow-md);
-}
-
-.form-row {
-	display: grid;
-	grid-template-columns: 1fr 1fr;
-	gap: 1rem;
-	margin-bottom: 1rem;
-}
-
-.contact-form input,
-.contact-form select,
-.contact-form textarea {
-	width: 100%;
-	padding: 0.75rem;
-	border: 1px solid var(--border-color);
-	border-radius: 8px;
-	font-size: 1rem;
-	font-family: inherit;
-	transition: border-color 0.3s;
-}
-
-.contact-form input:focus,
-.contact-form select:focus,
-.contact-form textarea:focus {
-	outline: none;
-	border-color: var(--primary-color);
-}
-
-.contact-form textarea {
-	resize: vertical;
-	margin-bottom: 1rem;
-}
-
-/* ----------------------------------------------------
-     4.14 CTA SECTION (DESKTOP)
+     4.13 CTA SECTION (DESKTOP)
      ---------------------------------------------------- */
 .cta {
 	padding: 5rem 0;
@@ -1632,7 +1578,7 @@ textarea:focus-visible {
 }
 
 /* ----------------------------------------------------
-     4.15 FOOTER - MODERN (DESKTOP)
+     4.14 FOOTER - MODERN (DESKTOP)
      ---------------------------------------------------- */
 footer,
 .footer {
@@ -1756,7 +1702,7 @@ footer::before,
 }
 
 /* ----------------------------------------------------
-     4.16 ADMIN DASHBOARD (DESKTOP)
+     4.15 ADMIN DASHBOARD (DESKTOP)
      ---------------------------------------------------- */
 .admin-layout {
 	display: flex;
