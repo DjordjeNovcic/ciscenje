@@ -33,15 +33,16 @@ let publicLoaded = false;
 // HEADER & FOOTER PARTIALS
 // =====================
 function loadPartials() {
-  const headerEl = document.getElementById('header');
-  const footerEl = document.getElementById('footer');
+  const headerEl = document.getElementById('site-header');
+  const footerEl = document.getElementById('site-footer');
 
   if (headerEl) {
     fetch('partials/header.html')
       .then(res => res.text())
       .then(html => {
         headerEl.innerHTML = html;
-        setupMobileNav(); // hamburger + mobile nav
+        setupMobileNav();      // hamburger
+        setActiveNavLink();    // active page
       })
       .catch(err => console.error('Header load error', err));
   }
@@ -52,18 +53,16 @@ function loadPartials() {
       .then(html => {
         footerEl.innerHTML = html;
 
-        // year
         const yearEl = document.getElementById('currentYear');
         if (yearEl) {
           yearEl.textContent = new Date().getFullYear();
         }
 
-        updateFooterContent(); // Firebase contact data
+        updateFooterContent(); // Firebase kontakt
       })
       .catch(err => console.error('Footer load error', err));
   }
 }
-
 
 function shouldLoadSection(sectionKey) {
    if (sessionStorage.getItem(sectionKey + '_loaded') === 'true') {
