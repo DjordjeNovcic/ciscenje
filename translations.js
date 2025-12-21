@@ -110,7 +110,7 @@
            
               servicesTitle: 'Spremni za čist prostor?',
               servicesSubtitle: 'Kontaktirajte nas za besplatnu procenu',
-              servicesButton: 'Zakažite termin',
+              servicesButton: 'Zatražite ponudu',
            
               call: 'Pozovite nas',
 	             whatsapp: 'WhatsApp',
@@ -243,7 +243,7 @@
            
               servicesTitle: 'Ready for a Clean Space?',
               servicesSubtitle: 'Contact us for a free estimate',
-              servicesButton: 'Schedule Appointment',
+              servicesButton: 'Request a quote',
 
               call: 'Call Us',
 	             whatsapp: 'WhatsApp',
