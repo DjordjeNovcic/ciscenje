@@ -744,7 +744,6 @@ textarea:focus-visible {
 	display: grid;
 	grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
 	gap: 2rem;
-	padding-top: clamp(3rem, 6vw, 5rem);
 }
 
 .feature-card {
