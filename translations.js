@@ -274,8 +274,13 @@
 
   // Set language and reload page
   function setLanguage(lang) {
-      localStorage.setItem('language', lang);
-      location.reload();
+    if (getCurrentLanguage() === lang) return;
+
+    localStorage.setItem('language', lang);
+
+    if (typeof applyLanguage === 'function') {
+        applyLanguage();
+    }
   }
 
   // Get translation by key
