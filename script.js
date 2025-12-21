@@ -254,6 +254,8 @@ function loadAdminContent() {
 // ============================================
 
 function loadHomeContent() {
+   if (!shouldLoadSection('home')) return;
+
    const featuresGrid = document.getElementById('featuresGrid');
    if (!featuresGrid) return;
 
@@ -520,6 +522,8 @@ function saveHomeContent() {
 // ============================================
 
 function loadServices() {
+   if (!shouldLoadSection('services')) return;
+   
    const servicesGrid = document.getElementById('servicesGrid');
    if (!servicesGrid) return;
 
@@ -743,6 +747,8 @@ function deleteService(serviceId) {
 // ============================================
 
 function loadAboutContent() {
+    if (!shouldLoadSection('about')) return;
+   
    const cached = getCachedData('about');
    if (cached) {
       aboutCache = cached;
@@ -1128,6 +1134,8 @@ function saveAboutContent() {
 // ============================================
 
 function loadTestimonials() {
+    if (!shouldLoadSection('testimonials')) return;
+   
    const testimonialsGrid = document.getElementById('testimonialsGrid');
    if (!testimonialsGrid) return;
 
@@ -1317,6 +1325,8 @@ function deleteTestimonial(testimonialId) {
 // ============================================
 
 function loadGallery() {
+   if (!shouldLoadSection('gallery')) return;
+   
    const galleryGrid = document.getElementById('galleryGrid');
    if (!galleryGrid) return;
 
@@ -1483,6 +1493,8 @@ function saveContact() {
 // ============================================
 
 function loadAddOns() {
+   if (!shouldLoadSection('addons')) return;
+   
    const addonsGrid = document.getElementById('addonsGrid');
    if (!addonsGrid) return;
 
@@ -1669,6 +1681,8 @@ var currentSlideIndex = 0;
 var slideshowInterval;
 
 function loadSlideshowImages() {
+   if (!shouldLoadSection('slideshow')) return;
+   
    const slideshowBackground = document.getElementById('slideshowBackground');
    if (!slideshowBackground) return;
 
