@@ -32,10 +32,6 @@ let slideshowCache = null;
 function initializeApp() {
   loadPartials();
 
-  const isAdminPage =
-    document.getElementById('loginForm') ||
-    document.getElementById('adminContent');
-
   if (document.getElementById('loginForm')) {
     setupAdminLogin();
   }
@@ -44,7 +40,66 @@ function initializeApp() {
     setupAdminDashboard();
   }
 
+  setupSidebarNavigation();
+  setupThemeInputs();
+  setupLightboxOutsideClick();
+
   document.body.classList.add('loaded');
+}
+
+function setupPhoneDropdown() {
+  const phoneTrigger = document.querySelector('.phone-trigger');
+  const phoneWrapper = document.querySelector('.phone-wrapper');
+  if (!phoneTrigger || !phoneWrapper) return;
+
+  phoneTrigger.addEventListener('click', function (e) {
+    if (window.innerWidth <= 768) {
+      e.preventDefault();
+      phoneWrapper.classList.toggle('active');
+    }
+  });
+
+  document.addEventListener('click', function (e) {
+    if (window.innerWidth <= 768 && !phoneWrapper.contains(e.target)) {
+      phoneWrapper.classList.remove('active');
+    }
+  });
+}
+
+
+function setupThemeInputs() {
+  const colorInputs = [
+    'primaryColor',
+    'primaryDark',
+    'secondaryColor',
+    'successColor',
+    'bgLight',
+    'textDark',
+    'textLight'
+  ];
+
+  colorInputs.forEach(id => {
+    const colorInput = document.getElementById(id);
+    const textInput = document.getElementById(id + 'Text');
+
+    if (colorInput && textInput) {
+      colorInput.addEventListener('input', e => {
+        textInput.value = e.target.value;
+      });
+    }
+  });
+}
+
+
+function setupLightboxOutsideClick() {
+  const lightbox = document.getElementById('lightbox');
+  if (!lightbox) return;
+
+  lightbox.addEventListener('click', function (e) {
+    if (e.target === this) {
+      closeLightbox();
+    }
+  });
 }
 
 // =====================
@@ -60,6 +115,7 @@ function loadPartials() {
         .then(html => {
           headerEl.innerHTML = html;
           setupMobileNav();
+          setupPhoneDropdown();
           setActiveNavLink();
         })
     : Promise.resolve();
@@ -151,10 +207,6 @@ function showEmptyState(containerId, message) {
       `;
 }
 
-document.addEventListener('DOMContentLoaded', function () {
-   initializeApp();
-   setupSidebarNavigation();
-});
 
 function setupSidebarNavigation() {
    const navItems = document.querySelectorAll('.nav-item');
@@ -1904,30 +1956,6 @@ function switchLang(event, lang) {
    container.querySelector(`.lang-section[data-lang="${lang}"]`).classList.add('active');
 }
 
-// ============================================
-// PHONE DROPDOWN (Mobile)
-// ============================================
-
-document.addEventListener('DOMContentLoaded', function () {
-   const phoneTrigger = document.querySelector('.phone-trigger');
-   const phoneWrapper = document.querySelector('.phone-wrapper');
-
-   if (!phoneTrigger || !phoneWrapper) return;
-
-   phoneTrigger.addEventListener('click', function (e) {
-      if (window.innerWidth <= 768) {
-         e.preventDefault();
-         phoneWrapper.classList.toggle('active');
-      }
-   });
-
-   document.addEventListener('click', function (e) {
-      if (window.innerWidth <= 768 && !phoneWrapper.contains(e.target)) {
-         phoneWrapper.classList.remove('active');
-      }
-   });
-});
-
 
 // ========================================
 // THEME MANAGEMENT - UPDATED WITH TEXT COLORS
@@ -2069,22 +2097,6 @@ function resetAllColors() {
    }
 }
 
-// Update text inputs when color pickers change
-document.addEventListener('DOMContentLoaded', () => {
-   const colorInputs = ['primaryColor', 'primaryDark', 'secondaryColor', 'successColor', 'bgLight', 'textDark', 'textLight'];
-
-   colorInputs.forEach(id => {
-      const colorInput = document.getElementById(id);
-      const textInput = document.getElementById(id + 'Text');
-
-      if (colorInput && textInput) {
-         colorInput.addEventListener('input', (e) => {
-            textInput.value = e.target.value;
-         });
-      }
-   });
-});
-
 // Load theme when theme section is opened
 document.querySelector('[data-section="theme-section"]')?.addEventListener('click', loadThemeSettings);
 
@@ -2155,20 +2167,6 @@ function updateLightboxCounter() {
    }
 }
 
-// Keyboard navigation
-document.addEventListener('keydown', function (e) {
-   const lightbox = document.getElementById('lightbox');
-   if (!lightbox || !lightbox.classList.contains('active')) return;
-
-   if (e.key === 'Escape') {
-      closeLightbox();
-   } else if (e.key === 'ArrowLeft') {
-      navigateLightbox(-1);
-   } else if (e.key === 'ArrowRight') {
-      navigateLightbox(1);
-   }
-});
-
 function setActiveNavLink() {
   const currentPage = window.location.pathname.split('/').pop() || 'index.html';
 
@@ -2183,17 +2181,7 @@ function setActiveNavLink() {
       link.classList.remove('active');
     }
   });
+   
 }
 
-
-// Close lightbox when clicking outside image
-document.addEventListener('DOMContentLoaded', function () {
-   const lightbox = document.getElementById('lightbox');
-   if (lightbox) {
-      lightbox.addEventListener('click', function (e) {
-         if (e.target === this) {
-            closeLightbox();
-         }
-      });
-   }
-});
+document.addEventListener('DOMContentLoaded', initializeApp);
