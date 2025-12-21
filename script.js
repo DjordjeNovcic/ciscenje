@@ -27,8 +27,15 @@ let addonsCache = null;
 let homeCache = null;
 let aboutCache = null;
 let slideshowCache = null;
-
 let publicLoaded = false;
+
+function shouldLoadSection(sectionKey) {
+   if (sessionStorage.getItem(sectionKey + '_loaded') === 'true') {
+      return false;
+   }
+   sessionStorage.setItem(sectionKey + '_loaded', 'true');
+   return true;
+}
 
 function getCachedData(key) {
    const raw = sessionStorage.getItem(key);
