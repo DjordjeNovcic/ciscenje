@@ -146,8 +146,9 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 function initializeApp() {
-   loadPartials(); // ← MORA PRVO
-
+   loadPartials(); 
+   setActiveNavLink();
+   
    const isAdminPage =
       document.getElementById('loginForm') ||
       document.getElementById('adminContent');
@@ -2196,6 +2197,23 @@ document.addEventListener('keydown', function (e) {
       navigateLightbox(1);
    }
 });
+
+function setActiveNavLink() {
+  const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+
+  document.querySelectorAll('.nav-menu a').forEach(link => {
+    const href = link.getAttribute('href');
+
+    if (!href) return;
+
+    if (href === currentPage) {
+      link.classList.add('active');
+    } else {
+      link.classList.remove('active');
+    }
+  });
+}
+
 
 // Close lightbox when clicking outside image
 document.addEventListener('DOMContentLoaded', function () {
