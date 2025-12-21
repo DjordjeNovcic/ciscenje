@@ -140,30 +140,5 @@
 
   <!-- Main -->
   <script src="script.js"></script>
-
-  <!-- ✅ FIXED: Load header/footer WITH callbacks -->
-  <script>
-    function loadPartial(id, file, callback) {
-      fetch(file)
-        .then(r => r.text())
-        .then(html => {
-          document.getElementById(id).innerHTML = html;
-          if (callback) callback();
-        })
-        .catch(e => console.error('Partial load error:', file, e));
-    }
-
-    document.addEventListener('DOMContentLoaded', () => {
-      loadPartial('site-header', 'partials/header.html', () => {
-        setupMobileNav();
-        setActiveNavLink();
-      });
-
-      loadPartial('site-footer', 'partials/footer.html', () => {
-        updateFooterContent();
-      });
-    });
-  </script>
-
 </body>
 </html>
