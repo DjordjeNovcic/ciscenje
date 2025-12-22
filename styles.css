@@ -54,16 +54,15 @@ body {
 
 #page-loader {
     position: fixed;
-    inset: 0;
-    background: #fff;
-    z-index: 9999;
-    transition: opacity 0.3s ease;
+	inset: 0;
+  	background: #fff;
+  	z-index: 9999;
 }
 
 body.loaded #page-loader {
     opacity: 0;
-    pointer-events: none;
-	 z-index: -1;
+  	pointer-events: none;
+  	z-index: -1; /* ← KLJUČNO */
 }
 
 @keyframes pageLoad {
