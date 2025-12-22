@@ -2962,18 +2962,17 @@ footer::marker {
   }
 
 .cta-contact {
-	position: relative;
-	z-index: 20;
-
-	background: transparent;
+	background: linear-gradient(
+		135deg,
+		#f0f9ff 0%,
+		#e6f4f1 100%
+	);
 	padding: clamp(3.5rem, 6vw, 5rem) 1rem;
 	text-align: center;
 
-	border-top: 1px solid #e5e7eb;
-	border-bottom: none;
-	margin-bottom: -1px;
-
-	overflow: visible;
+	position: relative;
+	overflow: hidden;      
+	z-index: 20;
 }
 
 .cta-contact > .container {
@@ -2998,27 +2997,28 @@ footer::marker {
 .cta-contact::after {
 	content: '';
 	position: absolute;
+
 	left: 50%;
-	bottom: -260px;        /* gura glow duboko u footer */
+	bottom: -1px;         
 	transform: translateX(-50%);
 
-	width: 260%;
-	height: 520px;
+	width: 220%;
+	height: 180px;
 
 	background: radial-gradient(
 		ellipse at center,
-		rgba(255, 200, 120, 0.85) 0%,
-		rgba(245, 158, 11, 0.65) 20%,
-		rgba(245, 158, 11, 0.40) 35%,
-		rgba(245, 158, 11, 0.20) 50%,
-		rgba(245, 158, 11, 0.08) 62%,
-		transparent 75%
+		rgba(255, 200, 120, 1) 0%,
+		rgba(245, 158, 11, 0.85) 25%,
+		rgba(245, 158, 11, 0.45) 45%,
+		rgba(245, 158, 11, 0.15) 60%,
+		transparent 72%
 	);
 
-	filter: blur(55px);
+	filter: blur(35px);
 	pointer-events: none;
-	z-index: 0;
+	z-index: 1;
 }
+
 
 .cta-contact h2 {
 	font-size: clamp(1.6rem, 3vw, 2.2rem);
