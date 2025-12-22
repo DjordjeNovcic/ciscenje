@@ -1,80 +1,68 @@
 <!DOCTYPE html>
 <html lang="sr" id="htmlLang">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Usluge - MS Sjaj</title>
-
-  <link rel="stylesheet" href="styles.css">
-  <link rel="icon" href="./favicon.ico">
-  <link rel="icon" type="image/png" sizes="32x32" href="./favicon-32.png">
-</head>
-
-<body>
-
-  <div id="page-loader"></div>
-
-  <!-- HEADER (partial) -->
-  <div id="site-header"></div>
-
-  <!-- Services Hero -->
-  <section class="page-header">
-    <div class="container">
-      <h1 data-i18n="servicesPage.title">Naše usluge</h1>
-      <p data-i18n="servicesPage.subtitle">
-        Profesionalno čišćenje prilagođeno vašim potrebama
-      </p>
-    </div>
-  </section>
-
-  <!-- Services -->
-  <section class="services-section">
-    <div class="container">
-      <h2 data-i18n="servicesPage.choosePackage">
-        Izaberite paket koji vam odgovara
-      </h2>
-
-      <div class="services-grid pricing-grid" id="servicesGrid"></div>
-    </div>
-  </section>
-
-  <!-- Add-ons -->
-  <section class="add-ons">
-    <div class="container">
-      <h2 data-i18n="servicesPage.addonsTitle">Dodatne usluge</h2>
-      <div class="add-ons-grid" id="addonsGrid"></div>
-    </div>
-  </section>
-
-  <!-- CTA -->
-  <section class="cta">
-    <div class="container">
-      <h2 data-i18n="cta.servicesTitle">Spremni za čist prostor?</h2>
-      <p data-i18n="cta.servicesSubtitle">
-        Kontaktirajte nas za besplatnu procenu
-      </p>
-      <a href="index.html#cta-contact"
-         class="btn btn-primary"
-         data-i18n="cta.servicesButton">
-        Zatražite ponudu
-      </a>
-    </div>
-  </section>
-
-  <!-- FOOTER (partial) -->
-  <div id="site-footer"></div>
-
-  <!-- Firebase -->
-  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
-
-  <!-- i18n -->
-  <script src="translations.js"></script>
-  <script src="i18n.js"></script>
-
-  <!-- Main -->
-  <script src="script.js"></script>
-
-</body>
+   <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Usluge - MS Sjaj</title>
+      <link rel="stylesheet" href="styles.css">
+      <link rel="icon" href="./favicon.ico">
+      <link rel="icon" type="image/png" sizes="32x32" href="./favicon-32.png">
+   </head>
+   <body>
+      <div id="page-loader"></div>
+      <!-- HEADER (partial) -->
+      <div id="site-header"></div>
+      <!-- Services Hero -->
+      <section class="page-header">
+         <div class="container">
+            <h1 data-i18n="servicesPage.title">Naše usluge</h1>
+            <p data-i18n="servicesPage.subtitle">
+               Profesionalno čišćenje prilagođeno vašim potrebama
+            </p>
+         </div>
+      </section>
+      <!-- Services -->
+      <section class="services-section">
+         <div class="container">
+            <h2 data-i18n="servicesPage.choosePackage">
+               Izaberite paket koji vam odgovara
+            </h2>
+            <div class="services-grid pricing-grid" id="servicesGrid"></div>
+         </div>
+      </section>
+      <!-- Add-ons -->
+      <section class="add-ons">
+         <div class="container">
+            <h2 data-i18n="servicesPage.addonsTitle">Dodatne usluge</h2>
+            <div class="add-ons-grid" id="addonsGrid"></div>
+         </div>
+      </section>
+      <!-- CTA -->
+      <section class="cta-services">
+         <div class="container">
+            <h2 data-i18n="cta.servicesTitle">Spremni za čist prostor?</h2>
+            <p data-i18n="cta.servicesSubtitle">
+               Kontaktirajte nas za besplatnu procenu i ponudu.
+            </p>
+            <a
+               href="index.html#cta-contact"
+               class="btn btn-outline"
+               data-i18n="cta.servicesButton"
+               >
+            Zatražite ponudu
+            </a>
+         </div>
+      </section>
+      <!-- FOOTER (partial) -->
+      <div id="site-footer"></div>
+      <!-- Firebase -->
+      <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+      <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+      <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+      <!-- i18n -->
+      <script src="translations.js"></script>
+      <script src="i18n.js"></script>
+      <!-- Main -->
+      <script src="script.js"></script>
+   </body>
 </html>
