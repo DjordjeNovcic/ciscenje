@@ -105,16 +105,8 @@ function setupLightboxOutsideClick() {
 }
 
 function removePageLoader() {
-  const loader = document.getElementById('page-loader');
-  if (!loader) return;
-
-  loader.style.opacity = '0';
-
-  setTimeout(() => {
-    loader.remove();
-  }, 300); // mora da sačeka transition
+  document.body.classList.add('loaded');
 }
-
 
 // =====================
 // HEADER & FOOTER PARTIALS
