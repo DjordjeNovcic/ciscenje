@@ -3003,21 +3003,21 @@ footer .footer-horizon {
 	content: '';
 	position: absolute;
 	left: 50%;
-	bottom: -10px;
+	bottom: -40px;
 	transform: translateX(-50%);
 
-	width: 140%;
-	height: 110px;
+	width: 80%;
+	height: 60px;
 
 	background: radial-gradient(
 		ellipse at center,
-		rgba(245, 158, 11, 0.95) 0%,
-		rgba(245, 158, 11, 0.65) 35%,
+		rgba(245, 158, 11, 0.95) 30%,
+		rgba(245, 158, 11, 0.65) 45%,
 		rgba(245, 158, 11, 0.30) 55%,
-		transparent 70%
+		transparent 20%
 	);
 
-	filter: blur(22px);
+	filter: blur(0.5px);
 	pointer-events: none;
 	z-index: 1;
 }
