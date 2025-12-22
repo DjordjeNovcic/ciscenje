@@ -7,6 +7,20 @@
 	box-sizing: border-box;
 }
 
+#page-loader {
+   position: fixed;
+  	inset: 0;
+  	background: #fff;
+  	z-index: 9999;
+  	opacity: 1;
+  	transition: opacity 0.3s ease;
+}
+
+body.loaded #page-loader {
+    opacity: 0;
+  	pointer-events: none;
+}
+
 :root {
 	/* Primary Colors */
 	--primary-color: #f59e0b;
