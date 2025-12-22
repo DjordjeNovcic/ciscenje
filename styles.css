@@ -1742,6 +1742,12 @@ footer::marker {
 	font-weight: 600;
 }
 
+.footer-glow,
+footer::after,
+footer .footer-horizon {
+	display: none !important;
+}
+
 /* ----------------------------------------------------
      4.14 ADMIN DASHBOARD (DESKTOP)
      ---------------------------------------------------- */
@@ -2971,13 +2977,13 @@ footer::marker {
 	text-align: center;
 
 	position: relative;
-	overflow: hidden;      
-	z-index: 20;
+	overflow: hidden;
+	z-index: 10;
 }
 
 .cta-contact > .container {
 	position: relative;
-	z-index: 2;
+	z-index: 3;
 }
 
 .cta-contact::before {
@@ -2987,38 +2993,35 @@ footer::marker {
 	background: linear-gradient(
 		135deg,
 		rgba(240, 249, 255, 1) 0%,
-		rgba(240, 249, 255, 0.96) 50%,
-		rgba(240, 249, 255, 0.88) 75%,
-		rgba(240, 249, 255, 0.72) 100%
+		rgba(240, 249, 255, 0.95) 55%,
+		rgba(240, 249, 255, 0.85) 100%
 	);
-	z-index: -1;
+	z-index: 1;
 }
 
 .cta-contact::after {
 	content: '';
 	position: absolute;
-
 	left: 50%;
-	bottom: -1px;         
+	bottom: -40px;
 	transform: translateX(-50%);
 
-	width: 220%;
+	width: 200%;
 	height: 180px;
 
 	background: radial-gradient(
 		ellipse at center,
-		rgba(255, 200, 120, 1) 0%,
-		rgba(245, 158, 11, 0.85) 25%,
-		rgba(245, 158, 11, 0.45) 45%,
-		rgba(245, 158, 11, 0.15) 60%,
+		rgba(255, 200, 120, 0.95) 0%,
+		rgba(245, 158, 11, 0.65) 28%,
+		rgba(245, 158, 11, 0.35) 45%,
+		rgba(245, 158, 11, 0.12) 60%,
 		transparent 72%
 	);
 
-	filter: blur(35px);
+	filter: blur(32px);
 	pointer-events: none;
-	z-index: 1;
+	z-index: 2;
 }
-
 
 .cta-contact h2 {
 	font-size: clamp(1.6rem, 3vw, 2.2rem);
