@@ -28,9 +28,8 @@ let homeCache = null;
 let aboutCache = null;
 let slideshowCache = null;
 
-
-function initializeApp() {
-  loadPartials();
+async function initializeApp() {
+  await loadPartials(); // ⬅️ SAD STVARNO ČEKA
 
   if (document.getElementById('loginForm')) {
     setupAdminLogin();
@@ -44,7 +43,10 @@ function initializeApp() {
   setupThemeInputs();
   setupLightboxOutsideClick();
 
+  loadPublicPageContent(); // ⬅️ SAD JE NA PRAVOM MESTU
+
   document.body.classList.add('loaded');
+  removePageLoader(); // ako si ga dodao
 }
 
 function setupPhoneDropdown() {
@@ -102,6 +104,18 @@ function setupLightboxOutsideClick() {
   });
 }
 
+function removePageLoader() {
+  const loader = document.getElementById('page-loader');
+  if (!loader) return;
+
+  loader.style.opacity = '0';
+
+  setTimeout(() => {
+    loader.remove();
+  }, 300); // mora da sačeka transition
+}
+
+
 // =====================
 // HEADER & FOOTER PARTIALS
 // =====================
@@ -130,11 +144,10 @@ function loadPartials() {
         })
     : Promise.resolve();
 
-  // ⬇️ OVO JE KLJUČ
-  Promise.all([headerPromise, footerPromise]).then(() => {
-    loadPublicPageContent();
-  });
+  // ⬅️ KLJUČ: VRATI PROMISE
+  return Promise.all([headerPromise, footerPromise]);
 }
+
 
 function shouldLoadSection() {
   return true;
