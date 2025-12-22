@@ -1565,28 +1565,30 @@ footer::before {
 
 .footer-glow {
 	position: absolute;
-	top: -260px;
+	top: -220px;
 	left: 50%;
 	transform: translateX(-50%);
-	width: 200%;
-	height: 520px;
+	width: 180%;
+	height: 420px;
 
 	background: radial-gradient(
 		ellipse at center,
-		rgba(245, 158, 11, 1) 0%,
-		rgba(245, 158, 11, 0.85) 18%,
-		rgba(245, 158, 11, 0.55) 32%,
-		rgba(245, 158, 11, 0.30) 45%,
-		rgba(245, 158, 11, 0.15) 58%,
-		transparent 72%
+		rgba(245, 158, 11, 0.55) 0%,
+		rgba(245, 158, 11, 0.40) 22%,
+		rgba(245, 158, 11, 0.22) 38%,
+		rgba(245, 158, 11, 0.10) 52%,
+		transparent 70%
 	);
 
-	filter: blur(38px) brightness(1.6);
-	mix-blend-mode: screen;
+	filter: blur(32px);
+	opacity: 0.9;
+
+	mix-blend-mode: normal;
 
 	pointer-events: none;
 	z-index: 2;
 }
+
 
 footer .footer-horizon {
 	position: absolute;
