@@ -1552,20 +1552,34 @@ footer,
   overflow: hidden;
 }
 
-footer::before,
-.footer::before {
-	 content: '';
+footer::before {
+  content: '';
   position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 2px;
-  background: linear-gradient(
-    90deg,
-    transparent,
-    var(--primary-color),
-    transparent
-  );
+  inset: 0;
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      rgba(245, 158, 11, 0.8),
+      transparent
+    ),
+
+    radial-gradient(
+      circle,
+      rgba(255, 255, 255, 0.12) 1px,
+      transparent 1px
+    );
+
+  background-size:
+    100% 2px,
+    4px 4px;
+
+  background-position:
+    top center,
+    center;
+
+  opacity: 0.15;
+  pointer-events: none;
 }
 
 footer::after {
@@ -1583,6 +1597,10 @@ footer::after {
     transparent 70%
   );
   pointer-events: none;
+}
+
+footer::marker {
+  display: none;
 }
 
 .footer-content {
