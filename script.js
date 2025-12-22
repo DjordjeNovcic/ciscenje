@@ -2197,4 +2197,4 @@ function setActiveNavLink() {
    
 }
 
-document.addEventListener('DOMContentLoaded', initializeApp);
+window.addEventListener('load', initializeApp);
