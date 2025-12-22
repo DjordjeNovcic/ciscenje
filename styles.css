@@ -1616,7 +1616,6 @@ footer::before,
 	display: grid;
 	grid-template-columns: 2fr 1fr 1fr 1fr;
 	gap: 3rem;
-	margin-bottom: 3rem;
 	padding-bottom: 2rem;
 	border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
