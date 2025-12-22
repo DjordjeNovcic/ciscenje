@@ -1,139 +1,119 @@
 <!DOCTYPE html>
 <html lang="sr" id="htmlLang">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>O nama - MS Sjaj</title>
-
-  <link rel="stylesheet" href="styles.css">
-  <link rel="icon" href="./favicon.ico">
-  <link rel="icon" type="image/png" sizes="32x32" href="./favicon-32.png">
-</head>
-
-<body>
-
-  <div id="page-loader"></div>
-
-  <!-- HEADER (loaded via script.js) -->
-  <div id="site-header"></div>
-
-  <!-- Page Header -->
-  <section class="page-header">
-    <div class="container">
-      <h1 id="aboutHeading" data-i18n="aboutPage.title">O nama - MS Sjaj</h1>
-      <p data-i18n="aboutPage.subtitle">
-        Vaš pouzdan partner u profesionalnom čišćenju
-      </p>
-    </div>
-  </section>
-
-  <!-- About Content -->
-  <section class="about-content">
-    <div class="container">
-      <div class="about-story">
-        <div class="story-content">
-          <span class="story-badge" data-i18n="aboutPage.storyBadge">Naša priča</span>
-          <h2 data-i18n="aboutPage.storyTitle">
-            Posvećeni kvalitetu od 2015. godine
-          </h2>
-          <p id="aboutText" class="story-text" data-i18n="aboutPage.storyText">
-            Osnovani 2015. godine, MS Sjaj je započeo sa jednostavnom misijom...
-          </p>
-        </div>
-
-        <div class="stats-section">
-          <!-- stats from Firebase -->
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Why Choose Us -->
-  <section class="why-choose-us">
-    <div class="container">
-      <h2 data-i18n="whyChoose.title">Zašto izabrati MS Sjaj?</h2>
-      <div class="reasons-grid">
-        <!-- reasons from Firebase -->
-      </div>
-    </div>
-  </section>
-
-  <!-- Values -->
-  <section class="values alt-bg">
-    <div class="container">
-      <h2 data-i18n="values.title">Naše vrednosti</h2>
-
-      <div class="values-grid">
-        <div class="value-card">
-          <div class="value-icon">⭐</div>
-          <h3 data-i18n="values.quality.title">Kvalitet</h3>
-          <p data-i18n="values.quality.text">
-            Nikada ne pravimo kompromis po pitanju kvaliteta.
-          </p>
-        </div>
-
-        <div class="value-card">
-          <div class="value-icon">🤝</div>
-          <h3 data-i18n="values.trust.title">Poverenje</h3>
-          <p data-i18n="values.trust.text">
-            Gradimo dugotrajne odnose kroz pouzdanost.
-          </p>
-        </div>
-
-        <div class="value-card">
-          <div class="value-icon">💚</div>
-          <h3 data-i18n="values.sustainability.title">Održivost</h3>
-          <p data-i18n="values.sustainability.text">
-            Koristimo ekološke proizvode.
-          </p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Testimonials -->
-  <section class="testimonials">
-    <div class="container">
-      <h2 data-i18n="testimonials.title">Šta naši klijenti kažu</h2>
-      <p data-i18n="testimonials.subtitle">
-        Pročitajte iskustva naših zadovoljnih klijenata
-      </p>
-
-      <div class="testimonials-grid" id="testimonialsGrid">
-        <!-- testimonials from Firebase -->
-      </div>
-    </div>
-  </section>
-
-  <!-- CTA -->
-  <section class="cta-about">
-    <div class="container">
-      <h2 data-i18n="cta.aboutTitle">Spremni da iskusite MS Sjaj?</h2>
-      <p data-i18n="cta.aboutSubtitle">
-        Pridružite se stotinama zadovoljnih klijenata.
-      </p>
-      <a href="index.html#cta-contact"
-         class="btn btn-primary"
-         data-i18n="cta.aboutButton">
-        Počnite danas
-      </a>
-    </div>
-  </section>
-
-  <!-- FOOTER (loaded via script.js) -->
-  <div id="site-footer"></div>
-
-  <!-- Firebase -->
-  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
-
-  <!-- i18n -->
-  <script src="translations.js"></script>
-  <script src="i18n.js"></script>
-
-  <!-- Main JS (loads header/footer internally) -->
-  <script src="script.js"></script>
-
-</body>
+   <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>O nama - MS Sjaj</title>
+      <link rel="stylesheet" href="styles.css">
+      <link rel="icon" href="./favicon.ico">
+      <link rel="icon" type="image/png" sizes="32x32" href="./favicon-32.png">
+   </head>
+   <body>
+      <div id="page-loader"></div>
+      <!-- HEADER (loaded via script.js) -->
+      <div id="site-header"></div>
+      <!-- Page Header -->
+      <section class="page-header">
+         <div class="container">
+            <h1 id="aboutHeading" data-i18n="aboutPage.title">O nama - MS Sjaj</h1>
+            <p data-i18n="aboutPage.subtitle">
+               Vaš pouzdan partner u profesionalnom čišćenju
+            </p>
+         </div>
+      </section>
+      <!-- About Content -->
+      <section class="about-content">
+         <div class="container">
+            <div class="about-story">
+               <div class="story-content">
+                  <span class="story-badge" data-i18n="aboutPage.storyBadge">Naša priča</span>
+                  <h2 data-i18n="aboutPage.storyTitle">
+                     Posvećeni kvalitetu od 2015. godine
+                  </h2>
+                  <p id="aboutText" class="story-text" data-i18n="aboutPage.storyText">
+                     Osnovani 2015. godine, MS Sjaj je započeo sa jednostavnom misijom...
+                  </p>
+               </div>
+               <div class="stats-section">
+                  <!-- stats from Firebase -->
+               </div>
+            </div>
+         </div>
+      </section>
+      <!-- Why Choose Us -->
+      <section class="why-choose-us">
+         <div class="container">
+            <h2 data-i18n="whyChoose.title">Zašto izabrati MS Sjaj?</h2>
+            <div class="reasons-grid">
+               <!-- reasons from Firebase -->
+            </div>
+         </div>
+      </section>
+      <!-- Values -->
+      <section class="values alt-bg">
+         <div class="container">
+            <h2 data-i18n="values.title">Naše vrednosti</h2>
+            <div class="values-grid">
+               <div class="value-card">
+                  <div class="value-icon">⭐</div>
+                  <h3 data-i18n="values.quality.title">Kvalitet</h3>
+                  <p data-i18n="values.quality.text">
+                     Nikada ne pravimo kompromis po pitanju kvaliteta.
+                  </p>
+               </div>
+               <div class="value-card">
+                  <div class="value-icon">🤝</div>
+                  <h3 data-i18n="values.trust.title">Poverenje</h3>
+                  <p data-i18n="values.trust.text">
+                     Gradimo dugotrajne odnose kroz pouzdanost.
+                  </p>
+               </div>
+               <div class="value-card">
+                  <div class="value-icon">💚</div>
+                  <h3 data-i18n="values.sustainability.title">Održivost</h3>
+                  <p data-i18n="values.sustainability.text">
+                     Koristimo ekološke proizvode.
+                  </p>
+               </div>
+            </div>
+         </div>
+      </section>
+      <!-- Testimonials -->
+      <section class="testimonials">
+         <div class="container">
+            <h2 data-i18n="testimonials.title">Šta naši klijenti kažu</h2>
+            <p data-i18n="testimonials.subtitle">
+               Pročitajte iskustva naših zadovoljnih klijenata
+            </p>
+            <div class="testimonials-grid" id="testimonialsGrid">
+               <!-- testimonials from Firebase -->
+            </div>
+         </div>
+      </section>
+      <!-- CTA -->
+      <section class="cta-about">
+         <div class="container">
+            <h2 data-i18n="cta.aboutTitle">Spremni da iskusite MS Sjaj?</h2>
+            <p data-i18n="cta.aboutSubtitle">
+               Pridružite se stotinama zadovoljnih klijenata.
+            </p>
+            <a href="index.html#cta-contact"
+               class="btn btn-outline"
+               data-i18n="cta.aboutButton">
+            Počnite danas
+            </a>
+         </div>
+      </section>
+      <!-- FOOTER (loaded via script.js) -->
+      <div id="site-footer"></div>
+      <!-- Firebase -->
+      <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+      <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+      <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+      <!-- i18n -->
+      <script src="translations.js"></script>
+      <script src="i18n.js"></script>
+      <!-- Main JS (loads header/footer internally) -->
+      <script src="script.js"></script>
+   </body>
 </html>
