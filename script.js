@@ -29,7 +29,7 @@ let aboutCache = null;
 let slideshowCache = null;
 
 async function initializeApp() {
-  await loadPartials(); // ⬅️ SAD STVARNO ČEKA
+  await loadPartials(); // čeka header + footer
 
   if (document.getElementById('loginForm')) {
     setupAdminLogin();
@@ -43,11 +43,11 @@ async function initializeApp() {
   setupThemeInputs();
   setupLightboxOutsideClick();
 
-  loadPublicPageContent(); // ⬅️ SAD JE NA PRAVOM MESTU
+  loadPublicPageContent(); // PUNI SADRŽAJ TEK POSLE HEADERA
 
-  document.body.classList.add('loaded');
-  removePageLoader(); // ako si ga dodao
+  removePageLoader(); // JEDINI način skidanja loadera
 }
+
 
 function setupPhoneDropdown() {
   const phoneTrigger = document.querySelector('.phone-trigger');
