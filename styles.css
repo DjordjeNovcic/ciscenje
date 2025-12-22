@@ -1565,37 +1565,37 @@ footer::before {
     ),
 
     radial-gradient(
-      circle,
-      rgba(255, 255, 255, 0.12) 1px,
-      transparent 1px
-    );
+		circle,
+		rgba(255, 255, 255, 0.08) 0.8px,
+		transparent 0.8px
+	);
 
   background-size:
     100% 2px,
-    4px 4px;
+    5px 5px;
 
   background-position:
     top center,
     center;
 
-  opacity: 0.15;
+  opacity: 0.18;
   pointer-events: none;
 }
 
 footer::after {
   content: '';
   position: absolute;
-  top: -90px;
+  top: -60px;
   left: 50%;
   transform: translateX(-50%);
   width: 160%;
-  height: 220px;
+  height: 160px;;
   background: radial-gradient(
-    ellipse at center,
-    rgba(245, 158, 11, 0.18),
-    rgba(245, 158, 11, 0.08) 35%,
-    transparent 70%
-  );
+	ellipse at center,
+	rgba(245, 158, 11, 0.22),
+	rgba(245, 158, 11, 0.10) 35%,
+	transparent 70%
+);
   pointer-events: none;
 }
 
@@ -1708,6 +1708,10 @@ footer::marker {
 .footer-phone a {
 	color: white;
 	font-weight: 600;
+}
+
+.cta-contact {
+	border-bottom: none;
 }
 
 /* ----------------------------------------------------
@@ -2938,23 +2942,26 @@ footer::marker {
 	padding: clamp(3.5rem, 6vw, 5rem) 1rem;
 	text-align: center;
 	border-top: 1px solid #e5e7eb;
+	position: relative;
+	overflow: hidden;
 }
 
 .cta-contact::after {
 	content: '';
 	position: absolute;
-	bottom: -140px;
+	bottom: -90px;
 	left: 50%;
 	transform: translateX(-50%);
-	width: 130%;
-	height: 280px;
+	width: 160%;
+	height: 200px;
+
 	background: radial-gradient(
 		ellipse at center,
-		rgba(245, 158, 11, 0.22) 0%,
+		rgba(245, 158, 11, 0.28),
 		rgba(245, 158, 11, 0.14) 35%,
-		rgba(245, 158, 11, 0.06) 55%,
 		transparent 70%
 	);
+
 	pointer-events: none;
 }
 
