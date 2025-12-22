@@ -1549,6 +1549,7 @@ footer,
   padding: 2rem 0 1rem;
   position: relative;
   overflow: hidden;
+  z-index: 10;
 }
 
 footer::before {
@@ -1560,6 +1561,26 @@ footer::before {
 	opacity: 0.35;
 	pointer-events: none;
 	z-index: 1;
+}
+
+.footer-glow {
+	position: absolute;
+	top: -180px;
+	left: 50%;
+	transform: translateX(-50%);
+	width: 160%;
+	height: 220px;
+	background:
+		radial-gradient(
+			ellipse at center,
+			rgba(245, 158, 11, 0.45) 0%,
+			rgba(245, 158, 11, 0.28) 25%,
+			rgba(245, 158, 11, 0.12) 45%,
+			transparent 70%
+		);
+	filter: blur(2px);
+	pointer-events: none;
+	z-index: 2;
 }
 
 footer .footer-horizon {
@@ -1579,8 +1600,8 @@ footer .footer-horizon {
 		transparent
 	);
 
-	filter: blur(0.6px);
-	opacity: 1;
+	filter: blur(1px);
+	opacity: 0.9;
 	z-index: 3;
 }
 
@@ -1595,7 +1616,7 @@ footer::after {
 
 	background: radial-gradient(
 		ellipse at center,
-		rgba(245, 158, 11, 0.12),
+		rgba(245, 158, 11, 0.08),
 		transparent 65%
 	);
 
@@ -1716,6 +1737,7 @@ footer::marker {
 
 .cta-contact {
 	border-bottom: none;
+	margin-bottom: -1px;
 }
 
 /* ----------------------------------------------------
@@ -2948,6 +2970,7 @@ footer::marker {
 	border-top: 1px solid #e5e7eb;
 	position: relative;
 	overflow: hidden;
+	z-index: 20;
 }
 
 .cta-contact::after {
