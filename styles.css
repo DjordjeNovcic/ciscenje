@@ -1735,11 +1735,6 @@ footer::marker {
 	font-weight: 600;
 }
 
-.cta-contact {
-	border-bottom: none;
-	margin-bottom: -1px;
-}
-
 /* ----------------------------------------------------
      4.14 ADMIN DASHBOARD (DESKTOP)
      ---------------------------------------------------- */
@@ -2960,17 +2955,32 @@ footer::marker {
   }
 
 .cta-contact {
-	background: linear-gradient(
-		135deg,
-		#f0f9ff 0%,
-		#e6f4f1 100%
-	);
+	position: relative;
+	z-index: 20;
+
+	background: transparent;
 	padding: clamp(3.5rem, 6vw, 5rem) 1rem;
 	text-align: center;
+
 	border-top: 1px solid #e5e7eb;
-	position: relative;
+	border-bottom: none;
+	margin-bottom: -1px;
+
 	overflow: hidden;
-	z-index: 20;
+}
+
+.cta-contact::before {
+	content: '';
+	position: absolute;
+	inset: 0;
+	background: linear-gradient(
+		135deg,
+		rgba(240, 249, 255, 1) 0%,
+		rgba(240, 249, 255, 0.96) 50%,
+		rgba(240, 249, 255, 0.88) 75%,
+		rgba(240, 249, 255, 0.72) 100%
+	);
+	z-index: -1;
 }
 
 .cta-contact::after {
