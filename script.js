@@ -263,7 +263,6 @@ function loadPublicPageContent() {
    loadTestimonials();
    loadGallery();
    loadAddOns();
-   loadSlideshowImages();
 }
 
 function updateFooterContent() {
@@ -1717,92 +1716,6 @@ function deleteAddOn(addonId) {
          loadAddOnsAdmin();
          alert('Dodatna usluga je obrisana!');
       });
-   }
-}
-
-// ============================================
-// SLIDESHOW
-// ============================================
-
-var slideshowImages = [];
-var currentSlideIndex = 0;
-var slideshowInterval;
-
-function loadSlideshowImages() {
-   if (!shouldLoadSection('slideshow')) return;
-   
-   const slideshowBackground = document.getElementById('slideshowBackground');
-   if (!slideshowBackground) return;
-
-   // ✅ sessionStorage cache
-   const cached = getCachedData('slideshow');
-   if (cached) {
-      slideshowCache = cached;
-      renderSlideshow(cached);
-      return;
-   }
-
-   if (slideshowCache) {
-      renderSlideshow(slideshowCache);
-      return;
-   }
-
-   db.collection('slideshow').orderBy('order', 'asc').get()
-      .then(snapshot => {
-         const images = [];
-         snapshot.forEach(doc => images.push(doc.data().url));
-
-         slideshowCache = images;
-         setCachedData('slideshow', images);
-
-         renderSlideshow(images);
-      })
-      .catch(err => console.error(err));
-}
-
-function renderSlideshow(images) {
-   const slideshowBackground = document.getElementById('slideshowBackground');
-   if (!slideshowBackground) return;
-
-   slideshowBackground.innerHTML = '';
-   slideshowImages = images;
-
-   if (!images.length) {
-      slideshowBackground.style.background =
-         'linear-gradient(135deg, #2563eb 0%, #1e40af 100%)';
-      return;
-   }
-
-   images.forEach(url => {
-      const img = document.createElement('img');
-      img.src = url;
-      img.className = 'slideshow-image';
-      slideshowBackground.appendChild(img);
-   });
-
-   startSlideshow();
-}
-
-
-function startSlideshow() {
-   stopSlideshow();
-
-   const images = document.querySelectorAll('.slideshow-image');
-   if (images.length === 0) return;
-
-   images[0].classList.add('active');
-   currentSlideIndex = 0;
-
-   slideshowInterval = setInterval(function () {
-      images[currentSlideIndex].classList.remove('active');
-      currentSlideIndex = (currentSlideIndex + 1) % images.length;
-      images[currentSlideIndex].classList.add('active');
-   }, 5000);
-}
-
-function stopSlideshow() {
-   if (slideshowInterval) {
-      clearInterval(slideshowInterval);
    }
 }
 
