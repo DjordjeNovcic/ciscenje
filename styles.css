@@ -49,6 +49,23 @@ body.loaded #page-loader {
 	/* Gradients & Effects */
 	--primary-gradient: linear-gradient(135deg, #f59e0b 0%, #ea580c 100%);
 	--card-hover-shadow: 0 12px 40px rgba(245, 158, 11, 0.25);
+
+	/* NEW – overlays */
+	--overlay-light: rgba(255, 255, 255, 0.95);
+	--overlay-dark: rgba(15, 23, 42, 0.85);
+
+	/* Shadows */
+	--shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+	--shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+	--shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+
+	/* Gradients & Effects */
+	--primary-gradient: linear-gradient(
+		135deg,
+		var(--primary-color) 0%,
+		var(--primary-dark) 100%
+	);
+	--card-hover-shadow: 0 12px 40px rgba(245, 158, 11, 0.25);
 }
 
 /* =====================================================
@@ -129,7 +146,7 @@ textarea:focus-visible {
      4.1 NAVIGATION - GLASSMORPHISM (DESKTOP)
      ---------------------------------------------------- */
 .navbar {
-	background: rgba(255, 255, 255, 0.95);
+	background: var(--overlay-light);
   	backdrop-filter: blur(10px);
   	-webkit-backdrop-filter: blur(10px);
   	box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.1);
@@ -216,7 +233,7 @@ textarea:focus-visible {
 	position: absolute;
 	top: 120%;
 	left: 0%;
-	background: white;
+	background: var(--bg-white);
 	border-radius: 12px;
 	box-shadow: var(--shadow-md);
 	padding: 0.5rem 0;
@@ -603,7 +620,7 @@ textarea:focus-visible {
 	font-size: clamp(1.05rem, 2.5vw, 1.25rem);
 	max-width: 600px;
 	margin: 0 auto 2.5rem;
-	color: #374151;
+	color: var(--text-dark);
 }
 
 .hero-buttons {
@@ -1545,7 +1562,11 @@ textarea:focus-visible {
      ---------------------------------------------------- */
 footer,
 .footer {
-  background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+  background: linear-gradient(
+	135deg,
+	var(--bg-dark-soft) 0%,
+	var(--bg-dark) 100%
+);
   color: white;
   padding: 2rem 0 1rem;
   position: relative;
