@@ -598,23 +598,24 @@ textarea:focus-visible {
 ---------------------------------------------------- */
 
 .page-hero {
-   position: relative;
+    position: relative;
   padding: clamp(6rem, 9vw, 8rem) 0 clamp(3.5rem, 6vw, 4.5rem);
 
   background:
     radial-gradient(
       ellipse at top center,
-      rgba(245, 158, 11, 0.25) 0%,
-      rgba(245, 158, 11, 0.12) 35%,
-      transparent 70%
+      rgba(15, 23, 42, 0.45) 0%,
+      rgba(15, 23, 42, 0.25) 35%,
+      rgba(15, 23, 42, 0.10) 55%,
+      transparent 75%
     ),
     linear-gradient(
       to bottom,
-      #f8fafc 0%,
-      #eef2f7 100%
+      #0f172a 0%,
+      #111827 100%
     );
 
-  border-bottom: 1px solid var(--border-color);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
   text-align: center;
   overflow: hidden;
 }
@@ -623,19 +624,19 @@ textarea:focus-visible {
   content: '';
   position: absolute;
   left: 50%;
-  bottom: -40px;
+  bottom: -50px;
   transform: translateX(-50%);
-  width: 90%;
-  height: 80px;
+  width: 85%;
+  height: 90px;
 
   background: radial-gradient(
     ellipse at center,
-    rgba(245, 158, 11, 0.35) 0%,
-    rgba(245, 158, 11, 0.15) 40%,
-    transparent 75%
+    rgba(245, 158, 11, 0.30) 0%,
+    rgba(245, 158, 11, 0.12) 35%,
+    transparent 70%
   );
 
-  filter: blur(18px);
+  filter: blur(22px);
   pointer-events: none;
 }
 
@@ -646,14 +647,14 @@ textarea:focus-visible {
 .page-hero h1 {
   font-size: clamp(2rem, 4vw, 3rem);
   font-weight: 800;
-  color: var(--text-dark);
+  color: #f8fafc;
   margin-bottom: 0.75rem;
   letter-spacing: -0.02em;
 }
 
 .page-hero p {
   font-size: clamp(1rem, 1.8vw, 1.25rem);
-  color: var(--text-light);
+  color: #cbd5f5;
   line-height: 1.6;
   margin: 0 auto;
   max-width: 560px;
