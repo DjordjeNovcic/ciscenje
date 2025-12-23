@@ -453,7 +453,6 @@ textarea:focus-visible {
 	content: '';
 	position: absolute;
 	inset: 0;
-	background: url('./hero-cleaning.jpg') center / cover no-repeat;
 	z-index: 1;
 }
 
