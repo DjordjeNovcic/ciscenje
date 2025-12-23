@@ -1625,6 +1625,10 @@ footer::before {
 	line-height: 1.6;
 }
 
+.footer-section:first-child p {
+	max-width: 260px;
+}
+
 .footer-section a {
 	color: #cbd5e1;
 	text-decoration: none;
@@ -1680,6 +1684,12 @@ footer::before {
 .footer-phone a {
 	color: white;
 	font-weight: 600;
+}
+
+.footer-phone i {
+	color: var(--primary-color);
+	margin-right: 0.5rem;
+	font-size: 0.95rem;
 }
 
 /* ----------------------------------------------------
