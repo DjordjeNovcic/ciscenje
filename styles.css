@@ -3072,6 +3072,10 @@ footer::before {
 		display: flex !important;
 	}
 
+	body {
+		padding-top: 64px;
+	}
+
 	/* Touch Target Sizes (Accessibility) */
 	.hamburger,
 	.btn,
@@ -3190,11 +3194,13 @@ footer::before {
 	.nav-menu {
 		position: fixed !important;
 		left: 0 !important;
-		top: 70px !important;
+		top: 64px !important; 
 		flex-direction: column !important;
 		background: #ffffff !important;
+		background-color: #ffffff !important;
 		backdrop-filter: none !important;
 		-webkit-backdrop-filter: none !important;
+		height: 64px;
 		width: 100% !important;
 		max-height: 0 !important;
 		overflow: hidden;
@@ -3206,6 +3212,7 @@ footer::before {
 		gap: 0 !important;
 		border-bottom: 1px solid rgba(255, 255, 255, 0.18) !important;
 		border-bottom-left-radius: 20px;
+		border-top: 1px solid rgba(0, 0, 0, 0.06);
 		border-bottom-right-radius: 20px;
 		transform: translateY(-8px);
 		opacity: 0;
@@ -3312,6 +3319,10 @@ footer::before {
    	 	backdrop-filter: none;
     	box-shadow: 0 2px 12px rgba(0, 0, 0, 0.35);
 		z-index: 1100;
+		position: fixed;
+		top: 0;
+		left: 0;
+		right: 0;
   	}
 
 	/* Social Links (Mobile) */
