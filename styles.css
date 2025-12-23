@@ -1231,7 +1231,6 @@ textarea:focus-visible {
 
 .why-choose-us {
 	padding: 5rem 0;
-	background: var(--bg-light);
 }
 
 .why-choose-us h2 {
@@ -1334,10 +1333,6 @@ textarea:focus-visible {
 	color: var(--text-light);
 }
 
-.alt-bg {
-	background: var(--bg-light);
-}
-
 /* ----------------------------------------------------
      4.11 VALUES SECTION (DESKTOP)
      ---------------------------------------------------- */
@@ -1381,7 +1376,6 @@ textarea:focus-visible {
      ---------------------------------------------------- */
 .testimonials {
 	padding: 5rem 0;
-	background: linear-gradient(180deg, #ffffff 0%, #fffbeb 100%);
 	position: relative;
 }
 
@@ -2935,12 +2929,6 @@ footer::before {
 	content: '';
 	position: absolute;
 	inset: 0;
-	background: linear-gradient(
-		135deg,
-		rgba(240, 249, 255, 1) 0%,
-		rgba(240, 249, 255, 0.95) 55%,
-		rgba(240, 249, 255, 0.85) 100%
-	);
 	z-index: 1;
 }
 
@@ -2988,11 +2976,6 @@ footer::before {
 ---------------------------------------------------- */
 .cta-services {
   padding: clamp(3rem, 5vw, 4rem) 1rem;
-  background: linear-gradient(
-    135deg,
-    #f8fafc 0%,
-    #eef2f7 100%
-  );
   text-align: center;
   border-top: 1px solid var(--border-color);
 }
@@ -3014,13 +2997,7 @@ footer::before {
 ---------------------------------------------------- */
 .cta-about {
   padding: clamp(3rem, 5vw, 4rem) 1rem;
-  background: linear-gradient(
-    135deg,
-    #ffffff 0%,
-    #f8fafc 100%
-  );
   text-align: center;
-  border-top: 1px solid var(--border-color);
 }
 
 .cta-about h2 {
