@@ -52,11 +52,19 @@ async function initializeApp() {
 function setupPhoneDropdown() {
    const phoneTrigger = document.querySelector('.phone-trigger');
    const phoneWrapper = document.querySelector('.phone-wrapper');
+   const navMenu = document.getElementById('navMenu');
+   const hamburger = document.getElementById('hamburger');
+
    if (!phoneTrigger || !phoneWrapper) return;
 
    phoneTrigger.addEventListener('click', function (e) {
       if (window.innerWidth <= 768) {
-         e.preventDefault();
+         if (navMenu?.classList.contains('active')) {
+            navMenu.classList.remove('active');
+            hamburger?.classList.remove('active');
+            document.body.classList.remove('menu-open');
+         }
+
          phoneWrapper.classList.toggle('active');
       }
    });
@@ -67,7 +75,6 @@ function setupPhoneDropdown() {
       }
    });
 }
-
 
 function setupThemeInputs() {
    const colorInputs = [
