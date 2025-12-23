@@ -549,7 +549,7 @@ textarea:focus-visible {
 .hero-bg {
 	position: absolute;
 	inset: 0;
-	background-image: url("IMGBB_URL_TVOJE_SLIKE");
+	background-image: url("https://i.ibb.co/nsLLYcN8/f3611f047c0c.png");
 	background-size: cover;
 	background-position: center;
 	z-index: 1;
