@@ -580,7 +580,7 @@ textarea:focus-visible {
      ---------------------------------------------------- */
 .hero {
 	color: #1f2937;
-	padding: clamp(4rem, 8vw, 7rem) 0;
+	padding: clamp(4rem, 8vw, 4rem) 0;
 	text-align: center;
 	position: relative;
 	overflow: hidden;
@@ -728,7 +728,7 @@ textarea:focus-visible {
      4.6 FEATURES SECTION (DESKTOP)
      ---------------------------------------------------- */
 .features {
-	padding: 5rem 0;
+	padding: 3rem 0;
 	background: var(--bg-white);
 }
 
@@ -1058,7 +1058,7 @@ textarea:focus-visible {
 }
 
 .gallery-section {
-    padding: 6rem 0;
+    padding: 3rem 0;
 }
 
 .gallery-section p{
@@ -1230,7 +1230,7 @@ textarea:focus-visible {
 }
 
 .why-choose-us {
-	padding: 5rem 0;
+	padding: 3rem 0;
 }
 
 .why-choose-us h2 {
