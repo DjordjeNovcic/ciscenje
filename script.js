@@ -179,6 +179,19 @@ function getLocalizedField(item, field) {
    return item[field] || '';
 }
 
+function applyHeroBackgroundFromSlideshow() {
+  const landing = document.querySelector('.landing-section');
+  if (!landing) return;
+
+  const cached = getCachedData('slideshow');
+  if (cached && cached.length > 0) {
+    landing.style.backgroundImage = `url('${cached[0]}')`;
+    landing.style.backgroundSize = 'cover';
+    landing.style.backgroundPosition = 'center';
+    landing.style.backgroundRepeat = 'no-repeat';
+  }
+}
+
 // Helper function to show loading spinner
 function showLoading(containerId) {
    const container = document.getElementById(containerId);
@@ -263,6 +276,7 @@ function loadPublicPageContent() {
    loadTestimonials();
    loadGallery();
    loadAddOns();
+   applyHeroBackgroundFromSlideshow();
 }
 
 function updateFooterContent() {
