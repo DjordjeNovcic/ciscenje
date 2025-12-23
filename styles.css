@@ -3080,9 +3080,68 @@ footer::before {
 		min-width: 44px;
 	}
 
+	.nav-menu.active {
+    	transform: translateY(0);
+    	opacity: 1;
+  	}
+
 	.footer-section:first-child p {
 		max-width: none !important;
 	}
+
+	body.menu-open .landing-section {
+	    filter: blur(2px);
+    	transform: scale(0.985);
+    	transition: filter 0.3s ease, transform 0.3s ease;
+  	}
+
+	.landing-section {
+  		min-height: 100svh;
+  		height: auto;
+ 		padding-top: 5.5rem; 
+  		padding-bottom: 2.5rem;
+	}
+
+	.landing-title {
+		font-size: clamp(1.9rem, 7vw, 2.4rem);
+   		line-height: 1.15;
+    	margin-bottom: 0.75rem;
+		letter-spacing: -0.01em;
+ 	 }
+
+	.landing-subtitle {
+    	font-size: 0.95rem;
+    	line-height: 1.55;
+    	margin-bottom: 1.5rem;
+		opacity: 0.9;
+		max-width: 320px;
+		margin: 0 auto;
+  	}
+
+	.landing-buttons {
+    	margin-top: 1.75rem;
+    	gap: 0.75rem;
+  	}
+
+  	.landing-buttons .btn {
+    	padding: 0.85rem 1.25rem;
+    	font-size: 0.95rem;
+  	}
+
+	.landing-buttons .btn-primary {
+   	 	width: 100%;
+    	padding: 1rem;
+    	font-size: 1rem;
+    	border-radius: 14px;
+  	}
+
+  	.landing-buttons .btn-outline {
+    	width: 100%;
+    	padding: 0.85rem;
+    	font-size: 0.95rem;
+    	border-radius: 14px;
+    	opacity: 0.9;
+  	}
 
 	/* Navigation (Mobile) */
 	.hamburger {
@@ -3090,6 +3149,11 @@ footer::before {
 		order: 3;
 		z-index: 1001;
 	}
+
+	.landing-logo img {
+    	width: 90px;
+    	margin-bottom: 1rem;
+  	}
 
 	.logo {
 		order: 1;
@@ -3099,9 +3163,15 @@ footer::before {
 
 	.phone-text {
 		display: inline-block;
-		font-size: 1.1rem;
+		font-size: 0.95rem;
 		font-weight: 700;
 	}
+
+	.phone-trigger {
+    	background: rgba(245, 158, 11, 0.15);
+    	padding: 0.45rem 0.75rem;
+    	border-radius: 999px;
+  	}
 
 	.phone-dropdown {
 		display: none;
@@ -3110,6 +3180,11 @@ footer::before {
 	.phone-wrapper.active .phone-dropdown {
 		display: block;
 	}
+
+	.navbar .container {
+    	padding: 0.75rem 1rem;
+    	min-height: 64px;
+  	}
 
 	/* Navigation (Mobile) */
 	.nav-menu {
@@ -3122,7 +3197,7 @@ footer::before {
 		-webkit-backdrop-filter: none !important;
 		width: 100% !important;
 		max-height: 0 !important;
-		overflow: hidden !important;
+		overflow: hidden;
 		transition: max-height 0.4s ease-in-out !important;
 		box-shadow: 0 10px 27px rgba(0, 0, 0, 0.1) !important;
 		z-index: 1000 !important;
@@ -3130,6 +3205,14 @@ footer::before {
 		margin: 0 !important;
 		gap: 0 !important;
 		border-bottom: 1px solid rgba(255, 255, 255, 0.18) !important;
+		border-bottom-left-radius: 20px;
+		border-bottom-right-radius: 20px;
+		transform: translateY(-8px);
+		opacity: 0;
+		transition:
+      		max-height 0.4s ease,
+     	 	transform 0.35s ease,
+      		opacity 0.25s ease;
 	}
 
 	 body.menu-open::before {
@@ -3137,7 +3220,7 @@ footer::before {
     	position: fixed;
     	inset: 0;
     	background: rgba(15, 23, 42, 0.55);
-    	z-index: 999;
+    	z-index: 900;
   	}
 
 	.nav-menu.active {
@@ -3156,13 +3239,20 @@ footer::before {
 	}
 
 	.nav-menu a {
-		padding: 1rem 2rem !important;
+		font-size: 1.05rem;
+		font-weight: 600;
+		padding: 1.1rem 2rem !important;
 		display: block !important;
 		width: 100% !important;
 		border-bottom: 1px solid rgba(0, 0, 0, 0.05) !important;
 		color: var(--text-dark) !important;
 		text-decoration: none !important;
+		letter-spacing: 0.2px;
 	}
+
+	.nav-menu li + li a {
+    	border-top: none;
+  	}
 
 	.nav-menu a::after {
 		display: none !important;
@@ -3182,7 +3272,8 @@ footer::before {
 		padding: 1.5rem 0;
 		margin: 0;
 		border-top: 2px solid var(--border-color);
-		background: var(--bg-light);
+		background: #f8fafc;
+		margin-top: 0.75rem;
 	}
 
 	.nav-menu>li.language-switcher .lang-btn {
@@ -3203,6 +3294,14 @@ footer::before {
 	.nav-menu .lang-btn img {
 		width: 22px;
 	}
+
+	.navbar {
+    	height: 64px;
+		background: #0f172a;
+   	 	backdrop-filter: none;
+    	box-shadow: 0 2px 12px rgba(0, 0, 0, 0.35);
+		z-index: 1100;
+  	}
 
 	/* Social Links (Mobile) */
 	.social-links {
@@ -3227,7 +3326,8 @@ footer::before {
 	}
 
 	.landing-content {
-		padding: 0 1rem;
+		padding-top: 1.5rem;
+		padding-bottom: 2rem;
 	}
 
 	.landing-logo img {
