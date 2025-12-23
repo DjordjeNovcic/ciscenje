@@ -578,30 +578,6 @@ function removeFeature(index) {
    });
 }
 
-function saveHomeContent() {
-   const features = [];
-   document.querySelectorAll('#featuresContainer .feature-item').forEach(function (item) {
-      features.push({
-         icon: item.querySelector('[data-field="icon"]').value,
-         title_sr: item.querySelector('[data-field="title_sr"]').value,
-         title_en: item.querySelector('[data-field="title_en"]').value,
-         description_sr: item.querySelector('[data-field="description_sr"]').value,
-         description_en: item.querySelector('[data-field="description_en"]').value
-      });
-   });
-
-   db.collection('content').doc('home').set({
-      heroHeading_sr: document.getElementById('heroHeading_sr').value,
-      heroHeading_en: document.getElementById('heroHeading_en').value,
-      heroText_sr: document.getElementById('heroText_sr').value,
-      heroText_en: document.getElementById('heroText_en').value,
-      features: features
-   }).then(function () {
-      homeCache = null;
-      alert('Sadrzaj pocetne stranice je sacuvan!');
-   });
-}
-
 // ============================================
 // SERVICES
 // ============================================
