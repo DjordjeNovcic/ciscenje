@@ -11,7 +11,7 @@
    position: fixed;
   	inset: 0;
   	background: #fff;
-  	z-index: 9999;
+  	z-index: var(--z-loader);
   	opacity: 1;
   	transition: opacity 0.3s ease;
 }
@@ -53,6 +53,13 @@ body.loaded #page-loader {
 	/* NEW – overlays */
 	--overlay-light: rgba(255, 255, 255, 0.95);
 	--overlay-dark: rgba(15, 23, 42, 0.85);
+
+	--z-navbar: 1000;
+	--z-menu-overlay: 1100;
+	--z-modal: 2000;
+	--z-admin-sidebar: 2100;
+	--z-lightbox: 3000;
+	--z-loader: 4000;
 }
 
 /* =====================================================
@@ -67,17 +74,6 @@ body {
 	line-height: 1.6;
 	color: var(--text-dark);
 	background-color: var(--bg-white);
-}
-
-
-@keyframes pageLoad {
-	from {
-		opacity: 0;
-	}
-
-	to {
-		opacity: 1;
-	}
 }
 
 .container {
@@ -107,7 +103,7 @@ textarea:focus-visible {
 	color: white;
 	padding: 0.75rem 1.5rem;
 	text-decoration: none;
-	z-index: 9999;
+	z-index: var(--z-loader);
 }
 
 .skip-link:focus {
@@ -144,7 +140,7 @@ textarea:focus-visible {
 	top: 0;
 	left: 0;
 	right: 0;
-	z-index: 10000;
+	z-index: var(--z-navbar);
 }
 
 .navbar .container {
@@ -217,7 +213,7 @@ textarea:focus-visible {
 	padding: 0.5rem 0;
 	display: none;
 	min-width: 180px;
-	z-index: 2000;
+	z-index: calc(var(--z-navbar) + 1);
 }
 
 .phone-dropdown a {
@@ -927,42 +923,9 @@ textarea:focus-visible {
     color: #fff;
 }
 
-.service-card .service-description {
-	color: var(--text-dark);
-	line-height: 1.55;
-	margin: 1.25rem 0;
-	font-size: 0.95rem;
-}
-
-.service-card .service-description ul,
-.service-card .service-description ol {
-	list-style: none;   
-	margin: 1.25rem 0;
-	padding-left: 0;
-	margin-top: 0.75rem;
-}
-
-.service-card .service-description li {
-	color: var(--text-dark);
-	position: relative;
-	padding-left: 1.75rem;
-	font-size: 0.95rem;
-	line-height: 1.6;
-	margin: 0.75rem 0;
-}
-
 .services-detail {
 	padding: 4rem 0;
 	background-color: var(--bg-white);
-}
-
-.service-card .service-description li::before {
-	content: '✓';
-	position: absolute;
-	left: 0;
-	top: 0;
-	color: var(--success-color);
-	font-weight: 700;
 }
 
 /* ----------------------------------------------------
@@ -1492,16 +1455,8 @@ textarea:focus-visible {
 	margin: 0.5rem 0;
 }
 
+.testimonial-author,
 .testimonial-author-section {
-	display: flex;
-	align-items: center;
-	gap: 1rem;
-	margin-top: auto;
-	padding-top: 1.5rem;
-	border-top: 1px solid var(--border-color);
-}
-
-.testimonial-author {
 	display: flex;
 	align-items: center;
 	gap: 1rem;
@@ -2019,15 +1974,6 @@ footer::before {
 	font-weight: 600;
 }
 
-.service-item .service-description {
-	color: var(--text-color);
-	margin: 0.75rem 0 1rem 0;
-	line-height: 1.6;
-	padding: 1rem;
-	background: var(--bg-light);
-	border-radius: 8px;
-}
-
 #servicesList .service-item .service-price {
 	color: var(--text-light);
 	font-weight: 500;
@@ -2335,39 +2281,28 @@ footer::before {
 /* ----------------------------------------------------
      4.18 MODALS (DESKTOP)
      ---------------------------------------------------- */
-.modal {
-	display: none;
-	position: fixed;
-	z-index: 2000;
-	left: 0;
-	top: 0;
-	width: 100%;
-	height: 100%;
-	background-color: rgba(0, 0, 0, 0.5);
-	animation: fadeIn 0.3s;
-	align-items: center;
-	justify-content: center;
-}
-
-.modal[style*="display: flex"],
-.modal.active {
-	display: flex !important;
-}
-
-@keyframes fadeIn {
+@keyframes overlayFadeIn {
 	from {
 		opacity: 0;
 	}
-
 	to {
 		opacity: 1;
 	}
 }
 
-.modal.active {
-	display: flex;
+.modal {
+	display: none;
+	position: fixed;
+	inset: 0;
+	z-index: var(--z-modal);
+	background-color: rgba(0, 0, 0, 0.5);
+	animation: overlayFadeIn 0.3s ease;
 	align-items: center;
 	justify-content: center;
+}
+
+.modal.active {
+	display: flex;
 }
 
 .modal-content {
@@ -2515,11 +2450,12 @@ footer::before {
 
 .gallery-item {
 	position: relative;
+	cursor: pointer;
 	background: white;
 	border-radius: 12px;
 	overflow: hidden;
 	box-shadow: var(--shadow-md);
-	transition: transform 0.3s;
+	transition: transform 0.3s ease;
 }
 
 .gallery-item:hover {
@@ -2575,6 +2511,47 @@ footer::before {
 	margin-top: 1rem;
 }
 
+/* ============================================
+   SERVICE DESCRIPTION – GLOBAL BASE
+============================================ */
+
+.service-description {
+	color: var(--text-dark);
+	line-height: 1.6;
+	font-size: 0.95rem;
+}
+
+.service-description ul,
+.service-description ol {
+	list-style: none;
+	margin: 0.75rem 0;
+	padding-left: 0;
+}
+
+.service-description li {
+	position: relative;
+	padding-left: 1.75rem;
+	margin: 0.6rem 0;
+	line-height: 1.6;
+}
+
+.service-description li::before {
+	content: '✓';
+	position: absolute;
+	left: 0;
+	top: 0;
+	color: var(--success-color);
+	font-weight: 700;
+}
+
+.service-description strong {
+	font-weight: 600;
+}
+
+.service-description em {
+	font-style: italic;
+}
+
 /* ----------------------------------------------------
      4.21 QUILL EDITOR STYLING (DESKTOP)
      ---------------------------------------------------- */
@@ -2608,24 +2585,6 @@ footer::before {
 
 .ql-container.ql-snow:focus-within {
   border-color: var(--primary-color);
-}
-
-.service-description ul,
-.service-description ol {
-	margin: 12px 0;
-	padding-left: 24px;
-}
-
-.service-description li {
-	margin: 5px 0;
-}
-
-.service-description strong {
-	font-weight: 600;
-}
-
-.service-description em {
-	font-style: italic;
 }
 
 .service-description h1 {
@@ -2795,8 +2754,8 @@ footer::before {
       width: 100%;
       height: 100%;
       background: rgba(0, 0, 0, 0.95);
-      z-index: 9999;
-      animation: fadeIn 0.3s ease;
+      z-index: var(--z-lightbox);
+      animation: overlayFadeIn 0.3s ease;
   }
 
   .lightbox.active {
@@ -2844,7 +2803,7 @@ footer::before {
       border: none;
       cursor: pointer;
       transition: transform 0.3s ease;
-      z-index: 10001;
+      z-index: calc(var(--z-lightbox) + 1);
       width: 50px;
       height: 50px;
       display: flex;
@@ -2900,12 +2859,6 @@ footer::before {
       border-radius: 25px;
       font-size: 16px;
       font-weight: 600;
-  }
-
-  .gallery-item {
-      cursor: pointer;
-      position: relative;
-      overflow: hidden;
   }
 
   .gallery-item::after {
@@ -3226,7 +3179,7 @@ footer::before {
     	position: fixed;
     	inset: 0;
     	background: rgba(15, 23, 42, 0.55);
-    	z-index: 999;
+    	z-index: var(--z-menu-overlay);
   	}
 
 	.nav-menu.active {
@@ -3315,7 +3268,7 @@ footer::before {
 		background: #0f172a;
    	 	backdrop-filter: none;
     	box-shadow: 0 2px 12px rgba(0, 0, 0, 0.35);
-		z-index: 1100;
+		z-index: var(--z-navbar);
 		position: fixed;
 		top: 0;
 		left: 0;
@@ -3473,7 +3426,7 @@ footer::before {
 		height: 100vh;
 		height: 100dvh;
 		transition: left 0.3s ease;
-		z-index: 2000;
+		z-index: var(--z-admin-sidebar);
 		background: var(--text-dark);
 		display: flex;
 		flex-direction: column;
@@ -3581,7 +3534,7 @@ footer::before {
 		align-items: center;
 		justify-content: center;
 		flex-shrink: 0;
-		z-index: 2001;
+		z-index: calc(var(--z-admin-sidebar) + 1);
 	}
 
 	.sidebar-footer .btn {
@@ -3598,7 +3551,7 @@ footer::before {
 		width: 100%;
 		height: 100%;
 		background: rgba(0, 0, 0, 0.5);
-		z-index: 1999;
+		z-index: calc(var(--z-admin-sidebar) - 1);
 	}
 
 	.sidebar-overlay.active {
