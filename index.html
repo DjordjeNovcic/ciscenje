@@ -1,151 +1,128 @@
 <!DOCTYPE html>
 <html lang="sr" id="htmlLang">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>MS Sjaj - Profesionalne usluge čišćenja</title>
-
-  <link rel="stylesheet" href="styles.css">
-  <link rel="icon" href="./favicon.ico">
-  <link rel="icon" type="image/png" sizes="32x32" href="./favicon-32.png">
-
-  <link
-    rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
-  />
-</head>
-
-<body>
-  <div id="page-loader"></div>
-
-  <!-- HEADER -->
-  <div id="site-header"></div>
-
-  <!-- HERO / LANDING -->
-  <section class="landing-section">
-    <div class="slideshow-container">
-      <div class="slideshow-background" id="slideshowBackground"></div>
-      <div class="slideshow-overlay"></div>
-    </div>
-
-    <div class="landing-content">
-      <div class="landing-logo">
-        <img src="logo.png" alt="MS Sjaj Logo">
+   <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>MS Sjaj - Profesionalne usluge čišćenja</title>
+      <link rel="stylesheet" href="styles.css">
+      <link rel="icon" href="./favicon.ico">
+      <link rel="icon" type="image/png" sizes="32x32" href="./favicon-32.png">
+      <link
+         rel="stylesheet"
+         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+         />
+   </head>
+   <body>
+      <div id="page-loader"></div>
+      <!-- HEADER -->
+      <div id="site-header"></div>
+      <!-- HERO / LANDING -->
+      <section class="landing-section">
+         <div class="hero-bg">
+            <div class="hero-overlay"></div>
+         </div>
+         <div class="landing-content">
+            <div class="landing-logo">
+               <img src="logo.png" alt="MS Sjaj Logo">
+            </div>
+            <h1 data-i18n="hero.title">
+               Profesionalne usluge čišćenja kojima možete verovati
+            </h1>
+            <p class="landing-subtitle" data-i18n="hero.subtitle">
+               Profesionalno čišćenje stanova i poslovnih prostora u Kragujevcu i okolini
+            </p>
+            <div class="hero-buttons">
+               <a href="services.html" class="btn btn-primary" data-i18n="hero.servicesBtn">
+               Pogledajte usluge
+               </a>
+               <a href="#cta-contact" class="btn btn-outline" data-i18n="hero.contactBtn">
+               Kontaktirajte nas
+               </a>
+            </div>
+         </div>
+      </section>
+      <!-- FEATURES -->
+      <section class="features">
+         <div class="container">
+            <h2 data-i18n="features.title">Naše karakteristike</h2>
+            <div class="stats-section"></div>
+            <div class="features-grid" id="featuresGrid"></div>
+         </div>
+      </section>
+      <!-- WHY CHOOSE US -->
+      <section class="why-choose-us">
+         <div class="container">
+            <h2 data-i18n="whyChoose.title">Zašto izabrati MS Sjaj?</h2>
+            <div class="reasons-grid"></div>
+         </div>
+      </section>
+      <!-- SERVICES PREVIEW -->
+      <section class="services-preview">
+         <div class="container">
+            <h2 data-i18n="servicesPreview.title">Naše usluge</h2>
+            <div class="services-grid" id="servicesGrid"></div>
+         </div>
+      </section>
+      <!-- GALLERY -->
+      <section class="gallery-section">
+         <div class="container">
+            <h2 data-i18n="gallery.title">Naši radovi</h2>
+            <p class="gallery-subtitle" data-i18n="gallery.subtitle">
+               Pogledajte primere našeg rada
+            </p>
+            <div class="photo-gallery" id="galleryGrid"></div>
+         </div>
+      </section>
+      <!-- CTA CONTACT -->
+      <section id="cta-contact" class="cta-contact">
+         <div class="container">
+            <h2 data-i18n="cta.servicesTitle">Spremni za čist prostor?</h2>
+            <p data-i18n="cta.contactSubtitle">
+               Kontaktirajte nas i dobićete ponudu bez obaveze.
+            </p>
+            <div class="cta-buttons">
+               <a href="tel:+381643937000" class="btn btn-primary" data-i18n="cta.call">
+               📞 Pozovite nas
+               </a>
+               <a
+                  href="https://wa.me/381643937000"
+                  target="_blank"
+                  class="btn btn-outline"
+                  data-i18n="cta.whatsapp"
+                  >
+               💬 WhatsApp
+               </a>
+               <a
+                  href="viber://chat?number=381655625876"
+                  target="_blank"
+                  class="btn btn-outline"
+                  data-i18n="cta.viber"
+                  >
+               💜 Viber
+               </a>
+            </div>
+         </div>
+      </section>
+      <!-- FOOTER -->
+      <div id="site-footer"></div>
+      <!-- LIGHTBOX -->
+      <div id="lightbox" class="lightbox">
+         <button class="lightbox-close" onclick="closeLightbox()">&times;</button>
+         <button class="lightbox-nav lightbox-prev" onclick="navigateLightbox(-1)">‹</button>
+         <div class="lightbox-content">
+            <img id="lightboxImage" class="lightbox-image" src="" alt="Preview">
+         </div>
+         <button class="lightbox-nav lightbox-next" onclick="navigateLightbox(1)">›</button>
+         <div id="lightboxCounter" class="lightbox-counter"></div>
       </div>
-
-      <h1 data-i18n="hero.title">
-        Profesionalne usluge čišćenja kojima možete verovati
-      </h1>
-
-      <p class="landing-subtitle" data-i18n="hero.subtitle">
-        Profesionalno čišćenje stanova i poslovnih prostora u Kragujevcu i okolini
-      </p>
-
-      <div class="hero-buttons">
-        <a href="services.html" class="btn btn-primary" data-i18n="hero.servicesBtn">
-          Pogledajte usluge
-        </a>
-        <a href="#cta-contact" class="btn btn-outline" data-i18n="hero.contactBtn">
-          Kontaktirajte nas
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <!-- FEATURES -->
-  <section class="features">
-    <div class="container">
-      <h2 data-i18n="features.title">Naše karakteristike</h2>
-      <div class="stats-section"></div>
-      <div class="features-grid" id="featuresGrid"></div>
-    </div>
-  </section>
-
-  <!-- WHY CHOOSE US -->
-  <section class="why-choose-us">
-    <div class="container">
-      <h2 data-i18n="whyChoose.title">Zašto izabrati MS Sjaj?</h2>
-      <div class="reasons-grid"></div>
-    </div>
-  </section>
-
-  <!-- SERVICES PREVIEW -->
-  <section class="services-preview">
-    <div class="container">
-      <h2 data-i18n="servicesPreview.title">Naše usluge</h2>
-      <div class="services-grid" id="servicesGrid"></div>
-    </div>
-  </section>
-
-  <!-- GALLERY -->
-  <section class="gallery-section">
-    <div class="container">
-      <h2 data-i18n="gallery.title">Naši radovi</h2>
-      <p class="gallery-subtitle" data-i18n="gallery.subtitle">
-        Pogledajte primere našeg rada
-      </p>
-      <div class="photo-gallery" id="galleryGrid"></div>
-    </div>
-  </section>
-
-  <!-- CTA CONTACT -->
-  <section id="cta-contact" class="cta-contact">
-    <div class="container">
-      <h2 data-i18n="cta.servicesTitle">Spremni za čist prostor?</h2>
-      <p data-i18n="cta.contactSubtitle">
-        Kontaktirajte nas i dobićete ponudu bez obaveze.
-      </p>
-
-      <div class="cta-buttons">
-        <a href="tel:+381643937000" class="btn btn-primary" data-i18n="cta.call">
-          📞 Pozovite nas
-        </a>
-        <a
-          href="https://wa.me/381643937000"
-          target="_blank"
-          class="btn btn-outline"
-          data-i18n="cta.whatsapp"
-        >
-          💬 WhatsApp
-        </a>
-        <a
-          href="viber://chat?number=381655625876"
-          target="_blank"
-          class="btn btn-outline"
-          data-i18n="cta.viber"
-        >
-          💜 Viber
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <!-- FOOTER -->
-  <div id="site-footer"></div>
-
-  <!-- LIGHTBOX -->
-  <div id="lightbox" class="lightbox">
-    <button class="lightbox-close" onclick="closeLightbox()">&times;</button>
-    <button class="lightbox-nav lightbox-prev" onclick="navigateLightbox(-1)">‹</button>
-
-    <div class="lightbox-content">
-      <img id="lightboxImage" class="lightbox-image" src="" alt="Preview">
-    </div>
-
-    <button class="lightbox-nav lightbox-next" onclick="navigateLightbox(1)">›</button>
-    <div id="lightboxCounter" class="lightbox-counter"></div>
-  </div>
-
-  <!-- FIREBASE -->
-  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
-
-  <!-- i18n -->
-  <script src="translations.js"></script>
-  <script src="i18n.js"></script>
-
-  <!-- MAIN -->
-  <script src="script.js"></script>
-</body>
+      <!-- FIREBASE -->
+      <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+      <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+      <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+      <!-- i18n -->
+      <script src="translations.js"></script>
+      <script src="i18n.js"></script>
+      <!-- MAIN -->
+      <script src="script.js"></script>
+   </body>
 </html>
