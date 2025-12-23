@@ -1562,11 +1562,7 @@ textarea:focus-visible {
      ---------------------------------------------------- */
 footer,
 .footer {
-  background: linear-gradient(
-	135deg,
-	var(--bg-dark-soft) 0%,
-	var(--bg-dark) 100%
-);
+  background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
   color: white;
   padding: 2rem 0 1rem;
   position: relative;
