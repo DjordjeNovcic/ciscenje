@@ -579,12 +579,6 @@ textarea:focus-visible {
      4.3 HERO SECTION (DESKTOP)
      ---------------------------------------------------- */
 .hero {
-	background: linear-gradient(
-		135deg,
-		#e8eef5 0%,
-		#dbe5f0 40%,
-		#cfdbea 100%
-	);
 	color: #1f2937;
 	padding: clamp(4rem, 8vw, 7rem) 0;
 	text-align: center;
@@ -596,11 +590,6 @@ textarea:focus-visible {
 	content: '';
 	position: absolute;
 	inset: 0;
-	background: radial-gradient(
-		circle at top,
-		rgba(255, 255, 255, 0.6),
-		transparent 65%
-	);
 	pointer-events: none;
 }
 
@@ -798,7 +787,6 @@ textarea:focus-visible {
      ---------------------------------------------------- */
 .services-section {
 	padding: 5rem 0;
-	background: linear-gradient(180deg, #ffffff 0%, #fffbeb 100%);
 }
 
 .services-section h2 {
@@ -2930,11 +2918,6 @@ footer::before {
   }
 
 .cta-contact {
-	background: linear-gradient(
-		135deg,
-		#f0f9ff 0%,
-		#e6f4f1 100%
-	);
 	padding: clamp(3.5rem, 6vw, 5rem) 1rem;
 	text-align: center;
 
