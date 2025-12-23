@@ -3117,9 +3117,9 @@ footer::before {
 		left: 0 !important;
 		top: 70px !important;
 		flex-direction: column !important;
-		background: rgba(255, 255, 255, 0.95) !important;
-		backdrop-filter: blur(20px) !important;
-		-webkit-backdrop-filter: blur(20px) !important;
+		background: #ffffff !important;
+		backdrop-filter: none !important;
+		-webkit-backdrop-filter: none !important;
 		width: 100% !important;
 		max-height: 0 !important;
 		overflow: hidden !important;
@@ -3131,6 +3131,14 @@ footer::before {
 		gap: 0 !important;
 		border-bottom: 1px solid rgba(255, 255, 255, 0.18) !important;
 	}
+
+	 body.menu-open::before {
+    	content: '';
+    	position: fixed;
+    	inset: 0;
+    	background: rgba(15, 23, 42, 0.55);
+    	z-index: 999;
+  	}
 
 	.nav-menu.active {
 		max-height: calc(100vh - 70px) !important;
