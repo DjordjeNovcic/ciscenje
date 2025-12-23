@@ -3083,6 +3083,10 @@ footer::before {
 		min-width: 44px;
 	}
 
+	.footer-section:first-child p {
+		max-width: none !important;
+	}
+
 	/* Navigation (Mobile) */
 	.hamburger {
 		display: flex !important;
