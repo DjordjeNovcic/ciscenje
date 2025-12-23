@@ -1637,11 +1637,6 @@ footer::before {
 	transform: none;
 }
 
-.footer-section i {
-	color: var(--primary-color);
-	margin-right: 0.5rem;
-}
-
 .social-links {
 	display: flex;
 	gap: 1rem;
@@ -1669,12 +1664,6 @@ footer::before {
 	border-color: var(--primary-color);
 	transform: translateY(-3px);
 	box-shadow: 0 6px 14px rgba(245, 158, 11, 0.25);
-}
-
-.social-links svg {
-	width: 24px;
-	height: 24px;
-	fill: currentColor;
 }
 
 .footer-bottom {
