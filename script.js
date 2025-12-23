@@ -269,6 +269,40 @@ function setupMobileNav() {
    }
 }
 
+function setupMobileNav() {
+   const hamburger = document.getElementById('hamburger');
+   const navMenu = document.getElementById('navMenu');
+
+   if (hamburger && navMenu) {
+      const newHamburger = hamburger.cloneNode(true);
+      hamburger.parentNode.replaceChild(newHamburger, hamburger);
+
+      newHamburger.addEventListener('click', function (e) {
+         e.stopPropagation();
+         navMenu.classList.toggle('active');
+         newHamburger.classList.toggle('active');
+         document.body.classList.toggle('menu-open');
+      });
+
+      document.addEventListener('click', function (e) {
+         if (!newHamburger.contains(e.target) && !navMenu.contains(e.target)) {
+            navMenu.classList.remove('active');
+            newHamburger.classList.remove('active');
+            document.body.classList.remove('menu-open');
+         }
+      });
+
+      const phoneLinks = navMenu.querySelectorAll('a[href^="tel:"]');
+      phoneLinks.forEach(link => {
+         link.addEventListener('click', () => {
+            navMenu.classList.remove('active');
+            newHamburger.classList.remove('active');
+            document.body.classList.remove('menu-open');
+         });
+      });
+   }
+}
+
 function loadPublicPageContent() {
    loadHomeContent();
    loadServices();
