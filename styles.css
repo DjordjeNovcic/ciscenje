@@ -372,7 +372,7 @@ textarea:focus-visible {
 	padding: 8px;
 	width: 40px;
 	height: 40px;
-	z-index: 1300;
+	z-index: 1001;
 	position: relative;
 }
 
@@ -3150,8 +3150,8 @@ footer::before {
 	/* Navigation (Mobile) */
 	.hamburger {
 		display: flex !important;
-  		order: 3;
-  		z-index: 1301; /* ← OVO JE KLJUČ */
+		order: 3;
+		z-index: 1001;
 	}
 
 	.landing-logo img {
@@ -3193,20 +3193,32 @@ footer::before {
 	/* Navigation (Mobile) */
 	.nav-menu {
 		position: fixed !important;
-		inset: 0 !important;
-		top: 64px !important;
-		height: calc(100dvh - 64px);
-		width: 100%;
-		background: #ffffff;
-		display: flex;
-		flex-direction: column;
-		overflow-y: auto;
-		-webkit-overflow-scrolling: touch;
-
-		transform: translateY(-100%);
-		transition: transform 0.35s ease;
-		z-index: 1200;
-		padding-bottom: 2rem;
+		left: 0 !important;
+		top: 64px !important; 
+		flex-direction: column !important;
+		background: #ffffff !important;
+		background-color: #ffffff !important;
+		backdrop-filter: none !important;
+		-webkit-backdrop-filter: none !important;
+		width: 100% !important;
+		max-height: 0 !important;
+		overflow: hidden;
+		transition: max-height 0.4s ease-in-out !important;
+		box-shadow: 0 10px 27px rgba(0, 0, 0, 0.1) !important;
+		z-index: 1000 !important;
+		padding: 0 !important;
+		margin: 0 !important;
+		gap: 0 !important;
+		border-bottom: 1px solid rgba(255, 255, 255, 0.18) !important;
+		border-bottom-left-radius: 20px;
+		border-top: 1px solid rgba(0, 0, 0, 0.06);
+		border-bottom-right-radius: 20px;
+		transform: translateY(-8px);
+		opacity: 0;
+		transition:
+      		max-height 0.4s ease,
+     	 	transform 0.35s ease,
+      		opacity 0.25s ease;
 	}
 
 	 body.menu-open::before {
@@ -3214,21 +3226,14 @@ footer::before {
     	position: fixed;
     	inset: 0;
     	background: rgba(15, 23, 42, 0.55);
-    	z-index: 1000;
+    	z-index: 999;
   	}
-
-	.navbar,
-	.hamburger {
-  		position: relative;
-  		isolation: isolate;
-	}
 
 	.nav-menu.active {
 		max-height: calc(100vh - 70px) !important;
 		padding: 1rem 0 !important;
 		overflow-y: auto !important;
 		-webkit-overflow-scrolling: touch !important;
-		transform: translateY(0);
 	}
 
 	.nav-menu li {
@@ -3295,11 +3300,6 @@ footer::before {
 		font-weight: 700;
 	}
 
-	body.menu-open {
-		overflow: hidden;
-		touch-action: none;
-	}
-
 	.nav-menu .lang-btn.active {
 		color: var(--primary-color) !important;
 		text-decoration: underline;
@@ -3346,11 +3346,6 @@ footer::before {
 
 	.landing-logo img {
 		width: clamp(100px, 11vw, 135px);
-	}
-
-	.nav-menu > li.language-switcher {
-		margin-top: auto;
-		padding-bottom: 2rem;
 	}
 
 	/* Cards & Components (Mobile) */
