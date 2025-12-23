@@ -3102,7 +3102,7 @@ footer::before {
 	.landing-section {
   		min-height: 100svh;
   		height: auto;
- 		padding-top: 5.5rem; 
+ 		padding-top: 4.5rem;
   		padding-bottom: 2.5rem;
 	}
 
@@ -3200,7 +3200,6 @@ footer::before {
 		background-color: #ffffff !important;
 		backdrop-filter: none !important;
 		-webkit-backdrop-filter: none !important;
-		height: 64px;
 		width: 100% !important;
 		max-height: 0 !important;
 		overflow: hidden;
@@ -3227,16 +3226,14 @@ footer::before {
     	position: fixed;
     	inset: 0;
     	background: rgba(15, 23, 42, 0.55);
-    	z-index: 900;
+    	z-index: 999;
   	}
 
 	.nav-menu.active {
 		max-height: calc(100vh - 70px) !important;
-		/* ← CHANGED from 500px */
 		padding: 1rem 0 !important;
 		overflow-y: auto !important;
 		-webkit-overflow-scrolling: touch !important;
-		/* ← ADDED for smooth iOS scrolling */
 	}
 
 	.nav-menu li {
@@ -3278,7 +3275,7 @@ footer::before {
 		gap: 1.5rem;
 		padding: 1.5rem 0;
 		margin: 0;
-		border-top: 2px solid var(--border-color);
+		border-top: 1px solid rgba(0,0,0,0.08);
 		background: #f8fafc;
 		margin-top: 0.75rem;
 	}
