@@ -3193,7 +3193,7 @@ footer::before {
 	}
 
 	.landing-logo img {
-		width: clamp(150px, 50vw, 210px);
+		width: clamp(100px, 11vw, 135px);
 	}
 
 	/* Cards & Components (Mobile) */
