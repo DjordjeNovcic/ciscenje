@@ -3090,8 +3090,8 @@ footer::before {
 	}
 
 	body.menu-open .landing-section {
-	    filter: blur(2px);
-    	transform: scale(0.985);
+	    filter: blur(1px);
+    	transform: scale(0.99);
     	transition: filter 0.3s ease, transform 0.3s ease;
   	}
 
@@ -3239,9 +3239,9 @@ footer::before {
 	}
 
 	.nav-menu a {
-		font-size: 1.05rem;
+		font-size: 1rem;
 		font-weight: 600;
-		padding: 1.1rem 2rem !important;
+		padding: 1rem 1.75rem;
 		display: block !important;
 		width: 100% !important;
 		border-bottom: 1px solid rgba(0, 0, 0, 0.05) !important;
@@ -3282,6 +3282,9 @@ footer::before {
 		align-items: center;
 		justify-content: center;
 		gap: 6px;
+		background: rgba(15, 23, 42, 0.05);
+		border-radius: 999px;
+		padding: 0.5rem 1.25rem;
 	}
 
 	.nav-menu .lang-btn {
@@ -3289,6 +3292,14 @@ footer::before {
 		font-size: 0.9rem;
 		min-width: 80px;
 		justify-content: center;
+		color: var(--text-dark) !important;
+		font-weight: 700;
+	}
+
+	.nav-menu .lang-btn.active {
+		color: var(--primary-color) !important;
+		text-decoration: underline;
+		text-underline-offset: 4px;
 	}
 
 	.nav-menu .lang-btn img {
@@ -3318,11 +3329,6 @@ footer::before {
 	.social-links svg {
 		width: 20px;
 		height: 20px;
-	}
-
-	/* Landing Section (Mobile) */
-	.landing-section {
-		height: 100vh;
 	}
 
 	.landing-content {
