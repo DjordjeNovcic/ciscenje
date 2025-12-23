@@ -450,6 +450,26 @@ textarea:focus-visible {
 	color: white;
 	max-width: 800px;
 	padding: 0 2rem;
+	transform: translateY(20px);
+}
+
+.landing-focus {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -45%);
+	width: 110%;
+	height: 85%;
+	background: radial-gradient(
+		ellipse at center,
+		rgba(15, 23, 42, 0.65) 0%,
+		rgba(15, 23, 42, 0.45) 40%,
+		rgba(15, 23, 42, 0.15) 65%,
+		transparent 80%
+	);
+	filter: blur(18px);
+	z-index: -1;
+	pointer-events: none;
 }
 
 .landing-logo {
@@ -544,10 +564,27 @@ textarea:focus-visible {
 .hero-buttons {
 	display: flex;
 	justify-content: center;
-	position: relative;
-	z-index: 1;
 	gap: 1.25rem;
-	flex-wrap: wrap;
+	margin-top: 2.5rem;
+}
+
+.hero-buttons .btn-primary {
+	padding: 1rem 2.4rem;
+	font-size: 1.05rem;
+	font-weight: 600;
+	box-shadow: 0 10px 26px rgba(245, 158, 11, 0.35);
+}
+
+.hero-buttons .btn-outline {
+	background: transparent;
+	border: 2px solid rgba(255, 255, 255, 0.45);
+	color: white;
+	box-shadow: none;
+}
+
+.hero-buttons .btn-outline:hover {
+	background: rgba(255, 255, 255, 0.08);
+	border-color: white;
 }
 
 .hero-bg {
