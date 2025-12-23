@@ -3158,7 +3158,7 @@ footer::before {
 		overflow: hidden;
 		transition: max-height 0.4s ease-in-out !important;
 		box-shadow: 0 10px 27px rgba(0, 0, 0, 0.1) !important;
-		z-index: 1000 !important;
+		z-index: calc(var(--z-menu-overlay) + 1) !important;
 		padding: 0 !important;
 		margin: 0 !important;
 		gap: 0 !important;
@@ -3180,6 +3180,7 @@ footer::before {
     	inset: 0;
     	background: rgba(15, 23, 42, 0.55);
     	z-index: var(--z-menu-overlay);
+		 
   	}
 
 	.nav-menu.active {
@@ -3395,6 +3396,10 @@ footer::before {
 		position: relative;
 	}
 
+	body.menu-open {
+		overflow: hidden;
+	}
+	
 	.admin-hamburger span {
 		width: 24px;
 		height: 3px;
