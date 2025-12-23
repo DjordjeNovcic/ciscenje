@@ -29,120 +29,120 @@ let aboutCache = null;
 let slideshowCache = null;
 
 async function initializeApp() {
-  await loadPartials(); // čeka header + footer
+   await loadPartials(); // čeka header + footer
 
-  if (document.getElementById('loginForm')) {
-    setupAdminLogin();
-  }
+   if (document.getElementById('loginForm')) {
+      setupAdminLogin();
+   }
 
-  if (document.getElementById('adminContent')) {
-    setupAdminDashboard();
-  }
+   if (document.getElementById('adminContent')) {
+      setupAdminDashboard();
+   }
 
-  setupSidebarNavigation();
-  setupThemeInputs();
-  setupLightboxOutsideClick();
+   setupSidebarNavigation();
+   setupThemeInputs();
+   setupLightboxOutsideClick();
 
-  loadPublicPageContent(); // PUNI SADRŽAJ TEK POSLE HEADERA
+   loadPublicPageContent(); // PUNI SADRŽAJ TEK POSLE HEADERA
 
-  removePageLoader(); // JEDINI način skidanja loadera
+   removePageLoader(); // JEDINI način skidanja loadera
 }
 
 
 function setupPhoneDropdown() {
-  const phoneTrigger = document.querySelector('.phone-trigger');
-  const phoneWrapper = document.querySelector('.phone-wrapper');
-  if (!phoneTrigger || !phoneWrapper) return;
+   const phoneTrigger = document.querySelector('.phone-trigger');
+   const phoneWrapper = document.querySelector('.phone-wrapper');
+   if (!phoneTrigger || !phoneWrapper) return;
 
-  phoneTrigger.addEventListener('click', function (e) {
-    if (window.innerWidth <= 768) {
-      e.preventDefault();
-      phoneWrapper.classList.toggle('active');
-    }
-  });
+   phoneTrigger.addEventListener('click', function (e) {
+      if (window.innerWidth <= 768) {
+         e.preventDefault();
+         phoneWrapper.classList.toggle('active');
+      }
+   });
 
-  document.addEventListener('click', function (e) {
-    if (window.innerWidth <= 768 && !phoneWrapper.contains(e.target)) {
-      phoneWrapper.classList.remove('active');
-    }
-  });
+   document.addEventListener('click', function (e) {
+      if (window.innerWidth <= 768 && !phoneWrapper.contains(e.target)) {
+         phoneWrapper.classList.remove('active');
+      }
+   });
 }
 
 
 function setupThemeInputs() {
-  const colorInputs = [
-    'primaryColor',
-    'primaryDark',
-    'secondaryColor',
-    'successColor',
-    'bgLight',
-    'textDark',
-    'textLight'
-  ];
+   const colorInputs = [
+      'primaryColor',
+      'primaryDark',
+      'secondaryColor',
+      'successColor',
+      'bgLight',
+      'textDark',
+      'textLight'
+   ];
 
-  colorInputs.forEach(id => {
-    const colorInput = document.getElementById(id);
-    const textInput = document.getElementById(id + 'Text');
+   colorInputs.forEach(id => {
+      const colorInput = document.getElementById(id);
+      const textInput = document.getElementById(id + 'Text');
 
-    if (colorInput && textInput) {
-      colorInput.addEventListener('input', e => {
-        textInput.value = e.target.value;
-      });
-    }
-  });
+      if (colorInput && textInput) {
+         colorInput.addEventListener('input', e => {
+            textInput.value = e.target.value;
+         });
+      }
+   });
 }
 
 
 function setupLightboxOutsideClick() {
-  const lightbox = document.getElementById('lightbox');
-  if (!lightbox) return;
+   const lightbox = document.getElementById('lightbox');
+   if (!lightbox) return;
 
-  lightbox.addEventListener('click', function (e) {
-    if (e.target === this) {
-      closeLightbox();
-    }
-  });
+   lightbox.addEventListener('click', function (e) {
+      if (e.target === this) {
+         closeLightbox();
+      }
+   });
 }
 
 function removePageLoader() {
-  document.body.classList.add('loaded');
+   document.body.classList.add('loaded');
 }
 
 // =====================
 // HEADER & FOOTER PARTIALS
 // =====================
 function loadPartials() {
-  const headerEl = document.getElementById('site-header');
-  const footerEl = document.getElementById('site-footer');
+   const headerEl = document.getElementById('site-header');
+   const footerEl = document.getElementById('site-footer');
 
-  const headerPromise = headerEl
-    ? fetch('partials/header.html')
-        .then(r => r.text())
-        .then(html => {
-          headerEl.innerHTML = html;
-          setupMobileNav();
-          setupPhoneDropdown();
-          setActiveNavLink();
-        })
-    : Promise.resolve();
+   const headerPromise = headerEl ?
+      fetch('partials/header.html')
+      .then(r => r.text())
+      .then(html => {
+         headerEl.innerHTML = html;
+         setupMobileNav();
+         setupPhoneDropdown();
+         setActiveNavLink();
+      }) :
+      Promise.resolve();
 
-  const footerPromise = footerEl
-    ? fetch('partials/footer.html')
-        .then(r => r.text())
-        .then(html => {
-          footerEl.innerHTML = html;
-          const yearEl = document.getElementById('currentYear');
-          if (yearEl) yearEl.textContent = new Date().getFullYear();
-        })
-    : Promise.resolve();
+   const footerPromise = footerEl ?
+      fetch('partials/footer.html')
+      .then(r => r.text())
+      .then(html => {
+         footerEl.innerHTML = html;
+         const yearEl = document.getElementById('currentYear');
+         if (yearEl) yearEl.textContent = new Date().getFullYear();
+      }) :
+      Promise.resolve();
 
-  // ⬅️ KLJUČ: VRATI PROMISE
-  return Promise.all([headerPromise, footerPromise]);
+   // ⬅️ KLJUČ: VRATI PROMISE
+   return Promise.all([headerPromise, footerPromise]);
 }
 
 
 function shouldLoadSection() {
-  return true;
+   return true;
 }
 
 function getCachedData(key) {
@@ -180,16 +180,16 @@ function getLocalizedField(item, field) {
 }
 
 function applyHeroBackgroundFromSlideshow() {
-  const landing = document.querySelector('.landing-section');
-  if (!landing) return;
+   const landing = document.querySelector('.landing-section');
+   if (!landing) return;
 
-  const cached = getCachedData('slideshow');
-  if (cached && cached.length > 0) {
-    landing.style.backgroundImage = `url('${cached[0]}')`;
-    landing.style.backgroundSize = 'cover';
-    landing.style.backgroundPosition = 'center';
-    landing.style.backgroundRepeat = 'no-repeat';
-  }
+   const cached = getCachedData('slideshow');
+   if (cached && cached.length > 0) {
+      landing.style.backgroundImage = `url('${cached[0]}')`;
+      landing.style.backgroundSize = 'cover';
+      landing.style.backgroundPosition = 'center';
+      landing.style.backgroundRepeat = 'no-repeat';
+   }
 }
 
 // Helper function to show loading spinner
@@ -597,7 +597,7 @@ function removeFeature(index) {
 
 function loadServices() {
    if (!shouldLoadSection('services')) return;
-   
+
    const servicesGrid = document.getElementById('servicesGrid');
    if (!servicesGrid) return;
 
@@ -614,7 +614,10 @@ function loadServices() {
    db.collection('services').get()
       .then(snapshot => {
          const services = [];
-         snapshot.forEach(doc => services.push({ id: doc.id, ...doc.data() }));
+         snapshot.forEach(doc => services.push({
+            id: doc.id,
+            ...doc.data()
+         }));
 
          // 2️⃣ upis u oba cache-a
          servicesCache = services;
@@ -818,8 +821,8 @@ function deleteService(serviceId) {
 // ============================================
 
 function loadAboutContent() {
-    if (!shouldLoadSection('about')) return;
-   
+   if (!shouldLoadSection('about')) return;
+
    const cached = getCachedData('about');
    if (cached) {
       aboutCache = cached;
@@ -1204,8 +1207,8 @@ function saveAboutContent() {
 // ============================================
 
 function loadTestimonials() {
-    if (!shouldLoadSection('testimonials')) return;
-   
+   if (!shouldLoadSection('testimonials')) return;
+
    const testimonialsGrid = document.getElementById('testimonialsGrid');
    if (!testimonialsGrid) return;
 
@@ -1229,7 +1232,10 @@ function loadTestimonials() {
       .then(snapshot => {
          const testimonials = [];
          snapshot.forEach(doc => {
-            testimonials.push({ id: doc.id, ...doc.data() });
+            testimonials.push({
+               id: doc.id,
+               ...doc.data()
+            });
          });
 
          testimonialsCache = testimonials;
@@ -1393,7 +1399,7 @@ function deleteTestimonial(testimonialId) {
 
 function loadGallery() {
    if (!shouldLoadSection('gallery')) return;
-   
+
    const galleryGrid = document.getElementById('galleryGrid');
    if (!galleryGrid) return;
 
@@ -1558,7 +1564,7 @@ function saveContact() {
 
 function loadAddOns() {
    if (!shouldLoadSection('addons')) return;
-   
+
    const addonsGrid = document.getElementById('addonsGrid');
    if (!addonsGrid) return;
 
@@ -1580,7 +1586,10 @@ function loadAddOns() {
    db.collection('addons').get()
       .then(snapshot => {
          const addons = [];
-         snapshot.forEach(doc => addons.push({ id: doc.id, ...doc.data() }));
+         snapshot.forEach(doc => addons.push({
+            id: doc.id,
+            ...doc.data()
+         }));
 
          addonsCache = addons;
          setCachedData('addons', addons); // ✅ OVO FALI
@@ -1771,6 +1780,9 @@ function loadSlideshowAdmin() {
 function deleteSlideshowImage(imageId) {
    if (confirm('Da li ste sigurni da želite da obrišete ovu sliku iz slideshow-a?')) {
       db.collection('slideshow').doc(imageId).delete().then(function () {
+         sessionStorage.removeItem('slideshow');
+         slideshowCache = null;
+
          loadSlideshowAdmin();
          alert('Slika je obrisana!');
       });
@@ -1814,6 +1826,9 @@ function setupSlideshowUpload() {
                            order: maxOrder + 1,
                            uploadedAt: firebase.firestore.FieldValue.serverTimestamp()
                         }).then(function () {
+                           sessionStorage.removeItem('slideshow');
+                           slideshowCache = null;
+
                            slideshowInput.value = '';
                            loadSlideshowAdmin();
                            alert('Slika je uspešno dodana u slideshow!');
@@ -2076,20 +2091,20 @@ function updateLightboxCounter() {
 }
 
 function setActiveNavLink() {
-  const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+   const currentPage = window.location.pathname.split('/').pop() || 'index.html';
 
-  document.querySelectorAll('.nav-menu a').forEach(link => {
-    const href = link.getAttribute('href');
+   document.querySelectorAll('.nav-menu a').forEach(link => {
+      const href = link.getAttribute('href');
 
-    if (!href) return;
+      if (!href) return;
 
-    if (href === currentPage) {
-      link.classList.add('active');
-    } else {
-      link.classList.remove('active');
-    }
-  });
-   
+      if (href === currentPage) {
+         link.classList.add('active');
+      } else {
+         link.classList.remove('active');
+      }
+   });
+
 }
 
 window.addEventListener('load', initializeApp);
