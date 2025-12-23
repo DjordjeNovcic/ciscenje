@@ -604,10 +604,9 @@ textarea:focus-visible {
   background:
     radial-gradient(
       ellipse at top center,
-      rgba(15, 23, 42, 0.45) 0%,
-      rgba(15, 23, 42, 0.25) 35%,
-      rgba(15, 23, 42, 0.10) 55%,
-      transparent 75%
+      rgba(245, 158, 11, 0.18) 0%,
+      rgba(245, 158, 11, 0.08) 35%,
+      transparent 70%
     ),
     linear-gradient(
       to bottom,
@@ -647,14 +646,14 @@ textarea:focus-visible {
 .page-hero h1 {
   font-size: clamp(2rem, 4vw, 3rem);
   font-weight: 800;
-  color: #f8fafc;
+  color: #ffffff;
   margin-bottom: 0.75rem;
   letter-spacing: -0.02em;
 }
 
 .page-hero p {
   font-size: clamp(1rem, 1.8vw, 1.25rem);
-  color: #cbd5f5;
+  color: rgba(255, 255, 255, 0.75);
   line-height: 1.6;
   margin: 0 auto;
   max-width: 560px;
