@@ -1563,6 +1563,29 @@ footer::before {
 	z-index: 1;
 }
 
+.footer-section:not(:last-child)::after {
+	content: '';
+	position: absolute;
+	top: 3%;
+	right: -1.5rem;
+
+	width: 1.5px;
+	height: 100%;
+
+	background: linear-gradient(
+		to bottom,
+		transparent,
+		rgba(255, 255, 255, 0.18),
+		rgba(255, 255, 255, 0.18),
+		transparent
+	);
+
+	box-shadow:
+		0 0 6px rgba(245, 158, 11, 0.25);
+
+	pointer-events: none;
+}
+
 .footer-content {
 	display: grid;
 	grid-template-columns: 2fr 1fr 1fr 1fr;
