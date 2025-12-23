@@ -1682,7 +1682,7 @@ footer::before {
 }
 
 .footer-phone a {
-	color: white;
+	color: var(--primary-color);
 	font-weight: 600;
 }
 
