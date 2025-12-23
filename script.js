@@ -232,7 +232,6 @@ function showEmptyState(containerId, message) {
       `;
 }
 
-
 function setupSidebarNavigation() {
    const navItems = document.querySelectorAll('.nav-item');
    const sections = document.querySelectorAll('.content-section');
@@ -259,55 +258,47 @@ function setupSidebarNavigation() {
 function setupMobileNav() {
    const hamburger = document.getElementById('hamburger');
    const navMenu = document.getElementById('navMenu');
-   if (hamburger && navMenu) {
-      const newHamburger = hamburger.cloneNode(true);
-      hamburger.parentNode.replaceChild(newHamburger, hamburger);
-      newHamburger.addEventListener('click', function (e) {
-         e.stopPropagation();
-         navMenu.classList.toggle('active');
-         newHamburger.classList.toggle('active');
-      });
-      document.addEventListener('click', function (e) {
-         if (!newHamburger.contains(e.target) && !navMenu.contains(e.target)) {
-            navMenu.classList.remove('active');
-            newHamburger.classList.remove('active');
-         }
-      });
-   }
-}
+   const phoneWrapper = document.querySelector('.phone-wrapper');
 
-function setupMobileNav() {
-   const hamburger = document.getElementById('hamburger');
-   const navMenu = document.getElementById('navMenu');
+   if (!hamburger || !navMenu) return;
 
-   if (hamburger && navMenu) {
-      const newHamburger = hamburger.cloneNode(true);
-      hamburger.parentNode.replaceChild(newHamburger, hamburger);
+  
+   const newHamburger = hamburger.cloneNode(true);
+   hamburger.parentNode.replaceChild(newHamburger, hamburger);
 
-      newHamburger.addEventListener('click', function (e) {
-         e.stopPropagation();
-         navMenu.classList.toggle('active');
-         newHamburger.classList.toggle('active');
-         document.body.classList.toggle('menu-open');
+   newHamburger.addEventListener('click', function (e) {
+      e.stopPropagation();
+
+     
+      phoneWrapper?.classList.remove('active');
+
+      const isOpen = navMenu.classList.toggle('active');
+      newHamburger.classList.toggle('active', isOpen);
+      document.body.classList.toggle('menu-open', isOpen);
+   });
+
+  
+   document.addEventListener('click', function (e) {
+      if (
+         !newHamburger.contains(e.target) &&
+         !navMenu.contains(e.target) &&
+         !phoneWrapper?.contains(e.target)
+      ) {
+         navMenu.classList.remove('active');
+         newHamburger.classList.remove('active');
+         phoneWrapper?.classList.remove('active');
+         document.body.classList.remove('menu-open');
+      }
+   });
+
+  
+   navMenu.querySelectorAll('a[href^="tel:"]').forEach(link => {
+      link.addEventListener('click', () => {
+         navMenu.classList.remove('active');
+         newHamburger.classList.remove('active');
+         document.body.classList.remove('menu-open');
       });
-
-      document.addEventListener('click', function (e) {
-         if (!newHamburger.contains(e.target) && !navMenu.contains(e.target)) {
-            navMenu.classList.remove('active');
-            newHamburger.classList.remove('active');
-            document.body.classList.remove('menu-open');
-         }
-      });
-
-      const phoneLinks = navMenu.querySelectorAll('a[href^="tel:"]');
-      phoneLinks.forEach(link => {
-         link.addEventListener('click', () => {
-            navMenu.classList.remove('active');
-            newHamburger.classList.remove('active');
-            document.body.classList.remove('menu-open');
-         });
-      });
-   }
+   });
 }
 
 function loadPublicPageContent() {
