@@ -2878,6 +2878,8 @@ footer::before {
       justify-content: center;
 	  pointer-events: auto;
    	  touch-action: manipulation;
+	  background: rgba(0, 0, 0, 0.55);
+   	  box-shadow: 0 6px 20px rgba(0,0,0,0.45);
   }
 
   .lightbox-nav:hover {
@@ -3791,11 +3793,11 @@ footer::before {
       }
 
       .lightbox-prev {
-          left: 10px;
+         left: calc(50% - 48vw);
       }
 
       .lightbox-next {
-          right: 10px;
+         left: calc(50% - 48vw);
       }
 
       .lightbox-counter {
