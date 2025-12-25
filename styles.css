@@ -3057,6 +3057,60 @@ footer::before {
 	background: white;
 }
 
+
+/* =====================================================
+     GO TO TOP BUTTON (MOBILE ONLY)
+===================================================== */
+
+.go-to-top {
+	position: fixed;
+	bottom: 20px;
+	right: 16px;
+
+	width: 44px;
+	height: 44px;
+	border-radius: 50%;
+
+	background: var(--primary-color);
+	color: white;
+	font-size: 20px;
+	font-weight: 700;
+
+	border: none;
+	cursor: pointer;
+
+	display: flex;
+	align-items: center;
+	justify-content: center;
+
+	box-shadow: 0 6px 16px rgba(0, 0, 0, 0.25);
+
+	opacity: 0;
+	pointer-events: none;
+	transform: translateY(10px);
+
+	transition:
+		opacity 0.3s ease,
+		transform 0.3s ease;
+
+	z-index: 9999;
+}
+
+/* Visible state */
+.go-to-top.visible {
+	opacity: 1;
+	pointer-events: auto;
+	transform: translateY(0);
+}
+
+/* Hide on desktop */
+@media (min-width: 769px) {
+	.go-to-top {
+		display: none;
+	}
+}
+
+
 /* =====================================================
      SECTION 5: MOBILE STYLES START (MAX-WIDTH: 768px)
 ===================================================== */
