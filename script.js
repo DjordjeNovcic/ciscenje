@@ -29,7 +29,7 @@ let aboutCache = null;
 let slideshowCache = null;
 
 async function initializeApp() {
-   await loadPartials(); // čeka header + footer
+   await loadPartials();
 
    if (document.getElementById('loginForm')) {
       setupAdminLogin();
@@ -43,9 +43,11 @@ async function initializeApp() {
    setupThemeInputs();
    setupLightboxOutsideClick();
 
-   loadPublicPageContent(); 
+   loadPublicPageContent();
 
-   removePageLoader(); 
+   deferBelowFoldLoads(); // ← DODATO, NE MENJA POSTOJEĆE
+
+   removePageLoader();
 }
 
 
@@ -302,25 +304,13 @@ function setupMobileNav() {
 }
 
 function loadPublicPageContent() {
-   if (document.querySelector('.landing-section')) {
-      loadHomeContent();
-      applyHeroBackgroundFromSlideshow();
-
-      lazyLoadSection('.services-preview', loadServices);
-      lazyLoadSection('.gallery-section', loadGallery);
-   }
-
-
-   if (document.querySelector('.about-content')) {
-      loadAboutContent();
-
-      lazyLoadSection('.testimonials', loadTestimonials);
-   }
-
-   if (document.querySelector('.services-section')) {
-      loadServices();
-      lazyLoadSection('.add-ons', loadAddOns);
-   }
+   loadHomeContent();
+   loadServices();
+   loadAboutContent();
+   loadTestimonials();
+   loadGallery();
+   loadAddOns();
+   applyHeroBackgroundFromSlideshow();
 }
 
 function updateFooterContent() {
@@ -2149,6 +2139,17 @@ function setActiveNavLink() {
       }
    });
 
+}
+
+function deferBelowFoldLoads() {
+   // testimonials
+   lazyLoadSection('.testimonials', loadTestimonials);
+
+   // gallery
+   lazyLoadSection('.gallery-section', loadGallery);
+
+   // addons
+   lazyLoadSection('.add-ons', loadAddOns);
 }
 
 function lazyLoadSection(sectionId, loadFn) {
