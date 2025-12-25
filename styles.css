@@ -691,8 +691,8 @@ textarea:focus-visible {
 
 .btn-primary:hover {
 	background: var(--primary-dark);
-	transform: translateY(-2px);
-	box-shadow: var(--shadow-md);
+	transform: translateY(-1px);
+	box-shadow: 0 6px 16px rgba(245, 158, 11, 0.25);
 }
 
 .btn-outline {
@@ -704,8 +704,8 @@ textarea:focus-visible {
 .btn-outline:hover {
 	background: var(--primary-color);
 	color: white;
-	transform: translateY(-2px);
-	box-shadow: var(--shadow-md);
+	transform: translateY(-1px);
+	box-shadow: none;
 }
 
 .btn-link {
@@ -730,6 +730,16 @@ textarea:focus-visible {
 
 .btn-icon:hover {
 	transform: scale(1.2);
+}
+
+@media (hover: hover) {
+   .service-card,
+   .addon-card,
+   .testimonial-card,
+   .feature-card,
+   .reason-card {
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+   }
 }
 
 /* ----------------------------------------------------
@@ -763,15 +773,14 @@ textarea:focus-visible {
 }
 
 .feature-card:hover {
-	transform: translateY(-8px);
-	box-shadow: 0 12px 35px rgba(245, 158, 11, 0.12);
+	transform: translateY(-3px);
+	box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
 	border-color: var(--primary-color);
 }
 
 .feature-icon {
 	margin-bottom: 1.5rem;
 	font-size: 3.5rem;
-	transition: transform 0.3s ease;
 }
 
 .feature-card h3 {
@@ -784,10 +793,6 @@ textarea:focus-visible {
 	color: var(--text-light);
 	line-height: 1.7;
 	font-size: 1rem;
-}
-
-.feature-card:hover .feature-icon {
-	transform: scale(1.1);
 }
 
 /* ----------------------------------------------------
@@ -839,8 +844,8 @@ textarea:focus-visible {
 }
 
 .service-card:hover {
-	transform: translateY(-4px);
-	box-shadow: 0 18px 40px rgba(0, 0, 0, 0.12);
+	transform: translateY(-3px);
+	box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
 	border-color: var(--primary-color);
 }
 
@@ -1013,9 +1018,9 @@ textarea:focus-visible {
 }
 
 .addon-card:hover {
-	transform: translateY(-8px);
+	transform: translateY(-3px);
 	background: white;
-	box-shadow: 0 12px 35px rgba(245, 158, 11, 0.15);
+	box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
 	border-color: var(--primary-color);
 }
 
@@ -1213,8 +1218,8 @@ textarea:focus-visible {
 }
 
 .stat-box:hover {
-	transform: translateY(-8px);
-	box-shadow: 0 12px 35px rgba(245, 158, 11, 0.15);
+	transform: translateY(-3px);
+	box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
 	border-color: var(--primary-color);
 }
 
@@ -1277,8 +1282,8 @@ textarea:focus-visible {
 }
 
 .reason-card:hover {
-	transform: translateY(-8px);
-	box-shadow: 0 12px 35px rgba(245, 158, 11, 0.12);
+	transform: translateY(-3px);
+	box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
 	border-color: var(--primary-color);
 }
 
@@ -1287,10 +1292,6 @@ textarea:focus-visible {
 	margin-bottom: 1.5rem;
 	display: inline-block;
 	transition: transform 0.3s ease;
-}
-
-.reason-card:hover .reason-icon {
-	transform: scale(1.1);
 }
 
 .reason-card h3 {
@@ -1446,8 +1447,8 @@ textarea:focus-visible {
 }
 
 .testimonial-card:hover {
-	transform: translateY(-10px);
-	box-shadow: 0 12px 40px rgba(245, 158, 11, 0.15);
+	transform: translateY(-3px);
+	box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
 	border-color: var(--primary-color);
 }
 
@@ -2869,6 +2870,7 @@ footer::before {
 	display: flex;
 	align-items: center;
 	justify-content: center;
+	opacity: 0.75;
 }
 
 .lightbox-nav:hover {
@@ -2895,6 +2897,11 @@ footer::before {
 	border-radius: 25px;
 	font-size: 16px;
 	font-weight: 600;
+}
+
+.lightbox:hover .lightbox-nav,
+.lightbox:active .lightbox-nav {
+   opacity: 1;
 }
 
 .gallery-item {
