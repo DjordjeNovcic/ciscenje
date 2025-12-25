@@ -40,6 +40,8 @@ async function initializeApp() {
    }
 
    setupSidebarNavigation();
+   setupMobileBackButton();
+
    setupThemeInputs();
    setupLightboxOutsideClick();
    setupGoToTopButton();
@@ -49,6 +51,26 @@ async function initializeApp() {
    deferBelowFoldLoads(); 
 
    removePageLoader();
+}
+
+function setupMobileBackButton() {
+   const btn = document.getElementById('mobileBackBtn');
+   if (!btn) return;
+
+   if (location.pathname.endsWith('index.html') || location.pathname === '/') {
+      btn.style.display = 'none';
+      return;
+   }
+
+   // Ako nema history-ja, nema ni back dugmeta
+   if (window.history.length <= 1) {
+      btn.style.display = 'none';
+      return;
+   }
+
+   btn.addEventListener('click', () => {
+      window.history.back();
+   });
 }
 
 
