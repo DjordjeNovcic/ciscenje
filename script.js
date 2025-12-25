@@ -29,7 +29,7 @@ let aboutCache = null;
 let slideshowCache = null;
 
 async function initializeApp() {
-   await loadPartials(); // čeka header + footer
+   await loadPartials(); 
 
    if (document.getElementById('loginForm')) {
       setupAdminLogin();
@@ -43,9 +43,27 @@ async function initializeApp() {
    setupThemeInputs();
    setupLightboxOutsideClick();
 
-   loadPublicPageContent(); // PUNI SADRŽAJ TEK POSLE HEADERA
+   loadPublicPageContent(); 
 
-   removePageLoader(); // JEDINI način skidanja loadera
+   removePageLoader(); 
+}
+
+function lazyLoadSection(sectionId, loadFn) {
+   const section = document.getElementById(sectionId);
+   if (!section) return;
+
+   const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+         if (entry.isIntersecting) {
+            loadFn();
+            observer.disconnect();
+         }
+      });
+   }, {
+      rootMargin: '200px'
+   });
+
+   observer.observe(section);
 }
 
 
@@ -302,14 +320,18 @@ function setupMobileNav() {
 }
 
 function loadPublicPageContent() {
+   // Critical path
    loadHomeContent();
-   loadServices();
-   loadAboutContent();
-   loadTestimonials();
-   loadGallery();
-   loadAddOns();
    applyHeroBackgroundFromSlideshow();
+
+   // Lazy sections
+   lazyLoadSection('services', loadServices);
+   lazyLoadSection('about', loadAboutContent);
+   lazyLoadSection('testimonials', loadTestimonials);
+   lazyLoadSection('gallery', loadGallery);
+   lazyLoadSection('addons', loadAddOns);
 }
+
 
 function updateFooterContent() {
    db.collection('contact').doc('info').get().then(function (doc) {
