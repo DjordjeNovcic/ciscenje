@@ -2251,3 +2251,44 @@ window.addEventListener('load', initializeApp);
 document.addEventListener('DOMContentLoaded', () => {
    initLightboxSwipe();
 });
+
+document.addEventListener('DOMContentLoaded', () => {
+   const headerOffset = 80; // visina navbara + luft
+
+   if (window.location.hash) {
+      const target = document.querySelector(window.location.hash);
+      if (target) {
+         setTimeout(() => {
+            const elementPosition = target.getBoundingClientRect().top;
+            const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+            window.scrollTo({
+               top: offsetPosition,
+               behavior: 'smooth'
+            });
+         }, 50);
+      }
+   }
+});
+
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+   anchor.addEventListener('click', function (e) {
+      const targetId = this.getAttribute('href');
+      const target = document.querySelector(targetId);
+
+      if (!target) return;
+
+      e.preventDefault();
+
+      const headerOffset = 80;
+      const elementPosition = target.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+      window.scrollTo({
+         top: offsetPosition,
+         behavior: 'smooth'
+      });
+
+      history.pushState(null, '', targetId);
+   });
+});
