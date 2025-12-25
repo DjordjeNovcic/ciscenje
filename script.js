@@ -2252,43 +2252,49 @@ document.addEventListener('DOMContentLoaded', () => {
    initLightboxSwipe();
 });
 
-document.addEventListener('DOMContentLoaded', () => {
-   const headerOffset = 80; // visina navbara + luft
 
-   if (window.location.hash) {
-      const target = document.querySelector(window.location.hash);
-      if (target) {
-         setTimeout(() => {
-            const elementPosition = target.getBoundingClientRect().top;
-            const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
 
-            window.scrollTo({
-               top: offsetPosition,
-               behavior: 'smooth'
-            });
-         }, 50);
-      }
-   }
-});
+function scrollToSectionWithRetry(targetId, offset = 80) {
+   const target = document.getElementById(targetId);
+   if (!target) return;
 
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-   anchor.addEventListener('click', function (e) {
-      const targetId = this.getAttribute('href');
-      const target = document.querySelector(targetId);
+   let attempts = 0;
+   const maxAttempts = 5;
 
-      if (!target) return;
-
-      e.preventDefault();
-
-      const headerOffset = 80;
-      const elementPosition = target.getBoundingClientRect().top;
-      const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+   const tryScroll = () => {
+      const rect = target.getBoundingClientRect();
+      const absoluteTop = rect.top + window.pageYOffset;
+      const finalTop = absoluteTop - offset;
 
       window.scrollTo({
-         top: offsetPosition,
+         top: finalTop,
          behavior: 'smooth'
       });
 
-      history.pushState(null, '', targetId);
+      attempts++;
+
+      // proveri da li je sekcija stvarno na mestu
+      setTimeout(() => {
+         const newRect = target.getBoundingClientRect();
+         if (Math.abs(newRect.top - offset) > 4 && attempts < maxAttempts) {
+            tryScroll();
+         }
+      }, 120);
+   };
+
+   tryScroll();
+}
+
+
+document.querySelectorAll('a[href="#cta-contact"]').forEach(link => {
+   link.addEventListener('click', e => {
+      e.preventDefault();
+
+      scrollToSectionWithRetry(
+         'cta-contact',
+         window.innerWidth <= 768 ? 72 : 88
+      );
+
+      history.pushState(null, '', '#cta-contact');
    });
 });
