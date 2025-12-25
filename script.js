@@ -320,7 +320,7 @@ function loadPublicPageContent() {
    if (document.querySelector('.services-section')) {
       loadServices();
       lazyLoadSection('.add-ons', loadAddOns);
-   }}
+   }
 }
 
 function updateFooterContent() {
