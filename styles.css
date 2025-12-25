@@ -2797,6 +2797,7 @@ footer::before {
       background: rgba(0, 0, 0, 0.95);
       z-index: 9999;
       animation: fadeIn 0.3s ease;
+	  touch-action: pan-y;
   }
 
   .lightbox.active {
@@ -2821,6 +2822,7 @@ footer::before {
       border-radius: 8px;
       box-shadow: 0 10px 50px rgba(0, 0, 0, 0.5);
       animation: zoomIn 0.3s ease;
+	  touch-action: pan-y;
   }
 
   @keyframes zoomIn {
@@ -2874,6 +2876,8 @@ footer::before {
       display: flex;
       align-items: center;
       justify-content: center;
+	  pointer-events: auto;
+   	  touch-action: manipulation;
   }
 
   .lightbox-nav:hover {
