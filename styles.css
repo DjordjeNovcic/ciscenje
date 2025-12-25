@@ -8,17 +8,17 @@
 }
 
 #page-loader {
-   position: fixed;
-  	inset: 0;
-  	background: #fff;
-  	z-index: 9999;
-  	opacity: 1;
-  	transition: opacity 0.3s ease;
+	position: fixed;
+	inset: 0;
+	background: #fff;
+	z-index: 9999;
+	opacity: 1;
+	transition: opacity 0.3s ease;
 }
 
 body.loaded #page-loader {
-    opacity: 0;
-  	pointer-events: none;
+	opacity: 0;
+	pointer-events: none;
 }
 
 :root {
@@ -165,9 +165,9 @@ textarea:focus-visible {
 }
 
 .phone-wrapper {
-  position: relative;
-  flex: 0 0 auto;
-  min-width: 180px;
+	position: relative;
+	flex: 0 0 auto;
+	min-width: 180px;
 }
 
 .phone-trigger {
@@ -443,13 +443,11 @@ textarea:focus-visible {
 	transform: translate(-50%, -45%);
 	width: 110%;
 	height: 85%;
-	background: radial-gradient(
-		ellipse at center,
-		rgba(15, 23, 42, 0.65) 0%,
-		rgba(15, 23, 42, 0.45) 40%,
-		rgba(15, 23, 42, 0.15) 65%,
-		transparent 80%
-	);
+	background: radial-gradient(ellipse at center,
+			rgba(15, 23, 42, 0.65) 0%,
+			rgba(15, 23, 42, 0.45) 40%,
+			rgba(15, 23, 42, 0.15) 65%,
+			transparent 80%);
 	filter: blur(18px);
 	z-index: -1;
 	pointer-events: none;
@@ -472,8 +470,7 @@ textarea:focus-visible {
 	object-fit: contain;
 	display: block;
 	filter:
-		drop-shadow(0 12px 28px rgba(0, 0, 0, 0.75))
-		drop-shadow(0 0 14px rgba(245, 158, 11, 0.45));
+		drop-shadow(0 12px 28px rgba(0, 0, 0, 0.75)) drop-shadow(0 0 14px rgba(245, 158, 11, 0.45));
 }
 
 .landing-title {
@@ -583,12 +580,10 @@ textarea:focus-visible {
 	position: absolute;
 	inset: 0;
 	background:
-		radial-gradient(
-			circle at center,
+		radial-gradient(circle at center,
 			rgba(15, 23, 42, 0.35) 0%,
 			rgba(15, 23, 42, 0.65) 45%,
-			rgba(15, 23, 42, 0.85) 100%
-		);
+			rgba(15, 23, 42, 0.85) 100%);
 	backdrop-filter: blur(3px);
 	z-index: 2;
 }
@@ -598,65 +593,59 @@ textarea:focus-visible {
 ---------------------------------------------------- */
 
 .page-hero {
-    position: relative;
-  padding: clamp(6rem, 9vw, 8rem) 0 clamp(3.5rem, 6vw, 4.5rem);
+	position: relative;
+	padding: clamp(6rem, 9vw, 8rem) 0 clamp(3.5rem, 6vw, 4.5rem);
 
-  background:
-    radial-gradient(
-      ellipse at top center,
-      rgba(245, 158, 11, 0.18) 0%,
-      rgba(245, 158, 11, 0.08) 35%,
-      transparent 70%
-    ),
-    linear-gradient(
-      to bottom,
-      #0f172a 0%,
-      #111827 100%
-    );
+	background:
+		radial-gradient(ellipse at top center,
+			rgba(245, 158, 11, 0.18) 0%,
+			rgba(245, 158, 11, 0.08) 35%,
+			transparent 70%),
+		linear-gradient(to bottom,
+			#0f172a 0%,
+			#111827 100%);
 
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-  text-align: center;
-  overflow: hidden;
+	border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+	text-align: center;
+	overflow: hidden;
 }
 
 .page-hero::after {
-  content: '';
-  position: absolute;
-  left: 50%;
-  bottom: -50px;
-  transform: translateX(-50%);
-  width: 85%;
-  height: 90px;
+	content: '';
+	position: absolute;
+	left: 50%;
+	bottom: -50px;
+	transform: translateX(-50%);
+	width: 85%;
+	height: 90px;
 
-  background: radial-gradient(
-    ellipse at center,
-    rgba(245, 158, 11, 0.30) 0%,
-    rgba(245, 158, 11, 0.12) 35%,
-    transparent 70%
-  );
+	background: radial-gradient(ellipse at center,
+			rgba(245, 158, 11, 0.30) 0%,
+			rgba(245, 158, 11, 0.12) 35%,
+			transparent 70%);
 
-  filter: blur(22px);
-  pointer-events: none;
+	filter: blur(22px);
+	pointer-events: none;
 }
 
 .page-hero .container {
-  max-width: 720px;
+	max-width: 720px;
 }
 
 .page-hero h1 {
-  font-size: clamp(2rem, 4vw, 3rem);
-  font-weight: 800;
-  color: #ffffff;
-  margin-bottom: 0.75rem;
-  letter-spacing: -0.02em;
+	font-size: clamp(2rem, 4vw, 3rem);
+	font-weight: 800;
+	color: #ffffff;
+	margin-bottom: 0.75rem;
+	letter-spacing: -0.02em;
 }
 
 .page-hero p {
-  font-size: clamp(1rem, 1.8vw, 1.25rem);
-  color: rgba(255, 255, 255, 0.75);
-  line-height: 1.6;
-  margin: 0 auto;
-  max-width: 560px;
+	font-size: clamp(1rem, 1.8vw, 1.25rem);
+	color: rgba(255, 255, 255, 0.75);
+	line-height: 1.6;
+	margin: 0 auto;
+	max-width: 560px;
 }
 
 
@@ -818,9 +807,9 @@ textarea:focus-visible {
 
 .services-grid {
 	display: grid;
-  	grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  	gap: 2rem;
-  	margin-top: 3rem;
+	grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+	gap: 2rem;
+	margin-top: 3rem;
 }
 
 .service-card {
@@ -851,7 +840,7 @@ textarea:focus-visible {
 
 .service-card:hover {
 	transform: translateY(-4px);
-	box-shadow: 0 18px 40px rgba(0,0,0,0.12);
+	box-shadow: 0 18px 40px rgba(0, 0, 0, 0.12);
 	border-color: var(--primary-color);
 }
 
@@ -863,7 +852,7 @@ textarea:focus-visible {
 	font-size: 1.35rem;
 	margin-bottom: 0.75rem;
 	color: var(--text-dark);
-	font-weight: 600; 
+	font-weight: 600;
 	text-align: center;
 	line-height: 1.3;
 }
@@ -876,7 +865,7 @@ textarea:focus-visible {
 	color: var(--text-dark);
 	letter-spacing: -1px;
 	margin: 0.75rem 0 0.75rem;
-	line-height: 1.2; 
+	line-height: 1.2;
 }
 
 .pricing-card .price-note {
@@ -887,44 +876,44 @@ textarea:focus-visible {
 }
 
 .pricing-card .service-features {
-  list-style: none;
-  padding: 0;
-  margin: 1rem 0 0;
+	list-style: none;
+	padding: 0;
+	margin: 1rem 0 0;
 }
 
 .pricing-card .service-features li::before {
-  content: '✓';
-  position: absolute;
-  left: 0;
-  top: 1.4em;   
-  transform: translateY(-50%);
-  color: var(--success-color);
-  font-weight: 700;
+	content: '✓';
+	position: absolute;
+	left: 0;
+	top: 1.4em;
+	transform: translateY(-50%);
+	color: var(--success-color);
+	font-weight: 700;
 }
 
 .pricing-card .service-features li {
-  padding: 0.5rem 0 0.5rem 1.75rem;
-  color: var(--text-dark);
-  position: relative;
-  line-height: 1.1;
+	padding: 0.5rem 0 0.5rem 1.75rem;
+	color: var(--text-dark);
+	position: relative;
+	line-height: 1.1;
 }
 
 .pricing-card .btn {
 	margin: 1.5rem auto 0;
-    padding: 0.75rem 1.75rem;
-    border-radius: 999px;
-    font-weight: 600;
-    font-size: 0.95rem;
-    background: transparent;
-    border: 2px solid var(--primary-color);
-    color: var(--primary-color);
-    cursor: pointer;
-    transition: all 0.25s ease;
+	padding: 0.75rem 1.75rem;
+	border-radius: 999px;
+	font-weight: 600;
+	font-size: 0.95rem;
+	background: transparent;
+	border: 2px solid var(--primary-color);
+	color: var(--primary-color);
+	cursor: pointer;
+	transition: all 0.25s ease;
 }
 
 .pricing-card .btn:hover {
-    background: var(--primary-color);
-    color: #fff;
+	background: var(--primary-color);
+	color: #fff;
 }
 
 .service-card .service-description {
@@ -936,7 +925,7 @@ textarea:focus-visible {
 
 .service-card .service-description ul,
 .service-card .service-description ol {
-	list-style: none;   
+	list-style: none;
 	margin: 1.25rem 0;
 	padding-left: 0;
 	margin-top: 0.75rem;
@@ -1077,16 +1066,15 @@ textarea:focus-visible {
 }
 
 .gallery-section {
-    padding: 3rem 0;
+	padding: 3rem 0;
 }
 
-.gallery-section p{
-   text-align: center;
-   color: var(--text-dark);
-   font-size: 1.6rem;
-   margin-bottom: 1.75rem;
+.gallery-section p {
+	text-align: center;
+	color: var(--text-dark);
+	font-size: 1.6rem;
+	margin-bottom: 1.75rem;
 }
-
 
 
 /* ---------------------------------------------------- 4.9 PRICING CARDS (DESKTOP) ---------------------------------------------------- */
@@ -1121,13 +1109,13 @@ textarea:focus-visible {
 
 .pricing-card.featured .btn {
 	background: var(--primary-color);
-    color: white;
-    border: 2px solid var(--primary-color);
+	color: white;
+	border: 2px solid var(--primary-color);
 }
 
 .pricing-card.featured .btn:hover {
-    background: var(--primary-dark);
-    border-color: var(--primary-dark);
+	background: var(--primary-dark);
+	border-color: var(--primary-dark);
 }
 
 .pricing-card h3 {
@@ -1265,11 +1253,11 @@ textarea:focus-visible {
 }
 
 .services-preview h2 {
-    text-align: center;
-    font-size: clamp(1.75rem, 3vw, 2.5rem);
-    margin-bottom: 3rem;
-    color: var(--text-dark);
-    font-weight: 700;
+	text-align: center;
+	font-size: clamp(1.75rem, 3vw, 2.5rem);
+	margin-bottom: 3rem;
+	color: var(--text-dark);
+	font-weight: 700;
 }
 
 .reasons-grid {
@@ -1563,12 +1551,12 @@ textarea:focus-visible {
      ---------------------------------------------------- */
 footer,
 .footer {
-  background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
-  color: white;
-  padding: 2rem 0 1rem;
-  position: relative;
-  overflow: hidden;
-  z-index: 10;
+	background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+	color: white;
+	padding: 2rem 0 1rem;
+	position: relative;
+	overflow: hidden;
+	z-index: 10;
 }
 
 footer::before {
@@ -1591,13 +1579,11 @@ footer::before {
 	width: 1.5px;
 	height: 100%;
 
-	background: linear-gradient(
-		to bottom,
-		transparent,
-		rgba(255, 255, 255, 0.18),
-		rgba(255, 255, 255, 0.18),
-		transparent
-	);
+	background: linear-gradient(to bottom,
+			transparent,
+			rgba(255, 255, 255, 0.18),
+			rgba(255, 255, 255, 0.18),
+			transparent);
 
 	box-shadow:
 		0 0 6px rgba(245, 158, 11, 0.25);
@@ -1835,7 +1821,7 @@ footer::before {
 	font-size: 2.5rem;
 	font-weight: 700;
 	margin-bottom: 0.5rem;
-	color: var(--text-dark); 
+	color: var(--text-dark);
 }
 
 .dashboard-subtitle {
@@ -2466,7 +2452,7 @@ footer::before {
 
 .modal-actions .btn {
 	flex: 1;
-	padding: 0.4rem 0.9rem; 
+	padding: 0.4rem 0.9rem;
 	font-size: 0.85rem;
 }
 
@@ -2603,11 +2589,11 @@ footer::before {
 	max-height: 140px;
 	line-height: 1.6;
 	font-size: 15px;
-  	color: var(--text-dark);
+	color: var(--text-dark);
 }
 
 .ql-container.ql-snow:focus-within {
-  border-color: var(--primary-color);
+	border-color: var(--primary-color);
 }
 
 .service-description ul,
@@ -2629,15 +2615,15 @@ footer::before {
 }
 
 .service-description h1 {
-  font-size: 1.4rem;
+	font-size: 1.4rem;
 }
 
 .service-description h2 {
-  font-size: 1.25rem;
+	font-size: 1.25rem;
 }
 
 .service-description h3 {
-  font-size: 1.1rem;
+	font-size: 1.1rem;
 }
 
 /* ----------------------------------------------------
@@ -2783,158 +2769,161 @@ footer::before {
 	transform: translateY(0);
 }
 
- /* ============================================
+/* ============================================
      IMAGE LIGHTBOX / PREVIEW MODE
      ============================================ */
 
-  .lightbox {
-      display: none;
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0, 0, 0, 0.95);
-      z-index: 9999;
-      animation: fadeIn 0.3s ease;
-	  touch-action: pan-y;
-  }
+.lightbox {
+	display: none;
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: rgba(0, 0, 0, 0.95);
+	z-index: 9999;
+	animation: fadeIn 0.3s ease;
+	touch-action: pan-y;
+}
 
-  .lightbox.active {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-  }
+.lightbox.active {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
 
-  .lightbox-content {
-      position: relative;
-      max-width: 90%;
-      max-height: 90vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-  }
+.lightbox-content {
+	position: relative;
+	max-width: 90%;
+	max-height: 90vh;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
 
-  .lightbox-image {
-      max-width: 100%;
-      max-height: 90vh;
-      object-fit: contain;
-      border-radius: 8px;
-      box-shadow: 0 10px 50px rgba(0, 0, 0, 0.5);
-      animation: zoomIn 0.3s ease;
-	  touch-action: pan-y;
-  }
+.lightbox-image {
+	max-width: 100%;
+	max-height: 90vh;
+	object-fit: contain;
+	border-radius: 8px;
+	box-shadow: 0 10px 50px rgba(0, 0, 0, 0.5);
+	animation: zoomIn 0.3s ease;
+	touch-action: pan-y;
+	position: relative;
+	z-index: 1;
+}
 
-  @keyframes zoomIn {
-      from {
-          opacity: 0;
-          transform: scale(0.8);
-      }
-      to {
-          opacity: 1;
-          transform: scale(1);
-      }
-  }
+@keyframes zoomIn {
+	from {
+		opacity: 0;
+		transform: scale(0.8);
+	}
 
-  .lightbox-close {
-      position: absolute;
-      top: 20px;
-      right: 30px;
-      font-size: 40px;
-      color: white;
-      background: none;
-      border: none;
-      cursor: pointer;
-      transition: transform 0.3s ease;
-      z-index: 10001;
-      width: 50px;
-      height: 50px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-  }
+	to {
+		opacity: 1;
+		transform: scale(1);
+	}
+}
 
-  .lightbox-close:hover {
-      transform: rotate(90deg);
-  }
+.lightbox-close {
+	position: absolute;
+	top: 20px;
+	right: 30px;
+	font-size: 40px;
+	color: white;
+	background: none;
+	border: none;
+	cursor: pointer;
+	transition: transform 0.3s ease;
+	z-index: 10001;
+	width: 50px;
+	height: 50px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
 
-  .lightbox-nav {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      background: rgba(255, 255, 255, 0.2);
-      backdrop-filter: blur(10px);
-      border: none;
-      color: white;
-      font-size: 30px;
-      padding: 20px;
-      cursor: pointer;
-      border-radius: 50%;
-      transition: all 0.3s ease;
-      width: 60px;
-      height: 60px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-	  pointer-events: auto;
-   	  touch-action: manipulation;
-	  background: rgba(0, 0, 0, 0.55);
-   	  box-shadow: 0 6px 20px rgba(0,0,0,0.45);
-  }
+.lightbox-close:hover {
+	transform: rotate(90deg);
+}
 
-  .lightbox-nav:hover {
-      background: rgba(255, 255, 255, 0.3);
-      transform: translateY(-50%) scale(1.1);
-  }
+.lightbox-nav {
+	position: absolute;
+	top: 50%;
+	transform: translateY(-50%);
 
-  .lightbox-prev {
-      left: 30px;
-  }
+	z-index: 10002;
+	pointer-events: auto;
 
-  .lightbox-next {
-      right: 30px;
-  }
+	background: rgba(0, 0, 0, 0.55);
+	backdrop-filter: blur(10px);
 
-  .lightbox-counter {
-      position: absolute;
-      bottom: 30px;
-      left: 50%;
-      transform: translateX(-50%);
-      background: rgba(0, 0, 0, 0.7);
-      color: white;
-      padding: 10px 20px;
-      border-radius: 25px;
-      font-size: 16px;
-      font-weight: 600;
-  }
+	border: none;
+	color: white;
+	font-size: 24px;
 
-  .gallery-item {
-      cursor: pointer;
-      position: relative;
-      overflow: hidden;
-  }
+	width: 44px;
+	height: 44px;
+	border-radius: 50%;
 
-  .gallery-item::after {
-      content: '🔍';
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%) scale(0);
-      font-size: 3rem;
-      opacity: 0;
-      transition: all 0.3s ease;
-      pointer-events: none;
-  }
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
 
-  .gallery-item:hover::after {
-      transform: translate(-50%, -50%) scale(1);
-      opacity: 1;
-  }
+.lightbox-nav:hover {
+	background: rgba(255, 255, 255, 0.3);
+	transform: translateY(-50%) scale(1.1);
+}
 
-  .gallery-item:hover img {
-      transform: scale(1.05);
-      transition: transform 0.3s ease;
-  }
+.lightbox-prev {
+	left: 30px;
+}
+
+.lightbox-next {
+	right: 30px;
+}
+
+.lightbox-counter {
+	position: absolute;
+	bottom: 30px;
+	left: 50%;
+	transform: translateX(-50%);
+	background: rgba(0, 0, 0, 0.7);
+	color: white;
+	padding: 10px 20px;
+	border-radius: 25px;
+	font-size: 16px;
+	font-weight: 600;
+}
+
+.gallery-item {
+	cursor: pointer;
+	position: relative;
+	overflow: hidden;
+}
+
+.gallery-item::after {
+	content: '🔍';
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%) scale(0);
+	font-size: 3rem;
+	opacity: 0;
+	transition: all 0.3s ease;
+	pointer-events: none;
+}
+
+.gallery-item:hover::after {
+	transform: translate(-50%, -50%) scale(1);
+	opacity: 1;
+}
+
+.gallery-item:hover img {
+	transform: scale(1.05);
+	transition: transform 0.3s ease;
+}
 
 .cta-contact {
 	padding: clamp(3.5rem, 6vw, 5rem) 1rem;
@@ -2945,7 +2934,7 @@ footer::before {
 	z-index: 10;
 }
 
-.cta-contact > .container {
+.cta-contact>.container {
 	position: relative;
 	z-index: 3;
 }
@@ -2967,13 +2956,11 @@ footer::before {
 	width: 90%;
 	height: 60px;
 
-	background: radial-gradient(
-		ellipse at center,
-		rgba(245, 158, 11, 0.95) 20%,
-		rgba(245, 158, 11, 0.65) 45%,
-		rgba(245, 158, 11, 0.30) 45%,
-		transparent 90%
-	);
+	background: radial-gradient(ellipse at center,
+			rgba(245, 158, 11, 0.95) 20%,
+			rgba(245, 158, 11, 0.65) 45%,
+			rgba(245, 158, 11, 0.30) 45%,
+			transparent 90%);
 
 	filter: blur(9.5px);
 	pointer-events: none;
@@ -2992,7 +2979,8 @@ footer::before {
 	max-width: 520px;
 	margin: 0 auto 2rem;
 	font-size: 1.05rem;
-	color: var(--text-light);;
+	color: var(--text-light);
+	;
 }
 
 
@@ -3000,44 +2988,43 @@ footer::before {
    CTA – SERVICES PAGE (SECONDARY)
 ---------------------------------------------------- */
 .cta-services {
-  padding: clamp(3rem, 5vw, 4rem) 1rem;
-  text-align: center;
-  border-top: 1px solid var(--border-color);
+	padding: clamp(3rem, 5vw, 4rem) 1rem;
+	text-align: center;
+	border-top: 1px solid var(--border-color);
 }
 
 .cta-services h2 {
-  font-size: clamp(1.5rem, 2.5vw, 2rem);
-  font-weight: 700;
-  margin-bottom: 0.5rem;
-  color: var(--text-dark);
+	font-size: clamp(1.5rem, 2.5vw, 2rem);
+	font-weight: 700;
+	margin-bottom: 0.5rem;
+	color: var(--text-dark);
 }
 
 .cta-services p {
-  color: var(--text-light);
-  margin-bottom: 1.75rem;
+	color: var(--text-light);
+	margin-bottom: 1.75rem;
 }
 
 /* ----------------------------------------------------
    CTA – ABOUT PAGE (SECONDARY)
 ---------------------------------------------------- */
 .cta-about {
-  padding: clamp(3rem, 5vw, 4rem) 1rem;
-  text-align: center;
+	padding: clamp(3rem, 5vw, 4rem) 1rem;
+	text-align: center;
 }
 
 .cta-about h2 {
-  font-size: clamp(1.6rem, 2.5vw, 2.1rem);
-  font-weight: 700;
-  margin-bottom: 0.5rem;
-  color: var(--text-dark);
+	font-size: clamp(1.6rem, 2.5vw, 2.1rem);
+	font-weight: 700;
+	margin-bottom: 0.5rem;
+	color: var(--text-dark);
 }
 
 .cta-about p {
-  max-width: 640px;
-  margin: 0 auto 1.75rem;
-  color: var(--text-light);
+	max-width: 640px;
+	margin: 0 auto 1.75rem;
+	color: var(--text-light);
 }
-
 
 
 /* Buttons wrapper */
@@ -3117,32 +3104,32 @@ footer::before {
 }
 
 .mobile-back-btn {
-   position: fixed;
-   top: 72px; 
-   left: 12px;
+	position: fixed;
+	top: 72px;
+	left: 12px;
 
-   background: rgba(15, 23, 42, 0.85);
-   color: white;
+	background: rgba(15, 23, 42, 0.85);
+	color: white;
 
-   border: none;
-   border-radius: 999px;
-   padding: 8px 14px;
+	border: none;
+	border-radius: 999px;
+	padding: 8px 14px;
 
-   font-size: 0.9rem;
-   font-weight: 600;
+	font-size: 0.9rem;
+	font-weight: 600;
 
-   display: none;
-   align-items: center;
-   gap: 6px;
+	display: none;
+	align-items: center;
+	gap: 6px;
 
-   z-index: 1100;
-   box-shadow: 0 6px 16px rgba(0,0,0,0.25);
+	z-index: 1100;
+	box-shadow: 0 6px 16px rgba(0, 0, 0, 0.25);
 }
 
 @media (max-width: 768px) {
-   .mobile-back-btn {
-      display: flex;
-   }
+	.mobile-back-btn {
+		display: flex;
+	}
 }
 
 
@@ -3174,67 +3161,67 @@ footer::before {
 	}
 
 	.nav-menu.active {
-    	transform: translateY(0);
-    	opacity: 1;
-  	}
+		transform: translateY(0);
+		opacity: 1;
+	}
 
 	.footer-section:first-child p {
 		max-width: none !important;
 	}
 
 	body.menu-open .landing-section {
-	    filter: blur(1px);
-    	transform: scale(0.99);
-    	transition: filter 0.3s ease, transform 0.3s ease;
-  	}
+		filter: blur(1px);
+		transform: scale(0.99);
+		transition: filter 0.3s ease, transform 0.3s ease;
+	}
 
 	.landing-section {
-  		min-height: 100svh;
-  		height: auto;
- 		padding-top: 4.5rem;
-  		padding-bottom: 2.5rem;
+		min-height: 100svh;
+		height: auto;
+		padding-top: 4.5rem;
+		padding-bottom: 2.5rem;
 	}
 
 	.landing-title {
 		font-size: clamp(1.9rem, 7vw, 2.4rem);
-   		line-height: 1.15;
-    	margin-bottom: 0.75rem;
+		line-height: 1.15;
+		margin-bottom: 0.75rem;
 		letter-spacing: -0.01em;
- 	 }
+	}
 
 	.landing-subtitle {
-    	font-size: 0.95rem;
-    	line-height: 1.55;
-    	margin-bottom: 1.5rem;
+		font-size: 0.95rem;
+		line-height: 1.55;
+		margin-bottom: 1.5rem;
 		opacity: 0.9;
 		max-width: 320px;
 		margin: 0 auto;
-  	}
+	}
 
 	.landing-buttons {
-    	margin-top: 1.75rem;
-    	gap: 0.75rem;
-  	}
+		margin-top: 1.75rem;
+		gap: 0.75rem;
+	}
 
-  	.landing-buttons .btn {
-    	padding: 0.85rem 1.25rem;
-    	font-size: 0.95rem;
-  	}
+	.landing-buttons .btn {
+		padding: 0.85rem 1.25rem;
+		font-size: 0.95rem;
+	}
 
 	.landing-buttons .btn-primary {
-   	 	width: 100%;
-    	padding: 1rem;
-    	font-size: 1rem;
-    	border-radius: 14px;
-  	}
+		width: 100%;
+		padding: 1rem;
+		font-size: 1rem;
+		border-radius: 14px;
+	}
 
-  	.landing-buttons .btn-outline {
-    	width: 100%;
-    	padding: 0.85rem;
-    	font-size: 0.95rem;
-    	border-radius: 14px;
-    	opacity: 0.9;
-  	}
+	.landing-buttons .btn-outline {
+		width: 100%;
+		padding: 0.85rem;
+		font-size: 0.95rem;
+		border-radius: 14px;
+		opacity: 0.9;
+	}
 
 	/* Navigation (Mobile) */
 	.hamburger {
@@ -3244,9 +3231,9 @@ footer::before {
 	}
 
 	.landing-logo img {
-    	width: 90px;
-    	margin-bottom: 1rem;
-  	}
+		width: 90px;
+		margin-bottom: 1rem;
+	}
 
 	.logo {
 		order: 1;
@@ -3261,10 +3248,10 @@ footer::before {
 	}
 
 	.phone-trigger {
-    	background: rgba(245, 158, 11, 0.15);
-    	padding: 0.45rem 0.75rem;
-    	border-radius: 999px;
-  	}
+		background: rgba(245, 158, 11, 0.15);
+		padding: 0.45rem 0.75rem;
+		border-radius: 999px;
+	}
 
 	.phone-dropdown {
 		display: none;
@@ -3275,15 +3262,15 @@ footer::before {
 	}
 
 	.navbar .container {
-    	padding: 0.75rem 1rem;
-    	min-height: 64px;
-  	}
+		padding: 0.75rem 1rem;
+		min-height: 64px;
+	}
 
 	/* Navigation (Mobile) */
 	.nav-menu {
 		position: fixed !important;
 		left: 0 !important;
-		top: 64px !important; 
+		top: 64px !important;
 		flex-direction: column !important;
 		background: #ffffff !important;
 		background-color: #ffffff !important;
@@ -3305,18 +3292,18 @@ footer::before {
 		transform: translateY(-8px);
 		opacity: 0;
 		transition:
-      		max-height 0.4s ease,
-     	 	transform 0.35s ease,
-      		opacity 0.25s ease;
+			max-height 0.4s ease,
+			transform 0.35s ease,
+			opacity 0.25s ease;
 	}
 
-	 body.menu-open::before {
-    	content: '';
-    	position: fixed;
-    	inset: 0;
-    	background: rgba(15, 23, 42, 0.55);
-    	z-index: 999;
-  	}
+	body.menu-open::before {
+		content: '';
+		position: fixed;
+		inset: 0;
+		background: rgba(15, 23, 42, 0.55);
+		z-index: 999;
+	}
 
 	.nav-menu.active {
 		max-height: calc(100vh - 70px) !important;
@@ -3343,9 +3330,9 @@ footer::before {
 		letter-spacing: 0.2px;
 	}
 
-	.nav-menu li + li a {
-    	border-top: none;
-  	}
+	.nav-menu li+li a {
+		border-top: none;
+	}
 
 	.nav-menu a::after {
 		display: none !important;
@@ -3364,7 +3351,7 @@ footer::before {
 		gap: 1.5rem;
 		padding: 1.5rem 0;
 		margin: 0;
-		border-top: 1px solid rgba(0,0,0,0.08);
+		border-top: 1px solid rgba(0, 0, 0, 0.08);
 		background: #f8fafc;
 		margin-top: 0.75rem;
 	}
@@ -3400,16 +3387,16 @@ footer::before {
 	}
 
 	.navbar {
-    	height: 64px;
+		height: 64px;
 		background: #0f172a;
-   	 	backdrop-filter: none;
-    	box-shadow: 0 2px 12px rgba(0, 0, 0, 0.35);
+		backdrop-filter: none;
+		box-shadow: 0 2px 12px rgba(0, 0, 0, 0.35);
 		z-index: 1100;
 		position: fixed;
 		top: 0;
 		left: 0;
 		right: 0;
-  	}
+	}
 
 	/* Social Links (Mobile) */
 	.social-links {
@@ -3777,34 +3764,34 @@ footer::before {
 		font-size: 1.2rem;
 	}
 
-	 .lightbox-close {
-          top: 10px;
-          right: 10px;
-          font-size: 30px;
-          width: 44px;
-          height: 44px;
-      }
+	.lightbox-close {
+		top: 10px;
+		right: 10px;
+		font-size: 30px;
+		width: 44px;
+		height: 44px;
+	}
 
-      .lightbox-nav {
-          width: 44px;
-          height: 44px;
-          font-size: 24px;
-          padding: 10px;
-      }
+	.lightbox-nav {
+		width: 44px;
+		height: 44px;
+		font-size: 24px;
+		padding: 10px;
+	}
 
-      .lightbox-prev {
-         left: calc(50% - 48vw);
-      }
+	.lightbox-prev {
+		left: calc(50% - 48vw);
+	}
 
-      .lightbox-next {
-         right: calc(50% - 48vw);
-      }
+	.lightbox-next {
+		right: calc(50% - 48vw);
+	}
 
-      .lightbox-counter {
-          bottom: 15px;
-          font-size: 14px;
-          padding: 8px 16px;
-      }
+	.lightbox-counter {
+		bottom: 15px;
+		font-size: 14px;
+		padding: 8px 16px;
+	}
 
 	/* Add-ons Grid (Mobile) */
 	.add-ons-grid,
