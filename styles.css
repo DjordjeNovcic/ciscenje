@@ -3780,11 +3780,11 @@ footer::before {
 	}
 
 	.lightbox-prev {
-		left: calc(50% - 48vw);
+		left: 12px;
 	}
 
 	.lightbox-next {
-		right: calc(50% - 48vw);
+		right: 12px;
 	}
 
 	.lightbox-counter {
