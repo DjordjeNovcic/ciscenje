@@ -2196,8 +2196,42 @@ function deferBelowFoldLoads() {
    lazyLoadSection('.add-ons', loadAddOns);
 }
 
-function lazyLoadSection(sectionId, loadFn) {
-   const section = document.getElementById(sectionId);
+function initLightboxSwipe() {
+   const lightbox = document.getElementById('lightbox');
+   if (!lightbox) return;
+
+   let startX = 0;
+   let endX = 0;
+   const SWIPE_THRESHOLD = 50; // px
+
+   lightbox.addEventListener('touchstart', (e) => {
+      if (e.touches.length !== 1) return;
+      startX = e.touches[0].clientX;
+   }, { passive: true });
+
+   lightbox.addEventListener('touchend', (e) => {
+      endX = e.changedTouches[0].clientX;
+      handleSwipe();
+   });
+
+   function handleSwipe() {
+      const diff = endX - startX;
+
+      if (Math.abs(diff) < SWIPE_THRESHOLD) return;
+
+      if (diff > 0) {
+         // swipe right → previous
+         navigateLightbox(-1);
+      } else {
+         // swipe left → next
+         navigateLightbox(1);
+      }
+   }
+}
+
+
+function lazyLoadSection(selector, loadFn) {
+   const section = document.querySelector(selector);
    if (!section) return;
 
    const observer = new IntersectionObserver(entries => {
@@ -2212,5 +2246,8 @@ function lazyLoadSection(sectionId, loadFn) {
    observer.observe(section);
 }
 
-
 window.addEventListener('load', initializeApp);
+
+document.addEventListener('DOMContentLoaded', () => {
+   initLightboxSwipe();
+});
