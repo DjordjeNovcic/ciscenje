@@ -3797,7 +3797,7 @@ footer::before {
       }
 
       .lightbox-next {
-         left: calc(50% - 48vw);
+         right: calc(50% - 48vw);
       }
 
       .lightbox-counter {
