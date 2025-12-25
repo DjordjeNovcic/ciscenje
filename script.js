@@ -43,9 +43,9 @@ async function initializeApp() {
    setupThemeInputs();
    setupLightboxOutsideClick();
 
-   loadPublicPageContent(); // PUNI SADRŽAJ TEK POSLE HEADERA
+   loadPublicPageContent(); 
 
-   removePageLoader(); // JEDINI način skidanja loadera
+   removePageLoader(); 
 }
 
 
@@ -302,13 +302,25 @@ function setupMobileNav() {
 }
 
 function loadPublicPageContent() {
-   loadHomeContent();
-   loadServices();
-   loadAboutContent();
-   loadTestimonials();
-   loadGallery();
-   loadAddOns();
-   applyHeroBackgroundFromSlideshow();
+   if (document.querySelector('.landing-section')) {
+      loadHomeContent();
+      applyHeroBackgroundFromSlideshow();
+
+      lazyLoadSection('.services-preview', loadServices);
+      lazyLoadSection('.gallery-section', loadGallery);
+   }
+
+
+   if (document.querySelector('.about-content')) {
+      loadAboutContent();
+
+      lazyLoadSection('.testimonials', loadTestimonials);
+   }
+
+   if (document.querySelector('.services-section')) {
+      loadServices();
+      lazyLoadSection('.add-ons', loadAddOns);
+   }}
 }
 
 function updateFooterContent() {
@@ -2138,5 +2150,22 @@ function setActiveNavLink() {
    });
 
 }
+
+function lazyLoadSection(sectionId, loadFn) {
+   const section = document.getElementById(sectionId);
+   if (!section) return;
+
+   const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+         if (entry.isIntersecting) {
+            loadFn();
+            observer.disconnect();
+         }
+      });
+   }, { rootMargin: '200px' });
+
+   observer.observe(section);
+}
+
 
 window.addEventListener('load', initializeApp);
