@@ -168,10 +168,10 @@ textarea:focus-visible {
 .phone-wrapper {
 	position: relative;
 	flex: 0 0 auto;
-	min-width: 180px;
 	display: flex;
 	align-items: center;
 	height: 44px;
+	min-width: max-content;
 }
 
 .phone-trigger {
@@ -220,6 +220,15 @@ textarea:focus-visible {
 	line-height: 1;
 	white-space: nowrap;
 }
+
+.phone-text,
+.phone-dropdown a,
+.phone-link {
+  white-space: nowrap;
+  word-break: keep-all;
+  overflow-wrap: normal;
+}
+
 
 .phone-trigger svg {
 	width: 24px;
