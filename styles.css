@@ -188,6 +188,23 @@ textarea:focus-visible {
 	height: 44px;
 }
 
+/* Phone dropdown arrow */
+.phone-arrow {
+	font-size: 0.85rem;
+	margin-left: 4px;
+	opacity: 0.75;
+	transition: transform 0.25s ease, opacity 0.25s ease;
+	pointer-events: none;
+}
+
+/* Desktop hover */
+@media (hover: hover) {
+	.phone-wrapper:hover .phone-arrow {
+		transform: rotate(180deg);
+		opacity: 1;
+	}
+}
+
 .desktop-only {
 	display: flex;
 }
