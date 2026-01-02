@@ -176,6 +176,7 @@ function loadPartials() {
          setupMobileNav();
          setupPhoneDropdown();
          setActiveNavLink();
+         setupLanguageSwitcher();
       }) :
       Promise.resolve();
 
@@ -2184,6 +2185,28 @@ function setActiveNavLink() {
    });
 
 }
+
+function setupLanguageSwitcher() {
+   const langButtons = document.querySelectorAll('.lang-btn');
+
+   langButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+         const lang = btn.dataset.lang;
+         if (!lang) return;
+
+         // 1️⃣ set language
+         localStorage.setItem('language', lang);
+
+         // 2️⃣ update active state
+         langButtons.forEach(b => b.classList.remove('active'));
+         btn.classList.add('active');
+
+         // 3️⃣ reload public content
+         loadPublicPageContent();
+      });
+   });
+}
+
 
 function deferBelowFoldLoads() {
    // testimonials
