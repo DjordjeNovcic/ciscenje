@@ -48,7 +48,7 @@ async function initializeApp() {
 
    loadPublicPageContent();
 
-   deferBelowFoldLoads(); 
+   deferBelowFoldLoads();
 
    removePageLoader();
    handleDeferredScroll();
@@ -106,21 +106,27 @@ function setupPhoneDropdown() {
 
    phoneTrigger.addEventListener('click', function (e) {
       if (window.innerWidth <= 768) {
+         e.stopPropagation();
+
+         // zatvori hamburger meni ako je otvoren
          if (navMenu?.classList.contains('active')) {
             navMenu.classList.remove('active');
             hamburger?.classList.remove('active');
             document.body.classList.remove('menu-open');
          }
 
-         phoneWrapper.classList.toggle('active');
+         const isOpen = phoneWrapper.classList.toggle('active');
+         document.body.classList.toggle('phone-open', isOpen);
       }
    });
 
    document.addEventListener('click', function (e) {
       if (window.innerWidth <= 768 && !phoneWrapper.contains(e.target)) {
          phoneWrapper.classList.remove('active');
+         document.body.classList.remove('phone-open');
       }
    });
+
 }
 
 function setupThemeInputs() {
@@ -310,14 +316,14 @@ function setupMobileNav() {
 
    if (!hamburger || !navMenu) return;
 
-  
+
    const newHamburger = hamburger.cloneNode(true);
    hamburger.parentNode.replaceChild(newHamburger, hamburger);
 
    newHamburger.addEventListener('click', function (e) {
       e.stopPropagation();
 
-     
+
       phoneWrapper?.classList.remove('active');
 
       const isOpen = navMenu.classList.toggle('active');
@@ -325,7 +331,7 @@ function setupMobileNav() {
       document.body.classList.toggle('menu-open', isOpen);
    });
 
-  
+
    document.addEventListener('click', function (e) {
       if (
          !newHamburger.contains(e.target) &&
@@ -339,7 +345,7 @@ function setupMobileNav() {
       }
    });
 
-  
+
    navMenu.querySelectorAll('a[href^="tel:"]').forEach(link => {
       link.addEventListener('click', () => {
          navMenu.classList.remove('active');
@@ -2224,7 +2230,9 @@ function initLightboxSwipe() {
    lightbox.addEventListener('touchstart', (e) => {
       if (e.touches.length !== 1) return;
       startX = e.touches[0].clientX;
-   }, { passive: true });
+   }, {
+      passive: true
+   });
 
    lightbox.addEventListener('touchend', (e) => {
       endX = e.changedTouches[0].clientX;
@@ -2272,7 +2280,6 @@ function handleDeferredScroll() {
 }
 
 
-
 function lazyLoadSection(selector, loadFn) {
    const section = document.querySelector(selector);
    if (!section) return;
@@ -2284,7 +2291,9 @@ function lazyLoadSection(selector, loadFn) {
             observer.disconnect();
          }
       });
-   }, { rootMargin: '200px' });
+   }, {
+      rootMargin: '200px'
+   });
 
    observer.observe(section);
 }
