@@ -3175,6 +3175,11 @@ body.menu-open .mobile-back-btn {
 	display: none !important;
 }
 
+/* Hide mobile back button when phone dropdown is open */
+body.phone-open .mobile-back-btn {
+	display: none !important;
+}
+
 @media (max-width: 768px) {
 	.mobile-back-btn {
 		display: flex;
