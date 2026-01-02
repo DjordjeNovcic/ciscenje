@@ -168,6 +168,9 @@ textarea:focus-visible {
 	position: relative;
 	flex: 0 0 auto;
 	min-width: 180px;
+	display: flex;
+	align-items: center;
+	height: 44px;
 }
 
 .phone-trigger {
@@ -181,7 +184,7 @@ textarea:focus-visible {
 	color: var(--primary-color);
 	padding: 0;
 	line-height: 1;
-	height: auto;
+	height: 44px;
 }
 
 .desktop-only {
@@ -321,6 +324,7 @@ textarea:focus-visible {
 	align-items: center;
 	gap: 0.75rem;
 	margin-left: 2rem;
+	height: 44px;
 }
 
 .lang-btn {
@@ -332,6 +336,11 @@ textarea:focus-visible {
 	color: rgba(255, 255, 255, 0.7);
 	cursor: pointer;
 	transition: color 0.25s ease;
+	display: flex;
+	align-items: center;
+	gap: 6px;
+	height: 44px;
+	line-height: 1;
 }
 
 .lang-btn img {
