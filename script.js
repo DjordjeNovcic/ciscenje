@@ -51,6 +51,7 @@ async function initializeApp() {
    deferBelowFoldLoads(); 
 
    removePageLoader();
+   handleDeferredScroll();
 }
 
 function setupMobileBackButton() {
@@ -2244,6 +2245,32 @@ function initLightboxSwipe() {
       }
    }
 }
+
+function handleDeferredScroll() {
+   const params = new URLSearchParams(window.location.search);
+   const targetId = params.get('scroll');
+   if (!targetId) return;
+
+   const tryScroll = () => {
+      const el = document.getElementById(targetId);
+      if (!el) {
+         setTimeout(tryScroll, 100);
+         return;
+      }
+
+      const headerOffset = 80; // fixed navbar height
+      const elementPosition = el.getBoundingClientRect().top + window.pageYOffset;
+      const offsetPosition = elementPosition - headerOffset;
+
+      window.scrollTo({
+         top: offsetPosition,
+         behavior: 'smooth'
+      });
+   };
+
+   tryScroll();
+}
+
 
 
 function lazyLoadSection(selector, loadFn) {
