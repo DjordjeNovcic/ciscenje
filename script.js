@@ -763,7 +763,7 @@ function renderServices(services) {
          });
 
       const ctaBtn = document.createElement('a');
-      ctaBtn.href = 'index.html#cta-contact';
+      ctaBtn.href = 'index.html?scroll=cta-contact';
       ctaBtn.className = 'btn';
       ctaBtn.textContent =
          getCurrentLanguage() === 'en' ?
