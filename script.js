@@ -2194,15 +2194,8 @@ function setupLanguageSwitcher() {
          const lang = btn.dataset.lang;
          if (!lang) return;
 
-         // 1️⃣ set language
          localStorage.setItem('language', lang);
-
-         // 2️⃣ update active state
-         langButtons.forEach(b => b.classList.remove('active'));
-         btn.classList.add('active');
-
-         // 3️⃣ reload public content
-         loadPublicPageContent();
+         window.location.reload();
       });
    });
 }
