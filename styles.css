@@ -1,6 +1,6 @@
 /* =====================================================
-     SECTION 1: RESET & CSS VARIABLES
-     ===================================================== */
+SECTION 1: RESET & CSS VARIABLES
+===================================================== */
 * {
 	margin: 0;
 	padding: 0;
@@ -21,44 +21,37 @@ body.loaded #page-loader {
 	pointer-events: none;
 }
 
-
 :root {
 	/* Primary Colors */
 	--primary-color: #f59e0b;
 	--primary-dark: #ea580c;
 	--secondary-color: #2d2d2d;
-
 	/* Status Colors */
 	--success-color: #10b981;
 	--warning-color: #f97316;
 	--danger-color: #ef4444;
-
 	/* Text Colors */
 	--text-dark: #1f2937;
 	--text-light: #6b7280;
-
 	/* Border & Background Colors */
 	--border-color: #e5e7eb;
 	--bg-light: #fffbeb;
 	--bg-white: #ffffff;
-
 	/* Shadows */
 	--shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
 	--shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
 	--shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-
 	/* Gradients & Effects */
 	--primary-gradient: linear-gradient(135deg, #f59e0b 0%, #ea580c 100%);
 	--card-hover-shadow: 0 12px 40px rgba(245, 158, 11, 0.25);
-
 	/* NEW – overlays */
 	--overlay-light: rgba(255, 255, 255, 0.95);
 	--overlay-dark: rgba(15, 23, 42, 0.85);
 }
 
 /* =====================================================
-     SECTION 2: BASE STYLES (GLOBAL)
-     ===================================================== */
+SECTION 2: BASE STYLES (GLOBAL)
+===================================================== */
 html {
 	scroll-behavior: smooth;
 }
@@ -69,7 +62,6 @@ body {
 	color: var(--text-dark);
 	background-color: var(--bg-white);
 }
-
 
 @keyframes pageLoad {
 	from {
@@ -88,8 +80,8 @@ body {
 }
 
 /* =====================================================
-     SECTION 3: ACCESSIBILITY
-     ===================================================== */
+SECTION 3: ACCESSIBILITY
+===================================================== */
 a:focus-visible,
 button:focus-visible,
 input:focus-visible,
@@ -127,20 +119,17 @@ textarea:focus-visible {
 }
 
 /* =====================================================
-     SECTION 4: DESKTOP STYLES START
-     ===================================================== */
-
+SECTION 4: DESKTOP STYLES START
+===================================================== */
 /* ----------------------------------------------------
-     4.1 NAVIGATION - GLASSMORPHISM (DESKTOP)
-     ---------------------------------------------------- */
+4.1 NAVIGATION - GLASSMORPHISM (DESKTOP)
+---------------------------------------------------- */
 .navbar {
 	background: rgba(15, 23, 42, 0.55);
 	backdrop-filter: blur(12px);
 	-webkit-backdrop-filter: blur(12px);
-
 	border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 	box-shadow: none;
-
 	position: fixed;
 	top: 0;
 	left: 0;
@@ -224,11 +213,10 @@ textarea:focus-visible {
 .phone-text,
 .phone-dropdown a,
 .phone-link {
-  white-space: nowrap;
-  word-break: keep-all;
-  overflow-wrap: normal;
+	white-space: nowrap;
+	word-break: keep-all;
+	overflow-wrap: normal;
 }
-
 
 .phone-trigger svg {
 	width: 24px;
@@ -255,7 +243,6 @@ textarea:focus-visible {
 	display: flex;
 	align-items: center;
 	gap: 0.5rem;
-
 	padding: 0.75rem 1rem;
 	text-decoration: none;
 	color: var(--text-dark);
@@ -267,7 +254,7 @@ textarea:focus-visible {
 	color: var(--primary-dark);
 }
 
-.phone-dropdown a + a {
+.phone-dropdown a+a {
 	border-top: 1px solid rgba(0, 0, 0, 0.05);
 }
 
@@ -458,8 +445,8 @@ textarea:focus-visible {
 }
 
 /* ----------------------------------------------------
-     4.2 LANDING SECTION WITH SLIDESHOW (DESKTOP)
-     ---------------------------------------------------- */
+4.2 LANDING SECTION WITH SLIDESHOW (DESKTOP)
+---------------------------------------------------- */
 .landing-section {
 	position: relative;
 	width: 100%;
@@ -549,8 +536,8 @@ textarea:focus-visible {
 }
 
 /* ----------------------------------------------------
-     4.3 HERO SECTION (DESKTOP)
-     ---------------------------------------------------- */
+4.3 HERO SECTION (DESKTOP)
+---------------------------------------------------- */
 .hero {
 	color: #1f2937;
 	padding: clamp(4rem, 8vw, 4rem) 0;
@@ -633,13 +620,11 @@ textarea:focus-visible {
 }
 
 /* ----------------------------------------------------
-   PAGE HERO – CLEAN (ABOUT & SERVICES, NO IMAGE)
+PAGE HERO – CLEAN (ABOUT & SERVICES, NO IMAGE)
 ---------------------------------------------------- */
-
 .page-hero {
 	position: relative;
 	padding: clamp(6rem, 9vw, 8rem) 0 clamp(3.5rem, 6vw, 4.5rem);
-
 	background:
 		radial-gradient(ellipse at top center,
 			rgba(245, 158, 11, 0.18) 0%,
@@ -648,7 +633,6 @@ textarea:focus-visible {
 		linear-gradient(to bottom,
 			#0f172a 0%,
 			#111827 100%);
-
 	border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 	text-align: center;
 	overflow: hidden;
@@ -662,12 +646,10 @@ textarea:focus-visible {
 	transform: translateX(-50%);
 	width: 85%;
 	height: 90px;
-
 	background: radial-gradient(ellipse at center,
 			rgba(245, 158, 11, 0.30) 0%,
 			rgba(245, 158, 11, 0.12) 35%,
 			transparent 70%);
-
 	filter: blur(22px);
 	pointer-events: none;
 }
@@ -692,10 +674,9 @@ textarea:focus-visible {
 	max-width: 560px;
 }
 
-
 /* ----------------------------------------------------
-     4.5 BUTTONS (DESKTOP)
-     ---------------------------------------------------- */
+4.5 BUTTONS (DESKTOP)
+---------------------------------------------------- */
 .btn {
 	display: inline-block;
 	padding: 0.75rem 1.5rem;
@@ -749,7 +730,6 @@ textarea:focus-visible {
 	background: rgba(245, 158, 11, 0.12);
 	color: var(--primary-color);
 	border-color: var(--primary-color);
-
 	transform: translateY(-1px);
 	box-shadow: 0 6px 16px rgba(245, 158, 11, 0.25);
 }
@@ -779,18 +759,19 @@ textarea:focus-visible {
 }
 
 @media (hover: hover) {
-   .service-card,
-   .addon-card,
-   .testimonial-card,
-   .feature-card,
-   .reason-card {
-      transition: transform 0.25s ease, box-shadow 0.25s ease;
-   }
+
+	.service-card,
+	.addon-card,
+	.testimonial-card,
+	.feature-card,
+	.reason-card {
+		transition: transform 0.25s ease, box-shadow 0.25s ease;
+	}
 }
 
 /* ----------------------------------------------------
-     4.6 FEATURES SECTION (DESKTOP)
-     ---------------------------------------------------- */
+4.6 FEATURES SECTION (DESKTOP)
+---------------------------------------------------- */
 .features {
 	padding: 3rem 0;
 	background: var(--bg-white);
@@ -842,8 +823,8 @@ textarea:focus-visible {
 }
 
 /* ----------------------------------------------------
-     4.7 SERVICES SECTION - MODERN & PREMIUM (DESKTOP)
-     ---------------------------------------------------- */
+4.7 SERVICES SECTION - MODERN & PREMIUM (DESKTOP)
+---------------------------------------------------- */
 .services-section {
 	padding: 5rem 0;
 }
@@ -1006,8 +987,8 @@ textarea:focus-visible {
 }
 
 /* ----------------------------------------------------
-     4.8 ADD-ONS SECTION - MATCHING PREMIUM STYLE (DESKTOP)
-     ---------------------------------------------------- */
+4.8 ADD-ONS SECTION - MATCHING PREMIUM STYLE (DESKTOP)
+---------------------------------------------------- */
 .add-ons,
 .addons-section {
 	padding: 5rem 0;
@@ -1127,7 +1108,6 @@ textarea:focus-visible {
 	margin-bottom: 1.75rem;
 }
 
-
 /* ---------------------------------------------------- 4.9 PRICING CARDS (DESKTOP) ---------------------------------------------------- */
 .pricing-grid {
 	display: grid;
@@ -1202,8 +1182,8 @@ textarea:focus-visible {
 }
 
 /* ----------------------------------------------------
-     4.10 ABOUT PAGE - MODERN REDESIGN (DESKTOP)
-     ---------------------------------------------------- */
+4.10 ABOUT PAGE - MODERN REDESIGN (DESKTOP)
+---------------------------------------------------- */
 .about-content {
 	padding: 5rem 0;
 }
@@ -1388,8 +1368,8 @@ textarea:focus-visible {
 }
 
 /* ----------------------------------------------------
-     4.11 VALUES SECTION (DESKTOP)
-     ---------------------------------------------------- */
+4.11 VALUES SECTION (DESKTOP)
+---------------------------------------------------- */
 .values {
 	padding: 5rem 0;
 }
@@ -1426,8 +1406,8 @@ textarea:focus-visible {
 }
 
 /* ----------------------------------------------------
-     4.12 TESTIMONIALS - MODERN & PREMIUM (DESKTOP)
-     ---------------------------------------------------- */
+4.12 TESTIMONIALS - MODERN & PREMIUM (DESKTOP)
+---------------------------------------------------- */
 .testimonials {
 	padding: 5rem 0;
 	position: relative;
@@ -1594,8 +1574,8 @@ textarea:focus-visible {
 }
 
 /* ----------------------------------------------------
-     4.13 FOOTER - MODERN (DESKTOP)
-     ---------------------------------------------------- */
+4.13 FOOTER - MODERN (DESKTOP)
+---------------------------------------------------- */
 footer,
 .footer {
 	background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
@@ -1622,19 +1602,15 @@ footer::before {
 	position: absolute;
 	top: 3%;
 	right: -1.5rem;
-
 	width: 1.5px;
 	height: 100%;
-
 	background: linear-gradient(to bottom,
 			transparent,
 			rgba(255, 255, 255, 0.18),
 			rgba(255, 255, 255, 0.18),
 			transparent);
-
 	box-shadow:
 		0 0 6px rgba(245, 158, 11, 0.25);
-
 	pointer-events: none;
 }
 
@@ -1717,11 +1693,10 @@ footer::before {
 
 .social-links a:hover {
 	background: rgba(255, 255, 255, 0.15);
-   	border-color: var(--primary-color);
-   	color: var(--primary-color);
-
-   transform: translateY(-3px);
-   box-shadow: 0 6px 14px rgba(245, 158, 11, 0.25);
+	border-color: var(--primary-color);
+	color: var(--primary-color);
+	transform: translateY(-3px);
+	box-shadow: 0 6px 14px rgba(245, 158, 11, 0.25);
 }
 
 .footer-bottom {
@@ -1747,8 +1722,8 @@ footer::before {
 }
 
 /* ----------------------------------------------------
-     4.14 ADMIN DASHBOARD (DESKTOP)
-     ---------------------------------------------------- */
+4.14 ADMIN DASHBOARD (DESKTOP)
+---------------------------------------------------- */
 .admin-layout {
 	display: flex;
 	min-height: 100vh;
@@ -2283,8 +2258,8 @@ footer::before {
 }
 
 /* ----------------------------------------------------
-     4.17 ADMIN LOGIN PAGE (DESKTOP)
-     ---------------------------------------------------- */
+4.17 ADMIN LOGIN PAGE (DESKTOP)
+---------------------------------------------------- */
 .login-container {
 	min-height: 100vh;
 	display: flex;
@@ -2368,8 +2343,8 @@ footer::before {
 }
 
 /* ----------------------------------------------------
-     4.18 MODALS (DESKTOP)
-     ---------------------------------------------------- */
+4.18 MODALS (DESKTOP)
+---------------------------------------------------- */
 .modal {
 	display: none;
 	position: fixed;
@@ -2506,8 +2481,8 @@ footer::before {
 }
 
 /* ----------------------------------------------------
-     4.19 DATA TABLE (DESKTOP)
-     ---------------------------------------------------- */
+4.19 DATA TABLE (DESKTOP)
+---------------------------------------------------- */
 .table-container {
 	overflow-x: auto;
 }
@@ -2539,8 +2514,8 @@ footer::before {
 }
 
 /* ----------------------------------------------------
-     4.20 PHOTO GALLERY (DESKTOP)
-     ---------------------------------------------------- */
+4.20 PHOTO GALLERY (DESKTOP)
+---------------------------------------------------- */
 .photo-gallery,
 #galleryGrid {
 	display: grid;
@@ -2611,8 +2586,8 @@ footer::before {
 }
 
 /* ----------------------------------------------------
-     4.21 QUILL EDITOR STYLING (DESKTOP)
-     ---------------------------------------------------- */
+4.21 QUILL EDITOR STYLING (DESKTOP)
+---------------------------------------------------- */
 .ql-toolbar {
 	background: #f8f9fa;
 	border-radius: 8px 8px 0 0;
@@ -2676,8 +2651,8 @@ footer::before {
 }
 
 /* ----------------------------------------------------
-     4.22 LOADING ANIMATIONS & SKELETONS (DESKTOP)
-     ---------------------------------------------------- */
+4.22 LOADING ANIMATIONS & SKELETONS (DESKTOP)
+---------------------------------------------------- */
 .loading-spinner {
 	display: inline-block;
 	width: 50px;
@@ -2805,8 +2780,8 @@ footer::before {
 }
 
 /* ----------------------------------------------------
-     4.23 SECTION REVEAL ANIMATION (DESKTOP)
-     ---------------------------------------------------- */
+4.23 SECTION REVEAL ANIMATION (DESKTOP)
+---------------------------------------------------- */
 .section-reveal {
 	opacity: 0;
 	transform: translateY(30px);
@@ -2819,9 +2794,8 @@ footer::before {
 }
 
 /* ============================================
-     IMAGE LIGHTBOX / PREVIEW MODE
-     ============================================ */
-
+IMAGE LIGHTBOX / PREVIEW MODE
+============================================ */
 .lightbox {
 	display: none;
 	position: fixed;
@@ -2906,21 +2880,16 @@ body:has(.lightbox.active) .go-to-top {
 	position: absolute;
 	top: 50%;
 	transform: translateY(-50%);
-
 	z-index: 10002;
 	pointer-events: auto;
-
 	background: rgba(0, 0, 0, 0.55);
 	backdrop-filter: blur(10px);
-
 	border: none;
 	color: white;
 	font-size: 24px;
-
 	width: 44px;
 	height: 44px;
 	border-radius: 50%;
-
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -2955,7 +2924,7 @@ body:has(.lightbox.active) .go-to-top {
 
 .lightbox:hover .lightbox-nav,
 .lightbox:active .lightbox-nav {
-   opacity: 1;
+	opacity: 1;
 }
 
 .gallery-item {
@@ -2989,7 +2958,6 @@ body:has(.lightbox.active) .go-to-top {
 .cta-contact {
 	padding: clamp(3.5rem, 6vw, 5rem) 1rem;
 	text-align: center;
-
 	position: relative;
 	overflow: hidden;
 	z-index: 10;
@@ -3013,21 +2981,17 @@ body:has(.lightbox.active) .go-to-top {
 	left: 50%;
 	bottom: -40px;
 	transform: translateX(-50%);
-
 	width: 90%;
 	height: 60px;
-
 	background: radial-gradient(ellipse at center,
 			rgba(245, 158, 11, 0.95) 20%,
 			rgba(245, 158, 11, 0.65) 45%,
 			rgba(245, 158, 11, 0.30) 45%,
 			transparent 90%);
-
 	filter: blur(9.5px);
 	pointer-events: none;
 	z-index: 1;
 }
-
 
 .cta-contact h2 {
 	font-size: clamp(1.6rem, 3vw, 2.2rem);
@@ -3044,9 +3008,8 @@ body:has(.lightbox.active) .go-to-top {
 	;
 }
 
-
 /* ----------------------------------------------------
-   CTA – SERVICES PAGE (SECONDARY)
+CTA – SERVICES PAGE (SECONDARY)
 ---------------------------------------------------- */
 .cta-services {
 	padding: clamp(3rem, 5vw, 4rem) 1rem;
@@ -3067,7 +3030,7 @@ body:has(.lightbox.active) .go-to-top {
 }
 
 /* ----------------------------------------------------
-   CTA – ABOUT PAGE (SECONDARY)
+CTA – ABOUT PAGE (SECONDARY)
 ---------------------------------------------------- */
 .cta-about {
 	padding: clamp(3rem, 5vw, 4rem) 1rem;
@@ -3086,7 +3049,6 @@ body:has(.lightbox.active) .go-to-top {
 	margin: 0 auto 1.75rem;
 	color: var(--text-light);
 }
-
 
 /* Buttons wrapper */
 .cta-buttons {
@@ -3111,42 +3073,32 @@ body:has(.lightbox.active) .go-to-top {
 	background: white;
 }
 
-
 /* =====================================================
-     GO TO TOP BUTTON (MOBILE ONLY)
+GO TO TOP BUTTON (MOBILE ONLY)
 ===================================================== */
-
 .go-to-top {
 	position: fixed;
 	bottom: 20px;
 	right: 16px;
-
 	width: 44px;
 	height: 44px;
 	border-radius: 50%;
-
 	background: var(--primary-color);
 	color: white;
 	font-size: 20px;
 	font-weight: 700;
-
 	border: none;
 	cursor: pointer;
-
 	display: flex;
 	align-items: center;
 	justify-content: center;
-
 	box-shadow: 0 6px 16px rgba(0, 0, 0, 0.25);
-
 	opacity: 0;
 	pointer-events: none;
 	transform: translateY(10px);
-
 	transition:
 		opacity 0.3s ease,
 		transform 0.3s ease;
-
 	z-index: 9999;
 }
 
@@ -3168,21 +3120,16 @@ body:has(.lightbox.active) .go-to-top {
 	position: fixed;
 	top: 72px;
 	left: 12px;
-
 	background: rgba(15, 23, 42, 0.85);
 	color: white;
-
 	border: none;
 	border-radius: 999px;
 	padding: 8px 14px;
-
 	font-size: 0.9rem;
 	font-weight: 600;
-
 	display: none;
 	align-items: center;
 	gap: 6px;
-
 	z-index: 1100;
 	box-shadow: 0 6px 16px rgba(0, 0, 0, 0.25);
 }
@@ -3203,10 +3150,24 @@ body.phone-open .mobile-back-btn {
 	}
 }
 
-
 /* =====================================================
-     SECTION 5: MOBILE STYLES START (MAX-WIDTH: 768px)
+SECTION 5: MOBILE STYLES START (MAX-WIDTH: 768px)
 ===================================================== */
+/* FORCE phone dropdown ABOVE mobile back button */
+@media (max-width: 768px) {
+	.phone-wrapper {
+		z-index: 2000;
+	}
+
+	.phone-dropdown {
+		z-index: 3000;
+		position: absolute;
+	}
+
+	.mobile-back-btn {
+		z-index: 1000;
+	}
+}
 
 @media (max-width: 768px) {
 
@@ -3540,9 +3501,8 @@ body.phone-open .mobile-back-btn {
 	}
 
 	/* =====================================================
-     ADMIN DASHBOARD (MOBILE)
-     ===================================================== */
-
+ADMIN DASHBOARD (MOBILE)
+===================================================== */
 	/* Admin Layout */
 	.admin-layout {
 		flex-direction: column;
@@ -3685,7 +3645,6 @@ body.phone-open .mobile-back-btn {
 		padding: 0;
 		margin-bottom: 70px;
 		/* ← IMPORTANT: Space for footer */
-
 		/* Visible scrollbar */
 		scrollbar-width: thin;
 		scrollbar-color: var(--primary-color) rgba(255, 255, 255, 0.1);
@@ -3904,11 +3863,9 @@ body.phone-open .mobile-back-btn {
 		font-size: 1.75rem;
 	}
 
-
 	/* =====================================================
-     THEME SECTION (MOBILE)
-     ===================================================== */
-
+THEME SECTION (MOBILE)
+===================================================== */
 	/* Theme form - remove max-width constraint */
 	#theme-section .cms-form {
 		max-width: 100% !important;
@@ -4040,13 +3997,11 @@ body.phone-open .mobile-back-btn {
 	.action-card p {
 		font-size: 0.875rem;
 	}
-
 }
 
 /* =====================================================
-     SECTION 6: EXTRA SMALL MOBILE (MAX-WIDTH: 480px)
-     ===================================================== */
-
+SECTION 6: EXTRA SMALL MOBILE (MAX-WIDTH: 480px)
+===================================================== */
 @media (max-width: 480px) {
 	.landing-logo img {
 		width: clamp(140px, 45vw, 190px);
@@ -4097,5 +4052,4 @@ body.phone-open .mobile-back-btn {
 	.cta-contact p {
 		margin-bottom: 2rem;
 	}
-
 }
