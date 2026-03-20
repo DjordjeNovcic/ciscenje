@@ -7102,6 +7102,7 @@ SECTION 24: HEADER REFINEMENT
 ===================================================== */
 body.public-page .navbar {
 	top: 16px;
+	overflow: hidden;
 	background:
 		linear-gradient(180deg, rgba(30, 36, 34, 0.94), rgba(18, 23, 22, 0.9));
 	border-color: rgba(255, 255, 255, 0.14);
@@ -7120,9 +7121,7 @@ body.public-page .navbar::before {
 }
 
 body.public-page .navbar::after {
-	left: 28px;
-	right: 28px;
-	background: linear-gradient(90deg, transparent, rgba(228, 200, 161, 0.3), transparent);
+	display: none;
 }
 
 body.public-page .navbar .container {
