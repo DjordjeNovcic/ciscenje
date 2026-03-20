@@ -4,6 +4,9 @@
       <meta charset="UTF-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <title>Usluge - MS Sjaj</title>
+      <link rel="preconnect" href="https://fonts.googleapis.com">
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+      <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
       <link rel="stylesheet" href="styles.css">
       <link rel="icon" href="./favicon.ico">
       <link rel="icon" type="image/png" sizes="32x32" href="./favicon-32.png">
@@ -11,8 +14,34 @@
          rel="stylesheet"
          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
          />
+      <script>
+         (function() {
+            const cachedTheme = localStorage.getItem('mssjaj_theme');
+            if (!cachedTheme) return;
+
+            try {
+               const colors = JSON.parse(cachedTheme);
+               const root = document.documentElement;
+
+               if (colors.primaryColor) root.style.setProperty('--primary-color', colors.primaryColor);
+               if (colors.primaryDark) root.style.setProperty('--primary-dark', colors.primaryDark);
+               if (colors.secondaryColor) root.style.setProperty('--secondary-color', colors.secondaryColor);
+               if (colors.successColor) root.style.setProperty('--success-color', colors.successColor);
+               if (colors.bgLight) root.style.setProperty('--bg-light', colors.bgLight);
+               if (colors.textDark) root.style.setProperty('--text-dark', colors.textDark);
+               if (colors.textLight) root.style.setProperty('--text-light', colors.textLight);
+
+               if (colors.primaryColor && colors.primaryDark) {
+                  root.style.setProperty('--primary-gradient',
+                     `linear-gradient(135deg, ${colors.primaryColor} 0%, ${colors.primaryDark} 100%)`);
+               }
+            } catch (error) {
+               console.error('Error applying cached theme:', error);
+            }
+         })();
+      </script>
    </head>
-   <body>
+   <body class="public-page services-page">
       <div id="page-loader"></div>
       <!-- HEADER (partial) -->
       <div id="site-header"></div>
@@ -21,43 +50,113 @@
       </button>
       <!-- Services Hero -->
       <section class="page-hero">
-         <div class="container">
+         <div class="container page-hero-shell">
+            <span class="section-kicker" data-i18n="servicesPage.kicker">Paketi i dodatne usluge</span>
             <h1 data-i18n="servicesPage.title">Naše usluge</h1>
             <p data-i18n="servicesPage.subtitle">
                Profesionalno čišćenje prilagođeno vašim potrebama
             </p>
+            <div class="page-hero-badges">
+               <span class="page-hero-badge" data-i18n="servicesPage.badgeOne">Jasni paketi</span>
+               <span class="page-hero-badge" data-i18n="servicesPage.badgeTwo">Fleksibilni termini</span>
+               <span class="page-hero-badge" data-i18n="servicesPage.badgeThree">Bez skrivenih troškova</span>
+            </div>
+         </div>
+      </section>
+      <section class="service-standards section-reveal">
+         <div class="container">
+            <div class="service-standards-head reveal-item">
+               <span class="section-kicker" data-i18n="servicesLuxury.kicker">Premium standard usluge</span>
+               <h2 data-i18n="servicesLuxury.title">Jasna struktura, besprekorna završnica i osećaj kontrole od početka do kraja.</h2>
+               <p class="section-lead" data-i18n="servicesLuxury.subtitle">
+                  Paketi nisu sastavljeni nasumično. Svaka usluga je koncipirana da bude pregledna, efikasna i vizuelno vidljiva u rezultatu.
+               </p>
+            </div>
+            <div class="service-standards-grid">
+               <article class="service-standard-card reveal-item" style="--reveal-delay: 0ms;">
+                  <span class="service-standard-index">01</span>
+                  <h3 data-i18n="servicesLuxury.card1Title">Precizan obim rada</h3>
+                  <p data-i18n="servicesLuxury.card1Text">Pre dolaska znate šta ulazi u uslugu, koliko traje i kakav rezultat možete da očekujete.</p>
+               </article>
+               <article class="service-standard-card reveal-item" style="--reveal-delay: 90ms;">
+                  <span class="service-standard-index">02</span>
+                  <h3 data-i18n="servicesLuxury.card2Title">Tretman po vrsti prostora</h3>
+                  <p data-i18n="servicesLuxury.card2Text">Domovi, poslovni enterijeri, tekstil i kontaktne zone tretiraju se sa različitim nivoom pažnje i procedura.</p>
+               </article>
+               <article class="service-standard-card reveal-item" style="--reveal-delay: 180ms;">
+                  <span class="service-standard-index">03</span>
+                  <h3 data-i18n="servicesLuxury.card3Title">Završni premium utisak</h3>
+                  <p data-i18n="servicesLuxury.card3Text">Cilj nije samo ukloniti nečistoću, već ostaviti prostor koji deluje reprezentativno, uredno i sveže.</p>
+               </article>
+            </div>
          </div>
       </section>
       <!-- Services -->
-      <section class="services-section">
+      <section class="services-section section-reveal">
          <div class="container">
             <h2 data-i18n="servicesPage.choosePackage">
                Izaberite paket koji vam odgovara
             </h2>
+            <p class="section-lead" data-i18n="servicesPage.helper">
+               Svaka usluga je predstavljena jasno, sa cenom i obimom rada koji možete brzo da uporedite.
+            </p>
             <div class="services-grid pricing-grid" id="servicesGrid"></div>
          </div>
       </section>
       <!-- Add-ons -->
-      <section class="add-ons">
+      <section class="add-ons section-reveal">
          <div class="container">
             <h2 data-i18n="servicesPage.addonsTitle">Dodatne usluge</h2>
+            <p class="section-lead" data-i18n="servicesPage.addonsSubtitle">
+               Kombinujte osnovni paket sa dodatnim tretmanima za detaljniji završni rezultat.
+            </p>
             <div class="add-ons-grid" id="addonsGrid"></div>
          </div>
       </section>
-      <!-- CTA -->
-      <section class="cta-services">
+      <section class="service-ritual section-reveal">
          <div class="container">
-            <h2 data-i18n="cta.servicesTitle">Spremni za čist prostor?</h2>
-            <p data-i18n="cta.servicesSubtitle">
-               Kontaktirajte nas za besplatnu procenu i ponudu.
-            </p>
-            <a
-               href="index.html?scroll=cta-contact"
-               class="btn btn-outline"
-               data-i18n="cta.servicesButton"
-               >
-            Zatražite ponudu
-            </a>
+            <div class="service-ritual-shell">
+               <div class="service-ritual-copy reveal-item">
+                  <span class="section-kicker" data-i18n="serviceRitual.kicker">Kako izgleda saradnja</span>
+                  <h2 data-i18n="serviceRitual.title">Jednostavan proces koji ostavlja utisak profesionalne kontrole.</h2>
+               </div>
+               <div class="service-ritual-steps">
+                  <div class="service-ritual-step reveal-item" style="--reveal-delay: 0ms;">
+                     <strong>01</strong>
+                     <h3 data-i18n="serviceRitual.step1Title">Kratka procena potreba</h3>
+                     <p data-i18n="serviceRitual.step1Text">Dogovaramo prostor, termin i nivo tretmana bez nepotrebnog komplikovanja.</p>
+                  </div>
+                  <div class="service-ritual-step reveal-item" style="--reveal-delay: 90ms;">
+                     <strong>02</strong>
+                     <h3 data-i18n="serviceRitual.step2Title">Izvođenje po jasnom planu</h3>
+                     <p data-i18n="serviceRitual.step2Text">Tim radi organizovano, tiho i efikasno, sa fokusom na detalje koji menjaju utisak prostora.</p>
+                  </div>
+                  <div class="service-ritual-step reveal-item" style="--reveal-delay: 180ms;">
+                     <strong>03</strong>
+                     <h3 data-i18n="serviceRitual.step3Title">Rezultat koji se vidi odmah</h3>
+                     <p data-i18n="serviceRitual.step3Text">Po završetku prostor deluje svetlije, smirenije i reprezentativnije za svakodnevni život ili rad.</p>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </section>
+      <!-- CTA -->
+      <section class="cta-services section-reveal">
+         <div class="container">
+            <div class="cta-panel">
+               <span class="section-kicker" data-i18n="cta.kicker">Brz i jasan dogovor</span>
+               <h2 data-i18n="cta.servicesTitle">Spremni za čist prostor?</h2>
+               <p data-i18n="cta.servicesSubtitle">
+                  Kontaktirajte nas za besplatnu procenu i ponudu.
+               </p>
+               <a
+                  href="index.html?scroll=cta-contact"
+                  class="btn btn-outline"
+                  data-i18n="cta.servicesButton"
+                  >
+               Zatražite ponudu
+               </a>
+            </div>
          </div>
       </section>
       <!-- FOOTER (partial) -->

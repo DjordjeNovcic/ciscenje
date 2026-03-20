@@ -27,8 +27,14 @@ let addonsCache = null;
 let homeCache = null;
 let aboutCache = null;
 let slideshowCache = null;
+let scrollRevealObserver = null;
+
+const CACHE_VERSION_PREFIX = 'mssjaj_cache_version_';
+const CACHE_DATA_PREFIX = 'mssjaj_cache_';
+const THEME_STORAGE_KEY = 'mssjaj_theme';
 
 async function initializeApp() {
+   setupCrossTabSync();
    await loadPartials();
 
    if (document.getElementById('loginForm')) {
@@ -45,8 +51,11 @@ async function initializeApp() {
    setupThemeInputs();
    setupLightboxOutsideClick();
    setupGoToTopButton();
+   loadSharedTheme();
 
    loadPublicPageContent();
+   setupPremiumPublicExperience();
+   initializeScrollReveal();
 
    deferBelowFoldLoads();
 
@@ -117,6 +126,7 @@ function setupPhoneDropdown() {
 
          const isOpen = phoneWrapper.classList.toggle('active');
          document.body.classList.toggle('phone-open', isOpen);
+         phoneTrigger.setAttribute('aria-expanded', String(isOpen));
       }
    });
 
@@ -124,6 +134,7 @@ function setupPhoneDropdown() {
       if (window.innerWidth <= 768 && !phoneWrapper.contains(e.target)) {
          phoneWrapper.classList.remove('active');
          document.body.classList.remove('phone-open');
+         phoneTrigger.setAttribute('aria-expanded', 'false');
       }
    });
 
@@ -206,8 +217,13 @@ function shouldLoadSection() {
    return true;
 }
 
+function getVersionedCacheKey(key) {
+   const version = localStorage.getItem(CACHE_VERSION_PREFIX + key) || '0';
+   return `${CACHE_DATA_PREFIX}${key}:${version}`;
+}
+
 function getCachedData(key) {
-   const raw = sessionStorage.getItem(key);
+   const raw = sessionStorage.getItem(getVersionedCacheKey(key)) || sessionStorage.getItem(key);
    if (!raw) return null;
 
    try {
@@ -218,7 +234,119 @@ function getCachedData(key) {
 }
 
 function setCachedData(key, data) {
-   sessionStorage.setItem(key, JSON.stringify(data));
+   clearSessionCache(key);
+   sessionStorage.setItem(getVersionedCacheKey(key), JSON.stringify(data));
+}
+
+function clearSessionCache(key) {
+   sessionStorage.removeItem(key);
+
+   const prefix = `${CACHE_DATA_PREFIX}${key}:`;
+   Array.from({
+      length: sessionStorage.length
+   }, (_, index) => sessionStorage.key(index)).forEach(storageKey => {
+      if (!storageKey) return;
+      if (storageKey.startsWith(prefix)) {
+         sessionStorage.removeItem(storageKey);
+      }
+   });
+}
+
+function resetMemoryCache(key) {
+   switch (key) {
+      case 'home':
+         homeCache = null;
+         break;
+      case 'about':
+         aboutCache = null;
+         break;
+      case 'services':
+         servicesCache = null;
+         break;
+      case 'testimonials':
+         testimonialsCache = null;
+         break;
+      case 'addons':
+         addonsCache = null;
+         break;
+      case 'gallery':
+         galleryCache = null;
+         break;
+      case 'slideshow':
+         slideshowCache = null;
+         break;
+      default:
+         break;
+   }
+}
+
+function isPublicPage() {
+   return !document.getElementById('adminContent') && !document.getElementById('loginForm');
+}
+
+function refreshPublicContent(key) {
+   if (!isPublicPage()) return;
+
+   switch (key) {
+      case 'home':
+         loadHomeContent();
+         break;
+      case 'about':
+         loadAboutContent();
+         break;
+      case 'services':
+         loadServices();
+         break;
+      case 'testimonials':
+         loadTestimonials();
+         break;
+      case 'addons':
+         loadAddOns();
+         break;
+      case 'gallery':
+         loadGallery();
+         break;
+      case 'contact':
+         updateFooterContent();
+         break;
+      case 'slideshow':
+         applyHeroBackgroundFromSlideshow();
+         break;
+      case 'theme':
+         loadSharedTheme();
+         break;
+      default:
+         break;
+   }
+}
+
+function invalidateCachedSection(key) {
+   resetMemoryCache(key);
+   clearSessionCache(key);
+   localStorage.setItem(CACHE_VERSION_PREFIX + key, String(Date.now()));
+   refreshPublicContent(key);
+}
+
+function setupCrossTabSync() {
+   window.addEventListener('storage', event => {
+      if (event.key === THEME_STORAGE_KEY) {
+         if (!event.newValue) return;
+
+         try {
+            applyTheme(JSON.parse(event.newValue));
+         } catch (error) {
+            console.error('Error syncing theme from storage:', error);
+         }
+         return;
+      }
+
+      if (!event.key || !event.key.startsWith(CACHE_VERSION_PREFIX)) return;
+
+      const key = event.key.slice(CACHE_VERSION_PREFIX.length);
+      resetMemoryCache(key);
+      clearSessionCache(key);
+      refreshPublicContent(key);
+   });
 }
 
 
@@ -325,10 +453,12 @@ function setupMobileNav() {
 
 
       phoneWrapper?.classList.remove('active');
+      document.querySelector('.phone-trigger')?.setAttribute('aria-expanded', 'false');
 
       const isOpen = navMenu.classList.toggle('active');
       newHamburger.classList.toggle('active', isOpen);
       document.body.classList.toggle('menu-open', isOpen);
+      newHamburger.setAttribute('aria-expanded', String(isOpen));
    });
 
 
@@ -338,19 +468,21 @@ function setupMobileNav() {
          !navMenu.contains(e.target) &&
          !phoneWrapper?.contains(e.target)
       ) {
-         navMenu.classList.remove('active');
-         newHamburger.classList.remove('active');
-         phoneWrapper?.classList.remove('active');
-         document.body.classList.remove('menu-open');
+        navMenu.classList.remove('active');
+        newHamburger.classList.remove('active');
+        phoneWrapper?.classList.remove('active');
+        document.body.classList.remove('menu-open');
+        newHamburger.setAttribute('aria-expanded', 'false');
       }
    });
 
 
-   navMenu.querySelectorAll('a[href^="tel:"]').forEach(link => {
+   navMenu.querySelectorAll('a').forEach(link => {
       link.addEventListener('click', () => {
          navMenu.classList.remove('active');
          newHamburger.classList.remove('active');
          document.body.classList.remove('menu-open');
+         newHamburger.setAttribute('aria-expanded', 'false');
       });
    });
 }
@@ -362,6 +494,7 @@ function loadPublicPageContent() {
    loadTestimonials();
    loadGallery();
    loadAddOns();
+   updateFooterContent();
    applyHeroBackgroundFromSlideshow();
 }
 
@@ -372,10 +505,201 @@ function updateFooterContent() {
          const phoneElements = document.querySelectorAll('.footer-phone');
          const emailElements = document.querySelectorAll('.footer-email');
          const addressElements = document.querySelectorAll('.footer-address');
-         phoneElements.forEach(el => el.textContent = data.phone || '+381 XX XXX XXXX');
-         emailElements.forEach(el => el.textContent = data.email || 'info@mssjaj.rs');
+         const phoneMarkup = buildPhoneMarkup(data.phone);
+         const emailValue = data.email || 'info@mssjaj.rs';
+         phoneElements.forEach(el => el.innerHTML = phoneMarkup);
+         emailElements.forEach(el => {
+            el.innerHTML = `<a href="mailto:${emailValue}">${emailValue}</a>`;
+         });
          addressElements.forEach(el => el.textContent = data.address || 'Kragujevac, Srbija');
       }
+   });
+}
+
+function buildPhoneMarkup(phoneValue) {
+   const defaultPhones = ['064 / 393-7000', '065 / 562-5876'];
+   const phones = String(phoneValue || '')
+      .split(/[\n,|]+/)
+      .map(phone => phone.trim())
+      .filter(Boolean);
+   const normalizedPhones = phones.length ? phones : defaultPhones;
+
+   return normalizedPhones.map(phone => {
+      const href = phone.replace(/[^\d+]/g, '');
+      return `<a href="tel:${href}"><i class="fas fa-phone"></i> ${phone}</a>`;
+   }).join('<br>');
+}
+
+function loadSharedTheme() {
+   const cachedTheme = localStorage.getItem(THEME_STORAGE_KEY);
+   if (cachedTheme) {
+      try {
+         applyTheme(JSON.parse(cachedTheme));
+      } catch (error) {
+         console.error('Error parsing cached theme:', error);
+      }
+   }
+
+   db.collection('settings').doc('theme').get()
+      .then(doc => {
+         if (!doc.exists) {
+            applyTheme(defaultColors);
+            return;
+         }
+
+         const colors = doc.data();
+         localStorage.setItem(THEME_STORAGE_KEY, JSON.stringify(colors));
+         applyTheme(colors);
+      })
+      .catch(error => {
+         console.error('Error loading shared theme:', error);
+      });
+}
+
+function setupPremiumPublicExperience() {
+   if (!isPublicPage()) return;
+
+   ensureScrollProgress();
+   setupScrollDrivenChrome();
+   setupHeroParallax();
+   setupInteractiveSurfaces(document);
+   setupCursorGlow();
+}
+
+function ensureScrollProgress() {
+   if (document.getElementById('scrollProgress')) return;
+
+   const progress = document.createElement('div');
+   progress.className = 'scroll-progress';
+   progress.innerHTML = '<span id="scrollProgress" class="scroll-progress-bar"></span>';
+   document.body.appendChild(progress);
+}
+
+function setupScrollDrivenChrome() {
+   if (!isPublicPage()) return;
+
+   let ticking = false;
+
+   const updateChrome = () => {
+      const scrollProgress = document.getElementById('scrollProgress');
+      const scrollTop = window.scrollY || window.pageYOffset;
+      const scrollableHeight = Math.max(document.documentElement.scrollHeight - window.innerHeight, 1);
+      const progress = Math.min(Math.max(scrollTop / scrollableHeight, 0), 1);
+
+      if (scrollProgress) {
+         scrollProgress.style.transform = `scaleX(${progress})`;
+      }
+
+      document.body.classList.toggle('is-scrolled', scrollTop > 28);
+      ticking = false;
+   };
+
+   const onScroll = () => {
+      if (ticking) return;
+      ticking = true;
+      window.requestAnimationFrame(updateChrome);
+   };
+
+   window.addEventListener('scroll', onScroll, {
+      passive: true
+   });
+   updateChrome();
+}
+
+function setupHeroParallax() {
+   const landing = document.querySelector('.landing-section');
+   if (!landing) return;
+
+   const supportsFinePointer = window.matchMedia('(pointer: fine)').matches;
+   let scrollTicking = false;
+
+   const updateScrollDrift = () => {
+      const drift = Math.min(window.scrollY * 0.14, 52);
+      landing.style.setProperty('--hero-scroll-shift', `${drift.toFixed(2)}px`);
+      scrollTicking = false;
+   };
+
+   window.addEventListener('scroll', () => {
+      if (scrollTicking) return;
+      scrollTicking = true;
+      window.requestAnimationFrame(updateScrollDrift);
+   }, {
+      passive: true
+   });
+   updateScrollDrift();
+
+   if (!supportsFinePointer) return;
+
+   landing.addEventListener('mousemove', event => {
+      const rect = landing.getBoundingClientRect();
+      const x = ((event.clientX - rect.left) / rect.width) - 0.5;
+      const y = ((event.clientY - rect.top) / rect.height) - 0.5;
+
+      landing.style.setProperty('--hero-pan-x', `${(x * 26).toFixed(2)}px`);
+      landing.style.setProperty('--hero-pan-y', `${(y * 22).toFixed(2)}px`);
+      landing.style.setProperty('--hero-glow-x', `${((x + 0.5) * 100).toFixed(2)}%`);
+      landing.style.setProperty('--hero-glow-y', `${((y + 0.5) * 100).toFixed(2)}%`);
+   });
+
+   landing.addEventListener('mouseleave', () => {
+      landing.style.setProperty('--hero-pan-x', '0px');
+      landing.style.setProperty('--hero-pan-y', '0px');
+      landing.style.setProperty('--hero-glow-x', '72%');
+      landing.style.setProperty('--hero-glow-y', '22%');
+   });
+}
+
+function setupInteractiveSurfaces(scope = document) {
+   if (!isPublicPage()) return;
+
+   const surfaces = scope.querySelectorAll(
+      '.feature-card, .reason-card, .value-card, .pricing-card, .addon-card, .testimonial-card, .gallery-item, .cta-panel, .hero-sidecard, .story-content, .stat-box, .signature-step, .service-standard-card, .team-standard-card, .service-ritual-step, .editorial-showcase-copy, .editorial-showcase-quote, .brand-manifesto-copy, .brand-manifesto-quote'
+   );
+   if (!surfaces.length) return;
+
+   const supportsFinePointer = window.matchMedia('(pointer: fine)').matches;
+
+   surfaces.forEach(surface => {
+      surface.classList.add('premium-surface');
+      if (surface.dataset.surfaceBound === 'true') return;
+
+      surface.dataset.surfaceBound = 'true';
+      surface.style.setProperty('--spotlight-x', '50%');
+      surface.style.setProperty('--spotlight-y', '50%');
+
+      if (!supportsFinePointer) return;
+
+      surface.addEventListener('mousemove', event => {
+         const rect = surface.getBoundingClientRect();
+         const x = ((event.clientX - rect.left) / rect.width) * 100;
+         const y = ((event.clientY - rect.top) / rect.height) * 100;
+
+         surface.style.setProperty('--spotlight-x', `${x.toFixed(2)}%`);
+         surface.style.setProperty('--spotlight-y', `${y.toFixed(2)}%`);
+      });
+
+      surface.addEventListener('mouseleave', () => {
+         surface.style.setProperty('--spotlight-x', '50%');
+         surface.style.setProperty('--spotlight-y', '50%');
+      });
+   });
+}
+
+function setupCursorGlow() {
+   if (!isPublicPage() || !window.matchMedia('(pointer: fine)').matches) return;
+   if (document.querySelector('.cursor-glow')) return;
+
+   const glow = document.createElement('div');
+   glow.className = 'cursor-glow';
+   document.body.appendChild(glow);
+
+   window.addEventListener('pointermove', event => {
+      glow.classList.add('active');
+      glow.style.transform = `translate3d(${event.clientX}px, ${event.clientY}px, 0)`;
+   });
+
+   document.addEventListener('mouseleave', () => {
+      glow.classList.remove('active');
    });
 }
 
@@ -504,8 +828,8 @@ function renderHomeContent(data) {
 
    features.forEach((feature, index) => {
       const card = document.createElement('div');
-      card.className = 'feature-card fade-in';
-      card.style.animationDelay = (index * 0.1) + 's';
+      card.className = 'feature-card reveal-item';
+      card.style.setProperty('--reveal-delay', `${index * 90}ms`);
 
       card.innerHTML = `
          <div class="feature-icon">${feature.icon}</div>
@@ -518,6 +842,8 @@ function renderHomeContent(data) {
 
    // ✅ OVO DODAJEŠ
    featuresGrid.dataset.loaded = 'true';
+   setupInteractiveSurfaces(featuresGrid);
+   initializeScrollReveal(featuresGrid);
 }
 
 function loadHomeContentAdmin() {
@@ -731,12 +1057,16 @@ function renderServices(services) {
 
    services.forEach(function (service, index) {
       const card = document.createElement('div');
-      card.className = 'pricing-card fade-in';
-      card.style.animationDelay = (index * 0.1) + 's';
+      card.className = 'pricing-card reveal-item';
+      card.style.setProperty('--reveal-delay', `${index * 90}ms`);
 
       // ⭐ featured middle card
       if (services.length >= 3 && index === 1) {
          card.classList.add('featured');
+         const badge = document.createElement('span');
+         badge.className = 'service-badge';
+         badge.textContent = getCurrentLanguage() === 'en' ? 'Most booked' : 'Najtraženije';
+         card.appendChild(badge);
       }
 
       const h3 = document.createElement('h3');
@@ -774,6 +1104,8 @@ function renderServices(services) {
       servicesGrid.appendChild(card);
    });
    servicesGrid.dataset.loaded = 'true';
+   setupInteractiveSurfaces(servicesGrid);
+   initializeScrollReveal(servicesGrid);
 }
 
 
@@ -873,14 +1205,14 @@ function saveService() {
    const serviceId = form.dataset.serviceId;
    if (serviceId) {
       db.collection('services').doc(serviceId).update(serviceData).then(function () {
-         servicesCache = null;
+         invalidateCachedSection('services');
          closeServiceModal();
          loadServicesAdmin();
          alert('Usluga je azurirana!');
       });
    } else {
       db.collection('services').add(serviceData).then(function () {
-         servicesCache = null;
+         invalidateCachedSection('services');
          closeServiceModal();
          loadServicesAdmin();
          alert('Usluga je dodata!');
@@ -895,7 +1227,7 @@ function editService(serviceId) {
 function deleteService(serviceId) {
    if (confirm('Da li ste sigurni da zelite da obrisete ovu uslugu?')) {
       db.collection('services').doc(serviceId).delete().then(function () {
-         servicesCache = null;
+         invalidateCachedSection('services');
          loadServicesAdmin();
          alert('Usluga je obrisana!');
       });
@@ -980,8 +1312,10 @@ function renderAboutContent(data) {
    const aboutText = document.getElementById('aboutText');
 
    if (aboutHeading && aboutText) {
-      aboutHeading.className = 'fade-in';
-      aboutText.className = 'fade-in story-text';
+      aboutHeading.className = 'reveal-item is-visible';
+      aboutHeading.style.setProperty('--reveal-delay', '60ms');
+      aboutText.className = 'story-text reveal-item';
+      aboutText.style.setProperty('--reveal-delay', '140ms');
       aboutHeading.textContent = getLocalizedField(data, 'heading');
       aboutText.textContent = getLocalizedField(data, 'text');
    }
@@ -993,8 +1327,8 @@ function renderAboutContent(data) {
 
       data.stats.forEach((stat, index) => {
          const box = document.createElement('div');
-         box.className = 'stat-box fade-in';
-         box.style.animationDelay = `${index * 0.1}s`;
+         box.className = 'stat-box reveal-item';
+         box.style.setProperty('--reveal-delay', `${index * 90}ms`);
          box.innerHTML = `
             <div class="stat-number">${stat.number}</div>
             <div class="stat-label">${getLocalizedField(stat, 'label')}</div>
@@ -1004,6 +1338,8 @@ function renderAboutContent(data) {
 
       // ✅ DODATI
       statsSection.dataset.loaded = 'true';
+      setupInteractiveSurfaces(statsSection);
+      initializeScrollReveal(statsSection);
    }
 
    // reasons
@@ -1013,8 +1349,8 @@ function renderAboutContent(data) {
 
       data.reasons.forEach((reason, index) => {
          const card = document.createElement('div');
-         card.className = 'reason-card fade-in';
-         card.style.animationDelay = `${index * 0.1}s`;
+         card.className = 'reason-card reveal-item';
+         card.style.setProperty('--reveal-delay', `${index * 90}ms`);
          card.innerHTML = `
             <div class="reason-icon">${reason.icon}</div>
             <h3>${getLocalizedField(reason, 'title')}</h3>
@@ -1025,6 +1361,14 @@ function renderAboutContent(data) {
 
       // ✅ DODATI
       reasonsGrid.dataset.loaded = 'true';
+      setupInteractiveSurfaces(reasonsGrid);
+      initializeScrollReveal(reasonsGrid);
+   }
+
+   const aboutContentSection = document.querySelector('.about-content');
+   if (aboutContentSection) {
+      setupInteractiveSurfaces(aboutContentSection);
+      initializeScrollReveal(aboutContentSection);
    }
 }
 
@@ -1283,7 +1627,7 @@ function saveAboutContent() {
       stats: stats,
       reasons: reasons
    }).then(function () {
-      aboutCache = null;
+      invalidateCachedSection('about');
       alert('Sadržaj O nama stranice je sačuvan!');
    });
 }
@@ -1346,19 +1690,28 @@ function renderTestimonials(testimonials) {
    }
 
    testimonials.forEach((testimonial, index) => {
+      const testimonialText = (getLocalizedField(testimonial, 'text') || '')
+         .replace(/^["“”'\s]+|["“”'\s]+$/g, '')
+         .trim();
+
       const card = document.createElement('div');
-      card.className = 'testimonial-card fade-in';
-      card.style.animationDelay = (index * 0.1) + 's';
+      card.className = 'testimonial-card reveal-item';
+      card.style.setProperty('--reveal-delay', `${index * 90}ms`);
 
       card.innerHTML = `
-      <p class="testimonial-text">${getLocalizedField(testimonial, 'text')}</p>
-      <div class="testimonial-rating">${'★'.repeat(testimonial.rating || 5)}</div>
-      <strong>${testimonial.author}</strong>
+      <div class="testimonial-quote">“</div>
+      <p class="testimonial-text">${testimonialText}</p>
+      <div class="testimonial-author-section">
+         <div class="testimonial-rating">${'★'.repeat(testimonial.rating || 5)}</div>
+         <strong class="testimonial-author">${testimonial.author}</strong>
+      </div>
     `;
 
       testimonialsGrid.appendChild(card);
    });
    testimonialsGrid.dataset.loaded = 'true';
+   setupInteractiveSurfaces(testimonialsGrid);
+   initializeScrollReveal(testimonialsGrid);
 }
 
 function loadTestimonialsAdmin() {
@@ -1450,14 +1803,14 @@ function saveTestimonial() {
    const testimonialId = form.dataset.testimonialId;
    if (testimonialId) {
       db.collection('testimonials').doc(testimonialId).update(testimonialData).then(function () {
-         testimonialsCache = null;
+         invalidateCachedSection('testimonials');
          closeTestimonialModal();
          loadTestimonialsAdmin();
          alert('Recenzija je azurirana!');
       });
    } else {
       db.collection('testimonials').add(testimonialData).then(function () {
-         testimonialsCache = null;
+         invalidateCachedSection('testimonials');
          closeTestimonialModal();
          loadTestimonialsAdmin();
          alert('Recenzija je dodata!');
@@ -1472,7 +1825,7 @@ function editTestimonial(testimonialId) {
 function deleteTestimonial(testimonialId) {
    if (confirm('Da li ste sigurni da zelite da obrisete ovu recenziju?')) {
       db.collection('testimonials').doc(testimonialId).delete().then(function () {
-         testimonialsCache = null;
+         invalidateCachedSection('testimonials');
          loadTestimonialsAdmin();
          alert('Recenzija je obrisana!');
       });
@@ -1550,8 +1903,8 @@ function renderGallery(photos) {
       galleryImages.push(photo.url);
 
       const div = document.createElement('div');
-      div.className = 'gallery-item fade-in';
-      div.style.animationDelay = (index * 0.05) + 's';
+      div.className = 'gallery-item reveal-item';
+      div.style.setProperty('--reveal-delay', `${index * 70}ms`);
 
       div.innerHTML = `<img src="${photo.url}" alt="Galerija">`;
       div.onclick = () => openLightbox(index);
@@ -1561,6 +1914,8 @@ function renderGallery(photos) {
 
    // ✅ DODATI
    galleryGrid.dataset.loaded = 'true';
+   setupInteractiveSurfaces(galleryGrid);
+   initializeScrollReveal(galleryGrid);
 }
 
 
@@ -1589,7 +1944,7 @@ function setupAdminForms() {
                         filename: file.name,
                         uploadedAt: firebase.firestore.FieldValue.serverTimestamp()
                      }).then(function () {
-                        galleryCache = null;
+                        invalidateCachedSection('gallery');
                         photoInput.value = '';
                         loadGalleryAdmin();
                         alert('Fotografija je uspesno otpremljena!');
@@ -1611,7 +1966,7 @@ function setupAdminForms() {
 function deletePhoto(photoId) {
    if (confirm('Da li ste sigurni da zelite da obrisete ovu fotografiju?')) {
       db.collection('gallery').doc(photoId).delete().then(function () {
-         galleryCache = null;
+         invalidateCachedSection('gallery');
          loadGalleryAdmin();
          alert('Fotografija je obrisana!');
       });
@@ -1639,6 +1994,7 @@ function saveContact() {
       email: document.getElementById('contactEmail').value,
       address: document.getElementById('contactAddress').value
    }).then(function () {
+      invalidateCachedSection('contact');
       alert('Kontakt informacije su sacuvane!');
       updateFooterContent();
    });
@@ -1696,17 +2052,20 @@ function renderAddOns(addons) {
 
    addons.forEach((addon, index) => {
       const card = document.createElement('div');
-      card.className = 'addon-card fade-in';
-      card.style.animationDelay = (index * 0.1) + 's';
+      card.className = 'addon-card reveal-item';
+      card.style.setProperty('--reveal-delay', `${index * 90}ms`);
 
       card.innerHTML = `
       <h4>${getLocalizedField(addon, 'name')}</h4>
+      <p>${getLocalizedField(addon, 'description')}</p>
       <span class="addon-price">${getLocalizedField(addon, 'price')} RSD</span>
     `;
 
       addonsGrid.appendChild(card);
    });
    addonsGrid.dataset.loaded = 'true';
+   setupInteractiveSurfaces(addonsGrid);
+   initializeScrollReveal(addonsGrid);
 }
 
 function loadAddOnsAdmin() {
@@ -1799,14 +2158,14 @@ function saveAddOn() {
    const addonId = form.dataset.addonId;
    if (addonId) {
       db.collection('addons').doc(addonId).update(addonData).then(function () {
-         addonsCache = null;
+         invalidateCachedSection('addons');
          closeAddOnModal();
          loadAddOnsAdmin();
          alert('Dodatna usluga je azurirana!');
       });
    } else {
       db.collection('addons').add(addonData).then(function () {
-         addonsCache = null;
+         invalidateCachedSection('addons');
          closeAddOnModal();
          loadAddOnsAdmin();
          alert('Dodatna usluga je dodata!');
@@ -1821,7 +2180,7 @@ function editAddOn(addonId) {
 function deleteAddOn(addonId) {
    if (confirm('Da li ste sigurni da zelite da obrisete ovu dodatnu uslugu?')) {
       db.collection('addons').doc(addonId).delete().then(function () {
-         addonsCache = null;
+         invalidateCachedSection('addons');
          loadAddOnsAdmin();
          alert('Dodatna usluga je obrisana!');
       });
@@ -1866,8 +2225,7 @@ function loadSlideshowAdmin() {
 function deleteSlideshowImage(imageId) {
    if (confirm('Da li ste sigurni da želite da obrišete ovu sliku iz slideshow-a?')) {
       db.collection('slideshow').doc(imageId).delete().then(function () {
-         sessionStorage.removeItem('slideshow');
-         slideshowCache = null;
+         invalidateCachedSection('slideshow');
 
          loadSlideshowAdmin();
          alert('Slika je obrisana!');
@@ -1912,8 +2270,7 @@ function setupSlideshowUpload() {
                            order: maxOrder + 1,
                            uploadedAt: firebase.firestore.FieldValue.serverTimestamp()
                         }).then(function () {
-                           sessionStorage.removeItem('slideshow');
-                           slideshowCache = null;
+                           invalidateCachedSection('slideshow');
 
                            slideshowInput.value = '';
                            loadSlideshowAdmin();
@@ -2071,7 +2428,8 @@ function saveTheme() {
    db.collection('settings').doc('theme').set(colors)
       .then(() => {
          // Update localStorage immediately
-         localStorage.setItem('mssjaj_theme', JSON.stringify(colors));
+         localStorage.setItem(THEME_STORAGE_KEY, JSON.stringify(colors));
+         invalidateCachedSection('theme');
          applyTheme(colors);
          alert('✅ Tema je uspešno sačuvana!');
       })
@@ -2277,6 +2635,47 @@ function handleDeferredScroll() {
    };
 
    tryScroll();
+}
+
+function revealElement(element) {
+   if (!element) return;
+
+   element.classList.add('is-visible');
+   if (element.classList.contains('section-reveal')) {
+      element.classList.add('active');
+   }
+}
+
+function initializeScrollReveal(scope = document) {
+   const elements = Array.from(scope.querySelectorAll('.section-reveal, .reveal-item'));
+   if (!elements.length) return;
+
+   const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+   if (prefersReducedMotion || !('IntersectionObserver' in window)) {
+      elements.forEach(revealElement);
+      return;
+   }
+
+   if (!scrollRevealObserver) {
+      scrollRevealObserver = new IntersectionObserver(entries => {
+         entries.forEach(entry => {
+            if (!entry.isIntersecting) return;
+
+            revealElement(entry.target);
+            scrollRevealObserver.unobserve(entry.target);
+         });
+      }, {
+         rootMargin: '0px 0px -12% 0px',
+         threshold: 0.14
+      });
+   }
+
+   elements.forEach(element => {
+      if (element.dataset.revealBound === 'true') return;
+
+      element.dataset.revealBound = 'true';
+      scrollRevealObserver.observe(element);
+   });
 }
 
 

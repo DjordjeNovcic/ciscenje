@@ -4,6 +4,9 @@
       <meta charset="UTF-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <title>MS Sjaj - Profesionalne usluge čišćenja</title>
+      <link rel="preconnect" href="https://fonts.googleapis.com">
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+      <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
       <link rel="stylesheet" href="styles.css">
       <link rel="icon" href="./favicon.ico">
       <link rel="icon" type="image/png" sizes="32x32" href="./favicon-32.png">
@@ -11,8 +14,34 @@
          rel="stylesheet"
          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
          />
+      <script>
+         (function() {
+            const cachedTheme = localStorage.getItem('mssjaj_theme');
+            if (!cachedTheme) return;
+
+            try {
+               const colors = JSON.parse(cachedTheme);
+               const root = document.documentElement;
+
+               if (colors.primaryColor) root.style.setProperty('--primary-color', colors.primaryColor);
+               if (colors.primaryDark) root.style.setProperty('--primary-dark', colors.primaryDark);
+               if (colors.secondaryColor) root.style.setProperty('--secondary-color', colors.secondaryColor);
+               if (colors.successColor) root.style.setProperty('--success-color', colors.successColor);
+               if (colors.bgLight) root.style.setProperty('--bg-light', colors.bgLight);
+               if (colors.textDark) root.style.setProperty('--text-dark', colors.textDark);
+               if (colors.textLight) root.style.setProperty('--text-light', colors.textLight);
+
+               if (colors.primaryColor && colors.primaryDark) {
+                  root.style.setProperty('--primary-gradient',
+                     `linear-gradient(135deg, ${colors.primaryColor} 0%, ${colors.primaryDark} 100%)`);
+               }
+            } catch (error) {
+               console.error('Error applying cached theme:', error);
+            }
+         })();
+      </script>
    </head>
-   <body>
+   <body class="public-page home-page">
       <div id="page-loader"></div>
       <!-- HEADER -->
       <div id="site-header"></div>
@@ -24,53 +53,140 @@
          <div class="hero-bg">
             <div class="hero-overlay"></div>
          </div>
-         <div class="landing-content">
-            <div class="landing-logo">
-               <img src="logo.png" alt="MS Sjaj Logo">
+         <div class="container landing-shell">
+            <div class="landing-content">
+               <div class="hero-kicker-row">
+                  <span class="hero-kicker" data-i18n="hero.kicker">Premium cleaning studio</span>
+                  <span class="hero-availability" data-i18n="hero.availability">Kragujevac i okolina</span>
+               </div>
+               <div class="landing-logo">
+                  <img src="logo.png" alt="MS Sjaj Logo">
+               </div>
+               <div class="landing-focus"></div>
+               <h1 id="heroHeading" data-i18n="hero.title">
+                  Profesionalne usluge čišćenja<br>
+                  kojima možete verovati
+               </h1>
+               <p id="heroText" class="landing-subtitle" data-i18n="hero.subtitle">
+                  Profesionalno čišćenje stanova i poslovnih prostora u Kragujevcu i okolini
+               </p>
+               <div class="hero-buttons">
+                  <a href="services.html" class="btn btn-primary" data-i18n="hero.servicesBtn">
+                  Pogledajte usluge
+                  </a>
+                  <a href="#cta-contact" class="btn btn-outline" data-i18n="hero.contactBtn">
+                  Kontaktirajte nas
+                  </a>
+               </div>
+               <div class="hero-trust">
+                  <div class="trust-pill">
+                     <strong>24h</strong>
+                     <span data-i18n="hero.pillResponse">odgovor na upit</span>
+                  </div>
+                  <div class="trust-pill">
+                     <strong>7/7</strong>
+                     <span data-i18n="hero.pillFlexible">fleksibilni termini</span>
+                  </div>
+                  <div class="trust-pill">
+                     <strong>Eco</strong>
+                     <span data-i18n="hero.pillSafe">bezbedna sredstva</span>
+                  </div>
+               </div>
             </div>
-            <div class="landing-focus"></div>
-            <h1 data-i18n="hero.title">
-               Profesionalne usluge čišćenja<br>
-               kojima možete verovati
-            </h1>
-            <p class="landing-subtitle" data-i18n="hero.subtitle">
-               Profesionalno čišćenje stanova i poslovnih prostora u Kragujevcu i okolini
-            </p>
-            <div class="hero-buttons">
-               <a href="services.html" class="btn btn-primary" data-i18n="hero.servicesBtn">
-               Pogledajte usluge
-               </a>
-               <a href="#cta-contact" class="btn btn-outline" data-i18n="hero.contactBtn">
-               Kontaktirajte nas
-               </a>
+            <aside class="hero-sidecard">
+               <span class="hero-sidecard-label" data-i18n="hero.sideLabel">Šta dobijate</span>
+               <h2 data-i18n="hero.sideTitle">Diskretan tim, precizan rezultat i čist utisak pri svakoj poseti.</h2>
+               <ul class="hero-side-list">
+                  <li data-i18n="hero.sideItem1">Termin prilagođen vašem rasporedu</li>
+                  <li data-i18n="hero.sideItem2">Detaljna obrada prostora, tkanina i površina</li>
+                  <li data-i18n="hero.sideItem3">Jasan dogovor bez skrivenih troškova</li>
+               </ul>
+               <a href="#cta-contact" class="sidecard-link" data-i18n="hero.sideCta">Zatražite procenu</a>
+            </aside>
+         </div>
+      </section>
+      <section class="proof-marquee section-reveal" aria-label="MS Sjaj standard">
+         <div class="proof-marquee-track">
+            <span data-i18n="homeMarquee.item1">Diskretan tim</span>
+            <span data-i18n="homeMarquee.item2">Precizan završetak</span>
+            <span data-i18n="homeMarquee.item3">Dubinsko čišćenje</span>
+            <span data-i18n="homeMarquee.item4">Domovi i poslovni prostori</span>
+            <span data-i18n="homeMarquee.item5">Fleksibilni termini</span>
+            <span data-i18n="homeMarquee.item6">Premium utisak</span>
+            <span data-i18n="homeMarquee.item1">Diskretan tim</span>
+            <span data-i18n="homeMarquee.item2">Precizan završetak</span>
+            <span data-i18n="homeMarquee.item3">Dubinsko čišćenje</span>
+            <span data-i18n="homeMarquee.item4">Domovi i poslovni prostori</span>
+            <span data-i18n="homeMarquee.item5">Fleksibilni termini</span>
+            <span data-i18n="homeMarquee.item6">Premium utisak</span>
+         </div>
+      </section>
+      <section class="signature-process section-reveal">
+         <div class="container">
+            <div class="signature-process-head reveal-item">
+               <span class="section-kicker" data-i18n="signatureProcess.kicker">Naš signature pristup</span>
+               <h2 data-i18n="signatureProcess.title">Čišćenje planiramo kao iskustvo, ne samo kao uslugu.</h2>
+               <p class="section-lead" data-i18n="signatureProcess.subtitle">
+                  Od prvog kontakta do poslednjeg detalja, svaki korak je osmišljen da prostor izgleda uredno, mirno i reprezentativno.
+               </p>
+            </div>
+            <div class="signature-process-grid">
+               <article class="signature-step reveal-item" style="--reveal-delay: 0ms;">
+                  <span class="signature-step-no">01</span>
+                  <h3 data-i18n="signatureProcess.step1Title">Procena bez improvizacije</h3>
+                  <p data-i18n="signatureProcess.step1Text">Jasno definišemo obim rada, dinamiku dolaska i očekivani rezultat pre nego što tim uđe u prostor.</p>
+               </article>
+               <article class="signature-step reveal-item" style="--reveal-delay: 90ms;">
+                  <span class="signature-step-no">02</span>
+                  <h3 data-i18n="signatureProcess.step2Title">Diskretan rad i kontrola detalja</h3>
+                  <p data-i18n="signatureProcess.step2Text">Radimo organizovano, sa pažnjom prema površinama, teksturama i ritmu prostora u kome boravite ili poslujete.</p>
+               </article>
+               <article class="signature-step reveal-item" style="--reveal-delay: 180ms;">
+                  <span class="signature-step-no">03</span>
+                  <h3 data-i18n="signatureProcess.step3Title">Završnica koja ostavlja utisak</h3>
+                  <p data-i18n="signatureProcess.step3Text">Rezultat nije samo čistoća, već osećaj reda, svežine i pouzdanosti koji se vidi odmah pri ulasku.</p>
+               </article>
             </div>
          </div>
       </section>
       <!-- FEATURES -->
-      <section class="features">
+      <section class="features section-reveal">
          <div class="container">
+            <span class="section-kicker" data-i18n="features.kicker">Zašto nas klijenti zovu prvi</span>
             <h2 data-i18n="features.title">Naše karakteristike</h2>
+            <p class="section-lead" data-i18n="features.subtitle">
+               Kombinujemo organizovan tim, pažnju prema detalju i ritam rada koji poštuje vaš prostor i vreme.
+            </p>
             <div class="stats-section"></div>
             <div class="features-grid" id="featuresGrid"></div>
          </div>
       </section>
       <!-- WHY CHOOSE US -->
-      <section class="why-choose-us">
+      <section class="why-choose-us section-reveal">
          <div class="container">
+            <span class="section-kicker" data-i18n="whyChoose.kicker">Poverenje kroz rezultat</span>
             <h2 data-i18n="whyChoose.title">Zašto izabrati MS Sjaj?</h2>
+            <p class="section-lead" data-i18n="whyChoose.subtitle">
+               Svaka usluga je osmišljena da izgleda premium, ali i da bude praktična, pouzdana i jasna za dogovor.
+            </p>
             <div class="reasons-grid"></div>
          </div>
       </section>
       <!-- SERVICES PREVIEW -->
-      <section class="services-preview">
+      <section class="services-preview section-reveal">
          <div class="container">
+            <span class="section-kicker" data-i18n="servicesPreview.kicker">Paketi za dom i posao</span>
             <h2 data-i18n="servicesPreview.title">Naše usluge</h2>
+            <p class="section-lead" data-i18n="servicesPreview.subtitle">
+               Od brzog osveženja prostora do dubinskog tretmana nameštaja i tepiha, paketi su jasni i prilagodljivi.
+            </p>
             <div class="services-grid" id="servicesGrid"></div>
          </div>
       </section>
       <!-- GALLERY -->
-      <section class="gallery-section">
+      <section class="gallery-section section-reveal">
          <div class="container">
+            <span class="section-kicker" data-i18n="gallery.kicker">Pre i posle bez mnogo reči</span>
             <h2 data-i18n="gallery.title">Naši radovi</h2>
             <p class="gallery-subtitle" data-i18n="gallery.subtitle">
                Pogledajte primere našeg rada
@@ -78,33 +194,57 @@
             <div class="photo-gallery" id="galleryGrid"></div>
          </div>
       </section>
-      <!-- CTA CONTACT -->
-      <section id="cta-contact" class="cta-contact">
+      <section class="editorial-showcase section-reveal">
          <div class="container">
-            <h2 data-i18n="cta.servicesTitle">Spremni za čist prostor?</h2>
-            <p data-i18n="cta.contactSubtitle">
-               Kontaktirajte nas i dobićete ponudu bez obaveze.
-            </p>
-            <div class="cta-buttons">
-               <a href="tel:+381643937000" class="btn btn-primary" data-i18n="cta.call">
-               📞 Pozovite nas
-               </a>
-               <a
-                  href="https://wa.me/381643937000"
-                  target="_blank"
-                  class="btn btn-outline"
-                  data-i18n="cta.whatsapp"
-                  >
-               💬 WhatsApp
-               </a>
-               <a
-                  href="viber://chat?number=381655625876"
-                  target="_blank"
-                  class="btn btn-outline"
-                  data-i18n="cta.viber"
-                  >
-               💜 Viber
-               </a>
+            <div class="editorial-showcase-shell">
+               <div class="editorial-showcase-copy reveal-item">
+                  <span class="section-kicker" data-i18n="editorialShowcase.kicker">Utisak koji traje</span>
+                  <h2 data-i18n="editorialShowcase.title">Prostor ne treba samo da bude čist. Treba da izgleda mirno, luksuzno i spremno za život ili posao.</h2>
+                  <p data-i18n="editorialShowcase.text">
+                     MS Sjaj kombinuje precizan operativni rad sa osećajem za završnicu, tako da enterijer posle čišćenja ne izgleda samo uredno, već zaista negovano.
+                  </p>
+               </div>
+               <div class="editorial-showcase-quote reveal-item" style="--reveal-delay: 120ms;">
+                  <span class="editorial-quote-mark">“</span>
+                  <p data-i18n="editorialShowcase.quote">Kada prostor izgleda tiho, skladno i bez suvišnog nereda, ljudi odmah osećaju razliku.</p>
+                  <div class="editorial-quote-meta">
+                     <strong data-i18n="editorialShowcase.metaTitle">MS Sjaj standard</strong>
+                     <span data-i18n="editorialShowcase.metaText">Diskrecija, ritam i besprekorna završnica</span>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </section>
+      <!-- CTA CONTACT -->
+      <section id="cta-contact" class="cta-contact section-reveal">
+         <div class="container">
+            <div class="cta-panel">
+               <span class="section-kicker" data-i18n="cta.kicker">Brz i jasan dogovor</span>
+               <h2 data-i18n="cta.servicesTitle">Spremni za čist prostor?</h2>
+               <p data-i18n="cta.contactSubtitle">
+                  Kontaktirajte nas i dobićete ponudu bez obaveze.
+               </p>
+               <div class="cta-buttons">
+                  <a href="tel:+381643937000" class="btn btn-primary" data-i18n="cta.call">
+                  📞 Pozovite nas
+                  </a>
+                  <a
+                     href="https://wa.me/381643937000"
+                     target="_blank"
+                     class="btn btn-outline"
+                     data-i18n="cta.whatsapp"
+                     >
+                  💬 WhatsApp
+                  </a>
+                  <a
+                     href="viber://chat?number=381655625876"
+                     target="_blank"
+                     class="btn btn-outline"
+                     data-i18n="cta.viber"
+                     >
+                  💜 Viber
+                  </a>
+               </div>
             </div>
          </div>
       </section>

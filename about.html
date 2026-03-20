@@ -4,6 +4,9 @@
       <meta charset="UTF-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <title>O nama - MS Sjaj</title>
+      <link rel="preconnect" href="https://fonts.googleapis.com">
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+      <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
       <link rel="stylesheet" href="styles.css">
       <link rel="icon" href="./favicon.ico">
       <link rel="icon" type="image/png" sizes="32x32" href="./favicon-32.png">
@@ -11,8 +14,34 @@
          rel="stylesheet"
          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
          />
+      <script>
+         (function() {
+            const cachedTheme = localStorage.getItem('mssjaj_theme');
+            if (!cachedTheme) return;
+
+            try {
+               const colors = JSON.parse(cachedTheme);
+               const root = document.documentElement;
+
+               if (colors.primaryColor) root.style.setProperty('--primary-color', colors.primaryColor);
+               if (colors.primaryDark) root.style.setProperty('--primary-dark', colors.primaryDark);
+               if (colors.secondaryColor) root.style.setProperty('--secondary-color', colors.secondaryColor);
+               if (colors.successColor) root.style.setProperty('--success-color', colors.successColor);
+               if (colors.bgLight) root.style.setProperty('--bg-light', colors.bgLight);
+               if (colors.textDark) root.style.setProperty('--text-dark', colors.textDark);
+               if (colors.textLight) root.style.setProperty('--text-light', colors.textLight);
+
+               if (colors.primaryColor && colors.primaryDark) {
+                  root.style.setProperty('--primary-gradient',
+                     `linear-gradient(135deg, ${colors.primaryColor} 0%, ${colors.primaryDark} 100%)`);
+               }
+            } catch (error) {
+               console.error('Error applying cached theme:', error);
+            }
+         })();
+      </script>
    </head>
-   <body>
+   <body class="public-page about-page">
       <div id="page-loader"></div>
       <!-- HEADER (loaded via script.js) -->
       <div id="site-header"></div>
@@ -21,7 +50,8 @@
       </button>
       <!-- Page Header -->
       <section class="page-hero">
-         <div class="container">
+         <div class="container page-hero-shell">
+            <span class="section-kicker" data-i18n="aboutPage.kicker">Ljudi iza besprekorne završnice</span>
             <h1 data-i18n="aboutPage.title">
                O nama - MS Sjaj
             </h1>
@@ -31,7 +61,7 @@
          </div>
       </section>
       <!-- About Content -->
-      <section class="about-content">
+      <section class="about-content section-reveal">
          <div class="container">
             <div class="about-story">
                <div class="story-content">
@@ -39,6 +69,9 @@
                   <h2 data-i18n="aboutPage.storyTitle">
                      Posvećeni kvalitetu od 2015. godine
                   </h2>
+                  <p class="story-intro" data-i18n="aboutPage.introLead">
+                     Gradimo utisak urednosti kroz diskretan rad, jasnu komunikaciju i detalje koji ostaju primećeni.
+                  </p>
                   <p id="aboutText" class="story-text" data-i18n="aboutPage.storyText">
                      Osnovani 2015. godine, MS Sjaj je započeo sa jednostavnom misijom...
                   </p>
@@ -49,8 +82,29 @@
             </div>
          </div>
       </section>
+      <section class="brand-manifesto section-reveal">
+         <div class="container">
+            <div class="brand-manifesto-shell">
+               <div class="brand-manifesto-copy reveal-item">
+                  <span class="section-kicker" data-i18n="aboutLuxury.kicker">Filozofija rada</span>
+                  <h2 data-i18n="aboutLuxury.title">Ne čistimo samo površine. Uređujemo osećaj prostora.</h2>
+                  <p data-i18n="aboutLuxury.text">
+                     Naš pristup spaja organizaciju, diskreciju i preciznost, tako da svaki prostor posle tretmana deluje skladnije, mirnije i kvalitetnije održavano.
+                  </p>
+               </div>
+               <div class="brand-manifesto-quote reveal-item" style="--reveal-delay: 120ms;">
+                  <span class="editorial-quote-mark">“</span>
+                  <p data-i18n="aboutLuxury.quote">Pravi premium utisak ne dolazi iz mnogo elemenata, već iz reda, svežine i pažnje prema detaljima koje ljudi odmah osećaju.</p>
+                  <div class="editorial-quote-meta">
+                     <strong data-i18n="aboutLuxury.metaTitle">Način rada MS Sjaj</strong>
+                     <span data-i18n="aboutLuxury.metaText">Diskretno, precizno i dosledno</span>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </section>
       <!-- Why Choose Us -->
-      <section class="why-choose-us">
+      <section class="why-choose-us section-reveal">
          <div class="container">
             <h2 data-i18n="whyChoose.title">Zašto izabrati MS Sjaj?</h2>
             <div class="reasons-grid">
@@ -59,25 +113,28 @@
          </div>
       </section>
       <!-- Values -->
-      <section class="values alt-bg">
+      <section class="values alt-bg section-reveal">
          <div class="container">
             <h2 data-i18n="values.title">Naše vrednosti</h2>
+            <p class="section-lead" data-i18n="aboutPage.valuesSubtitle">
+               Način na koji radimo važan je jednako kao i rezultat koji ostavljamo iza sebe.
+            </p>
             <div class="values-grid">
-               <div class="value-card">
+               <div class="value-card reveal-item" style="--reveal-delay: 0ms;">
                   <div class="value-icon">⭐</div>
                   <h3 data-i18n="values.quality.title">Kvalitet</h3>
                   <p data-i18n="values.quality.text">
                      Nikada ne pravimo kompromis po pitanju kvaliteta.
                   </p>
                </div>
-               <div class="value-card">
+               <div class="value-card reveal-item" style="--reveal-delay: 90ms;">
                   <div class="value-icon">🤝</div>
                   <h3 data-i18n="values.trust.title">Poverenje</h3>
                   <p data-i18n="values.trust.text">
                      Gradimo dugotrajne odnose kroz pouzdanost.
                   </p>
                </div>
-               <div class="value-card">
+               <div class="value-card reveal-item" style="--reveal-delay: 180ms;">
                   <div class="value-icon">💚</div>
                   <h3 data-i18n="values.sustainability.title">Održivost</h3>
                   <p data-i18n="values.sustainability.text">
@@ -87,11 +144,36 @@
             </div>
          </div>
       </section>
+      <section class="team-standards section-reveal">
+         <div class="container">
+            <div class="team-standards-head reveal-item">
+               <span class="section-kicker" data-i18n="teamStandards.kicker">Standard tima</span>
+               <h2 data-i18n="teamStandards.title">Svaki angažman treba da potvrdi isti nivo poverenja.</h2>
+            </div>
+            <div class="team-standards-grid">
+               <article class="team-standard-card reveal-item" style="--reveal-delay: 0ms;">
+                  <strong>01</strong>
+                  <h3 data-i18n="teamStandards.card1Title">Tačnost i pouzdan dolazak</h3>
+                  <p data-i18n="teamStandards.card1Text">Poštujemo dogovorene termine i pripremamo tim tako da rad bude organizovan od prvog minuta.</p>
+               </article>
+               <article class="team-standard-card reveal-item" style="--reveal-delay: 90ms;">
+                  <strong>02</strong>
+                  <h3 data-i18n="teamStandards.card2Title">Poštovanje prostora klijenta</h3>
+                  <p data-i18n="teamStandards.card2Text">Diskrecija, uredno ponašanje i pažljiv odnos prema enterijeru deo su usluge, ne dodatak.</p>
+               </article>
+               <article class="team-standard-card reveal-item" style="--reveal-delay: 180ms;">
+                  <strong>03</strong>
+                  <h3 data-i18n="teamStandards.card3Title">Dosledan nivo završnice</h3>
+                  <p data-i18n="teamStandards.card3Text">Bez obzira na tip prostora, cilj je isti: uredan, reprezentativan i vizuelno osvežen rezultat.</p>
+               </article>
+            </div>
+         </div>
+      </section>
       <!-- Testimonials -->
-      <section class="testimonials">
+      <section class="testimonials section-reveal">
          <div class="container">
             <h2 data-i18n="testimonials.title">Šta naši klijenti kažu</h2>
-            <p data-i18n="testimonials.subtitle">
+            <p class="section-lead" data-i18n="aboutPage.testimonialsLead">
                Pročitajte iskustva naših zadovoljnih klijenata
             </p>
             <div class="testimonials-grid" id="testimonialsGrid">
@@ -100,17 +182,20 @@
          </div>
       </section>
       <!-- CTA -->
-      <section class="cta-about">
+      <section class="cta-about section-reveal">
          <div class="container">
-            <h2 data-i18n="cta.aboutTitle">Spremni da iskusite MS Sjaj?</h2>
-            <p data-i18n="cta.aboutSubtitle">
-               Pridružite se stotinama zadovoljnih klijenata.
-            </p>
-            <a href="index.html?scroll=cta-contact"
-               class="btn btn-outline"
-               data-i18n="cta.aboutButton">
-            Počnite danas
-            </a>
+            <div class="cta-panel">
+               <span class="section-kicker" data-i18n="cta.kicker">Brz i jasan dogovor</span>
+               <h2 data-i18n="cta.aboutTitle">Spremni da iskusite MS Sjaj?</h2>
+               <p data-i18n="cta.aboutSubtitle">
+                  Pridružite se stotinama zadovoljnih klijenata.
+               </p>
+               <a href="index.html?scroll=cta-contact"
+                  class="btn btn-outline"
+                  data-i18n="cta.aboutButton">
+               Počnite danas
+               </a>
+            </div>
          </div>
       </section>
       <!-- FOOTER (loaded via script.js) -->

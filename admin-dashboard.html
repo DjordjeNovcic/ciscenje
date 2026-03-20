@@ -4,6 +4,9 @@
       <meta charset="UTF-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <title>Admin kontrolna tabla - MS Sjaj</title>
+      <link rel="preconnect" href="https://fonts.googleapis.com">
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+      <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
       <link rel="stylesheet" href="styles.css">
       <link rel="icon" href="./favicon.ico">
       <link rel="icon" type="image/png" sizes="32x32" href="./favicon-32.png">
@@ -50,45 +53,64 @@
          }
       </style>
    </head>
-   <body>
+   <body class="admin-page">
       <div class="admin-layout">
       <!-- Sidebar -->
       <aside class="admin-sidebar">
          <div class="sidebar-header">
-            <h2>MS Sjaj Admin</h2>
+            <div class="admin-brand">
+               <span class="admin-brand-mark">MS</span>
+               <div class="admin-brand-copy">
+                  <h2>MS Sjaj Admin</h2>
+                  <p>Content and brand control</p>
+               </div>
+            </div>
             <!-- Close button (Mobile only) -->
             <button class="sidebar-close" onclick="toggleAdminSidebar()">&times;</button>
          </div>
          <nav class="sidebar-nav">
-            <div class="nav-item active" data-section="dashboard-section">
-               <span>📊</span> Kontrolna tabla
+            <div class="nav-item active" data-section="dashboard-section" data-title="Kontrolna tabla">
+               <span class="nav-icon">📊</span>
+               <span class="nav-copy"><strong>Kontrolna tabla</strong><small>Pregled i brze akcije</small></span>
             </div>
-            <div class="nav-item" data-section="slideshow-section">
-               <span>🖼️</span> Slideshow
+            <div class="nav-item" data-section="slideshow-section" data-title="Slideshow">
+               <span class="nav-icon">🖼️</span>
+               <span class="nav-copy"><strong>Slideshow</strong><small>Hero vizuali i raspored</small></span>
             </div>
-            <div class="nav-item" data-section="services-section">
-               <span>💼</span> Usluge
+            <div class="nav-item" data-section="services-section" data-title="Usluge">
+               <span class="nav-icon">💼</span>
+               <span class="nav-copy"><strong>Usluge</strong><small>Paketi i opisi usluga</small></span>
             </div>
-            <div class="nav-item" data-section="addons-section">
-               <span>➕</span> Dodatne usluge
+            <div class="nav-item" data-section="addons-section" data-title="Dodatne usluge">
+               <span class="nav-icon">➕</span>
+               <span class="nav-copy"><strong>Dodatne usluge</strong><small>Add-on ponuda</small></span>
             </div>
-            <div class="nav-item" data-section="about-section">
-               <span>ℹ️</span> O nama
+            <div class="nav-item" data-section="about-section" data-title="O nama">
+               <span class="nav-icon">ℹ️</span>
+               <span class="nav-copy"><strong>O nama</strong><small>Priča, statistike i razlozi</small></span>
             </div>
-            <div class="nav-item" data-section="testimonials-section">
-               <span>⭐</span> Recenzije
+            <div class="nav-item" data-section="testimonials-section" data-title="Recenzije">
+               <span class="nav-icon">⭐</span>
+               <span class="nav-copy"><strong>Recenzije</strong><small>Društveni dokaz i ocene</small></span>
             </div>
-            <div class="nav-item" data-section="gallery-section">
-               <span>📸</span> Galerija
+            <div class="nav-item" data-section="gallery-section" data-title="Galerija">
+               <span class="nav-icon">📸</span>
+               <span class="nav-copy"><strong>Galerija</strong><small>Fotografije i portfolio</small></span>
             </div>
-            <div class="nav-item" data-section="contact-section">
-               <span>📞</span> Kontakt
+            <div class="nav-item" data-section="contact-section" data-title="Kontakt">
+               <span class="nav-icon">📞</span>
+               <span class="nav-copy"><strong>Kontakt</strong><small>Kanali komunikacije</small></span>
             </div>
-            <div class="nav-item" data-section="theme-section">
-               <span>🎨</span> Tema
+            <div class="nav-item" data-section="theme-section" data-title="Tema">
+               <span class="nav-icon">🎨</span>
+               <span class="nav-copy"><strong>Tema</strong><small>Boje i vizuelni identitet</small></span>
             </div>
          </nav>
          <div class="sidebar-footer">
+            <div class="sidebar-footer-note">
+               <strong>Live CMS</strong>
+               <span>Promene se čuvaju direktno u produkcionom sadržaju.</span>
+            </div>
             <button id="logoutBtn" class="btn btn-secondary btn-block">Odjavi se</button>
          </div>
       </aside>
@@ -103,8 +125,12 @@
             <span></span>
             <span></span>
             </button>
-            <h1 id="adminContent">Kontrolna tabla</h1>
+            <div class="admin-header-copy">
+               <span class="admin-kicker">MS Sjaj CMS</span>
+               <h1 id="adminContent">Kontrolna tabla</h1>
+            </div>
             <div class="admin-user">
+               <span class="admin-user-badge">● Online</span>
                <span>👤 Admin</span>
             </div>
          </header>
@@ -113,8 +139,55 @@
             <div id="dashboard-section" class="content-section active">
                <div class="dashboard-overview">
                   <div class="dashboard-header-section">
-                     <h2>Pregled</h2>
-                     <p class="dashboard-subtitle">Dobrodošli u admin kontrolnu tablu MS Sjaj</p>
+                     <span class="admin-kicker">Pregled sistema</span>
+                     <h2>Kontrola sadržaja bez lutanja kroz sekcije</h2>
+                     <p class="dashboard-subtitle">Brzi pristup najvažnijim delovima sajta: vizuali, usluge, društveni dokaz, kontakt i tema.</p>
+                  </div>
+                  <div class="admin-overview-grid">
+                     <div class="overview-card">
+                        <span class="overview-label">Sadržaj</span>
+                        <strong>Usluge, O nama, recenzije</strong>
+                        <p>Osveži ključne poruke i ponudu sa nekoliko klikova.</p>
+                     </div>
+                     <div class="overview-card">
+                        <span class="overview-label">Vizueli</span>
+                        <strong>Slideshow, galerija, tema</strong>
+                        <p>Upravljaj prvim utiskom i uskladi izgled sa brendom.</p>
+                     </div>
+                     <div class="overview-card">
+                        <span class="overview-label">Komunikacija</span>
+                        <strong>Kontakt podaci i CTA tok</strong>
+                        <p>Održavaj ispravne brojeve, email i adresu bez koda.</p>
+                     </div>
+                  </div>
+                  <div class="admin-checklist">
+                     <div class="checklist-head">
+                        <h3>Preporučeni redosled izmena</h3>
+                        <p>Najčešći tok rada kada osvežavaš sajt za novu kampanju ili sezonu.</p>
+                     </div>
+                     <div class="checklist-grid">
+                        <div class="checklist-item">
+                           <span>1</span>
+                           <div>
+                              <strong>Promeni hero vizuale</strong>
+                              <p>Osveži slideshow da početna odmah izgleda aktuelno.</p>
+                           </div>
+                        </div>
+                        <div class="checklist-item">
+                           <span>2</span>
+                           <div>
+                              <strong>Pregledaj usluge i cene</strong>
+                              <p>Potvrdi pakete, dodatne usluge i najtraženije ponude.</p>
+                           </div>
+                        </div>
+                        <div class="checklist-item">
+                           <span>3</span>
+                           <div>
+                              <strong>Dodaj nove radove i recenzije</strong>
+                              <p>Pojačaj poverenje kroz sveže fotografije i iskustva klijenata.</p>
+                           </div>
+                        </div>
+                     </div>
                   </div>
                   <div class="quick-actions-grid">                  
                      <!-- Card 2: Uredi slideshow -->
@@ -213,8 +286,11 @@
             <!-- Slideshow Management Section -->
             <div id="slideshow-section" class="content-section">
                <div class="dashboard-section">
-                  <h2>Upravljanje Slideshow-om</h2>
-                  <p>Dodajte slike za pozadinski slideshow na početnoj stranici.</p>
+                  <div class="admin-section-head">
+                     <span class="admin-kicker">Početna stranica</span>
+                     <h2>Upravljanje Slideshow-om</h2>
+                     <p>Dodajte slike za pozadinski slideshow na početnoj stranici.</p>
+                  </div>
                   <button onclick="document.getElementById('slideshowInput').click()" class="btn btn-primary" style="margin-bottom: 2rem;">
                   <span>📤</span> Dodaj sliku u slideshow
                   </button>
@@ -228,7 +304,11 @@
             <!-- Edit Services - DUAL LANGUAGE -->
             <div id="services-section" class="content-section">
                <div class="dashboard-section">
-                  <h2>Uredi usluge</h2>
+                  <div class="admin-section-head">
+                     <span class="admin-kicker">Ponuda</span>
+                     <h2>Uredi usluge</h2>
+                     <p>Dodaj, preimenuj ili ažuriraj pakete koji se prikazuju na sajtu i uslužnoj stranici.</p>
+                  </div>
                   <button onclick="showServiceModal()" class="btn btn-primary" style="margin-bottom: 1rem;">Dodaj novu uslugu</button>
                   <div id="servicesList">
                      <p>Učitavanje usluga...</p>
@@ -239,7 +319,11 @@
             <!-- Edit Add-ons - DUAL LANGUAGE -->
             <div id="addons-section" class="content-section">
                <div class="dashboard-section">
-                  <h2>Uredi dodatne usluge</h2>
+                  <div class="admin-section-head">
+                     <span class="admin-kicker">Add-ons</span>
+                     <h2>Uredi dodatne usluge</h2>
+                     <p>Dopunske usluge su idealne za upsell, zato ih drži jasnim i kratko opisanim.</p>
+                  </div>
                   <button onclick="showAddOnModal()" class="btn btn-primary" style="margin-bottom: 1rem;">Dodaj novu dodatnu uslugu</button>
                   <div id="addonsList">
                      <p>Učitavanje dodatnih usluga...</p>
@@ -250,7 +334,11 @@
             <!-- Edit About Page - DUAL LANGUAGE -->
             <div id="about-section" class="content-section">
                <div class="dashboard-section">
-                  <h2>Uredi O nama stranicu</h2>
+                  <div class="admin-section-head">
+                     <span class="admin-kicker">Brand story</span>
+                     <h2>Uredi O nama stranicu</h2>
+                     <p>Ovde uređuješ priču, statistike i razloge koji grade poverenje na početnoj i O nama stranici.</p>
+                  </div>
                   <form class="cms-form">
                      <!-- Language Tabs -->
                      <div class="language-tabs">
@@ -321,7 +409,11 @@
             <!-- Testimonials - DUAL LANGUAGE -->
             <div id="testimonials-section" class="content-section">
                <div class="dashboard-section">
-                  <h2>Recenzije kupaca</h2>
+                  <div class="admin-section-head">
+                     <span class="admin-kicker">Social proof</span>
+                     <h2>Recenzije kupaca</h2>
+                     <p>Dodaj najuverljivije komentare i drži ocene konzistentnim sa stvarnim iskustvom klijenata.</p>
+                  </div>
                   <button onclick="showTestimonialModal()" class="btn btn-primary" style="margin-bottom: 1rem;">Dodaj novu recenziju</button>
                   <div id="testimonialsList" class="testimonials-list">
                      <p>Učitavanje recenzija...</p>
@@ -332,7 +424,11 @@
             <!-- Photo Gallery -->
             <div id="gallery-section" class="content-section">
                <div class="dashboard-section">
-                  <h2>Galerija fotografija</h2>
+                  <div class="admin-section-head">
+                     <span class="admin-kicker">Portfolio</span>
+                     <h2>Galerija fotografija</h2>
+                     <p>Prikaži sveže radove koji vizuelno potvrđuju kvalitet usluge.</p>
+                  </div>
                   <input type="file" id="photoInput" accept="image/*" style="display: none;">
                   <button id="uploadPhotoBtn" class="btn btn-primary" style="margin-bottom: 1rem;">Otpremi fotografiju</button>
                   <div id="galleryAdmin" class="photo-gallery">
@@ -344,7 +440,11 @@
             <!-- Contact Info -->
             <div id="contact-section" class="content-section">
                <div class="dashboard-section">
-                  <h2>Kontakt informacije</h2>
+                  <div class="admin-section-head">
+                     <span class="admin-kicker">Kontakt</span>
+                     <h2>Kontakt informacije</h2>
+                     <p>Proveri da su brojevi telefona, email i adresa ažurirani pre svake kampanje.</p>
+                  </div>
                   <form class="cms-form">
                      <div class="form-group">
                         <label for="contactPhone">Telefon</label>
@@ -366,8 +466,11 @@
             <!-- Theme Settings Section -->
             <div id="theme-section" class="content-section">
                <div class="dashboard-section">
-                  <h2>Podešavanja Tema</h2>
-                  <p>Izaberite boje za vaš sajt. Promene će biti odmah primenjene na ceo sajt.</p>
+                  <div class="admin-section-head">
+                     <span class="admin-kicker">Vizuelni identitet</span>
+                     <h2>Podešavanja Tema</h2>
+                     <p>Izaberite boje za vaš sajt. Promene će biti odmah primenjene na ceo sajt.</p>
+                  </div>
                   <form class="cms-form" style="max-width: 700px;">
                      <div class="dual-lang-group">
                         <h3>🎨 Glavne Boje</h3>
@@ -847,7 +950,7 @@
              // 4. Update header title
              const header = document.getElementById('adminContent');
              if (header) {
-               header.textContent = item.innerText.trim();
+               header.textContent = item.dataset.title || item.innerText.trim();
              }
            });
          });
