@@ -2328,24 +2328,22 @@ function switchLang(event, lang) {
 // ========================================
 
 const defaultColors = {
-   primaryColor: '#244c68',
-   primaryDark: '#142f43',
-   secondaryColor: '#d8bc8c',
-   successColor: '#7b9788',
-   bgLight: '#f7f3ec',
-   textDark: '#161412',
-   textLight: '#6c655f'
+   primaryColor: '#5c6cff',
+   primaryDark: '#3d53d6',
+   secondaryColor: '#e6c38f',
+   successColor: '#8eabc9',
+   bgLight: '#f8f5ef',
+   textDark: '#171821',
+   textLight: '#6c7280'
 };
 
-const legacyDefaultColors = {
+const deprecatedThemePalettes = [{
    primaryColor: '#f59e0b',
-   primaryDark: '#ea580c',
-   secondaryColor: '#2d2d2d',
-   successColor: '#10b981',
-   bgLight: '#fffbeb',
-   textDark: '#1f2937',
-   textLight: '#6b7280'
-};
+   primaryDark: '#ea580c'
+}, {
+   primaryColor: '#244c68',
+   primaryDark: '#142f43'
+}];
 
 function normalizeThemeColors(colors = {}) {
    const mergedColors = {
@@ -2353,11 +2351,12 @@ function normalizeThemeColors(colors = {}) {
       ...colors
    };
 
-   const isLegacyPalette =
-      mergedColors.primaryColor === legacyDefaultColors.primaryColor &&
-      mergedColors.primaryDark === legacyDefaultColors.primaryDark;
+   const isDeprecatedPalette = deprecatedThemePalettes.some(palette =>
+      mergedColors.primaryColor === palette.primaryColor &&
+      mergedColors.primaryDark === palette.primaryDark
+   );
 
-   return isLegacyPalette ? {
+   return isDeprecatedPalette ? {
       ...defaultColors
    } : mergedColors;
 }
@@ -2366,19 +2365,31 @@ function normalizeThemeColors(colors = {}) {
 function applyTheme(colors) {
    const normalizedColors = normalizeThemeColors(colors);
    const root = document.documentElement;
+   const publicPageBody = document.body?.classList.contains('public-page') ? document.body : null;
 
-   if (normalizedColors.primaryColor) root.style.setProperty('--primary-color', normalizedColors.primaryColor);
-   if (normalizedColors.primaryDark) root.style.setProperty('--primary-dark', normalizedColors.primaryDark);
-   if (normalizedColors.secondaryColor) root.style.setProperty('--secondary-color', normalizedColors.secondaryColor);
-   if (normalizedColors.successColor) root.style.setProperty('--success-color', normalizedColors.successColor);
-   if (normalizedColors.bgLight) root.style.setProperty('--bg-light', normalizedColors.bgLight);
-   if (normalizedColors.textDark) root.style.setProperty('--text-dark', normalizedColors.textDark);
-   if (normalizedColors.textLight) root.style.setProperty('--text-light', normalizedColors.textLight);
+   const setThemeVariable = (property, value) => {
+      if (!value) return;
+      root.style.setProperty(property, value);
+      if (publicPageBody) {
+         publicPageBody.style.setProperty(property, value);
+      }
+   };
+
+   setThemeVariable('--primary-color', normalizedColors.primaryColor);
+   setThemeVariable('--primary-dark', normalizedColors.primaryDark);
+   setThemeVariable('--secondary-color', normalizedColors.secondaryColor);
+   setThemeVariable('--success-color', normalizedColors.successColor);
+   setThemeVariable('--bg-light', normalizedColors.bgLight);
+   setThemeVariable('--text-dark', normalizedColors.textDark);
+   setThemeVariable('--text-light', normalizedColors.textLight);
 
    // Update gradient
    if (normalizedColors.primaryColor && normalizedColors.primaryDark) {
-      root.style.setProperty('--primary-gradient',
-         `linear-gradient(135deg, ${normalizedColors.primaryColor} 0%, ${normalizedColors.primaryDark} 100%)`);
+      const gradientValue = `linear-gradient(135deg, ${normalizedColors.primaryColor} 0%, ${normalizedColors.primaryDark} 100%)`;
+      root.style.setProperty('--primary-gradient', gradientValue);
+      if (publicPageBody) {
+         publicPageBody.style.setProperty('--primary-gradient', gradientValue);
+      }
    }
 }
 
@@ -2429,7 +2440,7 @@ function previewTheme() {
    notification.textContent = '👁️ Pregled tema - promene nisu sačuvane';
    notification.style.cssText = `
           position: fixed; top: 20px; right: 20px;
-          background: linear-gradient(135deg, #244c68 0%, #142f43 100%); color: white;
+          background: linear-gradient(135deg, #5c6cff 0%, #3d53d6 100%); color: white;
           padding: 1rem 2rem; border-radius: 8px;
           box-shadow: 0 4px 12px rgba(0,0,0,0.15);
           z-index: 10000; animation: slideIn 0.3s ease;
