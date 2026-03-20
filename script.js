@@ -534,7 +534,9 @@ function loadSharedTheme() {
    const cachedTheme = localStorage.getItem(THEME_STORAGE_KEY);
    if (cachedTheme) {
       try {
-         applyTheme(JSON.parse(cachedTheme));
+         const normalizedCachedTheme = normalizeThemeColors(JSON.parse(cachedTheme));
+         localStorage.setItem(THEME_STORAGE_KEY, JSON.stringify(normalizedCachedTheme));
+         applyTheme(normalizedCachedTheme);
       } catch (error) {
          console.error('Error parsing cached theme:', error);
       }
@@ -547,7 +549,7 @@ function loadSharedTheme() {
             return;
          }
 
-         const colors = doc.data();
+         const colors = normalizeThemeColors(doc.data());
          localStorage.setItem(THEME_STORAGE_KEY, JSON.stringify(colors));
          applyTheme(colors);
       })
@@ -879,7 +881,7 @@ function loadHomeContentAdmin() {
 }
 
 function addFeatureItem(container, feature, index) {
-   const icons = ['✨', '🌿', '📅', '⭐', '💼', '🏠', '💚', '🤝', '🧹', '🧼', '✅', '🎯'];
+   const icons = ['✨', '🫧', '📅', '⭐', '💼', '🏠', '✦', '🤝', '🧹', '🧼', '✅', '🎯'];
 
    const featureDiv = document.createElement('div');
    featureDiv.className = 'feature-item';
@@ -1460,7 +1462,7 @@ function removeStat(index) {
 }
 
 function addReasonItem(container, reason, index) {
-   const icons = ['✨', '🌿', '💎', '⏰', '🛡️', '💰', '⭐', '🤝', '💚', '🏆', '🎯', '📊'];
+   const icons = ['✨', '🫧', '💎', '⏰', '🛡️', '💰', '⭐', '🤝', '✦', '🏆', '🎯', '📊'];
 
    const reasonDiv = document.createElement('div');
    reasonDiv.className = 'feature-item';
@@ -2328,13 +2330,13 @@ function switchLang(event, lang) {
 // ========================================
 
 const defaultColors = {
-   primaryColor: '#5c6cff',
-   primaryDark: '#3d53d6',
-   secondaryColor: '#e6c38f',
-   successColor: '#8eabc9',
-   bgLight: '#f8f5ef',
-   textDark: '#171821',
-   textLight: '#6c7280'
+   primaryColor: '#b76b57',
+   primaryDark: '#885042',
+   secondaryColor: '#e7d1b7',
+   successColor: '#c7b1a7',
+   bgLight: '#faf5ed',
+   textDark: '#1f1815',
+   textLight: '#756861'
 };
 
 const deprecatedThemePalettes = [{
@@ -2343,6 +2345,12 @@ const deprecatedThemePalettes = [{
 }, {
    primaryColor: '#244c68',
    primaryDark: '#142f43'
+}, {
+   primaryColor: '#5c6cff',
+   primaryDark: '#3d53d6'
+}, {
+   primaryColor: '#c8794f',
+   primaryDark: '#985635'
 }];
 
 function normalizeThemeColors(colors = {}) {
@@ -2440,7 +2448,7 @@ function previewTheme() {
    notification.textContent = '👁️ Pregled tema - promene nisu sačuvane';
    notification.style.cssText = `
           position: fixed; top: 20px; right: 20px;
-          background: linear-gradient(135deg, #5c6cff 0%, #3d53d6 100%); color: white;
+          background: linear-gradient(135deg, #b76b57 0%, #885042 100%); color: white;
           padding: 1rem 2rem; border-radius: 8px;
           box-shadow: 0 4px 12px rgba(0,0,0,0.15);
           z-index: 10000; animation: slideIn 0.3s ease;

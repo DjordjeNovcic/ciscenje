@@ -20,8 +20,32 @@
             if (!cachedTheme) return;
 
             try {
-               const colors = JSON.parse(cachedTheme);
+               const defaultColors = {
+                  primaryColor: '#b76b57',
+                  primaryDark: '#885042',
+                  secondaryColor: '#e7d1b7',
+                  successColor: '#c7b1a7',
+                  bgLight: '#faf5ed',
+                  textDark: '#1f1815',
+                  textLight: '#756861'
+               };
+               const deprecatedPalettes = [
+                  { primaryColor: '#f59e0b', primaryDark: '#ea580c' },
+                  { primaryColor: '#244c68', primaryDark: '#142f43' },
+                  { primaryColor: '#5c6cff', primaryDark: '#3d53d6' },
+                  { primaryColor: '#c8794f', primaryDark: '#985635' }
+               ];
+               const parsedTheme = JSON.parse(cachedTheme);
+               const isDeprecatedPalette = deprecatedPalettes.some((palette) =>
+                  parsedTheme.primaryColor === palette.primaryColor &&
+                  parsedTheme.primaryDark === palette.primaryDark
+               );
+               const colors = isDeprecatedPalette ? defaultColors : { ...defaultColors, ...parsedTheme };
                const root = document.documentElement;
+
+               if (isDeprecatedPalette) {
+                  localStorage.setItem('mssjaj_theme', JSON.stringify(defaultColors));
+               }
 
                if (colors.primaryColor) root.style.setProperty('--primary-color', colors.primaryColor);
                if (colors.primaryDark) root.style.setProperty('--primary-dark', colors.primaryDark);
