@@ -15,11 +15,16 @@
   --shadow-md: 0 18px 40px rgba(17, 21, 20, 0.08);
   --shadow-lg: 0 28px 70px rgba(10, 14, 13, 0.14);
   --shadow-xl: 0 36px 90px rgba(10, 14, 13, 0.18);
+  --shadow-ambient: 0 32px 74px rgba(9, 13, 12, 0.16);
   --radius-sm: 18px;
   --radius-md: 28px;
   --radius-lg: 36px;
   --container-width: 1240px;
   --navbar-height: 84px;
+  --section-space: clamp(4.75rem, 7vw, 7rem);
+  --section-space-tight: clamp(3.5rem, 5vw, 5rem);
+  --surface-soft: rgba(255, 251, 246, 0.82);
+  --surface-strong: rgba(255, 252, 248, 0.92);
   --primary-gradient: linear-gradient(135deg, #315d56 0%, #193330 100%);
 }
 
@@ -2167,103 +2172,223 @@ body:has(.lightbox.active) .go-to-top {
   }
 }
 
-/* Premium Refinement Layer */
+/* Premium System Overrides */
 body.public-page {
   background:
-    radial-gradient(circle at 12% 14%, rgba(214, 231, 223, 0.62), transparent 24%),
-    radial-gradient(circle at 86% 18%, rgba(232, 210, 177, 0.42), transparent 26%),
-    radial-gradient(circle at 50% 62%, rgba(255, 255, 255, 0.32), transparent 28%),
-    linear-gradient(180deg, #fcf8f2 0%, #f5ede4 100%);
+    radial-gradient(circle at 14% 12%, rgba(214, 231, 223, 0.68), transparent 24%),
+    radial-gradient(circle at 86% 14%, rgba(232, 210, 177, 0.44), transparent 24%),
+    radial-gradient(circle at 50% 48%, rgba(255, 255, 255, 0.28), transparent 24%),
+    linear-gradient(180deg, #fcf8f2 0%, #f3ebe0 100%);
+}
+
+body.public-page::before {
+  opacity: 0.24;
+}
+
+body.public-page::after {
+  opacity: 0.22;
 }
 
 body.public-page .navbar {
-  background: linear-gradient(180deg, rgba(17, 21, 20, 0.99), rgba(9, 12, 12, 0.975));
-  border-color: rgba(255, 255, 255, 0.08);
+  top: 14px;
+  border-color: rgba(255, 255, 255, 0.12);
+  background:
+    linear-gradient(180deg, rgba(14, 18, 18, 0.985), rgba(8, 11, 11, 0.965));
   box-shadow:
-    0 28px 70px rgba(7, 11, 10, 0.42),
-    inset 0 1px 0 rgba(255, 255, 255, 0.025);
+    0 28px 72px rgba(6, 10, 10, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
 }
 
 body.public-page .navbar .container {
   min-height: 78px;
+  gap: 1.15rem;
+}
+
+body.public-page .brand-mark {
+  width: 50px;
+  height: 50px;
+  border-radius: 18px;
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.22), rgba(120, 142, 135, 0.14));
+}
+
+body.public-page .nav-right {
+  gap: 0.78rem;
 }
 
 body.public-page .nav-menu,
-body.public-page .language-switcher.desktop-only,
+body.public-page .language-switcher.desktop-only {
+  padding: 0.26rem;
+  background: rgba(255, 255, 255, 0.045);
+  border-color: rgba(255, 255, 255, 0.07);
+}
+
 body.public-page .phone-trigger {
-  background: rgba(255, 255, 255, 0.035);
-  border-color: rgba(255, 255, 255, 0.06);
+  min-height: 48px;
+  padding-inline: 1.15rem;
+  background: rgba(255, 255, 255, 0.055);
+  border-color: rgba(255, 255, 255, 0.08);
+}
+
+body.public-page .phone-trigger:hover,
+body.public-page .nav-menu a:hover,
+body.public-page .nav-menu a.active,
+body.public-page .lang-btn:hover,
+body.public-page .lang-btn.active {
+  background: rgba(255, 255, 255, 0.095);
 }
 
 body.public-page .nav-menu a {
-  color: rgba(248, 243, 238, 0.92);
+  min-height: 48px;
+  padding-inline: 1.15rem;
 }
 
-body.public-page .nav-menu a:hover,
-body.public-page .nav-menu a.active,
-body.public-page .lang-btn.active,
-body.public-page .lang-btn:hover {
-  background: rgba(255, 255, 255, 0.085);
+body.public-page .nav-cta,
+body.public-page .nav-menu-cta,
+body.public-page .footer-pill-link {
+  min-height: 50px;
+  background: linear-gradient(135deg, #ecd9bb 0%, #f5e7cf 52%, #fff5e7 100%);
+  color: #1c3632;
+  border-color: rgba(255, 245, 230, 0.84);
+  box-shadow:
+    0 18px 36px rgba(9, 13, 12, 0.18),
+    inset 0 1px 0 rgba(255, 255, 255, 0.7);
+}
+
+body.public-page .nav-cta:hover,
+body.public-page .nav-menu-cta:hover,
+body.public-page .footer-pill-link:hover {
+  transform: translateY(-2px);
+  background: linear-gradient(135deg, #f0dfc5 0%, #fff0dc 58%, #fff8ec 100%);
+  box-shadow:
+    0 22px 42px rgba(9, 13, 12, 0.22),
+    inset 0 1px 0 rgba(255, 255, 255, 0.8);
+}
+
+body.public-page.is-scrolled .navbar {
+  top: 8px;
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+body.public-page .scroll-progress {
+  top: 7px;
+  z-index: 1500;
 }
 
 body.home-page .landing-section {
-  padding-bottom: 4.5rem;
+  min-height: min(960px, calc(100svh - 18px));
+  padding: calc(var(--navbar-height) + 48px) 0 4.25rem;
+}
+
+body.home-page .landing-section::before {
+  background:
+    linear-gradient(115deg, rgba(9, 16, 15, 0.82) 0%, rgba(9, 16, 15, 0.46) 44%, rgba(9, 16, 15, 0.22) 100%),
+    radial-gradient(circle at var(--hero-glow-x, 72%) var(--hero-glow-y, 22%), rgba(255, 242, 219, 0.28), transparent 22%),
+    radial-gradient(circle at 12% 88%, rgba(214, 231, 223, 0.22), transparent 24%);
 }
 
 body.home-page .landing-shell {
-  grid-template-columns: minmax(0, 1.04fr) minmax(340px, 0.76fr);
+  grid-template-columns: minmax(0, 1.04fr) minmax(330px, 0.74fr);
   gap: 2rem;
 }
 
 body.home-page .landing-content {
+  padding: clamp(2.1rem, 3vw, 2.7rem);
   border-color: rgba(255, 255, 255, 0.56);
   background:
     radial-gradient(circle at top center, rgba(255, 255, 255, 0.58), transparent 30%),
     linear-gradient(180deg, rgba(255, 252, 247, 0.95), rgba(243, 237, 228, 0.9));
   box-shadow:
     0 42px 95px rgba(10, 14, 13, 0.18),
-    inset 0 1px 0 rgba(255, 255, 255, 0.5);
-}
-
-body.home-page .landing-content::after {
-  content: "";
-  position: absolute;
-  inset: auto 10% 12% auto;
-  width: 180px;
-  height: 180px;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(214, 231, 223, 0.34), rgba(214, 231, 223, 0));
-  filter: blur(10px);
-  pointer-events: none;
+    inset 0 1px 0 rgba(255, 255, 255, 0.52);
 }
 
 body.home-page .landing-section h1 {
-  max-width: 12.5ch;
+  max-width: 11.2ch;
+  margin-bottom: 1rem;
+  font-size: clamp(3rem, 4.8vw, 5rem);
+  line-height: 0.9;
   text-wrap: balance;
 }
 
 body.home-page .landing-subtitle,
 body.home-page #heroText {
-  max-width: 52ch;
+  max-width: 54ch;
+}
+
+body.home-page .hero-buttons {
+  margin: 1.55rem 0 1.35rem;
+}
+
+body.home-page .hero-trust {
+  gap: 0.9rem;
+}
+
+body.home-page .trust-pill {
+  padding: 1.08rem 0.9rem;
+  border-radius: 24px;
 }
 
 body.home-page .hero-sidecard {
   align-self: stretch;
+  padding: clamp(1.6rem, 2.4vw, 2rem);
+  border-radius: 32px;
   background:
-    radial-gradient(circle at top right, rgba(255, 255, 255, 0.04), transparent 30%),
-    linear-gradient(180deg, rgba(16, 22, 21, 0.97), rgba(21, 29, 27, 0.95));
+    radial-gradient(circle at top right, rgba(255, 255, 255, 0.05), transparent 30%),
+    linear-gradient(180deg, rgba(15, 21, 20, 0.97), rgba(22, 30, 28, 0.95));
   box-shadow:
-    0 34px 70px rgba(8, 12, 11, 0.28),
+    0 36px 72px rgba(8, 12, 11, 0.28),
     inset 0 1px 0 rgba(255, 255, 255, 0.06);
 }
 
+body.public-page .page-hero,
+body.public-page .features,
+body.public-page .why-choose-us,
+body.public-page .services-preview,
+body.public-page .gallery-section,
+body.public-page .services-section,
+body.public-page .add-ons,
+body.public-page .about-content,
+body.public-page .values,
+body.public-page .editorial-showcase,
+body.public-page .service-standards,
+body.public-page .service-ritual,
+body.public-page .brand-manifesto,
+body.public-page .team-standards,
+body.public-page .testimonials,
+body.public-page .cta-contact,
+body.public-page .cta-services,
+body.public-page .cta-about {
+  padding: var(--section-space) 0;
+}
+
+body.public-page .page-hero {
+  padding-top: calc(var(--navbar-height) + 56px);
+  padding-bottom: var(--section-space-tight);
+}
+
+body.public-page .proof-marquee {
+  padding: 1.25rem 0 0.5rem;
+}
+
+body.public-page .proof-marquee-track {
+  padding-block: 1rem;
+}
+
 body.public-page .features .container,
+body.public-page .why-choose-us .container,
 body.public-page .services-preview .container,
+body.public-page .gallery-section .container,
 body.public-page .services-section .container,
-body.public-page .about-content .container {
+body.public-page .add-ons .container,
+body.public-page .about-content .container,
+body.public-page .values .container {
+  padding: clamp(2rem, 3vw, 2.9rem);
   background:
-    radial-gradient(circle at top right, rgba(214, 231, 223, 0.26), transparent 26%),
-    linear-gradient(180deg, rgba(255, 252, 247, 0.84), rgba(246, 239, 230, 0.78));
+    radial-gradient(circle at top right, rgba(214, 231, 223, 0.2), transparent 26%),
+    linear-gradient(180deg, var(--surface-strong), var(--surface-soft));
+  box-shadow:
+    var(--shadow-ambient),
+    inset 0 1px 0 rgba(255, 255, 255, 0.48);
 }
 
 body.public-page .why-choose-us .container,
@@ -2271,8 +2396,8 @@ body.public-page .gallery-section .container,
 body.public-page .add-ons .container,
 body.public-page .values .container {
   background:
-    radial-gradient(circle at bottom left, rgba(232, 210, 177, 0.18), transparent 28%),
-    linear-gradient(180deg, rgba(255, 252, 247, 0.74), rgba(247, 241, 234, 0.66));
+    radial-gradient(circle at bottom left, rgba(232, 210, 177, 0.16), transparent 28%),
+    linear-gradient(180deg, rgba(255, 252, 247, 0.8), rgba(247, 241, 234, 0.72));
 }
 
 body.public-page .features .container::before,
@@ -2286,10 +2411,32 @@ body.public-page .values .container::before {
   content: "";
   position: absolute;
   top: 0;
-  left: 24px;
-  right: 24px;
+  left: 28px;
+  right: 28px;
   height: 1px;
   background: linear-gradient(90deg, transparent, rgba(49, 93, 86, 0.16), transparent);
+}
+
+body.public-page .signature-process-head,
+body.public-page .service-standards-head,
+body.public-page .team-standards-head,
+body.public-page .features .section-lead,
+body.public-page .why-choose-us .section-lead,
+body.public-page .services-preview .section-lead,
+body.public-page .gallery-section .gallery-subtitle,
+body.public-page .add-ons .section-lead,
+body.public-page .values .section-lead {
+  margin-bottom: 1.8rem;
+}
+
+body.public-page .section-lead,
+body.public-page .gallery-subtitle,
+body.public-page .page-hero p,
+body.public-page .landing-subtitle,
+body.public-page .footer-note,
+body.public-page .story-intro {
+  font-size: 1.03rem;
+  line-height: 1.84;
 }
 
 body.public-page .feature-card,
@@ -2304,7 +2451,7 @@ body.public-page .team-standard-card,
 body.public-page .service-ritual-step {
   box-shadow:
     0 24px 54px rgba(18, 22, 21, 0.1),
-    inset 0 1px 0 rgba(255, 255, 255, 0.42);
+    inset 0 1px 0 rgba(255, 255, 255, 0.44);
 }
 
 body.public-page .feature-card,
@@ -2318,12 +2465,6 @@ body.public-page .team-standard-card {
     linear-gradient(180deg, rgba(255, 255, 255, 0.95), rgba(245, 238, 229, 0.92));
 }
 
-body.public-page .pricing-card.featured {
-  background:
-    radial-gradient(circle at top right, rgba(232, 210, 177, 0.16), transparent 26%),
-    linear-gradient(180deg, rgba(19, 28, 26, 0.99), rgba(14, 20, 19, 0.96));
-}
-
 body.public-page .page-hero-shell,
 body.public-page .story-content,
 body.public-page .editorial-showcase-copy,
@@ -2331,60 +2472,48 @@ body.public-page .brand-manifesto-copy,
 body.public-page .service-ritual-shell,
 body.public-page .footer-content {
   box-shadow:
-    0 32px 72px rgba(10, 14, 13, 0.14),
-    inset 0 1px 0 rgba(255, 255, 255, 0.42);
+    0 34px 74px rgba(10, 14, 13, 0.14),
+    inset 0 1px 0 rgba(255, 255, 255, 0.44);
 }
 
-body.public-page .section-lead,
-body.public-page .gallery-subtitle,
-body.public-page .page-hero p,
-body.public-page .landing-subtitle,
-body.public-page .footer-note,
-body.public-page .story-intro {
-  font-size: 1.02rem;
-  line-height: 1.82;
+body.public-page .editorial-showcase-shell,
+body.public-page .brand-manifesto-shell,
+body.public-page .service-ritual-shell,
+body.public-page .about-story {
+  gap: 1.45rem;
 }
 
 body.public-page .cta-panel {
+  padding: clamp(2.4rem, 4vw, 3.2rem);
   background:
     radial-gradient(circle at top center, rgba(255, 255, 255, 0.08), transparent 28%),
     linear-gradient(135deg, rgba(17, 36, 33, 0.98), rgba(44, 74, 67, 0.92));
 }
 
-body.public-page .cta-panel::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.08), transparent 24%, transparent 72%, rgba(255, 255, 255, 0.04));
-  pointer-events: none;
-}
-
 body.public-page .footer-cta-strip {
   display: grid;
-  grid-template-columns: minmax(0, 1.15fr) auto;
+  grid-template-columns: minmax(0, 1.12fr) auto;
   align-items: center;
-  gap: 1.4rem;
-  padding: 1.5rem 1.7rem;
-  margin-bottom: 1.25rem;
+  gap: 1.5rem;
+  padding: 1.7rem 1.8rem;
+  margin-bottom: 1.3rem;
   border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 30px;
   background:
     radial-gradient(circle at top right, rgba(232, 210, 177, 0.12), transparent 26%),
     linear-gradient(180deg, rgba(17, 24, 22, 0.98), rgba(11, 16, 15, 0.96));
-  box-shadow: 0 26px 58px rgba(10, 14, 13, 0.18);
+  box-shadow: 0 28px 60px rgba(10, 14, 13, 0.18);
 }
 
 body.public-page .footer-cta-copy h4 {
-  margin-bottom: 0.45rem;
+  margin-bottom: 0.5rem;
   color: #fff;
   font-size: clamp(2rem, 3vw, 2.9rem);
 }
 
 body.public-page .footer-cta-copy p {
-  max-width: 48ch;
-  color: rgba(248, 242, 234, 0.74);
-  line-height: 1.75;
+  max-width: 50ch;
+  color: rgba(248, 242, 234, 0.76);
 }
 
 body.public-page .footer-cta-actions {
@@ -2393,22 +2522,6 @@ body.public-page .footer-cta-actions {
   gap: 0.75rem;
   flex-wrap: wrap;
   justify-content: flex-end;
-}
-
-body.public-page .footer-pill-link {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 52px;
-  padding: 0.85rem 1.25rem;
-  border-radius: 999px;
-  text-decoration: none;
-  font-weight: 800;
-  letter-spacing: 0.01em;
-  background: linear-gradient(135deg, #e8d2b1 0%, #f5e6cf 55%, #fff2e0 100%);
-  color: #213833;
-  border: 1px solid rgba(255, 246, 232, 0.72);
-  box-shadow: 0 16px 32px rgba(8, 12, 11, 0.16);
 }
 
 body.public-page .footer-pill-link-outline {
@@ -2424,13 +2537,24 @@ body.public-page .site-footer {
 
 body.public-page .footer-content {
   grid-template-columns: 1.45fr 0.8fr 0.95fr 0.95fr;
+  gap: 0;
+  padding: 2.2rem;
   background:
     radial-gradient(circle at bottom right, rgba(214, 231, 223, 0.08), transparent 28%),
     linear-gradient(180deg, rgba(15, 20, 19, 0.99), rgba(8, 12, 11, 0.97));
 }
 
+body.public-page .footer-section {
+  padding-inline: 1.25rem;
+}
+
+body.public-page .footer-section + .footer-section {
+  border-left: 1px solid rgba(255, 255, 255, 0.08);
+}
+
 body.public-page .footer-lead {
-  padding-right: 1rem;
+  padding-left: 0;
+  padding-right: 1.5rem;
 }
 
 body.public-page .footer-section h4 {
@@ -2446,20 +2570,82 @@ body.public-page .footer-section h4 {
   body.public-page .footer-cta-actions {
     justify-content: flex-start;
   }
+
+  body.public-page .footer-content {
+    gap: 1.2rem;
+  }
+
+  body.public-page .footer-section {
+    padding-inline: 0;
+  }
+
+  body.public-page .footer-section + .footer-section {
+    border-left: 0;
+  }
 }
 
 @media (max-width: 768px) {
+  body.public-page .navbar {
+    top: 10px;
+  }
+
+  body.public-page .navbar .container {
+    min-height: 66px;
+  }
+
   body.home-page .landing-section {
-    padding-bottom: 3rem;
+    padding: 5.9rem 0 3rem;
   }
 
   body.home-page .landing-shell {
     gap: 1.1rem;
   }
 
+  body.home-page .landing-content {
+    padding: 1.55rem;
+  }
+
+  body.home-page .landing-section h1 {
+    max-width: 10.5ch;
+    font-size: clamp(2.75rem, 12vw, 4rem);
+  }
+
+  body.public-page .page-hero,
+  body.public-page .features,
+  body.public-page .why-choose-us,
+  body.public-page .services-preview,
+  body.public-page .gallery-section,
+  body.public-page .services-section,
+  body.public-page .add-ons,
+  body.public-page .about-content,
+  body.public-page .values,
+  body.public-page .editorial-showcase,
+  body.public-page .service-standards,
+  body.public-page .service-ritual,
+  body.public-page .brand-manifesto,
+  body.public-page .team-standards,
+  body.public-page .testimonials,
+  body.public-page .cta-contact,
+  body.public-page .cta-services,
+  body.public-page .cta-about {
+    padding: 3.6rem 0;
+  }
+
+  body.public-page .features .container,
+  body.public-page .why-choose-us .container,
+  body.public-page .services-preview .container,
+  body.public-page .gallery-section .container,
+  body.public-page .services-section .container,
+  body.public-page .add-ons .container,
+  body.public-page .about-content .container,
+  body.public-page .values .container,
+  body.public-page .footer-content,
   body.public-page .footer-cta-strip {
-    padding: 1.25rem;
-    border-radius: 24px;
+    padding: 1.4rem;
+  }
+
+  body.public-page .footer-content {
+    gap: 0.6rem;
   }
 
   body.public-page .footer-cta-actions {
