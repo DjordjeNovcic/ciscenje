@@ -2328,31 +2328,57 @@ function switchLang(event, lang) {
 // ========================================
 
 const defaultColors = {
+   primaryColor: '#244c68',
+   primaryDark: '#142f43',
+   secondaryColor: '#d8bc8c',
+   successColor: '#7b9788',
+   bgLight: '#f7f3ec',
+   textDark: '#161412',
+   textLight: '#6c655f'
+};
+
+const legacyDefaultColors = {
    primaryColor: '#f59e0b',
    primaryDark: '#ea580c',
    secondaryColor: '#2d2d2d',
    successColor: '#10b981',
    bgLight: '#fffbeb',
-   textDark: '#1f2937', // ← NEW
-   textLight: '#6b7280' // ← NEW
+   textDark: '#1f2937',
+   textLight: '#6b7280'
 };
+
+function normalizeThemeColors(colors = {}) {
+   const mergedColors = {
+      ...defaultColors,
+      ...colors
+   };
+
+   const isLegacyPalette =
+      mergedColors.primaryColor === legacyDefaultColors.primaryColor &&
+      mergedColors.primaryDark === legacyDefaultColors.primaryDark;
+
+   return isLegacyPalette ? {
+      ...defaultColors
+   } : mergedColors;
+}
 
 // Apply theme colors to CSS variables
 function applyTheme(colors) {
+   const normalizedColors = normalizeThemeColors(colors);
    const root = document.documentElement;
 
-   if (colors.primaryColor) root.style.setProperty('--primary-color', colors.primaryColor);
-   if (colors.primaryDark) root.style.setProperty('--primary-dark', colors.primaryDark);
-   if (colors.secondaryColor) root.style.setProperty('--secondary-color', colors.secondaryColor);
-   if (colors.successColor) root.style.setProperty('--success-color', colors.successColor);
-   if (colors.bgLight) root.style.setProperty('--bg-light', colors.bgLight);
-   if (colors.textDark) root.style.setProperty('--text-dark', colors.textDark); // ← NEW
-   if (colors.textLight) root.style.setProperty('--text-light', colors.textLight); // ← NEW
+   if (normalizedColors.primaryColor) root.style.setProperty('--primary-color', normalizedColors.primaryColor);
+   if (normalizedColors.primaryDark) root.style.setProperty('--primary-dark', normalizedColors.primaryDark);
+   if (normalizedColors.secondaryColor) root.style.setProperty('--secondary-color', normalizedColors.secondaryColor);
+   if (normalizedColors.successColor) root.style.setProperty('--success-color', normalizedColors.successColor);
+   if (normalizedColors.bgLight) root.style.setProperty('--bg-light', normalizedColors.bgLight);
+   if (normalizedColors.textDark) root.style.setProperty('--text-dark', normalizedColors.textDark);
+   if (normalizedColors.textLight) root.style.setProperty('--text-light', normalizedColors.textLight);
 
    // Update gradient
-   if (colors.primaryColor && colors.primaryDark) {
+   if (normalizedColors.primaryColor && normalizedColors.primaryDark) {
       root.style.setProperty('--primary-gradient',
-         `linear-gradient(135deg, ${colors.primaryColor} 0%, ${colors.primaryDark} 100%)`);
+         `linear-gradient(135deg, ${normalizedColors.primaryColor} 0%, ${normalizedColors.primaryDark} 100%)`);
    }
 }
 
@@ -2372,7 +2398,7 @@ function loadThemeSettings() {
    db.collection('settings').doc('theme').get()
       .then(doc => {
          if (doc.exists) {
-            const colors = doc.data();
+            const colors = normalizeThemeColors(doc.data());
             updateColorPickers(colors);
             applyTheme(colors);
          } else {
@@ -2403,7 +2429,7 @@ function previewTheme() {
    notification.textContent = '👁️ Pregled tema - promene nisu sačuvane';
    notification.style.cssText = `
           position: fixed; top: 20px; right: 20px;
-          background: #3b82f6; color: white;
+          background: linear-gradient(135deg, #244c68 0%, #142f43 100%); color: white;
           padding: 1rem 2rem; border-radius: 8px;
           box-shadow: 0 4px 12px rgba(0,0,0,0.15);
           z-index: 10000; animation: slideIn 0.3s ease;
