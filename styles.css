@@ -6853,3 +6853,246 @@ body.public-page .service-ritual-step p {
 		font-size: 1.7rem;
 	}
 }
+
+/* =====================================================
+SECTION 23: FINAL LAYOUT CLEANUP
+===================================================== */
+body.home-page .landing-section {
+	min-height: clamp(760px, calc(100svh - 82px), 920px);
+	padding: 7.25rem 0 2.75rem;
+	display: flex;
+	align-items: stretch;
+}
+
+body.home-page .landing-shell {
+	min-height: 100%;
+	grid-template-columns: minmax(0, 1.08fr) minmax(320px, 0.72fr);
+	align-items: center;
+	gap: clamp(1.4rem, 2vw, 2.1rem);
+}
+
+body.home-page .landing-content {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	min-height: 0;
+	padding: clamp(1.75rem, 2.6vw, 2.45rem);
+}
+
+body.home-page .landing-section h1 {
+	max-width: 14ch;
+	font-size: clamp(2.95rem, 4.35vw, 4.65rem);
+	line-height: 0.9;
+	margin-bottom: 0.9rem;
+}
+
+body.home-page .landing-subtitle {
+	max-width: 58ch;
+	font-size: 1rem;
+	line-height: 1.65;
+}
+
+body.home-page .hero-buttons {
+	margin: 1.35rem 0 1.1rem;
+}
+
+body.home-page .hero-trust {
+	gap: 0.8rem;
+}
+
+body.home-page .trust-pill {
+	padding: 0.95rem 1rem;
+}
+
+body.home-page .hero-sidecard {
+	align-self: center;
+	padding: clamp(1.5rem, 2.2vw, 1.95rem);
+}
+
+body.home-page .hero-sidecard h2 {
+	font-size: clamp(1.95rem, 2.4vw, 2.45rem);
+	margin: 0.9rem 0 1.1rem;
+}
+
+body.home-page .hero-side-list {
+	gap: 0.8rem;
+	margin-bottom: 1.2rem;
+}
+
+body.home-page .hero-kicker-row {
+	margin-bottom: 1rem;
+}
+
+body.home-page .landing-logo {
+	margin-bottom: 1rem;
+}
+
+body.home-page .landing-logo img {
+	width: 84px;
+	height: 84px;
+	padding: 0.65rem;
+}
+
+body.home-page .features {
+	margin-top: 0;
+}
+
+body.public-page .proof-marquee {
+	padding-top: 1rem;
+}
+
+body.public-page .page-hero {
+	padding: 7.4rem 0 3.4rem;
+}
+
+body.public-page .page-hero-shell {
+	gap: 0.8rem;
+	max-width: 860px;
+}
+
+body.public-page .page-hero h1 {
+	font-size: clamp(2.95rem, 4.4vw, 4.75rem);
+}
+
+body.public-page .page-hero-badges {
+	margin-top: 0.15rem;
+}
+
+body.public-page .signature-process,
+body.public-page .service-standards,
+body.public-page .service-ritual,
+body.public-page .editorial-showcase,
+body.public-page .brand-manifesto,
+body.public-page .team-standards {
+	padding-top: 3rem;
+}
+
+body.public-page .features,
+body.public-page .why-choose-us,
+body.public-page .services-preview,
+body.public-page .gallery-section,
+body.public-page .services-section,
+body.public-page .add-ons,
+body.public-page .about-content,
+body.public-page .values,
+body.public-page .testimonials,
+body.public-page .cta-contact,
+body.public-page .cta-services,
+body.public-page .cta-about {
+	padding: 5rem 0;
+}
+
+body.public-page .features .container,
+body.public-page .why-choose-us .container,
+body.public-page .services-preview .container,
+body.public-page .gallery-section .container,
+body.public-page .services-section .container,
+body.public-page .add-ons .container,
+body.public-page .about-content .container,
+body.public-page .values .container {
+	padding: clamp(2rem, 3vw, 2.8rem);
+}
+
+body.public-page .stats-section {
+	margin: 1.75rem 0 1.25rem;
+}
+
+body.public-page .cta-panel,
+body.public-page .footer-content {
+	border-radius: 32px;
+}
+
+@media (max-width: 1180px) {
+	body.home-page .landing-section {
+		min-height: auto;
+		padding-top: 7rem;
+		padding-bottom: 2.5rem;
+	}
+
+	body.public-page .page-hero {
+		padding-top: 7rem;
+		padding-bottom: 3rem;
+	}
+
+	body.home-page .landing-shell {
+		grid-template-columns: 1fr;
+		min-height: auto;
+	}
+
+	body.home-page .landing-content {
+		max-width: none;
+	}
+
+	body.home-page .hero-sidecard {
+		max-width: 720px;
+		width: 100%;
+	}
+
+	body.home-page .landing-section h1 {
+		max-width: 11.5ch;
+		font-size: clamp(3rem, 7vw, 4.7rem);
+	}
+}
+
+@media (max-width: 768px) {
+	body.home-page .landing-section {
+		min-height: auto;
+		padding: 6.25rem 0 2.25rem;
+	}
+
+	body.public-page .page-hero {
+		padding: 6.2rem 0 2.6rem;
+	}
+
+	body.home-page .landing-shell {
+		gap: 1rem;
+	}
+
+	body.home-page .landing-content,
+	body.home-page .hero-sidecard {
+		padding: 1.35rem;
+	}
+
+	body.home-page .landing-section h1 {
+		max-width: none;
+		font-size: clamp(2.7rem, 12vw, 3.75rem);
+		line-height: 0.94;
+	}
+
+	body.home-page .hero-trust {
+		grid-template-columns: 1fr;
+	}
+
+	body.public-page .signature-process,
+	body.public-page .service-standards,
+	body.public-page .service-ritual,
+	body.public-page .editorial-showcase,
+	body.public-page .brand-manifesto,
+	body.public-page .team-standards,
+	body.public-page .features,
+	body.public-page .why-choose-us,
+	body.public-page .services-preview,
+	body.public-page .gallery-section,
+	body.public-page .services-section,
+	body.public-page .add-ons,
+	body.public-page .about-content,
+	body.public-page .values,
+	body.public-page .testimonials,
+	body.public-page .cta-contact,
+	body.public-page .cta-services,
+	body.public-page .cta-about {
+		padding-top: 3.5rem;
+		padding-bottom: 3.5rem;
+	}
+
+	body.public-page .features .container,
+	body.public-page .why-choose-us .container,
+	body.public-page .services-preview .container,
+	body.public-page .gallery-section .container,
+	body.public-page .services-section .container,
+	body.public-page .add-ons .container,
+	body.public-page .about-content .container,
+	body.public-page .values .container {
+		padding: 1.5rem;
+	}
+}
