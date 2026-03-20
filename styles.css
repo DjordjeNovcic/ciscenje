@@ -2243,8 +2243,7 @@ body.public-page .nav-menu a {
 }
 
 body.public-page .nav-cta,
-body.public-page .nav-menu-cta,
-body.public-page .footer-pill-link {
+body.public-page .nav-menu-cta {
   min-height: 50px;
   background: linear-gradient(135deg, #dec59f 0%, #f1e2c7 52%, #fff5e8 100%);
   color: #173445;
@@ -2255,8 +2254,7 @@ body.public-page .footer-pill-link {
 }
 
 body.public-page .nav-cta:hover,
-body.public-page .nav-menu-cta:hover,
-body.public-page .footer-pill-link:hover {
+body.public-page .nav-menu-cta:hover {
   transform: translateY(-2px);
   background: linear-gradient(135deg, #e6cfac 0%, #f7ead4 58%, #fff8ed 100%);
   box-shadow:
@@ -2490,47 +2488,6 @@ body.public-page .cta-panel {
     linear-gradient(135deg, rgba(20, 42, 58, 0.98), rgba(45, 74, 94, 0.92));
 }
 
-body.public-page .footer-cta-strip {
-  display: grid;
-  grid-template-columns: minmax(0, 1.12fr) auto;
-  align-items: center;
-  gap: 1.5rem;
-  padding: 1.7rem 1.8rem;
-  margin-bottom: 1.3rem;
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 30px;
-  background:
-    radial-gradient(circle at top right, rgba(216, 188, 140, 0.12), transparent 26%),
-    linear-gradient(180deg, rgba(17, 24, 22, 0.98), rgba(11, 16, 15, 0.96));
-  box-shadow: 0 28px 60px rgba(10, 14, 13, 0.18);
-}
-
-body.public-page .footer-cta-copy h4 {
-  margin-bottom: 0.5rem;
-  color: #fff;
-  font-size: clamp(2rem, 3vw, 2.9rem);
-}
-
-body.public-page .footer-cta-copy p {
-  max-width: 50ch;
-  color: rgba(248, 242, 234, 0.76);
-}
-
-body.public-page .footer-cta-actions {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-  flex-wrap: wrap;
-  justify-content: flex-end;
-}
-
-body.public-page .footer-pill-link-outline {
-  background: rgba(255, 255, 255, 0.06);
-  border-color: rgba(255, 255, 255, 0.12);
-  color: #fff7ec;
-  box-shadow: none;
-}
-
 body.public-page .site-footer {
   padding-top: 1rem;
 }
@@ -2562,15 +2519,6 @@ body.public-page .footer-section h4 {
 }
 
 @media (max-width: 1180px) {
-  body.public-page .footer-cta-strip {
-    grid-template-columns: 1fr;
-    align-items: flex-start;
-  }
-
-  body.public-page .footer-cta-actions {
-    justify-content: flex-start;
-  }
-
   body.public-page .footer-content {
     gap: 1.2rem;
   }
@@ -2639,21 +2587,11 @@ body.public-page .footer-section h4 {
   body.public-page .add-ons .container,
   body.public-page .about-content .container,
   body.public-page .values .container,
-  body.public-page .footer-content,
-  body.public-page .footer-cta-strip {
+  body.public-page .footer-content {
     padding: 1.4rem;
   }
 
   body.public-page .footer-content {
     gap: 0.6rem;
-  }
-
-  body.public-page .footer-cta-actions {
-    width: 100%;
-    flex-direction: column;
-  }
-
-  body.public-page .footer-pill-link {
-    width: 100%;
   }
 }
