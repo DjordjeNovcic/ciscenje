@@ -162,6 +162,10 @@ body.public-page .site-footer {
   z-index: 1;
 }
 
+body.public-page .navbar {
+  z-index: 1400;
+}
+
 body.public-page .section-kicker,
 body.public-page .hero-kicker,
 body.public-page .hero-availability,
@@ -253,14 +257,14 @@ body.public-page .navbar {
   left: 16px;
   right: 16px;
   overflow: hidden;
-  border: 1px solid rgba(255, 255, 255, 0.14);
+  border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 24px;
-  background: linear-gradient(180deg, rgba(28, 34, 33, 0.95), rgba(18, 23, 22, 0.92));
+  background: linear-gradient(180deg, rgba(20, 26, 25, 0.985), rgba(11, 15, 14, 0.965));
   backdrop-filter: blur(18px);
   -webkit-backdrop-filter: blur(18px);
   box-shadow:
-    0 24px 56px rgba(7, 11, 10, 0.22),
-    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+    0 24px 56px rgba(7, 11, 10, 0.34),
+    inset 0 1px 0 rgba(255, 255, 255, 0.03);
   transition:
     top 0.28s ease,
     box-shadow 0.28s ease,
@@ -273,16 +277,16 @@ body.public-page .navbar::before {
   position: absolute;
   inset: 1px;
   border-radius: inherit;
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.05), transparent 24%, transparent 74%, rgba(255, 255, 255, 0.025));
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.03), transparent 22%, transparent 78%, rgba(255, 255, 255, 0.015));
   pointer-events: none;
 }
 
 body.public-page.is-scrolled .navbar {
   top: 10px;
-  background: linear-gradient(180deg, rgba(20, 25, 24, 0.98), rgba(11, 15, 14, 0.95));
+  background: linear-gradient(180deg, rgba(15, 19, 18, 0.99), rgba(7, 10, 10, 0.975));
   box-shadow:
-    0 28px 64px rgba(7, 11, 10, 0.28),
-    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+    0 28px 64px rgba(7, 11, 10, 0.38),
+    inset 0 1px 0 rgba(255, 255, 255, 0.025);
 }
 
 body.public-page .navbar .container {
@@ -487,10 +491,10 @@ body.public-page .language-switcher.desktop-only {
   align-items: center;
   gap: 0.2rem;
   padding: 0.22rem;
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.06);
   border-radius: 999px;
-  background: rgba(255, 255, 255, 0.045);
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.035);
+  background: rgba(255, 255, 255, 0.04);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.025);
 }
 
 body.public-page .nav-menu {
@@ -508,7 +512,7 @@ body.public-page .nav-menu a {
   min-height: 46px;
   padding: 0.7rem 1rem;
   border-radius: 999px;
-  color: rgba(248, 243, 238, 0.78);
+  color: rgba(248, 243, 238, 0.88);
   text-decoration: none;
   font-size: 0.95rem;
   font-weight: 700;
@@ -518,8 +522,8 @@ body.public-page .nav-menu a {
 body.public-page .nav-menu a:hover,
 body.public-page .nav-menu a.active {
   color: #fff;
-  background: rgba(255, 255, 255, 0.1);
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  background: rgba(255, 255, 255, 0.08);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.035);
 }
 
 body.public-page .language-switcher {
@@ -533,7 +537,7 @@ body.public-page .lang-btn {
   padding: 0.6rem 0.82rem;
   border: 1px solid transparent;
   background: transparent;
-  color: rgba(248, 243, 238, 0.86);
+  color: rgba(248, 243, 238, 0.92);
   font-weight: 800;
   cursor: pointer;
 }
