@@ -499,48 +499,60 @@ body.is-scrolled .site-header {
 
 .hero-section {
   position: relative;
-  min-height: min(92vh, 980px);
+  min-height: min(88vh, 960px);
   display: flex;
-  align-items: flex-end;
-  padding-bottom: clamp(2rem, 4vw, 3rem);
+  align-items: center;
+  padding-block: clamp(2rem, 4vw, 3.2rem);
   overflow: hidden;
 }
 
-.hero-media,
-.hero-overlay {
+.hero-backdrop {
   position: absolute;
   inset: 0;
-}
-
-.hero-media img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center center;
-  filter: saturate(1.02) contrast(0.92) brightness(0.88);
-  transform: translate3d(0, var(--hero-shift, 0px), 0) scale(1.06);
-  transition: transform 220ms ease-out;
-}
-
-.hero-overlay {
   background:
-    linear-gradient(90deg, rgba(46, 39, 33, 0.78) 0%, rgba(46, 39, 33, 0.48) 34%, rgba(46, 39, 33, 0.22) 56%, rgba(46, 39, 33, 0.52) 100%),
-    linear-gradient(180deg, rgba(25, 21, 18, 0.18), rgba(25, 21, 18, 0.58));
+    radial-gradient(circle at 9% 18%, rgba(194, 182, 166, 0.68), transparent 25%),
+    radial-gradient(circle at 72% 16%, rgba(163, 143, 123, 0.2), transparent 24%),
+    linear-gradient(135deg, rgba(247, 243, 236, 0.96), rgba(222, 214, 203, 0.82));
+}
+
+.hero-backdrop::before,
+.hero-backdrop::after {
+  content: "";
+  position: absolute;
+  border-radius: 999px;
+  pointer-events: none;
+}
+
+.hero-backdrop::before {
+  width: 420px;
+  height: 420px;
+  right: -140px;
+  top: 8%;
+  background: rgba(163, 143, 123, 0.14);
+  filter: blur(8px);
+}
+
+.hero-backdrop::after {
+  width: 360px;
+  height: 360px;
+  left: -180px;
+  bottom: -120px;
+  background: rgba(194, 182, 166, 0.22);
+  filter: blur(6px);
 }
 
 .hero-shell {
   position: relative;
   z-index: 2;
   display: grid;
-  grid-template-columns: minmax(0, 1.1fr) minmax(320px, 0.65fr);
-  gap: clamp(1.5rem, 3vw, 3rem);
-  align-items: end;
-  padding-bottom: clamp(2rem, 3vw, 3rem);
+  grid-template-columns: minmax(0, 0.9fr) minmax(420px, 0.95fr);
+  gap: clamp(1.4rem, 3vw, 3.2rem);
+  align-items: center;
 }
 
 .hero-copy {
-  max-width: 780px;
-  color: #fff9f0;
+  max-width: 720px;
+  color: var(--color-ink);
 }
 
 .hero-copy h1 {
@@ -553,7 +565,7 @@ body.is-scrolled .site-header {
   max-width: 650px;
   margin-top: 1.35rem;
   font-size: clamp(1.06rem, 1.7vw, 1.2rem);
-  color: rgba(255, 248, 239, 0.84);
+  color: var(--color-ink-soft);
 }
 
 .hero-actions,
@@ -574,7 +586,7 @@ body.is-scrolled .site-header {
 .hero-points li {
   position: relative;
   padding-left: 1.45rem;
-  color: rgba(255, 249, 242, 0.9);
+  color: var(--color-ink-soft);
   font-size: 0.98rem;
 }
 
@@ -588,6 +600,89 @@ body.is-scrolled .site-header {
   border-radius: 50%;
   background: var(--color-light);
   box-shadow: 0 0 0 6px rgba(213, 206, 196, 0.1);
+}
+
+.hero-side {
+  display: grid;
+  gap: 1rem;
+  align-items: start;
+}
+
+.hero-visual {
+  position: relative;
+  min-height: 560px;
+  padding: 1.1rem;
+  border-radius: 42px;
+  background:
+    linear-gradient(155deg, rgba(247, 243, 236, 0.96), rgba(214, 206, 196, 0.72));
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  box-shadow: var(--shadow-strong);
+  overflow: hidden;
+}
+
+.hero-visual::before {
+  content: "";
+  position: absolute;
+  inset: 1rem;
+  border-radius: 34px;
+  background:
+    linear-gradient(180deg, rgba(44, 37, 31, 0.06), transparent 22%),
+    radial-gradient(circle at top left, rgba(247, 243, 236, 0.28), transparent 28%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.hero-visual::after {
+  content: "";
+  position: absolute;
+  right: -10%;
+  bottom: -14%;
+  width: 220px;
+  height: 220px;
+  border-radius: 50%;
+  background: rgba(163, 143, 123, 0.22);
+  filter: blur(18px);
+  pointer-events: none;
+}
+
+.hero-visual img {
+  width: 100%;
+  height: 100%;
+  min-height: 538px;
+  border-radius: 34px;
+  object-fit: cover;
+  object-position: 64% center;
+  filter: saturate(0.92) contrast(0.97) brightness(1.03) sepia(0.08);
+  transform: translate3d(0, var(--hero-shift, 0px), 0) scale(1.02);
+  transition: transform 220ms ease-out;
+}
+
+.hero-visual-ribbon {
+  position: absolute;
+  left: 1.45rem;
+  right: 1.45rem;
+  bottom: 1.45rem;
+  z-index: 2;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.7rem;
+}
+
+.hero-visual-ribbon span {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 0.65rem 1rem;
+  border-radius: 999px;
+  background: rgba(46, 39, 33, 0.68);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  color: rgba(255, 249, 242, 0.94);
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
 }
 
 .hero-card,
@@ -640,7 +735,7 @@ body.is-scrolled .site-header {
 
 .trust-strip {
   position: relative;
-  margin-top: -1.4rem;
+  margin-top: 0.2rem;
   z-index: 3;
 }
 
@@ -1459,6 +1554,18 @@ body.is-scrolled .site-header {
     max-width: 620px;
   }
 
+  .hero-side {
+    max-width: 760px;
+  }
+
+  .hero-visual {
+    min-height: 480px;
+  }
+
+  .hero-visual img {
+    min-height: 458px;
+  }
+
   .gallery-card-featured,
   .gallery-card-tall,
   .gallery-grid-works .gallery-card:not(.gallery-card-featured):not(.gallery-card-tall) {
@@ -1543,11 +1650,35 @@ body.is-scrolled .site-header {
 
   .hero-section {
     min-height: auto;
-    padding-bottom: 1rem;
+    padding-bottom: 1.2rem;
   }
 
   .hero-copy h1 {
     font-size: clamp(2.5rem, 12vw, 4rem);
+  }
+
+  .hero-visual {
+    min-height: 360px;
+    padding: 0.8rem;
+    border-radius: 28px;
+  }
+
+  .hero-visual img {
+    min-height: 338px;
+    border-radius: 22px;
+    object-position: 60% center;
+  }
+
+  .hero-visual-ribbon {
+    left: 1rem;
+    right: 1rem;
+    bottom: 1rem;
+  }
+
+  .hero-visual-ribbon span {
+    min-height: 40px;
+    padding: 0.55rem 0.85rem;
+    font-size: 0.72rem;
   }
 
   .hero-card-grid,
@@ -1643,6 +1774,18 @@ body.is-scrolled .site-header {
   .cta-actions {
     flex-direction: column;
     align-items: stretch;
+  }
+
+  .hero-shell {
+    gap: 1.15rem;
+  }
+
+  .hero-visual {
+    min-height: 300px;
+  }
+
+  .hero-visual img {
+    min-height: 278px;
   }
 
   .btn {

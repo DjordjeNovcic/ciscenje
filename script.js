@@ -157,7 +157,7 @@ function setupRevealAnimations() {
 
 function setupHeroParallax() {
   const hero = document.querySelector('.hero-section');
-  const media = hero?.querySelector('.hero-media img');
+  const media = hero?.querySelector('.hero-visual img, .hero-media img');
   if (!hero || !media || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
   const updateHero = () => {
