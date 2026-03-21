@@ -59,6 +59,21 @@ body::before {
   mix-blend-mode: soft-light;
 }
 
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 45;
+  background: rgba(46, 39, 33, 0.24);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 220ms var(--ease-premium);
+}
+
+body.nav-open::after {
+  opacity: 1;
+}
+
 body.nav-open,
 body.is-modal-open {
   overflow: hidden;
@@ -488,6 +503,13 @@ body.is-scrolled .site-header {
   color: var(--color-ink);
 }
 
+body.nav-open .social-rail,
+body.is-modal-open .social-rail {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 180ms var(--ease-premium);
+}
+
 .scroll-progress {
   position: fixed;
   inset: 0 auto auto 0;
@@ -809,6 +831,34 @@ body.is-scrolled .site-header {
   grid-template-columns: repeat(3, minmax(0, 1fr));
 }
 
+.home-page .services-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.home-page .services-grid .service-card:first-child {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: minmax(0, 0.95fr) minmax(320px, 0.9fr);
+  align-items: stretch;
+}
+
+.home-page .services-grid .service-card:first-child .service-card-media {
+  order: 2;
+  aspect-ratio: auto;
+  min-height: 100%;
+}
+
+.home-page .services-grid .service-card:first-child .service-card-body {
+  display: grid;
+  align-content: center;
+  padding: clamp(1.7rem, 3vw, 2.4rem);
+}
+
+.home-page .services-grid .service-card:first-child h3 {
+  font-size: clamp(1.8rem, 2.6vw, 2.6rem);
+  line-height: 1.02;
+}
+
 .service-card,
 .team-card,
 .testimonial-card,
@@ -976,6 +1026,18 @@ body.is-scrolled .site-header {
   display: grid;
   gap: 1.2rem;
   grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.home-page .work-preview-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.home-page .work-preview-grid .work-preview-card:first-child {
+  grid-column: 1 / -1;
+}
+
+.home-page .work-preview-grid .work-preview-card:first-child img {
+  aspect-ratio: 1.9 / 1;
 }
 
 .work-preview-card {
@@ -1560,6 +1622,11 @@ body.is-scrolled .site-header {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
+  .home-page .services-grid .service-card:first-child {
+    grid-column: span 2;
+    display: block;
+  }
+
   .hero-card {
     max-width: 620px;
   }
@@ -1586,6 +1653,10 @@ body.is-scrolled .site-header {
 }
 
 @media (max-width: 920px) {
+  :root {
+    --header-height: 82px;
+  }
+
   main {
     padding-top: calc(var(--header-height) + 0.3rem);
   }
@@ -1601,18 +1672,21 @@ body.is-scrolled .site-header {
   }
 
   .site-nav {
-    position: absolute;
-    top: calc(100% + 0.75rem);
+    position: fixed;
+    top: var(--header-height);
     left: 0;
     right: 0;
+    bottom: 0;
     flex-direction: column;
     align-items: stretch;
-    gap: 0.2rem;
-    padding: 1rem;
-    border-radius: 24px;
-    background: rgba(247, 243, 236, 0.96);
-    border: 1px solid rgba(140, 123, 106, 0.18);
-    box-shadow: var(--shadow-strong);
+    justify-content: flex-start;
+    gap: 0.35rem;
+    padding: 1.2rem 1rem 2rem;
+    border-radius: 0;
+    background: linear-gradient(180deg, rgba(247, 243, 236, 0.98), rgba(230, 224, 214, 0.98));
+    border: 0;
+    box-shadow: 0 26px 48px rgba(61, 50, 40, 0.14);
+    overflow-y: auto;
     opacity: 0;
     visibility: hidden;
     transform: translateY(-12px);
@@ -1629,19 +1703,29 @@ body.is-scrolled .site-header {
   }
 
   .site-nav a {
-    padding: 0.9rem 0.4rem;
+    padding: 1rem 0.2rem;
+    border-bottom: 1px solid rgba(140, 123, 106, 0.12);
+    font-size: 1.06rem;
   }
 
   .header-cta {
     margin-left: 0 !important;
-    margin-top: 0.35rem;
+    margin-top: 0.7rem;
+    border-bottom: 0 !important;
     text-align: center;
   }
 
   .social-rail {
     top: auto;
     bottom: 1rem;
-    transform: none;
+    left: 50%;
+    flex-direction: row;
+    padding: 0.45rem;
+    border-radius: 999px;
+    background: rgba(247, 243, 236, 0.84);
+    border: 1px solid rgba(140, 123, 106, 0.18);
+    box-shadow: var(--shadow-soft);
+    transform: translateX(-50%);
   }
 
   .trust-strip-shell,
@@ -1703,6 +1787,14 @@ body.is-scrolled .site-header {
     grid-template-columns: 1fr;
   }
 
+  .home-page .services-grid .service-card:first-child {
+    grid-column: span 1;
+  }
+
+  .home-page .work-preview-grid .work-preview-card:first-child {
+    grid-column: span 1;
+  }
+
   .service-detail {
     padding: 1rem;
   }
@@ -1720,6 +1812,24 @@ body.is-scrolled .site-header {
     width: 42px;
     height: 42px;
     border-radius: 14px;
+  }
+
+  .trust-strip-shell {
+    display: flex;
+    gap: 0.9rem;
+    overflow-x: auto;
+    padding-bottom: 0.35rem;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+  }
+
+  .trust-strip-shell::-webkit-scrollbar {
+    display: none;
+  }
+
+  .trust-item {
+    min-width: min(84vw, 420px);
+    scroll-snap-align: start;
   }
 
   .footer-bottom-shell {
@@ -1767,6 +1877,10 @@ body.is-scrolled .site-header {
 }
 
 @media (max-width: 560px) {
+  :root {
+    --header-height: 76px;
+  }
+
   .header-shell {
     padding: 0.8rem 0.85rem;
     gap: 0.8rem;
@@ -1778,7 +1892,7 @@ body.is-scrolled .site-header {
   }
 
   .brand-copy span:last-child {
-    font-size: 0.74rem;
+    display: none;
   }
 
   .hero-actions,
@@ -1797,6 +1911,31 @@ body.is-scrolled .site-header {
 
   .hero-visual img {
     min-height: 278px;
+  }
+
+  .hero-card {
+    padding: 1rem;
+  }
+
+  .hero-card-grid {
+    gap: 0.7rem;
+  }
+
+  .hero-card-grid article {
+    padding: 0.85rem;
+  }
+
+  .section-head h2,
+  .why-copy h2,
+  .cta-panel h2,
+  .page-hero-copy h1,
+  .story-copy h2,
+  .service-detail-copy h2 {
+    font-size: clamp(1.9rem, 9vw, 2.6rem);
+  }
+
+  .home-page .services-grid .service-card:first-child h3 {
+    font-size: 1.9rem;
   }
 
   .btn {

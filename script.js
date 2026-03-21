@@ -121,6 +121,12 @@ function setupNavigation() {
       closeLightbox();
     }
   });
+
+  window.addEventListener('resize', () => {
+    if (window.innerWidth > 920) {
+      closeNavigation(nav, toggle);
+    }
+  });
 }
 
 function closeNavigation(nav, toggle) {
