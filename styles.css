@@ -753,8 +753,8 @@ body.is-modal-open .social-rail {
   inset: 1rem;
   border-radius: 34px;
   background:
-    linear-gradient(180deg, rgba(44, 37, 31, 0.06), transparent 22%),
-    radial-gradient(circle at top left, rgba(247, 243, 236, 0.28), transparent 28%);
+    linear-gradient(180deg, rgba(44, 37, 31, 0.04), transparent 20%),
+    radial-gradient(circle at top left, rgba(247, 243, 236, 0.22), transparent 30%);
   pointer-events: none;
   z-index: 1;
 }
@@ -778,38 +778,10 @@ body.is-modal-open .social-rail {
   min-height: 538px;
   border-radius: 34px;
   object-fit: cover;
-  object-position: 64% center;
-  filter: saturate(0.92) contrast(0.97) brightness(1.03) sepia(0.08);
-  transform: translate3d(0, var(--hero-shift, 0px), 0) scale(1.02);
+  object-position: center center;
+  filter: saturate(1.01) contrast(0.99) brightness(1.02);
+  transform: translate3d(0, var(--hero-shift, 0px), 0) scale(1.01);
   transition: transform 220ms ease-out;
-}
-
-.hero-visual-ribbon {
-  position: absolute;
-  left: 1.45rem;
-  right: 1.45rem;
-  bottom: 1.45rem;
-  z-index: 2;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.7rem;
-}
-
-.hero-visual-ribbon span {
-  display: inline-flex;
-  align-items: center;
-  min-height: 44px;
-  padding: 0.65rem 1rem;
-  border-radius: 999px;
-  background: rgba(46, 39, 33, 0.68);
-  border: 1px solid rgba(255, 255, 255, 0.16);
-  color: rgba(255, 249, 242, 0.94);
-  font-size: 0.82rem;
-  font-weight: 700;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
 }
 
 .hero-card,
@@ -2124,19 +2096,7 @@ body.is-modal-open .social-rail {
   .hero-visual img {
     min-height: 298px;
     border-radius: 22px;
-    object-position: 58% center;
-  }
-
-  .hero-visual-ribbon {
-    left: 1rem;
-    right: 1rem;
-    bottom: 1rem;
-  }
-
-  .hero-visual-ribbon span {
-    min-height: 40px;
-    padding: 0.55rem 0.85rem;
-    font-size: 0.72rem;
+    object-position: center center;
   }
 
   .hero-card-grid,
