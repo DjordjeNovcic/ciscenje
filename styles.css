@@ -626,16 +626,16 @@ body.is-modal-open .social-rail {
 
 .hero-section {
   position: relative;
-  min-height: min(88vh, 960px);
-  display: flex;
-  align-items: center;
-  padding-block: clamp(2rem, 4vw, 3.2rem);
+  min-height: clamp(560px, calc(100svh - var(--header-height) - 0.6rem), 980px);
+  padding: 0;
   overflow: hidden;
 }
 
 .hero-backdrop {
-  position: absolute;
+  position: relative;
   inset: 0;
+  min-height: inherit;
+  height: 100%;
   background:
     radial-gradient(circle at 9% 18%, rgba(194, 182, 166, 0.68), transparent 25%),
     radial-gradient(circle at 72% 16%, rgba(163, 143, 123, 0.2), transparent 24%),
@@ -651,30 +651,45 @@ body.is-modal-open .social-rail {
 }
 
 .hero-backdrop::before {
-  width: 420px;
-  height: 420px;
-  right: -140px;
-  top: 8%;
-  background: rgba(163, 143, 123, 0.14);
-  filter: blur(8px);
+  inset: 0;
+  border-radius: 0;
+  background:
+    linear-gradient(180deg, rgba(26, 21, 18, 0.14), rgba(26, 21, 18, 0.06) 24%, rgba(247, 243, 236, 0.02) 55%, rgba(26, 21, 18, 0.18)),
+    radial-gradient(circle at center, rgba(255, 247, 237, 0.16), transparent 34%);
+  filter: none;
 }
 
 .hero-backdrop::after {
-  width: 360px;
-  height: 360px;
-  left: -180px;
-  bottom: -120px;
-  background: rgba(194, 182, 166, 0.22);
-  filter: blur(6px);
+  inset: 0;
+  border-radius: 0;
+  background:
+    linear-gradient(90deg, rgba(230, 224, 214, 0.2), transparent 18%, transparent 82%, rgba(230, 224, 214, 0.2)),
+    radial-gradient(circle at center, rgba(255, 248, 240, 0.24), transparent 24%);
+  filter: none;
+}
+
+.hero-poster-image {
+  width: 100%;
+  height: 100%;
+  min-height: inherit;
+  object-fit: cover;
+  object-position: center center;
+  filter: saturate(1.02) contrast(0.98) brightness(1.04);
+  transform: translate3d(0, var(--hero-shift, 0px), 0) scale(1.025);
+  transform-origin: center center;
+}
+
+.hero-intro {
+  position: relative;
+  padding-block: clamp(2rem, 4vw, 3.6rem) 0.9rem;
 }
 
 .hero-shell {
   position: relative;
-  z-index: 2;
   display: grid;
-  grid-template-columns: minmax(0, 0.9fr) minmax(420px, 0.95fr);
+  grid-template-columns: minmax(0, 1fr) minmax(360px, 0.72fr);
   gap: clamp(1.4rem, 3vw, 3.2rem);
-  align-items: center;
+  align-items: start;
 }
 
 .hero-copy {
@@ -727,61 +742,6 @@ body.is-modal-open .social-rail {
   border-radius: 50%;
   background: var(--color-light);
   box-shadow: 0 0 0 6px rgba(213, 206, 196, 0.1);
-}
-
-.hero-side {
-  display: grid;
-  gap: 1rem;
-  align-items: start;
-}
-
-.hero-visual {
-  position: relative;
-  min-height: 560px;
-  padding: 1.1rem;
-  border-radius: 42px;
-  background:
-    linear-gradient(155deg, rgba(247, 243, 236, 0.96), rgba(214, 206, 196, 0.72));
-  border: 1px solid rgba(255, 255, 255, 0.35);
-  box-shadow: var(--shadow-strong);
-  overflow: hidden;
-}
-
-.hero-visual::before {
-  content: "";
-  position: absolute;
-  inset: 1rem;
-  border-radius: 34px;
-  background:
-    linear-gradient(180deg, rgba(44, 37, 31, 0.04), transparent 20%),
-    radial-gradient(circle at top left, rgba(247, 243, 236, 0.22), transparent 30%);
-  pointer-events: none;
-  z-index: 1;
-}
-
-.hero-visual::after {
-  content: "";
-  position: absolute;
-  right: -10%;
-  bottom: -14%;
-  width: 220px;
-  height: 220px;
-  border-radius: 50%;
-  background: rgba(163, 143, 123, 0.22);
-  filter: blur(18px);
-  pointer-events: none;
-}
-
-.hero-visual img {
-  width: 100%;
-  height: 100%;
-  min-height: 538px;
-  border-radius: 34px;
-  object-fit: cover;
-  object-position: center center;
-  filter: saturate(1.01) contrast(0.99) brightness(1.02);
-  transform: translate3d(0, var(--hero-shift, 0px), 0) scale(1.01);
-  transition: transform 220ms ease-out;
 }
 
 .hero-card,
@@ -1897,16 +1857,8 @@ body.is-modal-open .social-rail {
     min-height: 0;
   }
 
-  .hero-side {
-    max-width: 760px;
-  }
-
-  .hero-visual {
-    min-height: 480px;
-  }
-
-  .hero-visual img {
-    min-height: 458px;
+  .hero-section {
+    min-height: clamp(500px, calc(100svh - var(--header-height) - 0.15rem), 780px);
   }
 
   .gallery-card-featured,
@@ -2074,8 +2026,7 @@ body.is-modal-open .social-rail {
   }
 
   .hero-section {
-    min-height: auto;
-    padding-bottom: 1rem;
+    min-height: clamp(380px, calc(100svh - var(--header-height) - 0.15rem), 560px);
   }
 
   .hero-copy h1 {
@@ -2087,16 +2038,9 @@ body.is-modal-open .social-rail {
     font-size: 0.98rem;
   }
 
-  .hero-visual {
-    min-height: 320px;
-    padding: 0.7rem;
-    border-radius: 28px;
-  }
-
-  .hero-visual img {
-    min-height: 298px;
-    border-radius: 22px;
-    object-position: center center;
+  .hero-poster-image {
+    min-height: inherit;
+    transform: translate3d(0, var(--hero-shift, 0px), 0) scale(1.02);
   }
 
   .hero-card-grid,
@@ -2512,13 +2456,8 @@ body.is-modal-open .social-rail {
     gap: 1.15rem;
   }
 
-  .hero-visual {
-    min-height: 272px;
-  }
-
-  .hero-visual img {
-    min-height: 250px;
-    object-position: 60% center;
+  .hero-intro {
+    padding-top: 1.4rem;
   }
 
   .hero-card {
