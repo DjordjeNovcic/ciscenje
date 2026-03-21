@@ -29,7 +29,7 @@ let aboutCache = null;
 let slideshowCache = null;
 let scrollRevealObserver = null;
 
-const HERO_IMAGE_URL = 'https://www.figma.com/api/mcp/asset/7bb1a895-bd1a-48e3-842a-457fb3d1d49d';
+const HERO_IMAGE_URL = 'hero-approved.png';
 const FIGMA_SERVICE_VISUALS = [
    'https://www.figma.com/api/mcp/asset/825f320a-4dc6-4afd-b3fc-5e60b2e9427c',
    'https://www.figma.com/api/mcp/asset/40e63fdf-eca8-4c05-9d64-6e26ca319cb1',

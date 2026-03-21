@@ -3271,7 +3271,7 @@ body.home-page .landing-section {
   padding: calc(var(--navbar-height) + 44px) 0 4.5rem;
   background:
     linear-gradient(90deg, rgba(255, 255, 255, 0.92) 0%, rgba(255, 255, 255, 0.74) 42%, rgba(255, 255, 255, 0.2) 64%, rgba(255, 255, 255, 0.02) 100%),
-    url("https://www.figma.com/api/mcp/asset/7bb1a895-bd1a-48e3-842a-457fb3d1d49d") center / cover no-repeat;
+    url("hero-approved.png") center / cover no-repeat;
 }
 
 body.home-page .landing-section::before {
@@ -3984,7 +3984,7 @@ body.public-page .reveal-item.is-visible {
     padding-bottom: 3rem;
     background:
       linear-gradient(180deg, rgba(255, 255, 255, 0.92), rgba(255, 255, 255, 0.82)),
-      url("https://www.figma.com/api/mcp/asset/7bb1a895-bd1a-48e3-842a-457fb3d1d49d") 68% center / cover no-repeat;
+      url("hero-approved.png") 68% center / cover no-repeat;
   }
 
   body.home-page .hero-buttons,
