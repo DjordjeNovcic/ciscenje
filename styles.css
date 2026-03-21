@@ -298,7 +298,11 @@ h4 {
   left: 0;
   right: 0;
   z-index: 60;
-  padding: 1rem 0;
+  padding: 0;
+  background: rgba(236, 231, 222, 0.7);
+  box-shadow: 0 10px 24px rgba(68, 56, 45, 0.08);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
   transition:
     transform 300ms var(--ease-premium),
     background-color 260ms var(--ease-premium),
@@ -315,7 +319,7 @@ h4 {
 }
 
 body.is-scrolled .site-header {
-  background: rgba(236, 231, 222, 0.74);
+  background: rgba(236, 231, 222, 0.9);
   box-shadow: 0 12px 28px rgba(68, 56, 45, 0.1);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
@@ -323,17 +327,23 @@ body.is-scrolled .site-header {
 
 .header-shell {
   position: relative;
+  width: 100%;
+  max-width: none;
+  margin: 0;
   display: grid;
   grid-template-columns: auto 1fr auto;
   align-items: center;
   gap: 1.4rem;
-  padding: 1rem 1.2rem;
-  border: 1px solid rgba(255, 255, 255, 0.22);
-  border-radius: 24px;
-  background: rgba(247, 243, 236, 0.62);
-  box-shadow: var(--shadow-soft);
-  backdrop-filter: blur(18px);
-  -webkit-backdrop-filter: blur(18px);
+  padding:
+    1rem
+    max(1.2rem, calc((100vw - var(--content-width)) / 2 + 1.2rem));
+  border: 0;
+  border-bottom: 1px solid rgba(140, 123, 106, 0.16);
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
 }
 
 .brand {
@@ -1583,6 +1593,7 @@ body.is-scrolled .site-header {
   .header-shell {
     grid-template-columns: auto auto;
     justify-content: space-between;
+    padding-inline: 1rem;
   }
 
   .nav-toggle {
