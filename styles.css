@@ -2042,6 +2042,96 @@ body.is-modal-open .social-rail {
   transition-delay: 260ms;
 }
 
+.service-card.reveal,
+.lift-card.reveal,
+.team-card.reveal,
+.testimonial-card.reveal,
+.work-preview-card.reveal,
+.gallery-card.reveal,
+.faq-item.reveal,
+.process-step.reveal,
+.trust-item.reveal,
+.service-offer-card.reveal {
+  transform: translateY(24px) scale(0.985);
+  transform-origin: center center;
+}
+
+.service-card.reveal.is-visible,
+.lift-card.reveal.is-visible,
+.team-card.reveal.is-visible,
+.testimonial-card.reveal.is-visible,
+.work-preview-card.reveal.is-visible,
+.gallery-card.reveal.is-visible,
+.faq-item.reveal.is-visible,
+.process-step.reveal.is-visible,
+.trust-item.reveal.is-visible,
+.service-offer-card.reveal.is-visible {
+  transform: translateY(0) scale(1);
+}
+
+@media (min-width: 1081px) {
+  .hero-shell > .hero-copy.reveal,
+  .page-hero-shell > .page-hero-copy.reveal,
+  .story-shell > .story-copy.reveal,
+  .why-shell > .why-copy.reveal {
+    transform: translate3d(-42px, 24px, 0);
+  }
+
+  .hero-shell > .hero-card.reveal,
+  .page-hero-shell > .page-hero-panel.reveal,
+  .story-shell > .story-stats.reveal {
+    transform: translate3d(42px, 24px, 0);
+  }
+
+  .hero-shell > .hero-copy.reveal.is-visible,
+  .page-hero-shell > .page-hero-copy.reveal.is-visible,
+  .story-shell > .story-copy.reveal.is-visible,
+  .why-shell > .why-copy.reveal.is-visible,
+  .hero-shell > .hero-card.reveal.is-visible,
+  .page-hero-shell > .page-hero-panel.reveal.is-visible,
+  .story-shell > .story-stats.reveal.is-visible {
+    transform: translate3d(0, 0, 0);
+  }
+
+  .service-detail.reveal .service-detail-media,
+  .service-detail.reveal .service-detail-copy,
+  .comparison-card.reveal .comparison-media,
+  .comparison-card.reveal .comparison-copy {
+    opacity: 0;
+    transition:
+      opacity 760ms var(--ease-premium),
+      transform 760ms var(--ease-premium);
+    will-change: transform, opacity;
+  }
+
+  .service-detail.reveal .service-detail-media,
+  .comparison-card.reveal .comparison-media {
+    transform: translate3d(44px, 0, 0);
+    transition-delay: 70ms;
+  }
+
+  .service-detail.reveal .service-detail-copy,
+  .comparison-card.reveal .comparison-copy {
+    transform: translate3d(-44px, 0, 0);
+  }
+
+  .service-detail.service-detail-reverse.reveal .service-detail-media {
+    transform: translate3d(-44px, 0, 0);
+  }
+
+  .service-detail.service-detail-reverse.reveal .service-detail-copy {
+    transform: translate3d(44px, 0, 0);
+  }
+
+  .service-detail.reveal.is-visible .service-detail-media,
+  .service-detail.reveal.is-visible .service-detail-copy,
+  .comparison-card.reveal.is-visible .comparison-media,
+  .comparison-card.reveal.is-visible .comparison-copy {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
 @media (max-width: 1260px) {
   .service-list-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -3087,6 +3177,14 @@ body.is-modal-open .social-rail {
   }
 
   .reveal {
+    opacity: 1;
+    transform: none;
+  }
+
+  .service-detail.reveal .service-detail-media,
+  .service-detail.reveal .service-detail-copy,
+  .comparison-card.reveal .comparison-media,
+  .comparison-card.reveal .comparison-copy {
     opacity: 1;
     transform: none;
   }
