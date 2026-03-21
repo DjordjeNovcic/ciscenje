@@ -150,23 +150,22 @@ h4 {
 .eyebrow {
   display: inline-flex;
   align-items: center;
-  gap: 0.55rem;
-  padding: 0.75rem 1rem;
-  border-radius: 999px;
-  background: rgba(247, 243, 236, 0.84);
-  border: 1px solid rgba(255, 255, 255, 0.5);
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.45);
+  gap: 0.7rem;
+  width: fit-content;
+  padding: 0;
   color: var(--color-primary);
-  font-size: 0.76rem;
+  font-size: 0.74rem;
   font-weight: 700;
-  letter-spacing: 0.18em;
+  letter-spacing: 0.2em;
   text-transform: uppercase;
+  white-space: nowrap;
 }
 
-.eyebrow-soft {
-  background: rgba(140, 123, 106, 0.12);
-  border-color: rgba(140, 123, 106, 0.18);
-  color: var(--color-primary);
+.eyebrow::before {
+  content: "";
+  width: 2.8rem;
+  height: 1px;
+  background: linear-gradient(90deg, rgba(140, 123, 106, 0.82), rgba(140, 123, 106, 0.18));
 }
 
 .section {
@@ -190,12 +189,49 @@ h4 {
   margin-bottom: clamp(2rem, 4vw, 3.4rem);
 }
 
+.section-head,
+.why-copy,
+.story-copy,
+.service-detail-copy,
+.cta-panel,
+.page-hero-panel,
+.hero-card,
+.footer-intro {
+  position: relative;
+}
+
+.section-head::before,
+.why-copy::before,
+.story-copy::before,
+.service-detail-copy::before,
+.cta-panel::before,
+.page-hero-panel::before,
+.hero-card::before,
+.footer-intro::before {
+  content: "";
+  display: block;
+  width: clamp(3rem, 5vw, 4rem);
+  height: 1px;
+  margin-bottom: 1rem;
+  background: linear-gradient(90deg, rgba(140, 123, 106, 0.78), rgba(140, 123, 106, 0.08));
+}
+
+.footer-intro::before {
+  background: linear-gradient(90deg, rgba(255, 245, 234, 0.74), rgba(255, 245, 234, 0));
+}
+
+.hero-copy .eyebrow,
+.page-hero-copy .eyebrow {
+  margin-bottom: 1rem;
+}
+
 .section-head h2,
 .why-copy h2,
 .cta-panel h2,
 .page-hero-copy h1,
 .story-copy h2,
 .service-detail-copy h2 {
+  margin: 0;
   font-size: clamp(2.1rem, 4vw, 4rem);
   line-height: 1.05;
 }
@@ -206,8 +242,22 @@ h4 {
 .story-copy p,
 .cta-panel p,
 .service-detail-copy p {
-  margin-top: 1rem;
+  margin-top: 0.95rem;
   font-size: clamp(1rem, 1.5vw, 1.08rem);
+}
+
+.panel-title,
+.footer-kicker {
+  margin: 0;
+  color: var(--color-primary);
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.footer-kicker {
+  color: rgba(255, 245, 234, 0.72);
 }
 
 .btn {
@@ -785,7 +835,7 @@ body.is-modal-open .social-rail {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 1rem;
-  margin: 1.4rem 0 1.3rem;
+  margin: 1.15rem 0 1.15rem;
 }
 
 .hero-card-grid article,
@@ -1402,7 +1452,7 @@ body.is-modal-open .social-rail {
 }
 
 .footer-intro h2 {
-  margin-top: 1rem;
+  margin-top: 0.8rem;
   font-size: clamp(2rem, 3vw, 3rem);
   line-height: 1.05;
   color: #fff8ef;
@@ -2251,13 +2301,21 @@ body.is-modal-open .social-rail {
     margin-bottom: 1.6rem;
   }
 
-  .section-head .eyebrow,
-  .why-copy .eyebrow,
-  .story-copy .eyebrow,
-  .page-hero-copy .eyebrow,
-  .service-detail-copy .eyebrow,
-  .cta-panel .eyebrow {
-    margin-bottom: 0.78rem;
+  .section-head::before,
+  .why-copy::before,
+  .story-copy::before,
+  .service-detail-copy::before,
+  .cta-panel::before,
+  .page-hero-panel::before,
+  .hero-card::before,
+  .footer-intro::before {
+    width: 3.2rem;
+    margin-bottom: 0.88rem;
+  }
+
+  .hero-copy .eyebrow,
+  .page-hero-copy .eyebrow {
+    margin-bottom: 0.82rem;
   }
 
   .section-head p,
@@ -2379,6 +2437,12 @@ body.is-modal-open .social-rail {
 
   .faq-item p {
     padding: 0 1.1rem 1.1rem;
+  }
+
+  .panel-title,
+  .footer-kicker {
+    font-size: 0.7rem;
+    letter-spacing: 0.17em;
   }
 
   .gallery-card span {
@@ -2635,15 +2699,33 @@ body.is-modal-open .social-rail {
     padding-top: 0.22rem;
   }
 
-  .section-head .eyebrow,
-  .why-copy .eyebrow,
-  .story-copy .eyebrow,
-  .page-hero-copy .eyebrow,
-  .service-detail-copy .eyebrow,
-  .cta-panel .eyebrow {
+  .section-head::before,
+  .why-copy::before,
+  .story-copy::before,
+  .service-detail-copy::before,
+  .cta-panel::before,
+  .page-hero-panel::before,
+  .hero-card::before,
+  .footer-intro::before {
+    width: 2.75rem;
+    margin-bottom: 0.82rem;
+  }
+
+  .hero-copy .eyebrow,
+  .page-hero-copy .eyebrow {
     margin-bottom: 0.72rem;
-    padding: 0.66rem 0.92rem;
-    font-size: 0.71rem;
+    font-size: 0.68rem;
+    letter-spacing: 0.18em;
+  }
+
+  .hero-copy .eyebrow::before,
+  .page-hero-copy .eyebrow::before {
+    width: 2.2rem;
+  }
+
+  .panel-title,
+  .footer-kicker {
+    font-size: 0.66rem;
     letter-spacing: 0.16em;
   }
 
