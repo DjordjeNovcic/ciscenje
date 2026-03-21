@@ -698,21 +698,21 @@ body.is-modal-open .social-rail {
 .hero-shell {
   position: relative;
   display: grid;
-  grid-template-columns: minmax(0, 1.08fr) minmax(320px, 0.68fr);
+  grid-template-columns: minmax(0, 1fr) minmax(360px, 0.82fr);
   gap: clamp(1.7rem, 3.2vw, 3.8rem);
-  align-items: end;
+  align-items: start;
 }
 
 .hero-copy {
-  max-width: 790px;
+  max-width: 860px;
   color: var(--color-ink);
   padding-bottom: 0.5rem;
 }
 
 .hero-copy h1 {
-  max-width: 11.5ch;
-  font-size: clamp(3.25rem, 6vw, 6.5rem);
-  line-height: 0.93;
+  max-width: 13.2ch;
+  font-size: clamp(3.05rem, 5.6vw, 6rem);
+  line-height: 0.94;
   margin-top: 1.2rem;
 }
 
@@ -766,6 +766,8 @@ body.is-modal-open .social-rail {
 }
 
 .hero-intro .hero-card {
+  align-self: start;
+  margin-top: clamp(2rem, 7vw, 5.5rem);
   background:
     radial-gradient(circle at top right, rgba(255, 245, 234, 0.08), transparent 34%),
     linear-gradient(180deg, rgba(74, 64, 54, 0.96), rgba(54, 46, 39, 0.94));
@@ -2068,6 +2070,10 @@ body.is-modal-open .social-rail {
   .footer-shell,
   .before-after-story {
     grid-template-columns: 1fr;
+  }
+
+  .hero-intro .hero-card {
+    margin-top: 0;
   }
 
   .section-why .why-copy,
