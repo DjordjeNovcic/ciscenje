@@ -1687,6 +1687,7 @@ body.is-modal-open .social-rail {
   font-family: "Poppins", sans-serif;
   font-size: 1.5rem;
   line-height: 1;
+  letter-spacing: -0.04em;
 }
 
 .panel-proof-row span {
