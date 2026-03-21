@@ -493,6 +493,8 @@
     if (typeof applyLanguage === 'function') {
         applyLanguage();
     }
+
+    window.dispatchEvent(new Event('languagechange'));
   }
 
   // Get translation by key
