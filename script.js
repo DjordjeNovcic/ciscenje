@@ -29,6 +29,7 @@ let aboutCache = null;
 let slideshowCache = null;
 let scrollRevealObserver = null;
 
+const HERO_IMAGE_URL = 'https://www.figma.com/api/mcp/asset/7bb1a895-bd1a-48e3-842a-457fb3d1d49d';
 const FIGMA_SERVICE_VISUALS = [
    'https://www.figma.com/api/mcp/asset/825f320a-4dc6-4afd-b3fc-5e60b2e9427c',
    'https://www.figma.com/api/mcp/asset/40e63fdf-eca8-4c05-9d64-6e26ca319cb1',
@@ -378,13 +379,13 @@ function applyHeroBackgroundFromSlideshow() {
    const landing = document.querySelector('.landing-section');
    if (!landing) return;
 
-   const cached = getCachedData('slideshow');
-   if (cached && cached.length > 0) {
-      landing.style.backgroundImage = `url('${cached[0]}')`;
-      landing.style.backgroundSize = 'cover';
-      landing.style.backgroundPosition = 'center';
-      landing.style.backgroundRepeat = 'no-repeat';
-   }
+   landing.style.backgroundImage = `
+      linear-gradient(90deg, rgba(255, 255, 255, 0.92) 0%, rgba(255, 255, 255, 0.74) 42%, rgba(255, 255, 255, 0.2) 64%, rgba(255, 255, 255, 0.02) 100%),
+      url('${HERO_IMAGE_URL}')
+   `;
+   landing.style.backgroundSize = 'auto, cover';
+   landing.style.backgroundPosition = '0 0, center';
+   landing.style.backgroundRepeat = 'no-repeat, no-repeat';
 }
 
 // Helper function to show loading spinner
