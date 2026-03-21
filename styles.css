@@ -3270,8 +3270,8 @@ body.home-page .landing-section {
   min-height: 720px;
   padding: calc(var(--navbar-height) + 44px) 0 4.5rem;
   background:
-    linear-gradient(90deg, rgba(255, 255, 255, 0.92) 0%, rgba(255, 255, 255, 0.74) 42%, rgba(255, 255, 255, 0.2) 64%, rgba(255, 255, 255, 0.02) 100%),
-    url("hero-approved.png") center / cover no-repeat;
+    radial-gradient(circle at top right, rgba(var(--secondary-rgb), 0.55), transparent 28%),
+    linear-gradient(180deg, #ffffff 0%, #f6fbf7 100%);
 }
 
 body.home-page .landing-section::before {
@@ -3983,8 +3983,8 @@ body.public-page .reveal-item.is-visible {
   body.home-page .landing-section {
     padding-bottom: 3rem;
     background:
-      linear-gradient(180deg, rgba(255, 255, 255, 0.92), rgba(255, 255, 255, 0.82)),
-      url("hero-approved.png") 68% center / cover no-repeat;
+      radial-gradient(circle at top right, rgba(var(--secondary-rgb), 0.45), transparent 26%),
+      linear-gradient(180deg, #ffffff 0%, #f6fbf7 100%);
   }
 
   body.home-page .hero-buttons,
