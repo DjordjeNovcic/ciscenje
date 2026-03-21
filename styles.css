@@ -665,8 +665,8 @@ body.is-modal-open .social-rail {
   inset: 0;
   border-radius: 0;
   background:
-    linear-gradient(180deg, rgba(26, 21, 18, 0.14), rgba(26, 21, 18, 0.06) 24%, rgba(247, 243, 236, 0.02) 55%, rgba(26, 21, 18, 0.18)),
-    radial-gradient(circle at center, rgba(255, 247, 237, 0.16), transparent 34%);
+    linear-gradient(180deg, rgba(26, 21, 18, 0.16), rgba(26, 21, 18, 0.08) 24%, rgba(247, 243, 236, 0.01) 55%, rgba(26, 21, 18, 0.2)),
+    radial-gradient(circle at center, rgba(255, 247, 237, 0.06), transparent 34%);
   filter: none;
 }
 
@@ -674,8 +674,8 @@ body.is-modal-open .social-rail {
   inset: 0;
   border-radius: 0;
   background:
-    linear-gradient(90deg, rgba(230, 224, 214, 0.2), transparent 18%, transparent 82%, rgba(230, 224, 214, 0.2)),
-    radial-gradient(circle at center, rgba(255, 248, 240, 0.24), transparent 24%);
+    linear-gradient(90deg, rgba(230, 224, 214, 0.12), transparent 18%, transparent 82%, rgba(230, 224, 214, 0.12)),
+    radial-gradient(circle at center, rgba(255, 248, 240, 0.08), transparent 24%);
   filter: none;
 }
 
@@ -685,7 +685,7 @@ body.is-modal-open .social-rail {
   min-height: inherit;
   object-fit: cover;
   object-position: center center;
-  filter: saturate(1.02) contrast(0.98) brightness(1.04);
+  filter: saturate(0.98) contrast(1.04) brightness(0.97);
   transform: translate3d(0, var(--hero-shift, 0px), 0) scale(1.015);
   transform-origin: center center;
 }
