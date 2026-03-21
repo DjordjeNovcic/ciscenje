@@ -1,0 +1,8 @@
+<svg width="1400" height="1000" viewBox="0 0 1400 1000" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1400" height="1000" rx="28" fill="#E6E0D6"/>
+  <rect x="64" y="64" width="1272" height="872" rx="24" fill="#F3ECE4"/>
+  <rect x="128" y="148" width="1144" height="360" rx="24" fill="#C2B6A6" opacity="0.75"/>
+  <rect x="128" y="548" width="520" height="228" rx="24" fill="#A38F7B" opacity="0.32"/>
+  <rect x="688" y="548" width="584" height="228" rx="24" fill="#8C7B6A" opacity="0.22"/>
+  <text x="700" y="474" text-anchor="middle" fill="#5E5246" font-family="Poppins, Arial, sans-serif" font-size="74" font-weight="600">Rad 02</text>
+</svg>

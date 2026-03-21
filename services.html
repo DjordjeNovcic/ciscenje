@@ -1,147 +1,266 @@
 <!DOCTYPE html>
-<html lang="sr" id="htmlLang">
-   <head>
-      <meta charset="UTF-8">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <title>Usluge - MS Sjaj</title>
-      <link rel="preconnect" href="https://fonts.googleapis.com">
-      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-      <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&family=Poppins:wght@500;600;700&display=swap" rel="stylesheet">
-      <link rel="stylesheet" href="styles.css">
-      <link rel="icon" href="./favicon.ico">
-      <link rel="icon" type="image/png" sizes="32x32" href="./favicon-32.png">
-      <link
-         rel="stylesheet"
-         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
-         />
-   </head>
-   <body class="public-page services-page">
-      <div id="page-loader"></div>
-      <!-- HEADER (partial) -->
-      <div id="site-header"></div>
-      <button id="mobileBackBtn" class="mobile-back-btn" aria-label="Back">
-      ← Nazad
-      </button>
-      <!-- Services Hero -->
-      <section class="page-hero">
-         <div class="container page-hero-shell">
-            <span class="section-kicker" data-i18n="servicesPage.kicker">Paketi i dodatne usluge</span>
-            <h1 data-i18n="servicesPage.title">Naše usluge</h1>
-            <p data-i18n="servicesPage.subtitle">
-               Profesionalno čišćenje prilagođeno vašim potrebama
+<html lang="sr">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Usluge | MS Sjaj</title>
+    <meta
+      name="description"
+      content="MS Sjaj pruža dubinsko čišćenje, čišćenje kancelarija, tretmane nameštaja i čišćenje prostora nakon radova u Kragujevcu i okolini."
+    >
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Poppins:wght@500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" href="./favicon.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="./favicon-32.png">
+  </head>
+  <body class="site-body services-page">
+    <div id="site-header"></div>
+
+    <main>
+      <section class="page-hero page-hero-services">
+        <div class="shell shell-wide page-hero-shell">
+          <div class="page-hero-copy reveal">
+            <span class="eyebrow">Usluge</span>
+            <h1>Usluge čišćenja definisane tako da svaka prostorija dobije pravi tretman.</h1>
+            <p>
+              Ne nudimo generičke pakete. Svaka usluga je osmišljena prema vrsti prostora,
+              nivou zaprljanosti i utisku koji želite da dobijete po završetku tretmana.
             </p>
-            <div class="page-hero-badges">
-               <span class="page-hero-badge" data-i18n="servicesPage.badgeOne">Jasni paketi</span>
-               <span class="page-hero-badge" data-i18n="servicesPage.badgeTwo">Fleksibilni termini</span>
-               <span class="page-hero-badge" data-i18n="servicesPage.badgeThree">Bez skrivenih troškova</span>
+            <div class="hero-actions">
+              <a href="#kontakt" class="btn btn-primary">Zatražite ponudu</a>
+              <a href="works.html" class="btn btn-secondary">Pogledajte radove</a>
             </div>
-         </div>
+          </div>
+
+          <aside class="page-hero-panel reveal reveal-delay-1">
+            <span class="eyebrow eyebrow-soft">Najtraženije</span>
+            <ul class="panel-list">
+              <li>Dubinsko čišćenje stanova i kuća</li>
+              <li>Čišćenje kancelarija i poslovnih prostora</li>
+              <li>Detaljna obrada nameštaja i tekstila</li>
+              <li>Čišćenje prostora nakon radova</li>
+            </ul>
+          </aside>
+        </div>
       </section>
-      <section class="service-standards section-reveal">
-         <div class="container">
-            <div class="service-standards-head reveal-item">
-               <span class="section-kicker" data-i18n="servicesLuxury.kicker">Premium standard usluge</span>
-               <h2 data-i18n="servicesLuxury.title">Jasna struktura, besprekorna završnica i osećaj kontrole od početka do kraja.</h2>
-               <p class="section-lead" data-i18n="servicesLuxury.subtitle">
-                  Paketi nisu sastavljeni nasumično. Svaka usluga je koncipirana da bude pregledna, efikasna i vizuelno vidljiva u rezultatu.
-               </p>
-            </div>
-            <div class="service-standards-grid">
-               <article class="service-standard-card reveal-item" style="--reveal-delay: 0ms;">
-                  <span class="service-standard-index">01</span>
-                  <h3 data-i18n="servicesLuxury.card1Title">Precizan obim rada</h3>
-                  <p data-i18n="servicesLuxury.card1Text">Pre dolaska znate šta ulazi u uslugu, koliko traje i kakav rezultat možete da očekujete.</p>
-               </article>
-               <article class="service-standard-card reveal-item" style="--reveal-delay: 90ms;">
-                  <span class="service-standard-index">02</span>
-                  <h3 data-i18n="servicesLuxury.card2Title">Tretman po vrsti prostora</h3>
-                  <p data-i18n="servicesLuxury.card2Text">Domovi, poslovni enterijeri, tekstil i kontaktne zone tretiraju se sa različitim nivoom pažnje i procedura.</p>
-               </article>
-               <article class="service-standard-card reveal-item" style="--reveal-delay: 180ms;">
-                  <span class="service-standard-index">03</span>
-                  <h3 data-i18n="servicesLuxury.card3Title">Završni premium utisak</h3>
-                  <p data-i18n="servicesLuxury.card3Text">Cilj nije samo ukloniti nečistoću, već ostaviti prostor koji deluje reprezentativno, uredno i sveže.</p>
-               </article>
-            </div>
-         </div>
-      </section>
-      <!-- Services -->
-      <section class="services-section section-reveal">
-         <div class="container">
-            <h2 data-i18n="servicesPage.choosePackage">
-               Izaberite paket koji vam odgovara
-            </h2>
-            <p class="section-lead" data-i18n="servicesPage.helper">
-               Svaka usluga je predstavljena jasno, sa cenom i obimom rada koji možete brzo da uporedite.
+
+      <section class="section section-service-list">
+        <div class="shell shell-wide">
+          <div class="section-head reveal">
+            <span class="eyebrow">Pregled usluga</span>
+            <h2>Četiri glavna pravca usluge za klijente kojima je potreban jasan rezultat.</h2>
+            <p>
+              Kada birate profesionalno čišćenje, najvažnije je da znate šta dobijate.
+              Zato je svaka usluga predstavljena kroz jasan obim rada, namenjen prostor i očekivani vizuelni efekat.
             </p>
-            <div class="services-grid pricing-grid" id="servicesGrid"></div>
-         </div>
+          </div>
+
+          <div class="service-list-grid">
+            <article class="service-offer-card reveal">
+              <span class="card-tag">01</span>
+              <h3>Dubinsko čišćenje</h3>
+              <p>Za stanove i kuće kojima je potrebno ozbiljno osveženje prostora, a ne samo osnovno održavanje.</p>
+              <ul>
+                <li>Kuhinje, kupatila i kontaktne zone</li>
+                <li>Detaljna obrada frontova, stakla i detalja</li>
+                <li>Vizuelno rasterećen i osvežen enterijer</li>
+              </ul>
+            </article>
+
+            <article class="service-offer-card reveal reveal-delay-1">
+              <span class="card-tag">02</span>
+              <h3>Poslovni prostor</h3>
+              <p>Čišćenje kancelarija, salona i manjih poslovnih enterijera bez ometanja rada i ritma tima.</p>
+              <ul>
+                <li>Fleksibilan termin prema dinamici firme</li>
+                <li>Diskretan i uredan operativni tok</li>
+                <li>Prostor spreman za klijente i zaposlene</li>
+              </ul>
+            </article>
+
+            <article class="service-offer-card reveal reveal-delay-2">
+              <span class="card-tag">03</span>
+              <h3>Nameštaj i tekstil</h3>
+              <p>Tretmani koji vraćaju osećaj svežine foteljama, sofama, stolicama i tapaciranim površinama.</p>
+              <ul>
+                <li>Fokus na detalj, teksturu i utisak urednosti</li>
+                <li>Pristup prilagođen materijalu</li>
+                <li>Bolji vizuelni kvalitet prostora</li>
+              </ul>
+            </article>
+
+            <article class="service-offer-card reveal reveal-delay-3">
+              <span class="card-tag">04</span>
+              <h3>Nakon radova</h3>
+              <p>Kada prostor treba da bude spreman za useljenje, predaju ili početak korišćenja bez dodatnog haosa.</p>
+              <ul>
+                <li>Uklanjanje građevinske prašine i sitnih ostataka</li>
+                <li>Završna obrada kontaktnih površina</li>
+                <li>Vizuelno uredan završni nivo prostora</li>
+              </ul>
+            </article>
+          </div>
+        </div>
       </section>
-      <!-- Add-ons -->
-      <section class="add-ons section-reveal">
-         <div class="container">
-            <h2 data-i18n="servicesPage.addonsTitle">Dodatne usluge</h2>
-            <p class="section-lead" data-i18n="servicesPage.addonsSubtitle">
-               Kombinujte osnovni paket sa dodatnim tretmanima za detaljniji završni rezultat.
+
+      <section class="section section-service-details">
+        <div class="shell shell-wide">
+          <article class="service-detail reveal">
+            <div class="service-detail-media">
+              <img src="assets/placeholder-space.svg" alt="Slika ovde za dubinsko čišćenje">
+            </div>
+            <div class="service-detail-copy">
+              <span class="eyebrow">Dubinsko čišćenje</span>
+              <h2>Kada prostoru treba kompletno osveženje, ne samo osnovno održavanje.</h2>
+              <p>
+                Ova usluga je idealna kada želite da prostor izgleda uredno, rasterećeno i spremno za svakodnevni boravak.
+                Najviše vrednosti donosi u kuhinjama, kupatilima i zonama koje nose najveći vizuelni teret prostora.
+              </p>
+              <ul class="detail-list">
+                <li>Čišćenje stanova i kuća sa fokusom na detalje</li>
+                <li>Dubinsko čišćenje najzahtevnijih površina</li>
+                <li>Rezultat koji se vidi odmah po završetku</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="service-detail service-detail-reverse reveal reveal-delay-1">
+            <div class="service-detail-media">
+              <img src="assets/placeholder-work-3.svg" alt="Slika ovde za poslovni prostor">
+            </div>
+            <div class="service-detail-copy">
+              <span class="eyebrow">Poslovni prostori</span>
+              <h2>Čišćenje kancelarija i prijemnih zona koje ostavljaju profesionalan prvi utisak.</h2>
+              <p>
+                Kada radite sa klijentima ili timom u prostoru koji mora da izgleda uredno svaki dan,
+                važni su tačnost, diskretnost i jasan raspored rada. Zato ovu uslugu organizujemo bez ometanja svakodnevnog ritma.
+              </p>
+              <ul class="detail-list">
+                <li>Čišćenje kancelarija, salona i manjih poslovnih enterijera</li>
+                <li>Plan rada prilagođen vašem rasporedu</li>
+                <li>Uredan prostor spreman za sastanke i prijem klijenata</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="service-detail reveal reveal-delay-2">
+            <div class="service-detail-media">
+              <img src="assets/placeholder-work-1.svg" alt="Slika ovde za nameštaj i tekstil">
+            </div>
+            <div class="service-detail-copy">
+              <span class="eyebrow">Nameštaj i tekstil</span>
+              <h2>Povratak osećaja svežine u prostoru kroz tretman nameštaja koji se najviše koristi.</h2>
+              <p>
+                Sofe, fotelje, stolice i drugi tapacirani elementi često određuju da li enterijer deluje negovano.
+                Ovim tretmanom prostor dobija jasniji, lakši i svežiji utisak bez velike intervencije.
+              </p>
+              <ul class="detail-list">
+                <li>Tretman tapaciranih površina i kontaktnih tačaka</li>
+                <li>Pristup prilagođen vrsti materijala</li>
+                <li>Veća svežina i bolji ukupni utisak enterijera</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="service-detail service-detail-reverse reveal reveal-delay-3">
+            <div class="service-detail-media">
+              <img src="assets/placeholder-work-2.svg" alt="Slika ovde za čišćenje nakon radova">
+            </div>
+            <div class="service-detail-copy">
+              <span class="eyebrow">Nakon radova</span>
+              <h2>Prostor spreman za useljenje, predaju ili završnu prezentaciju bez dodatnog sređivanja.</h2>
+              <p>
+                Posle radova ostaju prašina, sitni ostaci i površine koje traže završni tretman.
+                Ova usluga je namenjena momentu kada prostor treba da izgleda gotov, uredan i spreman za korišćenje.
+              </p>
+              <ul class="detail-list">
+                <li>Uklanjanje građevinske prašine i sitnih ostataka</li>
+                <li>Čišćenje stakala, podova i završnih površina</li>
+                <li>Vizuelni nivo prostora spreman za predaju</li>
+              </ul>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="section section-process">
+        <div class="shell shell-wide">
+          <div class="section-head reveal">
+            <span class="eyebrow">Kako izgleda saradnja</span>
+            <h2>Dogovor koji je jednostavan za vas, a dovoljno precizan za nas.</h2>
+          </div>
+
+          <div class="process-grid">
+            <article class="process-step reveal">
+              <span>01</span>
+              <h3>Kratka procena</h3>
+              <p>Definišemo vrstu prostora, obim rada i termin koji vam odgovara.</p>
+            </article>
+            <article class="process-step reveal reveal-delay-1">
+              <span>02</span>
+              <h3>Operativni plan</h3>
+              <p>Tim dolazi sa jasnim sledom koraka, bez improvizacije i nepotrebnog zadržavanja.</p>
+            </article>
+            <article class="process-step reveal reveal-delay-2">
+              <span>03</span>
+              <h3>Završni utisak</h3>
+              <p>Na kraju prostor izgleda uredno, smireno i spremno za rad, život ili prijem gostiju.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section-faq">
+        <div class="shell shell-wide faq-shell">
+          <div class="section-head reveal">
+            <span class="eyebrow">Česta pitanja</span>
+            <h2>Odgovori koji pomažu da brzo procenite koja usluga vam najviše odgovara.</h2>
+          </div>
+
+          <div class="faq-list">
+            <details class="faq-item reveal" open>
+              <summary>Da li nudite redovno održavanje poslovnog prostora?</summary>
+              <p>Da. Nakon inicijalnog dolaska možemo definisati ritam čišćenja kancelarija ili drugih poslovnih prostora koji prati vaše potrebe.</p>
+            </details>
+            <details class="faq-item reveal reveal-delay-1">
+              <summary>Kako da znam da li mi treba dubinsko čišćenje?</summary>
+              <p>Kada želite više od osnovnog održavanja, posebno u kuhinji, kupatilu ili opterećenim zonama, dubinsko čišćenje je pravi izbor.</p>
+            </details>
+            <details class="faq-item reveal reveal-delay-2">
+              <summary>Da li radite čišćenje nameštaja na adresi klijenta?</summary>
+              <p>Da. Tretmani nameštaja i tekstila izvode se u prostoru klijenta, uz plan rada prilagođen situaciji na terenu.</p>
+            </details>
+            <details class="faq-item reveal reveal-delay-3">
+              <summary>Da li čistite prostor odmah nakon završetka radova?</summary>
+              <p>Da. Čišćenje nakon radova organizujemo kada je potrebno da prostor bude spreman za useljenje, predaju ili početak korišćenja.</p>
+            </details>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section-cta" id="kontakt">
+        <div class="shell shell-wide">
+          <div class="cta-panel reveal">
+            <span class="eyebrow eyebrow-soft">Kontakt</span>
+            <h2>Recite nam kakav prostor imate, a mi ćemo predložiti pravi nivo usluge.</h2>
+            <p>
+              Dovoljno je da pošaljete osnovne informacije o prostoru ili nas pozovete.
+              Dobićete jasan odgovor, bez komplikovanja i bez nejasnih koraka.
             </p>
-            <div class="add-ons-grid" id="addonsGrid"></div>
-         </div>
-      </section>
-      <section class="service-ritual section-reveal">
-         <div class="container">
-            <div class="service-ritual-shell">
-               <div class="service-ritual-copy reveal-item">
-                  <span class="section-kicker" data-i18n="serviceRitual.kicker">Kako izgleda saradnja</span>
-                  <h2 data-i18n="serviceRitual.title">Jednostavan proces koji ostavlja utisak profesionalne kontrole.</h2>
-               </div>
-               <div class="service-ritual-steps">
-                  <div class="service-ritual-step reveal-item" style="--reveal-delay: 0ms;">
-                     <strong>01</strong>
-                     <h3 data-i18n="serviceRitual.step1Title">Kratka procena potreba</h3>
-                     <p data-i18n="serviceRitual.step1Text">Dogovaramo prostor, termin i nivo tretmana bez nepotrebnog komplikovanja.</p>
-                  </div>
-                  <div class="service-ritual-step reveal-item" style="--reveal-delay: 90ms;">
-                     <strong>02</strong>
-                     <h3 data-i18n="serviceRitual.step2Title">Izvođenje po jasnom planu</h3>
-                     <p data-i18n="serviceRitual.step2Text">Tim radi organizovano, tiho i efikasno, sa fokusom na detalje koji menjaju utisak prostora.</p>
-                  </div>
-                  <div class="service-ritual-step reveal-item" style="--reveal-delay: 180ms;">
-                     <strong>03</strong>
-                     <h3 data-i18n="serviceRitual.step3Title">Rezultat koji se vidi odmah</h3>
-                     <p data-i18n="serviceRitual.step3Text">Po završetku prostor deluje svetlije, smirenije i reprezentativnije za svakodnevni život ili rad.</p>
-                  </div>
-               </div>
+            <div class="cta-actions">
+              <a href="tel:+381643937000" class="btn btn-primary">Pozovite nas</a>
+              <a href="mailto:11mssjaj@gmail.com" class="btn btn-secondary">Pošaljite email</a>
             </div>
-         </div>
+          </div>
+        </div>
       </section>
-      <!-- CTA -->
-      <section class="cta-services section-reveal">
-         <div class="container">
-            <div class="cta-panel">
-               <span class="section-kicker" data-i18n="cta.kicker">Brz i jasan dogovor</span>
-               <h2 data-i18n="cta.servicesTitle">Spremni za čist prostor?</h2>
-               <p data-i18n="cta.servicesSubtitle">
-                  Kontaktirajte nas za besplatnu procenu i ponudu.
-               </p>
-               <a
-                  href="index.html?scroll=cta-contact"
-                  class="btn btn-outline"
-                  data-i18n="cta.servicesButton"
-                  >
-               Zatražite ponudu
-               </a>
-            </div>
-         </div>
-      </section>
-      <!-- FOOTER (partial) -->
-      <div id="site-footer"></div>
-      <button id="goToTopBtn" class="go-to-top" aria-label="Go to top">
-      ↑
-      </button>
-      <!-- i18n -->
-      <script src="translations.js"></script>
-      <script src="i18n.js"></script>
-      <!-- Main -->
-      <script src="script.js"></script>
-   </body>
+    </main>
+
+    <div id="site-footer"></div>
+
+    <script src="script.js"></script>
+  </body>
 </html>

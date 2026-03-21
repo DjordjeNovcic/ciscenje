@@ -1,0 +1,9 @@
+<svg width="1200" height="1400" viewBox="0 0 1200 1400" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="1400" rx="32" fill="#D5CEC4"/>
+  <rect x="74" y="74" width="1052" height="1252" rx="28" fill="#EDE7DE"/>
+  <circle cx="600" cy="430" r="170" fill="#C2B6A6"/>
+  <rect x="360" y="640" width="480" height="350" rx="42" fill="#A38F7B" opacity="0.55"/>
+  <rect x="260" y="1080" width="680" height="104" rx="18" fill="#8C7B6A" opacity="0.22"/>
+  <text x="600" y="1096" text-anchor="middle" fill="#5E5246" font-family="Poppins, Arial, sans-serif" font-size="72" font-weight="600">Slika tima</text>
+  <text x="600" y="1176" text-anchor="middle" fill="#7B6B5D" font-family="Inter, Arial, sans-serif" font-size="32">Placeholder za fotografiju zaposlenih</text>
+</svg>
