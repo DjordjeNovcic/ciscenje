@@ -29,6 +29,12 @@ let aboutCache = null;
 let slideshowCache = null;
 let scrollRevealObserver = null;
 
+const FIGMA_SERVICE_VISUALS = [
+   'https://www.figma.com/api/mcp/asset/825f320a-4dc6-4afd-b3fc-5e60b2e9427c',
+   'https://www.figma.com/api/mcp/asset/40e63fdf-eca8-4c05-9d64-6e26ca319cb1',
+   'https://www.figma.com/api/mcp/asset/6e6c07d6-94fb-42da-9bbf-fed8e2288e4a'
+];
+
 const CACHE_VERSION_PREFIX = 'mssjaj_cache_version_';
 const CACHE_DATA_PREFIX = 'mssjaj_cache_';
 const THEME_STORAGE_KEY = 'mssjaj_theme';
@@ -564,8 +570,6 @@ function setupPremiumPublicExperience() {
    ensureScrollProgress();
    setupScrollDrivenChrome();
    setupHeroParallax();
-   setupInteractiveSurfaces(document);
-   setupCursorGlow();
 }
 
 function ensureScrollProgress() {
@@ -616,7 +620,7 @@ function setupHeroParallax() {
    let scrollTicking = false;
 
    const updateScrollDrift = () => {
-      const drift = Math.min(window.scrollY * 0.14, 52);
+      const drift = Math.min(window.scrollY * 0.08, 22);
       landing.style.setProperty('--hero-scroll-shift', `${drift.toFixed(2)}px`);
       scrollTicking = false;
    };
@@ -637,8 +641,8 @@ function setupHeroParallax() {
       const x = ((event.clientX - rect.left) / rect.width) - 0.5;
       const y = ((event.clientY - rect.top) / rect.height) - 0.5;
 
-      landing.style.setProperty('--hero-pan-x', `${(x * 26).toFixed(2)}px`);
-      landing.style.setProperty('--hero-pan-y', `${(y * 22).toFixed(2)}px`);
+      landing.style.setProperty('--hero-pan-x', `${(x * 10).toFixed(2)}px`);
+      landing.style.setProperty('--hero-pan-y', `${(y * 10).toFixed(2)}px`);
       landing.style.setProperty('--hero-glow-x', `${((x + 0.5) * 100).toFixed(2)}%`);
       landing.style.setProperty('--hero-glow-y', `${((y + 0.5) * 100).toFixed(2)}%`);
    });
@@ -1110,6 +1114,14 @@ function renderServices(services) {
       const h3 = document.createElement('h3');
       h3.textContent = getLocalizedField(service, 'name');
 
+      const imageUrl = getServiceVisual(index);
+      if (imageUrl) {
+         const media = document.createElement('div');
+         media.className = 'service-media';
+         media.innerHTML = `<img src="${imageUrl}" alt="${getLocalizedField(service, 'name')}">`;
+         card.appendChild(media);
+      }
+
       const price = document.createElement('span');
       price.className = 'service-price';
       price.textContent = getLocalizedField(service, 'price') + ' RSD';
@@ -1132,7 +1144,7 @@ function renderServices(services) {
 
       const ctaBtn = document.createElement('a');
       ctaBtn.href = 'index.html?scroll=cta-contact';
-      ctaBtn.className = 'btn';
+      ctaBtn.className = 'btn service-card-cta';
       ctaBtn.textContent =
          getCurrentLanguage() === 'en' ?
          'Book now' :
@@ -1144,6 +1156,11 @@ function renderServices(services) {
    servicesGrid.dataset.loaded = 'true';
    setupInteractiveSurfaces(servicesGrid);
    initializeScrollReveal(servicesGrid);
+}
+
+function getServiceVisual(index) {
+   if (!FIGMA_SERVICE_VISUALS.length) return '';
+   return FIGMA_SERVICE_VISUALS[index % FIGMA_SERVICE_VISUALS.length];
 }
 
 
@@ -2366,13 +2383,13 @@ function switchLang(event, lang) {
 // ========================================
 
 const defaultColors = {
-   primaryColor: '#38b86b',
-   primaryDark: '#20894c',
-   secondaryColor: '#d9efde',
-   successColor: '#bcdcc6',
-   bgLight: '#f7fcf8',
-   textDark: '#142017',
-   textLight: '#68776c'
+   primaryColor: '#36b864',
+   primaryDark: '#26954f',
+   secondaryColor: '#e7f6ea',
+   successColor: '#c7eccf',
+   bgLight: '#f7fbf6',
+   textDark: '#111d15',
+   textLight: '#667166'
 };
 
 const deprecatedThemePalettes = [{
@@ -2487,7 +2504,7 @@ function previewTheme() {
    notification.textContent = '👁️ Pregled tema - promene nisu sačuvane';
    notification.style.cssText = `
           position: fixed; top: 20px; right: 20px;
-          background: linear-gradient(135deg, #38b86b 0%, #20894c 100%); color: white;
+          background: linear-gradient(135deg, #36b864 0%, #26954f 100%); color: white;
           padding: 1rem 2rem; border-radius: 8px;
           box-shadow: 0 4px 12px rgba(0,0,0,0.15);
           z-index: 10000; animation: slideIn 0.3s ease;

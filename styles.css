@@ -2967,3 +2967,1113 @@ body.public-page .social-links a:hover {
     padding: 2.45rem 0;
   }
 }
+
+/* -------------------------------
+   FIGMA COMMUNITY REFRESH
+-------------------------------- */
+
+:root {
+  --primary-color: #36b864;
+  --primary-dark: #26954f;
+  --secondary-color: #e7f6ea;
+  --success-color: #c7eccf;
+  --bg-light: #f7fbf6;
+  --bg-white: #ffffff;
+  --text-dark: #111d15;
+  --text-light: #667166;
+  --text-soft: #8ea091;
+  --text-inverse: #f6fff8;
+  --primary-rgb: 54, 184, 100;
+  --primary-dark-rgb: 38, 149, 79;
+  --secondary-rgb: 231, 246, 234;
+  --border-color: rgba(17, 29, 21, 0.12);
+  --shadow-sm: 0 6px 18px rgba(17, 29, 21, 0.06);
+  --shadow-md: 0 14px 30px rgba(17, 29, 21, 0.08);
+  --shadow-lg: 0 24px 54px rgba(17, 29, 21, 0.1);
+  --shadow-xl: 0 36px 72px rgba(17, 29, 21, 0.12);
+  --radius-sm: 12px;
+  --radius-md: 20px;
+  --radius-lg: 28px;
+  --container-width: 1170px;
+  --navbar-height: 86px;
+  --section-space: clamp(4.5rem, 7vw, 7rem);
+  --section-space-tight: clamp(3rem, 5vw, 4.5rem);
+  --primary-gradient: linear-gradient(135deg, #36b864 0%, #26954f 100%);
+}
+
+body.public-page {
+  overflow-x: hidden;
+  background:
+    radial-gradient(circle at top right, rgba(var(--secondary-rgb), 0.7), transparent 26%),
+    linear-gradient(180deg, #ffffff 0%, #f8fcf8 100%);
+  color: var(--text-dark);
+  font-family: "Be Vietnam Pro", "Manrope", sans-serif;
+}
+
+body.public-page::before,
+body.public-page::after,
+body.public-page .hero-bg,
+body.public-page .hero-overlay,
+body.public-page .landing-focus,
+body.public-page .cursor-glow {
+  display: none !important;
+}
+
+body.public-page h1,
+body.public-page h2,
+body.public-page h3,
+body.public-page h4 {
+  font-family: "Be Vietnam Pro", "Poppins", sans-serif;
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  line-height: 1.06;
+  color: var(--text-dark);
+}
+
+body.public-page p,
+body.public-page li,
+body.public-page span,
+body.public-page a,
+body.public-page button {
+  font-family: "Be Vietnam Pro", "Manrope", sans-serif;
+}
+
+body.public-page .container {
+  width: min(var(--container-width), calc(100% - 32px));
+}
+
+body.public-page .section-kicker,
+body.public-page .hero-kicker,
+body.public-page .hero-availability,
+body.public-page .hero-sidecard-label,
+body.public-page .page-hero-badge,
+body.public-page .footer-kicker,
+body.public-page .story-badge {
+  min-height: 38px;
+  padding: 0.55rem 1rem;
+  border-radius: 999px;
+  border: 1px solid rgba(var(--primary-rgb), 0.16);
+  background: #ffffff;
+  box-shadow: none;
+  color: var(--primary-dark);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+body.public-page .section-kicker,
+body.public-page .footer-kicker,
+body.public-page .story-badge {
+  margin-bottom: 1.15rem;
+}
+
+body.public-page .section-lead,
+body.public-page .gallery-subtitle,
+body.public-page .page-hero p,
+body.public-page .landing-subtitle,
+body.public-page .footer-note,
+body.public-page .story-intro {
+  max-width: 60ch;
+  color: var(--text-light);
+  font-size: 1rem;
+  line-height: 1.75;
+}
+
+body.public-page .btn,
+body.public-page .phone-trigger,
+body.public-page .lang-btn,
+body.public-page .nav-cta,
+body.public-page .nav-menu-cta {
+  min-height: 48px;
+  padding: 0.85rem 1.35rem;
+  border-radius: 8px;
+  font-weight: 700;
+  letter-spacing: 0;
+  transition:
+    transform 0.22s ease,
+    box-shadow 0.22s ease,
+    background-color 0.22s ease,
+    border-color 0.22s ease,
+    color 0.22s ease;
+}
+
+body.public-page .btn::before,
+body.public-page .phone-trigger::before,
+body.public-page .lang-btn::before,
+body.public-page .nav-cta::before,
+body.public-page .nav-menu-cta::before {
+  display: none;
+}
+
+body.public-page .btn:hover,
+body.public-page .phone-trigger:hover,
+body.public-page .nav-cta:hover,
+body.public-page .nav-menu-cta:hover {
+  transform: translateY(-2px);
+}
+
+body.public-page .btn-primary,
+body.public-page .nav-cta,
+body.public-page .nav-menu-cta {
+  background: var(--primary-gradient);
+  border: 1px solid rgba(var(--primary-rgb), 0.18);
+  color: #ffffff;
+  box-shadow: 0 14px 28px rgba(var(--primary-dark-rgb), 0.2);
+}
+
+body.public-page .btn-primary:hover,
+body.public-page .nav-cta:hover,
+body.public-page .nav-menu-cta:hover {
+  background: linear-gradient(135deg, #3fc06f 0%, #26954f 100%);
+  color: #ffffff;
+}
+
+body.public-page .btn-outline,
+body.public-page .phone-trigger {
+  background: #ffffff;
+  border: 1px solid rgba(17, 29, 21, 0.16);
+  color: var(--text-dark);
+  box-shadow: none;
+}
+
+body.public-page .btn-outline:hover,
+body.public-page .phone-trigger:hover {
+  border-color: rgba(var(--primary-rgb), 0.34);
+  background: rgba(var(--secondary-rgb), 0.55);
+}
+
+body.public-page .scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  z-index: 2000;
+  background: rgba(17, 29, 21, 0.06);
+}
+
+body.public-page .scroll-progress-bar {
+  display: block;
+  height: 100%;
+  transform-origin: left center;
+  transform: scaleX(0);
+  background: var(--primary-gradient);
+}
+
+body.public-page .navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  border: 0;
+  border-bottom: 1px solid rgba(17, 29, 21, 0.08);
+  border-radius: 0;
+  background: rgba(255, 255, 255, 0.96);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: 0 10px 28px rgba(17, 29, 21, 0.06);
+}
+
+body.public-page .navbar::before {
+  display: none;
+}
+
+body.public-page.is-scrolled .navbar {
+  top: 0;
+  background: rgba(255, 255, 255, 0.98);
+  box-shadow: 0 12px 30px rgba(17, 29, 21, 0.08);
+}
+
+body.public-page .navbar .container {
+  min-height: var(--navbar-height);
+  gap: 1.25rem;
+  padding: 1rem 0;
+}
+
+body.public-page .brand-link {
+  gap: 0.9rem;
+}
+
+body.public-page .brand-mark {
+  width: 56px;
+  height: 56px;
+  padding: 0.5rem;
+  border-radius: 14px;
+  border: 1px solid rgba(var(--primary-rgb), 0.14);
+  background: #ffffff;
+  box-shadow: 0 10px 20px rgba(17, 29, 21, 0.06);
+}
+
+body.public-page .brand-mark img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+body.public-page .brand-copy strong {
+  font-size: 1.1rem;
+}
+
+body.public-page .brand-copy small {
+  color: var(--text-light);
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+}
+
+body.public-page .nav-right {
+  gap: 0.9rem;
+}
+
+body.public-page .phone-wrapper,
+body.public-page .nav-menu,
+body.public-page .language-switcher.desktop-only {
+  background: transparent;
+  border: 0;
+  box-shadow: none;
+  padding: 0;
+}
+
+body.public-page .phone-dropdown {
+  top: calc(100% + 10px);
+  border-radius: 16px;
+  border: 1px solid rgba(17, 29, 21, 0.12);
+  background: #ffffff;
+  box-shadow: var(--shadow-md);
+}
+
+body.public-page .nav-menu {
+  gap: 0.1rem;
+}
+
+body.public-page .nav-menu a,
+body.public-page .lang-btn {
+  min-height: 44px;
+  padding: 0.7rem 0.95rem;
+  border-radius: 8px;
+  color: var(--text-light);
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+
+body.public-page .nav-menu a:hover,
+body.public-page .nav-menu a.active,
+body.public-page .lang-btn:hover,
+body.public-page .lang-btn.active {
+  background: rgba(var(--secondary-rgb), 0.8);
+  color: var(--primary-dark);
+  border-color: transparent;
+  box-shadow: none;
+}
+
+body.home-page .landing-section {
+  min-height: 720px;
+  padding: calc(var(--navbar-height) + 44px) 0 4.5rem;
+  background:
+    linear-gradient(90deg, rgba(255, 255, 255, 0.92) 0%, rgba(255, 255, 255, 0.74) 42%, rgba(255, 255, 255, 0.2) 64%, rgba(255, 255, 255, 0.02) 100%),
+    url("https://www.figma.com/api/mcp/asset/7bb1a895-bd1a-48e3-842a-457fb3d1d49d") center / cover no-repeat;
+}
+
+body.home-page .landing-section::before {
+  inset: 0;
+  background:
+    radial-gradient(circle at 20% 20%, rgba(var(--secondary-rgb), 0.45), transparent 20%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.26));
+  z-index: 0;
+}
+
+body.home-page .landing-shell {
+  display: grid;
+  grid-template-columns: minmax(0, 620px) 1fr;
+  align-items: center;
+  min-height: 560px;
+  gap: 1.5rem;
+}
+
+body.home-page .landing-content {
+  max-width: 620px;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  transform: none;
+}
+
+body.home-page .hero-kicker-row {
+  gap: 0.7rem;
+  margin-bottom: 1.4rem;
+}
+
+body.home-page .landing-logo {
+  display: none;
+}
+
+body.home-page .landing-section h1 {
+  max-width: 11.5ch;
+  margin: 0 0 1rem;
+  text-align: left;
+  font-size: clamp(2.7rem, 5vw, 4.2rem);
+  line-height: 1.04;
+}
+
+body.home-page .landing-subtitle,
+body.home-page #heroText {
+  margin: 0;
+  text-align: left;
+  color: #5f685f;
+  font-size: 1.05rem;
+  max-width: 34rem;
+}
+
+body.home-page .hero-buttons {
+  justify-content: flex-start;
+  gap: 0.9rem;
+  margin: 2rem 0 1.8rem;
+}
+
+body.home-page .hero-trust {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.9rem;
+}
+
+body.home-page .trust-pill {
+  min-width: 132px;
+  padding: 0.9rem 1rem;
+  border-radius: 18px;
+  border: 1px solid rgba(17, 29, 21, 0.1);
+  background: rgba(255, 255, 255, 0.94);
+  box-shadow: var(--shadow-sm);
+}
+
+body.home-page .trust-pill strong {
+  display: block;
+  margin-bottom: 0.2rem;
+  color: var(--text-dark);
+  font-size: 1.15rem;
+}
+
+body.home-page .trust-pill span {
+  color: var(--text-light);
+  font-size: 0.9rem;
+}
+
+body.home-page .hero-sidecard,
+body.public-page .proof-marquee,
+body.public-page .signature-process,
+body.public-page .editorial-showcase {
+  display: none !important;
+}
+
+body.public-page .page-hero,
+body.public-page .features,
+body.public-page .why-choose-us,
+body.public-page .services-preview,
+body.public-page .gallery-section,
+body.public-page .services-section,
+body.public-page .add-ons,
+body.public-page .about-content,
+body.public-page .values,
+body.public-page .service-standards,
+body.public-page .service-ritual,
+body.public-page .brand-manifesto,
+body.public-page .team-standards,
+body.public-page .testimonials,
+body.public-page .cta-contact,
+body.public-page .cta-services,
+body.public-page .cta-about {
+  padding: var(--section-space) 0;
+}
+
+body.public-page .page-hero {
+  padding-top: calc(var(--navbar-height) + 64px);
+  padding-bottom: 3.5rem;
+}
+
+body.public-page .page-hero-shell,
+body.public-page .story-content,
+body.public-page .stats-section,
+body.public-page .cta-panel,
+body.public-page .brand-manifesto-copy,
+body.public-page .brand-manifesto-quote,
+body.public-page .service-ritual-shell,
+body.public-page .footer-content {
+  border: 0;
+  background: transparent;
+  box-shadow: none;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+
+body.public-page .page-hero-shell {
+  padding: 0;
+  text-align: left;
+}
+
+body.public-page .page-hero h1 {
+  font-size: clamp(2.5rem, 4.5vw, 3.8rem);
+  margin-bottom: 1rem;
+}
+
+body.public-page .page-hero-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+  margin-top: 1.4rem;
+}
+
+body.public-page .features h2,
+body.public-page .why-choose-us h2,
+body.public-page .services-preview h2,
+body.public-page .gallery-section h2,
+body.public-page .services-section h2,
+body.public-page .add-ons h2,
+body.public-page .values h2,
+body.public-page .testimonials h2 {
+  max-width: 12ch;
+  font-size: clamp(2rem, 3vw, 2.8rem);
+  margin-bottom: 0.95rem;
+}
+
+body.public-page .features-grid,
+body.public-page .reasons-grid,
+body.public-page .values-grid,
+body.public-page .services-grid,
+body.public-page .add-ons-grid,
+body.public-page .testimonials-grid,
+body.public-page .photo-gallery,
+body.public-page .service-standards-grid,
+body.public-page .team-standards-grid,
+body.public-page .service-ritual-steps {
+  display: grid;
+  gap: 1.75rem;
+  margin-top: 2.25rem;
+}
+
+body.public-page .features-grid,
+body.public-page .reasons-grid,
+body.public-page .values-grid,
+body.public-page .service-standards-grid,
+body.public-page .team-standards-grid,
+body.public-page .testimonials-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+body.public-page .services-grid,
+body.public-page .add-ons-grid,
+body.public-page .photo-gallery {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+body.public-page .service-ritual-steps {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+body.public-page .about-story,
+body.public-page .brand-manifesto-shell,
+body.public-page .service-ritual-shell {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(300px, 0.9fr);
+  gap: 2rem;
+  align-items: start;
+}
+
+body.public-page .feature-card,
+body.public-page .reason-card,
+body.public-page .value-card,
+body.public-page .pricing-card,
+body.public-page .addon-card,
+body.public-page .testimonial-card,
+body.public-page .signature-step,
+body.public-page .service-standard-card,
+body.public-page .team-standard-card,
+body.public-page .service-ritual-step,
+body.public-page .gallery-item,
+body.public-page .story-content,
+body.public-page .stat-box,
+body.public-page .brand-manifesto-copy,
+body.public-page .brand-manifesto-quote {
+  border: 1px solid rgba(17, 29, 21, 0.09);
+  border-radius: 24px;
+  background: #ffffff;
+  box-shadow: var(--shadow-sm);
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+
+body.public-page .feature-card,
+body.public-page .reason-card,
+body.public-page .value-card,
+body.public-page .service-standard-card,
+body.public-page .team-standard-card,
+body.public-page .service-ritual-step,
+body.public-page .testimonial-card,
+body.public-page .addon-card {
+  padding: 1.75rem;
+}
+
+body.public-page .story-content,
+body.public-page .brand-manifesto-copy,
+body.public-page .brand-manifesto-quote {
+  padding: 2rem;
+}
+
+body.public-page .stats-section {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+body.public-page .stat-box {
+  padding: 1.5rem 1.25rem;
+  text-align: left;
+}
+
+body.public-page .stat-box h3,
+body.public-page .stat-box strong {
+  font-size: 2rem;
+  color: var(--primary-dark);
+}
+
+body.public-page .feature-icon,
+body.public-page .reason-icon,
+body.public-page .value-icon,
+body.public-page .signature-step-no,
+body.public-page .service-standard-index,
+body.public-page .team-standard-card strong,
+body.public-page .service-ritual-step strong {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  margin-bottom: 1rem;
+  border-radius: 16px;
+  background: rgba(var(--secondary-rgb), 0.95);
+  border: 1px solid rgba(var(--primary-rgb), 0.15);
+  color: var(--primary-dark);
+  font-size: 1.1rem;
+  font-weight: 700;
+  box-shadow: none;
+}
+
+body.public-page .feature-card h3,
+body.public-page .reason-card h3,
+body.public-page .value-card h3,
+body.public-page .service-standard-card h3,
+body.public-page .team-standard-card h3,
+body.public-page .service-ritual-step h3,
+body.public-page .pricing-card h3,
+body.public-page .addon-card h3 {
+  font-size: 1.5rem;
+  margin-bottom: 0.9rem;
+}
+
+body.public-page .feature-card p,
+body.public-page .reason-card p,
+body.public-page .value-card p,
+body.public-page .service-standard-card p,
+body.public-page .team-standard-card p,
+body.public-page .service-ritual-step p,
+body.public-page .pricing-card p,
+body.public-page .addon-card p,
+body.public-page .testimonial-text {
+  color: var(--text-light);
+  line-height: 1.7;
+}
+
+body.public-page .pricing-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1.1rem;
+  padding: 1.25rem;
+  overflow: hidden;
+}
+
+body.public-page .pricing-card.featured {
+  border-color: rgba(var(--primary-rgb), 0.3);
+  box-shadow: 0 18px 36px rgba(var(--primary-dark-rgb), 0.12);
+}
+
+body.public-page .service-badge {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  z-index: 2;
+  padding: 0.5rem 0.85rem;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.92);
+  color: var(--primary-dark);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+body.public-page .service-media {
+  width: 100%;
+  aspect-ratio: 1.412;
+  overflow: hidden;
+  border-radius: 24px;
+  background: rgba(var(--secondary-rgb), 0.8);
+}
+
+body.public-page .service-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+body.public-page .pricing-card:hover .service-media img,
+body.public-page .gallery-item:hover img {
+  transform: scale(1.05);
+}
+
+body.public-page .service-price {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 52px;
+  padding: 0.9rem 1.15rem;
+  border-radius: 10px;
+  background: var(--primary-gradient);
+  color: #ffffff;
+  font-size: 1.35rem;
+  font-weight: 700;
+}
+
+body.public-page .features-divider {
+  width: 100%;
+  height: 1px;
+  background: rgba(17, 29, 21, 0.09);
+}
+
+body.public-page .service-features {
+  display: grid;
+  gap: 0.7rem;
+  width: 100%;
+  padding-left: 1.1rem;
+  color: var(--text-light);
+}
+
+body.public-page .service-card-cta {
+  margin-top: auto;
+}
+
+body.public-page .gallery-item {
+  padding: 0;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+body.public-page .gallery-item img {
+  width: 100%;
+  height: 100%;
+  min-height: 260px;
+  object-fit: cover;
+  transition: transform 0.45s ease;
+}
+
+body.public-page .testimonial-card {
+  position: relative;
+}
+
+body.public-page .testimonial-quote {
+  margin-bottom: 1rem;
+  color: var(--primary-color);
+  font-size: 3rem;
+  line-height: 1;
+}
+
+body.public-page .testimonial-rating {
+  margin-top: 1.25rem;
+  color: #f0b10a;
+  letter-spacing: 0.18em;
+}
+
+body.public-page .testimonial-author {
+  display: block;
+  margin-top: 0.4rem;
+  color: var(--text-dark);
+}
+
+body.public-page .cta-panel {
+  padding: 3rem;
+  border-radius: 28px;
+  background:
+    linear-gradient(135deg, rgba(54, 184, 100, 0.98), rgba(38, 149, 79, 0.98)),
+    radial-gradient(circle at top right, rgba(255, 255, 255, 0.15), transparent 30%);
+  color: #ffffff;
+  box-shadow: var(--shadow-lg);
+}
+
+body.public-page .cta-panel h2,
+body.public-page .cta-panel p,
+body.public-page .cta-panel .section-kicker {
+  color: #ffffff;
+}
+
+body.public-page .cta-panel .section-kicker {
+  border-color: rgba(255, 255, 255, 0.3);
+  background: rgba(255, 255, 255, 0.12);
+}
+
+body.public-page .cta-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.9rem;
+  margin-top: 1.5rem;
+}
+
+body.public-page .cta-panel .btn-outline {
+  background: rgba(255, 255, 255, 0.96);
+  border-color: rgba(255, 255, 255, 0.38);
+}
+
+body.public-page .site-footer {
+  padding: 4rem 0 2rem;
+  background: #101c14;
+  color: rgba(255, 255, 255, 0.84);
+}
+
+body.public-page .site-footer a,
+body.public-page .site-footer p,
+body.public-page .site-footer span {
+  color: rgba(255, 255, 255, 0.78);
+}
+
+body.public-page .footer-content {
+  display: grid;
+  grid-template-columns: 1.2fr repeat(3, minmax(0, 1fr));
+  gap: 2rem;
+}
+
+body.public-page .footer-section h4,
+body.public-page .footer-lead h4 {
+  margin-bottom: 1rem;
+  color: #ffffff;
+  font-size: 1.6rem;
+}
+
+body.public-page .footer-kicker {
+  color: #8be4a5;
+  background: rgba(54, 184, 100, 0.12);
+  border-color: rgba(54, 184, 100, 0.18);
+}
+
+body.public-page .footer-section p,
+body.public-page .footer-lead p {
+  margin-bottom: 0.75rem;
+  line-height: 1.7;
+}
+
+body.public-page .social-links {
+  display: flex;
+  gap: 0.8rem;
+  margin-top: 1.25rem;
+}
+
+body.public-page .social-links a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.04);
+}
+
+body.public-page .social-links a:hover {
+  background: rgba(54, 184, 100, 0.18);
+  border-color: rgba(54, 184, 100, 0.32);
+}
+
+body.public-page .footer-bottom {
+  margin-top: 2rem;
+  padding-top: 1.35rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  text-align: center;
+}
+
+body.public-page .go-to-top {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  width: 48px;
+  height: 48px;
+  border: 0;
+  border-radius: 12px;
+  background: var(--primary-gradient);
+  color: #ffffff;
+  box-shadow: 0 12px 24px rgba(var(--primary-dark-rgb), 0.24);
+}
+
+body.public-page .lightbox {
+  background: rgba(12, 19, 14, 0.9);
+}
+
+body.public-page .section-reveal,
+body.public-page .reveal-item {
+  opacity: 0;
+  transform: translateY(24px);
+  transition:
+    opacity 0.55s ease,
+    transform 0.55s ease;
+}
+
+body.public-page .section-reveal.is-visible,
+body.public-page .section-reveal.active,
+body.public-page .reveal-item.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (max-width: 1180px) {
+  body.public-page .container {
+    width: min(var(--container-width), calc(100% - 28px));
+  }
+
+  body.home-page .landing-shell,
+  body.public-page .about-story,
+  body.public-page .brand-manifesto-shell,
+  body.public-page .service-ritual-shell {
+    grid-template-columns: 1fr;
+  }
+
+  body.public-page .footer-content {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 900px) {
+  body.public-page .desktop-only {
+    display: none !important;
+  }
+
+  body.public-page .mobile-only {
+    display: block !important;
+  }
+
+  body.public-page .navbar .container {
+    min-height: 74px;
+    padding: 0.85rem 0;
+  }
+
+  body.public-page .brand-mark {
+    width: 48px;
+    height: 48px;
+    padding: 0.42rem;
+  }
+
+  body.public-page .hamburger {
+    display: flex;
+    width: 44px;
+    height: 44px;
+    border-radius: 10px;
+    border: 1px solid rgba(17, 29, 21, 0.12);
+    background: #ffffff;
+    box-shadow: none;
+  }
+
+  body.public-page .phone-wrapper {
+    display: none;
+  }
+
+  body.public-page .nav-menu {
+    position: absolute;
+    top: calc(100% + 12px);
+    left: 16px;
+    right: 16px;
+    display: none;
+    flex-direction: column;
+    gap: 0.35rem;
+    padding: 1rem;
+    border: 1px solid rgba(17, 29, 21, 0.12);
+    border-radius: 20px;
+    background: #ffffff;
+    box-shadow: var(--shadow-md);
+  }
+
+  body.public-page .nav-menu.active {
+    display: flex;
+  }
+
+  body.public-page .nav-menu li {
+    width: 100%;
+  }
+
+  body.public-page .nav-menu a,
+  body.public-page .nav-menu-call,
+  body.public-page .nav-menu-cta {
+    width: 100%;
+    justify-content: flex-start;
+  }
+
+  body.public-page .nav-menu > li.language-switcher {
+    display: flex !important;
+    gap: 0.5rem;
+    padding-top: 0.6rem;
+  }
+
+  body.public-page .nav-menu > li.language-switcher .lang-btn {
+    flex: 1 1 0;
+    justify-content: center;
+    background: rgba(var(--secondary-rgb), 0.72);
+  }
+
+  body.home-page .landing-section,
+  body.public-page .page-hero {
+    padding-top: calc(var(--navbar-height) + 28px);
+  }
+
+  body.home-page .landing-section {
+    min-height: auto;
+    background-position: 72% center;
+  }
+
+  body.home-page .landing-content {
+    max-width: 100%;
+  }
+
+  body.home-page .landing-section h1 {
+    max-width: 12ch;
+    font-size: clamp(2.35rem, 8vw, 3.4rem);
+  }
+
+  body.public-page .features-grid,
+  body.public-page .reasons-grid,
+  body.public-page .values-grid,
+  body.public-page .services-grid,
+  body.public-page .add-ons-grid,
+  body.public-page .testimonials-grid,
+  body.public-page .photo-gallery,
+  body.public-page .service-standards-grid,
+  body.public-page .team-standards-grid,
+  body.public-page .service-ritual-steps,
+  body.public-page .stats-section,
+  body.public-page .footer-content {
+    grid-template-columns: 1fr;
+  }
+
+  body.public-page .cta-panel {
+    padding: 2rem;
+  }
+}
+
+@media (max-width: 768px) {
+  body.public-page .section-kicker,
+  body.public-page .hero-kicker,
+  body.public-page .hero-availability,
+  body.public-page .hero-sidecard-label,
+  body.public-page .page-hero-badge,
+  body.public-page .footer-kicker,
+  body.public-page .story-badge {
+    min-height: 34px;
+    padding: 0.45rem 0.8rem;
+    font-size: 0.72rem;
+  }
+
+  body.home-page .landing-section {
+    padding-bottom: 3rem;
+    background:
+      linear-gradient(180deg, rgba(255, 255, 255, 0.92), rgba(255, 255, 255, 0.82)),
+      url("https://www.figma.com/api/mcp/asset/7bb1a895-bd1a-48e3-842a-457fb3d1d49d") 68% center / cover no-repeat;
+  }
+
+  body.home-page .hero-buttons,
+  body.public-page .cta-buttons {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  body.home-page .hero-buttons .btn,
+  body.public-page .cta-buttons .btn {
+    width: 100%;
+  }
+
+  body.home-page .hero-trust {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  body.public-page .page-hero,
+  body.public-page .features,
+  body.public-page .why-choose-us,
+  body.public-page .services-preview,
+  body.public-page .gallery-section,
+  body.public-page .services-section,
+  body.public-page .add-ons,
+  body.public-page .about-content,
+  body.public-page .values,
+  body.public-page .service-standards,
+  body.public-page .service-ritual,
+  body.public-page .brand-manifesto,
+  body.public-page .team-standards,
+  body.public-page .testimonials,
+  body.public-page .cta-contact,
+  body.public-page .cta-services,
+  body.public-page .cta-about {
+    padding: 3.4rem 0;
+  }
+
+  body.public-page .feature-card,
+  body.public-page .reason-card,
+  body.public-page .value-card,
+  body.public-page .pricing-card,
+  body.public-page .addon-card,
+  body.public-page .testimonial-card,
+  body.public-page .service-standard-card,
+  body.public-page .team-standard-card,
+  body.public-page .service-ritual-step,
+  body.public-page .story-content,
+  body.public-page .brand-manifesto-copy,
+  body.public-page .brand-manifesto-quote {
+    border-radius: 20px;
+  }
+
+  body.public-page .service-media {
+    border-radius: 18px;
+  }
+}
+
+@media (max-width: 560px) {
+  body.public-page .container {
+    width: min(var(--container-width), calc(100% - 24px));
+  }
+
+  body.public-page .navbar .container {
+    min-height: 68px;
+  }
+
+  body.public-page .brand-copy small {
+    display: none;
+  }
+
+  body.home-page .landing-section h1,
+  body.public-page .page-hero h1 {
+    font-size: 2.25rem;
+  }
+
+  body.public-page .features h2,
+  body.public-page .why-choose-us h2,
+  body.public-page .services-preview h2,
+  body.public-page .gallery-section h2,
+  body.public-page .services-section h2,
+  body.public-page .add-ons h2,
+  body.public-page .values h2,
+  body.public-page .testimonials h2 {
+    max-width: none;
+    font-size: 2rem;
+  }
+
+  body.public-page .cta-panel {
+    padding: 1.5rem;
+  }
+}
