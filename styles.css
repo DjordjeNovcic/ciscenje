@@ -1747,7 +1747,7 @@ body.is-modal-open .social-rail {
   display: grid;
   grid-template-columns: minmax(0, 1.1fr) minmax(320px, 0.72fr);
   gap: clamp(1.4rem, 3.2vw, 3rem);
-  align-items: end;
+  align-items: start;
 }
 
 .page-hero-copy h1 {
@@ -1756,6 +1756,7 @@ body.is-modal-open .social-rail {
 }
 
 .page-hero-panel {
+  margin-top: clamp(0.3rem, 1vw, 0.75rem);
   align-self: stretch;
   display: grid;
   align-content: start;
