@@ -675,7 +675,7 @@ body.is-modal-open .social-rail {
   object-fit: cover;
   object-position: center center;
   filter: saturate(1.02) contrast(0.98) brightness(1.04);
-  transform: translate3d(0, var(--hero-shift, 0px), 0) scale(1.025);
+  transform: translate3d(0, var(--hero-shift, 0px), 0) scale(0.94);
   transform-origin: center center;
 }
 
@@ -2040,7 +2040,7 @@ body.is-modal-open .social-rail {
 
   .hero-poster-image {
     min-height: inherit;
-    transform: translate3d(0, var(--hero-shift, 0px), 0) scale(1.02);
+    transform: translate3d(0, var(--hero-shift, 0px), 0) scale(0.97);
   }
 
   .hero-card-grid,
