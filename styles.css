@@ -4078,17 +4078,275 @@ body.public-page .reveal-item.is-visible {
   }
 }
 
+/* -------------------------------
+   WIX PALETTE THEME
+-------------------------------- */
+
+:root {
+  --primary-color: #b09f8a;
+  --primary-dark: #8e7f6d;
+  --secondary-color: #35312d;
+  --success-color: #c8b8a1;
+  --bg-light: #272422;
+  --bg-white: #302c28;
+  --text-dark: #f3ede4;
+  --text-light: #c1b2a0;
+  --text-soft: #9d8f7e;
+  --text-inverse: #f7f1e8;
+  --primary-rgb: 176, 159, 138;
+  --primary-dark-rgb: 142, 127, 109;
+  --secondary-rgb: 53, 49, 45;
+  --border-color: rgba(201, 186, 166, 0.22);
+  --shadow-sm: 0 10px 28px rgba(0, 0, 0, 0.22);
+  --shadow-md: 0 16px 36px rgba(0, 0, 0, 0.26);
+  --shadow-lg: 0 26px 54px rgba(0, 0, 0, 0.3);
+  --shadow-xl: 0 34px 72px rgba(0, 0, 0, 0.34);
+  --primary-gradient: linear-gradient(135deg, #b8a993 0%, #95836f 100%);
+}
+
+#page-loader {
+  background: #272422;
+}
+
+body.public-page {
+  background:
+    radial-gradient(circle at top center, rgba(var(--primary-rgb), 0.08), transparent 26%),
+    linear-gradient(180deg, #23211f 0%, #272422 100%);
+  color: var(--text-dark);
+}
+
+body.public-page h1,
+body.public-page h2,
+body.public-page h3,
+body.public-page h4,
+body.public-page p,
+body.public-page li,
+body.public-page span,
+body.public-page a,
+body.public-page button {
+  color: inherit;
+}
+
+body.public-page .navbar {
+  background: rgba(35, 33, 31, 0.9);
+  border-bottom: 1px solid rgba(201, 186, 166, 0.12);
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.18);
+}
+
+body.public-page.is-scrolled .navbar {
+  background: rgba(35, 33, 31, 0.96);
+}
+
+body.public-page .brand-mark,
+body.public-page .phone-trigger,
+body.public-page .lang-btn,
+body.public-page .hamburger {
+  background: rgba(255, 255, 255, 0.04);
+  border-color: rgba(201, 186, 166, 0.14);
+}
+
+body.public-page .brand-copy strong,
+body.public-page .nav-menu a:hover,
+body.public-page .nav-menu a.active,
+body.public-page .lang-btn:hover,
+body.public-page .lang-btn.active,
+body.public-page .phone-trigger,
+body.public-page .phone-dropdown a,
+body.public-page .phone-dropdown a:hover {
+  color: var(--text-dark);
+}
+
+body.public-page .brand-copy small,
+body.public-page .nav-menu a,
+body.public-page .lang-btn,
+body.public-page .section-lead,
+body.public-page .gallery-subtitle,
+body.public-page .page-hero p,
+body.public-page .landing-subtitle,
+body.public-page .footer-note,
+body.public-page .story-intro,
+body.public-page .feature-card p,
+body.public-page .reason-card p,
+body.public-page .value-card p,
+body.public-page .service-standard-card p,
+body.public-page .team-standard-card p,
+body.public-page .service-ritual-step p,
+body.public-page .pricing-card p,
+body.public-page .addon-card p,
+body.public-page .testimonial-text,
+body.public-page .service-features,
+body.public-page .site-footer a,
+body.public-page .site-footer p,
+body.public-page .site-footer span {
+  color: var(--text-light);
+}
+
+body.public-page .nav-menu a:hover,
+body.public-page .nav-menu a.active,
+body.public-page .lang-btn:hover,
+body.public-page .lang-btn.active {
+  background: rgba(var(--primary-rgb), 0.12);
+}
+
+body.public-page .phone-dropdown,
+body.public-page .nav-menu.active {
+  background: #2c2825;
+  border-color: rgba(201, 186, 166, 0.18);
+}
+
+body.public-page .section-kicker,
+body.public-page .hero-kicker,
+body.public-page .hero-availability,
+body.public-page .hero-sidecard-label,
+body.public-page .page-hero-badge,
+body.public-page .footer-kicker,
+body.public-page .story-badge,
+body.public-page .service-badge {
+  background: rgba(var(--primary-rgb), 0.14);
+  border-color: rgba(var(--primary-rgb), 0.24);
+  color: var(--success-color);
+}
+
+body.public-page .btn-primary,
+body.public-page .nav-cta,
+body.public-page .nav-menu-cta,
+body.public-page .service-price {
+  background: var(--primary-gradient);
+  border-color: rgba(var(--primary-rgb), 0.22);
+  color: #231f1b;
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.18);
+}
+
+body.public-page .btn-primary:hover,
+body.public-page .nav-cta:hover,
+body.public-page .nav-menu-cta:hover {
+  background: linear-gradient(135deg, #c2b29d 0%, #9a8872 100%);
+  color: #231f1b;
+}
+
+body.public-page .btn-outline {
+  background: transparent;
+  border-color: rgba(var(--primary-rgb), 0.3);
+  color: var(--text-dark);
+}
+
+body.public-page .btn-outline:hover {
+  background: rgba(var(--primary-rgb), 0.1);
+  border-color: rgba(var(--primary-rgb), 0.42);
+}
+
+body.home-page .landing-section,
+body.home-page .landing-section::before {
+  background-blend-mode: normal;
+}
+
+body.home-page .landing-content,
+body.public-page .feature-card,
+body.public-page .reason-card,
+body.public-page .value-card,
+body.public-page .pricing-card,
+body.public-page .addon-card,
+body.public-page .testimonial-card,
+body.public-page .signature-step,
+body.public-page .service-standard-card,
+body.public-page .team-standard-card,
+body.public-page .service-ritual-step,
+body.public-page .gallery-item,
+body.public-page .story-content,
+body.public-page .stat-box,
+body.public-page .brand-manifesto-copy,
+body.public-page .brand-manifesto-quote,
+body.public-page .cta-panel,
+body.public-page .hero-sidecard {
+  background: #2b2825;
+  border-color: rgba(201, 186, 166, 0.14);
+  box-shadow: var(--shadow-sm);
+}
+
+body.public-page .story-content,
+body.public-page .brand-manifesto-copy,
+body.public-page .brand-manifesto-quote,
+body.public-page .cta-panel {
+  background: #2a2724;
+}
+
+body.public-page .feature-icon,
+body.public-page .reason-icon,
+body.public-page .value-icon,
+body.public-page .signature-step-no,
+body.public-page .service-standard-index,
+body.public-page .team-standard-card strong,
+body.public-page .service-ritual-step strong {
+  background: rgba(var(--primary-rgb), 0.14);
+  border-color: rgba(var(--primary-rgb), 0.18);
+  color: var(--success-color);
+}
+
+body.public-page .hero-visual::before {
+  background:
+    radial-gradient(circle at center, rgba(176, 159, 138, 0.18), rgba(176, 159, 138, 0.05) 54%, transparent 76%);
+}
+
+body.home-page .hero-visual img {
+  filter: saturate(0.94) sepia(0.08) contrast(1.05) brightness(0.92) drop-shadow(0 22px 34px rgba(0, 0, 0, 0.24));
+}
+
+body.public-page .service-media {
+  background: #34302c;
+}
+
+body.public-page .features-divider,
+body.public-page .footer-bottom,
+body.public-page .site-footer,
+body.public-page .site-footer .footer-bottom {
+  border-color: rgba(201, 186, 166, 0.12);
+}
+
+body.public-page .cta-panel {
+  background:
+    linear-gradient(180deg, rgba(47, 43, 39, 0.98), rgba(39, 36, 34, 0.98)),
+    radial-gradient(circle at top right, rgba(176, 159, 138, 0.12), transparent 32%);
+}
+
+body.public-page .site-footer {
+  background: #23211f;
+}
+
+body.public-page .footer-kicker {
+  color: var(--success-color);
+  background: rgba(var(--primary-rgb), 0.12);
+  border-color: rgba(var(--primary-rgb), 0.22);
+}
+
+body.public-page .social-links a {
+  background: rgba(255, 255, 255, 0.03);
+  border-color: rgba(201, 186, 166, 0.1);
+}
+
+body.public-page .social-links a:hover {
+  background: rgba(var(--primary-rgb), 0.14);
+  border-color: rgba(var(--primary-rgb), 0.28);
+}
+
+body.public-page .scroll-progress {
+  background: rgba(255, 255, 255, 0.04);
+}
+
+body.public-page .scroll-progress-bar {
+  background: linear-gradient(90deg, #8f7f6e 0%, #b7a691 100%);
+}
+
 body.home-page .landing-section {
   background:
-    radial-gradient(circle at top right, rgba(var(--secondary-rgb), 0.55), transparent 28%),
-    linear-gradient(180deg, #ffffff 0%, #f6fbf7 100%) !important;
+    radial-gradient(circle at 78% 20%, rgba(var(--primary-rgb), 0.08), transparent 20%),
+    linear-gradient(180deg, #2b2825 0%, #24211f 100%) !important;
 }
 
 body.home-page .landing-section::before {
   background:
-    linear-gradient(90deg, rgba(255, 255, 255, 0.92) 0%, rgba(255, 255, 255, 0.74) 44%, rgba(255, 255, 255, 0.18) 70%, rgba(255, 255, 255, 0) 100%),
-    radial-gradient(circle at 78% 28%, rgba(255, 255, 255, 0.36), transparent 18%),
-    radial-gradient(circle at 20% 20%, rgba(var(--secondary-rgb), 0.28), transparent 24%);
+    linear-gradient(105deg, rgba(36, 33, 31, 0.96) 0%, rgba(36, 33, 31, 0.82) 42%, rgba(36, 33, 31, 0.28) 72%, rgba(36, 33, 31, 0.06) 100%),
+    radial-gradient(circle at 78% 28%, rgba(var(--primary-rgb), 0.16), transparent 18%),
+    radial-gradient(circle at 20% 20%, rgba(var(--secondary-rgb), 0.42), transparent 24%);
 }
 
 body.home-page .landing-shell {
@@ -4111,7 +4369,7 @@ body.home-page .hero-visual::before {
   inset: 8% 3% 6% 14%;
   border-radius: 36px;
   background:
-    radial-gradient(circle at center, rgba(255, 255, 255, 0.78), rgba(255, 255, 255, 0.12) 55%, transparent 78%);
+    radial-gradient(circle at center, rgba(var(--primary-rgb), 0.22), rgba(var(--primary-rgb), 0.08) 55%, transparent 78%);
   filter: blur(22px);
   pointer-events: none;
 }
@@ -4125,6 +4383,57 @@ body.home-page .hero-visual img {
   object-fit: contain;
   object-position: center center;
   filter: saturate(1.08) contrast(1.04) brightness(1.02) drop-shadow(0 22px 34px rgba(17, 29, 21, 0.12));
+}
+
+body.home-page .landing-content {
+  background:
+    linear-gradient(180deg, rgba(44, 40, 37, 0.94), rgba(38, 35, 32, 0.9));
+  border-color: rgba(201, 186, 166, 0.16);
+}
+
+body.home-page .landing-logo img {
+  background: rgba(255, 255, 255, 0.06);
+  box-shadow: 0 18px 36px rgba(0, 0, 0, 0.2);
+}
+
+body.home-page .hero-trust .trust-pill {
+  background: rgba(255, 255, 255, 0.04);
+  border-color: rgba(201, 186, 166, 0.16);
+}
+
+body.home-page .hero-trust .trust-pill strong {
+  color: var(--text-dark);
+}
+
+body.home-page .hero-trust .trust-pill span,
+body.home-page .hero-side-list li,
+body.home-page .landing-subtitle,
+body.home-page #heroText,
+body.public-page .page-hero p {
+  color: var(--text-light);
+}
+
+body.public-page .page-hero,
+body.public-page .features,
+body.public-page .why-choose-us,
+body.public-page .services-preview,
+body.public-page .gallery-section,
+body.public-page .about-story,
+body.public-page .brand-manifesto,
+body.public-page .testimonials,
+body.public-page .cta-contact,
+body.public-page .cta-services,
+body.public-page .cta-about {
+  background: transparent;
+}
+
+body.public-page .page-hero-shell,
+body.public-page .features .container,
+body.public-page .why-choose-us .container,
+body.public-page .services-preview .container {
+  background: #2b2825;
+  border-color: rgba(201, 186, 166, 0.14);
+  box-shadow: var(--shadow-sm);
 }
 
 @media (max-width: 1180px) {

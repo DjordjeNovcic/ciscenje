@@ -2375,16 +2375,22 @@ function switchLang(event, lang) {
 // ========================================
 
 const defaultColors = {
-   primaryColor: '#36b864',
-   primaryDark: '#26954f',
-   secondaryColor: '#e7f6ea',
-   successColor: '#c7eccf',
-   bgLight: '#f7fbf6',
-   textDark: '#111d15',
-   textLight: '#667166'
+   primaryColor: '#b09f8a',
+   primaryDark: '#8e7f6d',
+   secondaryColor: '#35312d',
+   successColor: '#c8b8a1',
+   bgLight: '#272422',
+   textDark: '#f3ede4',
+   textLight: '#c1b2a0'
 };
 
 const deprecatedThemePalettes = [{
+   primaryColor: '#38b86b',
+   primaryDark: '#20894c'
+}, {
+   primaryColor: '#36b864',
+   primaryDark: '#26954f'
+}, {
    primaryColor: '#f59e0b',
    primaryDark: '#ea580c'
 }, {
@@ -2496,7 +2502,8 @@ function previewTheme() {
    notification.textContent = '👁️ Pregled tema - promene nisu sačuvane';
    notification.style.cssText = `
           position: fixed; top: 20px; right: 20px;
-          background: linear-gradient(135deg, #36b864 0%, #26954f 100%); color: white;
+          background: linear-gradient(135deg, ${defaultColors.primaryColor} 0%, ${defaultColors.primaryDark} 100%);
+          color: ${defaultColors.textDark};
           padding: 1rem 2rem; border-radius: 8px;
           box-shadow: 0 4px 12px rgba(0,0,0,0.15);
           z-index: 10000; animation: slideIn 0.3s ease;
