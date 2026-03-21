@@ -38,7 +38,6 @@ const FIGMA_SERVICE_VISUALS = [
 
 const CACHE_VERSION_PREFIX = 'mssjaj_cache_version_';
 const CACHE_DATA_PREFIX = 'mssjaj_cache_';
-const THEME_STORAGE_KEY = 'mssjaj_theme';
 
 async function initializeApp() {
    setupCrossTabSync();
@@ -54,11 +53,8 @@ async function initializeApp() {
 
    setupSidebarNavigation();
    setupMobileBackButton();
-
-   setupThemeInputs();
    setupLightboxOutsideClick();
    setupGoToTopButton();
-   loadSharedTheme();
 
    loadPublicPageContent();
    setupPremiumPublicExperience();
@@ -146,30 +142,6 @@ function setupPhoneDropdown() {
    });
 
 }
-
-function setupThemeInputs() {
-   const colorInputs = [
-      'primaryColor',
-      'primaryDark',
-      'secondaryColor',
-      'successColor',
-      'bgLight',
-      'textDark',
-      'textLight'
-   ];
-
-   colorInputs.forEach(id => {
-      const colorInput = document.getElementById(id);
-      const textInput = document.getElementById(id + 'Text');
-
-      if (colorInput && textInput) {
-         colorInput.addEventListener('input', e => {
-            textInput.value = e.target.value;
-         });
-      }
-   });
-}
-
 
 function setupLightboxOutsideClick() {
    const lightbox = document.getElementById('lightbox');
@@ -319,9 +291,6 @@ function refreshPublicContent(key) {
       case 'slideshow':
          applyHeroBackgroundFromSlideshow();
          break;
-      case 'theme':
-         loadSharedTheme();
-         break;
       default:
          break;
    }
@@ -336,17 +305,6 @@ function invalidateCachedSection(key) {
 
 function setupCrossTabSync() {
    window.addEventListener('storage', event => {
-      if (event.key === THEME_STORAGE_KEY) {
-         if (!event.newValue) return;
-
-         try {
-            applyTheme(JSON.parse(event.newValue));
-         } catch (error) {
-            console.error('Error syncing theme from storage:', error);
-         }
-         return;
-      }
-
       if (!event.key || !event.key.startsWith(CACHE_VERSION_PREFIX)) return;
 
       const key = event.key.slice(CACHE_VERSION_PREFIX.length);
@@ -526,34 +484,6 @@ function buildPhoneMarkup(phoneValue) {
       const href = phone.replace(/[^\d+]/g, '');
       return `<a href="tel:${href}"><i class="fas fa-phone"></i> ${phone}</a>`;
    }).join('<br>');
-}
-
-function loadSharedTheme() {
-   const cachedTheme = localStorage.getItem(THEME_STORAGE_KEY);
-   if (cachedTheme) {
-      try {
-         const normalizedCachedTheme = normalizeThemeColors(JSON.parse(cachedTheme));
-         localStorage.setItem(THEME_STORAGE_KEY, JSON.stringify(normalizedCachedTheme));
-         applyTheme(normalizedCachedTheme);
-      } catch (error) {
-         console.error('Error parsing cached theme:', error);
-      }
-   }
-
-   db.collection('settings').doc('theme').get()
-      .then(doc => {
-         if (!doc.exists) {
-            applyTheme(defaultColors);
-            return;
-         }
-
-         const colors = normalizeThemeColors(doc.data());
-         localStorage.setItem(THEME_STORAGE_KEY, JSON.stringify(colors));
-         applyTheme(colors);
-      })
-      .catch(error => {
-         console.error('Error loading shared theme:', error);
-      });
 }
 
 function setupPremiumPublicExperience() {
@@ -2368,204 +2298,6 @@ function switchLang(event, lang) {
    });
    container.querySelector(`.lang-section[data-lang="${lang}"]`).classList.add('active');
 }
-
-
-// ========================================
-// THEME MANAGEMENT - UPDATED WITH TEXT COLORS
-// ========================================
-
-const defaultColors = {
-   primaryColor: '#b09f8a',
-   primaryDark: '#8e7f6d',
-   secondaryColor: '#35312d',
-   successColor: '#c8b8a1',
-   bgLight: '#272422',
-   textDark: '#f3ede4',
-   textLight: '#c1b2a0'
-};
-
-const deprecatedThemePalettes = [{
-   primaryColor: '#38b86b',
-   primaryDark: '#20894c'
-}, {
-   primaryColor: '#36b864',
-   primaryDark: '#26954f'
-}, {
-   primaryColor: '#f59e0b',
-   primaryDark: '#ea580c'
-}, {
-   primaryColor: '#244c68',
-   primaryDark: '#142f43'
-}, {
-   primaryColor: '#5c6cff',
-   primaryDark: '#3d53d6'
-}, {
-   primaryColor: '#c8794f',
-   primaryDark: '#985635'
-}, {
-   primaryColor: '#b76b57',
-   primaryDark: '#885042'
-}];
-
-function normalizeThemeColors(colors = {}) {
-   const mergedColors = {
-      ...defaultColors,
-      ...colors
-   };
-
-   const isDeprecatedPalette = deprecatedThemePalettes.some(palette =>
-      mergedColors.primaryColor === palette.primaryColor &&
-      mergedColors.primaryDark === palette.primaryDark
-   );
-
-   return isDeprecatedPalette ? {
-      ...defaultColors
-   } : mergedColors;
-}
-
-// Apply theme colors to CSS variables
-function applyTheme(colors) {
-   const normalizedColors = normalizeThemeColors(colors);
-   const root = document.documentElement;
-   const publicPageBody = document.body?.classList.contains('public-page') ? document.body : null;
-
-   const setThemeVariable = (property, value) => {
-      if (!value) return;
-      root.style.setProperty(property, value);
-      if (publicPageBody) {
-         publicPageBody.style.setProperty(property, value);
-      }
-   };
-
-   setThemeVariable('--primary-color', normalizedColors.primaryColor);
-   setThemeVariable('--primary-dark', normalizedColors.primaryDark);
-   setThemeVariable('--secondary-color', normalizedColors.secondaryColor);
-   setThemeVariable('--success-color', normalizedColors.successColor);
-   setThemeVariable('--bg-light', normalizedColors.bgLight);
-   setThemeVariable('--text-dark', normalizedColors.textDark);
-   setThemeVariable('--text-light', normalizedColors.textLight);
-
-   // Update gradient
-   if (normalizedColors.primaryColor && normalizedColors.primaryDark) {
-      const gradientValue = `linear-gradient(135deg, ${normalizedColors.primaryColor} 0%, ${normalizedColors.primaryDark} 100%)`;
-      root.style.setProperty('--primary-gradient', gradientValue);
-      if (publicPageBody) {
-         publicPageBody.style.setProperty('--primary-gradient', gradientValue);
-      }
-   }
-}
-
-// Update color picker displays
-function updateColorPickers(colors) {
-   Object.keys(colors).forEach(key => {
-      const colorInput = document.getElementById(key);
-      const textInput = document.getElementById(key + 'Text');
-
-      if (colorInput) colorInput.value = colors[key];
-      if (textInput) textInput.value = colors[key];
-   });
-}
-
-// Load theme settings in admin
-function loadThemeSettings() {
-   db.collection('settings').doc('theme').get()
-      .then(doc => {
-         if (doc.exists) {
-            const colors = normalizeThemeColors(doc.data());
-            updateColorPickers(colors);
-            applyTheme(colors);
-         } else {
-            updateColorPickers(defaultColors);
-         }
-      })
-      .catch(error => {
-         console.error('Error loading theme settings:', error);
-         alert('Greška pri učitavanju tema');
-      });
-}
-
-// Preview theme
-function previewTheme() {
-   const colors = {
-      primaryColor: document.getElementById('primaryColor').value,
-      primaryDark: document.getElementById('primaryDark').value,
-      secondaryColor: document.getElementById('secondaryColor').value,
-      successColor: document.getElementById('successColor').value,
-      bgLight: document.getElementById('bgLight').value,
-      textDark: document.getElementById('textDark').value, // ← NEW
-      textLight: document.getElementById('textLight').value // ← NEW
-   };
-
-   applyTheme(colors);
-
-   const notification = document.createElement('div');
-   notification.textContent = '👁️ Pregled tema - promene nisu sačuvane';
-   notification.style.cssText = `
-          position: fixed; top: 20px; right: 20px;
-          background: linear-gradient(135deg, ${defaultColors.primaryColor} 0%, ${defaultColors.primaryDark} 100%);
-          color: ${defaultColors.textDark};
-          padding: 1rem 2rem; border-radius: 8px;
-          box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-          z-index: 10000; animation: slideIn 0.3s ease;
-      `;
-   document.body.appendChild(notification);
-   setTimeout(() => notification.remove(), 3000);
-}
-
-// Save theme to Firebase
-function saveTheme() {
-   const colors = {
-      primaryColor: document.getElementById('primaryColor').value,
-      primaryDark: document.getElementById('primaryDark').value,
-      secondaryColor: document.getElementById('secondaryColor').value,
-      successColor: document.getElementById('successColor').value,
-      bgLight: document.getElementById('bgLight').value,
-      textDark: document.getElementById('textDark').value,
-      textLight: document.getElementById('textLight').value,
-      updatedAt: new Date().toISOString()
-   };
-
-   db.collection('settings').doc('theme').set(colors)
-      .then(() => {
-         // Update localStorage immediately
-         localStorage.setItem(THEME_STORAGE_KEY, JSON.stringify(colors));
-         invalidateCachedSection('theme');
-         applyTheme(colors);
-         alert('✅ Tema je uspešno sačuvana!');
-      })
-      .catch(error => {
-         console.error('Error saving theme:', error);
-         alert('❌ Greška pri čuvanju tema');
-      });
-}
-
-// Reset single color
-function resetColor(colorType) {
-   const colorMap = {
-      'primary': 'primaryColor',
-      'primaryDark': 'primaryDark',
-      'secondary': 'secondaryColor',
-      'textDark': 'textDark', // ← NEW
-      'textLight': 'textLight' // ← NEW
-   };
-
-   const key = colorMap[colorType];
-   if (key && defaultColors[key]) {
-      document.getElementById(key).value = defaultColors[key];
-      document.getElementById(key + 'Text').value = defaultColors[key];
-   }
-}
-
-// Reset all colors
-function resetAllColors() {
-   if (confirm('Da li ste sigurni da želite da resetujete sve boje na podrazumevane vrednosti?')) {
-      updateColorPickers(defaultColors);
-      applyTheme(defaultColors);
-   }
-}
-
-// Load theme when theme section is opened
-document.querySelector('[data-section="theme-section"]')?.addEventListener('click', loadThemeSettings);
 
 
 // ============================================

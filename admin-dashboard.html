@@ -101,10 +101,6 @@
                <span class="nav-icon">📞</span>
                <span class="nav-copy"><strong>Kontakt</strong><small>Kanali komunikacije</small></span>
             </div>
-            <div class="nav-item" data-section="theme-section" data-title="Tema">
-               <span class="nav-icon">🎨</span>
-               <span class="nav-copy"><strong>Tema</strong><small>Boje i vizuelni identitet</small></span>
-            </div>
          </nav>
          <div class="sidebar-footer">
             <div class="sidebar-footer-note">
@@ -141,7 +137,7 @@
                   <div class="dashboard-header-section">
                      <span class="admin-kicker">Pregled sistema</span>
                      <h2>Kontrola sadržaja bez lutanja kroz sekcije</h2>
-                     <p class="dashboard-subtitle">Brzi pristup najvažnijim delovima sajta: vizuali, usluge, društveni dokaz, kontakt i tema.</p>
+                     <p class="dashboard-subtitle">Brzi pristup najvažnijim delovima sajta: vizuali, usluge, društveni dokaz i kontakt.</p>
                   </div>
                   <div class="admin-overview-grid">
                      <div class="overview-card">
@@ -151,8 +147,8 @@
                      </div>
                      <div class="overview-card">
                         <span class="overview-label">Vizueli</span>
-                        <strong>Slideshow, galerija, tema</strong>
-                        <p>Upravljaj prvim utiskom i uskladi izgled sa brendom.</p>
+                        <strong>Slideshow, galerija, hero</strong>
+                        <p>Upravljaj prvim utiskom kroz fotografije, hero vizual i portfolio radove.</p>
                      </div>
                      <div class="overview-card">
                         <span class="overview-label">Komunikacija</span>
@@ -268,16 +264,6 @@
                         </div>
                         <h3>Kontakt</h3>
                         <p>Izmeni kontakt informacije</p>
-                     </div>
-                     <!-- Card 10: Tema -->
-                     <div class="action-card" data-section="theme-section" tabindex="0" role="button">
-                        <div class="card-icon">
-                           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                              <path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"></path>
-                           </svg>
-                        </div>
-                        <h3>Tema</h3>
-                        <p>Prilagodi boje i izgled sajta</p>
                      </div>
                   </div>
                </div>
@@ -463,123 +449,6 @@
                </div>
             </div>
 
-            <!-- Theme Settings Section -->
-            <div id="theme-section" class="content-section">
-               <div class="dashboard-section">
-                  <div class="admin-section-head">
-                     <span class="admin-kicker">Vizuelni identitet</span>
-                     <h2>Podešavanja Tema</h2>
-                     <p>Izaberite boje za vaš sajt. Promene će biti odmah primenjene na ceo sajt.</p>
-                  </div>
-                  <form class="cms-form" style="max-width: 700px;">
-                     <div class="dual-lang-group">
-                        <h3>🎨 Glavne Boje</h3>
-                        <div class="form-group">
-                           <label for="primaryColor">Primarna Boja (Dugmad, Linkovi)</label>
-                           <div style="display: flex; gap: 1rem; align-items: center;">
-                              <input type="color" id="primaryColor" value="#b09f8a"
-                                 style="width: 80px; height: 50px; border: 2px solid var(--border-color); border-radius: 8px; cursor: pointer;">
-                              <input type="text" id="primaryColorText" value="#b09f8a"
-                                 style="flex: 1; font-family: monospace;" readonly>
-                              <button type="button" onclick="resetColor('primary')" class="btn btn-secondary">Reset</button>
-                           </div>
-                        </div>
-                        <div class="form-group">
-                           <label for="primaryDark">Tamnija Primarna (Hover Efekat)</label>
-                           <div style="display: flex; gap: 1rem; align-items: center;">
-                              <input type="color" id="primaryDark" value="#8e7f6d"
-                                 style="width: 80px; height: 50px; border: 2px solid var(--border-color); border-radius: 8px; cursor: pointer;">
-                              <input type="text" id="primaryDarkText" value="#8e7f6d"
-                                 style="flex: 1; font-family: monospace;" readonly>
-                              <button type="button" onclick="resetColor('primaryDark')" class="btn btn-secondary">Reset</button>
-                           </div>
-                        </div>
-                        <div class="form-group">
-                           <label for="secondaryColor">Sekundarna Boja</label>
-                           <div style="display: flex; gap: 1rem; align-items: center;">
-                              <input type="color" id="secondaryColor" value="#35312d"
-                                 style="width: 80px; height: 50px; border: 2px solid var(--border-color); border-radius: 8px; cursor: pointer;">
-                              <input type="text" id="secondaryColorText" value="#35312d"
-                                 style="flex: 1; font-family: monospace;" readonly>
-                              <button type="button" onclick="resetColor('secondary')" class="btn btn-secondary">Reset</button>
-                           </div>
-                        </div>
-                     </div>
-                     <div class="dual-lang-group">
-                        <h3>📝 Boje Teksta</h3>
-                        <div class="form-group">
-                           <label for="textDark">Tamni Tekst (Naslovi, Glavni Tekst)</label>
-                           <div style="display: flex; gap: 1rem; align-items: center;">
-                              <input type="color" id="textDark" value="#f3ede4"
-                                 style="width: 80px; height: 50px; border: 2px solid var(--border-color); border-radius: 8px; cursor: pointer;">
-                              <input type="text" id="textDarkText" value="#f3ede4"
-                                 style="flex: 1; font-family: monospace;" readonly>
-                              <button type="button" onclick="resetColor('textDark')" class="btn btn-secondary">Reset</button>
-                           </div>
-                        </div>
-                        <div class="form-group">
-                           <label for="textLight">Svetli Tekst (Opisi, Podnaslov)</label>
-                           <div style="display: flex; gap: 1rem; align-items: center;">
-                              <input type="color" id="textLight" value="#c1b2a0"
-                                 style="width: 80px; height: 50px; border: 2px solid var(--border-color); border-radius: 8px; cursor: pointer;">
-                              <input type="text" id="textLightText" value="#c1b2a0"
-                                 style="flex: 1; font-family: monospace;" readonly>
-                              <button type="button" onclick="resetColor('textLight')" class="btn btn-secondary">Reset</button>
-                           </div>
-                        </div>
-                     </div>
-                     <div class="dual-lang-group">
-                        <h3>🎯 Dodatne Boje</h3>
-                        <div class="form-group">
-                           <label for="successColor">Boja Uspeha</label>
-                           <div style="display: flex; gap: 1rem; align-items: center;">
-                              <input type="color" id="successColor" value="#c8b8a1"
-                                 style="width: 80px; height: 50px; border: 2px solid var(--border-color); border-radius: 8px; cursor: pointer;">
-                              <input type="text" id="successColorText" value="#c8b8a1"
-                                 style="flex: 1; font-family: monospace;" readonly>
-                           </div>
-                        </div>
-                        <div class="form-group">
-                           <label for="bgLight">Svetla Pozadina</label>
-                           <div style="display: flex; gap: 1rem; align-items: center;">
-                              <input type="color" id="bgLight" value="#272422"
-                                 style="width: 80px; height: 50px; border: 2px solid var(--border-color); border-radius: 8px; cursor: pointer;">
-                              <input type="text" id="bgLightText" value="#272422"
-                                 style="flex: 1; font-family: monospace;" readonly>
-                           </div>
-                        </div>
-                     </div>
-                     <div class="form-group">
-                        <button type="button" onclick="previewTheme()" class="btn btn-secondary" style="margin-right: 1rem;">
-                        👁️ Pregled
-                        </button>
-                        <button type="button" onclick="saveTheme()" class="btn btn-primary" style="margin-right: 1rem;">
-                        💾 Sačuvaj Temu
-                        </button>
-                        <button type="button" onclick="resetAllColors()" class="btn btn-secondary">
-                        🔄 Reset Sve
-                        </button>
-                     </div>
-                  </form>
-                  <div class="dual-lang-group" style="margin-top: 2rem;">
-                     <h3>📋 Pregled Boja</h3>
-                     <div style="background: white; padding: 2rem; border-radius: 12px; box-shadow: var(--shadow-md);">
-                        <h3 style="color: var(--text-dark); margin-bottom: 1rem;">Primer Naslova</h3>
-                        <p style="color: var(--text-light); margin-bottom: 2rem;">Ovo je primer teksta u svetlijoj boji koji se koristi za opise i
-                           podnaslove.
-                        </p>
-                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 1rem;">
-                           <div class="btn btn-primary">Primary Button</div>
-                           <div class="btn btn-secondary">Secondary Button</div>
-                           <div style="padding: 1rem; background: var(--bg-light); border-radius: 8px; text-align: center; color: var(--text-dark);">Light
-                              BG
-                           </div>
-                           <div style="padding: 1rem; background: var(--success-color); color: white; border-radius: 8px; text-align: center;">Success</div>
-                        </div>
-                     </div>
-                  </div>
-               </div>
-            </div>
          </div>
       </main>
       </div>
@@ -801,54 +670,6 @@
       </script>
 
       <script src="script.js"></script>
-
-      <!-- Theme Loader - INSTANT LOAD WITH LOCALSTORAGE -->
-      <script>
-         (function() {
-             // STEP 1: Apply theme from localStorage IMMEDIATELY (no flash!)
-             const cachedTheme = localStorage.getItem('mssjaj_theme');
-             if (cachedTheme) {
-                 try {
-                     const colors = JSON.parse(cachedTheme);
-                     applyThemeColors(colors);
-                 } catch (e) {
-                     console.error('Error parsing cached theme:', e);
-                 }
-             }
-
-             // STEP 2: Update from Firebase in background (for future loads)
-             const db = firebase.firestore();
-             db.collection('settings').doc('theme').get()
-                 .then(doc => {
-                     if (doc.exists) {
-                         const colors = doc.data();
-                         // Save to localStorage for next time
-                         localStorage.setItem('mssjaj_theme', JSON.stringify(colors));
-                         // Apply colors (in case they changed)
-                         applyThemeColors(colors);
-                     }
-                 })
-                 .catch(error => console.error('Error loading theme:', error));
-
-             // Helper function to apply colors
-             function applyThemeColors(colors) {
-                 const root = document.documentElement;
-
-                 if (colors.primaryColor) root.style.setProperty('--primary-color', colors.primaryColor);
-                 if (colors.primaryDark) root.style.setProperty('--primary-dark', colors.primaryDark);
-                 if (colors.secondaryColor) root.style.setProperty('--secondary-color', colors.secondaryColor);
-                 if (colors.successColor) root.style.setProperty('--success-color', colors.successColor);
-                 if (colors.bgLight) root.style.setProperty('--bg-light', colors.bgLight);
-                 if (colors.textDark) root.style.setProperty('--text-dark', colors.textDark);
-                 if (colors.textLight) root.style.setProperty('--text-light', colors.textLight);
-
-                 if (colors.primaryColor && colors.primaryDark) {
-                     root.style.setProperty('--primary-gradient',
-                         `linear-gradient(135deg, ${colors.primaryColor} 0%, ${colors.primaryDark} 100%)`);
-                 }
-             }
-         })();
-      </script>
 
       <script>
          // Toggle admin sidebar on mobile

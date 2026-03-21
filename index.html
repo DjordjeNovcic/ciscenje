@@ -14,59 +14,6 @@
          rel="stylesheet"
          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
          />
-      <script>
-         (function() {
-            const cachedTheme = localStorage.getItem('mssjaj_theme');
-            if (!cachedTheme) return;
-
-            try {
-               const defaultColors = {
-                  primaryColor: '#b09f8a',
-                  primaryDark: '#8e7f6d',
-                  secondaryColor: '#35312d',
-                  successColor: '#c8b8a1',
-                  bgLight: '#272422',
-                  textDark: '#f3ede4',
-                  textLight: '#c1b2a0'
-               };
-               const deprecatedPalettes = [
-                  { primaryColor: '#38b86b', primaryDark: '#20894c' },
-                  { primaryColor: '#36b864', primaryDark: '#26954f' },
-                  { primaryColor: '#f59e0b', primaryDark: '#ea580c' },
-                  { primaryColor: '#244c68', primaryDark: '#142f43' },
-                  { primaryColor: '#5c6cff', primaryDark: '#3d53d6' },
-                  { primaryColor: '#c8794f', primaryDark: '#985635' },
-                  { primaryColor: '#b76b57', primaryDark: '#885042' }
-               ];
-               const parsedTheme = JSON.parse(cachedTheme);
-               const isDeprecatedPalette = deprecatedPalettes.some((palette) =>
-                  parsedTheme.primaryColor === palette.primaryColor &&
-                  parsedTheme.primaryDark === palette.primaryDark
-               );
-               const colors = isDeprecatedPalette ? defaultColors : { ...defaultColors, ...parsedTheme };
-               const root = document.documentElement;
-
-               if (isDeprecatedPalette) {
-                  localStorage.setItem('mssjaj_theme', JSON.stringify(defaultColors));
-               }
-
-               if (colors.primaryColor) root.style.setProperty('--primary-color', colors.primaryColor);
-               if (colors.primaryDark) root.style.setProperty('--primary-dark', colors.primaryDark);
-               if (colors.secondaryColor) root.style.setProperty('--secondary-color', colors.secondaryColor);
-               if (colors.successColor) root.style.setProperty('--success-color', colors.successColor);
-               if (colors.bgLight) root.style.setProperty('--bg-light', colors.bgLight);
-               if (colors.textDark) root.style.setProperty('--text-dark', colors.textDark);
-               if (colors.textLight) root.style.setProperty('--text-light', colors.textLight);
-
-               if (colors.primaryColor && colors.primaryDark) {
-                  root.style.setProperty('--primary-gradient',
-                     `linear-gradient(135deg, ${colors.primaryColor} 0%, ${colors.primaryDark} 100%)`);
-               }
-            } catch (error) {
-               console.error('Error applying cached theme:', error);
-            }
-         })();
-      </script>
    </head>
    <body class="public-page home-page">
       <div id="page-loader"></div>

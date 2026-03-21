@@ -1,17 +1,17 @@
 :root {
-  --primary-color: #38b86b;
-  --primary-dark: #20894c;
-  --secondary-color: #d9efde;
-  --success-color: #bcdcc6;
-  --bg-light: #f7fcf8;
-  --bg-white: #fffdf9;
-  --text-dark: #142017;
-  --text-light: #68776c;
-  --text-soft: #98a69b;
-  --text-inverse: #f5fff7;
-  --primary-rgb: 56, 184, 107;
-  --primary-dark-rgb: 32, 137, 76;
-  --secondary-rgb: 217, 239, 222;
+  --primary-color: #b09f8a;
+  --primary-dark: #8e7f6d;
+  --secondary-color: #35312d;
+  --success-color: #c8b8a1;
+  --bg-light: #272422;
+  --bg-white: #302c28;
+  --text-dark: #f3ede4;
+  --text-light: #c1b2a0;
+  --text-soft: #9d8f7e;
+  --text-inverse: #f7f1e8;
+  --primary-rgb: 176, 159, 138;
+  --primary-dark-rgb: 142, 127, 109;
+  --secondary-rgb: 53, 49, 45;
   --border-color: rgba(22, 20, 18, 0.1);
   --danger-color: #c94f4f;
   --shadow-sm: 0 10px 22px rgba(17, 21, 20, 0.06);
@@ -26,9 +26,9 @@
   --navbar-height: 84px;
   --section-space: clamp(3.9rem, 5vw, 5.35rem);
   --section-space-tight: clamp(2.7rem, 4vw, 3.75rem);
-  --surface-soft: rgba(250, 255, 251, 0.84);
-  --surface-strong: rgba(252, 255, 253, 0.94);
-  --primary-gradient: linear-gradient(135deg, #38b86b 0%, #20894c 100%);
+  --surface-soft: rgba(48, 44, 40, 0.84);
+  --surface-strong: rgba(58, 53, 48, 0.94);
+  --primary-gradient: linear-gradient(135deg, #b8a993 0%, #95836f 100%);
 }
 
 * {
@@ -1529,7 +1529,7 @@ body.public-page .scroll-progress-bar {
   border-radius: inherit;
   transform: scaleX(0);
   transform-origin: left center;
-  background: linear-gradient(90deg, #20894c 0%, #38b86b 55%, #d9efde 100%);
+  background: linear-gradient(90deg, #8f7f6e 0%, #b7a691 55%, #d7c9b7 100%);
 }
 
 body.public-page .cursor-glow {
@@ -2317,7 +2317,7 @@ body.public-page .scroll-progress {
 }
 
 body.public-page .scroll-progress-bar {
-  background: linear-gradient(90deg, #20894c 0%, #38b86b 65%, #d9efde 100%);
+  background: linear-gradient(90deg, #8f7f6e 0%, #b7a691 65%, #d7c9b7 100%);
 }
 
 body.home-page .landing-section {
@@ -2973,24 +2973,24 @@ body.public-page .social-links a:hover {
 -------------------------------- */
 
 :root {
-  --primary-color: #36b864;
-  --primary-dark: #26954f;
-  --secondary-color: #e7f6ea;
-  --success-color: #c7eccf;
-  --bg-light: #f7fbf6;
-  --bg-white: #ffffff;
-  --text-dark: #111d15;
-  --text-light: #667166;
-  --text-soft: #8ea091;
-  --text-inverse: #f6fff8;
-  --primary-rgb: 54, 184, 100;
-  --primary-dark-rgb: 38, 149, 79;
-  --secondary-rgb: 231, 246, 234;
-  --border-color: rgba(17, 29, 21, 0.12);
-  --shadow-sm: 0 6px 18px rgba(17, 29, 21, 0.06);
-  --shadow-md: 0 14px 30px rgba(17, 29, 21, 0.08);
-  --shadow-lg: 0 24px 54px rgba(17, 29, 21, 0.1);
-  --shadow-xl: 0 36px 72px rgba(17, 29, 21, 0.12);
+  --primary-color: #b09f8a;
+  --primary-dark: #8e7f6d;
+  --secondary-color: #35312d;
+  --success-color: #c8b8a1;
+  --bg-light: #272422;
+  --bg-white: #302c28;
+  --text-dark: #f3ede4;
+  --text-light: #c1b2a0;
+  --text-soft: #9d8f7e;
+  --text-inverse: #f7f1e8;
+  --primary-rgb: 176, 159, 138;
+  --primary-dark-rgb: 142, 127, 109;
+  --secondary-rgb: 53, 49, 45;
+  --border-color: rgba(201, 186, 166, 0.22);
+  --shadow-sm: 0 10px 28px rgba(0, 0, 0, 0.22);
+  --shadow-md: 0 16px 36px rgba(0, 0, 0, 0.26);
+  --shadow-lg: 0 26px 54px rgba(0, 0, 0, 0.3);
+  --shadow-xl: 0 34px 72px rgba(0, 0, 0, 0.34);
   --radius-sm: 12px;
   --radius-md: 20px;
   --radius-lg: 28px;
@@ -2998,7 +2998,7 @@ body.public-page .social-links a:hover {
   --navbar-height: 86px;
   --section-space: clamp(4.5rem, 7vw, 7rem);
   --section-space-tight: clamp(3rem, 5vw, 4.5rem);
-  --primary-gradient: linear-gradient(135deg, #36b864 0%, #26954f 100%);
+  --primary-gradient: linear-gradient(135deg, #b8a993 0%, #95836f 100%);
 }
 
 body.public-page {
@@ -3125,7 +3125,7 @@ body.public-page .nav-menu-cta {
 body.public-page .btn-primary:hover,
 body.public-page .nav-cta:hover,
 body.public-page .nav-menu-cta:hover {
-  background: linear-gradient(135deg, #3fc06f 0%, #26954f 100%);
+  background: linear-gradient(135deg, #c2b29d 0%, #9a8872 100%);
   color: #ffffff;
 }
 
