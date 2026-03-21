@@ -2063,6 +2063,25 @@ body.is-modal-open .social-rail {
     padding-top: calc(var(--header-height) + 0.15rem);
   }
 
+  body.home-page main {
+    padding-top: 0;
+  }
+
+  body.home-page .site-header {
+    background: linear-gradient(180deg, rgba(236, 231, 222, 0.92), rgba(236, 231, 222, 0.68));
+    box-shadow: none;
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+  }
+
+  body.home-page .site-header::after {
+    background: linear-gradient(90deg, transparent, rgba(140, 123, 106, 0.14), transparent);
+  }
+
+  body.home-page .header-shell {
+    border-bottom-color: rgba(140, 123, 106, 0.08);
+  }
+
   .header-shell {
     grid-template-columns: minmax(0, 1fr) auto;
     justify-content: space-between;
@@ -2224,7 +2243,11 @@ body.is-modal-open .social-rail {
   }
 
   .hero-section {
-    min-height: clamp(380px, calc(100svh - var(--header-height)), 560px);
+    min-height: clamp(330px, calc(58svh + 24px), 460px);
+  }
+
+  body.home-page .hero-section {
+    min-height: clamp(340px, 58svh, 470px);
   }
 
   .hero-copy h1 {
@@ -2238,7 +2261,21 @@ body.is-modal-open .social-rail {
 
   .hero-poster-image {
     min-height: inherit;
-    transform: translate3d(0, var(--hero-shift, 0px), 0) scale(1.005);
+    object-position: 50% 43%;
+    filter: saturate(1) contrast(1.02) brightness(0.96);
+    transform: translate3d(0, var(--hero-shift, 0px), 0) scale(1.085);
+  }
+
+  body.home-page .hero-backdrop::before {
+    background:
+      linear-gradient(180deg, rgba(26, 21, 18, 0.22), rgba(26, 21, 18, 0.08) 18%, rgba(247, 243, 236, 0) 56%, rgba(26, 21, 18, 0.12)),
+      radial-gradient(circle at center, rgba(255, 247, 237, 0.03), transparent 34%);
+  }
+
+  body.home-page .hero-backdrop::after {
+    background:
+      linear-gradient(90deg, rgba(230, 224, 214, 0.04), transparent 16%, transparent 84%, rgba(230, 224, 214, 0.04)),
+      radial-gradient(circle at center, rgba(255, 248, 240, 0.04), transparent 24%);
   }
 
   .hero-card-grid,
@@ -2668,7 +2705,20 @@ body.is-modal-open .social-rail {
   }
 
   .hero-intro {
-    padding-top: 1.4rem;
+    padding-top: 1.05rem;
+  }
+
+  body.home-page .site-header {
+    background: linear-gradient(180deg, rgba(236, 231, 222, 0.94), rgba(236, 231, 222, 0.72));
+  }
+
+  body.home-page .hero-section {
+    min-height: clamp(320px, 54svh, 430px);
+  }
+
+  body.home-page .hero-poster-image {
+    object-position: 50% 40%;
+    transform: translate3d(0, var(--hero-shift, 0px), 0) scale(1.11);
   }
 
   .hero-card {
