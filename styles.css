@@ -382,17 +382,22 @@ body.is-scrolled .site-header {
   display: flex;
   flex-direction: column;
   gap: 0.18rem;
+  min-width: 0;
 }
 
 .brand-copy strong {
   font-family: "Poppins", sans-serif;
   font-size: 1.08rem;
   letter-spacing: -0.02em;
+  white-space: nowrap;
 }
 
 .brand-copy span:last-child {
   color: var(--color-ink-muted);
   font-size: 0.83rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .site-nav {
@@ -471,6 +476,9 @@ body.is-scrolled .site-header {
 
 .nav-toggle {
   display: none;
+  position: relative;
+  z-index: 65;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   gap: 0.3rem;
@@ -484,6 +492,7 @@ body.is-scrolled .site-header {
 
 .nav-toggle span {
   display: block;
+  flex: 0 0 auto;
   width: 19px;
   height: 2px;
   border-radius: 999px;
@@ -1698,9 +1707,21 @@ body.is-modal-open .social-rail {
   }
 
   .header-shell {
-    grid-template-columns: auto auto;
+    grid-template-columns: minmax(0, 1fr) auto;
     justify-content: space-between;
     padding-inline: 1rem;
+  }
+
+  .brand {
+    min-width: 0;
+  }
+
+  .brand-copy strong {
+    font-size: 1rem;
+  }
+
+  .brand-copy span:last-child {
+    max-width: 100%;
   }
 
   .nav-toggle {
@@ -2044,6 +2065,12 @@ body.is-modal-open .social-rail {
 
   .brand-copy span:last-child {
     display: none;
+  }
+
+  .nav-toggle {
+    width: 50px;
+    height: 50px;
+    border-radius: 15px;
   }
 
   .site-nav {
