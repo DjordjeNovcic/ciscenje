@@ -376,16 +376,7 @@ function getLocalizedField(item, field) {
 }
 
 function applyHeroBackgroundFromSlideshow() {
-   const landing = document.querySelector('.landing-section');
-   if (!landing) return;
-
-   landing.style.backgroundImage = `
-      linear-gradient(90deg, rgba(255, 255, 255, 0.92) 0%, rgba(255, 255, 255, 0.74) 42%, rgba(255, 255, 255, 0.2) 64%, rgba(255, 255, 255, 0.02) 100%),
-      url('${HERO_IMAGE_URL}')
-   `;
-   landing.style.backgroundSize = 'auto, cover';
-   landing.style.backgroundPosition = '0 0, center';
-   landing.style.backgroundRepeat = 'no-repeat, no-repeat';
+   return;
 }
 
 // Helper function to show loading spinner
