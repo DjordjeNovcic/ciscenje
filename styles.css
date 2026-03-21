@@ -85,6 +85,10 @@ main {
   overflow: clip;
 }
 
+body.home-page main {
+  padding-top: var(--header-height);
+}
+
 img {
   display: block;
   max-width: 100%;
