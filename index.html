@@ -21,19 +21,20 @@
 
             try {
                const defaultColors = {
-                  primaryColor: '#b76b57',
-                  primaryDark: '#885042',
-                  secondaryColor: '#e7d1b7',
-                  successColor: '#c7b1a7',
-                  bgLight: '#faf5ed',
-                  textDark: '#1f1815',
-                  textLight: '#756861'
+                  primaryColor: '#38b86b',
+                  primaryDark: '#20894c',
+                  secondaryColor: '#d9efde',
+                  successColor: '#bcdcc6',
+                  bgLight: '#f7fcf8',
+                  textDark: '#142017',
+                  textLight: '#68776c'
                };
                const deprecatedPalettes = [
                   { primaryColor: '#f59e0b', primaryDark: '#ea580c' },
                   { primaryColor: '#244c68', primaryDark: '#142f43' },
                   { primaryColor: '#5c6cff', primaryDark: '#3d53d6' },
-                  { primaryColor: '#c8794f', primaryDark: '#985635' }
+                  { primaryColor: '#c8794f', primaryDark: '#985635' },
+                  { primaryColor: '#b76b57', primaryDark: '#885042' }
                ];
                const parsedTheme = JSON.parse(cachedTheme);
                const isDeprecatedPalette = deprecatedPalettes.some((palette) =>

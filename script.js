@@ -834,7 +834,7 @@ function renderHomeContent(data) {
       card.style.setProperty('--reveal-delay', `${index * 90}ms`);
 
       card.innerHTML = `
-         <div class="feature-icon">${feature.icon}</div>
+         <div class="feature-icon">${getDisplayIconMarkup(feature.icon)}</div>
          <h3>${getLocalizedField(feature, 'title')}</h3>
          <p>${getLocalizedField(feature, 'description')}</p>
       `;
@@ -846,6 +846,42 @@ function renderHomeContent(data) {
    featuresGrid.dataset.loaded = 'true';
    setupInteractiveSurfaces(featuresGrid);
    initializeScrollReveal(featuresGrid);
+}
+
+function getDisplayIconMarkup(icon) {
+   const normalizedIcon = String(icon || '').trim();
+
+   if (!normalizedIcon) {
+      return '<i class="fa-solid fa-star" aria-hidden="true"></i>';
+   }
+
+   const iconMap = {
+      '✨': 'fa-solid fa-star',
+      '⭐': 'fa-solid fa-star',
+      '🌿': 'fa-solid fa-leaf',
+      '🫧': 'fa-regular fa-circle',
+      '📅': 'fa-regular fa-calendar',
+      '💼': 'fa-solid fa-briefcase',
+      '🏠': 'fa-solid fa-house',
+      '💚': 'fa-solid fa-shield',
+      '🤝': 'fa-solid fa-handshake',
+      '🧹': 'fa-solid fa-broom',
+      '🧼': 'fa-solid fa-soap',
+      '✅': 'fa-solid fa-check',
+      '🎯': 'fa-solid fa-bullseye',
+      '💎': 'fa-solid fa-gem',
+      '⏰': 'fa-regular fa-clock',
+      '🛡️': 'fa-solid fa-shield',
+      '💰': 'fa-solid fa-wallet',
+      '🏆': 'fa-solid fa-award',
+      '📊': 'fa-solid fa-chart-column'
+   };
+
+   if (iconMap[normalizedIcon]) {
+      return `<i class="${iconMap[normalizedIcon]}" aria-hidden="true"></i>`;
+   }
+
+   return normalizedIcon;
 }
 
 function loadHomeContentAdmin() {
@@ -1354,7 +1390,7 @@ function renderAboutContent(data) {
          card.className = 'reason-card reveal-item';
          card.style.setProperty('--reveal-delay', `${index * 90}ms`);
          card.innerHTML = `
-            <div class="reason-icon">${reason.icon}</div>
+            <div class="reason-icon">${getDisplayIconMarkup(reason.icon)}</div>
             <h3>${getLocalizedField(reason, 'title')}</h3>
             <p>${getLocalizedField(reason, 'description')}</p>
          `;
@@ -2330,13 +2366,13 @@ function switchLang(event, lang) {
 // ========================================
 
 const defaultColors = {
-   primaryColor: '#b76b57',
-   primaryDark: '#885042',
-   secondaryColor: '#e7d1b7',
-   successColor: '#c7b1a7',
-   bgLight: '#faf5ed',
-   textDark: '#1f1815',
-   textLight: '#756861'
+   primaryColor: '#38b86b',
+   primaryDark: '#20894c',
+   secondaryColor: '#d9efde',
+   successColor: '#bcdcc6',
+   bgLight: '#f7fcf8',
+   textDark: '#142017',
+   textLight: '#68776c'
 };
 
 const deprecatedThemePalettes = [{
@@ -2351,6 +2387,9 @@ const deprecatedThemePalettes = [{
 }, {
    primaryColor: '#c8794f',
    primaryDark: '#985635'
+}, {
+   primaryColor: '#b76b57',
+   primaryDark: '#885042'
 }];
 
 function normalizeThemeColors(colors = {}) {
@@ -2448,7 +2487,7 @@ function previewTheme() {
    notification.textContent = '👁️ Pregled tema - promene nisu sačuvane';
    notification.style.cssText = `
           position: fixed; top: 20px; right: 20px;
-          background: linear-gradient(135deg, #b76b57 0%, #885042 100%); color: white;
+          background: linear-gradient(135deg, #38b86b 0%, #20894c 100%); color: white;
           padding: 1rem 2rem; border-radius: 8px;
           box-shadow: 0 4px 12px rgba(0,0,0,0.15);
           z-index: 10000; animation: slideIn 0.3s ease;
