@@ -12,7 +12,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Poppins:wght@500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <link rel="stylesheet" href="styles.css?v=20260321m17">
+    <link rel="stylesheet" href="styles.css?v=20260321m18">
     <link rel="icon" href="./favicon.ico">
     <link rel="icon" type="image/png" sizes="32x32" href="./favicon-32.png">
   </head>
@@ -135,7 +135,7 @@
         <div class="shell shell-wide">
           <article class="service-detail reveal">
             <div class="service-detail-media">
-              <img src="assets/placeholder-space.svg" alt="Slika ovde za dubinsko čišćenje">
+              <img src="assets/placeholder-space.svg" alt="Prikaz dubinskog čišćenja stambenog prostora">
             </div>
             <div class="service-detail-copy">
               <h2>Dubinsko čišćenje koje prostoru vraća kompletno osveženje, ne samo osnovno održavanje.</h2>
@@ -153,7 +153,7 @@
 
           <article class="service-detail service-detail-reverse reveal reveal-delay-1">
             <div class="service-detail-media">
-              <img src="assets/placeholder-work-3.svg" alt="Slika ovde za poslovni prostor">
+              <img src="assets/placeholder-work-3.svg" alt="Prikaz čišćenja poslovnog prostora">
             </div>
             <div class="service-detail-copy">
               <h2>Poslovni prostori koji ostavljaju profesionalan prvi utisak od ulaza do radnih zona.</h2>
@@ -171,7 +171,7 @@
 
           <article class="service-detail reveal reveal-delay-2">
             <div class="service-detail-media">
-              <img src="assets/placeholder-work-1.svg" alt="Slika ovde za nameštaj i tekstil">
+              <img src="assets/placeholder-work-1.svg" alt="Prikaz tretmana nameštaja i tekstila">
             </div>
             <div class="service-detail-copy">
               <h2>Nameštaj i tekstil koji prostoru vraćaju osećaj svežine i urednog ritma.</h2>
@@ -189,7 +189,7 @@
 
           <article class="service-detail service-detail-reverse reveal reveal-delay-3">
             <div class="service-detail-media">
-              <img src="assets/placeholder-work-2.svg" alt="Slika ovde za čišćenje nakon radova">
+              <img src="assets/placeholder-work-2.svg" alt="Prikaz čišćenja prostora nakon radova">
             </div>
             <div class="service-detail-copy">
               <h2>Nakon radova, kada prostor mora da izgleda spremno za useljenje, predaju ili prezentaciju.</h2>
@@ -263,14 +263,52 @@
       <section class="section section-cta" id="kontakt">
         <div class="shell shell-wide">
           <div class="cta-panel reveal">
-            <h2>Recite nam kakav prostor imate, a mi ćemo predložiti pravi nivo usluge.</h2>
-            <p>
-              Dovoljno je da pošaljete osnovne informacije o prostoru ili nas pozovete.
-              Dobićete jasan odgovor, bez komplikovanja i bez nejasnih koraka.
-            </p>
-            <div class="cta-actions">
-              <a href="tel:+381643937000" class="btn btn-primary">Pozovite nas</a>
-              <a href="mailto:11mssjaj@gmail.com" class="btn btn-secondary">Pošaljite email</a>
+            <div class="cta-layout">
+              <div class="cta-copy">
+                <h2>Recite nam kakav prostor imate, a mi ćemo predložiti pravi nivo usluge.</h2>
+                <p>
+                  Dovoljno je da pošaljete osnovne informacije o prostoru ili nas pozovete.
+                  Dobićete jasan odgovor, bez komplikovanja i bez nejasnih koraka.
+                </p>
+                <div class="cta-actions">
+                  <a href="tel:+381643937000" class="btn btn-primary">Pozovite nas</a>
+                  <a href="mailto:11mssjaj@gmail.com" class="btn btn-secondary">Pošaljite email</a>
+                </div>
+                <ul class="cta-points">
+                  <li>Prava usluga za vaš tip prostora</li>
+                  <li>Odmah znate obim i sledeći korak</li>
+                  <li>Bez skrivenih troškova</li>
+                </ul>
+              </div>
+
+              <form class="contact-form" data-inquiry-form data-form-context="Usluge">
+                <div class="form-grid">
+                  <label class="form-field">
+                    <span>Ime i prezime</span>
+                    <input type="text" name="name" autocomplete="name" required>
+                  </label>
+                  <label class="form-field">
+                    <span>Telefon</span>
+                    <input type="tel" name="phone" inputmode="tel" autocomplete="tel" required>
+                  </label>
+                  <label class="form-field form-field-full">
+                    <span>Tip prostora</span>
+                    <select name="space" required>
+                      <option value="">Izaberite tip prostora</option>
+                      <option>Stan ili kuća</option>
+                      <option>Kancelarija ili salon</option>
+                      <option>Dubinsko čišćenje</option>
+                      <option>Prostor nakon radova</option>
+                    </select>
+                  </label>
+                  <label class="form-field form-field-full">
+                    <span>Kratka napomena</span>
+                    <textarea name="message" rows="4" placeholder="Površina, broj prostorija ili rok."></textarea>
+                  </label>
+                </div>
+                <button type="submit" class="btn btn-primary">Pošaljite upit</button>
+                <p class="form-status" data-form-status aria-live="polite">Upit otvara email sa unapred složenim detaljima za ponudu.</p>
+              </form>
             </div>
           </div>
         </div>
@@ -279,6 +317,6 @@
 
     <div id="site-footer"></div>
 
-    <script src="script.js?v=20260321m12"></script>
+    <script src="script.js?v=20260321m13"></script>
   </body>
 </html>

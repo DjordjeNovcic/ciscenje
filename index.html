@@ -12,7 +12,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Poppins:wght@500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <link rel="stylesheet" href="styles.css?v=20260321m17">
+    <link rel="stylesheet" href="styles.css?v=20260321m18">
     <link rel="icon" href="./favicon.ico">
     <link rel="icon" type="image/png" sizes="32x32" href="./favicon-32.png">
   </head>
@@ -104,7 +104,7 @@
           <div class="services-grid">
             <article class="service-card reveal">
               <div class="service-card-media">
-                <img src="assets/placeholder-space.svg" alt="Slika ovde za čišćenje stanova">
+                <img src="assets/placeholder-space.svg" alt="Prikaz čišćenja stambenog prostora">
               </div>
               <div class="service-card-body">
                 <span class="card-tag">Čišćenje stanova</span>
@@ -115,7 +115,7 @@
 
             <article class="service-card reveal reveal-delay-1">
               <div class="service-card-media">
-                <img src="assets/placeholder-work-1.svg" alt="Slika ovde za dubinsko čišćenje">
+                <img src="assets/placeholder-work-1.svg" alt="Prikaz dubinskog čišćenja enterijera">
               </div>
               <div class="service-card-body">
                 <span class="card-tag">Dubinsko čišćenje</span>
@@ -126,7 +126,7 @@
 
             <article class="service-card reveal reveal-delay-2">
               <div class="service-card-media">
-                <img src="assets/placeholder-work-2.svg" alt="Slika ovde za kancelarije">
+                <img src="assets/placeholder-work-2.svg" alt="Prikaz čišćenja poslovnog prostora">
               </div>
               <div class="service-card-body">
                 <span class="card-tag">Čišćenje kancelarija</span>
@@ -137,7 +137,7 @@
 
             <article class="service-card reveal reveal-delay-3">
               <div class="service-card-media">
-                <img src="assets/placeholder-work-3.svg" alt="Slika ovde za nameštaj i nakon radova">
+                <img src="assets/placeholder-work-3.svg" alt="Prikaz specijalnog tretmana nameštaja i prostora nakon radova">
               </div>
               <div class="service-card-body">
                 <span class="card-tag">Specijalni tretmani</span>
@@ -261,22 +261,22 @@
           <div class="section-head reveal">
             <h2>Radovi koji pokazuju kako prostor treba da izgleda po završetku.</h2>
             <p>
-              Galerija je pripremljena tako da odmah može da primi autentične fotografije enterijera,
-              pre i posle primere i detalje završne obrade prostora.
+              Izdvojili smo tipove kadrova koji najjasnije pokazuju nivo završnice:
+              dnevni prostor, kontaktne zone, poslovni enterijer i detalje koji grade prvi utisak.
             </p>
           </div>
 
           <div class="work-preview-grid">
             <a href="works.html" class="work-preview-card reveal">
-              <img src="assets/placeholder-work-1.svg" alt="Rad 01">
+              <img src="assets/placeholder-work-1.svg" alt="Detaljna obrada dnevnog prostora">
               <span>Detaljna obrada dnevnog prostora</span>
             </a>
             <a href="works.html" class="work-preview-card reveal reveal-delay-1">
-              <img src="assets/placeholder-work-2.svg" alt="Rad 02">
+              <img src="assets/placeholder-work-2.svg" alt="Kuhinja i kontaktne površine">
               <span>Kuhinja i kontaktne površine</span>
             </a>
             <a href="works.html" class="work-preview-card reveal reveal-delay-2">
-              <img src="assets/placeholder-work-3.svg" alt="Rad 03">
+              <img src="assets/placeholder-work-3.svg" alt="Poslovni enterijer i završni detalji">
               <span>Poslovni enterijer i završni detalji</span>
             </a>
           </div>
@@ -336,13 +336,52 @@
       <section class="section section-cta" id="kontakt">
         <div class="shell shell-wide">
           <div class="cta-panel reveal">
-            <h2>Spremni da prostor izgleda uredno, mirno i ozbiljno održavano?</h2>
-            <p>
-              Pozovite nas ili pošaljite poruku. Dobićete jasan predlog usluge i termin koji odgovara vašem rasporedu.
-            </p>
-            <div class="cta-actions">
-              <a href="tel:+381643937000" class="btn btn-primary">Pozovite nas</a>
-              <a href="mailto:11mssjaj@gmail.com" class="btn btn-secondary">Pošaljite email</a>
+            <div class="cta-layout">
+              <div class="cta-copy">
+                <h2>Spremni da prostor izgleda uredno, mirno i ozbiljno održavano?</h2>
+                <p>
+                  Ostavite osnovne podatke o prostoru, a mi ćemo pripremiti jasan predlog usluge
+                  i termin koji odgovara vašem rasporedu.
+                </p>
+                <div class="cta-actions">
+                  <a href="tel:+381643937000" class="btn btn-primary">Pozovite nas</a>
+                  <a href="mailto:11mssjaj@gmail.com" class="btn btn-secondary">Pošaljite email</a>
+                </div>
+                <ul class="cta-points">
+                  <li>Odgovor u roku od 24h</li>
+                  <li>Jasan obim rada bez improvizacije</li>
+                  <li>Dogovor termina 7/7</li>
+                </ul>
+              </div>
+
+              <form class="contact-form" data-inquiry-form data-form-context="Početna">
+                <div class="form-grid">
+                  <label class="form-field">
+                    <span>Ime i prezime</span>
+                    <input type="text" name="name" autocomplete="name" required>
+                  </label>
+                  <label class="form-field">
+                    <span>Telefon</span>
+                    <input type="tel" name="phone" inputmode="tel" autocomplete="tel" required>
+                  </label>
+                  <label class="form-field form-field-full">
+                    <span>Tip prostora</span>
+                    <select name="space" required>
+                      <option value="">Izaberite tip prostora</option>
+                      <option>Stan ili kuća</option>
+                      <option>Kancelarija ili salon</option>
+                      <option>Dubinsko čišćenje</option>
+                      <option>Prostor nakon radova</option>
+                    </select>
+                  </label>
+                  <label class="form-field form-field-full">
+                    <span>Kratka napomena</span>
+                    <textarea name="message" rows="4" placeholder="Površina, termin ili posebna napomena."></textarea>
+                  </label>
+                </div>
+                <button type="submit" class="btn btn-primary">Pošaljite upit</button>
+                <p class="form-status" data-form-status aria-live="polite">Upit otvara email sa svim podacima koje unesete.</p>
+              </form>
             </div>
           </div>
         </div>
@@ -350,6 +389,6 @@
     </main>
 
     <div id="site-footer"></div>
-    <script src="script.js?v=20260321m12"></script>
+    <script src="script.js?v=20260321m13"></script>
   </body>
 </html>

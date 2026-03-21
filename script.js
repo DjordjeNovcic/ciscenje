@@ -1,6 +1,7 @@
 let revealObserver = null;
 let lightboxItems = [];
 let activeLightboxIndex = 0;
+let lastFocusedElement = null;
 
 document.addEventListener('DOMContentLoaded', () => {
   initializeSite().catch(error => {
@@ -18,6 +19,7 @@ async function initializeSite() {
   setupHeroParallax();
   setupScrollStories();
   setupLightbox();
+  setupInquiryForms();
   handleDeferredScroll();
 }
 
@@ -40,7 +42,100 @@ async function injectPartial(slot, url) {
     slot.innerHTML = await response.text();
   } catch (error) {
     console.error(error);
+    slot.innerHTML = getPartialFallback(url);
   }
+}
+
+function getPartialFallback(url) {
+  if (url.includes('header')) {
+    return `
+      <aside class="social-rail" aria-label="Društvene mreže">
+        <a href="https://www.facebook.com/" target="_blank" rel="noreferrer" aria-label="Fejsbuk">
+          <i class="fab fa-facebook-f" aria-hidden="true"></i>
+        </a>
+        <a href="https://www.instagram.com/mssjaj.kg?igsh=ZjlzajBydXIxemMy" target="_blank" rel="noreferrer" aria-label="Instagram">
+          <i class="fab fa-instagram" aria-hidden="true"></i>
+        </a>
+      </aside>
+      <header class="site-header" id="vrh">
+        <div class="shell shell-wide header-shell">
+          <a href="index.html" class="brand" aria-label="Početna stranica MS Sjaj">
+            <img src="logo.png" alt="MS Sjaj znak" class="brand-logo">
+            <span class="brand-copy">
+              <strong>MS Sjaj</strong>
+              <span>Profesionalne usluge čišćenja</span>
+            </span>
+          </a>
+          <button class="nav-toggle" id="navToggle" type="button" aria-expanded="false" aria-controls="siteNav" aria-label="Otvori navigaciju">
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+          <nav class="site-nav" id="siteNav" aria-label="Glavna navigacija">
+            <a href="index.html">Početna</a>
+            <a href="about.html">O nama</a>
+            <a href="services.html">Usluge</a>
+            <a href="works.html">Naši radovi</a>
+            <a href="index.html?scroll=kontakt" class="header-cta">Zatražite ponudu</a>
+            <div class="mobile-nav-meta">
+              <a href="tel:+381643937000" class="mobile-nav-phone">Pozovite: 064 / 393-7000</a>
+              <div class="mobile-nav-socials" aria-label="Društvene mreže">
+                <a href="https://www.facebook.com/" target="_blank" rel="noreferrer" aria-label="Fejsbuk">
+                  <i class="fab fa-facebook-f" aria-hidden="true"></i>
+                </a>
+                <a href="https://www.instagram.com/mssjaj.kg?igsh=ZjlzajBydXIxemMy" target="_blank" rel="noreferrer" aria-label="Instagram">
+                  <i class="fab fa-instagram" aria-hidden="true"></i>
+                </a>
+              </div>
+            </div>
+          </nav>
+        </div>
+      </header>
+    `;
+  }
+
+  return `
+    <footer class="site-footer">
+      <div class="shell shell-wide footer-shell">
+        <div class="footer-intro">
+          <p class="footer-kicker">MS Sjaj</p>
+          <h2>Čistoća koja ostavlja utisak ozbiljnosti, reda i poverenja.</h2>
+          <p>
+            Radimo čišćenje stanova, kuća i poslovnih prostora sa jasnim dogovorom,
+            diskretnim pristupom i završnicom koja se vidi odmah.
+          </p>
+        </div>
+        <div class="footer-columns">
+          <div class="footer-column">
+            <h3>Stranice</h3>
+            <a href="index.html">Početna</a>
+            <a href="about.html">O nama</a>
+            <a href="services.html">Usluge</a>
+            <a href="works.html">Naši radovi</a>
+          </div>
+          <div class="footer-column">
+            <h3>Kontakt</h3>
+            <a href="tel:+381643937000">064 / 393-7000</a>
+            <a href="tel:+381655625876">065 / 562-5876</a>
+            <a href="mailto:11mssjaj@gmail.com">11mssjaj@gmail.com</a>
+            <p>Kragujevac i okolina</p>
+          </div>
+          <div class="footer-column">
+            <h3>Radno vreme</h3>
+            <p>Ponedeljak - Petak</p>
+            <p>08:00 - 20:00</p>
+            <p>Subota po dogovoru</p>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div class="shell shell-wide footer-bottom-shell">
+          <p>&copy; <span id="currentYear"></span> MS Sjaj. Sva prava zadržana.</p>
+          <a href="#vrh" class="footer-top-link">Nazad na vrh</a>
+        </div>
+      </div>
+    </footer>
+  `;
 }
 
 function setupCurrentYear() {
@@ -288,6 +383,7 @@ function setupLightbox() {
   closeButton?.addEventListener('click', closeLightbox);
   previousButton?.addEventListener('click', () => changeLightboxItem(-1));
   nextButton?.addEventListener('click', () => changeLightboxItem(1));
+  document.addEventListener('keydown', handleLightboxKeyboard);
 }
 
 function ensureLightboxMarkup() {
@@ -296,7 +392,12 @@ function ensureLightboxMarkup() {
   const lightbox = document.createElement('div');
   lightbox.className = 'lightbox';
   lightbox.id = 'lightbox';
+  lightbox.setAttribute('role', 'dialog');
+  lightbox.setAttribute('aria-modal', 'true');
+  lightbox.setAttribute('aria-labelledby', 'lightboxCaption');
+  lightbox.setAttribute('aria-describedby', 'lightboxCounter');
   lightbox.setAttribute('aria-hidden', 'true');
+  lightbox.setAttribute('tabindex', '-1');
   lightbox.innerHTML = `
     <button class="lightbox-close" id="lightboxClose" type="button" aria-label="Zatvori pregled">&times;</button>
     <button class="lightbox-arrow lightbox-prev" id="lightboxPrev" type="button" aria-label="Prethodna slika">‹</button>
@@ -316,9 +417,11 @@ function openLightbox(index) {
   updateLightbox();
 
   const lightbox = document.getElementById('lightbox');
+  lastFocusedElement = document.activeElement instanceof HTMLElement ? document.activeElement : null;
   lightbox?.classList.add('is-open');
   lightbox?.setAttribute('aria-hidden', 'false');
   document.body.classList.add('is-modal-open');
+  document.getElementById('lightboxClose')?.focus();
 }
 
 function closeLightbox() {
@@ -328,6 +431,7 @@ function closeLightbox() {
   lightbox.classList.remove('is-open');
   lightbox.setAttribute('aria-hidden', 'true');
   document.body.classList.remove('is-modal-open');
+  lastFocusedElement?.focus?.();
 }
 
 function changeLightboxItem(step) {
@@ -354,6 +458,93 @@ function updateLightbox() {
   const hideControls = lightboxItems.length < 2;
   if (previousButton) previousButton.hidden = hideControls;
   if (nextButton) nextButton.hidden = hideControls;
+}
+
+function handleLightboxKeyboard(event) {
+  const lightbox = document.getElementById('lightbox');
+  if (!lightbox?.classList.contains('is-open')) return;
+
+  if (event.key === 'ArrowRight') {
+    event.preventDefault();
+    changeLightboxItem(1);
+    return;
+  }
+
+  if (event.key === 'ArrowLeft') {
+    event.preventDefault();
+    changeLightboxItem(-1);
+    return;
+  }
+
+  if (event.key !== 'Tab') return;
+
+  const focusable = [...lightbox.querySelectorAll('button:not([hidden])')];
+  if (!focusable.length) return;
+
+  const first = focusable[0];
+  const last = focusable[focusable.length - 1];
+
+  if (event.shiftKey && document.activeElement === first) {
+    event.preventDefault();
+    last.focus();
+  } else if (!event.shiftKey && document.activeElement === last) {
+    event.preventDefault();
+    first.focus();
+  }
+}
+
+function setupInquiryForms() {
+  const forms = [...document.querySelectorAll('[data-inquiry-form]')];
+  if (!forms.length) return;
+
+  forms.forEach(form => {
+    const submit = form.querySelector('button[type="submit"]');
+    const status = form.querySelector('[data-form-status]');
+
+    form.addEventListener('submit', event => {
+      event.preventDefault();
+
+      if (!form.checkValidity()) {
+        form.reportValidity();
+        if (status) {
+          status.dataset.state = 'error';
+          status.textContent = 'Molimo popunite obavezna polja kako bismo pripremili jasan odgovor.';
+        }
+        return;
+      }
+
+      const data = new FormData(form);
+      const context = form.getAttribute('data-form-context') || 'Sajt';
+      const name = String(data.get('name') || '').trim();
+      const phone = String(data.get('phone') || '').trim();
+      const space = String(data.get('space') || '').trim();
+      const message = String(data.get('message') || '').trim() || 'Bez dodatne napomene.';
+      const details = [
+        `Stranica: ${context}`,
+        `Ime i prezime: ${name}`,
+        `Telefon: ${phone}`,
+        `Tip prostora: ${space}`,
+        `Poruka: ${message}`
+      ].join('\n');
+
+      submit?.setAttribute('disabled', 'true');
+      form.classList.add('is-submitting');
+
+      if (status) {
+        status.dataset.state = 'success';
+        status.textContent = 'Otvaramo email klijent sa pripremljenim upitom. Ako se ne otvori, pozovite nas direktno.';
+      }
+
+      const subject = encodeURIComponent(`Upit za uslugu — ${context}`);
+      const body = encodeURIComponent(details);
+      window.location.href = `mailto:11mssjaj@gmail.com?subject=${subject}&body=${body}`;
+
+      window.setTimeout(() => {
+        submit?.removeAttribute('disabled');
+        form.classList.remove('is-submitting');
+      }, 900);
+    });
+  });
 }
 
 function handleDeferredScroll() {

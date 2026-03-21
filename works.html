@@ -12,7 +12,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Poppins:wght@500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <link rel="stylesheet" href="styles.css?v=20260321m17">
+    <link rel="stylesheet" href="styles.css?v=20260321m18">
     <link rel="icon" href="./favicon.ico">
     <link rel="icon" type="image/png" sizes="32x32" href="./favicon-32.png">
   </head>
@@ -74,8 +74,8 @@
           <div class="section-head reveal">
             <h2>Prikaz radova sa fokusom na detalj, svetlo i završni utisak.</h2>
             <p>
-              Svaka kartica može odmah da primi realnu fotografiju sa terena. Za sada su ubačeni pripremljeni prikazi
-              koji jasno pokazuju kako će galerija izgledati kada se doda pravi materijal.
+              Izdvojili smo tipove kadrova koji najjasnije potvrđuju rezultat:
+              reprezentativan enterijer, kontaktne zone, poslovni prostor i pre/posle razliku.
             </p>
           </div>
 
@@ -100,7 +100,7 @@
               <span>Poslovni enterijer</span>
             </button>
 
-            <button class="gallery-card gallery-card-tall reveal" type="button" data-lightbox-src="assets/placeholder-space.svg" data-lightbox-caption="Slika prostora spremnog za završni kadar">
+            <button class="gallery-card gallery-card-tall reveal" type="button" data-lightbox-src="assets/placeholder-space.svg" data-lightbox-caption="Prostor spreman za završni kadar">
               <img src="assets/placeholder-space.svg" alt="Slika prostora">
               <span>Slika prostora spremnog za završni kadar</span>
             </button>
@@ -151,14 +151,52 @@
       <section class="section section-cta" id="kontakt">
         <div class="shell shell-wide">
           <div class="cta-panel reveal">
-            <h2>Ako želite isti nivo urednosti i završnog utiska, javite nam se direktno.</h2>
-            <p>
-              Dovoljno je da pošaljete fotografije prostora ili osnovne informacije o usluzi koja vam je potrebna.
-              Pripremićemo jasan predlog saradnje i termin.
-            </p>
-            <div class="cta-actions">
-              <a href="tel:+381643937000" class="btn btn-primary">Pozovite nas</a>
-              <a href="mailto:11mssjaj@gmail.com" class="btn btn-secondary">Pošaljite email</a>
+            <div class="cta-layout">
+              <div class="cta-copy">
+                <h2>Ako želite isti nivo urednosti i završnog utiska, javite nam se direktno.</h2>
+                <p>
+                  Dovoljno je da pošaljete fotografije prostora ili osnovne informacije o usluzi koja vam je potrebna.
+                  Pripremićemo jasan predlog saradnje i termin.
+                </p>
+                <div class="cta-actions">
+                  <a href="tel:+381643937000" class="btn btn-primary">Pozovite nas</a>
+                  <a href="mailto:11mssjaj@gmail.com" class="btn btn-secondary">Pošaljite email</a>
+                </div>
+                <ul class="cta-points">
+                  <li>Možete poslati i fotografije prostora</li>
+                  <li>Predlog saradnje bez nejasnih koraka</li>
+                  <li>Brz odgovor i termin po dogovoru</li>
+                </ul>
+              </div>
+
+              <form class="contact-form" data-inquiry-form data-form-context="Naši radovi">
+                <div class="form-grid">
+                  <label class="form-field">
+                    <span>Ime i prezime</span>
+                    <input type="text" name="name" autocomplete="name" required>
+                  </label>
+                  <label class="form-field">
+                    <span>Telefon</span>
+                    <input type="tel" name="phone" inputmode="tel" autocomplete="tel" required>
+                  </label>
+                  <label class="form-field form-field-full">
+                    <span>Tip prostora</span>
+                    <select name="space" required>
+                      <option value="">Izaberite tip prostora</option>
+                      <option>Stan ili kuća</option>
+                      <option>Kancelarija ili salon</option>
+                      <option>Dubinsko čišćenje</option>
+                      <option>Prostor nakon radova</option>
+                    </select>
+                  </label>
+                  <label class="form-field form-field-full">
+                    <span>Kratka napomena</span>
+                    <textarea name="message" rows="4" placeholder="Po želji navedite i da li šaljete fotografije prostora."></textarea>
+                  </label>
+                </div>
+                <button type="submit" class="btn btn-primary">Pošaljite upit</button>
+                <p class="form-status" data-form-status aria-live="polite">Upit otvara email sa svim informacijama koje unesete.</p>
+              </form>
             </div>
           </div>
         </div>
@@ -167,6 +205,6 @@
 
     <div id="site-footer"></div>
 
-    <script src="script.js?v=20260321m12"></script>
+    <script src="script.js?v=20260321m13"></script>
   </body>
 </html>
