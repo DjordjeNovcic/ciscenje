@@ -1979,16 +1979,35 @@ body.is-modal-open .social-rail {
 
   .section,
   .page-hero {
-    padding-block: 2.9rem;
+    padding-top: 3.3rem;
+    padding-bottom: 2.8rem;
   }
 
   .page-hero {
-    padding-top: 3.2rem;
+    padding-top: 3.45rem;
     padding-bottom: 2.2rem;
+  }
+
+  .section-head,
+  .why-copy,
+  .story-copy,
+  .page-hero-copy,
+  .service-detail-copy,
+  .cta-panel {
+    padding-top: 0.25rem;
   }
 
   .section-head {
     margin-bottom: 1.6rem;
+  }
+
+  .section-head .eyebrow,
+  .why-copy .eyebrow,
+  .story-copy .eyebrow,
+  .page-hero-copy .eyebrow,
+  .service-detail-copy .eyebrow,
+  .cta-panel .eyebrow {
+    margin-bottom: 0.78rem;
   }
 
   .section-head p,
@@ -2234,7 +2253,8 @@ body.is-modal-open .social-rail {
 
   .section,
   .page-hero {
-    padding-block: 2.35rem;
+    padding-top: 2.95rem;
+    padding-bottom: 2.3rem;
   }
 
   .section-head {
@@ -2242,7 +2262,28 @@ body.is-modal-open .social-rail {
   }
 
   .page-hero {
-    padding-top: 2.8rem;
+    padding-top: 3.05rem;
+  }
+
+  .section-head,
+  .why-copy,
+  .story-copy,
+  .page-hero-copy,
+  .service-detail-copy,
+  .cta-panel {
+    padding-top: 0.22rem;
+  }
+
+  .section-head .eyebrow,
+  .why-copy .eyebrow,
+  .story-copy .eyebrow,
+  .page-hero-copy .eyebrow,
+  .service-detail-copy .eyebrow,
+  .cta-panel .eyebrow {
+    margin-bottom: 0.72rem;
+    padding: 0.66rem 0.92rem;
+    font-size: 0.71rem;
+    letter-spacing: 0.16em;
   }
 
   .service-card-body,
