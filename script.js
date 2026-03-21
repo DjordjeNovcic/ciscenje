@@ -16,6 +16,7 @@ async function initializeSite() {
   setupNavigation();
   setupRevealAnimations();
   setupHeroParallax();
+  setupScrollStories();
   setupLightbox();
   handleDeferredScroll();
 }
@@ -177,6 +178,82 @@ function setupHeroParallax() {
   window.addEventListener('scroll', updateHero, { passive: true });
   window.addEventListener('resize', updateHero);
   updateHero();
+}
+
+function setupScrollStories() {
+  const stories = [...document.querySelectorAll('[data-scroll-story]')];
+  if (!stories.length) return;
+
+  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+  const activateStoryStep = (story, index) => {
+    const steps = [...story.querySelectorAll('[data-story-step]')];
+    const visuals = [...story.querySelectorAll('[data-story-visual]')];
+
+    steps.forEach((step, stepIndex) => {
+      step.classList.toggle('is-active', stepIndex === index);
+    });
+
+    visuals.forEach((visual, visualIndex) => {
+      visual.classList.toggle('is-active', visualIndex === index);
+    });
+  };
+
+  const updateStory = story => {
+    const steps = [...story.querySelectorAll('[data-story-step]')];
+    const progress = story.querySelector('[data-story-progress]');
+    if (!steps.length) return;
+
+    const desktopMode = window.innerWidth > 1080 && !reducedMotion.matches;
+    const viewportAnchor = window.innerHeight * (desktopMode ? 0.44 : 0.52);
+
+    let activeIndex = 0;
+    let bestDistance = Number.POSITIVE_INFINITY;
+
+    steps.forEach((step, index) => {
+      const rect = step.getBoundingClientRect();
+      const center = rect.top + rect.height / 2;
+      const distance = Math.abs(center - viewportAnchor);
+      if (distance < bestDistance) {
+        bestDistance = distance;
+        activeIndex = index;
+      }
+    });
+
+    activateStoryStep(story, activeIndex);
+
+    if (!progress) return;
+
+    if (!desktopMode) {
+      progress.style.transform = 'scaleY(1)';
+      return;
+    }
+
+    const storyRect = story.getBoundingClientRect();
+    const maxTravel = Math.max(storyRect.height - window.innerHeight * 0.7, 1);
+    const rawProgress = (viewportAnchor - storyRect.top) / maxTravel;
+    const clampedProgress = Math.max(0.18, Math.min(rawProgress, 1));
+    progress.style.transform = `scaleY(${clampedProgress})`;
+  };
+
+  const updateAllStories = () => {
+    stories.forEach(updateStory);
+  };
+
+  stories.forEach(story => {
+    const steps = [...story.querySelectorAll('[data-story-step]')];
+    steps.forEach((step, index) => {
+      step.addEventListener('mouseenter', () => {
+        if (window.innerWidth <= 1080) return;
+        activateStoryStep(story, index);
+      });
+    });
+  });
+
+  window.addEventListener('scroll', updateAllStories, { passive: true });
+  window.addEventListener('resize', updateAllStories);
+  reducedMotion.addEventListener('change', updateAllStories);
+  updateAllStories();
 }
 
 function setupLightbox() {

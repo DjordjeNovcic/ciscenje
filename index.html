@@ -12,7 +12,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Poppins:wght@500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <link rel="stylesheet" href="styles.css?v=20260321m4">
+    <link rel="stylesheet" href="styles.css?v=20260321m5">
     <link rel="icon" href="./favicon.ico">
     <link rel="icon" type="image/png" sizes="32x32" href="./favicon-32.png">
   </head>
@@ -193,28 +193,73 @@
           <div class="section-head reveal">
             <span class="eyebrow">Pre / Posle</span>
             <h2>Vizuelna razlika treba da bude jasna već na prvi pogled.</h2>
+            <p>Jedan precizan tretman menja način na koji prostor izgleda, diše i ostavlja utisak.</p>
           </div>
 
-          <div class="before-after-grid">
-            <article class="comparison-card reveal">
-              <div class="comparison-media">
-                <img src="assets/placeholder-before.svg" alt="Pre čišćenja">
-              </div>
-              <div class="comparison-copy">
-                <span>Pre</span>
-                <p>Prostor deluje zagušeno, bez jasne završnice i bez osećaja urednog ritma.</p>
-              </div>
-            </article>
+          <div class="before-after-story" data-scroll-story>
+            <div class="before-after-stage-rail">
+              <div class="before-after-stage">
+                <div class="before-after-stage-media is-active" data-story-visual="0">
+                  <img src="assets/placeholder-before.svg" alt="Prostor pre tretmana">
+                  <div class="before-after-stage-copy">
+                    <span>Pre tretmana</span>
+                    <strong>Utisak je težak i bez završne jasnoće.</strong>
+                    <p>Prostor deluje zasićeno, neujednačeno i bez osećaja urednog ritma.</p>
+                  </div>
+                </div>
 
-            <article class="comparison-card reveal reveal-delay-1">
-              <div class="comparison-media">
-                <img src="assets/placeholder-after.svg" alt="Posle čišćenja">
+                <div class="before-after-stage-media" data-story-visual="1">
+                  <img src="assets/placeholder-work-1.svg" alt="Tok rada tokom tretmana">
+                  <div class="before-after-stage-copy">
+                    <span>Tok rada</span>
+                    <strong>Najvažnije zone dobijaju fokus i redosled.</strong>
+                    <p>Detalji, kontaktne površine i opterećene tačke obrađuju se planski i precizno.</p>
+                  </div>
+                </div>
+
+                <div class="before-after-stage-media" data-story-visual="2">
+                  <img src="assets/placeholder-after.svg" alt="Prostor posle tretmana">
+                  <div class="before-after-stage-copy">
+                    <span>Posle tretmana</span>
+                    <strong>Prostor izgleda svetlije, mirnije i spremno za boravak.</strong>
+                    <p>Završni kadar pokazuje urednost koja se vidi odmah i deluje prirodno.</p>
+                  </div>
+                </div>
+
+                <div class="before-after-stage-progress">
+                  <span data-story-progress></span>
+                </div>
               </div>
-              <div class="comparison-copy">
-                <span>Posle</span>
-                <p>Posle tretmana enterijer izgleda mirnije, čistije i spremnije za svakodnevni boravak ili rad.</p>
-              </div>
-            </article>
+            </div>
+
+            <div class="before-after-steps">
+              <article class="before-after-step is-active" data-story-step="0">
+                <span class="before-after-step-index">01</span>
+                <div class="before-after-step-copy">
+                  <span class="before-after-step-label">Pre dolaska</span>
+                  <h3>Prostor bez jasne završnice</h3>
+                  <p>Kada se nakupi vizuelni šum, prostor deluje teže, tamnije i manje uredno nego što zaista jeste.</p>
+                </div>
+              </article>
+
+              <article class="before-after-step" data-story-step="1">
+                <span class="before-after-step-index">02</span>
+                <div class="before-after-step-copy">
+                  <span class="before-after-step-label">Tok rada</span>
+                  <h3>Precizan tretman sa redosledom</h3>
+                  <p>Radimo po zonama i prioritetima, tako da najvidljiviji delovi prostora prvi dobiju jasan pomak.</p>
+                </div>
+              </article>
+
+              <article class="before-after-step" data-story-step="2">
+                <span class="before-after-step-index">03</span>
+                <div class="before-after-step-copy">
+                  <span class="before-after-step-label">Završni kadar</span>
+                  <h3>Rezultat koji odmah menja utisak</h3>
+                  <p>Finalni nivo urednosti ne deluje samo čisto, već kontrolisano, smireno i reprezentativno.</p>
+                </div>
+              </article>
+            </div>
           </div>
         </div>
       </section>
@@ -317,6 +362,6 @@
     </main>
 
     <div id="site-footer"></div>
-    <script src="script.js?v=20260321m4"></script>
+    <script src="script.js?v=20260321m5"></script>
   </body>
 </html>
