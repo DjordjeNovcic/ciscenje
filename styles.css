@@ -1838,6 +1838,21 @@ body.is-modal-open .social-rail {
     width: min(calc(100% - 1rem), var(--content-width));
   }
 
+  .services-grid,
+  .team-grid,
+  .testimonial-grid,
+  .work-preview-grid,
+  .process-grid,
+  .before-after-grid,
+  .service-list-grid,
+  .why-grid,
+  .principles-grid,
+  .story-stats,
+  .footer-columns {
+    display: flex;
+    flex-direction: column;
+  }
+
   .hero-section {
     min-height: auto;
     padding-bottom: 1rem;
@@ -1889,10 +1904,36 @@ body.is-modal-open .social-rail {
 
   .home-page .services-grid .service-card:first-child {
     grid-column: span 1;
+    display: block;
+  }
+
+  .home-page .services-grid .service-card:first-child .service-card-media {
+    order: initial;
+    min-height: 0;
+    aspect-ratio: 1.32 / 0.92;
+  }
+
+  .home-page .services-grid .service-card:first-child .service-card-body {
+    display: block;
+    padding: 1.12rem;
   }
 
   .home-page .work-preview-grid .work-preview-card:first-child {
     grid-column: span 1;
+  }
+
+  .home-page .work-preview-grid .work-preview-card:first-child img {
+    aspect-ratio: 1.22 / 0.94;
+  }
+
+  .service-card,
+  .team-card,
+  .testimonial-card,
+  .work-preview-card,
+  .service-offer-card,
+  .comparison-card,
+  .gallery-card {
+    width: 100%;
   }
 
   .service-detail {
@@ -2177,6 +2218,10 @@ body.is-modal-open .social-rail {
 
   .home-page .services-grid .service-card:first-child h3 {
     font-size: 1.9rem;
+  }
+
+  .home-page .services-grid .service-card:first-child .service-card-body {
+    padding: 1rem;
   }
 
   .btn {
