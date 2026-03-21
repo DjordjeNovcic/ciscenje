@@ -89,6 +89,11 @@ body.home-page main {
   padding-top: var(--header-height);
 }
 
+body.home-page .hero-section {
+  width: 100vw;
+  margin-inline: calc(50% - 50vw);
+}
+
 img {
   display: block;
   max-width: 100%;
@@ -638,6 +643,7 @@ body.is-modal-open .social-rail {
 .hero-backdrop {
   position: relative;
   inset: 0;
+  width: 100%;
   min-height: inherit;
   height: 100%;
   background:
@@ -679,7 +685,7 @@ body.is-modal-open .social-rail {
   object-fit: cover;
   object-position: center center;
   filter: saturate(1.02) contrast(0.98) brightness(1.04);
-  transform: translate3d(0, var(--hero-shift, 0px), 0) scale(0.94);
+  transform: translate3d(0, var(--hero-shift, 0px), 0) scale(1.015);
   transform-origin: center center;
 }
 
@@ -2044,7 +2050,7 @@ body.is-modal-open .social-rail {
 
   .hero-poster-image {
     min-height: inherit;
-    transform: translate3d(0, var(--hero-shift, 0px), 0) scale(0.97);
+    transform: translate3d(0, var(--hero-shift, 0px), 0) scale(1.005);
   }
 
   .hero-card-grid,
