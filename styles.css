@@ -19,6 +19,7 @@
   --radius-md: 20px;
   --radius-lg: 32px;
   --content-width: 1580px;
+  --site-edge-padding: max(1.2rem, calc((100vw - var(--content-width)) / 2 + 1.2rem));
   --header-height: 92px;
   --ease-premium: cubic-bezier(0.16, 1, 0.3, 1);
 }
@@ -86,13 +87,17 @@ main {
 }
 
 body.home-page main {
-  padding-top: calc(var(--header-height) - 0.5rem);
+  padding-top: calc(var(--header-height) + clamp(0.4rem, 1vw, 0.9rem));
 }
 
 body.home-page .hero-section {
-  width: 100vw;
-  margin-inline: calc(50% - 50vw);
-  margin-top: -1px;
+  width: calc(100% - (2 * var(--site-edge-padding)));
+  margin: 0 auto;
+  margin-top: clamp(0.25rem, 1vw, 0.7rem);
+  border-radius: calc(var(--radius-lg) + 8px);
+  border: 1px solid rgba(140, 123, 106, 0.18);
+  box-shadow: var(--shadow-strong);
+  background: linear-gradient(135deg, rgba(247, 243, 236, 0.94), rgba(222, 214, 203, 0.78));
 }
 
 img {
@@ -411,7 +416,7 @@ body.is-scrolled .site-header {
   gap: 1.4rem;
   padding:
     1rem
-    max(1.2rem, calc((100vw - var(--content-width)) / 2 + 1.2rem));
+    var(--site-edge-padding);
   border: 0;
   border-bottom: 1px solid rgba(140, 123, 106, 0.16);
   border-radius: 0;
@@ -636,7 +641,8 @@ body.is-modal-open .social-rail {
 
 .hero-section {
   position: relative;
-  min-height: clamp(560px, calc(100svh - var(--header-height)), 980px);
+  height: clamp(420px, calc(68svh - var(--header-height)), 640px);
+  min-height: 0;
   padding: 0;
   overflow: hidden;
 }
@@ -647,6 +653,8 @@ body.is-modal-open .social-rail {
   width: 100%;
   min-height: inherit;
   height: 100%;
+  overflow: hidden;
+  border-radius: inherit;
   background:
     radial-gradient(circle at 9% 18%, rgba(194, 182, 166, 0.68), transparent 25%),
     radial-gradient(circle at 72% 16%, rgba(163, 143, 123, 0.2), transparent 24%),
@@ -663,7 +671,7 @@ body.is-modal-open .social-rail {
 
 .hero-backdrop::before {
   inset: 0;
-  border-radius: 0;
+  border-radius: inherit;
   background:
     linear-gradient(180deg, rgba(26, 21, 18, 0.16), rgba(26, 21, 18, 0.08) 24%, rgba(247, 243, 236, 0.01) 55%, rgba(26, 21, 18, 0.2)),
     radial-gradient(circle at center, rgba(255, 247, 237, 0.06), transparent 34%);
@@ -672,7 +680,7 @@ body.is-modal-open .social-rail {
 
 .hero-backdrop::after {
   inset: 0;
-  border-radius: 0;
+  border-radius: inherit;
   background:
     linear-gradient(90deg, rgba(230, 224, 214, 0.12), transparent 18%, transparent 82%, rgba(230, 224, 214, 0.12)),
     radial-gradient(circle at center, rgba(255, 248, 240, 0.08), transparent 24%);
@@ -2362,7 +2370,7 @@ body.is-modal-open .social-rail {
   }
 
   .hero-section {
-    min-height: clamp(500px, calc(100svh - var(--header-height)), 780px);
+    height: clamp(390px, calc(62svh - var(--header-height)), 560px);
   }
 
   .gallery-card-featured,
@@ -2377,6 +2385,7 @@ body.is-modal-open .social-rail {
 @media (max-width: 920px) {
   :root {
     --header-height: 82px;
+    --site-edge-padding: 1rem;
   }
 
   main {
@@ -2384,7 +2393,7 @@ body.is-modal-open .social-rail {
   }
 
   body.home-page main {
-    padding-top: 0;
+    padding-top: calc(var(--header-height) + 0.55rem);
   }
 
   body.home-page .site-header {
@@ -2563,11 +2572,12 @@ body.is-modal-open .social-rail {
   }
 
   .hero-section {
-    min-height: clamp(330px, calc(58svh + 24px), 460px);
+    height: clamp(280px, calc(46svh + 18px), 360px);
   }
 
   body.home-page .hero-section {
-    min-height: clamp(340px, 58svh, 470px);
+    height: clamp(290px, 46svh, 370px);
+    border-radius: 24px;
   }
 
   .hero-copy h1 {
@@ -3009,10 +3019,11 @@ body.is-modal-open .social-rail {
 @media (max-width: 560px) {
   :root {
     --header-height: 76px;
+    --site-edge-padding: 0.85rem;
   }
 
   .header-shell {
-    padding: 0.8rem 0.85rem;
+    padding: 0.8rem var(--site-edge-padding);
     gap: 0.8rem;
   }
 
@@ -3074,7 +3085,8 @@ body.is-modal-open .social-rail {
   }
 
   body.home-page .hero-section {
-    min-height: clamp(320px, 54svh, 430px);
+    height: clamp(250px, 40svh, 320px);
+    border-radius: 22px;
   }
 
   body.home-page .hero-poster-image {
