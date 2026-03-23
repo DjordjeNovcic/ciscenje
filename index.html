@@ -22,32 +22,35 @@
     <main>
       <section class="hero-section">
         <div class="hero-backdrop">
-          <img class="hero-poster-image" src="assets/new-hero.jpg" alt="MS Sjaj na fotografiji enterijera">
+          <picture class="hero-picture">
+            <source media="(max-width: 760px)" srcset="assets/new-hero-mobile.jpg">
+            <img class="hero-poster-image" src="assets/new-hero.jpg" alt="MS Sjaj na fotografiji enterijera">
+          </picture>
         </div>
       </section>
 
       <section class="hero-intro">
         <div class="shell shell-wide hero-shell">
           <div class="hero-copy reveal reveal-enter">
-            <span class="eyebrow">Kragujevac i okolina</span>
-            <h1>Profesionalno čišćenje doma i poslovnog prostora sa završnicom koja ostavlja utisak.</h1>
-            <p class="hero-lead">
-              MS Sjaj pruža pouzdano čišćenje stanova, dubinsko čišćenje i čišćenje kancelarija
-              sa jasnim dogovorom, mirnim tokom rada i rezultatom koji se vidi odmah.
-            </p>
+            <p class="hero-location">Kragujevac i okolina</p>
+            <h1>Profesionalno čišćenje doma i poslovnog prostora.</h1>
+            <div class="hero-summary">
+              <p class="hero-lead">MS Sjaj pruža:</p>
+              <ul class="hero-points">
+                <li>Čišćenje stanova bez stresa i improvizacije</li>
+                <li>Dubinsko čišćenje sa jasnim planom rada</li>
+                <li>Čišćenje kancelarija bez ometanja svakodnevnog ritma</li>
+              </ul>
+              <p class="hero-note">Od nas možete očekivati jasan dogovor, miran tok rada i rezultat koji se vidi odmah.</p>
+            </div>
             <div class="hero-actions">
               <a href="#kontakt" class="btn btn-primary">Zatražite ponudu</a>
               <a href="services.html" class="btn btn-secondary">Pogledajte usluge</a>
             </div>
-            <ul class="hero-points">
-              <li>Čišćenje stanova bez stresa i improvizacije</li>
-              <li>Dubinsko čišćenje sa jasnim planom rada</li>
-              <li>Čišćenje kancelarija bez ometanja svakodnevnog ritma</li>
-            </ul>
           </div>
 
           <aside class="hero-card reveal reveal-delay-1">
-            <p class="panel-title">MS Sjaj u brojkama</p>
+            <p class="panel-title">Brz pregled</p>
             <div class="hero-card-grid">
               <article>
                 <strong>24h</strong>
@@ -67,38 +70,18 @@
               </article>
             </div>
             <p>
-              Radimo uredno, tiho i precizno, sa fokusom na prostor koji treba da izgleda
-              reprezentativno odmah po završetku.
+              Diskretno, tačno i uredno, sa terminima koji se uklapaju u vaš raspored.
             </p>
           </aside>
-        </div>
-      </section>
-
-      <section class="trust-strip">
-        <div class="shell shell-wide trust-strip-shell">
-          <div class="trust-item reveal">
-            <span>01</span>
-            <p>Jasan dogovor pre dolaska i definisan obim rada.</p>
-          </div>
-          <div class="trust-item reveal reveal-delay-1">
-            <span>02</span>
-            <p>Bez skrivenih troškova i bez nejasnih koraka tokom usluge.</p>
-          </div>
-          <div class="trust-item reveal reveal-delay-2">
-            <span>03</span>
-            <p>Prostor koji posle tretmana deluje mirnije, urednije i svetlije.</p>
-          </div>
         </div>
       </section>
 
       <section class="section section-services">
         <div class="shell shell-wide">
           <div class="section-head reveal">
+            <span class="eyebrow">Usluge</span>
             <h2>Usluge za dom, poslovni prostor i zahtevnije završne tretmane.</h2>
-            <p>
-              Svaka usluga je postavljena tako da bude pregledna, jasna i laka za dogovor.
-              Fokus je na rezultatu koji se vidi, ali i na iskustvu saradnje koje deluje profesionalno od početka.
-            </p>
+            <p>Izaberite tretman prema tipu prostora i nivou završnice koji vam je potreban.</p>
           </div>
 
           <div class="services-grid">
@@ -150,32 +133,25 @@
       </section>
 
       <section class="section section-why">
-        <div class="shell shell-wide why-shell">
-          <div class="why-copy reveal">
-            <h2>Ne prodajemo samo čišćenje. Gradimo osećaj reda i poverenja.</h2>
-            <p>
-              Kada neko angažuje profesionalni tim, očekuje više od osnovne čistoće.
-              Očekuje preciznost, tačnost i završnicu koja pokazuje da je prostor zaista tretiran sa pažnjom.
-            </p>
-            <a href="about.html" class="text-link">Upoznajte naš pristup</a>
+        <div class="shell shell-wide">
+          <div class="section-head reveal">
+            <span class="eyebrow">Zašto MS Sjaj</span>
+            <h2>Saradnja koja je jasna od prvog dogovora do završnog kadra.</h2>
+            <p>Manje objašnjavanja, više reda, tačnosti i mirnog toka rada.</p>
           </div>
 
-          <div class="why-grid">
+          <div class="why-grid why-grid-compact">
             <article class="lift-card reveal">
-              <strong>Jasan proces</strong>
-              <p>Pre početka rada znate obim usluge, dinamiku dolaska i šta tačno dobijate.</p>
+              <strong>Jasan dogovor</strong>
+              <p>Pre dolaska definišemo obim rada, očekivanja i termin koji vam odgovara.</p>
             </article>
             <article class="lift-card reveal reveal-delay-1">
               <strong>Diskretan tim</strong>
               <p>Radimo organizovano i tiho, bez nepotrebnog opterećenja za klijenta i njegov prostor.</p>
             </article>
             <article class="lift-card reveal reveal-delay-2">
-              <strong>Vrhunska završnica</strong>
-              <p>Rezultat nije samo čist prostor, već enterijer koji deluje negovano i ozbiljno održavano.</p>
-            </article>
-            <article class="lift-card reveal reveal-delay-3">
-              <strong>Fokus na detalje</strong>
-              <p>Najviše pažnje posvećujemo zonama koje ljudi prvo primete kada uđu u prostor.</p>
+              <strong>Rezultat koji se vidi</strong>
+              <p>Prostor posle tretmana deluje urednije, mirnije i spremno za boravak ili rad.</p>
             </article>
           </div>
         </div>
@@ -184,101 +160,35 @@
       <section class="section section-before-after">
         <div class="shell shell-wide">
           <div class="section-head reveal">
-            <h2>Vizuelna razlika treba da bude jasna već na prvi pogled.</h2>
-            <p>Jedan precizan tretman menja način na koji prostor izgleda, diše i ostavlja utisak.</p>
+            <span class="eyebrow">Rezultat</span>
+            <h2>Jedan pregled pre i posle često kaže više od dugog objašnjenja.</h2>
+            <p>Na početnoj strani izdvajamo samo osnovno poređenje, a kompletne radove možete otvoriti u posebnoj galeriji.</p>
           </div>
 
-          <div class="before-after-story" data-scroll-story>
-            <div class="before-after-stage-rail">
-              <div class="before-after-stage">
-                <div class="before-after-stage-media is-active" data-story-visual="0">
-                  <img src="assets/placeholder-before.svg" alt="Prostor pre tretmana">
-                  <div class="before-after-stage-copy">
-                    <span>Pre tretmana</span>
-                    <strong>Utisak je težak i bez završne jasnoće.</strong>
-                    <p>Prostor deluje zasićeno, neujednačeno i bez osećaja urednog ritma.</p>
-                  </div>
-                </div>
-
-                <div class="before-after-stage-media" data-story-visual="1">
-                  <img src="assets/placeholder-work-1.svg" alt="Tok rada tokom tretmana">
-                  <div class="before-after-stage-copy">
-                    <span>Tok rada</span>
-                    <strong>Najvažnije zone dobijaju fokus i redosled.</strong>
-                    <p>Detalji, kontaktne površine i opterećene tačke obrađuju se planski i precizno.</p>
-                  </div>
-                </div>
-
-                <div class="before-after-stage-media" data-story-visual="2">
-                  <img src="assets/placeholder-after.svg" alt="Prostor posle tretmana">
-                  <div class="before-after-stage-copy">
-                    <span>Posle tretmana</span>
-                    <strong>Prostor izgleda svetlije, mirnije i spremno za boravak.</strong>
-                    <p>Završni kadar pokazuje urednost koja se vidi odmah i deluje prirodno.</p>
-                  </div>
-                </div>
-
-                <div class="before-after-stage-progress">
-                  <span data-story-progress></span>
-                </div>
+          <div class="before-after-grid">
+            <article class="comparison-card reveal">
+              <div class="comparison-media">
+                <img src="assets/placeholder-before.svg" alt="Prikaz prostora pre tretmana">
               </div>
-            </div>
+              <div class="comparison-copy">
+                <span>Pre</span>
+                <p>Prostor deluje teže, zasićeno i bez jasne završnice.</p>
+              </div>
+            </article>
 
-            <div class="before-after-steps">
-              <article class="before-after-step is-active" data-story-step="0">
-                <span class="before-after-step-index">01</span>
-                <div class="before-after-step-copy">
-                  <span class="before-after-step-label">Pre dolaska</span>
-                  <h3>Prostor bez jasne završnice</h3>
-                  <p>Kada se nakupi vizuelni šum, prostor deluje teže, tamnije i manje uredno nego što zaista jeste.</p>
-                </div>
-              </article>
-
-              <article class="before-after-step" data-story-step="1">
-                <span class="before-after-step-index">02</span>
-                <div class="before-after-step-copy">
-                  <span class="before-after-step-label">Tok rada</span>
-                  <h3>Precizan tretman sa redosledom</h3>
-                  <p>Radimo po zonama i prioritetima, tako da najvidljiviji delovi prostora prvi dobiju jasan pomak.</p>
-                </div>
-              </article>
-
-              <article class="before-after-step" data-story-step="2">
-                <span class="before-after-step-index">03</span>
-                <div class="before-after-step-copy">
-                  <span class="before-after-step-label">Završni kadar</span>
-                  <h3>Rezultat koji odmah menja utisak</h3>
-                  <p>Finalni nivo urednosti ne deluje samo čisto, već kontrolisano, smireno i reprezentativno.</p>
-                </div>
-              </article>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section class="section section-work-preview">
-        <div class="shell shell-wide">
-          <div class="section-head reveal">
-            <h2>Radovi koji pokazuju kako prostor treba da izgleda po završetku.</h2>
-            <p>
-              Izdvojili smo tipove kadrova koji najjasnije pokazuju nivo završnice:
-              dnevni prostor, kontaktne zone, poslovni enterijer i detalje koji grade prvi utisak.
-            </p>
+            <article class="comparison-card reveal reveal-delay-1">
+              <div class="comparison-media">
+                <img src="assets/placeholder-after.svg" alt="Prikaz prostora posle tretmana">
+              </div>
+              <div class="comparison-copy">
+                <span>Posle</span>
+                <p>Posle tretmana utisak je mirniji, svetliji i spreman za boravak ili rad.</p>
+              </div>
+            </article>
           </div>
 
-          <div class="work-preview-grid">
-            <a href="works.html" class="work-preview-card reveal">
-              <img src="assets/placeholder-work-1.svg" alt="Detaljna obrada dnevnog prostora">
-              <span>Detaljna obrada dnevnog prostora</span>
-            </a>
-            <a href="works.html" class="work-preview-card reveal reveal-delay-1">
-              <img src="assets/placeholder-work-2.svg" alt="Kuhinja i kontaktne površine">
-              <span>Kuhinja i kontaktne površine</span>
-            </a>
-            <a href="works.html" class="work-preview-card reveal reveal-delay-2">
-              <img src="assets/placeholder-work-3.svg" alt="Poslovni enterijer i završni detalji">
-              <span>Poslovni enterijer i završni detalji</span>
-            </a>
+          <div class="results-cta reveal reveal-delay-2">
+            <a href="works.html" class="btn btn-secondary">Pogledajte naše radove</a>
           </div>
         </div>
       </section>
@@ -286,7 +196,9 @@
       <section class="section section-testimonials">
         <div class="shell shell-wide">
           <div class="section-head reveal">
+            <span class="eyebrow">Utisci klijenata</span>
             <h2>Klijenti nas preporučuju zbog urednog procesa, tačnosti i vidljivog rezultata.</h2>
+            <p>Tri stvari koje najčešće čujemo posle završenog angažmana.</p>
           </div>
 
           <div class="testimonial-grid">
@@ -309,6 +221,7 @@
       <section class="section section-faq">
         <div class="shell shell-wide faq-shell">
           <div class="section-head reveal">
+            <span class="eyebrow">Česta pitanja</span>
             <h2>Pitanja koja klijenti najčešće postavljaju pre zakazivanja.</h2>
           </div>
 
@@ -338,19 +251,19 @@
           <div class="cta-panel reveal">
             <div class="cta-layout">
               <div class="cta-copy">
+                <span class="eyebrow">Kontakt</span>
                 <h2>Spremni da prostor izgleda uredno, mirno i ozbiljno održavano?</h2>
                 <p>
-                  Ostavite osnovne podatke o prostoru, a mi ćemo pripremiti jasan predlog usluge
-                  i termin koji odgovara vašem rasporedu.
+                  Ostavite osnovne podatke o prostoru, a mi ćemo pripremiti jasan predlog usluge i termin koji odgovara vašem rasporedu.
                 </p>
                 <div class="cta-actions">
                   <a href="tel:+381643937000" class="btn btn-primary">Pozovite nas</a>
                   <a href="mailto:11mssjaj@gmail.com" class="btn btn-secondary">Pošaljite email</a>
                 </div>
                 <ul class="cta-points">
-                  <li>Odgovor u roku od 24h</li>
-                  <li>Jasan obim rada bez improvizacije</li>
-                  <li>Dogovor termina 7/7</li>
+                  <li>Dogovor telefonom ili emailom</li>
+                  <li>Predlog usluge prema tipu prostora</li>
+                  <li>Termin koji se uklapa u vaš raspored</li>
                 </ul>
               </div>
 
