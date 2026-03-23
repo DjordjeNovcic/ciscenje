@@ -93,6 +93,9 @@ body.home-page main {
 
 body.home-page .hero-section {
   width: calc(100% - (2 * var(--site-edge-padding)));
+  aspect-ratio: 1584 / 672;
+  height: auto;
+  min-height: 0;
   margin: 0 auto;
   margin-top: clamp(0.25rem, 1vw, 0.7rem);
   border-radius: calc(var(--radius-lg) + 8px);
@@ -102,7 +105,9 @@ body.home-page .hero-section {
 }
 
 body.home-page .hero-poster-image {
-  object-position: var(--home-hero-image-position);
+  object-fit: contain;
+  object-position: center center;
+  transform: none;
 }
 
 img {
@@ -2582,7 +2587,7 @@ body.is-modal-open .social-rail {
   }
 
   body.home-page .hero-section {
-    height: clamp(290px, 46svh, 370px);
+    height: auto;
     border-radius: 24px;
   }
 
@@ -3092,13 +3097,13 @@ body.is-modal-open .social-rail {
   }
 
   body.home-page .hero-section {
-    height: clamp(250px, 40svh, 320px);
+    height: auto;
     border-radius: 22px;
   }
 
   body.home-page .hero-poster-image {
-    object-position: var(--home-hero-image-position);
-    transform: translate3d(0, var(--hero-shift, 0px), 0) scale(1.11);
+    object-position: center center;
+    transform: none;
   }
 
   .hero-card {
