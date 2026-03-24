@@ -21,8 +21,8 @@
 
     <main>
       <section class="page-hero page-hero-services">
-        <div class="shell shell-wide page-hero-shell">
-          <div class="page-hero-copy reveal">
+        <div class="shell shell-wide page-hero-shell page-hero-shell-services">
+          <div class="page-hero-copy page-hero-copy-services reveal">
             <span class="eyebrow">Usluge</span>
             <h1>Usluge čišćenja definisane prema prostoru, nivou tretmana i željenom utisku.</h1>
             <p>
@@ -35,41 +35,34 @@
             </div>
           </div>
 
-          <aside class="page-hero-panel page-hero-panel-rich reveal reveal-delay-1">
-            <p class="panel-title">Najtraženije usluge</p>
-            <p class="panel-lead">
-              Svaka usluga je predstavljena tako da unapred znate obim rada, nivo detalja
-              i očekivani rezultat.
-            </p>
-            <div class="panel-focus-list">
-              <article class="panel-focus-item">
-                <strong>Dubinsko čišćenje</strong>
-                <span>Za stanove i kuće kojima je potreban ozbiljan reset prostora, a ne samo osnovno održavanje.</span>
-              </article>
-              <article class="panel-focus-item">
-                <strong>Poslovni enterijeri</strong>
-                <span>Za kancelarije, salone i manje prostore koji moraju da ostave uredan i ozbiljan prvi utisak.</span>
-              </article>
-              <article class="panel-focus-item">
-                <strong>Nakon radova</strong>
-                <span>Za prostore koje treba pripremiti za useljenje, predaju ili početak korišćenja bez dodatnog haosa.</span>
-              </article>
-            </div>
-            <div class="panel-proof-row" aria-label="Ključne informacije o uslugama">
-              <article>
-                <strong>4</strong>
-                <span>glavna pravca usluge</span>
-              </article>
-              <article>
-                <strong>24h</strong>
-                <span>odgovor na upit</span>
-              </article>
-              <article>
-                <strong>7/7</strong>
-                <span>dogovor termina</span>
-              </article>
-            </div>
-          </aside>
+          <div class="services-hero-grid reveal reveal-delay-1" aria-label="Brza navigacija kroz usluge">
+            <a href="#service-dubinsko" class="services-hero-card">
+              <span class="card-tag">01</span>
+              <strong>Dubinsko čišćenje</strong>
+              <small>Stanovi i kuće kojima je potreban ozbiljan reset prostora.</small>
+            </a>
+            <a href="#service-poslovni" class="services-hero-card">
+              <span class="card-tag">02</span>
+              <strong>Poslovni prostor</strong>
+              <small>Kancelarije i enterijeri koji moraju da deluju uredno i ozbiljno.</small>
+            </a>
+            <a href="#service-namestaj" class="services-hero-card">
+              <span class="card-tag">03</span>
+              <strong>Nameštaj i tekstil</strong>
+              <small>Tretmani koji vraćaju osećaj svežine i negovanog enterijera.</small>
+            </a>
+            <a href="#service-radovi" class="services-hero-card">
+              <span class="card-tag">04</span>
+              <strong>Nakon radova</strong>
+              <small>Prostor spreman za useljenje, predaju ili prezentaciju.</small>
+            </a>
+          </div>
+
+          <div class="services-hero-meta reveal reveal-delay-2" aria-label="Ključne informacije o uslugama">
+            <span>4 pravca usluge</span>
+            <span>24h odgovor na upit</span>
+            <span>7/7 dogovor termina</span>
+          </div>
         </div>
       </section>
 
@@ -84,7 +77,7 @@
           </div>
 
           <div class="service-list-grid">
-            <article class="service-offer-card reveal">
+            <article id="service-dubinsko" class="service-offer-card reveal">
               <span class="card-tag">01</span>
               <h3>Dubinsko čišćenje</h3>
               <p>Za stanove i kuće kojima je potrebno ozbiljno osveženje prostora, a ne samo osnovno održavanje.</p>
@@ -95,7 +88,7 @@
               </ul>
             </article>
 
-            <article class="service-offer-card reveal reveal-delay-1">
+            <article id="service-poslovni" class="service-offer-card reveal reveal-delay-1">
               <span class="card-tag">02</span>
               <h3>Poslovni prostor</h3>
               <p>Čišćenje kancelarija, salona i manjih poslovnih enterijera bez ometanja rada i ritma tima.</p>
@@ -106,7 +99,7 @@
               </ul>
             </article>
 
-            <article class="service-offer-card reveal reveal-delay-2">
+            <article id="service-namestaj" class="service-offer-card reveal reveal-delay-2">
               <span class="card-tag">03</span>
               <h3>Nameštaj i tekstil</h3>
               <p>Tretmani koji vraćaju osećaj svežine foteljama, sofama, stolicama i tapaciranim površinama.</p>
@@ -117,7 +110,7 @@
               </ul>
             </article>
 
-            <article class="service-offer-card reveal reveal-delay-3">
+            <article id="service-radovi" class="service-offer-card reveal reveal-delay-3">
               <span class="card-tag">04</span>
               <h3>Nakon radova</h3>
               <p>Kada prostor treba da bude spreman za useljenje, predaju ili početak korišćenja bez dodatnog haosa.</p>
