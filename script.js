@@ -15,6 +15,7 @@ async function initializeSite() {
   setupScrollProgress();
   setupHeaderState();
   setupNavigation();
+  setupAnchorScroll();
   setupRevealAnimations();
   setupHeroParallax();
   setupScrollStories();
@@ -50,6 +51,9 @@ function getPartialFallback(url) {
   if (url.includes('header')) {
     return `
       <aside class="social-rail" aria-label="Društvene mreže">
+        <a href="tel:+381643937000" class="social-call" aria-label="Pozovite nas">
+          <i class="fas fa-phone-alt" aria-hidden="true"></i>
+        </a>
         <a href="https://www.facebook.com/" target="_blank" rel="noreferrer" aria-label="Fejsbuk">
           <i class="fab fa-facebook-f" aria-hidden="true"></i>
         </a>
@@ -80,6 +84,9 @@ function getPartialFallback(url) {
             <div class="mobile-nav-meta">
               <a href="tel:+381643937000" class="mobile-nav-phone">Pozovite: 064 / 393-7000</a>
               <div class="mobile-nav-socials" aria-label="Društvene mreže">
+                <a href="tel:+381643937000" class="social-call" aria-label="Pozovite nas">
+                  <i class="fas fa-phone-alt" aria-hidden="true"></i>
+                </a>
                 <a href="https://www.facebook.com/" target="_blank" rel="noreferrer" aria-label="Fejsbuk">
                   <i class="fab fa-facebook-f" aria-hidden="true"></i>
                 </a>
@@ -231,6 +238,35 @@ function closeNavigation(nav, toggle) {
   toggle.classList.remove('is-open');
   toggle.setAttribute('aria-expanded', 'false');
   document.body.classList.remove('nav-open');
+}
+
+function setupAnchorScroll() {
+  document.addEventListener('click', event => {
+    const link = event.target.closest('a[href^="#"]');
+    if (!link) return;
+
+    const href = link.getAttribute('href');
+    if (!href || href === '#') return;
+
+    if (href === '#vrh') {
+      event.preventDefault();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      if (window.location.hash !== href) {
+        history.replaceState(null, '', href);
+      }
+      return;
+    }
+
+    const target = document.querySelector(href);
+    if (!target) return;
+
+    event.preventDefault();
+    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+    if (window.location.hash !== href) {
+      history.replaceState(null, '', href);
+    }
+  });
 }
 
 function setupRevealAnimations() {

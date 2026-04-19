@@ -1,0 +1,7 @@
+<svg width="320" height="92" viewBox="0 0 320 92" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="320" height="92" rx="18" fill="white" fill-opacity="0"/>
+  <circle cx="81" cy="46" r="20" stroke="#7C6856" stroke-width="4"/>
+  <path d="M71 46H91M81 36V56" stroke="#B09277" stroke-width="4" stroke-linecap="round"/>
+  <text x="118" y="42" fill="#4A4036" font-family="Poppins, Arial, sans-serif" font-size="24" font-weight="700" letter-spacing="2">AROMA</text>
+  <text x="118" y="63" fill="#8C7B6A" font-family="Poppins, Arial, sans-serif" font-size="16" font-weight="600" letter-spacing="5">BISTRO</text>
+</svg>

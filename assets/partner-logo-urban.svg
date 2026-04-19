@@ -1,0 +1,6 @@
+<svg width="320" height="92" viewBox="0 0 320 92" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="320" height="92" rx="18" fill="white" fill-opacity="0"/>
+  <path d="M62 60V34H73V60M78 60V27H89V60M94 60V39H105V60" stroke="#7C6856" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="124" y="42" fill="#4A4036" font-family="Poppins, Arial, sans-serif" font-size="24" font-weight="700" letter-spacing="2">URBAN</text>
+  <text x="124" y="63" fill="#8C7B6A" font-family="Poppins, Arial, sans-serif" font-size="18" font-weight="600" letter-spacing="5">HUB</text>
+</svg>
