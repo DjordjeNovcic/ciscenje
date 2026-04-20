@@ -1969,10 +1969,24 @@ body.is-modal-open .social-rail {
 }
 
 .footer-column h3 {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
   margin-bottom: 0.8rem;
-  font-size: 0.96rem;
+  font-size: 1.06rem;
   letter-spacing: -0.01em;
   color: #ffffff;
+}
+
+.footer-column h3 i {
+  display: inline-grid;
+  place-items: center;
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 999px;
+  background: rgba(255, 183, 58, 0.12);
+  color: rgba(255, 183, 58, 0.9);
+  font-size: 0.74rem;
 }
 
 .footer-column a,

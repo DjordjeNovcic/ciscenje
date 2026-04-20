@@ -114,21 +114,21 @@ function getPartialFallback(url) {
         </div>
         <div class="footer-columns">
           <div class="footer-column">
-            <h3>Stranice</h3>
+            <h3><i class="fas fa-wand-sparkles" aria-hidden="true"></i><span>Stranice</span></h3>
             <a href="index.html">Početna</a>
             <a href="about.html">O nama</a>
             <a href="services.html">Usluge</a>
             <a href="works.html">Naši radovi</a>
           </div>
           <div class="footer-column">
-            <h3>Kontakt</h3>
+            <h3><i class="fas fa-phone-alt" aria-hidden="true"></i><span>Kontakt</span></h3>
             <a href="tel:+381643937000">064 / 393-7000</a>
             <a href="tel:+381655625876">065 / 562-5876</a>
             <a href="mailto:11mssjaj@gmail.com">11mssjaj@gmail.com</a>
             <p>Kragujevac i okolina</p>
           </div>
           <div class="footer-column">
-            <h3>Radno vreme</h3>
+            <h3><i class="far fa-clock" aria-hidden="true"></i><span>Radno vreme</span></h3>
             <p>Ponedeljak - Petak</p>
             <p>08:00 - 20:00</p>
             <p>Subota po dogovoru</p>
