@@ -2250,10 +2250,24 @@ body.is-modal-open .social-rail {
   gap: 0.7rem;
 }
 
+.footer-column-note {
+  max-width: 18rem;
+  margin: 0 0 0.25rem;
+  color: rgba(255, 245, 224, 0.58);
+  font-size: 0.9rem;
+  line-height: 1.62;
+}
+
 .footer-link-list a,
 .footer-top-link {
   position: relative;
   width: fit-content;
+}
+
+.footer-link-list {
+  grid-template-columns: repeat(2, minmax(0, max-content));
+  column-gap: 1.1rem;
+  row-gap: 0.8rem;
 }
 
 .footer-link-list a {
