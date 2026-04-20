@@ -1968,7 +1968,7 @@ body.is-modal-open .social-rail {
   grid-template-columns: repeat(3, minmax(0, 1fr));
 }
 
-.footer-column h3 {
+.footer-column h2 {
   display: inline-flex;
   align-items: center;
   gap: 0.55rem;
@@ -1981,7 +1981,7 @@ body.is-modal-open .social-rail {
   color: #ffffff;
 }
 
-.footer-column h3 i {
+.footer-column h2 i {
   display: inline-grid;
   place-items: center;
   width: 1.5rem;
