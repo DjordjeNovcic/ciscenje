@@ -12,7 +12,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <link rel="stylesheet" href="styles.css?v=20260420m21">
+    <link rel="stylesheet" href="styles.css?v=20260420m22">
     <link rel="icon" href="./favicon.ico">
     <link rel="icon" type="image/png" sizes="32x32" href="./favicon-32.png">
   </head>
@@ -22,58 +22,57 @@
     <main>
       <section class="hero-section">
         <div class="hero-backdrop">
-          <div class="shell shell-wide hero-stage">
-            <div class="hero-copy reveal reveal-enter">
-              <p class="hero-location">Kragujevac i okolina</p>
-              <h1>Prostor koji izgleda besprekorno već pri prvom pogledu.</h1>
-              <div class="hero-summary">
-                <p class="hero-lead">Dubinsko pranje nameštaja, čišćenje posle radova i kompletne usluge čišćenja za domove i poslovne prostore.</p>
-                <ul class="hero-points">
-                  <li>Jasan dogovor pre dolaska i usluga prilagođena prostoru</li>
-                  <li>Diskretan rad bez haosa, kašnjenja i improvizacije</li>
-                  <li>Završnica koja deluje uredno i profesionalno odmah</li>
-                </ul>
-                <p class="hero-note">Za klijente koji žele čist prostor, ozbiljan utisak i tim koji zna redosled rada od početka do kraja.</p>
-              </div>
-              <div class="hero-actions">
-                <a href="#kontakt" class="btn btn-primary">Zatražite ponudu</a>
-                <a href="services.html" class="btn btn-secondary">Pogledajte usluge</a>
-              </div>
+          <picture class="hero-picture">
+            <source media="(max-width: 760px)" srcset="assets/new-hero-mobile.jpg">
+            <img class="hero-poster-image" src="assets/new-hero.jpg" alt="MS Sjaj na fotografiji enterijera">
+          </picture>
+        </div>
+      </section>
+
+      <section class="hero-intro">
+        <div class="shell shell-wide hero-shell">
+          <div class="hero-copy reveal reveal-enter">
+            <p class="hero-location">Kragujevac i okolina</p>
+            <h1>Profesionalno čišćenje prostora koji mora da izgleda besprekorno.</h1>
+            <div class="hero-summary">
+              <p class="hero-lead">Za stanove, kancelarije i prostore koji treba da ostave ozbiljan prvi utisak.</p>
+              <ul class="hero-points">
+                <li>Čišćenje doma bez stresa, kašnjenja i improvizacije</li>
+                <li>Dubinski tretmani sa jasnim redosledom rada</li>
+                <li>Poslovni prostori koji ostaju uredni bez ometanja ritma firme</li>
+              </ul>
+              <p class="hero-note">Tačan dolazak, diskretan tok rada i završnica koja izgleda uredno čim otvorite vrata.</p>
             </div>
-
-            <div class="hero-visual reveal reveal-delay-1">
-              <div class="hero-visual-frame">
-                <picture class="hero-picture">
-                  <source media="(max-width: 760px)" srcset="assets/new-hero-mobile.jpg">
-                  <img class="hero-poster-image" src="assets/new-hero.jpg" alt="MS Sjaj na fotografiji enterijera">
-                </picture>
-              </div>
-
-              <div class="hero-visual-accent">
-                <span>MS Sjaj</span>
-                <p>Dubinsko čišćenje, nameštaj i završni tretmani za prostor koji mora da izgleda spremno odmah.</p>
-              </div>
+            <div class="hero-actions">
+              <a href="#kontakt" class="btn btn-primary">Zatražite ponudu</a>
+              <a href="services.html" class="btn btn-secondary">Pogledajte usluge</a>
             </div>
           </div>
 
-          <div class="shell shell-wide hero-proof-strip reveal reveal-delay-2" aria-label="Ključne prednosti">
-            <article>
-              <strong>24h</strong>
-              <span>odgovor na upit</span>
-            </article>
-            <article>
-              <strong>7/7</strong>
-              <span>dogovor termina</span>
-            </article>
-            <article>
-              <strong>500+</strong>
-              <span>završenih angažmana</span>
-            </article>
-            <article>
-              <strong>10+</strong>
-              <span>godina iskustva</span>
-            </article>
-          </div>
+          <aside class="hero-card reveal reveal-delay-1">
+            <p class="panel-title">Brz pregled</p>
+            <div class="hero-card-grid">
+              <article>
+                <strong>24h</strong>
+                <span>odgovor na upit</span>
+              </article>
+              <article>
+                <strong>7/7</strong>
+                <span>fleksibilni termini</span>
+              </article>
+              <article>
+                <strong>500+</strong>
+                <span>završenih angažmana</span>
+              </article>
+              <article>
+                <strong>10+</strong>
+                <span>godina iskustva</span>
+              </article>
+            </div>
+            <p>
+              Diskretno, tačno i uredno, sa terminima koji se uklapaju u vaš raspored.
+            </p>
+          </aside>
         </div>
       </section>
 
