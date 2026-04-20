@@ -50,6 +50,38 @@ body {
   text-rendering: optimizeLegibility;
 }
 
+.site-header,
+.social-rail,
+.scroll-progress,
+.hero-section,
+.page-hero {
+  transition:
+    opacity 720ms var(--ease-premium),
+    transform 720ms var(--ease-premium),
+    filter 720ms var(--ease-premium);
+}
+
+.site-body:not(.is-loaded) .site-header {
+  opacity: 0;
+  transform: translateY(-18px);
+}
+
+.site-body:not(.is-loaded) .social-rail {
+  opacity: 0;
+  transform: translateX(-18px);
+}
+
+.site-body:not(.is-loaded) .scroll-progress {
+  opacity: 0;
+}
+
+.site-body:not(.is-loaded) .hero-section,
+.site-body:not(.is-loaded) .page-hero {
+  opacity: 0;
+  transform: translateY(28px) scale(0.985);
+  filter: blur(8px);
+}
+
 body::before {
   content: "";
   position: fixed;
@@ -265,7 +297,7 @@ h4 {
 .page-hero-copy .eyebrow,
 .section-head .eyebrow,
 .cta-copy .eyebrow {
-  margin-bottom: 1.1rem;
+  margin-bottom: 1.22rem;
 }
 
 .section-head h2,
@@ -275,9 +307,9 @@ h4 {
 .story-copy h2,
 .service-detail-copy h2 {
   margin: 0;
-  font-size: clamp(2.35rem, 4vw, 4.5rem);
-  line-height: 0.94;
-  letter-spacing: -0.03em;
+  font-size: clamp(2.5rem, 4.3vw, 4.9rem);
+  line-height: 0.92;
+  letter-spacing: -0.034em;
 }
 
 .section-head p,
@@ -331,6 +363,20 @@ h4 {
   transform: translateY(-2px) scale(1.01);
 }
 
+.btn::before {
+  content: "";
+  position: absolute;
+  inset: -40% auto -40% -30%;
+  width: 46%;
+  transform: translateX(-145%) skewX(-22deg);
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.42), transparent);
+  opacity: 0;
+  pointer-events: none;
+  transition:
+    transform 680ms var(--ease-premium),
+    opacity 260ms var(--ease-premium);
+}
+
 .btn::after {
   content: "";
   position: absolute;
@@ -338,6 +384,12 @@ h4 {
   border-radius: inherit;
   background: linear-gradient(180deg, rgba(255, 255, 255, 0.22), rgba(255, 255, 255, 0));
   pointer-events: none;
+}
+
+.btn:hover::before,
+.btn:focus-visible::before {
+  opacity: 1;
+  transform: translateX(290%) skewX(-22deg);
 }
 
 .btn:focus-visible,
@@ -787,19 +839,19 @@ body.is-modal-open .social-rail {
 
 .hero-intro {
   position: relative;
-  padding-block: clamp(1.6rem, 2.8vw, 2.35rem) clamp(1.2rem, 2.5vw, 1.85rem);
+  padding-block: clamp(1.95rem, 3.2vw, 2.95rem) clamp(1.45rem, 2.8vw, 2.2rem);
 }
 
 .hero-shell {
   position: relative;
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(300px, 0.64fr);
-  gap: clamp(1.6rem, 2.6vw, 2.9rem);
+  gap: clamp(2rem, 3.1vw, 3.5rem);
   align-items: start;
 }
 
 .hero-copy {
-  max-width: 760px;
+  max-width: 820px;
   color: var(--color-ink);
   padding-bottom: 0;
 }
@@ -809,7 +861,7 @@ body.is-modal-open .social-rail {
   align-items: center;
   gap: 0.7rem;
   width: fit-content;
-  margin: 0 0 1.15rem;
+  margin: 0 0 1.35rem;
   padding: 0.65rem 1rem;
   border-radius: 999px;
   background: rgba(251, 247, 241, 0.78);
@@ -831,35 +883,36 @@ body.is-modal-open .social-rail {
 }
 
 .hero-copy h1 {
-  max-width: 10.6ch;
-  font-size: clamp(2.45rem, 3.9vw, 4.6rem);
-  line-height: 0.92;
-  letter-spacing: -0.035em;
+  max-width: 11.2ch;
+  font-size: clamp(2.75rem, 4.35vw, 5.1rem);
+  line-height: 0.9;
+  letter-spacing: -0.042em;
   margin-top: 0;
 }
 
 .hero-summary {
   display: grid;
-  gap: 1rem;
-  max-width: 39rem;
-  margin-top: 1.1rem;
+  gap: 1.12rem;
+  max-width: 41rem;
+  margin-top: 1.35rem;
 }
 
 .hero-copy .hero-lead {
   max-width: none;
   margin: 0;
-  font-size: 1.03rem;
+  font-size: clamp(1.08rem, 1.45vw, 1.2rem);
   font-weight: 600;
-  letter-spacing: -0.01em;
+  letter-spacing: -0.016em;
   color: var(--color-ink);
+  line-height: 1.58;
 }
 
 .hero-note {
   margin: 0;
-  max-width: 36rem;
+  max-width: 37rem;
   color: rgba(95, 76, 58, 0.94);
-  font-size: 1rem;
-  line-height: 1.72;
+  font-size: 1.03rem;
+  line-height: 1.74;
 }
 
 .hero-actions,
@@ -867,7 +920,7 @@ body.is-modal-open .social-rail {
   display: flex;
   flex-wrap: wrap;
   gap: 0.95rem;
-  margin-top: 1.55rem;
+  margin-top: 1.8rem;
 }
 
 .hero-points {
@@ -958,6 +1011,32 @@ body.is-modal-open .social-rail {
   border-radius: 18px;
   background: rgba(255, 255, 255, 0.56);
   border: 1px solid rgba(217, 154, 43, 0.14);
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-card-grid article::after,
+.services-hero-card::after,
+.partner-logo-item::after,
+.services-hero-meta span::after,
+.works-hero-proof span::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at var(--pointer-x, 50%) var(--pointer-y, 50%), rgba(255, 255, 255, 0.44), transparent 44%);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 240ms var(--ease-premium);
+}
+
+.hero-card-grid article:hover::after,
+.services-hero-card:hover::after,
+.services-hero-card:focus-visible::after,
+.partner-logo-item:hover::after,
+.services-hero-meta span:hover::after,
+.works-hero-proof span:hover::after {
+  opacity: 1;
 }
 
 .hero-card-grid strong,
@@ -1133,6 +1212,25 @@ body.is-modal-open .social-rail {
     border-color 260ms var(--ease-premium);
 }
 
+.work-preview-card {
+  position: relative;
+}
+
+.work-preview-card::before,
+.gallery-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background:
+    linear-gradient(180deg, rgba(28, 25, 23, 0.02) 10%, rgba(28, 25, 23, 0.16) 56%, rgba(28, 25, 23, 0.66) 100%);
+  opacity: 0.78;
+  pointer-events: none;
+  transition:
+    opacity 260ms var(--ease-premium),
+    transform 520ms var(--ease-premium);
+}
+
 .service-card {
   background: linear-gradient(180deg, rgba(251, 247, 241, 0.84), rgba(239, 228, 211, 0.76));
 }
@@ -1147,7 +1245,7 @@ body.is-modal-open .social-rail {
 .process-step:hover,
 .service-offer-card:hover,
 .testimonial-card:hover {
-  transform: translateY(-6px);
+  transform: translateY(-8px);
   box-shadow: var(--shadow-strong);
   border-color: rgba(217, 154, 43, 0.28);
 }
@@ -1183,6 +1281,20 @@ body.is-modal-open .social-rail {
   filter: saturate(1.02) contrast(1.03);
 }
 
+.work-preview-card:hover::before,
+.gallery-card:hover::before,
+.gallery-card:focus-visible::before {
+  opacity: 0.96;
+  transform: scale(1.02);
+}
+
+.work-preview-card:hover img,
+.gallery-card:hover img,
+.gallery-card:focus-visible img {
+  transform: scale(1.055);
+  filter: saturate(1.07) contrast(1.05) brightness(0.98);
+}
+
 .service-card-media {
   aspect-ratio: 1.16 / 1;
 }
@@ -1196,6 +1308,11 @@ body.is-modal-open .social-rail {
 .process-step,
 .lift-card {
   padding: 1.55rem;
+}
+
+.work-preview-card span,
+.gallery-card span {
+  z-index: 1;
 }
 
 .card-tag {
@@ -1654,6 +1771,8 @@ body.is-modal-open .social-rail {
 .partner-logo-item {
   display: grid;
   place-items: center;
+  position: relative;
+  overflow: hidden;
   width: clamp(180px, 18vw, 240px);
   min-width: clamp(180px, 18vw, 240px);
   height: 72px;
@@ -1664,6 +1783,8 @@ body.is-modal-open .social-rail {
 }
 
 .partner-logo-item img {
+  position: relative;
+  z-index: 1;
   width: 100%;
   max-width: 150px;
   height: auto;
@@ -2034,17 +2155,18 @@ body.is-modal-open .social-rail {
 
 .page-hero-shell {
   display: grid;
-  gap: clamp(1.45rem, 2.8vw, 2.65rem);
+  gap: clamp(1.55rem, 3vw, 2.85rem);
   align-items: start;
 }
 
 .page-hero-copy h1 {
   margin-top: 1.2rem;
-  max-width: 15ch;
+  max-width: 11ch;
 }
 
 .page-hero-copy p {
   max-width: 48rem;
+  margin-top: 1.15rem;
 }
 
 .page-hero-shell-about {
@@ -2177,7 +2299,7 @@ body.is-modal-open .social-rail {
 
 .works-hero-shell {
   display: grid;
-  gap: clamp(1.2rem, 2.8vw, 2rem);
+  gap: clamp(1.5rem, 3vw, 2.45rem);
   grid-template-columns: minmax(0, 1.14fr) minmax(320px, 0.7fr);
   align-items: end;
 }
@@ -2223,8 +2345,8 @@ body.is-modal-open .social-rail {
   bottom: clamp(1.35rem, 3vw, 2.2rem);
   z-index: 1;
   display: grid;
-  gap: 0.95rem;
-  max-width: 34rem;
+  gap: 1.08rem;
+  max-width: 37rem;
 }
 
 .works-hero-stage-copy .eyebrow,
@@ -2233,15 +2355,18 @@ body.is-modal-open .social-rail {
 }
 
 .works-hero-stage-copy h1 {
-  max-width: 9ch;
+  max-width: 10ch;
   color: var(--color-ink);
-  font-size: clamp(2.5rem, 4.5vw, 4.4rem);
-  line-height: 0.96;
+  font-size: clamp(2.8rem, 4.8vw, 4.9rem);
+  line-height: 0.92;
+  letter-spacing: -0.04em;
 }
 
 .works-hero-stage-copy p {
-  max-width: 30rem;
+  max-width: 33rem;
   color: var(--color-ink-soft);
+  font-size: 1.02rem;
+  line-height: 1.7;
 }
 
 .works-hero-meta {
@@ -2275,6 +2400,16 @@ body.is-modal-open .social-rail {
   border-radius: 18px;
   background: rgba(255, 255, 255, 0.56);
   border: 1px solid rgba(217, 154, 43, 0.12);
+  transition:
+    transform 240ms var(--ease-premium),
+    box-shadow 240ms var(--ease-premium),
+    border-color 240ms var(--ease-premium);
+}
+
+.works-hero-list li:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 20px 34px rgba(93, 63, 28, 0.12);
+  border-color: rgba(217, 154, 43, 0.2);
 }
 
 .works-hero-list strong {
@@ -2611,8 +2746,8 @@ body.is-modal-open .social-rail {
 
 .gallery-card:hover img,
 .gallery-card:focus-visible img {
-  transform: scale(1.03);
-  filter: saturate(1.04);
+  transform: scale(1.055);
+  filter: saturate(1.07) contrast(1.05) brightness(0.98);
 }
 
 .gallery-card span {
@@ -2620,14 +2755,24 @@ body.is-modal-open .social-rail {
   left: 1rem;
   right: 1rem;
   bottom: 1rem;
-  padding: 0.9rem 1rem;
-  border-radius: 16px;
-  background: rgba(28, 25, 23, 0.72);
-  color: rgba(255, 245, 224, 0.92);
-  font-size: 0.96rem;
+  padding: 1rem 1.05rem;
+  border-radius: 18px;
+  background: linear-gradient(180deg, rgba(28, 25, 23, 0.64), rgba(28, 25, 23, 0.82));
+  color: rgba(255, 248, 236, 0.98);
+  font-size: 0.98rem;
   font-weight: 600;
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
+  transition:
+    transform 260ms var(--ease-premium),
+    background 260ms var(--ease-premium),
+    color 260ms var(--ease-premium);
+}
+
+.gallery-card:hover span,
+.gallery-card:focus-visible span {
+  transform: translateY(-4px);
+  background: linear-gradient(180deg, rgba(28, 25, 23, 0.58), rgba(28, 25, 23, 0.86));
 }
 
 .gallery-card-featured {
@@ -2737,14 +2882,18 @@ body.is-modal-open .social-rail {
 .reveal {
   opacity: 0;
   transform: translateY(24px);
+  filter: blur(10px);
   transition:
     opacity 700ms var(--ease-premium),
-    transform 700ms var(--ease-premium);
+    transform 700ms var(--ease-premium),
+    filter 700ms var(--ease-premium);
+  will-change: opacity, transform, filter;
 }
 
 .reveal.is-visible {
   opacity: 1;
   transform: translateY(0);
+  filter: blur(0);
 }
 
 .reveal-delay-1 {

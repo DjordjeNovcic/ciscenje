@@ -11,6 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 async function initializeSite() {
   await loadSharedPartials();
+  setupPremiumEntrance();
   setupCurrentYear();
   setupScrollProgress();
   setupHeaderState();
@@ -19,6 +20,7 @@ async function initializeSite() {
   setupRevealAnimations();
   setupHeroParallax();
   setupScrollStories();
+  setupPointerGlow();
   setupLightbox();
   setupInquiryForms();
   handleDeferredScroll();
@@ -150,6 +152,19 @@ function setupCurrentYear() {
   if (year) {
     year.textContent = String(new Date().getFullYear());
   }
+}
+
+function setupPremiumEntrance() {
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    document.body.classList.add('is-loaded');
+    return;
+  }
+
+  window.requestAnimationFrame(() => {
+    window.requestAnimationFrame(() => {
+      document.body.classList.add('is-loaded');
+    });
+  });
 }
 
 function setupScrollProgress() {
@@ -385,6 +400,36 @@ function setupScrollStories() {
   window.addEventListener('resize', updateAllStories);
   reducedMotion.addEventListener('change', updateAllStories);
   updateAllStories();
+}
+
+function setupPointerGlow() {
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  if (!window.matchMedia('(hover: hover)').matches) return;
+
+  const targets = [
+    '.btn',
+    '.services-hero-card',
+    '.partner-logo-item',
+    '.hero-card-grid article',
+    '.services-hero-meta span',
+    '.works-hero-proof span'
+  ];
+
+  document.querySelectorAll(targets.join(', ')).forEach(element => {
+    element.addEventListener('mousemove', event => {
+      const rect = element.getBoundingClientRect();
+      const x = event.clientX - rect.left;
+      const y = event.clientY - rect.top;
+
+      element.style.setProperty('--pointer-x', `${x}px`);
+      element.style.setProperty('--pointer-y', `${y}px`);
+    });
+
+    element.addEventListener('mouseleave', () => {
+      element.style.removeProperty('--pointer-x');
+      element.style.removeProperty('--pointer-y');
+    });
+  });
 }
 
 function setupLightbox() {
