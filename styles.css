@@ -1933,7 +1933,7 @@ body.is-modal-open .social-rail {
 
 .footer-shell {
   display: grid;
-  grid-template-columns: minmax(280px, 0.9fr) minmax(540px, 1.1fr);
+  grid-template-columns: minmax(320px, 1.02fr) minmax(520px, 0.98fr);
   align-items: start;
   gap: clamp(2rem, 4vw, 4.4rem);
   padding-inline: var(--layout-inline-padding);
@@ -1941,12 +1941,12 @@ body.is-modal-open .social-rail {
 }
 
 .footer-intro {
-  max-width: 31rem;
+  max-width: 35rem;
 }
 
 .footer-intro h2 {
   margin-top: 0.9rem;
-  max-width: 12.5ch;
+  max-width: 14.5ch;
   font-size: clamp(1.95rem, 2.35vw, 2.7rem);
   line-height: 0.97;
   letter-spacing: -0.03em;
@@ -1955,7 +1955,7 @@ body.is-modal-open .social-rail {
 
 .footer-intro p {
   margin-top: 1.1rem;
-  max-width: 29rem;
+  max-width: 33rem;
   color: rgba(255, 245, 224, 0.74);
 }
 
