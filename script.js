@@ -129,14 +129,6 @@ function getPartialFallback(url) {
               </span>
             </a>
           </div>
-          <div class="footer-socials" aria-label="Društvene mreže">
-            <a href="https://www.facebook.com/" target="_blank" rel="noreferrer" aria-label="Fejsbuk">
-              <i class="fab fa-facebook-f" aria-hidden="true"></i>
-            </a>
-            <a href="https://www.instagram.com/mssjaj.kg?igsh=ZjlzajBydXIxemMy" target="_blank" rel="noreferrer" aria-label="Instagram">
-              <i class="fab fa-instagram" aria-hidden="true"></i>
-            </a>
-          </div>
         </div>
         <div class="footer-utility">
           <div class="footer-column footer-column-nav">

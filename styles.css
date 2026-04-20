@@ -397,7 +397,6 @@ h4 {
 .social-rail a:focus-visible,
 .faq-item summary:focus-visible,
 .footer-action:focus-visible,
-.footer-socials a:focus-visible,
 .footer-column a:focus-visible,
 .footer-top-link:focus-visible,
 .gallery-card:focus-visible {
@@ -2191,42 +2190,12 @@ body.is-modal-open .social-rail {
   letter-spacing: 0.01em;
 }
 
-.footer-socials {
-  display: flex;
-  align-items: center;
-  gap: 0.7rem;
-  margin-top: 1.2rem;
-}
-
-.footer-socials a {
-  display: inline-grid;
-  place-items: center;
-  width: 2.8rem;
-  height: 2.8rem;
-  border-radius: 999px;
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 245, 224, 0.12);
-  color: rgba(255, 245, 224, 0.86);
-  transition:
-    transform 220ms var(--ease-premium),
-    color 220ms var(--ease-premium),
-    border-color 220ms var(--ease-premium),
-    background-color 220ms var(--ease-premium);
-}
-
-.footer-socials a:hover,
-.footer-socials a:focus-visible {
-  transform: translateY(-2px);
-  color: #ffffff;
-  border-color: rgba(255, 183, 58, 0.26);
-  background: rgba(255, 255, 255, 0.08);
-}
-
 .footer-utility {
   display: grid;
-  gap: 1.5rem;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.6rem;
   align-self: stretch;
-  width: min(100%, 36rem);
+  width: min(100%, 42rem);
   justify-self: end;
 }
 
@@ -2235,11 +2204,14 @@ body.is-modal-open .social-rail {
   align-content: start;
   gap: 0.85rem;
   padding-top: 0.15rem;
+  min-width: 0;
 }
 
 .footer-column + .footer-column {
-  padding-top: 1.4rem;
-  border-top: 1px solid rgba(255, 245, 224, 0.1);
+  padding-top: 0.15rem;
+  padding-left: 1.5rem;
+  border-top: 0;
+  border-left: 1px solid rgba(255, 245, 224, 0.1);
 }
 
 .footer-column h2 {
@@ -3473,6 +3445,7 @@ body.is-modal-open .social-rail {
   }
 
   .footer-utility {
+    grid-template-columns: 1fr;
     width: 100%;
     justify-self: stretch;
   }
@@ -4453,6 +4426,13 @@ body.is-modal-open .social-rail {
   .footer-utility,
   .footer-column {
     gap: 0.9rem;
+  }
+
+  .footer-column + .footer-column {
+    padding-left: 0;
+    padding-top: 1rem;
+    border-left: 0;
+    border-top: 1px solid rgba(255, 245, 224, 0.1);
   }
 
   .footer-action {
