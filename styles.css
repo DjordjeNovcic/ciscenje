@@ -140,7 +140,7 @@ body.home-page .hero-section {
     calc(100% - 2.25rem - (2 * var(--home-content-padding))),
     calc(var(--content-width) - (2 * var(--home-content-padding)))
   );
-  aspect-ratio: 1584 / 672;
+  aspect-ratio: 1584 / 740;
   height: auto;
   min-height: 0;
   margin: 0 auto;
@@ -152,8 +152,8 @@ body.home-page .hero-section {
 }
 
 body.home-page .hero-poster-image {
-  object-fit: contain;
-  object-position: center center;
+  object-fit: cover;
+  object-position: center 44%;
   transform: none;
 }
 
@@ -3548,7 +3548,7 @@ body.is-modal-open .social-rail {
   }
 
   body.home-page .hero-section {
-    aspect-ratio: 768 / 1376;
+    aspect-ratio: 4 / 5.9;
     height: auto;
     border-radius: 24px;
   }
@@ -3588,8 +3588,8 @@ body.is-modal-open .social-rail {
   }
 
   body.home-page .hero-poster-image {
-    object-fit: contain;
-    object-position: center top;
+    object-fit: cover;
+    object-position: 62% center;
     transform: none;
   }
 
