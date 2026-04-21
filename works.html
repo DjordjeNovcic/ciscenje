@@ -138,28 +138,59 @@
         <div class="shell shell-wide">
           <div class="section-head reveal">
             <h2>Poseban prostor za poređenja koja na najbrži način grade poverenje.</h2>
+            <p>
+              Umesto odvojenih kartica, ovde rezultat može da se pregleda direktno kroz jedan kadar
+              koji jasno pokazuje razliku između početnog stanja i završne obrade.
+            </p>
           </div>
 
-          <div class="before-after-grid">
-            <article class="comparison-card reveal">
-              <div class="comparison-media">
-                <img src="assets/work-bedroom-before.jpeg" alt="Prikaz spavaće sobe pre tretmana">
+          <div class="before-after-compare-layout">
+            <article class="before-after-compare-card reveal" data-image-comparison data-initial="56">
+              <div class="before-after-compare-stage">
+                <div class="before-after-compare-layer before-after-compare-layer-base">
+                  <img src="assets/work-bedroom-before.jpeg" alt="Spavaća soba pre tretmana">
+                </div>
+                <div class="before-after-compare-layer before-after-compare-layer-overlay" data-comparison-overlay>
+                  <img src="assets/work-bedroom-after.jpeg" alt="Spavaća soba posle tretmana">
+                </div>
+                <div class="before-after-compare-divider" data-comparison-divider aria-hidden="true">
+                  <span class="before-after-compare-handle">
+                    <i class="fas fa-arrows-left-right" aria-hidden="true"></i>
+                  </span>
+                </div>
+                <div class="before-after-compare-badge before-after-compare-badge-left">Pre</div>
+                <div class="before-after-compare-badge before-after-compare-badge-right">Posle</div>
+                <input
+                  class="before-after-compare-range"
+                  data-comparison-range
+                  type="range"
+                  min="0"
+                  max="100"
+                  value="56"
+                  aria-label="Pomerite klizač za poređenje stanja pre i posle tretmana"
+                >
               </div>
-              <div class="comparison-copy">
-                <span>Pre</span>
-                <p>Fotografija prostora pre tretmana, sa fokusom na stanje koje treba rešiti.</p>
+
+              <div class="before-after-compare-caption">
+                <span class="eyebrow">Interaktivno poređenje</span>
+                <strong>Jedan kadar, jasna razlika.</strong>
+                <p>Pomerite klizač i pogledajte kako prostor izgleda pre tretmana i nakon završne obrade.</p>
               </div>
             </article>
 
-            <article class="comparison-card reveal reveal-delay-1">
-              <div class="comparison-media">
-                <img src="assets/work-bedroom-after.jpeg" alt="Prikaz spavaće sobe posle tretmana">
-              </div>
-              <div class="comparison-copy">
-                <span>Posle</span>
-                <p>Fotografija prostora nakon tretmana, sa jasnim vizuelnim dokazom razlike.</p>
-              </div>
-            </article>
+            <div class="before-after-compare-copy reveal reveal-delay-1">
+              <p class="panel-title">Zašto ovakav prikaz radi</p>
+              <h3>Klijent odmah vidi šta zapravo menjamo u prostoru.</h3>
+              <p>
+                Kada se isti kadar gleda kroz pre/posle slider, razlika je jasnija nego kroz dve odvojene fotografije.
+                To je najbrži način da se pokaže urednost, svetlina i završni utisak koji ostaje posle tretmana.
+              </p>
+              <ul class="detail-list">
+                <li>Isti ugao, bez konfuzije između kadrova</li>
+                <li>Jasniji osećaj promene na prvi pogled</li>
+                <li>Premium prikaz koji pojačava poverenje</li>
+              </ul>
+            </div>
           </div>
         </div>
       </section>
@@ -190,6 +221,6 @@
 
     <div id="site-footer"></div>
 
-    <script src="script.js?v=20260420m20"></script>
+    <script src="script.js?v=20260421m13"></script>
   </body>
 </html>

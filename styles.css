@@ -1490,6 +1490,164 @@ body.is-modal-open .social-rail {
   grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
+.before-after-compare-layout {
+  display: grid;
+  gap: clamp(1.25rem, 3vw, 2.2rem);
+  grid-template-columns: minmax(0, 1.18fr) minmax(320px, 0.72fr);
+  align-items: center;
+}
+
+.before-after-compare-card {
+  --comparison-position: 56%;
+  display: grid;
+  gap: 1rem;
+  padding: clamp(1rem, 2vw, 1.25rem);
+  border-radius: calc(var(--radius-lg) + 8px);
+  background: linear-gradient(180deg, rgba(251, 247, 241, 0.88), rgba(239, 228, 211, 0.8));
+  border: 1px solid rgba(217, 154, 43, 0.14);
+  box-shadow: var(--shadow-strong);
+}
+
+.before-after-compare-stage {
+  position: relative;
+  overflow: hidden;
+  min-height: 540px;
+  border-radius: calc(var(--radius-lg) + 4px);
+  background: rgba(255, 255, 255, 0.6);
+}
+
+.before-after-compare-layer,
+.before-after-compare-layer img {
+  width: 100%;
+  height: 100%;
+}
+
+.before-after-compare-layer {
+  position: absolute;
+  inset: 0;
+}
+
+.before-after-compare-layer img {
+  display: block;
+  object-fit: cover;
+}
+
+.before-after-compare-layer-overlay {
+  clip-path: inset(0 calc(100% - var(--comparison-position)) 0 0);
+}
+
+.before-after-compare-divider {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: var(--comparison-position);
+  width: 1px;
+  background: rgba(255, 255, 255, 0.9);
+  box-shadow: 0 0 0 1px rgba(28, 25, 23, 0.1);
+  transform: translateX(-50%);
+  z-index: 2;
+  pointer-events: none;
+}
+
+.before-after-compare-handle {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  display: grid;
+  place-items: center;
+  width: 56px;
+  height: 56px;
+  border-radius: 999px;
+  background: rgba(255, 253, 248, 0.92);
+  border: 1px solid rgba(217, 154, 43, 0.22);
+  color: var(--color-primary);
+  box-shadow: 0 20px 36px rgba(28, 25, 23, 0.16);
+  transform: translate(-50%, -50%);
+}
+
+.before-after-compare-range {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  opacity: 0;
+  cursor: ew-resize;
+}
+
+.before-after-compare-badge {
+  position: absolute;
+  top: 1rem;
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  min-height: 2.65rem;
+  padding: 0.62rem 0.9rem;
+  border-radius: 999px;
+  background: rgba(28, 25, 23, 0.44);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: rgba(255, 248, 236, 0.96);
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.before-after-compare-badge-left {
+  left: 1rem;
+}
+
+.before-after-compare-badge-right {
+  right: 1rem;
+}
+
+.before-after-compare-caption {
+  display: grid;
+  gap: 0.55rem;
+  padding-inline: 0.25rem;
+}
+
+.before-after-compare-caption strong {
+  color: var(--color-ink);
+  font-family: "Cormorant Garamond", serif;
+  font-size: clamp(1.8rem, 2.5vw, 2.45rem);
+  line-height: 0.98;
+}
+
+.before-after-compare-caption p {
+  margin: 0;
+  color: var(--color-ink-soft);
+  font-size: 0.98rem;
+  line-height: 1.62;
+}
+
+.before-after-compare-copy {
+  display: grid;
+  gap: 0.9rem;
+  align-content: center;
+  padding: clamp(1.1rem, 2.2vw, 1.6rem);
+  border-radius: calc(var(--radius-lg) + 4px);
+  background: linear-gradient(180deg, rgba(251, 247, 241, 0.78), rgba(239, 228, 211, 0.72));
+  border: 1px solid rgba(217, 154, 43, 0.14);
+  box-shadow: var(--shadow-soft);
+}
+
+.before-after-compare-copy h3 {
+  color: var(--color-ink);
+  font-size: clamp(1.7rem, 2.2vw, 2.2rem);
+  line-height: 1.04;
+}
+
+.before-after-compare-copy p {
+  margin: 0;
+  color: var(--color-ink-soft);
+  font-size: 0.98rem;
+  line-height: 1.64;
+}
+
 .section-before-after {
   background: linear-gradient(180deg, rgba(234, 215, 182, 0.08), transparent 42%);
 }
@@ -3347,6 +3505,7 @@ body.is-modal-open .social-rail {
 
   .page-hero-shell-about,
   .page-hero-shell-services,
+  .before-after-compare-layout,
   .works-hero-shell {
     grid-template-columns: 1fr;
   }
@@ -3371,6 +3530,10 @@ body.is-modal-open .social-rail {
 
   .works-hero-stage {
     min-height: 540px;
+  }
+
+  .before-after-compare-stage {
+    min-height: 460px;
   }
 
   .section-why .why-grid {
@@ -3662,6 +3825,25 @@ body.is-modal-open .social-rail {
   .story-stats {
     display: flex;
     flex-direction: column;
+  }
+
+  .before-after-compare-card,
+  .before-after-compare-copy {
+    padding: 1rem;
+    border-radius: 24px;
+  }
+
+  .before-after-compare-stage {
+    min-height: 360px;
+    border-radius: 22px;
+  }
+
+  .before-after-compare-caption {
+    padding-inline: 0;
+  }
+
+  .before-after-compare-copy h3 {
+    font-size: clamp(1.6rem, 6.6vw, 2rem);
   }
 
   .footer-links-grid {
@@ -4535,6 +4717,40 @@ body.is-modal-open .social-rail {
   .works-hero-stage-copy p {
     font-size: 0.88rem;
     line-height: 1.48;
+  }
+
+  .before-after-compare-stage {
+    min-height: 280px;
+  }
+
+  .before-after-compare-handle {
+    width: 48px;
+    height: 48px;
+  }
+
+  .before-after-compare-badge {
+    top: 0.8rem;
+    min-height: 2.35rem;
+    padding: 0.55rem 0.76rem;
+    font-size: 0.66rem;
+  }
+
+  .before-after-compare-badge-left {
+    left: 0.8rem;
+  }
+
+  .before-after-compare-badge-right {
+    right: 0.8rem;
+  }
+
+  .before-after-compare-caption strong {
+    font-size: 1.6rem;
+  }
+
+  .before-after-compare-caption p,
+  .before-after-compare-copy p {
+    font-size: 0.92rem;
+    line-height: 1.56;
   }
 
   .works-hero-meta {

@@ -22,6 +22,7 @@ async function initializeSite() {
   setupScrollStories();
   setupPointerGlow();
   setupLightbox();
+  setupImageComparisons();
   setupInquiryForms();
   handleDeferredScroll();
 }
@@ -486,6 +487,32 @@ function setupLightbox() {
   previousButton?.addEventListener('click', () => changeLightboxItem(-1));
   nextButton?.addEventListener('click', () => changeLightboxItem(1));
   document.addEventListener('keydown', handleLightboxKeyboard);
+}
+
+function setupImageComparisons() {
+  const comparisons = [...document.querySelectorAll('[data-image-comparison]')];
+  if (!comparisons.length) return;
+
+  comparisons.forEach(comparison => {
+    const range = comparison.querySelector('[data-comparison-range]');
+    if (!range) return;
+
+    const initial = Number(comparison.getAttribute('data-initial') || range.value || 50);
+    updateImageComparison(comparison, initial);
+
+    range.addEventListener('input', event => {
+      updateImageComparison(comparison, Number(event.target.value));
+    });
+
+    range.addEventListener('change', event => {
+      updateImageComparison(comparison, Number(event.target.value));
+    });
+  });
+}
+
+function updateImageComparison(element, value) {
+  const safeValue = Math.min(Math.max(value, 0), 100);
+  element.style.setProperty('--comparison-position', `${safeValue}%`);
 }
 
 function ensureLightboxMarkup() {
