@@ -4262,7 +4262,8 @@ body.is-modal-open .social-rail {
 
   body.home-page .hero-section {
     min-height: 0;
-    padding-top: calc(var(--header-height) + 0.7rem);
+    padding-top: calc(var(--header-height) + 0.8rem);
+    padding-bottom: 0.35rem;
     background: transparent;
     overflow: visible;
     border-radius: 0;
@@ -4271,9 +4272,9 @@ body.is-modal-open .social-rail {
   body.home-page .hero-backdrop {
     position: relative;
     inset: auto;
-    height: 232px;
+    height: 210px;
     margin: 0 var(--layout-inline-padding);
-    border-radius: 24px;
+    border-radius: 22px;
     overflow: hidden;
     box-shadow: var(--shadow-soft);
   }
@@ -4282,9 +4283,9 @@ body.is-modal-open .social-rail {
     display: block;
     min-height: 0;
     align-items: initial;
-    padding-top: 0;
+    padding-top: 0.85rem;
     padding-bottom: 0;
-    margin-top: -0.4rem;
+    margin-top: 0;
   }
 
   .hero-location {
@@ -4300,7 +4301,7 @@ body.is-modal-open .social-rail {
 
   body.home-page .hero-backdrop::before {
     background:
-      linear-gradient(180deg, rgba(18, 16, 13, 0.06), rgba(18, 16, 13, 0.02) 28%, rgba(18, 16, 13, 0.2)),
+      linear-gradient(180deg, rgba(18, 16, 13, 0.04), rgba(18, 16, 13, 0.02) 34%, rgba(18, 16, 13, 0.14)),
       radial-gradient(circle at center, rgba(255, 255, 255, 0.03), transparent 34%);
   }
 
@@ -4310,38 +4311,38 @@ body.is-modal-open .social-rail {
 
   body.home-page .hero-poster-image {
     object-fit: cover;
-    object-position: 54% center;
+    object-position: center center;
     transform: none;
   }
 
   .hero-copy-overlay {
     margin-inline: var(--layout-inline-padding);
-    padding: 1rem 0.95rem;
-    border-radius: 18px;
-    background: linear-gradient(180deg, rgba(251, 247, 241, 0.94), rgba(244, 237, 226, 0.94));
-    border: 1px solid rgba(217, 154, 43, 0.12);
-    box-shadow: 0 18px 42px rgba(93, 63, 28, 0.12);
+    padding: 1rem 0.95rem 1.05rem;
+    border-radius: 20px;
+    background: linear-gradient(180deg, rgba(251, 247, 241, 0.98), rgba(244, 237, 226, 0.96));
+    border: 1px solid rgba(217, 154, 43, 0.14);
+    box-shadow: 0 16px 36px rgba(93, 63, 28, 0.1);
     backdrop-filter: none;
     -webkit-backdrop-filter: none;
   }
 
   .hero-copy-overlay h1 {
     max-width: 8.8ch;
-    font-size: clamp(1.8rem, 10vw, 2.45rem);
-    line-height: 0.98;
+    font-size: clamp(1.95rem, 10vw, 2.5rem);
+    line-height: 0.96;
     letter-spacing: -0.032em;
     color: var(--color-ink);
     text-shadow: none;
   }
 
   .hero-summary {
-    gap: 0.68rem;
-    margin-top: 0.76rem;
+    gap: 0.62rem;
+    margin-top: 0.72rem;
   }
 
   .hero-copy-overlay .hero-lead {
-    font-size: 0.9rem;
-    line-height: 1.44;
+    font-size: 0.92rem;
+    line-height: 1.46;
     color: var(--color-ink);
   }
 
@@ -4351,8 +4352,8 @@ body.is-modal-open .social-rail {
 
   .hero-copy-overlay .hero-note {
     max-width: none;
-    font-size: 0.86rem;
-    line-height: 1.48;
+    font-size: 0.84rem;
+    line-height: 1.46;
     color: rgba(95, 76, 58, 0.94);
   }
 
@@ -4367,7 +4368,7 @@ body.is-modal-open .social-rail {
   }
 
   .page-hero {
-    padding-top: 2rem;
+    padding-top: 1.5rem;
     padding-bottom: 1.9rem;
   }
 
@@ -4392,7 +4393,7 @@ body.is-modal-open .social-rail {
   }
 
   .works-hero-media {
-    aspect-ratio: 1 / 1.08;
+    aspect-ratio: 1 / 0.92;
     border-radius: 22px;
   }
 
