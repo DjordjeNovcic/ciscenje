@@ -2684,6 +2684,10 @@ body.is-modal-open .social-rail {
 .about-parallax-block {
   position: relative;
   min-height: 150vh;
+  --about-parallax-progress: 0;
+  --about-parallax-scale: 1;
+  --about-parallax-overlay-y: 140px;
+  --about-parallax-overlay-opacity: 0;
 }
 
 .about-parallax-stage {
@@ -2707,7 +2711,8 @@ body.is-modal-open .social-rail {
   display: block;
   object-fit: cover;
   object-position: center center;
-  transform: scale(1.02);
+  transform: scale(var(--about-parallax-scale, 1.02));
+  transition: transform 140ms linear;
 }
 
 .about-parallax-stage::after {
@@ -2729,6 +2734,11 @@ body.is-modal-open .social-rail {
   max-width: 760px;
   display: grid;
   gap: 0.85rem;
+  opacity: var(--about-parallax-overlay-opacity, 0);
+  transform: translate3d(0, var(--about-parallax-overlay-y, 140px), 0);
+  transition:
+    opacity 140ms linear,
+    transform 140ms linear;
 }
 
 .about-parallax-overlay h2 {
@@ -5056,6 +5066,12 @@ body.is-modal-open .social-rail {
   .about-parallax-overlay h2 {
     font-size: clamp(1.95rem, 9vw, 2.9rem);
     line-height: 0.95;
+  }
+
+  .about-parallax-block {
+    --about-parallax-scale: 1;
+    --about-parallax-overlay-y: 0px;
+    --about-parallax-overlay-opacity: 1;
   }
 
   .about-parallax-copy {

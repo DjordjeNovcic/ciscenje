@@ -20,6 +20,7 @@ async function initializeSite() {
   setupRevealAnimations();
   setupHeroParallax();
   setupScrollStories();
+  setupTextParallaxSections();
   setupPointerGlow();
   setupLightbox();
   setupImageComparisons();
@@ -422,6 +423,58 @@ function setupScrollStories() {
   window.addEventListener('resize', updateAllStories);
   reducedMotion.addEventListener('change', updateAllStories);
   updateAllStories();
+}
+
+function setupTextParallaxSections() {
+  const sections = [...document.querySelectorAll('[data-text-parallax]')];
+  if (!sections.length) return;
+
+  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+  const clamp = (value, min, max) => Math.min(Math.max(value, min), max);
+  const mapRange = (value, inMin, inMax, outMin, outMax) => {
+    const ratio = clamp((value - inMin) / (inMax - inMin), 0, 1);
+    return outMin + (outMax - outMin) * ratio;
+  };
+
+  const updateSection = section => {
+    const mobileMode = window.innerWidth <= 760 || reducedMotion.matches;
+    if (mobileMode) {
+      section.style.setProperty('--about-parallax-scale', '1');
+      section.style.setProperty('--about-parallax-overlay-y', '0px');
+      section.style.setProperty('--about-parallax-overlay-opacity', '1');
+      return;
+    }
+
+    const rect = section.getBoundingClientRect();
+    const viewport = window.innerHeight || 1;
+    const progress = clamp((viewport - rect.top) / (viewport + rect.height * 0.35), 0, 1);
+
+    const scale = mapRange(progress, 0, 1, 1, 0.86);
+    const overlayY = mapRange(progress, 0, 1, 180, -180);
+
+    let overlayOpacity = 0;
+    if (progress <= 0.25) {
+      overlayOpacity = mapRange(progress, 0, 0.25, 0, 1);
+    } else if (progress <= 0.72) {
+      overlayOpacity = 1;
+    } else {
+      overlayOpacity = mapRange(progress, 0.72, 1, 1, 0);
+    }
+
+    section.style.setProperty('--about-parallax-scale', scale.toFixed(3));
+    section.style.setProperty('--about-parallax-overlay-y', `${overlayY.toFixed(1)}px`);
+    section.style.setProperty('--about-parallax-overlay-opacity', overlayOpacity.toFixed(3));
+  };
+
+  const updateAll = () => {
+    sections.forEach(updateSection);
+  };
+
+  window.addEventListener('scroll', updateAll, { passive: true });
+  window.addEventListener('resize', updateAll);
+  reducedMotion.addEventListener('change', updateAll);
+  updateAll();
 }
 
 function setupPointerGlow() {
