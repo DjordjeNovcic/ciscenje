@@ -3066,6 +3066,172 @@ body.is-modal-open .social-rail {
     linear-gradient(180deg, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0));
 }
 
+.section-packages {
+  background:
+    radial-gradient(circle at top right, rgba(234, 215, 182, 0.16), transparent 28%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0));
+}
+
+.section-packages .section-head {
+  max-width: 880px;
+}
+
+.packages-grid {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  align-items: stretch;
+}
+
+.package-card {
+  position: relative;
+  display: grid;
+  align-content: start;
+  gap: 1rem;
+  min-height: 100%;
+  padding: clamp(1.35rem, 2.4vw, 1.7rem);
+  border-radius: calc(var(--radius-lg) + 4px);
+  background: linear-gradient(180deg, rgba(251, 247, 241, 0.84), rgba(239, 228, 211, 0.76));
+  border: 1px solid rgba(217, 154, 43, 0.16);
+  box-shadow: var(--shadow-soft);
+  transition:
+    transform 260ms var(--ease-premium),
+    box-shadow 260ms var(--ease-premium),
+    border-color 260ms var(--ease-premium);
+}
+
+.package-card:hover,
+.package-card:focus-within {
+  transform: translateY(-8px);
+  box-shadow: var(--shadow-strong);
+  border-color: rgba(217, 154, 43, 0.28);
+}
+
+.package-card::after {
+  content: "";
+  position: absolute;
+  left: 1.15rem;
+  right: 1.15rem;
+  top: 0;
+  height: 1px;
+  background: linear-gradient(90deg, rgba(217, 154, 43, 0), rgba(217, 154, 43, 0.5), rgba(217, 154, 43, 0));
+  opacity: 0.9;
+  pointer-events: none;
+}
+
+.package-card-featured {
+  background: linear-gradient(180deg, rgba(30, 27, 24, 0.96), rgba(48, 39, 32, 0.9));
+  border-color: rgba(255, 183, 58, 0.28);
+  box-shadow: 0 24px 54px rgba(28, 25, 23, 0.24);
+  transform: translateY(-10px);
+}
+
+.package-card-featured::after {
+  background: linear-gradient(90deg, rgba(255, 183, 58, 0), rgba(255, 183, 58, 0.72), rgba(255, 183, 58, 0));
+}
+
+.package-badge {
+  position: absolute;
+  top: -0.85rem;
+  left: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 2rem;
+  padding: 0.45rem 0.85rem;
+  border-radius: 999px;
+  background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
+  color: #1b1713;
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  transform: translateX(-50%);
+  box-shadow: 0 16px 28px rgba(217, 154, 43, 0.24);
+}
+
+.package-kicker {
+  margin: 0;
+  color: rgba(95, 76, 58, 0.76);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.package-card-featured .package-kicker {
+  color: rgba(255, 216, 159, 0.84);
+}
+
+.package-card h3 {
+  color: var(--color-ink);
+  font-size: clamp(1.8rem, 2.2vw, 2.35rem);
+  line-height: 0.98;
+  letter-spacing: -0.03em;
+}
+
+.package-card-featured h3 {
+  color: #fffaf2;
+}
+
+.package-price {
+  display: grid;
+  gap: 0.4rem;
+}
+
+.package-price strong {
+  color: var(--color-ink);
+  font-family: "Manrope", sans-serif;
+  font-size: 1.5rem;
+  line-height: 1.02;
+}
+
+.package-price span,
+.package-description {
+  color: var(--color-ink-soft);
+  font-size: 0.96rem;
+  line-height: 1.62;
+}
+
+.package-card-featured .package-price strong,
+.package-card-featured .package-price span,
+.package-card-featured .package-description {
+  color: rgba(255, 245, 231, 0.9);
+}
+
+.package-features {
+  display: grid;
+  gap: 0.72rem;
+  margin-top: 0.2rem;
+}
+
+.package-features li {
+  position: relative;
+  padding-left: 1.15rem;
+  color: var(--color-ink-soft);
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+.package-features li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.58rem;
+  width: 0.42rem;
+  height: 0.42rem;
+  border-radius: 50%;
+  background: var(--color-primary);
+}
+
+.package-card-featured .package-features li {
+  color: rgba(255, 245, 231, 0.88);
+}
+
+.package-card .btn {
+  margin-top: 0.35rem;
+}
+
 .section-service-list .service-offer-card {
   background: linear-gradient(180deg, rgba(251, 247, 241, 0.82), rgba(239, 228, 211, 0.74));
 }
@@ -3819,6 +3985,7 @@ body.is-modal-open .social-rail {
   .work-preview-grid,
   .process-grid,
   .before-after-grid,
+  .packages-grid,
   .service-list-grid,
   .why-grid,
   .principles-grid,
@@ -5019,6 +5186,7 @@ body.is-modal-open .social-rail {
   .testimonial-card,
   .comparison-card,
   .service-offer-card,
+  .package-card,
   .process-step,
   .lift-card,
   .faq-item {
