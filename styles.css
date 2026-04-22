@@ -2677,6 +2677,95 @@ body.is-modal-open .social-rail {
   max-width: 52rem;
 }
 
+.section-about-parallax {
+  padding-top: 0;
+}
+
+.about-parallax-block {
+  position: relative;
+  min-height: 150vh;
+}
+
+.about-parallax-stage {
+  position: sticky;
+  top: 12px;
+  height: calc(100vh - 24px);
+  overflow: hidden;
+  border-radius: calc(var(--radius-lg) + 10px);
+  border: 1px solid rgba(217, 154, 43, 0.14);
+  box-shadow: var(--shadow-strong);
+  background: linear-gradient(180deg, rgba(251, 247, 241, 0.86), rgba(239, 228, 211, 0.76));
+}
+
+.about-parallax-image,
+.about-parallax-image img {
+  width: 100%;
+  height: 100%;
+}
+
+.about-parallax-image img {
+  display: block;
+  object-fit: cover;
+  object-position: center center;
+  transform: scale(1.02);
+}
+
+.about-parallax-stage::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(180deg, rgba(22, 18, 14, 0.08), rgba(22, 18, 14, 0.32) 42%, rgba(22, 18, 14, 0.78) 100%),
+    linear-gradient(90deg, rgba(22, 18, 14, 0.18), rgba(22, 18, 14, 0) 38%);
+  pointer-events: none;
+}
+
+.about-parallax-overlay {
+  position: absolute;
+  left: clamp(1.3rem, 3vw, 2.6rem);
+  right: clamp(1.3rem, 3vw, 2.6rem);
+  bottom: clamp(1.3rem, 3vw, 2.6rem);
+  z-index: 1;
+  max-width: 760px;
+  display: grid;
+  gap: 0.85rem;
+}
+
+.about-parallax-overlay h2 {
+  color: #fffaf1;
+  font-size: clamp(2.8rem, 5vw, 5.8rem);
+  line-height: 0.92;
+  text-wrap: balance;
+  text-shadow: 0 20px 50px rgba(0, 0, 0, 0.26);
+}
+
+.about-parallax-copy {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  gap: clamp(1.2rem, 4vw, 3rem);
+  align-items: start;
+  margin-top: clamp(1.4rem, 4vw, 2.2rem);
+}
+
+.about-parallax-copy h3 {
+  max-width: 18ch;
+  color: var(--color-ink);
+  font-size: clamp(2rem, 3vw, 3.15rem);
+  line-height: 0.96;
+}
+
+.about-parallax-text {
+  display: grid;
+  gap: 1rem;
+}
+
+.about-parallax-text p {
+  max-width: 60ch;
+  color: var(--color-ink-soft);
+  font-size: 1rem;
+  line-height: 1.72;
+}
+
 .page-hero-shell-services {
   grid-template-columns: minmax(0, 1.04fr) minmax(300px, 0.96fr);
   align-items: stretch;
@@ -3758,6 +3847,14 @@ body.is-modal-open .social-rail {
     max-width: none;
   }
 
+  .about-parallax-copy {
+    grid-template-columns: 1fr;
+  }
+
+  .about-parallax-copy h3 {
+    max-width: none;
+  }
+
   .about-hero-media {
     min-height: 320px;
   }
@@ -4020,6 +4117,19 @@ body.is-modal-open .social-rail {
   .services-hero-grid,
   .story-stats.about-hero-stats {
     grid-template-columns: 1fr;
+  }
+
+  .about-parallax-block {
+    min-height: 118vh;
+  }
+
+  .about-parallax-stage {
+    top: 10px;
+    height: calc(82vh - 20px);
+  }
+
+  .about-parallax-overlay h2 {
+    font-size: clamp(2.35rem, 7vw, 4rem);
   }
 
   .story-shell-single {
@@ -4923,6 +5033,39 @@ body.is-modal-open .social-rail {
   .works-hero-copy p {
     font-size: 0.88rem;
     line-height: 1.48;
+  }
+
+  .about-parallax-block {
+    min-height: auto;
+  }
+
+  .about-parallax-stage {
+    position: relative;
+    top: auto;
+    height: min(72vh, 520px);
+    border-radius: 26px;
+  }
+
+  .about-parallax-overlay {
+    left: 1rem;
+    right: 1rem;
+    bottom: 1rem;
+    gap: 0.65rem;
+  }
+
+  .about-parallax-overlay h2 {
+    font-size: clamp(1.95rem, 9vw, 2.9rem);
+    line-height: 0.95;
+  }
+
+  .about-parallax-copy {
+    margin-top: 1rem;
+    gap: 0.9rem;
+  }
+
+  .about-parallax-text p {
+    font-size: 0.94rem;
+    line-height: 1.62;
   }
 
   .service-process-grid {
