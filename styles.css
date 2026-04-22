@@ -3208,186 +3208,122 @@ body.is-modal-open .social-rail {
   grid-template-columns: repeat(3, minmax(0, 1fr));
 }
 
-.service-process-story {
+.service-process-shell {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(340px, 0.84fr);
-  gap: clamp(1.4rem, 4vw, 3rem);
-  align-items: start;
+  gap: clamp(1.2rem, 3vw, 2rem);
 }
 
-.service-process-stage-rail {
+.service-process-intro {
   position: relative;
-}
-
-.service-process-stage {
-  position: sticky;
-  top: calc(var(--header-height) + 1.65rem);
-  min-height: min(76vh, 620px);
-  overflow: hidden;
-  border-radius: calc(var(--radius-lg) + 10px);
+  max-width: 860px;
+  display: grid;
+  gap: 0.95rem;
+  padding: clamp(1.4rem, 3vw, 2rem);
+  border-radius: calc(var(--radius-lg) + 4px);
   background:
-    linear-gradient(155deg, rgba(251, 247, 241, 0.95), rgba(230, 215, 194, 0.86));
+    linear-gradient(135deg, rgba(255, 252, 247, 0.92), rgba(246, 236, 219, 0.7)),
+    radial-gradient(circle at top right, rgba(255, 183, 58, 0.18), transparent 34%);
   border: 1px solid rgba(217, 154, 43, 0.14);
-  box-shadow: var(--shadow-strong);
+  box-shadow: var(--shadow-soft);
 }
 
-.service-process-stage-media {
+.service-process-intro h3 {
+  font-size: clamp(2rem, 3vw, 3rem);
+  line-height: 0.97;
+  color: var(--color-ink);
+}
+
+.service-process-intro p {
+  max-width: 60ch;
+  color: var(--color-ink-soft);
+  font-size: 1rem;
+  line-height: 1.68;
+}
+
+.service-process-grid {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: clamp(0.95rem, 2vw, 1.3rem);
+}
+
+.service-process-grid::before {
+  content: "";
   position: absolute;
-  inset: 0;
-  opacity: 0;
-  transform: translateY(24px) scale(0.97);
-  transition:
-    opacity 520ms var(--ease-premium),
-    transform 520ms var(--ease-premium);
+  top: 2rem;
+  left: clamp(1.4rem, 3vw, 1.8rem);
+  right: clamp(1.4rem, 3vw, 1.8rem);
+  height: 1px;
+  background: linear-gradient(90deg, rgba(217, 154, 43, 0.32), rgba(217, 154, 43, 0.08));
   pointer-events: none;
 }
 
-.service-process-stage-media.is-active {
-  opacity: 1;
-  transform: translateY(0) scale(1);
-}
-
-.service-process-stage-media img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.service-process-stage-media::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background:
-    linear-gradient(180deg, rgba(28, 25, 23, 0.08), rgba(28, 25, 23, 0.2) 35%, rgba(28, 25, 23, 0.72) 100%),
-    radial-gradient(circle at top left, rgba(251, 247, 241, 0.14), transparent 28%);
-}
-
-.service-process-stage-copy {
-  position: absolute;
-  left: 1.3rem;
-  right: 1.3rem;
-  bottom: 1.3rem;
-  z-index: 2;
+.service-process-card {
+  position: relative;
+  z-index: 1;
   display: grid;
-  gap: 0.72rem;
-  padding: 1.15rem 1.2rem;
-  border-radius: 22px;
-  background: rgba(34, 28, 24, 0.46);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-}
-
-.service-process-stage-copy span {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.45rem;
-  width: fit-content;
-  color: rgba(255, 245, 224, 0.82);
-  font-size: 0.72rem;
-  font-weight: 700;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-}
-
-.service-process-stage-copy strong {
-  color: #fdf8f0;
-  font-family: "Cormorant Garamond", serif;
-  font-size: clamp(2rem, 3vw, 2.85rem);
-  line-height: 0.96;
-}
-
-.service-process-stage-copy p {
-  color: rgba(255, 245, 224, 0.84);
-  font-size: 0.98rem;
-  line-height: 1.62;
-}
-
-.service-process-stage-progress {
-  position: absolute;
-  top: 1.25rem;
-  right: 1.25rem;
-  bottom: 1.25rem;
-  width: 4px;
-  z-index: 3;
-  border-radius: 999px;
-  background: rgba(255, 255, 255, 0.18);
-  overflow: hidden;
-}
-
-.service-process-stage-progress span {
-  display: block;
-  width: 100%;
-  height: 100%;
-  border-radius: inherit;
-  background: linear-gradient(180deg, rgba(251, 247, 241, 0.45), rgba(255, 183, 58, 0.95));
-  transform-origin: top;
-  transform: scaleY(0.18);
-}
-
-.service-process-steps {
-  display: grid;
-  gap: 1rem;
-}
-
-.service-process-step {
-  display: grid;
-  grid-template-columns: auto 1fr;
-  gap: 1rem;
-  align-items: start;
-  min-height: clamp(210px, 36vh, 280px);
-  padding: 1.25rem 1.2rem;
-  border-radius: calc(var(--radius-md) + 2px);
-  background: rgba(251, 247, 241, 0.68);
-  border: 1px solid rgba(217, 154, 43, 0.13);
+  align-content: start;
+  gap: 0.88rem;
+  min-height: 100%;
+  padding: 1.35rem 1.2rem 1.25rem;
+  border-radius: calc(var(--radius-md) + 4px);
+  background: linear-gradient(180deg, rgba(255, 253, 249, 0.92), rgba(248, 240, 228, 0.82));
+  border: 1px solid rgba(217, 154, 43, 0.14);
   box-shadow: var(--shadow-soft);
-  opacity: 0.54;
-  transform: translateY(16px);
   transition:
-    opacity 320ms var(--ease-premium),
-    transform 320ms var(--ease-premium),
-    border-color 320ms var(--ease-premium),
-    box-shadow 320ms var(--ease-premium),
-    background-color 320ms var(--ease-premium);
+    transform 260ms var(--ease-premium),
+    box-shadow 260ms var(--ease-premium),
+    border-color 260ms var(--ease-premium);
 }
 
-.service-process-step.is-active {
-  opacity: 1;
-  transform: translateY(0);
-  background: rgba(255, 253, 248, 0.88);
+.service-process-card:hover {
+  transform: translateY(-6px);
   border-color: rgba(217, 154, 43, 0.24);
   box-shadow: var(--shadow-strong);
 }
 
-.service-process-step-index {
-  display: grid;
-  place-items: center;
-  width: 3rem;
-  height: 3rem;
-  border-radius: 18px;
-  background: linear-gradient(135deg, rgba(217, 154, 43, 0.16), rgba(255, 183, 58, 0.24));
+.service-process-card::before {
+  content: "";
+  width: 0.72rem;
+  height: 0.72rem;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #ffbf52, #d99a2b);
+  box-shadow: 0 0 0 7px rgba(255, 191, 82, 0.16);
+}
+
+.service-process-card-number {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: fit-content;
+  min-width: 3rem;
+  padding: 0.36rem 0.78rem;
+  border-radius: 999px;
+  background: rgba(217, 154, 43, 0.1);
   color: var(--color-primary);
-  font-family: "Manrope", sans-serif;
-  font-size: 0.95rem;
-  font-weight: 700;
+  font-size: 0.76rem;
+  font-weight: 800;
+  letter-spacing: 0.16em;
 }
 
-.service-process-step-copy {
-  display: grid;
-  gap: 0.78rem;
-  align-content: start;
+.service-process-card-kicker {
+  color: var(--color-primary);
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
 }
 
-.service-process-step-copy h3 {
+.service-process-card h3 {
   color: var(--color-ink);
-  font-size: clamp(1.5rem, 2vw, 2rem);
-  line-height: 1.06;
+  font-size: clamp(1.38rem, 1.8vw, 1.78rem);
+  line-height: 1.04;
 }
 
-.service-process-step-copy p {
+.service-process-card p {
   color: var(--color-ink-soft);
-  font-size: 1rem;
-  line-height: 1.64;
+  font-size: 0.98rem;
+  line-height: 1.62;
 }
 
 .process-step {
@@ -3794,7 +3730,6 @@ body.is-modal-open .social-rail {
   .page-hero-shell,
   .story-shell,
   .why-shell,
-  .service-process-story,
   .service-detail,
   .service-detail-reverse,
   .footer-shell,
@@ -3867,6 +3802,10 @@ body.is-modal-open .social-rail {
     display: block;
   }
 
+  .service-process-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
   .hero-card {
     max-width: 620px;
   }
@@ -3876,13 +3815,6 @@ body.is-modal-open .social-rail {
     top: auto;
     min-height: 460px;
   }
-
-  .service-process-stage {
-    position: relative;
-    top: auto;
-    min-height: 460px;
-  }
-
   .before-after-step {
     min-height: 0;
   }
@@ -4253,14 +4185,6 @@ body.is-modal-open .social-rail {
     max-width: none;
     font-size: 0.96rem;
     line-height: 1.58;
-  }
-
-  .service-process-stage {
-    min-height: 380px;
-  }
-
-  .service-process-step {
-    min-height: 0;
   }
 
   .works-hero-marquee-track {
@@ -5001,43 +4925,40 @@ body.is-modal-open .social-rail {
     line-height: 1.48;
   }
 
-  .service-process-stage {
-    min-height: 300px;
-    border-radius: 24px;
+  .service-process-grid {
+    grid-template-columns: 1fr;
   }
 
-  .service-process-stage-copy {
-    left: 0.9rem;
-    right: 0.9rem;
-    bottom: 0.9rem;
-    padding: 0.92rem 0.95rem;
-    border-radius: 18px;
+  .service-process-grid::before {
+    left: 1.15rem;
+    right: auto;
+    top: 1.2rem;
+    bottom: 1.2rem;
+    width: 1px;
+    height: auto;
+    background: linear-gradient(180deg, rgba(217, 154, 43, 0.28), rgba(217, 154, 43, 0.06));
   }
 
-  .service-process-stage-copy strong {
-    font-size: 1.58rem;
+  .service-process-card {
+    gap: 0.75rem;
+    padding: 1.05rem 1rem 1rem 2.2rem;
   }
 
-  .service-process-stage-copy p,
-  .service-process-step-copy p {
+  .service-process-card::before {
+    position: absolute;
+    top: 1.18rem;
+    left: 0.82rem;
+    width: 0.64rem;
+    height: 0.64rem;
+    box-shadow: 0 0 0 6px rgba(255, 191, 82, 0.16);
+  }
+
+  .service-process-card p {
     font-size: 0.92rem;
     line-height: 1.56;
   }
 
-  .service-process-step {
-    grid-template-columns: 1fr;
-    gap: 0.8rem;
-    padding: 1rem;
-  }
-
-  .service-process-step-index {
-    width: 2.65rem;
-    height: 2.65rem;
-    border-radius: 16px;
-    font-size: 0.84rem;
-  }
-
-  .service-process-step-copy h3 {
+  .service-process-card h3 {
     font-size: 1.42rem;
   }
 
