@@ -21,7 +21,6 @@ async function initializeSite() {
   setupHeroParallax();
   setupScrollStories();
   setupTextParallaxSections();
-  setupZoomParallaxSections();
   setupPointerGlow();
   setupLightbox();
   setupImageComparisons();
@@ -466,41 +465,6 @@ function setupTextParallaxSections() {
     section.style.setProperty('--about-parallax-scale', scale.toFixed(3));
     section.style.setProperty('--about-parallax-overlay-y', `${overlayY.toFixed(1)}px`);
     section.style.setProperty('--about-parallax-overlay-opacity', overlayOpacity.toFixed(3));
-  };
-
-  const updateAll = () => {
-    sections.forEach(updateSection);
-  };
-
-  window.addEventListener('scroll', updateAll, { passive: true });
-  window.addEventListener('resize', updateAll);
-  reducedMotion.addEventListener('change', updateAll);
-  updateAll();
-}
-
-function setupZoomParallaxSections() {
-  const sections = [...document.querySelectorAll('[data-zoom-parallax]')];
-  if (!sections.length) return;
-
-  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
-  const clamp = (value, min, max) => Math.min(Math.max(value, min), max);
-
-  const updateSection = section => {
-    const cards = [...section.querySelectorAll('[data-zoom-card]')];
-    if (!cards.length) return;
-
-    const mobileMode = window.innerWidth <= 560 || reducedMotion.matches;
-    const rect = section.getBoundingClientRect();
-    const viewport = window.innerHeight || 1;
-    const progress = clamp((viewport - rect.top) / (rect.height + viewport * 0.2), 0, 1);
-
-    cards.forEach(card => {
-      const min = Number(card.getAttribute('data-scale-min') || 1);
-      const max = Number(card.getAttribute('data-scale-max') || 1);
-      const effectiveMax = mobileMode ? Math.min(max, min + 0.55) : max;
-      const scale = min + (effectiveMax - min) * progress;
-      card.style.setProperty('--zoom-scale', scale.toFixed(3));
-    });
   };
 
   const updateAll = () => {
