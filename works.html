@@ -12,7 +12,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <link rel="stylesheet" href="styles.css?v=20260421m12">
+    <link rel="stylesheet" href="styles.css?v=20260422m14">
     <link rel="icon" href="./favicon.ico">
     <link rel="icon" type="image/png" sizes="32x32" href="./favicon-32.png">
   </head>
@@ -22,47 +22,69 @@
     <main>
       <section class="page-hero page-hero-works">
         <div class="shell shell-wide works-hero-shell">
-          <figure class="works-hero-stage reveal">
-            <picture class="works-hero-media">
-              <source media="(max-width: 760px)" srcset="assets/work-business-floor.jpeg">
-              <img src="assets/work-business-hall.jpeg" alt="MS Sjaj mašinski obrađuje veliki poslovni prostor">
-            </picture>
-            <figcaption class="works-hero-stage-copy">
-              <span class="eyebrow">Naši radovi</span>
-              <h1>Galerija radova koja kvalitet usluge potvrđuje na prvi pogled.</h1>
-              <p>
-                Ova stranica je osmišljena tako da lako primi autentične fotografije enterijera,
-                pre i posle poređenja, detalje završne obrade i reference iz domova i poslovnih prostora.
-              </p>
-            </figcaption>
-          </figure>
-
-          <aside class="works-hero-meta reveal reveal-delay-1">
-            <p class="panel-title">Šta prikazujemo</p>
-            <ul class="works-hero-list">
-              <li>
-                <strong>Stvarni enterijeri</strong>
-                <span>Domovi, reprezentativne zone i poslovni prostori kojima je potreban čist i ozbiljan vizuelni utisak.</span>
-              </li>
-              <li>
-                <strong>Pre i posle kadar</strong>
-                <span>Poređenja koja jasno pokazuju razliku između početnog stanja i završnog rezultata.</span>
-              </li>
-              <li>
-                <strong>Detalji završnice</strong>
-                <span>Kontaktne zone, površine i završni kadar koji klijent najpre primeti kada uđe u prostor.</span>
-              </li>
-            </ul>
+          <div class="works-hero-copy reveal">
+            <span class="eyebrow">Naši radovi</span>
+            <h1>Radovi koji kvalitet usluge pokazuju bez dodatnog objašnjenja.</h1>
+            <p>
+              Stvarni enterijeri, detalji završnice i pre/posle poređenja kroz koje se odmah vidi
+              koliko prostor može da izgleda urednije, svetlije i ozbiljnije posle tretmana.
+            </p>
+            <div class="hero-actions">
+              <a href="#galerija" class="btn btn-primary">Pogledajte galeriju</a>
+              <a href="#kontakt" class="btn btn-secondary">Zatražite ponudu</a>
+            </div>
             <div class="works-hero-proof" aria-label="Tipovi prikaza u galeriji">
               <span>Dom</span>
               <span>Pre/Posle</span>
               <span>Detalj</span>
             </div>
-          </aside>
+          </div>
+
+          <div class="works-hero-marquee reveal reveal-delay-1" aria-label="Izdvojeni radovi">
+            <div class="works-hero-marquee-track">
+              <article class="works-marquee-card works-marquee-card-tall">
+                <img src="assets/work-business-hall.jpeg" alt="Veliki poslovni prostor u završnoj obradi">
+              </article>
+              <article class="works-marquee-card">
+                <img src="assets/work-lounge-detail.jpeg" alt="Dnevni boravak posle detaljnog čišćenja">
+              </article>
+              <article class="works-marquee-card works-marquee-card-wide">
+                <img src="assets/work-commercial-kitchen.jpeg" alt="Kuhinja i kontaktne zone posle tretmana">
+              </article>
+              <article class="works-marquee-card">
+                <img src="assets/work-bedroom-after.jpeg" alt="Spavaća soba posle tretmana">
+              </article>
+              <article class="works-marquee-card works-marquee-card-tall">
+                <img src="assets/work-carpet-steam.jpeg" alt="Dubinsko osveženje tepiha i tekstila">
+              </article>
+              <article class="works-marquee-card">
+                <img src="assets/work-business-floor.jpeg" alt="Mašinsko pranje poslovnog poda">
+              </article>
+
+              <article class="works-marquee-card works-marquee-card-tall" aria-hidden="true">
+                <img src="assets/work-business-hall.jpeg" alt="">
+              </article>
+              <article class="works-marquee-card" aria-hidden="true">
+                <img src="assets/work-lounge-detail.jpeg" alt="">
+              </article>
+              <article class="works-marquee-card works-marquee-card-wide" aria-hidden="true">
+                <img src="assets/work-commercial-kitchen.jpeg" alt="">
+              </article>
+              <article class="works-marquee-card" aria-hidden="true">
+                <img src="assets/work-bedroom-after.jpeg" alt="">
+              </article>
+              <article class="works-marquee-card works-marquee-card-tall" aria-hidden="true">
+                <img src="assets/work-carpet-steam.jpeg" alt="">
+              </article>
+              <article class="works-marquee-card" aria-hidden="true">
+                <img src="assets/work-business-floor.jpeg" alt="">
+              </article>
+            </div>
+          </div>
         </div>
       </section>
 
-      <section class="section section-gallery">
+      <section class="section section-gallery" id="galerija">
         <div class="shell shell-wide">
           <div class="section-head reveal">
             <h2>Prikaz radova sa fokusom na detalj, svetlo i završni utisak.</h2>
