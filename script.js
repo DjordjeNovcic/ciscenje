@@ -341,6 +341,18 @@ function setupRevealAnimations() {
     return;
   }
 
+  // Opt in to the hide-then-reveal CSS only after JS confirms it can drive it.
+  document.documentElement.classList.add('js-reveals');
+
+  // Reveal anything already in or above the viewport on first paint immediately,
+  // so above-the-fold content never sits at opacity 0.
+  elements.forEach(element => {
+    const rect = element.getBoundingClientRect();
+    if (rect.top < window.innerHeight) {
+      element.classList.add('is-visible');
+    }
+  });
+
   revealObserver?.disconnect();
   revealObserver = new IntersectionObserver(
     entries => {
@@ -350,10 +362,20 @@ function setupRevealAnimations() {
         revealObserver.unobserve(entry.target);
       });
     },
-    { threshold: 0.16, rootMargin: '0px 0px -10% 0px' }
+    { threshold: 0.05, rootMargin: '0px 0px 0px 0px' }
   );
 
-  elements.forEach(element => revealObserver.observe(element));
+  elements.forEach(element => {
+    if (!element.classList.contains('is-visible')) {
+      revealObserver.observe(element);
+    }
+  });
+
+  // Safety net: if anything is still hidden after 1.6s (slow scroll, blocked IO,
+  // off-viewport on load), reveal it so content never gets stuck invisible.
+  setTimeout(() => {
+    elements.forEach(element => element.classList.add('is-visible'));
+  }, 1600);
 }
 
 function setupHeroParallax() {
