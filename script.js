@@ -32,11 +32,21 @@ async function initializeSite() {
 async function loadSharedPartials() {
   const headerSlot = document.getElementById('site-header');
   const footerSlot = document.getElementById('site-footer');
+  const formSlots = [...document.querySelectorAll('[data-inquiry-form-slot]')];
 
   await Promise.all([
     injectPartial(headerSlot, 'partials/header.html'),
-    injectPartial(footerSlot, 'partials/footer.html')
+    injectPartial(footerSlot, 'partials/footer.html'),
+    ...formSlots.map(slot => injectInquiryForm(slot))
   ]);
+}
+
+async function injectInquiryForm(slot) {
+  await injectPartial(slot, 'partials/inquiry-form.html');
+  const form = slot.querySelector('[data-inquiry-form]');
+  if (!form) return;
+  const context = slot.getAttribute('data-form-context');
+  if (context) form.setAttribute('data-form-context', context);
 }
 
 async function injectPartial(slot, url) {
@@ -85,7 +95,7 @@ function getPartialFallback(url) {
             <a href="about.html">O nama</a>
             <a href="services.html">Usluge</a>
             <a href="works.html">Naši radovi</a>
-            <a href="index.html?scroll=kontakt" class="header-cta">Zatražite ponudu</a>
+            <a href="#kontakt" class="header-cta">Zatražite ponudu</a>
             <div class="mobile-nav-meta">
               <a href="tel:+381643937000" class="mobile-nav-phone">Pozovite: 064 / 393-7000</a>
               <div class="mobile-nav-socials" aria-label="Društvene mreže">
@@ -131,7 +141,7 @@ function getPartialFallback(url) {
             uslugu i završnicu koja izgleda profesionalno odmah.
           </p>
           <div class="footer-cta-actions" aria-label="Brze akcije">
-            <a href="index.html?scroll=kontakt" class="btn btn-primary">Zatražite ponudu</a>
+            <a href="#kontakt" class="btn btn-primary">Zatražite ponudu</a>
             <a href="tel:+381643937000" class="btn btn-secondary">Pozovite nas</a>
           </div>
         </div>
@@ -499,10 +509,8 @@ function setupPointerGlow() {
   const targets = [
     '.btn',
     '.services-hero-card',
-    '.partner-logo-item',
     '.hero-card-grid article',
-    '.services-hero-meta span',
-    '.works-hero-proof span'
+    '.services-hero-meta span'
   ];
 
   document.querySelectorAll(targets.join(', ')).forEach(element => {
@@ -717,6 +725,12 @@ function handleLightboxKeyboard(event) {
   }
 }
 
+// Replace WEB3FORMS_ACCESS_KEY with the real key from web3forms.com to enable
+// direct submission. Until then, the form falls back to opening the user's
+// email client with the inquiry pre-filled.
+const WEB3FORMS_ACCESS_KEY = '';
+const INQUIRY_RECIPIENT = '11mssjaj@gmail.com';
+
 function setupInquiryForms() {
   const forms = [...document.querySelectorAll('[data-inquiry-form]')];
   if (!forms.length) return;
@@ -725,7 +739,7 @@ function setupInquiryForms() {
     const submit = form.querySelector('button[type="submit"]');
     const status = form.querySelector('[data-form-status]');
 
-    form.addEventListener('submit', event => {
+    form.addEventListener('submit', async event => {
       event.preventDefault();
 
       if (!form.checkValidity()) {
@@ -753,22 +767,59 @@ function setupInquiryForms() {
 
       submit?.setAttribute('disabled', 'true');
       form.classList.add('is-submitting');
-
       if (status) {
-        status.dataset.state = 'success';
-        status.textContent = 'Otvaramo email klijent sa pripremljenim upitom. Ako se ne otvori, pozovite nas direktno.';
+        status.dataset.state = 'pending';
+        status.textContent = 'Šaljemo upit…';
       }
 
-      const subject = encodeURIComponent(`Upit za uslugu — ${context}`);
-      const body = encodeURIComponent(details);
-      window.location.href = `mailto:11mssjaj@gmail.com?subject=${subject}&body=${body}`;
+      const sent = WEB3FORMS_ACCESS_KEY
+        ? await sendViaWeb3Forms({ context, name, phone, space, message })
+        : false;
 
-      window.setTimeout(() => {
-        submit?.removeAttribute('disabled');
-        form.classList.remove('is-submitting');
-      }, 900);
+      if (sent) {
+        if (status) {
+          status.dataset.state = 'success';
+          status.textContent = 'Upit je poslat. Javljamo se u najkraćem roku.';
+        }
+        form.reset();
+      } else {
+        const subject = encodeURIComponent(`Upit za uslugu — ${context}`);
+        const body = encodeURIComponent(details);
+        if (status) {
+          status.dataset.state = 'pending';
+          status.textContent = 'Otvaramo email — pošaljite poruku da završite upit. Ako se klijent ne otvori, pozovite nas direktno.';
+        }
+        window.location.href = `mailto:${INQUIRY_RECIPIENT}?subject=${subject}&body=${body}`;
+      }
+
+      submit?.removeAttribute('disabled');
+      form.classList.remove('is-submitting');
     });
   });
+}
+
+async function sendViaWeb3Forms({ context, name, phone, space, message }) {
+  try {
+    const response = await fetch('https://api.web3forms.com/submit', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+      body: JSON.stringify({
+        access_key: WEB3FORMS_ACCESS_KEY,
+        subject: `Upit za uslugu — ${context}`,
+        from_name: name,
+        replyto: phone,
+        page: context,
+        name,
+        phone,
+        space,
+        message
+      })
+    });
+    const result = await response.json().catch(() => ({}));
+    return Boolean(response.ok && result.success);
+  } catch {
+    return false;
+  }
 }
 
 function handleDeferredScroll() {

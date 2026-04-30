@@ -1,0 +1,28 @@
+<form class="contact-form" data-inquiry-form>
+  <div class="form-grid">
+    <label class="form-field" for="inquiry-name">
+      <span>Ime i prezime</span>
+      <input id="inquiry-name" type="text" name="name" autocomplete="name" required aria-required="true">
+    </label>
+    <label class="form-field" for="inquiry-phone">
+      <span>Telefon</span>
+      <input id="inquiry-phone" type="tel" name="phone" inputmode="tel" autocomplete="tel" required aria-required="true">
+    </label>
+    <label class="form-field form-field-full" for="inquiry-space">
+      <span>Tip prostora</span>
+      <select id="inquiry-space" name="space" required aria-required="true">
+        <option value="">Izaberite tip prostora</option>
+        <option>Stan ili kuća</option>
+        <option>Kancelarija ili salon</option>
+        <option>Dubinsko čišćenje</option>
+        <option>Prostor nakon radova</option>
+      </select>
+    </label>
+    <label class="form-field form-field-full" for="inquiry-message">
+      <span>Kratka napomena</span>
+      <textarea id="inquiry-message" name="message" rows="4" placeholder="Površina, termin ili posebna napomena."></textarea>
+    </label>
+  </div>
+  <button type="submit" class="btn btn-primary">Pošaljite upit</button>
+  <p class="form-status" data-form-status aria-live="polite">Upit šaljemo direktno na naš inbox.</p>
+</form>

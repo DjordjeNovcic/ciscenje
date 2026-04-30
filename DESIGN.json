@@ -1,0 +1,374 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-04-30T00:00:00Z",
+  "title": "Design System: MS Sjaj",
+  "extensions": {
+    "colorMeta": {
+      "primary": {
+        "role": "primary",
+        "displayName": "Old Brass",
+        "canonical": "oklch(72% 0.16 70)",
+        "tonalRamp": [
+          "oklch(15% 0.04 70)",
+          "oklch(25% 0.08 70)",
+          "oklch(35% 0.12 70)",
+          "oklch(48% 0.15 70)",
+          "oklch(60% 0.16 70)",
+          "oklch(72% 0.16 70)",
+          "oklch(85% 0.10 75)",
+          "oklch(95% 0.04 80)"
+        ]
+      },
+      "primary-lit": {
+        "role": "primary",
+        "displayName": "Lit Brass",
+        "canonical": "oklch(82% 0.16 75)",
+        "tonalRamp": [
+          "oklch(20% 0.05 75)",
+          "oklch(32% 0.10 75)",
+          "oklch(45% 0.14 75)",
+          "oklch(58% 0.16 75)",
+          "oklch(70% 0.17 75)",
+          "oklch(82% 0.16 75)",
+          "oklch(91% 0.09 78)",
+          "oklch(97% 0.03 80)"
+        ]
+      },
+      "secondary": {
+        "role": "secondary",
+        "displayName": "Soft Eucalyptus",
+        "canonical": "oklch(67% 0.06 175)",
+        "tonalRamp": [
+          "oklch(15% 0.02 175)",
+          "oklch(25% 0.03 175)",
+          "oklch(36% 0.04 175)",
+          "oklch(48% 0.05 175)",
+          "oklch(58% 0.06 175)",
+          "oklch(67% 0.06 175)",
+          "oklch(82% 0.04 175)",
+          "oklch(94% 0.02 175)"
+        ]
+      },
+      "warm-linen": {
+        "role": "neutral",
+        "displayName": "Warm Linen",
+        "canonical": "oklch(94% 0.02 80)",
+        "tonalRamp": [
+          "oklch(18% 0.02 60)",
+          "oklch(30% 0.02 70)",
+          "oklch(45% 0.02 75)",
+          "oklch(58% 0.02 78)",
+          "oklch(72% 0.02 80)",
+          "oklch(86% 0.02 80)",
+          "oklch(94% 0.02 80)",
+          "oklch(98% 0.005 80)"
+        ]
+      },
+      "soft-linen": {
+        "role": "neutral",
+        "displayName": "Soft Linen",
+        "canonical": "oklch(96% 0.012 80)",
+        "tonalRamp": [
+          "oklch(20% 0.01 70)",
+          "oklch(35% 0.01 75)",
+          "oklch(50% 0.01 78)",
+          "oklch(65% 0.012 80)",
+          "oklch(80% 0.012 80)",
+          "oklch(90% 0.012 80)",
+          "oklch(96% 0.012 80)",
+          "oklch(99% 0.004 80)"
+        ]
+      },
+      "bright-linen": {
+        "role": "neutral",
+        "displayName": "Bright Linen",
+        "canonical": "oklch(99% 0.005 80)",
+        "tonalRamp": [
+          "oklch(25% 0.005 80)",
+          "oklch(45% 0.005 80)",
+          "oklch(60% 0.005 80)",
+          "oklch(75% 0.005 80)",
+          "oklch(85% 0.005 80)",
+          "oklch(92% 0.005 80)",
+          "oklch(96% 0.005 80)",
+          "oklch(99% 0.005 80)"
+        ]
+      },
+      "aged-cream": {
+        "role": "neutral",
+        "displayName": "Aged Cream",
+        "canonical": "oklch(86% 0.04 80)",
+        "tonalRamp": [
+          "oklch(18% 0.02 75)",
+          "oklch(30% 0.03 78)",
+          "oklch(45% 0.04 80)",
+          "oklch(58% 0.04 80)",
+          "oklch(70% 0.04 80)",
+          "oklch(86% 0.04 80)",
+          "oklch(93% 0.02 80)",
+          "oklch(97% 0.01 80)"
+        ]
+      },
+      "toasted-sand": {
+        "role": "neutral",
+        "displayName": "Toasted Sand",
+        "canonical": "oklch(88% 0.03 78)",
+        "tonalRamp": [
+          "oklch(20% 0.02 75)",
+          "oklch(32% 0.025 78)",
+          "oklch(46% 0.03 78)",
+          "oklch(60% 0.03 78)",
+          "oklch(72% 0.03 78)",
+          "oklch(88% 0.03 78)",
+          "oklch(94% 0.015 80)",
+          "oklch(98% 0.008 80)"
+        ]
+      },
+      "smoke-walnut": {
+        "role": "neutral",
+        "displayName": "Smoke Walnut",
+        "canonical": "oklch(20% 0.01 60)",
+        "tonalRamp": [
+          "oklch(8% 0.005 60)",
+          "oklch(14% 0.008 60)",
+          "oklch(20% 0.01 60)",
+          "oklch(32% 0.012 60)",
+          "oklch(48% 0.015 60)",
+          "oklch(62% 0.012 60)",
+          "oklch(80% 0.008 60)",
+          "oklch(94% 0.004 60)"
+        ]
+      },
+      "smoke-walnut-soft": {
+        "role": "neutral",
+        "displayName": "Smoke Walnut Soft",
+        "canonical": "oklch(40% 0.025 65)",
+        "tonalRamp": [
+          "oklch(12% 0.01 65)",
+          "oklch(20% 0.015 65)",
+          "oklch(28% 0.02 65)",
+          "oklch(40% 0.025 65)",
+          "oklch(55% 0.025 65)",
+          "oklch(70% 0.02 65)",
+          "oklch(85% 0.015 65)",
+          "oklch(96% 0.005 65)"
+        ]
+      },
+      "smoke-walnut-muted": {
+        "role": "neutral",
+        "displayName": "Smoke Walnut Muted",
+        "canonical": "oklch(56% 0.03 65)",
+        "tonalRamp": [
+          "oklch(16% 0.015 65)",
+          "oklch(28% 0.02 65)",
+          "oklch(40% 0.025 65)",
+          "oklch(56% 0.03 65)",
+          "oklch(68% 0.025 65)",
+          "oklch(80% 0.02 65)",
+          "oklch(90% 0.012 65)",
+          "oklch(97% 0.005 65)"
+        ]
+      },
+      "charred-oak": {
+        "role": "neutral",
+        "displayName": "Charred Oak",
+        "canonical": "oklch(22% 0.005 50)",
+        "tonalRamp": [
+          "oklch(10% 0.003 50)",
+          "oklch(16% 0.004 50)",
+          "oklch(22% 0.005 50)",
+          "oklch(35% 0.006 50)",
+          "oklch(50% 0.006 50)",
+          "oklch(65% 0.005 50)",
+          "oklch(82% 0.004 50)",
+          "oklch(95% 0.002 50)"
+        ]
+      },
+      "lampblack-brown": {
+        "role": "neutral",
+        "displayName": "Lampblack Brown",
+        "canonical": "oklch(15% 0.004 50)",
+        "tonalRamp": [
+          "oklch(7% 0.002 50)",
+          "oklch(12% 0.003 50)",
+          "oklch(15% 0.004 50)",
+          "oklch(28% 0.005 50)",
+          "oklch(45% 0.005 50)",
+          "oklch(62% 0.004 50)",
+          "oklch(80% 0.003 50)",
+          "oklch(94% 0.002 50)"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display",
+        "purpose": "Hero h1 and major section h2. Cormorant Garamond carries the brand voice; tight leading and compressed letter-spacing give magazine-grade weight."
+      },
+      "headline": {
+        "displayName": "Headline",
+        "purpose": "Page hero h1, mid-level section heads, large card titles."
+      },
+      "title": {
+        "displayName": "Title",
+        "purpose": "Service card titles, process-step headings, panel inner titles."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Paragraph copy, set in Smoke Walnut Soft. Max line length 65–75ch."
+      },
+      "label": {
+        "displayName": "Label",
+        "purpose": "Eyebrows, panel titles, footer kickers. Always preceded by the 2.8rem brass hairline."
+      }
+    },
+    "shadows": [
+      {
+        "name": "soft-ambient",
+        "value": "0 18px 48px rgba(93, 63, 28, 0.12)",
+        "purpose": "Default lift for raised surfaces — service cards at rest, mobile nav social buttons, feature cards."
+      },
+      {
+        "name": "strong-ambient",
+        "value": "0 28px 80px rgba(34, 29, 24, 0.17)",
+        "purpose": "Deeper variant on hover and on the most prominent panels (CTA panels, hero overlays)."
+      },
+      {
+        "name": "brass-lift",
+        "value": "0 16px 34px rgba(217, 154, 43, 0.28)",
+        "purpose": "Reserved for the primary CTA only. Brass-tinted glow signaling the single committable action on the screen."
+      }
+    ],
+    "motion": [
+      {
+        "name": "ease-premium",
+        "value": "cubic-bezier(0.16, 1, 0.3, 1)",
+        "purpose": "Default easing across hover, reveal, and shimmer transitions. Ease-out-quart character."
+      },
+      {
+        "name": "duration-fast",
+        "value": "220ms",
+        "purpose": "Hover, focus, and small-state transitions on buttons, nav, and cards."
+      },
+      {
+        "name": "duration-reveal",
+        "value": "720ms",
+        "purpose": "Site-load reveal on header, social rail, hero, and page hero."
+      },
+      {
+        "name": "duration-shimmer",
+        "value": "680ms",
+        "purpose": "Primary-button diagonal sheen sweep on hover."
+      }
+    ],
+    "breakpoints": [
+      { "name": "sm", "value": "480px" },
+      { "name": "md", "value": "760px" },
+      { "name": "lg", "value": "980px" },
+      { "name": "xl", "value": "1280px" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Brass-gradient CTA with controlled diagonal sheen on hover. The single committable action.",
+      "html": "<button class=\"ds-btn-primary\">Zatražite ponudu</button>",
+      "css": ".ds-btn-primary { position: relative; display: inline-flex; align-items: center; justify-content: center; overflow: hidden; min-height: 56px; padding: 0 1.5rem; border: 1px solid transparent; border-radius: 12px; background: linear-gradient(135deg, #d99a2b, #ffb73a 62%, #ffd27c); color: #fffdf9; font-family: 'Manrope', system-ui, sans-serif; font-weight: 700; font-size: 0.95rem; letter-spacing: -0.01em; box-shadow: 0 16px 34px rgba(217, 154, 43, 0.28); transition: transform 220ms cubic-bezier(0.16,1,0.3,1), box-shadow 220ms cubic-bezier(0.16,1,0.3,1); cursor: pointer; } .ds-btn-primary::before { content: ''; position: absolute; inset: -40% auto -40% -30%; width: 46%; transform: translateX(-145%) skewX(-22deg); background: linear-gradient(90deg, transparent, rgba(255,255,255,0.42), transparent); opacity: 0; pointer-events: none; transition: transform 680ms cubic-bezier(0.16,1,0.3,1), opacity 260ms cubic-bezier(0.16,1,0.3,1); } .ds-btn-primary:hover, .ds-btn-primary:focus-visible { transform: translateY(-2px) scale(1.01); box-shadow: 0 22px 42px rgba(217, 154, 43, 0.36); } .ds-btn-primary:hover::before, .ds-btn-primary:focus-visible::before { opacity: 1; transform: translateX(290%) skewX(-22deg); } .ds-btn-primary:focus-visible { outline: 2px solid rgba(217, 154, 43, 0.55); outline-offset: 3px; }"
+    },
+    {
+      "name": "Secondary Button",
+      "kind": "button",
+      "refersTo": "button-secondary",
+      "description": "Soft Linen surface, eucalyptus hairline border. The supporting action that does not compete with primary.",
+      "html": "<button class=\"ds-btn-secondary\">Pogledajte usluge</button>",
+      "css": ".ds-btn-secondary { display: inline-flex; align-items: center; justify-content: center; min-height: 56px; padding: 0 1.5rem; border: 1px solid rgba(111, 169, 154, 0.24); border-radius: 12px; background: rgba(251, 247, 241, 0.8); color: #221d18; font-family: 'Manrope', system-ui, sans-serif; font-weight: 700; font-size: 0.95rem; letter-spacing: -0.01em; box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.55), 0 10px 24px rgba(93, 63, 28, 0.06); transition: transform 220ms cubic-bezier(0.16,1,0.3,1), background-color 220ms cubic-bezier(0.16,1,0.3,1), border-color 220ms cubic-bezier(0.16,1,0.3,1); cursor: pointer; } .ds-btn-secondary:hover, .ds-btn-secondary:focus-visible { transform: translateY(-2px); background: rgba(255, 253, 248, 0.96); border-color: rgba(111, 169, 154, 0.4); } .ds-btn-secondary:focus-visible { outline: 2px solid rgba(217, 154, 43, 0.55); outline-offset: 3px; }"
+    },
+    {
+      "name": "Eyebrow Label",
+      "kind": "custom",
+      "refersTo": "eyebrow",
+      "description": "Section-opening micro-label preceded by the signature brass hairline. The system's connective tissue.",
+      "html": "<span class=\"ds-eyebrow\">Usluge</span>",
+      "css": ".ds-eyebrow { display: inline-flex; align-items: center; gap: 0.75rem; color: #d99a2b; font-family: 'Manrope', system-ui, sans-serif; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.22em; line-height: 1; text-transform: uppercase; white-space: nowrap; } .ds-eyebrow::before { content: ''; width: 2.8rem; height: 1px; background: linear-gradient(90deg, rgba(217, 154, 43, 0.82), rgba(217, 154, 43, 0.18)); }"
+    },
+    {
+      "name": "Service Card",
+      "kind": "card",
+      "refersTo": "service-card",
+      "description": "Photo-led card on Soft Linen surface. On hover the photograph scales while the frame stays anchored.",
+      "html": "<article class=\"ds-service-card\"><div class=\"ds-service-card-media\"><img src=\"\" alt=\"Dnevni boravak posle detaljnog čišćenja\"></div><div class=\"ds-service-card-body\"><span class=\"ds-card-tag\">Čišćenje stanova</span><h3 class=\"ds-card-title\">Redovno i detaljno čišćenje doma</h3><p class=\"ds-card-copy\">Za stanove i kuće kojima je potreban uredan, osvežen i reprezentativan izgled bez opterećenja za vlasnike.</p></div></article>",
+      "css": ".ds-service-card { position: relative; overflow: hidden; display: flex; flex-direction: column; background: #fbf7f1; border-radius: 32px; box-shadow: 0 18px 48px rgba(93, 63, 28, 0.12); transition: transform 220ms cubic-bezier(0.16,1,0.3,1), box-shadow 220ms cubic-bezier(0.16,1,0.3,1); } .ds-service-card:hover { transform: translateY(-3px); box-shadow: 0 28px 80px rgba(34, 29, 24, 0.17); } .ds-service-card-media { aspect-ratio: 4/3; overflow: hidden; } .ds-service-card-media img { width: 100%; height: 100%; object-fit: cover; transition: transform 600ms cubic-bezier(0.16,1,0.3,1); } .ds-service-card:hover .ds-service-card-media img { transform: scale(1.05); } .ds-service-card-body { padding: 1.5rem; } .ds-card-tag { display: inline-block; color: #d99a2b; font-family: 'Manrope', system-ui, sans-serif; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.22em; line-height: 1; text-transform: uppercase; margin-bottom: 1rem; } .ds-card-title { margin: 0 0 0.6rem 0; font-family: 'Cormorant Garamond', Georgia, serif; font-size: 1.65rem; font-weight: 600; line-height: 1.02; letter-spacing: -0.02em; color: #221d18; } .ds-card-copy { margin: 0; font-family: 'Manrope', system-ui, sans-serif; font-size: 0.99rem; line-height: 1.66; color: #5f4c3a; }"
+    },
+    {
+      "name": "Inquiry Input",
+      "kind": "input",
+      "refersTo": "input-field",
+      "description": "Bright Linen field on dark CTA panel. Brass focus ring — the global one used everywhere.",
+      "html": "<label class=\"ds-field\"><span class=\"ds-field-label\">Vaše ime</span><input class=\"ds-input\" type=\"text\" placeholder=\"Ime i prezime\"></label>",
+      "css": ".ds-field { display: flex; flex-direction: column; gap: 0.4rem; } .ds-field-label { font-family: 'Manrope', system-ui, sans-serif; font-size: 0.78rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255, 245, 224, 0.74); } .ds-input { height: 52px; padding: 0 1rem; border: 1px solid rgba(217, 154, 43, 0.32); border-radius: 12px; background: #fffdf8; color: #221d18; font-family: 'Manrope', system-ui, sans-serif; font-size: 1rem; transition: border-color 220ms cubic-bezier(0.16,1,0.3,1); } .ds-input::placeholder { color: #8a735c; } .ds-input:focus-visible { outline: 2px solid rgba(217, 154, 43, 0.55); outline-offset: 3px; border-color: rgba(217, 154, 43, 0.55); }"
+    },
+    {
+      "name": "Site Navigation Link",
+      "kind": "nav",
+      "refersTo": "nav-link",
+      "description": "Header link with a left-anchored 1px underline that strokes in on hover.",
+      "html": "<a class=\"ds-nav-link\" href=\"#\">Usluge</a>",
+      "css": ".ds-nav-link { position: relative; display: inline-block; padding: 0.35rem 0; color: #5f4c3a; text-decoration: none; font-family: 'Manrope', system-ui, sans-serif; font-size: 0.95rem; font-weight: 700; letter-spacing: -0.01em; transition: color 220ms cubic-bezier(0.16,1,0.3,1); } .ds-nav-link:hover, .ds-nav-link:focus-visible, .ds-nav-link.is-active { color: #221d18; } .ds-nav-link::after { content: ''; position: absolute; left: 0; bottom: -0.2rem; width: 100%; height: 1px; background: currentColor; transform: scaleX(0); transform-origin: left; transition: transform 220ms cubic-bezier(0.16,1,0.3,1); } .ds-nav-link:hover::after, .ds-nav-link:focus-visible::after, .ds-nav-link.is-active::after { transform: scaleX(1); } .ds-nav-link:focus-visible { outline: 2px solid rgba(217, 154, 43, 0.55); outline-offset: 3px; }"
+    },
+    {
+      "name": "CTA Panel",
+      "kind": "card",
+      "refersTo": "cta-panel",
+      "description": "The single dark surface in the page body — Charred Oak band that signals 'this is where you act.'",
+      "html": "<section class=\"ds-cta-panel\"><span class=\"ds-cta-eyebrow\">Kontakt</span><h2 class=\"ds-cta-heading\">Ako želite ozbiljnu uslugu, dogovor počinje jednostavno.</h2><p class=\"ds-cta-copy\">Pošaljite upit ili nas pozovite. Dobićete jasan predlog usluge i termin koji ima smisla za vaš prostor.</p></section>",
+      "css": ".ds-cta-panel { padding: clamp(2.5rem, 4vw, 4rem); background: #2a2724; border-radius: 32px; color: #fffdf8; box-shadow: 0 28px 80px rgba(34, 29, 24, 0.17); } .ds-cta-eyebrow { display: inline-flex; align-items: center; gap: 0.75rem; color: #d99a2b; font-family: 'Manrope', system-ui, sans-serif; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.22em; line-height: 1; text-transform: uppercase; margin-bottom: 1.22rem; } .ds-cta-eyebrow::before { content: ''; width: 2.8rem; height: 1px; background: linear-gradient(90deg, rgba(217, 154, 43, 0.82), rgba(217, 154, 43, 0.18)); } .ds-cta-heading { margin: 0 0 1rem 0; font-family: 'Cormorant Garamond', Georgia, serif; font-size: clamp(2rem, 3.2vw, 3.2rem); font-weight: 600; line-height: 0.96; letter-spacing: -0.028em; color: #fffdf8; } .ds-cta-copy { margin: 0; max-width: 44rem; font-family: 'Manrope', system-ui, sans-serif; font-size: 1.04rem; line-height: 1.72; color: rgba(255, 253, 248, 0.78); }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Quiet Operator",
+    "overview": "MS Sjaj is the cleaning service that does not perform. Pages do not announce themselves. CTAs do not shout. Hero typography is set in Cormorant Garamond — a magazine-grade serif that carries the weight while everything around it stays quiet. The page background is Warm Linen, not white; the ink is Smoke Walnut, not black. Every surface is tinted toward the brass accent so the system feels like one warm room rather than a stack of unrelated tiles. The operative metaphor is delivery, not décor. Buyers are real-estate agents preparing units for showings, project managers handing over post-construction sites, and homeowners who want it done and signed off. The interface is built to convince them that the operator running this site will arrive on time, work without disturbance, and leave the space ready for inspection.",
+    "keyCharacteristics": [
+      "Editorial pairing — Cormorant Garamond display set against Manrope body, carrying a magazine cadence into a service-business surface.",
+      "Warm Linen room, not a white page. Backgrounds are tinted; 'white' is reserved for very few raised surfaces.",
+      "Old Brass is the single accent. It earns ≤10% of any screen.",
+      "Hairline gradient dividers and gentle ambient lift do most of the depth work; cards do not float.",
+      "Photography-led proof. Real before/after evidence does the selling, not bullet lists."
+    ],
+    "rules": [
+      { "name": "The One-Voice Rule", "body": "Old Brass is used on ≤10% of any given screen. It is never a fill, never gradient text, never a side-stripe accent. If a screen feels brass-heavy, remove a use, do not add another.", "section": "colors" },
+      { "name": "The Two-Family Rule", "body": "Every screen lives within Linen + Walnut by default. Eucalyptus appears only in hairlines and tints. There is never a third family.", "section": "colors" },
+      { "name": "The No-White-Page Rule", "body": "Warm Linen is the page; Bright Linen is the rare raised surface. #ffffff is forbidden as a background. So is #000000 as ink.", "section": "colors" },
+      { "name": "The Two-Voices-Only Rule", "body": "Cormorant for headings, Manrope for everything else. No third typeface, no script, no variable-font display experiments.", "section": "typography" },
+      { "name": "The Eyebrow Hairline Rule", "body": "Every label is preceded by a 2.8rem-wide gradient hairline that taper-fades from rgba(217,154,43,0.82) to rgba(217,154,43,0.18). The hairline is the visual rhyme that holds the system together.", "section": "typography" },
+      { "name": "The 12.5px Floor", "body": "Body-adjacent labels never go below 0.78rem (~12.5px). Anything smaller is decorative-only.", "section": "typography" },
+      { "name": "The Hairline-First Rule", "body": "Section seams are marked with a 1px tapered gradient strip, not with hard borders or contrasting backgrounds. Hairlines do depth before shadows do.", "section": "elevation" },
+      { "name": "The Warm-Shadow Rule", "body": "Every shadow is brown- or brass-tinted. rgba(0,0,0,X) shadows are forbidden — they read as cool and clinical, the wrong room.", "section": "elevation" }
+    ],
+    "dos": [
+      "Do lead with photography — every page should carry at least one full-bleed or generously framed real interior. The room is the proof.",
+      "Do preserve the eyebrow hairline above every label. The 2.8rem brass taper is the system's connective tissue.",
+      "Do use Old Brass on ≤10% of any screen. Count it before you ship.",
+      "Do keep Cormorant Garamond as the only serif and Manrope as the only sans. Two voices, no exceptions.",
+      "Do use the global brass focus ring (2px / 55% / 3px offset) on every focusable element. One ring, everywhere.",
+      "Do put new CSS in mobile-first scopes. Add desktop overrides via min-width queries, not the other way around.",
+      "Do ship reduced-motion fallbacks for any new entrance animation.",
+      "Do name colors descriptively in code comments and CSS variables (Old Brass / Warm Linen). The names carry the brand."
+    ],
+    "donts": [
+      "Don't use stock-photo cleaning imagery, green checkmark badges, '100% satisfaction' tags, or 'brzo i jeftino' discount language.",
+      "Don't ship Bootstrap-card SaaS landings: identical 3- or 4-up icon+heading+text grids repeated down the page.",
+      "Don't ship the hero-metric template — big number, small label, supporting stats with gradient accents.",
+      "Don't use side-stripe borders (border-left greater than 1px as a colored stripe) on cards, callouts, or list items.",
+      "Don't apply gradient text via background-clip: text. Solid Smoke Walnut for headings.",
+      "Don't add decorative glassmorphism. The header gets a Bright Linen wash on scroll — that is the only blurred surface on the site.",
+      "Don't use #ffffff as a background or #000000 as ink. Warm Linen and Smoke Walnut. Always.",
+      "Don't use cool gray (rgba(0,0,0,X)) drop shadows. Every shadow is brown- or brass-tinted.",
+      "Don't claim form success before the email actually leaves. The status line speaks in operational facts, never premature confirmations.",
+      "Don't introduce a third color family or a third typeface. The two-family rule holds.",
+      "Don't convert the comparison slider to a library or framework component. The CSS-variable + clip-path implementation is part of the brand's restraint.",
+      "Don't use exclamation marks, 'najbolji,' '100% guaranteed,' or any superlative. Concrete operational facts only."
+    ]
+  }
+}

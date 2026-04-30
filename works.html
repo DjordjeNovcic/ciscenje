@@ -11,7 +11,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"></noscript>
     <link rel="stylesheet" href="styles.css?v=20260430ui">
     <link rel="icon" href="./favicon.ico">
     <link rel="icon" type="image/png" sizes="32x32" href="./favicon-32.png">
@@ -35,48 +36,9 @@
             </div>
           </div>
 
-          <article class="works-hero-dashboard reveal reveal-delay-1" aria-label="Pregled tipova radova">
-            <div class="works-hero-tabs" aria-label="Tipovi prikaza u galeriji">
-              <button type="button" class="is-active" data-gallery-filter="all">Sve</button>
-              <button type="button" data-gallery-filter="before-after">Pre/Posle</button>
-              <button type="button" data-gallery-filter="detail">Detalj</button>
-            </div>
-
-            <div class="works-hero-dashboard-grid">
-              <figure class="works-hero-dashboard-main">
-                <img src="assets/work-business-hall.jpeg" alt="Veliki poslovni prostor u završnoj obradi">
-              </figure>
-
-              <div class="works-hero-dashboard-side">
-                <div class="works-hero-metric-card">
-                  <span class="works-hero-metric-label">Tip kadra</span>
-                  <strong>Stvarni enterijeri</strong>
-                  <p>Bez stock estetike i bez generičnih primera.</p>
-                </div>
-
-                <div class="works-hero-metric-card">
-                  <span class="works-hero-metric-label">Fokus</span>
-                  <strong>Pre / Posle</strong>
-                  <p>Jasna razlika koju klijent vidi odmah.</p>
-                </div>
-              </div>
-            </div>
-
-            <div class="works-hero-breakdown" aria-label="Šta se vidi kroz radove">
-              <div class="works-hero-breakdown-row">
-                  <span>Šta gledate</span>
-                  <strong>Stvarni radovi</strong>
-              </div>
-              <div class="works-hero-breakdown-row">
-                  <span>Najbolji dokaz</span>
-                  <strong>Pre / posle</strong>
-              </div>
-              <div class="works-hero-breakdown-row">
-                  <span>Fokus galerije</span>
-                  <strong>Detalj završnice</strong>
-              </div>
-            </div>
-          </article>
+          <figure class="works-hero-media reveal reveal-delay-1">
+            <img src="assets/work-business-hall.jpeg" alt="Veliki poslovni prostor u završnoj obradi tokom mašinskog tretmana" loading="lazy" decoding="async">
+          </figure>
         </div>
       </section>
 
@@ -90,39 +52,45 @@
             </p>
           </div>
 
+          <div class="gallery-filter-bar reveal" role="group" aria-label="Filteri galerije">
+            <button type="button" class="is-active" data-gallery-filter="all">Sve</button>
+            <button type="button" data-gallery-filter="before-after">Pre/Posle</button>
+            <button type="button" data-gallery-filter="detail">Detalj</button>
+          </div>
+
           <div class="gallery-grid gallery-grid-works">
             <button class="gallery-card gallery-card-featured reveal" type="button" data-gallery-category="business detail" data-lightbox-src="assets/work-business-hall.jpeg" data-lightbox-caption="Veliki poslovni prostor u toku završnog mašinskog tretmana">
-              <img src="assets/work-business-hall.jpeg" alt="Veliki poslovni prostor u toku završnog mašinskog tretmana">
+              <img src="assets/work-business-hall.jpeg" alt="Veliki poslovni prostor u toku završnog mašinskog tretmana" loading="lazy" decoding="async">
               <span>Veliki poslovni prostor u završnoj obradi</span>
             </button>
 
             <button class="gallery-card reveal reveal-delay-1" type="button" data-gallery-category="home detail" data-lightbox-src="assets/work-lounge-detail.jpeg" data-lightbox-caption="Dnevni boravak posle detaljnog čišćenja">
-              <img src="assets/work-lounge-detail.jpeg" alt="Dnevni boravak posle detaljnog čišćenja">
+              <img src="assets/work-lounge-detail.jpeg" alt="Dnevni boravak posle detaljnog čišćenja" loading="lazy" decoding="async">
               <span>Dnevni boravak posle detaljnog čišćenja</span>
             </button>
 
             <button class="gallery-card reveal reveal-delay-2" type="button" data-gallery-category="home detail" data-lightbox-src="assets/work-commercial-kitchen.jpeg" data-lightbox-caption="Kuhinja i kontaktne zone posle tretmana">
-              <img src="assets/work-commercial-kitchen.jpeg" alt="Kuhinja i kontaktne zone posle tretmana">
+              <img src="assets/work-commercial-kitchen.jpeg" alt="Kuhinja i kontaktne zone posle tretmana" loading="lazy" decoding="async">
               <span>Kuhinja i kontaktne zone posle tretmana</span>
             </button>
 
             <button class="gallery-card reveal reveal-delay-3" type="button" data-gallery-category="business detail" data-lightbox-src="assets/work-business-floor.jpeg" data-lightbox-caption="Mašinsko pranje poslovnog poda">
-              <img src="assets/work-business-floor.jpeg" alt="Mašinsko pranje poslovnog poda">
+              <img src="assets/work-business-floor.jpeg" alt="Mašinsko pranje poslovnog poda" loading="lazy" decoding="async">
               <span>Mašinsko pranje poslovnog poda</span>
             </button>
 
             <button class="gallery-card gallery-card-tall reveal" type="button" data-gallery-category="detail" data-lightbox-src="assets/work-carpet-steam.jpeg" data-lightbox-caption="Dubinsko osveženje tepiha i tekstila">
-              <img src="assets/work-carpet-steam.jpeg" alt="Dubinsko osveženje tepiha i tekstila">
+              <img src="assets/work-carpet-steam.jpeg" alt="Dubinsko osveženje tepiha i tekstila" loading="lazy" decoding="async">
               <span>Dubinsko osveženje tepiha i tekstila</span>
             </button>
 
             <button class="gallery-card reveal reveal-delay-1" type="button" data-gallery-category="before-after" data-lightbox-src="assets/work-chair-before.jpeg" data-lightbox-caption="Stolica pre dubinskog tretmana">
-              <img src="assets/work-chair-before.jpeg" alt="Stolica pre dubinskog tretmana">
+              <img src="assets/work-chair-before.jpeg" alt="Stolica pre dubinskog tretmana" loading="lazy" decoding="async">
               <span>Stolica pre tretmana</span>
             </button>
 
             <button class="gallery-card reveal reveal-delay-2" type="button" data-gallery-category="before-after" data-lightbox-src="assets/work-chair-after.jpeg" data-lightbox-caption="Stolica posle dubinskog tretmana">
-              <img src="assets/work-chair-after.jpeg" alt="Stolica posle dubinskog tretmana">
+              <img src="assets/work-chair-after.jpeg" alt="Stolica posle dubinskog tretmana" loading="lazy" decoding="async">
               <span>Stolica posle tretmana</span>
             </button>
           </div>
@@ -133,7 +101,7 @@
         <div class="shell shell-wide">
           <div class="service-detail service-detail-reverse reveal">
             <div class="service-detail-media">
-              <img src="assets/works-detail-upholstery.jpg" alt="Dubinsko osveženje tapaciranog nameštaja u toku tretmana">
+              <img src="assets/works-detail-upholstery.jpg" alt="Dubinsko osveženje tapaciranog nameštaja u toku tretmana" loading="lazy" decoding="async">
             </div>
             <div class="service-detail-copy">
               <span class="eyebrow">Detalj tretmana</span>
@@ -166,10 +134,10 @@
             <article class="before-after-compare-card reveal" data-image-comparison data-initial="56">
               <div class="before-after-compare-stage">
                 <div class="before-after-compare-layer before-after-compare-layer-base">
-                  <img src="assets/work-chair-after.jpeg" alt="Stolica posle dubinskog tretmana">
+                  <img src="assets/work-bedroom-after.jpeg" alt="Spavaća soba posle dubinskog čišćenja" loading="lazy" decoding="async">
                 </div>
                 <div class="before-after-compare-layer before-after-compare-layer-overlay" data-comparison-overlay>
-                  <img src="assets/work-chair-before.jpeg" alt="Stolica pre dubinskog tretmana">
+                  <img src="assets/work-bedroom-before.jpeg" alt="Spavaća soba pre dubinskog čišćenja" loading="lazy" decoding="async">
                 </div>
                 <div class="before-after-compare-divider" data-comparison-divider aria-hidden="true">
                   <span class="before-after-compare-handle">
@@ -191,8 +159,8 @@
 
               <div class="before-after-compare-caption">
                 <span class="eyebrow">Interaktivno poređenje</span>
-                <strong>Jedna stolica, jasna razlika.</strong>
-                <p>Pomerite klizač i pogledajte kako izgleda komad nameštaja pre tretmana i posle završne obrade.</p>
+                <strong>Spavaća soba, isti kadar — pre i posle.</strong>
+                <p>Pomerite klizač i pogledajte kako izgleda prostor pre tretmana i nakon završne obrade.</p>
               </div>
             </article>
 
@@ -216,21 +184,26 @@
       <section class="section section-cta" id="kontakt">
         <div class="shell shell-wide">
           <div class="cta-panel reveal">
-            <div class="cta-copy">
-              <h2>Ako želite isti nivo urednosti i završnog utiska, javite nam se direktno.</h2>
-              <p>
-                Dovoljno je da pošaljete fotografije prostora ili osnovne informacije o usluzi koja vam je potrebna.
-                Pripremićemo jasan predlog saradnje i termin.
-              </p>
-              <div class="cta-actions">
-                <a href="tel:+381643937000" class="btn btn-primary">Pozovite nas</a>
-                <a href="index.html?scroll=kontakt" class="btn btn-secondary">Ostavite upit</a>
+            <div class="cta-layout">
+              <div class="cta-copy">
+                <span class="eyebrow">Kontakt</span>
+                <h2>Ako želite isti nivo urednosti i završnog utiska, javite nam se direktno.</h2>
+                <p>
+                  Dovoljno je da pošaljete fotografije prostora ili osnovne informacije o usluzi koja vam je potrebna.
+                  Pripremićemo jasan predlog saradnje i termin.
+                </p>
+                <div class="cta-actions">
+                  <a href="tel:+381643937000" class="btn btn-primary">Pozovite nas</a>
+                  <a href="mailto:11mssjaj@gmail.com" class="btn btn-secondary">Pošaljite email</a>
+                </div>
+                <ul class="cta-points">
+                  <li>Možete poslati i fotografije prostora</li>
+                  <li>Predlog saradnje bez nejasnih koraka</li>
+                  <li>Brz odgovor i termin po dogovoru</li>
+                </ul>
               </div>
-              <ul class="cta-points">
-                <li>Možete poslati i fotografije prostora</li>
-                <li>Predlog saradnje bez nejasnih koraka</li>
-                <li>Brz odgovor i termin po dogovoru</li>
-              </ul>
+
+              <div data-inquiry-form-slot data-form-context="Naši radovi"></div>
             </div>
           </div>
         </div>
@@ -239,6 +212,6 @@
 
     <div id="site-footer"></div>
 
-    <script src="script.js?v=20260430ui"></script>
+    <script src="script.js?v=20260430form"></script>
   </body>
 </html>

@@ -11,7 +11,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"></noscript>
     <link rel="stylesheet" href="styles.css?v=20260430ui">
     <link rel="icon" href="./favicon.ico">
     <link rel="icon" type="image/png" sizes="32x32" href="./favicon-32.png">
@@ -39,7 +40,7 @@
           </div>
 
           <figure class="about-hero-media reveal reveal-delay-1">
-            <img src="assets/about-hero-interior.jpg" alt="Svetao i uredan enterijer koji odražava premium standard čistoće">
+            <img src="assets/about-hero-interior.jpg" alt="Svetao i uredan enterijer koji odražava premium standard čistoće" loading="lazy" decoding="async">
           </figure>
 
         </div>
@@ -91,7 +92,7 @@
             </div>
 
             <figure class="about-spotlight-media reveal reveal-delay-1">
-              <img src="assets/about-hero-interior.jpg" alt="Premium enterijer koji pokazuje uredan i smiren završni rezultat">
+              <img src="assets/about-hero-interior.jpg" alt="Premium enterijer koji pokazuje uredan i smiren završni rezultat" loading="lazy" decoding="async">
               <figcaption>
                 <span class="before-after-step-label">MS Sjaj pristup</span>
                 <strong>Vizuelno čist, organizovan i odmah spreman prostor.</strong>
@@ -118,26 +119,18 @@
             </div>
           </div>
 
-          <div class="about-spotlight-stats stats-showcase reveal reveal-delay-2" aria-label="Ključne brojke">
-            <article style="--stats-from: #f3b14a; --stats-to: #cf8620;">
+          <div class="about-spotlight-facts reveal reveal-delay-2" aria-label="Operativne brojke">
+            <article>
               <strong>500+</strong>
-              <h3>Završenih angažmana</h3>
-              <p>Radovi koji pokrivaju dubinsko pranje, završnu obradu i poslovne prostore.</p>
+              <span>Završenih angažmana</span>
             </article>
-            <article style="--stats-from: #d8a15e; --stats-to: #8c5f27;">
+            <article>
               <strong>10+</strong>
-              <h3>Godina iskustva</h3>
-              <p>Dosledan standard koji klijenti prepoznaju i zbog kog se vraćaju.</p>
+              <span>Godina iskustva</span>
             </article>
-            <article style="--stats-from: #efc37a; --stats-to: #b9771a;">
-              <strong>Upit</strong>
-              <h3>Fotografije pomažu</h3>
-              <p>Osnovne informacije i nekoliko slika često su dovoljne za dobar prvi predlog.</p>
-            </article>
-            <article style="--stats-from: #d59a54; --stats-to: #7b5221;">
-              <strong>Plan</strong>
-              <h3>Organizovan dolazak</h3>
-              <p>Raspored rada dogovaramo prema stanju prostora i vašim obavezama.</p>
+            <article>
+              <strong>24h</strong>
+              <span>Do prve procene</span>
             </article>
           </div>
         </div>
@@ -172,18 +165,23 @@
       <section class="section section-cta" id="kontakt">
         <div class="shell shell-wide">
           <div class="cta-panel reveal">
-            <div class="cta-copy">
-              <h2>Ako želite ozbiljnu uslugu, dogovor počinje jednostavno.</h2>
-              <p>Pošaljite upit ili nas pozovite. Dobićete jasan predlog usluge i termin koji ima smisla za vaš prostor.</p>
-              <div class="cta-actions">
-                <a href="tel:+381643937000" class="btn btn-primary">Pozovite nas</a>
-                <a href="index.html?scroll=kontakt" class="btn btn-secondary">Ostavite upit</a>
+            <div class="cta-layout">
+              <div class="cta-copy">
+                <span class="eyebrow">Kontakt</span>
+                <h2>Ako želite ozbiljnu uslugu, dogovor počinje jednostavno.</h2>
+                <p>Pošaljite upit ili nas pozovite. Dobićete jasan predlog usluge i termin koji ima smisla za vaš prostor.</p>
+                <div class="cta-actions">
+                  <a href="tel:+381643937000" class="btn btn-primary">Pozovite nas</a>
+                  <a href="mailto:11mssjaj@gmail.com" class="btn btn-secondary">Pošaljite email</a>
+                </div>
+                <ul class="cta-points">
+                  <li>Diskretan tim na terenu</li>
+                  <li>Precizan operativni plan</li>
+                  <li>Kontrola završnog utiska</li>
+                </ul>
               </div>
-              <ul class="cta-points">
-                <li>Diskretan tim na terenu</li>
-                <li>Precizan operativni plan</li>
-                <li>Kontrola završnog utiska</li>
-              </ul>
+
+              <div data-inquiry-form-slot data-form-context="O nama"></div>
             </div>
           </div>
         </div>
@@ -192,6 +190,6 @@
 
     <div id="site-footer"></div>
 
-    <script src="script.js?v=20260430ui"></script>
+    <script src="script.js?v=20260430form"></script>
   </body>
 </html>
