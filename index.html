@@ -12,7 +12,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <link rel="stylesheet" href="styles.css?v=20260421m12">
+    <link rel="stylesheet" href="styles.css?v=20260430ui">
     <link rel="icon" href="./favicon.ico">
     <link rel="icon" type="image/png" sizes="32x32" href="./favicon-32.png">
   </head>
@@ -29,16 +29,11 @@
         </div>
         <div class="shell shell-wide hero-shell hero-shell-overlay">
           <div class="hero-copy hero-copy-overlay reveal reveal-enter">
-            <p class="hero-location">Kragujevac i okolina</p>
-            <h1>Profesionalno čišćenje <span class="hero-highlight">prostora</span>.</h1>
+            <p class="hero-location">MS Sjaj · Kragujevac i okolina</p>
+            <h1>MS Sjaj za domove i lokale koji moraju da zablistaju.</h1>
             <div class="hero-summary">
-              <p class="hero-lead">Za stanove, kancelarije i prostore koji moraju da ostave snažan prvi utisak.</p>
-              <ul class="hero-points">
-                <li>Čišćenje doma bez stresa, kašnjenja i improvizacije</li>
-                <li>Dubinski tretmani sa jasnim redosledom rada</li>
-                <li>Poslovni prostori koji ostaju uredni bez ometanja ritma firme</li>
-              </ul>
-              <p class="hero-note">Tačan dolazak, diskretan tok rada i završnica koja izgleda uredno čim otvorite vrata.</p>
+              <p class="hero-lead">Profesionalno čišćenje stanova, kancelarija, nameštaja i prostora posle radova.</p>
+              <p class="hero-note">Tačan dolazak, diskretan rad i procena u roku od 24h.</p>
             </div>
             <div class="hero-actions">
               <a href="#kontakt" class="btn btn-primary">Zatražite ponudu</a>
@@ -48,9 +43,9 @@
         </div>
         <div class="hero-mobile-stack">
           <div class="hero-mobile-card">
-            <p class="hero-location">Kragujevac i okolina</p>
-            <h1>Čisto, tačno i bez improvizacije.</h1>
-            <p class="hero-mobile-lead">Za domove, kancelarije i završna sređivanja koja moraju da izgledaju ozbiljno odmah.</p>
+            <p class="hero-location">MS Sjaj · Kragujevac</p>
+            <h1>Čisto, tačno i spremno odmah.</h1>
+            <p class="hero-mobile-lead">Profesionalno čišćenje stanova, kancelarija, nameštaja i prostora posle radova.</p>
             <div class="hero-mobile-proof" aria-label="Brze informacije">
               <span>24h odgovor</span>
               <span>7/7 termini</span>
@@ -151,30 +146,48 @@
             <p>Na početnoj izdvajamo jedno jasno poređenje, a ostale radove možete otvoriti posebno.</p>
           </div>
 
-          <div class="before-after-grid">
-            <article class="comparison-card reveal">
-              <div class="comparison-media">
-                <img src="assets/work-bedroom-before.jpeg" alt="Spavaća soba pre završnog tretmana">
+          <div class="before-after-compare-layout before-after-home-layout">
+            <article class="before-after-compare-card reveal" data-image-comparison data-initial="54">
+              <div class="before-after-compare-stage">
+                <div class="before-after-compare-layer before-after-compare-layer-base">
+                  <img src="assets/work-chair-after.jpeg" alt="Stolica posle dubinskog tretmana">
+                </div>
+                <div class="before-after-compare-layer before-after-compare-layer-overlay" data-comparison-overlay>
+                  <img src="assets/work-chair-before.jpeg" alt="Stolica pre dubinskog tretmana">
+                </div>
+                <div class="before-after-compare-divider" data-comparison-divider aria-hidden="true">
+                  <span class="before-after-compare-handle">
+                    <i class="fas fa-arrows-left-right" aria-hidden="true"></i>
+                  </span>
+                </div>
+                <div class="before-after-compare-badge before-after-compare-badge-left">Pre</div>
+                <div class="before-after-compare-badge before-after-compare-badge-right">Posle</div>
+                <input
+                  class="before-after-compare-range"
+                  data-comparison-range
+                  type="range"
+                  min="0"
+                  max="100"
+                  value="54"
+                  aria-label="Pomerite klizač za poređenje stolice pre i posle dubinskog tretmana"
+                >
               </div>
-              <div class="comparison-copy">
-                <span>Pre</span>
-                <p>Prostor deluje teže, zasićeno i bez jasne završnice.</p>
+
+              <div class="before-after-compare-caption">
+                <span class="eyebrow">Interaktivno poređenje</span>
+                <strong>Jedna stolica, jasna razlika.</strong>
+                <p>Pomerite klizač i pogledajte kako dubinski tretman menja izgled nameštaja.</p>
               </div>
             </article>
 
-            <article class="comparison-card reveal reveal-delay-1">
-              <div class="comparison-media">
-                <img src="assets/work-bedroom-after.jpeg" alt="Spavaća soba posle završnog tretmana">
+            <div class="before-after-compare-copy reveal reveal-delay-1">
+              <p class="panel-title">Dokaz rada</p>
+              <h3>Najbrže poverenje nastaje kada se promena vidi odmah.</h3>
+              <p>Pre/posle prikaz stolice stavlja rezultat ispred obećanja: jasnija boja, čistija tekstura i nameštaj spreman za korišćenje.</p>
+              <div class="results-cta">
+                <a href="works.html" class="btn btn-secondary">Pogledajte naše radove</a>
               </div>
-              <div class="comparison-copy">
-                <span>Posle</span>
-                <p>Posle tretmana utisak je mirniji, svetliji i spreman za boravak ili rad.</p>
-              </div>
-            </article>
-          </div>
-
-          <div class="results-cta reveal reveal-delay-2">
-            <a href="works.html" class="btn btn-secondary">Pogledajte naše radove</a>
+            </div>
           </div>
         </div>
       </section>
@@ -342,6 +355,6 @@
     </main>
 
     <div id="site-footer"></div>
-    <script src="script.js?v=20260420m20"></script>
+    <script src="script.js?v=20260430ui"></script>
   </body>
 </html>

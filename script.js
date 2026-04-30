@@ -22,6 +22,7 @@ async function initializeSite() {
   setupScrollStories();
   setupTextParallaxSections();
   setupPointerGlow();
+  setupGalleryFilters();
   setupLightbox();
   setupImageComparisons();
   setupInquiryForms();
@@ -102,6 +103,20 @@ function getPartialFallback(url) {
           </nav>
         </div>
       </header>
+      <nav class="mobile-action-bar" aria-label="Brzi kontakt">
+        <a href="tel:+381643937000">
+          <i class="fas fa-phone-alt" aria-hidden="true"></i>
+          <span>Pozovi</span>
+        </a>
+        <a href="https://wa.me/381643937000" target="_blank" rel="noreferrer">
+          <i class="fab fa-whatsapp" aria-hidden="true"></i>
+          <span>WhatsApp</span>
+        </a>
+        <a href="#kontakt">
+          <i class="fas fa-paper-plane" aria-hidden="true"></i>
+          <span>Upit</span>
+        </a>
+      </nav>
     `;
   }
 
@@ -503,6 +518,33 @@ function setupPointerGlow() {
     element.addEventListener('mouseleave', () => {
       element.style.removeProperty('--pointer-x');
       element.style.removeProperty('--pointer-y');
+    });
+  });
+}
+
+function setupGalleryFilters() {
+  const controls = [...document.querySelectorAll('[data-gallery-filter]')];
+  const cards = [...document.querySelectorAll('[data-gallery-category]')];
+  if (!controls.length || !cards.length) return;
+
+  const setFilter = filter => {
+    controls.forEach(control => {
+      const isActive = control.getAttribute('data-gallery-filter') === filter;
+      control.classList.toggle('is-active', isActive);
+      control.setAttribute('aria-pressed', String(isActive));
+    });
+
+    cards.forEach(card => {
+      const categories = (card.getAttribute('data-gallery-category') || '').split(/\s+/);
+      const shouldShow = filter === 'all' || categories.includes(filter);
+      card.classList.toggle('is-filter-hidden', !shouldShow);
+    });
+  };
+
+  controls.forEach(control => {
+    control.setAttribute('aria-pressed', String(control.classList.contains('is-active')));
+    control.addEventListener('click', () => {
+      setFilter(control.getAttribute('data-gallery-filter') || 'all');
     });
   });
 }

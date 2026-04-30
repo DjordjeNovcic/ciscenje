@@ -2,6 +2,8 @@
   --color-primary: #d99a2b;
   --color-secondary: #ead7b6;
   --color-accent: #ffb73a;
+  --color-fresh: #6fa99a;
+  --color-fresh-soft: #d7ebe5;
   --color-background: #f4ede2;
   --color-light: #e6d7c2;
   --color-surface: #fbf7f1;
@@ -42,7 +44,7 @@ body {
   min-width: 320px;
   background:
     radial-gradient(circle at top left, rgba(234, 215, 182, 0.5), transparent 36%),
-    radial-gradient(circle at 85% 12%, rgba(255, 183, 58, 0.22), transparent 22%),
+    radial-gradient(circle at 85% 12%, rgba(111, 169, 154, 0.18), transparent 22%),
     linear-gradient(180deg, #faf4eb 0%, var(--color-background) 24%, #eadfce 100%);
   color: var(--color-ink);
   font-family: "Manrope", sans-serif;
@@ -387,6 +389,7 @@ h4 {
 
 .btn:focus-visible,
 .site-nav a:focus-visible,
+.mobile-action-bar a:focus-visible,
 .social-rail a:focus-visible,
 .faq-item summary:focus-visible,
 .footer-action:focus-visible,
@@ -398,7 +401,7 @@ h4 {
 }
 
 .btn-primary {
-  background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
+  background: linear-gradient(135deg, var(--color-primary), var(--color-accent) 62%, #ffd27c);
   color: #fffdf9;
   box-shadow: 0 16px 34px rgba(217, 154, 43, 0.28);
 }
@@ -410,7 +413,7 @@ h4 {
 
 .btn-secondary {
   background: rgba(251, 247, 241, 0.8);
-  border-color: rgba(217, 154, 43, 0.24);
+  border-color: rgba(111, 169, 154, 0.24);
   color: var(--color-ink);
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.55), 0 10px 24px rgba(93, 63, 28, 0.06);
 }
@@ -418,7 +421,7 @@ h4 {
 .btn-secondary:hover,
 .btn-secondary:focus-visible {
   background: rgba(255, 253, 248, 0.96);
-  border-color: rgba(217, 154, 43, 0.38);
+  border-color: rgba(111, 169, 154, 0.4);
 }
 
 .text-link {
@@ -640,6 +643,10 @@ body.is-scrolled .site-header {
 .header-cta:hover,
 .header-cta:focus-visible {
   transform: translateY(-2px);
+}
+
+.mobile-action-bar {
+  display: none;
 }
 
 .nav-toggle {
@@ -901,7 +908,7 @@ body.is-modal-open .social-rail {
 }
 
 .hero-copy h1 {
-  max-width: 12.4ch;
+  max-width: 13.8ch;
   font-size: clamp(2.75rem, 4.35vw, 5.1rem);
   line-height: 0.9;
   letter-spacing: -0.042em;
@@ -909,7 +916,7 @@ body.is-modal-open .social-rail {
 }
 
 .hero-copy-overlay h1 {
-  max-width: 8.7ch;
+  max-width: 11.8ch;
   color: #fffdfa;
   text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
 }
@@ -920,8 +927,8 @@ body.is-modal-open .social-rail {
 
 .hero-summary {
   display: grid;
-  gap: 1.12rem;
-  max-width: 32rem;
+  gap: 0.82rem;
+  max-width: 34rem;
   margin-top: 1.1rem;
 }
 
@@ -941,7 +948,7 @@ body.is-modal-open .social-rail {
 
 .hero-note {
   margin: 0;
-  max-width: 37rem;
+  max-width: 31rem;
   color: rgba(95, 76, 58, 0.94);
   font-size: 1.03rem;
   line-height: 1.74;
@@ -1649,7 +1656,17 @@ body.is-modal-open .social-rail {
 }
 
 .section-before-after {
-  background: linear-gradient(180deg, rgba(234, 215, 182, 0.08), transparent 42%);
+  background:
+    radial-gradient(circle at 92% 8%, rgba(111, 169, 154, 0.12), transparent 24%),
+    linear-gradient(180deg, rgba(234, 215, 182, 0.08), transparent 42%);
+}
+
+.before-after-home-layout {
+  grid-template-columns: minmax(0, 1.05fr) minmax(320px, 0.82fr);
+}
+
+.before-after-home-layout .before-after-compare-stage {
+  min-height: 500px;
 }
 
 .before-after-story {
@@ -3160,7 +3177,7 @@ body.is-modal-open .social-rail {
   margin-bottom: 1rem;
 }
 
-.works-hero-tabs span {
+.works-hero-tabs button {
   display: inline-flex;
   align-items: center;
   min-height: 2.9rem;
@@ -3171,6 +3188,18 @@ body.is-modal-open .social-rail {
   font-family: "Manrope", sans-serif;
   font-size: 0.88rem;
   color: rgba(31, 24, 18, 0.64);
+  transition:
+    transform 220ms var(--ease-premium),
+    background-color 220ms var(--ease-premium),
+    color 220ms var(--ease-premium),
+    border-color 220ms var(--ease-premium);
+}
+
+.works-hero-tabs button:hover,
+.works-hero-tabs button:focus-visible {
+  transform: translateY(-2px);
+  border-color: rgba(111, 169, 154, 0.36);
+  color: var(--color-ink);
 }
 
 .works-hero-tabs .is-active {
@@ -3861,9 +3890,14 @@ body.is-modal-open .social-rail {
   text-align: left;
   min-height: 240px;
   transition:
+    opacity 220ms var(--ease-premium),
     transform 260ms var(--ease-premium),
     box-shadow 260ms var(--ease-premium),
     border-color 260ms var(--ease-premium);
+}
+
+.gallery-card.is-filter-hidden {
+  display: none;
 }
 
 .gallery-card img {
@@ -4303,6 +4337,10 @@ body.is-modal-open .social-rail {
     padding-top: calc(var(--header-height) + 0.55rem);
   }
 
+  body {
+    padding-bottom: calc(76px + env(safe-area-inset-bottom));
+  }
+
   body.home-page .site-header {
     background: linear-gradient(180deg, rgba(248, 242, 234, 0.78), rgba(244, 237, 226, 0.52));
     box-shadow: none;
@@ -4411,6 +4449,65 @@ body.is-modal-open .social-rail {
   }
 
   .social-rail {
+    display: none;
+  }
+
+  .mobile-action-bar {
+    position: fixed;
+    left: 0.85rem;
+    right: 0.85rem;
+    bottom: calc(0.75rem + env(safe-area-inset-bottom));
+    z-index: 70;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0.45rem;
+    padding: 0.42rem;
+    border-radius: 22px;
+    background: rgba(251, 247, 241, 0.92);
+    border: 1px solid rgba(111, 169, 154, 0.24);
+    box-shadow: 0 18px 44px rgba(34, 29, 24, 0.18);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+  }
+
+  .mobile-action-bar a {
+    display: grid;
+    place-items: center;
+    gap: 0.18rem;
+    min-height: 54px;
+    border-radius: 17px;
+    color: var(--color-ink);
+    font-size: 0.74rem;
+    font-weight: 800;
+    letter-spacing: 0.01em;
+    transition:
+      transform 180ms var(--ease-premium),
+      background-color 180ms var(--ease-premium),
+      color 180ms var(--ease-premium);
+  }
+
+  .mobile-action-bar a:first-child {
+    background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
+    color: #17130f;
+  }
+
+  .mobile-action-bar a:nth-child(2) {
+    background: rgba(111, 169, 154, 0.18);
+  }
+
+  .mobile-action-bar a:hover,
+  .mobile-action-bar a:focus-visible {
+    transform: translateY(-1px);
+    background: rgba(255, 253, 248, 0.96);
+  }
+
+  .mobile-action-bar i {
+    font-size: 1rem;
+    line-height: 1;
+  }
+
+  body.nav-open .mobile-action-bar,
+  body.is-modal-open .mobile-action-bar {
     display: none;
   }
 
@@ -5400,7 +5497,7 @@ body.is-modal-open .social-rail {
     line-height: 1.48;
   }
 
-  .works-hero-tabs span {
+  .works-hero-tabs button {
     min-height: 2.55rem;
     padding: 0.58rem 0.82rem;
     font-size: 0.79rem;
