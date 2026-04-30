@@ -2598,8 +2598,8 @@ body.is-modal-open .social-rail {
 }
 
 .page-hero-copy h1 {
-  margin-top: 1.2rem;
-  max-width: 13.6ch;
+  margin-top: 0;
+  max-width: 18ch;
 }
 
 .page-hero-copy p {
@@ -3127,8 +3127,8 @@ body.is-modal-open .social-rail {
 }
 
 .works-hero-copy h1 {
-  margin-top: 1rem;
-  max-width: 9.2ch;
+  margin-top: 0;
+  max-width: 14ch;
 }
 
 .works-hero-copy p {
@@ -4687,7 +4687,7 @@ body.is-modal-open .social-rail {
   }
 
   .works-hero-copy h1 {
-    max-width: 10.5ch;
+    max-width: none;
     font-size: clamp(2.05rem, 8vw, 3rem);
   }
 
@@ -5355,9 +5355,9 @@ body.is-modal-open .social-rail {
   }
 
   .page-hero-copy h1 {
-    max-width: 9.2ch;
+    max-width: none;
     font-size: clamp(1.95rem, 10vw, 2.7rem);
-    line-height: 0.98;
+    line-height: 1;
   }
 
   .page-hero-copy p {
@@ -5374,9 +5374,9 @@ body.is-modal-open .social-rail {
   }
 
   .works-hero-copy h1 {
-    max-width: 9ch;
+    max-width: none;
     font-size: clamp(1.9rem, 9.8vw, 2.5rem);
-    line-height: 0.98;
+    line-height: 1;
   }
 
   .works-hero-copy p {
