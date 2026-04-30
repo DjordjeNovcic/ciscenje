@@ -849,6 +849,8 @@ body.is-modal-open .social-rail {
   min-height: inherit;
   grid-template-columns: minmax(0, 1fr);
   align-items: center;
+  padding-left: clamp(5.75rem, 6vw, 7rem);
+  padding-right: var(--layout-inline-padding);
   padding-top: calc(var(--header-height) + clamp(2.8rem, 7vw, 5.6rem));
   padding-bottom: clamp(2.6rem, 5vw, 4.4rem);
 }
@@ -4312,6 +4314,11 @@ body.is-modal-open .social-rail {
     height: clamp(390px, calc(62svh - var(--header-height)), 560px);
   }
 
+  .hero-shell-overlay {
+    padding-left: var(--layout-inline-padding);
+    padding-right: var(--layout-inline-padding);
+  }
+
   .gallery-card-featured,
   .gallery-card-tall,
   .gallery-grid-works .gallery-card:not(.gallery-card-featured):not(.gallery-card-tall) {
@@ -4710,6 +4717,8 @@ body.is-modal-open .social-rail {
 
   .hero-shell-overlay {
     align-items: end;
+    padding-left: var(--layout-inline-padding);
+    padding-right: var(--layout-inline-padding);
     padding-top: calc(var(--header-height) + 1.25rem);
     padding-bottom: 1rem;
   }
