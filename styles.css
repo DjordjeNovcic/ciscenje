@@ -1973,7 +1973,7 @@ body.is-modal-open .social-rail {
 }
 
 .section-testimonial {
-  padding-block: clamp(4.4rem, 6vw, 6.4rem);
+  padding-block: var(--section-padding-block);
 }
 
 .testimonial-quote {
@@ -2045,7 +2045,7 @@ body.is-modal-open .social-rail {
 }
 
 .section-track-record {
-  padding-block: clamp(3.6rem, 6vw, 5.6rem);
+  padding-block: var(--section-padding-block);
 }
 
 .track-record {
@@ -5705,8 +5705,7 @@ body.is-modal-open .social-rail {
   .why-copy,
   .story-copy,
   .page-hero-copy,
-  .service-detail-copy,
-  .cta-panel {
+  .service-detail-copy {
     padding-top: 0.22rem;
   }
 
