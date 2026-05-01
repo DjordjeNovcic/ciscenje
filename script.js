@@ -25,7 +25,34 @@ async function initializeSite() {
   setupLightbox();
   setupImageComparisons();
   setupInquiryForms();
+  setupMagneticButtons();
   handleDeferredScroll();
+}
+
+function setupMagneticButtons() {
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  if (!window.matchMedia('(hover: hover)').matches) return;
+
+  const targets = document.querySelectorAll('.btn-primary, .header-cta');
+  targets.forEach(btn => {
+    const onMove = event => {
+      const rect = btn.getBoundingClientRect();
+      const dx = event.clientX - (rect.left + rect.width / 2);
+      const dy = event.clientY - (rect.top + rect.height / 2);
+      const max = 6;
+      const tx = Math.max(-max, Math.min(max, dx * 0.18));
+      const ty = Math.max(-max, Math.min(max, dy * 0.18));
+      btn.style.setProperty('--magnet-x', `${tx}px`);
+      btn.style.setProperty('--magnet-y', `${ty}px`);
+    };
+    const reset = () => {
+      btn.style.setProperty('--magnet-x', '0px');
+      btn.style.setProperty('--magnet-y', '0px');
+    };
+    btn.addEventListener('pointermove', onMove);
+    btn.addEventListener('pointerleave', reset);
+    btn.addEventListener('blur', reset);
+  });
 }
 
 async function loadSharedPartials() {
