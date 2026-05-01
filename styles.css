@@ -6898,92 +6898,25 @@ body.is-modal-open .social-rail {
   padding-block: clamp(2rem, 3.6vw, 3.2rem) var(--section-padding-block);
 }
 
-.section-kontakt-direct {
-  padding-block: var(--section-padding-block);
-  background:
-    radial-gradient(circle at top right, rgba(234, 215, 182, 0.12), transparent 32%),
-    linear-gradient(180deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0));
+.kontakt-alt {
+  margin: 1.2rem 0 0;
+  padding-top: 1.2rem;
+  border-top: 1px solid rgba(217, 154, 43, 0.18);
+  font-size: 0.95rem;
+  line-height: 1.55;
+  color: var(--color-ink-soft);
 }
 
-.kontakt-channels {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: clamp(1.2rem, 2.2vw, 2rem);
-  margin: clamp(1.4rem, 2.4vw, 2rem) 0 clamp(2.2rem, 3.6vw, 3.2rem);
-}
-
-.kontakt-channel {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  gap: 0.55rem;
-  padding: clamp(1.6rem, 2.4vw, 2rem) clamp(1.4rem, 2.2vw, 1.8rem);
-  background: linear-gradient(180deg, rgba(251, 247, 241, 0.94), rgba(244, 237, 226, 0.62));
-  border: 1px solid rgba(217, 154, 43, 0.18);
-  border-radius: var(--radius-md);
-  box-shadow: var(--shadow-soft);
+.kontakt-alt a {
   color: var(--color-ink);
-  transition:
-    transform 320ms var(--ease-premium),
-    box-shadow 320ms var(--ease-premium),
-    border-color 320ms var(--ease-premium);
+  border-bottom: 1px solid var(--color-primary);
+  padding-bottom: 0.08rem;
+  transition: color 220ms var(--ease-premium);
 }
 
-.kontakt-channel::before {
-  content: "";
-  position: absolute;
-  left: 1.5rem;
-  right: 1.5rem;
-  top: 0;
-  height: 1px;
-  background: linear-gradient(90deg, rgba(217, 154, 43, 0), rgba(217, 154, 43, 0.55), rgba(217, 154, 43, 0));
-  pointer-events: none;
-}
-
-.kontakt-channel:hover,
-.kontakt-channel:focus-visible {
-  transform: translateY(-6px);
-  box-shadow: var(--shadow-strong);
-  border-color: rgba(217, 154, 43, 0.34);
-}
-
-.kontakt-channel-num {
-  font-family: "Manrope", sans-serif;
-  font-size: 0.7rem;
-  font-weight: 700;
-  letter-spacing: 0.22em;
+.kontakt-alt a:hover,
+.kontakt-alt a:focus-visible {
   color: var(--color-primary);
-  text-transform: uppercase;
-}
-
-.kontakt-channel-label {
-  font-family: "Manrope", sans-serif;
-  font-size: 0.78rem;
-  font-weight: 600;
-  letter-spacing: 0.14em;
-  color: var(--color-ink-soft);
-  text-transform: uppercase;
-}
-
-.kontakt-channel strong {
-  font-family: "Cormorant Garamond", serif;
-  font-size: clamp(1.5rem, 2.2vw, 1.85rem);
-  font-weight: 600;
-  letter-spacing: -0.01em;
-  color: var(--color-ink);
-}
-
-.kontakt-channel-meta {
-  font-size: 0.88rem;
-  line-height: 1.5;
-  color: var(--color-ink-soft);
-  margin-top: 0.3rem;
-}
-
-@media (max-width: 880px) {
-  .kontakt-channels {
-    grid-template-columns: 1fr;
-  }
 }
 
 /* Process pull-quote (about page) — pointer to canonical process on services */
