@@ -6297,7 +6297,7 @@ body.is-modal-open .social-rail {
    ================================================== */
 
 .page-hero-v2 {
-  padding-top: clamp(3rem, 6vw, 5rem);
+  padding-top: 0;
   padding-bottom: clamp(2rem, 4vw, 3rem);
 }
 
@@ -6306,7 +6306,7 @@ body.is-modal-open .social-rail {
   grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
   gap: clamp(2.4rem, 4vw, 4rem);
   align-items: center;
-  padding-top: clamp(1.5rem, 3vw, 2.5rem);
+  padding-top: clamp(0.8rem, 2vw, 1.6rem);
   padding-bottom: clamp(2rem, 3.5vw, 3rem);
 }
 
