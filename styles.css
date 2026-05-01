@@ -3687,39 +3687,87 @@ body.is-modal-open .social-rail {
   padding: 0;
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  border-top: 1px solid var(--color-border);
-  border-left: 1px solid var(--color-border);
+  gap: clamp(2rem, 3.4vw, 3.4rem) clamp(1.6rem, 2.6vw, 2.6rem);
 }
 
 .services-list-item {
   display: grid;
-  gap: 1rem;
-  padding: clamp(1.6rem, 2.4vw, 2.4rem) clamp(1.6rem, 2.4vw, 2.4rem);
-  border-right: 1px solid var(--color-border);
-  border-bottom: 1px solid var(--color-border);
+  grid-template-rows: auto auto;
+  gap: clamp(1.1rem, 1.8vw, 1.5rem);
   align-content: start;
+  position: relative;
+  isolation: isolate;
+}
+
+.services-list-media {
+  position: relative;
+  margin: 0;
+  overflow: hidden;
+  aspect-ratio: 1.55 / 1;
+  border-radius: var(--radius-md);
+  background: var(--color-light);
+}
+
+.services-list-media img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  transition:
+    transform 720ms var(--ease-premium),
+    filter 480ms var(--ease-premium);
+}
+
+.services-list-media::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(180deg, rgba(28, 25, 23, 0) 55%, rgba(28, 25, 23, 0.42) 100%);
+  pointer-events: none;
+  opacity: 0.86;
+  transition: opacity 360ms var(--ease-premium);
+}
+
+.services-list-item:hover .services-list-media img,
+.services-list-item:focus-within .services-list-media img {
+  transform: scale(1.045);
+  filter: saturate(1.04);
+}
+
+.services-list-item:hover .services-list-media::after,
+.services-list-item:focus-within .services-list-media::after {
+  opacity: 0.7;
 }
 
 .services-list-number {
+  position: absolute;
+  top: 1rem;
+  left: 1.1rem;
+  z-index: 2;
   display: inline-flex;
   align-items: center;
-  gap: 0.75rem;
+  gap: 0.7rem;
+  padding: 0.4rem 0.75rem 0.4rem 0.7rem;
+  border-radius: 999px;
+  background: rgba(28, 25, 23, 0.42);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   font-family: "Manrope", sans-serif;
-  font-size: 0.78rem;
+  font-size: 0.74rem;
   font-weight: 700;
   line-height: 1;
-  letter-spacing: 0.22em;
+  letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: var(--color-primary);
-  margin-bottom: 0.1rem;
+  color: rgba(255, 245, 224, 0.94);
 }
 
 .services-list-number::before {
   content: "";
   display: block;
-  width: 2rem;
+  width: 1.4rem;
   height: 1px;
-  background: linear-gradient(90deg, rgba(217, 154, 43, 0.82), rgba(217, 154, 43, 0.18));
+  background: linear-gradient(90deg, rgba(255, 215, 158, 0.92), rgba(255, 215, 158, 0.2));
 }
 
 .services-list-body {
@@ -3730,11 +3778,22 @@ body.is-modal-open .social-rail {
 .services-list-body h3 {
   margin: 0;
   font-family: "Cormorant Garamond", serif;
-  font-size: clamp(1.55rem, 2vw, 1.95rem);
+  font-size: clamp(1.6rem, 2.05vw, 2rem);
   font-weight: 600;
-  line-height: 1.04;
+  line-height: 1.02;
   letter-spacing: -0.024em;
   color: var(--color-ink);
+  display: inline-block;
+  background-image: linear-gradient(var(--color-primary), var(--color-primary));
+  background-size: 0% 1px;
+  background-repeat: no-repeat;
+  background-position: 0 100%;
+  transition: background-size 480ms var(--ease-premium);
+}
+
+.services-list-item:hover .services-list-body h3,
+.services-list-item:focus-within .services-list-body h3 {
+  background-size: 28% 1px;
 }
 
 .services-list-body p {
@@ -3749,7 +3808,7 @@ body.is-modal-open .social-rail {
   margin: 0.2rem 0 0;
   padding: 0;
   display: grid;
-  gap: 0.55rem;
+  gap: 0.5rem;
 }
 
 .services-list-body li {
@@ -3773,16 +3832,15 @@ body.is-modal-open .social-rail {
 @media (max-width: 760px) {
   .services-list-editorial {
     grid-template-columns: 1fr;
-    border-left: 0;
+    gap: clamp(2.2rem, 4vw, 2.8rem);
   }
 
-  .services-list-item {
-    padding: 1.5rem 0;
-    border-right: 0;
+  .services-list-media {
+    aspect-ratio: 1.6 / 1;
   }
 
   .services-list-body h3 {
-    font-size: clamp(1.5rem, 5.4vw, 1.75rem);
+    font-size: clamp(1.55rem, 5.6vw, 1.85rem);
   }
 }
 
