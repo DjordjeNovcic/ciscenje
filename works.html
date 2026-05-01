@@ -24,10 +24,10 @@
     <meta name="theme-color" content="#f4ede2">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
     <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"></noscript>
-    <link rel="stylesheet" href="styles.css?v=20260501dedupe">
+    <link rel="stylesheet" href="styles.css?v=20260501editorial">
     <link rel="icon" href="./favicon.ico">
     <link rel="icon" type="image/png" sizes="32x32" href="./favicon-32.png">
   </head>
@@ -36,156 +36,153 @@
 
     <main>
       <section class="page-hero page-hero-works">
-        <div class="shell shell-wide works-hero-shell">
+        <div class="shell shell-wide works-hero-editorial">
           <div class="works-hero-copy reveal">
-            <h1>Radovi koji kvalitet usluge pokazuju bez dodatnog objašnjenja.</h1>
-            <p>
-              Stvarni enterijeri, detalji završnice i pre/posle poređenja kroz koje se odmah vidi
-              koliko prostor može da izgleda urednije, svetlije i ozbiljnije posle tretmana.
+            <p class="works-hero-eyebrow"><span class="works-hero-eyebrow-dot" aria-hidden="true"></span>Naši radovi · Galerija</p>
+            <h1 class="works-hero-title">
+              Dokazi<br>
+              <em>na prvi pogled.</em>
+            </h1>
+          </div>
+          <div class="works-hero-side reveal reveal-delay-1">
+            <p class="works-hero-body">
+              Svaki tretman beležimo. Pred vama je odabir poslednjih projekata —
+              poslovni prostori, dubinsko pranje tapaciranog nameštaja, kuhinje
+              posle završne obrade i sve nijanse između.
             </p>
-            <div class="hero-actions">
-              <a href="#galerija" class="btn btn-primary">Pogledajte galeriju</a>
-              <a href="#kontakt" class="btn btn-secondary">Zatražite ponudu</a>
+            <div class="works-hero-meta">
+              <div class="works-hero-meta-item">
+                <strong class="works-hero-meta-num">500+</strong>
+                <span class="works-hero-meta-label">Završenih angažmana</span>
+              </div>
+              <div class="works-hero-meta-item">
+                <strong class="works-hero-meta-num">10+</strong>
+                <span class="works-hero-meta-label">Godina iskustva</span>
+              </div>
+              <div class="works-hero-meta-item">
+                <strong class="works-hero-meta-num">24h</strong>
+                <span class="works-hero-meta-label">Do prve procene</span>
+              </div>
             </div>
           </div>
-
-          <figure class="works-hero-media reveal reveal-delay-1">
-            <img src="assets/work-business-hall.jpeg" alt="Veliki poslovni prostor u završnoj obradi tokom mašinskog tretmana" loading="lazy" decoding="async">
-          </figure>
         </div>
       </section>
 
       <section class="section section-gallery" id="galerija">
         <div class="shell shell-wide">
-          <div class="section-head reveal">
-            <h2>Galerija koja pokazuje rezultat iz više uglova, bez ponavljanja istog obećanja.</h2>
-            <p>
-              Ovde su izdvojeni gotovi enterijeri, rad u procesu i pre/posle kadrovi.
-              Tako se vidi i krajnji utisak i način na koji se do njega dolazi.
-            </p>
+          <div class="works-gallery-head reveal">
+            <p class="works-gallery-title">Odabrani projekti, 2024 — 2026</p>
+            <p class="works-gallery-count">8 radova</p>
           </div>
 
-          <div class="gallery-filter-bar reveal" role="group" aria-label="Filteri galerije">
-            <button type="button" class="is-active" data-gallery-filter="all">Sve</button>
-            <button type="button" data-gallery-filter="before-after">Pre/Posle</button>
-            <button type="button" data-gallery-filter="detail">Detalj</button>
-          </div>
+          <div class="works-gallery-grid">
 
-          <div class="gallery-grid gallery-grid-works">
-            <button class="gallery-card gallery-card-featured reveal" type="button" data-gallery-category="business detail" data-lightbox-src="assets/work-business-hall.jpeg" data-lightbox-caption="Veliki poslovni prostor u toku završnog mašinskog tretmana">
-              <img src="assets/work-business-hall.jpeg" alt="Veliki poslovni prostor u toku završnog mašinskog tretmana" loading="lazy" decoding="async">
-              <span>Veliki poslovni prostor u završnoj obradi</span>
-            </button>
+            <figure class="works-fig works-fig-span-8 reveal">
+              <button class="works-fig-trigger" type="button" data-lightbox-src="assets/work-business-hall.jpeg" data-lightbox-caption="Veliki poslovni prostor u toku završnog mašinskog tretmana">
+                <img class="works-fig-img works-fig-aspect-8-5" src="assets/work-business-hall.jpeg" alt="Veliki poslovni prostor u toku završnog mašinskog tretmana" loading="lazy" decoding="async">
+              </button>
+              <figcaption class="works-fig-meta">
+                <span class="works-fig-index">01</span>
+                <span class="works-fig-caption">Veliki poslovni prostor u završnoj obradi</span>
+              </figcaption>
+            </figure>
 
-            <button class="gallery-card reveal reveal-delay-1" type="button" data-gallery-category="home detail" data-lightbox-src="assets/work-lounge-detail.jpeg" data-lightbox-caption="Dnevni boravak posle detaljnog čišćenja">
-              <img src="assets/work-lounge-detail.jpeg" alt="Dnevni boravak posle detaljnog čišćenja" loading="lazy" decoding="async">
-              <span>Dnevni boravak posle detaljnog čišćenja</span>
-            </button>
+            <figure class="works-fig works-fig-span-4 reveal reveal-delay-1">
+              <button class="works-fig-trigger" type="button" data-lightbox-src="assets/work-business-floor.jpeg" data-lightbox-caption="Mašinsko pranje poslovnog poda">
+                <img class="works-fig-img works-fig-aspect-4-5" src="assets/work-business-floor.jpeg" alt="Mašinsko pranje poslovnog poda" loading="lazy" decoding="async">
+              </button>
+              <figcaption class="works-fig-meta">
+                <span class="works-fig-index">02</span>
+                <span class="works-fig-caption">Mašinsko pranje poslovnog poda</span>
+              </figcaption>
+            </figure>
 
-            <button class="gallery-card reveal reveal-delay-2" type="button" data-gallery-category="home detail" data-lightbox-src="assets/work-commercial-kitchen.jpeg" data-lightbox-caption="Kuhinja i kontaktne zone posle tretmana">
-              <img src="assets/work-commercial-kitchen.jpeg" alt="Kuhinja i kontaktne zone posle tretmana" loading="lazy" decoding="async">
-              <span>Kuhinja i kontaktne zone posle tretmana</span>
-            </button>
-
-            <button class="gallery-card reveal reveal-delay-3" type="button" data-gallery-category="business detail" data-lightbox-src="assets/work-business-floor.jpeg" data-lightbox-caption="Mašinsko pranje poslovnog poda">
-              <img src="assets/work-business-floor.jpeg" alt="Mašinsko pranje poslovnog poda" loading="lazy" decoding="async">
-              <span>Mašinsko pranje poslovnog poda</span>
-            </button>
-
-            <button class="gallery-card gallery-card-tall reveal" type="button" data-gallery-category="detail" data-lightbox-src="assets/work-carpet-steam.jpeg" data-lightbox-caption="Dubinsko osveženje tepiha i tekstila">
-              <img src="assets/work-carpet-steam.jpeg" alt="Dubinsko osveženje tepiha i tekstila" loading="lazy" decoding="async">
-              <span>Dubinsko osveženje tepiha i tekstila</span>
-            </button>
-
-            <button class="gallery-card reveal reveal-delay-1" type="button" data-gallery-category="before-after" data-lightbox-src="assets/work-chair-before.jpeg" data-lightbox-caption="Stolica pre dubinskog tretmana">
-              <img src="assets/work-chair-before.jpeg" alt="Stolica pre dubinskog tretmana" loading="lazy" decoding="async">
-              <span>Stolica pre tretmana</span>
-            </button>
-
-            <button class="gallery-card reveal reveal-delay-2" type="button" data-gallery-category="before-after" data-lightbox-src="assets/work-chair-after.jpeg" data-lightbox-caption="Stolica posle dubinskog tretmana">
-              <img src="assets/work-chair-after.jpeg" alt="Stolica posle dubinskog tretmana" loading="lazy" decoding="async">
-              <span>Stolica posle tretmana</span>
-            </button>
-          </div>
-        </div>
-      </section>
-
-      <section class="section section-work-story">
-        <div class="shell shell-wide">
-          <div class="service-detail service-detail-reverse reveal">
-            <div class="service-detail-media">
-              <img src="assets/works-detail-upholstery.jpg" alt="Dubinsko osveženje tapaciranog nameštaja u toku tretmana" loading="lazy" decoding="async">
-            </div>
-            <div class="service-detail-copy">              <h2>Kadar koji pokazuje da iza rezultata postoji ozbiljan proces rada.</h2>
-              <p>
-                Pored gotovih enterijera, važno nam je da se vidi i preciznost tretmana:
-                tapacirane površine, kontaktne zone i detalji koji najviše utiču na osećaj svežine u prostoru.
-              </p>
-              <ul class="detail-list">
-                <li>Dubinski tretmani koji vraćaju uredan vizuelni utisak</li>
-                <li>Fokus na materijal, teksturu i završnu obradu</li>
-                <li>Kadar koji povezuje proces i konačan rezultat</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section class="section section-before-after">
-        <div class="shell shell-wide">
-          <div class="section-head reveal">
-            <h2>Poseban prostor za poređenja koja na najbrži način grade poverenje.</h2>
-            <p>
-              Umesto odvojenih kartica, ovde rezultat može da se pregleda direktno kroz jedan kadar
-              koji jasno pokazuje razliku između početnog stanja i završne obrade.
-            </p>
-          </div>
-
-          <div class="before-after-compare-layout">
-            <article class="before-after-compare-card reveal" data-image-comparison data-initial="56">
-              <div class="before-after-compare-stage">
-                <div class="before-after-compare-layer before-after-compare-layer-base">
-                  <img src="assets/work-bedroom-after.jpeg" alt="Spavaća soba posle dubinskog čišćenja" loading="lazy" decoding="async">
+            <figure class="works-fig works-fig-span-6 reveal">
+              <div class="works-diptych">
+                <div class="works-diptych-photo">
+                  <button class="works-fig-trigger" type="button" data-lightbox-src="assets/work-chair-before.jpeg" data-lightbox-caption="Stolica pre dubinskog tretmana">
+                    <img class="works-fig-img works-fig-aspect-4-5" src="assets/work-chair-before.jpeg" alt="Stolica pre dubinskog tretmana" loading="lazy" decoding="async">
+                  </button>
+                  <span class="works-diptych-label">Pre</span>
                 </div>
-                <div class="before-after-compare-layer before-after-compare-layer-overlay" data-comparison-overlay>
-                  <img src="assets/work-bedroom-before.jpeg" alt="Spavaća soba pre dubinskog čišćenja" loading="lazy" decoding="async">
+                <div class="works-diptych-photo">
+                  <button class="works-fig-trigger" type="button" data-lightbox-src="assets/work-chair-after.jpeg" data-lightbox-caption="Stolica posle dubinskog tretmana">
+                    <img class="works-fig-img works-fig-aspect-4-5" src="assets/work-chair-after.jpeg" alt="Stolica posle dubinskog tretmana" loading="lazy" decoding="async">
+                  </button>
+                  <span class="works-diptych-label works-diptych-label-after">Posle</span>
                 </div>
-                <div class="before-after-compare-divider" data-comparison-divider aria-hidden="true">
-                  <span class="before-after-compare-handle">
-                    <i class="fas fa-arrows-left-right" aria-hidden="true"></i>
-                  </span>
-                </div>
-                <div class="before-after-compare-badge before-after-compare-badge-left">Pre</div>
-                <div class="before-after-compare-badge before-after-compare-badge-right">Posle</div>
-                <input
-                  class="before-after-compare-range"
-                  data-comparison-range
-                  type="range"
-                  min="0"
-                  max="100"
-                  value="56"
-                  aria-label="Pomerite klizač za poređenje stanja pre i posle tretmana"
-                >
+                <span class="works-diptych-divider" aria-hidden="true">&rarr;</span>
               </div>
+              <figcaption class="works-fig-meta">
+                <span class="works-fig-index">03</span>
+                <span class="works-fig-caption">Stolica — pre i posle dubinskog tretmana</span>
+                <span class="works-fig-badge">Diptih</span>
+              </figcaption>
+            </figure>
 
-              <div class="before-after-compare-caption">                <strong>Spavaća soba, isti kadar — pre i posle.</strong>
-                <p>Pomerite klizač i pogledajte kako izgleda prostor pre tretmana i nakon završne obrade.</p>
+            <figure class="works-fig works-fig-span-6 reveal reveal-delay-1">
+              <button class="works-fig-trigger" type="button" data-lightbox-src="assets/work-commercial-kitchen.jpeg" data-lightbox-caption="Kuhinja i kontaktne zone posle tretmana">
+                <img class="works-fig-img works-fig-aspect-8-5" src="assets/work-commercial-kitchen.jpeg" alt="Kuhinja i kontaktne zone posle tretmana" loading="lazy" decoding="async">
+              </button>
+              <figcaption class="works-fig-meta">
+                <span class="works-fig-index">04</span>
+                <span class="works-fig-caption">Kuhinja i kontaktne zone posle tretmana</span>
+              </figcaption>
+            </figure>
+
+            <figure class="works-fig works-fig-span-12 reveal">
+              <div class="works-diptych works-diptych-wide">
+                <div class="works-diptych-photo">
+                  <button class="works-fig-trigger" type="button" data-lightbox-src="assets/work-bedroom-before.jpeg" data-lightbox-caption="Spavaća soba pre dubinskog čišćenja">
+                    <img class="works-fig-img works-fig-aspect-5-4" src="assets/work-bedroom-before.jpeg" alt="Spavaća soba pre dubinskog čišćenja" loading="lazy" decoding="async">
+                  </button>
+                  <span class="works-diptych-label">Pre</span>
+                </div>
+                <div class="works-diptych-photo">
+                  <button class="works-fig-trigger" type="button" data-lightbox-src="assets/work-bedroom-after.jpeg" data-lightbox-caption="Spavaća soba posle dubinskog čišćenja">
+                    <img class="works-fig-img works-fig-aspect-5-4" src="assets/work-bedroom-after.jpeg" alt="Spavaća soba posle dubinskog čišćenja" loading="lazy" decoding="async">
+                  </button>
+                  <span class="works-diptych-label works-diptych-label-after">Posle</span>
+                </div>
+                <span class="works-diptych-divider" aria-hidden="true">&rarr;</span>
               </div>
-            </article>
+              <figcaption class="works-fig-meta">
+                <span class="works-fig-index">05</span>
+                <span class="works-fig-caption">Spavaća soba — pre i posle dubinskog tretmana</span>
+                <span class="works-fig-badge">Diptih</span>
+              </figcaption>
+            </figure>
 
-            <div class="before-after-compare-copy reveal reveal-delay-1">
-              <p class="panel-title">Zašto ovakav prikaz radi</p>
-              <h3>Klijent odmah vidi šta zapravo menjamo u prostoru.</h3>
-              <p>
-                Kada se isti kadar gleda kroz pre/posle slider, razlika je jasnija nego kroz dve odvojene fotografije.
-                To je najbrži način da se pokaže urednost, svetlina i završni utisak koji ostaje posle tretmana.
-              </p>
-              <ul class="detail-list">
-                <li>Isti ugao, bez konfuzije između kadrova</li>
-                <li>Jasniji osećaj promene na prvi pogled</li>
-                <li>Premium prikaz koji pojačava poverenje</li>
-              </ul>
-            </div>
+            <figure class="works-fig works-fig-span-4 reveal">
+              <button class="works-fig-trigger" type="button" data-lightbox-src="assets/work-lounge-detail.jpeg" data-lightbox-caption="Dnevni boravak posle detaljnog čišćenja">
+                <img class="works-fig-img works-fig-aspect-4-5" src="assets/work-lounge-detail.jpeg" alt="Dnevni boravak posle detaljnog čišćenja" loading="lazy" decoding="async">
+              </button>
+              <figcaption class="works-fig-meta">
+                <span class="works-fig-index">06</span>
+                <span class="works-fig-caption">Dnevni boravak posle detaljnog čišćenja</span>
+              </figcaption>
+            </figure>
+
+            <figure class="works-fig works-fig-span-4 reveal reveal-delay-1">
+              <button class="works-fig-trigger" type="button" data-lightbox-src="assets/work-carpet-steam.jpeg" data-lightbox-caption="Dubinsko osveženje tepiha i tekstila">
+                <img class="works-fig-img works-fig-aspect-4-5" src="assets/work-carpet-steam.jpeg" alt="Dubinsko osveženje tepiha i tekstila" loading="lazy" decoding="async">
+              </button>
+              <figcaption class="works-fig-meta">
+                <span class="works-fig-index">07</span>
+                <span class="works-fig-caption">Dubinsko osveženje tepiha i tekstila</span>
+              </figcaption>
+            </figure>
+
+            <figure class="works-fig works-fig-span-4 reveal reveal-delay-2">
+              <button class="works-fig-trigger" type="button" data-lightbox-src="assets/works-detail-upholstery.jpg" data-lightbox-caption="Dubinsko osveženje tapaciranog nameštaja u toku tretmana">
+                <img class="works-fig-img works-fig-aspect-4-5" src="assets/works-detail-upholstery.jpg" alt="Dubinsko osveženje tapaciranog nameštaja u toku tretmana" loading="lazy" decoding="async">
+              </button>
+              <figcaption class="works-fig-meta">
+                <span class="works-fig-index">08</span>
+                <span class="works-fig-caption">Dubinsko osveženje tapaciranog nameštaja</span>
+              </figcaption>
+            </figure>
+
           </div>
         </div>
       </section>
@@ -219,6 +216,6 @@
 
     <div id="site-footer"></div>
 
-    <script src="script.js?v=20260501dedupe"></script>
+    <script src="script.js?v=20260501editorial"></script>
   </body>
 </html>
