@@ -132,63 +132,53 @@ function getPartialFallback(url) {
 
   return `
     <footer class="site-footer">
-      <div class="shell shell-wide footer-cta-shell">
-        <div class="footer-cta-block">
-          <p class="footer-cta-kicker">MS Sjaj</p>
-          <h2>Zatražite čišćenje koje ostavlja ozbiljan utisak već pri prvom ulasku.</h2>
-          <p>
-            Javite nam tip prostora i termin koji vam odgovara, a mi ćemo predložiti jasan tok rada,
-            uslugu i završnicu koja izgleda profesionalno odmah.
-          </p>
-          <div class="footer-cta-actions" aria-label="Brze akcije">
-            <a href="#kontakt" class="btn btn-primary">Zatražite ponudu</a>
-            <a href="tel:+381643937000" class="btn btn-secondary">Pozovite nas</a>
-          </div>
-        </div>
-      </div>
-      <div class="shell shell-wide footer-panel">
-        <div class="footer-panel-main">
-          <div class="footer-brand-column">
-            <a href="index.html" class="footer-brand-mark" aria-label="Početna stranica MS Sjaj">
+      <div class="footer-b">
+        <div class="footer-b-grid">
+          <div class="footer-b-brand">
+            <a href="index.html" class="footer-b-mark" aria-label="Početna stranica MS Sjaj">
               <img src="logo.png" alt="MS Sjaj logo">
               <span>
                 <strong>MS Sjaj</strong>
-                <small>Profesionalne usluge čišćenja</small>
+                <span>Kragujevac · od 2016.</span>
               </span>
             </a>
-            <p>
-              Dubinsko pranje nameštaja, čišćenje posle radova i kompletne usluge čišćenja za
-              stanove, kuće i poslovne prostore u Kragujevcu i okolini.
+            <p class="footer-b-tagline">
+              Pouzdan tim za <em>predaju bez dorade</em> — stanovi, kancelarije i prostori posle radova.
             </p>
           </div>
-          <div class="footer-links-grid">
-            <div class="footer-column">
-              <h2>Stranice</h2>
-              <a href="index.html">Početna</a>
-              <a href="about.html">O nama</a>
-              <a href="services.html">Usluge</a>
-              <a href="works.html">Naši radovi</a>
-            </div>
-            <div class="footer-column">
-              <h2>Usluge</h2>
-              <p>Dubinsko čišćenje</p>
-              <p>Čišćenje nameštaja</p>
-              <p>Čišćenje posle radova</p>
-              <p>Poslovni prostori</p>
-            </div>
-            <div class="footer-column">
-              <h2>Kontakt</h2>
+          <nav class="footer-b-nav-column" aria-label="Stranice">
+            <span class="eyebrow">Stranice</span>
+            <a href="index.html">Početna</a>
+            <a href="about.html">O nama</a>
+            <a href="services.html">Usluge</a>
+            <a href="works.html">Naši radovi</a>
+          </nav>
+          <div class="footer-b-contact">
+            <div class="footer-b-contact-block">
+              <span class="eyebrow">Pozovite</span>
               <a href="tel:+381643937000">064 / 393-7000</a>
               <a href="tel:+381655625876">065 / 562-5876</a>
+            </div>
+            <div class="footer-b-contact-block">
+              <span class="eyebrow">Pišite</span>
               <a href="mailto:11mssjaj@gmail.com">11mssjaj@gmail.com</a>
-              <p>Ponedeljak - Petak · 08:00 - 20:00</p>
-              <p>Subota po dogovoru</p>
+            </div>
+            <div class="footer-b-contact-block">
+              <span class="eyebrow">Radno vreme</span>
+              <div class="hours-line">
+                <p>Pon–Pet · 08:00 – 20:00</p>
+                <p>Subota po dogovoru</p>
+              </div>
             </div>
           </div>
         </div>
-        <div class="footer-bottom-shell">
-          <p>&copy; <span id="currentYear"></span> MS Sjaj. Sva prava zadržana.</p>
-          <a href="#vrh" class="footer-top-link">Nazad na vrh</a>
+        <div class="footer-b-bottom">
+          <span>&copy; <span id="currentYear"></span> MS Sjaj. Sva prava zadržana.</span>
+          <div class="footer-b-socials" aria-label="Društvene mreže">
+            <a href="https://www.instagram.com/mssjaj.kg?igsh=ZjlzajBydXIxemMy" target="_blank" rel="noreferrer" aria-label="Instagram"><i class="fab fa-instagram" aria-hidden="true"></i></a>
+            <a href="https://www.facebook.com/" target="_blank" rel="noreferrer" aria-label="Fejsbuk"><i class="fab fa-facebook-f" aria-hidden="true"></i></a>
+            <a href="https://wa.me/381643937000" target="_blank" rel="noreferrer" aria-label="WhatsApp"><i class="fab fa-whatsapp" aria-hidden="true"></i></a>
+          </div>
         </div>
       </div>
     </footer>
