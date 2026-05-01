@@ -2379,33 +2379,19 @@ body.is-modal-open .social-rail {
 .site-footer {
   position: relative;
   margin-top: 2.4rem;
-  padding: clamp(1rem, 2vw, 1.6rem) clamp(0.9rem, 2vw, 1.4rem) clamp(0.9rem, 1.5vw, 1.4rem);
-  background: transparent;
-  color: rgba(255, 253, 248, 0.86);
-}
-
-/* ===== FOOTER — RESTRAINED DARK CARD ===== */
-
-.footer-b {
-  position: relative;
-  width: 100%;
-  margin: 0;
-  padding: clamp(2.6rem, 4vw, 3.6rem) clamp(2.4rem, 4vw, 3.6rem);
-  border-radius: var(--radius-lg);
+  padding: 0;
   background:
     radial-gradient(circle at 12% 10%, rgba(217, 154, 43, 0.08), transparent 45%),
     linear-gradient(180deg, var(--color-panel), var(--color-panel-deep));
-  font-family: "Manrope", sans-serif;
-  box-shadow: 0 28px 80px rgba(34, 29, 24, 0.22);
-  overflow: hidden;
+  color: rgba(255, 253, 248, 0.86);
 }
 
-.footer-b::before {
+.site-footer::before {
   content: "";
   position: absolute;
   top: 0;
-  left: 12%;
-  right: 12%;
+  left: 0;
+  right: 0;
   height: 1px;
   background: linear-gradient(
     90deg,
@@ -2413,6 +2399,16 @@ body.is-modal-open .social-rail {
     rgba(217, 154, 43, 0.5),
     transparent
   );
+}
+
+/* ===== FOOTER — FULL-WIDTH DARK BAR ===== */
+
+.footer-b {
+  position: relative;
+  width: min(calc(100% - 2.25rem), var(--content-width));
+  margin: 0 auto;
+  padding: clamp(2.6rem, 4vw, 3.6rem) 0;
+  font-family: "Manrope", sans-serif;
 }
 
 .footer-b a {
