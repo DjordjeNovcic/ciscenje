@@ -3526,6 +3526,15 @@ body.is-modal-open .social-rail {
   margin-top: 0.35rem;
 }
 
+.package-card-featured .btn-primary {
+  box-shadow: 0 12px 28px rgba(255, 183, 58, 0.18);
+}
+
+.package-card-featured .btn-primary:hover,
+.package-card-featured .btn-primary:focus-visible {
+  box-shadow: 0 16px 36px rgba(255, 183, 58, 0.26);
+}
+
 .section-service-list .service-offer-card {
   background: linear-gradient(180deg, rgba(251, 247, 241, 0.82), rgba(239, 228, 211, 0.74));
 }
@@ -3744,12 +3753,29 @@ body.is-modal-open .social-rail {
 @media (max-width: 760px) {
   .services-list-item {
     grid-template-columns: 1fr;
-    gap: 0.6rem;
-    padding-block: 2rem;
+    gap: 0.55rem;
+    padding-block: 1.85rem;
   }
 
   .services-list-number {
-    font-size: clamp(2rem, 7vw, 2.4rem);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-family: "Manrope", sans-serif;
+    font-size: 0.78rem;
+    font-weight: 700;
+    line-height: 1;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--color-primary);
+  }
+
+  .services-list-number::before {
+    content: "";
+    display: block;
+    width: 2.4rem;
+    height: 1px;
+    background: linear-gradient(90deg, rgba(217, 154, 43, 0.82), rgba(217, 154, 43, 0.18));
   }
 }
 
@@ -5772,12 +5798,15 @@ body.is-modal-open .social-rail {
   .service-card,
   .comparison-card,
   .service-offer-card,
-  .package-card,
   .process-step,
   .lift-card,
   .faq-item {
     border-radius: 22px;
     overflow: hidden;
+  }
+
+  .package-card {
+    border-radius: 22px;
   }
 
   .service-card-body h3,
