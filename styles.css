@@ -2498,7 +2498,7 @@ body.is-modal-open .social-rail {
   letter-spacing: 0.04em;
 }
 
-.footer-b-tagline {
+.footer-b .footer-b-tagline {
   max-width: 36ch;
   font-size: 1.02rem;
   line-height: 1.55;
@@ -2508,7 +2508,7 @@ body.is-modal-open .social-rail {
   letter-spacing: -0.01em;
 }
 
-.footer-b-tagline em {
+.footer-b .footer-b-tagline em {
   color: var(--color-accent);
   font-style: italic;
 }
