@@ -1,7 +1,0 @@
-<svg width="320" height="92" viewBox="0 0 320 92" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <rect width="320" height="92" rx="18" fill="white" fill-opacity="0"/>
-  <path d="M63 58L87 34L111 58" stroke="#7C6856" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
-  <path d="M75 58V43M99 58V43" stroke="#B09277" stroke-width="5" stroke-linecap="round"/>
-  <text x="132" y="40" fill="#4A4036" font-family="Poppins, Arial, sans-serif" font-size="20" font-weight="700" letter-spacing="2">HOTEL</text>
-  <text x="132" y="62" fill="#8C7B6A" font-family="Poppins, Arial, sans-serif" font-size="21" font-weight="700" letter-spacing="3">PANORAMA</text>
-</svg>
