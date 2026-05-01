@@ -254,8 +254,28 @@ h4 {
 }
 
 .section-head {
-  max-width: 920px;
   margin-bottom: clamp(2.4rem, 4.4vw, 4.2rem);
+}
+
+.section-head:has(p) {
+  display: grid;
+  grid-template-columns: minmax(0, 1.45fr) minmax(0, 1fr);
+  grid-template-areas: "head body";
+  gap: clamp(2rem, 4vw, 4rem);
+  align-items: end;
+}
+
+.section-head:has(p) > h2,
+.section-head:has(p) > h1 {
+  grid-area: head;
+}
+
+.section-head:has(p) > p {
+  grid-area: body;
+}
+
+.section-head:not(:has(p)) {
+  max-width: 1100px;
 }
 
 .section-head,
@@ -318,6 +338,11 @@ h4 {
   margin-top: 1.4rem;
   font-size: clamp(1.04rem, 1.5vw, 1.14rem);
   line-height: 1.66;
+}
+
+.section-head:has(p) p {
+  margin-top: 0;
+  max-width: none;
 }
 
 .panel-title,
@@ -3128,7 +3153,7 @@ body.is-modal-open .social-rail {
 
 .works-hero-copy h1 {
   margin-top: 0;
-  max-width: 14ch;
+  max-width: 22ch;
 }
 
 .works-hero-copy p {
@@ -5790,6 +5815,13 @@ body.is-modal-open .social-rail {
 
   .section-head {
     margin-bottom: 1.45rem;
+  }
+
+  .section-head:has(p) {
+    grid-template-columns: 1fr;
+    grid-template-areas: "head" "body";
+    gap: 0.8rem;
+    align-items: start;
   }
 
   .section-head,
