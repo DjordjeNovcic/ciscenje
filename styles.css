@@ -27,7 +27,7 @@
   --home-hero-image-position: 50% 58%;
   --header-height: 92px;
   --ease-premium: cubic-bezier(0.16, 1, 0.3, 1);
-  --section-padding-block: clamp(4.6rem, 7vw, 7.2rem);
+  --section-padding-block: clamp(3.8rem, 5.6vw, 5.6rem);
 }
 
 *,
@@ -2004,8 +2004,31 @@ body.is-modal-open .social-rail {
 .testimonial-quote {
   margin: 0;
   display: grid;
-  gap: 1.6rem;
-  max-width: 60rem;
+  grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr);
+  gap: clamp(2rem, 4vw, 4rem);
+  align-items: end;
+}
+
+.testimonial-quote blockquote,
+.testimonial-quote .eyebrow {
+  grid-column: 1;
+}
+
+.testimonial-quote figcaption {
+  grid-column: 2;
+}
+
+@media (max-width: 760px) {
+  .testimonial-quote {
+    grid-template-columns: 1fr;
+    gap: 1.4rem;
+  }
+
+  .testimonial-quote blockquote,
+  .testimonial-quote .eyebrow,
+  .testimonial-quote figcaption {
+    grid-column: 1;
+  }
 }
 
 .testimonial-quote .eyebrow {
@@ -2075,8 +2098,24 @@ body.is-modal-open .social-rail {
 
 .track-record {
   display: grid;
-  gap: 1.2rem;
-  max-width: 60rem;
+  grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr);
+  gap: clamp(2rem, 4vw, 4rem);
+  align-items: center;
+  max-width: none;
+}
+
+.track-record::after {
+  content: "500+";
+  display: inline-flex;
+  align-items: baseline;
+  justify-content: end;
+  font-family: "Cormorant Garamond", serif;
+  font-size: clamp(4rem, 8vw, 8.4rem);
+  font-weight: 600;
+  line-height: 0.86;
+  letter-spacing: -0.045em;
+  color: var(--color-primary);
+  text-align: right;
 }
 
 .track-record p {
@@ -2087,6 +2126,19 @@ body.is-modal-open .social-rail {
   line-height: 1.32;
   letter-spacing: -0.018em;
   color: var(--color-ink);
+}
+
+@media (max-width: 760px) {
+  .track-record {
+    grid-template-columns: 1fr;
+    gap: 1.2rem;
+  }
+
+  .track-record::after {
+    justify-content: start;
+    text-align: left;
+    font-size: clamp(3.4rem, 18vw, 4.6rem);
+  }
 }
 
 .faq-list {
