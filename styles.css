@@ -2146,8 +2146,6 @@ body.is-modal-open .social-rail {
 }
 
 .section-faq .section-head {
-  position: sticky;
-  top: calc(var(--header-height) + 2rem);
   margin-bottom: 0;
 }
 
