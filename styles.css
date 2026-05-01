@@ -333,9 +333,10 @@ h4 {
 .story-copy h2,
 .service-detail-copy h2 {
   margin: 0;
-  font-size: clamp(2.85rem, 5vw, 5.6rem);
-  line-height: 0.9;
-  letter-spacing: -0.036em;
+  font-size: clamp(2.4rem, 3.8vw, 4.4rem);
+  line-height: 0.96;
+  letter-spacing: -0.03em;
+  text-wrap: balance;
 }
 
 .section-head p,
