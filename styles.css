@@ -260,9 +260,15 @@ h4 {
 .section-head:has(p) {
   display: grid;
   grid-template-columns: minmax(0, 1.45fr) minmax(0, 1fr);
-  grid-template-areas: "head body";
+  grid-template-areas:
+    "eyebrow eyebrow"
+    "head    body";
   gap: clamp(2rem, 4vw, 4rem);
   align-items: end;
+}
+
+.section-head:has(p) > .eyebrow {
+  grid-area: eyebrow;
 }
 
 .section-head:has(p) > h2,
@@ -272,6 +278,10 @@ h4 {
 
 .section-head:has(p) > p {
   grid-area: body;
+}
+
+.section-head:has(.eyebrow)::before {
+  display: none;
 }
 
 .section-head:not(:has(p)) {
@@ -6507,5 +6517,172 @@ body.is-modal-open .social-rail {
 
   .page-hero-v2-photo-caption {
     font-size: 0.85rem;
+  }
+}
+
+
+/* ==================================================
+   EDITORIAL CHAPTERS — section-head eyebrow, process editorial,
+   services packages editorial 3-up
+   ================================================== */
+
+.section-head .eyebrow {
+  margin-bottom: 0.85rem;
+}
+
+/* Process editorial — replaces process-grid card layout */
+.process-editorial {
+  list-style: none;
+  margin: clamp(2rem, 4vw, 3rem) 0 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(2rem, 4vw, 3.4rem);
+}
+
+.process-editorial-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+  padding-top: 1.6rem;
+  border-top: 1px solid rgba(217, 154, 43, 0.24);
+  min-width: 0;
+}
+
+.process-editorial-num {
+  font-family: "Manrope", sans-serif;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  color: var(--color-primary);
+  text-transform: uppercase;
+}
+
+.process-editorial-item h3 {
+  margin: 0;
+  font-family: "Cormorant Garamond", serif;
+  font-size: clamp(1.55rem, 2.4vw, 2.05rem);
+  font-weight: 600;
+  line-height: 1.05;
+  letter-spacing: -0.018em;
+  color: var(--color-ink);
+}
+
+.process-editorial-item p {
+  margin: 0.35rem 0 0;
+  font-size: 0.98rem;
+  line-height: 1.6;
+  color: var(--color-ink-soft);
+}
+
+@media (max-width: 760px) {
+  .process-editorial {
+    grid-template-columns: 1fr;
+    gap: 1.6rem;
+  }
+}
+
+/* Services packages editorial — replaces 3 package-cards */
+.services-packages-editorial {
+  list-style: none;
+  margin: clamp(2rem, 4vw, 3rem) 0 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(1.6rem, 3vw, 2.6rem);
+}
+
+.services-packages-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  padding-top: 1.8rem;
+  border-top: 1px solid rgba(217, 154, 43, 0.24);
+  min-width: 0;
+}
+
+.services-packages-item-featured {
+  border-top-color: var(--color-primary);
+}
+
+.services-packages-num {
+  font-family: "Manrope", sans-serif;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  color: var(--color-primary);
+  text-transform: uppercase;
+}
+
+.services-packages-item h3 {
+  margin: 0;
+  font-family: "Cormorant Garamond", serif;
+  font-size: clamp(1.7rem, 2.6vw, 2.2rem);
+  font-weight: 600;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  color: var(--color-ink);
+}
+
+.services-packages-lead {
+  margin: 0.35rem 0 0;
+  font-size: 0.98rem;
+  line-height: 1.62;
+  color: var(--color-ink-soft);
+}
+
+.services-packages-features {
+  margin: 0.4rem 0 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 0.5rem;
+}
+
+.services-packages-features li {
+  position: relative;
+  padding-left: 1.1rem;
+  font-size: 0.92rem;
+  line-height: 1.5;
+  color: var(--color-ink);
+}
+
+.services-packages-features li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.55em;
+  width: 0.4rem;
+  height: 1px;
+  background: var(--color-primary);
+}
+
+.services-packages-link {
+  margin-top: auto;
+  padding-top: 1.2rem;
+  align-self: flex-start;
+  font-family: "Manrope", sans-serif;
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: var(--color-ink);
+  border-bottom: 1px solid var(--color-primary);
+  padding-bottom: 0.25rem;
+  transition: color 200ms var(--ease-premium);
+}
+
+.services-packages-link:hover,
+.services-packages-link:focus-visible {
+  color: var(--color-primary);
+}
+
+.services-packages-link-featured {
+  color: var(--color-primary);
+}
+
+@media (max-width: 760px) {
+  .services-packages-editorial {
+    grid-template-columns: 1fr;
+    gap: 1.6rem;
   }
 }
