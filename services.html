@@ -27,7 +27,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
     <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"></noscript>
-    <link rel="stylesheet" href="styles.css?v=20260501footer">
+    <link rel="stylesheet" href="styles.css?v=20260501header">
     <link rel="icon" href="./favicon.ico">
     <link rel="icon" type="image/png" sizes="32x32" href="./favicon-32.png">
   </head>
@@ -35,45 +35,39 @@
     <div id="site-header"></div>
 
     <main>
-      <section class="page-hero page-hero-services">
-        <div class="shell shell-wide page-hero-shell page-hero-shell-services">
-          <div class="page-hero-copy page-hero-copy-services reveal">
-            <h1>Odaberite uslugu prema problemu koji želite da rešite u prostoru.</h1>
-            <p>
-              Nekome treba redovan ritam, nekome dubinski reset, a nekome završno sređivanje posle radova.
-              Zato prvo gledamo stanje prostora, pa predlažemo najrazumniji nivo tretmana.
+      <section class="page-hero page-hero-services page-hero-services-v2">
+        <div class="shell shell-wide services-hero-v2-shell">
+          <div class="services-hero-v2-copy reveal">
+            <span class="services-hero-v2-eyebrow">Usluge · Pregled</span>
+            <h1>
+              Tretman<br>
+              <em>koji prostor</em><br>
+              zahteva.
+            </h1>
+            <p class="services-hero-v2-lead">
+              Redovan ritam, dubinski reset ili završno sređivanje — gledamo stanje prostora,
+              pa predlažemo nivo tretmana.
             </p>
-            <div class="hero-actions">
+            <div class="services-hero-v2-actions">
               <a href="#kontakt" class="btn btn-primary">Zatražite ponudu</a>
-              <a href="works.html" class="btn btn-secondary">Pogledajte radove</a>
+              <a href="works.html" class="services-hero-v2-link">Pogledajte radove &rarr;</a>
             </div>
           </div>
 
-          <figure class="services-hero-media reveal reveal-delay-1">
+          <figure class="services-hero-v2-media reveal reveal-delay-1">
+            <span class="services-hero-v2-photo-index">01 / Usluge</span>
             <img src="assets/services-hero-interior.jpg" alt="Svetao, uredan enterijer kao rezultat profesionalnog čišćenja" loading="lazy" decoding="async">
+            <span class="services-hero-v2-photo-caption">Stan posle dubinskog tretmana</span>
           </figure>
+        </div>
 
-          <div class="services-hero-grid reveal reveal-delay-2" aria-label="Brza navigacija kroz usluge">
-            <a href="#service-dubinsko" class="services-hero-card">
-              <span class="card-tag">Dom</span>
-              <strong>Dubinsko čišćenje</strong>
-              <small>Kada prostor traži više od brzog održavanja.</small>
-            </a>
-            <a href="#service-poslovni" class="services-hero-card">
-              <span class="card-tag">Firma</span>
-              <strong>Poslovni prostor</strong>
-              <small>Za kancelarije, lokale i salone koji primaju ljude svaki dan.</small>
-            </a>
-            <a href="#service-namestaj" class="services-hero-card">
-              <span class="card-tag">Tekstil</span>
-              <strong>Nameštaj i tekstil</strong>
-              <small>Kada sofe, stolice ili tepisi najviše kvare utisak.</small>
-            </a>
-            <a href="#service-radovi" class="services-hero-card">
-              <span class="card-tag">Finale</span>
-              <strong>Nakon radova</strong>
-              <small>Za prelaz iz prašine i ostataka u prostor spreman za korišćenje.</small>
-            </a>
+        <div class="shell shell-wide">
+          <div class="services-hero-v2-strip reveal reveal-delay-2" aria-label="Brza navigacija kroz usluge">
+            <span class="services-hero-v2-strip-label">Skok na</span>
+            <a href="#service-dubinsko"><span>01</span> Dubinsko</a>
+            <a href="#service-poslovni"><span>02</span> Poslovni prostor</a>
+            <a href="#service-namestaj"><span>03</span> Nameštaj i tekstil</a>
+            <a href="#service-radovi"><span>04</span> Nakon radova</a>
           </div>
         </div>
       </section>
@@ -411,6 +405,6 @@
 
     <div id="site-footer"></div>
 
-    <script src="script.js?v=20260501footer"></script>
+    <script src="script.js?v=20260501header"></script>
   </body>
 </html>
