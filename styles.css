@@ -5236,8 +5236,8 @@ body.is-modal-open .social-rail {
 
   body.home-page .hero-section {
     min-height: 0;
-    padding-top: calc(var(--header-height) + 1rem);
-    padding-bottom: 1.8rem;
+    padding-top: 0.4rem;
+    padding-bottom: 1.4rem;
     background: transparent;
     overflow: visible;
     border-radius: 0;
@@ -5360,10 +5360,10 @@ body.is-modal-open .social-rail {
   }
 
   body.home-page .section-services .section-head h2 {
-    max-width: 12.2ch;
-    font-size: clamp(1.72rem, 8.2vw, 2.15rem);
-    line-height: 0.98;
-    letter-spacing: -0.03em;
+    max-width: none;
+    font-size: clamp(1.7rem, 7.4vw, 2.05rem);
+    line-height: 1.04;
+    letter-spacing: -0.026em;
   }
 
   body.home-page .section-services .section-head p {
@@ -5621,9 +5621,9 @@ body.is-modal-open .social-rail {
   .page-hero-copy h1,
   .story-copy h2,
   .service-detail-copy h2 {
-    font-size: clamp(2rem, 8.8vw, 2.35rem);
-    line-height: 0.98;
-    letter-spacing: -0.03em;
+    font-size: clamp(1.7rem, 7.4vw, 2.05rem);
+    line-height: 1.04;
+    letter-spacing: -0.026em;
   }
 
   .service-card-featured .service-card-body {
