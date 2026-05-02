@@ -7235,13 +7235,13 @@ main {
    ============================================================ */
 .section-ornament {
   position: absolute;
-  top: clamp(6rem, 9vw, 8.5rem);
-  right: clamp(1.6rem, 3vw, 3rem);
-  width: clamp(150px, 17vw, 220px);
+  top: clamp(5.5rem, 8vw, 7.5rem);
+  right: clamp(1.6rem, 3vw, 3.5rem);
+  width: clamp(220px, 24vw, 320px);
   margin: 0;
   pointer-events: none;
   user-select: none;
-  opacity: 0.9;
+  opacity: 1;
 }
 
 .section-ornament img {
@@ -7253,7 +7253,13 @@ main {
 /* Story section on about uses a centered single-column shell;
    pin the ornament inside that without breaking the centering. */
 .section-story .section-ornament {
-  top: clamp(2rem, 4vw, 4rem);
+  top: clamp(1.5rem, 3vw, 3rem);
+}
+
+/* Process on services has a taller section-head; let the supplies
+   illustration sit a touch higher so it aligns with the eyebrow row. */
+.section-process .section-ornament {
+  top: clamp(4.5rem, 7vw, 6.5rem);
 }
 
 /* Hide on mobile so the heading column owns the viewport. */
@@ -7270,13 +7276,13 @@ main {
   display: block;
   pointer-events: none;
   user-select: none;
-  opacity: 0.7;
-  width: clamp(200px, 24vw, 320px);
+  opacity: 0.78;
+  width: clamp(240px, 26vw, 360px);
   height: auto;
-  top: clamp(1.5rem, 3vw, 3rem);
-  right: clamp(2rem, 5vw, 6rem);
+  top: clamp(0.8rem, 1.5vw, 1.2rem);
+  right: clamp(2.5rem, 6vw, 7rem);
   z-index: 0;
-  transform: rotate(6deg);
+  transform: rotate(2deg);
 }
 
 @media (max-width: 980px) {
