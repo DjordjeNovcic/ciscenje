@@ -7578,13 +7578,13 @@ main {
   padding-block: clamp(1.8rem, 3vw, 3rem);
 }
 
-/* 8 — Home Dokaz cluster ornament: replaces the old arrow on
-   the proof section with a richer cleaning-supplies cluster. */
-.section-before-after .section-ornament-cluster {
-  top: clamp(0.6rem, 1.4vw, 1.6rem);
+/* 8 — Home Dokaz proof ornament: cleaner two-object line-art
+   that supports the section without competing with the slider. */
+.section-before-after .section-ornament-proof {
+  top: clamp(0.4rem, 1.2vw, 1.4rem);
   right: clamp(1rem, 3vw, 3.5rem);
-  width: clamp(240px, 28vw, 400px);
-  opacity: 0.55;
+  width: clamp(180px, 19vw, 260px);
+  opacity: 0.42;
   z-index: 0;
   transform: rotate(-2deg);
 }
@@ -7593,4 +7593,47 @@ main {
 .section-before-after .before-after-compare-layout {
   position: relative;
   z-index: 1;
+}
+
+/* ============================================================
+   Cleanup pass — alignment, padding and rhythm refinements only.
+   ============================================================ */
+
+/* C1 — Approach (home Pristup) ornament: pull it slightly
+   inward and down so the section number "02" has clear breathing
+   room above it, and the illustration sits cleanly inside. */
+.section-why .section-ornament {
+  top: clamp(3.5rem, 6vw, 5.5rem);
+  right: clamp(1.4rem, 2.8vw, 3.4rem);
+  width: clamp(180px, 19vw, 260px);
+  opacity: 0.78;
+}
+
+/* C2 — Service compact cards: a touch more padding and a
+   slightly wider image column so the two card sizes feel like
+   one family. The featured card stays untouched. */
+.service-card-compact {
+  grid-template-columns: minmax(150px, 40%) minmax(0, 1fr);
+}
+
+.service-card-compact .service-card-body {
+  padding: 1.3rem 1.5rem 1.4rem;
+}
+
+.service-card-compact .service-card-body p {
+  margin-top: 0.6rem;
+}
+
+.service-card-compact .card-tag {
+  margin-bottom: 0.6rem;
+}
+
+/* C3 — One last spacing pass on the home flow. The global token
+   already shrank in v2; this trims four specific transitions
+   that were still feeling airy without affecting other pages. */
+.home-page .section-services,
+.home-page .section-why,
+.home-page .section-before-after,
+.home-page .section-faq {
+  padding-block: clamp(2.2rem, 3.4vw, 3.4rem);
 }
