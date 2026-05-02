@@ -27,7 +27,7 @@
   --home-hero-image-position: 50% 58%;
   --header-height: 76px;
   --ease-premium: cubic-bezier(0.16, 1, 0.3, 1);
-  --section-padding-block: clamp(3.8rem, 5.6vw, 5.6rem);
+  --section-padding-block: clamp(2.8rem, 4.2vw, 4.2rem);
 }
 
 *,
@@ -7316,16 +7316,19 @@ main {
 }
 
 /* ============================================================
-   Conservative polish pass — CSS-only, additive overrides.
-   Touches: service cards (hover ring), testimonial (rhythm,
-   quote treatment), FAQ (smoother chevron + active state),
-   CTA panel (right-side soft accent), footer (refinements),
-   section rhythm (testimonial gap tightening).
+   Stronger polish pass — CSS-only, additive overrides.
+   Goal: visibly more premium cards, tighter rhythm, more
+   intentional ornaments. Touches services, lift cards, FAQ,
+   testimonial, CTA, footer, and the home Dokaz cluster.
    ============================================================ */
 
-/* 1 — Service cards: extra warm inner ring on hover so the
-   border highlight reads as deliberate, not just a color change. */
+/* 1 — Service cards: warmer card body, stronger border, deeper
+   resting shadow, much more visible hover state. Featured card
+   gets a slightly taller media so the right column aligns. */
 .service-card {
+  background: linear-gradient(180deg, #fbf6ec 0%, #f1e6d2 100%);
+  border: 1px solid rgba(217, 154, 43, 0.28);
+  box-shadow: 0 22px 48px rgba(93, 63, 28, 0.13);
   transition:
     transform 280ms var(--ease-premium),
     box-shadow 280ms var(--ease-premium),
@@ -7334,50 +7337,109 @@ main {
 
 .service-card:hover,
 .service-card:focus-within {
+  transform: translateY(-10px);
+  border-color: rgba(217, 154, 43, 0.5);
   box-shadow:
-    var(--shadow-strong),
-    inset 0 0 0 1px rgba(217, 154, 43, 0.22);
+    0 32px 72px rgba(93, 63, 28, 0.2),
+    inset 0 0 0 1px rgba(217, 154, 43, 0.3);
 }
 
-/* 2 — Testimonial: tighten its rhythm and dress the quote with
-   a thin top hairline so it reads as an editorial pull-quote. */
+.services-editorial {
+  gap: clamp(1.6rem, 2.6vw, 2.6rem);
+}
+
+.services-editorial-list {
+  gap: clamp(1.05rem, 1.5vw, 1.4rem);
+}
+
+.service-card-compact .service-card-media {
+  aspect-ratio: 1 / 1;
+}
+
+/* 2 — Lift / approach cards: stronger card surface, gold top
+   accent, deeper shadow, more padding so they read as
+   intentional cards instead of flat panels. */
+.lift-card {
+  background: linear-gradient(180deg, #fdf9f1, #f3e9d6);
+  border: 1px solid rgba(217, 154, 43, 0.26);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 20px 44px rgba(93, 63, 28, 0.12);
+  padding: clamp(1.65rem, 2.2vw, 2.05rem);
+}
+
+.section-why .lift-card {
+  padding: clamp(1.75rem, 2.4vw, 2.15rem);
+}
+
+.lift-card::after {
+  height: 2px;
+  left: clamp(1rem, 1.6vw, 1.6rem);
+  right: clamp(1rem, 1.6vw, 1.6rem);
+  opacity: 1;
+  background: linear-gradient(90deg, rgba(217, 154, 43, 0), rgba(217, 154, 43, 0.55) 35%, rgba(217, 154, 43, 0.55) 65%, rgba(217, 154, 43, 0));
+}
+
+.lift-card:hover {
+  transform: translateY(-6px);
+  border-color: rgba(217, 154, 43, 0.4);
+  box-shadow: 0 28px 60px rgba(93, 63, 28, 0.16);
+}
+
+/* 3 — Testimonial: aggressive tightening + framed editorial
+   block with subtle gold side accent so it stops feeling empty. */
 .section-testimonial {
-  padding-block: clamp(2.6rem, 4.4vw, 4.4rem);
+  padding-block: clamp(2rem, 3.2vw, 3.2rem);
 }
 
-.section-testimonial .shell {
+.testimonial-quote {
   position: relative;
+  padding: clamp(1.4rem, 2.4vw, 2.4rem) clamp(1.4rem, 2.4vw, 2.6rem) clamp(1.4rem, 2.4vw, 2.4rem) clamp(1.8rem, 2.8vw, 3rem);
+  background: linear-gradient(135deg, rgba(251, 247, 241, 0.7), rgba(234, 215, 182, 0.4));
+  border-radius: var(--radius-lg);
+  border: 1px solid rgba(217, 154, 43, 0.18);
+  box-shadow: 0 22px 56px rgba(93, 63, 28, 0.1);
+  align-items: center;
+  gap: clamp(1.4rem, 3vw, 2.6rem);
 }
 
-.section-testimonial .shell::before {
+.testimonial-quote::before {
   content: "";
   position: absolute;
-  top: 0;
-  left: clamp(1rem, 2vw, 2rem);
-  width: clamp(48px, 6vw, 88px);
-  height: 1px;
-  background: linear-gradient(90deg, var(--color-primary), rgba(217, 154, 43, 0));
-  opacity: 0.7;
-}
-
-.testimonial-quote blockquote::before {
-  font-size: 3.8em;
-  line-height: 0.28;
-  margin-bottom: 0.22em;
-  opacity: 0.82;
+  left: 0;
+  top: clamp(1.4rem, 2.4vw, 2.4rem);
+  bottom: clamp(1.4rem, 2.4vw, 2.4rem);
+  width: 3px;
+  background: linear-gradient(180deg, var(--color-primary), rgba(217, 154, 43, 0.2));
+  border-radius: 999px;
 }
 
 .testimonial-quote blockquote {
-  max-width: 30ch;
+  font-size: clamp(1.55rem, 2.6vw, 2.3rem);
+  max-width: 36ch;
+}
+
+.testimonial-quote blockquote::before {
+  font-size: 3.2em;
+  line-height: 0.28;
+  margin-bottom: 0.18em;
+  opacity: 0.85;
 }
 
 .testimonial-quote figcaption {
-  border-top-color: rgba(217, 154, 43, 0.42);
+  border-top-color: rgba(217, 154, 43, 0.4);
+  padding-top: 0.9rem;
 }
 
-/* 3 — FAQ: smoother chevron + a one-line accent on the active
-   item so the open card reads as the focus point. */
+/* 4 — FAQ accordion: brighter card surface, stronger border,
+   visible resting shadow, more space between items. */
+.faq-list {
+  gap: 1.1rem;
+}
+
 .faq-item {
+  background: rgba(255, 253, 248, 0.92);
+  border: 1px solid rgba(217, 154, 43, 0.22);
+  box-shadow: 0 14px 30px rgba(93, 63, 28, 0.07);
   transition:
     transform 240ms var(--ease-premium),
     box-shadow 240ms var(--ease-premium),
@@ -7386,9 +7448,17 @@ main {
 }
 
 .faq-item[open] {
-  background: rgba(255, 253, 248, 0.78);
-  border-color: rgba(217, 154, 43, 0.32);
-  box-shadow: 0 18px 40px rgba(93, 63, 28, 0.1);
+  background: linear-gradient(180deg, #fffdf8, #faf4ea);
+  border-color: rgba(217, 154, 43, 0.42);
+  box-shadow: 0 24px 52px rgba(93, 63, 28, 0.13);
+}
+
+.faq-item summary {
+  padding: 1.55rem 4rem 1.55rem 1.6rem;
+}
+
+.faq-item p {
+  padding: 0 1.6rem 1.55rem;
 }
 
 .faq-item summary::after {
@@ -7398,43 +7468,95 @@ main {
 }
 
 .faq-item:hover:not([open]) {
-  border-color: rgba(217, 154, 43, 0.24);
+  border-color: rgba(217, 154, 43, 0.32);
+  box-shadow: 0 18px 36px rgba(93, 63, 28, 0.1);
 }
 
 .faq-item:hover:not([open]) summary::after {
   color: var(--color-accent);
 }
 
-/* 4 — CTA panel: a second soft radial on the right balances the
-   layout when there's no form column (home/about/works CTA).
-   Stays behind content via z-index already set on .cta-layout. */
+/* 5 — CTA panel: stronger right-side warmth via a larger glow
+   plus a wash gradient so the panel feels intentional and full.
+   Excludes the kontakt form layout where the right is the form. */
+.cta-panel {
+  background:
+    radial-gradient(circle at 110% 0%, rgba(255, 183, 58, 0.22), transparent 42%),
+    radial-gradient(circle at 0% 100%, rgba(234, 215, 182, 0.4), transparent 38%),
+    linear-gradient(135deg, rgba(251, 247, 241, 0.96), rgba(230, 215, 194, 0.9));
+}
+
 .section-cta .cta-panel:not(:has(.cta-layout-with-form))::before {
   content: "";
   position: absolute;
-  top: -2.5rem;
-  right: -3rem;
-  width: 380px;
-  height: 380px;
+  top: -4rem;
+  right: -4rem;
+  width: 460px;
+  height: 460px;
   border-radius: 50%;
   background:
-    radial-gradient(circle at 35% 35%, rgba(255, 183, 58, 0.16), transparent 62%),
-    radial-gradient(circle at 65% 65%, rgba(234, 215, 182, 0.32), transparent 58%);
-  filter: blur(6px);
-  opacity: 0.95;
+    radial-gradient(circle at 35% 35%, rgba(255, 183, 58, 0.28), transparent 62%),
+    radial-gradient(circle at 65% 65%, rgba(234, 215, 182, 0.45), transparent 58%);
+  filter: blur(4px);
+  opacity: 1;
   pointer-events: none;
+}
+
+.cta-panel::after {
+  width: 320px;
+  height: 320px;
+  background: rgba(255, 183, 58, 0.18);
+  filter: blur(8px);
+}
+
+.cta-actions {
+  margin-top: 1.4rem;
+  gap: 0.9rem;
 }
 
 @media (max-width: 760px) {
   .section-cta .cta-panel:not(:has(.cta-layout-with-form))::before {
-    display: none;
+    width: 280px;
+    height: 280px;
+    top: -2rem;
+    right: -2rem;
   }
 }
 
-/* 5 — Footer: a touch more breathing room around the bottom
-   strip and a polished social-pill lift on hover. */
+/* 6 — Footer: stronger column titles, more readable contact
+   block, more visible top divider, looser link spacing. */
+.site-footer::before {
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(217, 154, 43, 0.7),
+    transparent
+  );
+}
+
+.footer-b .eyebrow {
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.24em;
+  color: rgba(255, 183, 58, 0.95);
+}
+
+.footer-b-nav-column {
+  gap: 0.7rem;
+}
+
+.footer-b-nav-column a {
+  font-size: 1.45rem;
+}
+
+.footer-b-contact-block a {
+  font-size: 1.12rem;
+}
+
 .footer-b-bottom {
-  padding-top: 1.6rem;
-  border-top-color: rgba(255, 253, 248, 0.1);
+  padding-top: 1.8rem;
+  border-top-color: rgba(255, 253, 248, 0.16);
 }
 
 .footer-b-socials a {
@@ -7450,13 +7572,25 @@ main {
   transform: translateY(-2px);
 }
 
-.footer-b-contact-block .eyebrow {
-  color: rgba(255, 183, 58, 0.85);
+/* 7 — Closing trio rhythm so testimonial → track-record → CTA
+   reads like one block instead of three parked sections. */
+.section-track-record {
+  padding-block: clamp(1.8rem, 3vw, 3rem);
 }
 
-/* 6 — Section rhythm: track-record sits between the testimonial
-   pull-quote and the CTA panel; pull it in slightly so the trio
-   reads as one closing crescendo instead of three parked blocks. */
-.section-track-record {
-  padding-block: clamp(2.4rem, 4vw, 4rem);
+/* 8 — Home Dokaz cluster ornament: replaces the old arrow on
+   the proof section with a richer cleaning-supplies cluster. */
+.section-before-after .section-ornament-cluster {
+  top: clamp(0.6rem, 1.4vw, 1.6rem);
+  right: clamp(1rem, 3vw, 3.5rem);
+  width: clamp(240px, 28vw, 400px);
+  opacity: 0.55;
+  z-index: 0;
+  transform: rotate(-2deg);
+}
+
+.section-before-after .section-head,
+.section-before-after .before-after-compare-layout {
+  position: relative;
+  z-index: 1;
 }
