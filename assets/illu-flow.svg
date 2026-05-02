@@ -1,20 +1,20 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 380 460" fill="none" stroke="#9a836b" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
-  <path d="M 348 36 C 396 196, 130 180, 196 308 C 264 432, 64 422, 70 446" />
-  <path d="M 70 446 L 54 432" />
-  <path d="M 70 446 L 86 434" />
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 380" fill="none" stroke="#8a735c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+  <path d="M 446 30 C 470 220, 240 220, 60 320" />
+  <path d="M 60 320 L 80 320" />
+  <path d="M 60 320 L 70 304" />
 
-  <g transform="translate(316 96)" opacity="0.7">
-    <line x1="0" y1="-7" x2="0" y2="7" />
-    <line x1="-7" y1="0" x2="7" y2="0" />
+  <g transform="translate(388 86)" opacity="0.7">
+    <line x1="0" y1="-7" x2="0" y2="7" stroke-width="1.6" />
+    <line x1="-7" y1="0" x2="7" y2="0" stroke-width="1.6" />
   </g>
-  <g transform="translate(180 256)" opacity="0.55">
-    <line x1="0" y1="-5" x2="0" y2="5" />
-    <line x1="-5" y1="0" x2="5" y2="0" />
-    <line x1="-3.5" y1="-3.5" x2="3.5" y2="3.5" />
-    <line x1="-3.5" y1="3.5" x2="3.5" y2="-3.5" />
+  <g transform="translate(264 196)" opacity="0.55">
+    <line x1="0" y1="-5" x2="0" y2="5" stroke-width="1.6" />
+    <line x1="-5" y1="0" x2="5" y2="0" stroke-width="1.6" />
+    <line x1="-3.5" y1="-3.5" x2="3.5" y2="3.5" stroke-width="1.6" />
+    <line x1="-3.5" y1="3.5" x2="3.5" y2="-3.5" stroke-width="1.6" />
   </g>
-  <g transform="translate(122 396)" opacity="0.65">
-    <line x1="0" y1="-6" x2="0" y2="6" />
-    <line x1="-6" y1="0" x2="6" y2="0" />
+  <g transform="translate(140 296)" opacity="0.65">
+    <line x1="0" y1="-6" x2="0" y2="6" stroke-width="1.6" />
+    <line x1="-6" y1="0" x2="6" y2="0" stroke-width="1.6" />
   </g>
 </svg>
