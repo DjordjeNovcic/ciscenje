@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 640" fill="none" stroke="#5f4c3a" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+  <path d="M 380 60
+           C 470 130, 460 240, 360 290
+           C 270 335, 180 270, 175 340
+           C 170 410, 280 410, 295 470
+           C 310 525, 235 555, 150 575" />
+  <path d="M 150 575 L 178 558" />
+  <path d="M 150 575 L 165 600" />
+  <g transform="translate(420 100)">
+    <line x1="0" y1="-9" x2="0" y2="9" />
+    <line x1="-9" y1="0" x2="9" y2="0" />
+    <line x1="-6" y1="-6" x2="6" y2="6" />
+    <line x1="-6" y1="6" x2="6" y2="-6" />
+  </g>
+  <g transform="translate(330 215)">
+    <line x1="0" y1="-6" x2="0" y2="6" />
+    <line x1="-6" y1="0" x2="6" y2="0" />
+  </g>
+  <g transform="translate(220 360)">
+    <line x1="0" y1="-7" x2="0" y2="7" />
+    <line x1="-7" y1="0" x2="7" y2="0" />
+    <line x1="-4" y1="-4" x2="4" y2="4" />
+    <line x1="-4" y1="4" x2="4" y2="-4" />
+  </g>
+  <g transform="translate(310 510)">
+    <line x1="0" y1="-5" x2="0" y2="5" />
+    <line x1="-5" y1="0" x2="5" y2="0" />
+  </g>
+  <g transform="translate(200 510)">
+    <line x1="0" y1="-4" x2="0" y2="4" />
+    <line x1="-4" y1="0" x2="4" y2="0" />
+  </g>
+</svg>
