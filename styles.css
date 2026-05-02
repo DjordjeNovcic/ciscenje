@@ -7235,9 +7235,9 @@ main {
    ============================================================ */
 .section-ornament {
   position: absolute;
-  top: clamp(5.5rem, 8vw, 7.5rem);
-  right: clamp(1.6rem, 3vw, 3.5rem);
-  width: clamp(220px, 24vw, 320px);
+  top: clamp(4.5rem, 7vw, 6.5rem);
+  right: clamp(1.4rem, 2.6vw, 3rem);
+  width: clamp(280px, 32vw, 460px);
   margin: 0;
   pointer-events: none;
   user-select: none;
@@ -7253,13 +7253,14 @@ main {
 /* Story section on about uses a centered single-column shell;
    pin the ornament inside that without breaking the centering. */
 .section-story .section-ornament {
-  top: clamp(1.5rem, 3vw, 3rem);
+  top: clamp(0.5rem, 1.6vw, 1.6rem);
+  width: clamp(300px, 34vw, 480px);
 }
 
 /* Process on services has a taller section-head; let the supplies
    illustration sit a touch higher so it aligns with the eyebrow row. */
 .section-process .section-ornament {
-  top: clamp(4.5rem, 7vw, 6.5rem);
+  top: clamp(3.5rem, 6vw, 5.5rem);
 }
 
 /* Hide on mobile so the heading column owns the viewport. */
