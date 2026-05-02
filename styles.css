@@ -7291,3 +7291,34 @@ main {
     display: none;
   }
 }
+
+/* Works gallery: frames stack ornament floats above the grid header,
+   tucked to the right edge with low z-index so it never overlaps photos. */
+.section-gallery .section-ornament-frames {
+  top: clamp(0.4rem, 1.4vw, 1.4rem);
+  right: clamp(0.8rem, 2.6vw, 3rem);
+  width: clamp(200px, 22vw, 320px);
+  z-index: 0;
+  opacity: 0.9;
+  transform: rotate(-3deg);
+}
+
+.section-gallery .works-gallery-head,
+.section-gallery .works-gallery-grid {
+  position: relative;
+  z-index: 1;
+}
+
+/* Kontakt hero: hand-drawn envelope sits opposite the copy column,
+   only visible at wider widths where the hero has breathing room. */
+.page-hero-kontakt {
+  position: relative;
+}
+
+.page-hero-kontakt .section-ornament-letter {
+  top: clamp(1.6rem, 4.5vw, 4rem);
+  right: clamp(1rem, 3.4vw, 3.6rem);
+  width: clamp(240px, 24vw, 360px);
+  opacity: 0.92;
+  transform: rotate(4deg);
+}
