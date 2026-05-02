@@ -7578,15 +7578,15 @@ main {
   padding-block: clamp(1.8rem, 3vw, 3rem);
 }
 
-/* 8 — Home Dokaz proof ornament: cleaner two-object line-art
-   that supports the section without competing with the slider. */
-.section-before-after .section-ornament-proof {
-  top: clamp(0.4rem, 1.2vw, 1.4rem);
-  right: clamp(1rem, 3vw, 3.5rem);
-  width: clamp(180px, 19vw, 260px);
-  opacity: 0.42;
+/* 8 — Home Dokaz flow ornament: a single elegant taupe S-curve
+   with a soft arrow tip that guides the eye down toward the
+   before/after slider, plus 3 quiet sparkle accents. */
+.section-before-after .section-ornament-flow {
+  top: clamp(0.2rem, 0.6vw, 0.8rem);
+  right: clamp(1.2rem, 2.6vw, 3rem);
+  width: clamp(240px, 28vw, 360px);
+  opacity: 0.78;
   z-index: 0;
-  transform: rotate(-2deg);
 }
 
 .section-before-after .section-head,
