@@ -730,6 +730,11 @@ function setupInquiryForms() {
           status.dataset.state = 'error';
           status.textContent = 'Molimo popunite obavezna polja kako bismo pripremili jasan odgovor.';
         }
+        form.classList.remove('is-invalid');
+        // re-trigger animation on consecutive invalid submits
+        void form.offsetWidth;
+        form.classList.add('is-invalid');
+        setTimeout(() => form.classList.remove('is-invalid'), 400);
         return;
       }
 
