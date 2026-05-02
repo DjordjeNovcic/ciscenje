@@ -7263,6 +7263,15 @@ main {
   top: clamp(3.5rem, 6vw, 5.5rem);
 }
 
+/* Home Pristup section: shrink the window ornament and tuck it higher so
+   it stays a corner mark instead of crowding the lift cards row below. */
+.section-why .section-ornament {
+  top: clamp(2.5rem, 4.5vw, 4.5rem);
+  right: clamp(0.8rem, 2vw, 2.4rem);
+  width: clamp(200px, 22vw, 320px);
+  opacity: 0.85;
+}
+
 /* Hide on mobile so the heading column owns the viewport. */
 @media (max-width: 880px) {
   .section-ornament {
