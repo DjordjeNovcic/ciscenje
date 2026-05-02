@@ -7314,3 +7314,149 @@ main {
   opacity: 0.92;
   transform: rotate(4deg);
 }
+
+/* ============================================================
+   Conservative polish pass — CSS-only, additive overrides.
+   Touches: service cards (hover ring), testimonial (rhythm,
+   quote treatment), FAQ (smoother chevron + active state),
+   CTA panel (right-side soft accent), footer (refinements),
+   section rhythm (testimonial gap tightening).
+   ============================================================ */
+
+/* 1 — Service cards: extra warm inner ring on hover so the
+   border highlight reads as deliberate, not just a color change. */
+.service-card {
+  transition:
+    transform 280ms var(--ease-premium),
+    box-shadow 280ms var(--ease-premium),
+    border-color 280ms var(--ease-premium);
+}
+
+.service-card:hover,
+.service-card:focus-within {
+  box-shadow:
+    var(--shadow-strong),
+    inset 0 0 0 1px rgba(217, 154, 43, 0.22);
+}
+
+/* 2 — Testimonial: tighten its rhythm and dress the quote with
+   a thin top hairline so it reads as an editorial pull-quote. */
+.section-testimonial {
+  padding-block: clamp(2.6rem, 4.4vw, 4.4rem);
+}
+
+.section-testimonial .shell {
+  position: relative;
+}
+
+.section-testimonial .shell::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: clamp(1rem, 2vw, 2rem);
+  width: clamp(48px, 6vw, 88px);
+  height: 1px;
+  background: linear-gradient(90deg, var(--color-primary), rgba(217, 154, 43, 0));
+  opacity: 0.7;
+}
+
+.testimonial-quote blockquote::before {
+  font-size: 3.8em;
+  line-height: 0.28;
+  margin-bottom: 0.22em;
+  opacity: 0.82;
+}
+
+.testimonial-quote blockquote {
+  max-width: 30ch;
+}
+
+.testimonial-quote figcaption {
+  border-top-color: rgba(217, 154, 43, 0.42);
+}
+
+/* 3 — FAQ: smoother chevron + a one-line accent on the active
+   item so the open card reads as the focus point. */
+.faq-item {
+  transition:
+    transform 240ms var(--ease-premium),
+    box-shadow 240ms var(--ease-premium),
+    border-color 240ms var(--ease-premium),
+    background-color 240ms var(--ease-premium);
+}
+
+.faq-item[open] {
+  background: rgba(255, 253, 248, 0.78);
+  border-color: rgba(217, 154, 43, 0.32);
+  box-shadow: 0 18px 40px rgba(93, 63, 28, 0.1);
+}
+
+.faq-item summary::after {
+  transition:
+    transform 280ms var(--ease-premium),
+    color 220ms var(--ease-premium);
+}
+
+.faq-item:hover:not([open]) {
+  border-color: rgba(217, 154, 43, 0.24);
+}
+
+.faq-item:hover:not([open]) summary::after {
+  color: var(--color-accent);
+}
+
+/* 4 — CTA panel: a second soft radial on the right balances the
+   layout when there's no form column (home/about/works CTA).
+   Stays behind content via z-index already set on .cta-layout. */
+.section-cta .cta-panel:not(:has(.cta-layout-with-form))::before {
+  content: "";
+  position: absolute;
+  top: -2.5rem;
+  right: -3rem;
+  width: 380px;
+  height: 380px;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 35% 35%, rgba(255, 183, 58, 0.16), transparent 62%),
+    radial-gradient(circle at 65% 65%, rgba(234, 215, 182, 0.32), transparent 58%);
+  filter: blur(6px);
+  opacity: 0.95;
+  pointer-events: none;
+}
+
+@media (max-width: 760px) {
+  .section-cta .cta-panel:not(:has(.cta-layout-with-form))::before {
+    display: none;
+  }
+}
+
+/* 5 — Footer: a touch more breathing room around the bottom
+   strip and a polished social-pill lift on hover. */
+.footer-b-bottom {
+  padding-top: 1.6rem;
+  border-top-color: rgba(255, 253, 248, 0.1);
+}
+
+.footer-b-socials a {
+  transition:
+    color 200ms var(--ease-premium),
+    border-color 200ms var(--ease-premium),
+    background-color 200ms var(--ease-premium),
+    transform 200ms var(--ease-premium);
+}
+
+.footer-b-socials a:hover,
+.footer-b-socials a:focus-visible {
+  transform: translateY(-2px);
+}
+
+.footer-b-contact-block .eyebrow {
+  color: rgba(255, 183, 58, 0.85);
+}
+
+/* 6 — Section rhythm: track-record sits between the testimonial
+   pull-quote and the CTA panel; pull it in slightly so the trio
+   reads as one closing crescendo instead of three parked blocks. */
+.section-track-record {
+  padding-block: clamp(2.4rem, 4vw, 4rem);
+}
