@@ -7228,3 +7228,37 @@ main {
     content: none;
   }
 }
+
+/* ============================================================
+   Editorial spot illustrations — used as section ornaments,
+   one per page, never as a matched set.
+   ============================================================ */
+.section-ornament {
+  position: absolute;
+  top: clamp(6rem, 9vw, 8.5rem);
+  right: clamp(1.6rem, 3vw, 3rem);
+  width: clamp(150px, 17vw, 220px);
+  margin: 0;
+  pointer-events: none;
+  user-select: none;
+  opacity: 0.9;
+}
+
+.section-ornament img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* Story section on about uses a centered single-column shell;
+   pin the ornament inside that without breaking the centering. */
+.section-story .section-ornament {
+  top: clamp(2rem, 4vw, 4rem);
+}
+
+/* Hide on mobile so the heading column owns the viewport. */
+@media (max-width: 880px) {
+  .section-ornament {
+    display: none;
+  }
+}
