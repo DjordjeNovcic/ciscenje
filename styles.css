@@ -1345,24 +1345,56 @@ body.is-modal-open .social-rail {
 }
 
 .service-card-compact {
-  display: grid;
-  grid-template-columns: minmax(140px, 38%) minmax(0, 1fr);
-  align-items: stretch;
-}
-
-.service-card-compact .service-card-media {
-  aspect-ratio: auto;
-  height: 100%;
-  min-height: 100%;
-}
-
-.service-card-compact .service-card-media img {
-  height: 100%;
-  object-fit: cover;
+  display: block;
 }
 
 .service-card-compact .service-card-body {
-  padding: 1.1rem 1.25rem 1.2rem;
+  display: grid;
+  gap: 0.55rem;
+  padding: 1.4rem 1.5rem 1.45rem;
+}
+
+.service-card-icon {
+  width: 28px;
+  height: 28px;
+  margin-bottom: 0.4rem;
+  color: var(--color-ink-muted);
+}
+
+.service-card-link {
+  margin-top: 0.5rem;
+  font-family: "Manrope", sans-serif;
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--color-ink-soft);
+  text-decoration: none;
+  width: fit-content;
+  transition: color 220ms var(--ease-premium);
+}
+
+.service-card-link span {
+  position: relative;
+  padding-right: 1.2rem;
+}
+
+.service-card-link span::after {
+  content: "→";
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  transition: transform 220ms var(--ease-premium);
+}
+
+.service-card-link:hover,
+.service-card-link:focus-visible {
+  color: var(--color-primary);
+}
+
+.service-card-link:hover span::after,
+.service-card-link:focus-visible span::after {
+  transform: translateY(-50%) translateX(3px);
 }
 
 .service-card-compact .card-tag {
@@ -4641,20 +4673,6 @@ body.is-modal-open .social-rail {
     gap: clamp(0.95rem, 1.6vw, 1.3rem);
   }
 
-  .service-card-compact {
-    grid-template-columns: 1fr;
-  }
-
-  .service-card-compact .service-card-media {
-    aspect-ratio: 1.4 / 1;
-    height: auto;
-    min-height: 0;
-  }
-
-  .service-card-compact .service-card-media img {
-    height: 100%;
-  }
-
   .service-process-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
@@ -7265,12 +7283,6 @@ main {
   gap: clamp(1.05rem, 1.5vw, 1.4rem);
 }
 
-@media (min-width: 1081px) {
-  .service-card-compact .service-card-media {
-    aspect-ratio: 1 / 1;
-  }
-}
-
 /* 2 — Lift / approach cards: stronger card surface, gold top
    accent, deeper shadow, more padding so they read as
    intentional cards instead of flat panels. */
@@ -7532,26 +7544,13 @@ main {
    ============================================================ */
 
 
-/* C2 — Service compact cards: a touch more padding and a
-   slightly wider image column so the two card sizes feel like
-   one family. The grid override is desktop-only — on mobile
-   the cards stack to single column (see @media max 1080px). */
-@media (min-width: 1081px) {
-  .service-card-compact {
-    grid-template-columns: minmax(150px, 40%) minmax(0, 1fr);
-  }
-}
-
-.service-card-compact .service-card-body {
-  padding: 1.3rem 1.5rem 1.4rem;
-}
-
+/* C2 — Service compact cards body padding refinement. */
 .service-card-compact .service-card-body p {
-  margin-top: 0.6rem;
+  margin-top: 0.4rem;
 }
 
 .service-card-compact .card-tag {
-  margin-bottom: 0.6rem;
+  margin-bottom: 0.2rem;
 }
 
 /* C3 — One last spacing pass on the home flow. The global token
