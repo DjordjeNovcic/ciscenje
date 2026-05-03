@@ -1633,8 +1633,8 @@ body.is-modal-open .social-rail {
 .why-decoration {
   position: absolute;
   top: -1rem;
-  right: -0.5rem;
-  width: clamp(220px, 26vw, 320px);
+  right: -25.5rem;
+  width: clamp(300px, 26vw, 620px);
   height: auto;
   pointer-events: none;
   user-select: none;
