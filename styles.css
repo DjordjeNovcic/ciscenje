@@ -3360,36 +3360,6 @@ body.is-modal-open .social-rail {
   color: var(--color-ink-soft);
 }
 
-.works-hero-meta {
-  display: flex;
-  gap: clamp(1.5rem, 3vw, 3rem);
-  padding-top: 1.4rem;
-  border-top: 1px solid rgba(34, 29, 24, 0.12);
-}
-
-.works-hero-meta-item {
-  display: grid;
-  gap: 0.5rem;
-}
-
-.works-hero-meta-num {
-  font-family: "Cormorant Garamond", serif;
-  font-size: clamp(1.9rem, 3vw, 2.5rem);
-  font-weight: 500;
-  line-height: 1;
-  letter-spacing: -0.022em;
-  color: var(--color-ink);
-}
-
-.works-hero-meta-label {
-  font-family: "Manrope", sans-serif;
-  font-size: 0.66rem;
-  font-weight: 600;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: var(--color-ink-muted);
-}
-
 .works-gallery-head {
   display: flex;
   align-items: baseline;
@@ -3594,10 +3564,6 @@ body.is-modal-open .social-rail {
 }
 
 @media (max-width: 600px) {
-  .works-hero-meta {
-    gap: 1.2rem;
-  }
-
   .works-gallery-grid {
     grid-template-columns: 1fr;
     gap: 1.4rem;
