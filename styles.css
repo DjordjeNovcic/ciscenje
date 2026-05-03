@@ -3160,6 +3160,16 @@ body.is-modal-open .social-rail {
   line-height: 1.62;
 }
 
+/* On mobile, drop the two weakest items (01 Pažnja prema detalju
+   is generic; 02 Poštovanje prostora is the softest body) so the
+   stack is 4 items + media instead of 6 + media. Desktop keeps
+   all 6 to fill the 3-col grid. */
+@media (max-width: 560px) {
+  .about-spotlight-column:first-of-type .about-spotlight-item:nth-of-type(-n+2) {
+    display: none;
+  }
+}
+
 .about-spotlight-media {
   position: relative;
   margin: 0;
