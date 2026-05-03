@@ -1335,7 +1335,7 @@ body.is-modal-open .social-rail {
   line-height: 1.02;
   letter-spacing: -0.024em;
   margin-top: 0.65rem;
-  max-width: 14ch;
+  max-width: 22ch;
 }
 
 .service-card-featured .service-card-body p {
@@ -1351,7 +1351,7 @@ body.is-modal-open .social-rail {
 .service-card-compact .service-card-body {
   display: grid;
   gap: 0.55rem;
-  padding: 1.4rem 1.5rem 1.45rem;
+  padding: 1.8rem 1.5rem 1.45rem;
 }
 
 .service-card-icon {
