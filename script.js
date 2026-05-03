@@ -748,7 +748,7 @@ function setupInquiryForms() {
         `Stranica: ${context}`,
         `Ime i prezime: ${name}`,
         `Telefon: ${phone}`,
-        `Tip prostora: ${space}`,
+        `Šta vam treba: ${space}`,
         `Poruka: ${message}`
       ].join('\n');
 
