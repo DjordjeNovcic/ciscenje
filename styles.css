@@ -295,7 +295,6 @@ h4 {
 .section-head,
 .why-copy,
 .story-copy,
-.service-detail-copy,
 .cta-panel,
 .page-hero-panel,
 .hero-card,
@@ -306,7 +305,6 @@ h4 {
 .section-head::before,
 .why-copy::before,
 .story-copy::before,
-.service-detail-copy::before,
 .cta-panel::before,
 .page-hero-panel::before,
 .hero-card::before,
@@ -334,8 +332,7 @@ h4 {
 .why-copy h2,
 .cta-panel h2,
 .page-hero-copy h1,
-.story-copy h2,
-.service-detail-copy h2 {
+.story-copy h2 {
   margin: 0;
   font-size: clamp(2.4rem, 3.8vw, 4.4rem);
   line-height: 0.96;
@@ -347,8 +344,7 @@ h4 {
 .why-copy p,
 .page-hero-copy p,
 .story-copy p,
-.cta-panel p,
-.service-detail-copy p {
+.cta-panel p {
   max-width: 44rem;
   margin-top: 1.4rem;
   font-size: clamp(1.08rem, 1.6vw, 1.2rem);
@@ -1440,8 +1436,7 @@ body.is-modal-open .social-rail {
 .comparison-media,
 .team-card img,
 .work-preview-card img,
-.gallery-card img,
-.service-detail-media {
+.gallery-card img {
   overflow: hidden;
   background: linear-gradient(160deg, rgba(234, 215, 182, 0.26), rgba(251, 247, 241, 0.92));
 }
@@ -1450,8 +1445,7 @@ body.is-modal-open .social-rail {
 .comparison-media img,
 .team-card img,
 .work-preview-card img,
-.gallery-card img,
-.service-detail-media img {
+.gallery-card img {
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -1518,7 +1512,6 @@ body.is-modal-open .social-rail {
 .process-step h3,
 .service-offer-card h3,
 .team-card-copy h3,
-.service-detail-copy h2,
 .comparison-copy span,
 .work-preview-card span,
 .page-hero-panel strong {
@@ -3729,8 +3722,7 @@ body.is-modal-open .social-rail {
   font-size: 0.98rem;
 }
 
-.panel-list li::before,
-.detail-list li::before {
+.panel-list li::before {
   content: "";
   position: absolute;
   left: 0;
@@ -3760,7 +3752,6 @@ body.is-modal-open .social-rail {
 
 .section-team,
 .section-gallery,
-.section-service-details,
 .section-work-story {
   background:
     linear-gradient(180deg, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0));
@@ -4250,58 +4241,6 @@ body.is-modal-open .social-rail {
   }
 }
 
-.section-service-details .shell {
-  display: grid;
-  gap: 1.8rem;
-}
-
-.service-detail {
-  display: grid;
-  grid-template-columns: minmax(360px, 0.88fr) minmax(0, 1.12fr);
-  gap: clamp(1.4rem, 3vw, 2.2rem);
-  align-items: stretch;
-  padding: clamp(1.2rem, 2vw, 1.6rem);
-  border-radius: var(--radius-lg);
-  background: linear-gradient(180deg, rgba(251, 247, 241, 0.76), rgba(239, 228, 211, 0.74));
-  border: 1px solid rgba(217, 154, 43, 0.16);
-  box-shadow: var(--shadow-soft);
-}
-
-.service-detail-reverse {
-  grid-template-columns: minmax(0, 1.12fr) minmax(360px, 0.88fr);
-}
-
-.service-detail-reverse .service-detail-media {
-  order: 2;
-}
-
-.service-detail-reverse .service-detail-copy {
-  order: 1;
-}
-
-.service-detail-media {
-  min-height: 360px;
-  border-radius: 26px;
-}
-
-.service-detail-copy {
-  display: grid;
-  align-content: center;
-  padding-inline: 0.2rem 0.5rem;
-}
-
-.detail-list {
-  display: grid;
-  gap: 0.75rem;
-  margin-top: 1.2rem;
-}
-
-.detail-list li {
-  position: relative;
-  padding-left: 1.2rem;
-  color: var(--color-ink-soft);
-}
-
 .gallery-grid-works {
   display: grid;
   grid-template-columns: repeat(12, minmax(0, 1fr));
@@ -4552,8 +4491,6 @@ body.is-modal-open .social-rail {
     transform: translate3d(0, 0, 0);
   }
 
-  .js-reveals .service-detail.reveal:not(.is-visible) .service-detail-media,
-  .js-reveals .service-detail.reveal:not(.is-visible) .service-detail-copy,
   .js-reveals .comparison-card.reveal:not(.is-visible) .comparison-media,
   .js-reveals .comparison-card.reveal:not(.is-visible) .comparison-copy {
     opacity: 0;
@@ -4562,23 +4499,13 @@ body.is-modal-open .social-rail {
       transform 560ms var(--ease-premium);
   }
 
-  .js-reveals .service-detail.reveal:not(.is-visible) .service-detail-media,
   .js-reveals .comparison-card.reveal:not(.is-visible) .comparison-media {
     transform: translate3d(28px, 0, 0);
     transition-delay: 60ms;
   }
 
-  .js-reveals .service-detail.reveal:not(.is-visible) .service-detail-copy,
   .js-reveals .comparison-card.reveal:not(.is-visible) .comparison-copy {
     transform: translate3d(-28px, 0, 0);
-  }
-
-  .js-reveals .service-detail.service-detail-reverse.reveal:not(.is-visible) .service-detail-media {
-    transform: translate3d(-28px, 0, 0);
-  }
-
-  .js-reveals .service-detail.service-detail-reverse.reveal:not(.is-visible) .service-detail-copy {
-    transform: translate3d(28px, 0, 0);
   }
 }
 
@@ -4616,8 +4543,6 @@ body.is-modal-open .social-rail {
   .page-hero-shell,
   .story-shell,
   .why-shell,
-  .service-detail,
-  .service-detail-reverse,
   .footer-shell,
   .before-after-story {
     grid-template-columns: 1fr;
@@ -4686,11 +4611,6 @@ body.is-modal-open .social-rail {
   .section-why .why-copy,
   .section-faq .section-head {
     position: static;
-  }
-
-  .service-detail-reverse .service-detail-media,
-  .service-detail-reverse .service-detail-copy {
-    order: initial;
   }
 
   .services-grid,
@@ -5315,22 +5235,11 @@ body.is-modal-open .social-rail {
     line-height: 1.58;
   }
 
-  .service-detail {
-    padding: 0.95rem;
-    gap: 1rem;
-  }
-
-  .service-detail-media {
-    min-height: 208px;
-    border-radius: 22px;
-  }
-
   .service-card-media,
   .comparison-media,
   .team-card img,
   .work-preview-card img,
-  .gallery-card img,
-  .service-detail-media {
+  .gallery-card img {
     border-radius: 20px;
   }
 
@@ -5352,10 +5261,6 @@ body.is-modal-open .social-rail {
     aspect-ratio: 1.14 / 1;
   }
 
-  .service-detail-media img {
-    object-position: center 42%;
-  }
-
   :root {
     --section-padding-block: 3rem;
   }
@@ -5364,7 +5269,6 @@ body.is-modal-open .social-rail {
   .why-copy,
   .story-copy,
   .page-hero-copy,
-  .service-detail-copy,
   .cta-panel {
     padding-top: 0.25rem;
   }
@@ -5376,7 +5280,6 @@ body.is-modal-open .social-rail {
   .section-head::before,
   .why-copy::before,
   .story-copy::before,
-  .service-detail-copy::before,
   .cta-panel::before,
   .page-hero-panel::before,
   .hero-card::before,
@@ -5394,8 +5297,7 @@ body.is-modal-open .social-rail {
   .why-copy p,
   .page-hero-copy p,
   .story-copy p,
-  .cta-panel p,
-  .service-detail-copy p {
+  .cta-panel p {
     margin-top: 0.85rem;
     font-size: 0.98rem;
   }
@@ -5500,8 +5402,7 @@ body.is-modal-open .social-rail {
     margin: 1rem 0 0.95rem;
   }
 
-  .service-offer-card ul,
-  .detail-list {
+  .service-offer-card ul {
     margin-top: 0.9rem;
     gap: 0.6rem;
   }
@@ -6167,8 +6068,7 @@ body.is-modal-open .social-rail {
   .why-copy h2,
   .cta-panel h2,
   .page-hero-copy h1,
-  .story-copy h2,
-  .service-detail-copy h2 {
+  .story-copy h2 {
     font-size: clamp(1.7rem, 7.4vw, 2.05rem);
     line-height: 1.04;
     letter-spacing: -0.026em;
@@ -6288,15 +6188,13 @@ body.is-modal-open .social-rail {
   .section-head,
   .why-copy,
   .story-copy,
-  .page-hero-copy,
-  .service-detail-copy {
+  .page-hero-copy {
     padding-top: 0.22rem;
   }
 
   .section-head::before,
   .why-copy::before,
   .story-copy::before,
-  .service-detail-copy::before,
   .cta-panel::before,
   .page-hero-panel::before,
   .hero-card::before,
@@ -6393,8 +6291,7 @@ body.is-modal-open .social-rail {
   .comparison-media,
   .work-preview-card img,
   .team-card img,
-  .gallery-card img,
-  .service-detail-media {
+  .gallery-card img {
     border-radius: 18px;
   }
 
@@ -6410,14 +6307,6 @@ body.is-modal-open .social-rail {
 
   .gallery-card img {
     min-height: 206px;
-  }
-
-  .service-detail-media {
-    min-height: 190px;
-  }
-
-  .service-detail-media img {
-    object-position: center 40%;
   }
 
   .footer-panel {
@@ -6460,8 +6349,6 @@ body.is-modal-open .social-rail {
     transform: none;
   }
 
-  .service-detail.reveal .service-detail-media,
-  .service-detail.reveal .service-detail-copy,
   .comparison-card.reveal .comparison-media,
   .comparison-card.reveal .comparison-copy {
     opacity: 1;
