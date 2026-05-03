@@ -994,6 +994,46 @@ body.is-modal-open .social-rail {
   color: rgba(255, 243, 229, 0.82);
 }
 
+/* Trust points row — small, elegant, gold-dot separated. Sits
+   below the hero subtitle. Inline on desktop, stacked on mobile. */
+.hero-trust {
+  list-style: none;
+  margin: 0.85rem 0 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.45rem 1.05rem;
+  font-size: 0.92rem;
+  font-weight: 500;
+  line-height: 1.4;
+  color: var(--color-ink-soft);
+}
+
+.hero-trust li {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.85rem;
+}
+
+.hero-trust li:not(:last-child)::after {
+  content: "";
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--color-primary);
+  opacity: 0.62;
+}
+
+.hero-copy-overlay .hero-trust {
+  color: rgba(255, 245, 230, 0.92);
+}
+
+.hero-copy-overlay .hero-trust li:not(:last-child)::after {
+  background: rgba(255, 205, 120, 0.85);
+  opacity: 0.95;
+}
+
 .hero-mobile-stack {
   display: none;
 }
@@ -5812,6 +5852,31 @@ body.is-modal-open .social-rail {
     font-size: 0.94rem;
     line-height: 1.54;
     color: var(--color-ink-soft);
+  }
+
+  .hero-mobile-card .hero-trust {
+    margin-top: 0.95rem;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.4rem;
+    color: var(--color-ink-soft);
+  }
+
+  .hero-mobile-card .hero-trust li {
+    gap: 0.55rem;
+  }
+
+  .hero-mobile-card .hero-trust li:not(:last-child)::after {
+    display: none;
+  }
+
+  .hero-mobile-card .hero-trust li::before {
+    content: "";
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: var(--color-primary);
+    opacity: 0.7;
   }
 
   .hero-mobile-proof {
