@@ -2554,7 +2554,7 @@ body.is-modal-open .social-rail {
 
 .site-footer {
   position: relative;
-  margin-top: 2.4rem;
+  margin-top: clamp(3.5rem, 5vw, 4.5rem);
   padding: 0;
   background:
     radial-gradient(circle at 12% 10%, rgba(217, 154, 43, 0.08), transparent 45%),
@@ -2708,7 +2708,7 @@ body.is-modal-open .social-rail {
 .footer-b-contact {
   display: flex;
   flex-direction: column;
-  gap: 1.4rem;
+  gap: 1.15rem;
 }
 
 .footer-b-contact-block {
@@ -2747,15 +2747,30 @@ body.is-modal-open .social-rail {
 }
 
 .footer-b-bottom {
-  margin-top: clamp(2.2rem, 3.5vw, 3rem);
-  padding-top: 1.2rem;
-  border-top: 1px solid rgba(255, 253, 248, 0.08);
+  position: relative;
+  margin-top: clamp(2.4rem, 3.6vw, 3.2rem);
+  padding-top: 1.5rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
   gap: 1rem;
   font-size: 0.78rem;
-  color: rgba(255, 253, 248, 0.42);
+  color: rgba(255, 253, 248, 0.5);
+}
+
+.footer-b-bottom::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(217, 154, 43, 0.32),
+    transparent
+  );
 }
 
 .footer-b-socials {
@@ -7525,7 +7540,6 @@ main {
 
 .footer-b-bottom {
   padding-top: 1.8rem;
-  border-top-color: rgba(255, 253, 248, 0.16);
 }
 
 .footer-b-socials a {
