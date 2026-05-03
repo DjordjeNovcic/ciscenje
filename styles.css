@@ -3380,16 +3380,6 @@ body.is-modal-open .social-rail {
   color: var(--color-ink);
 }
 
-.works-gallery-count {
-  margin: 0;
-  font-family: "Manrope", sans-serif;
-  font-size: 0.7rem;
-  font-weight: 600;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: var(--color-ink-muted);
-}
-
 .works-gallery-grid {
   display: grid;
   grid-template-columns: repeat(12, minmax(0, 1fr));
