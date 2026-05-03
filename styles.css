@@ -7631,28 +7631,13 @@ main {
 }
 
 
-/* R6 — Featured service card fills its column. Stretch the body
-   so it doesn't leave 100–150px of empty cream below the title;
-   the photo and copy together now own the full column height. */
+/* R6 (revised) — Featured service card sits at its natural
+   height (image's aspect-ratio + body's content), instead of
+   stretching the photo to fill the right column. The earlier
+   stretch made the image dominate ~80% of the card with the
+   body floating at the bottom. Each card now reads balanced
+   on its own; column height asymmetry between left and right
+   is fine on this layout. */
 .services-editorial {
-  align-items: stretch;
-}
-
-.service-card-featured {
-  grid-template-rows: minmax(0, 1.05fr) auto;
-}
-
-.service-card-featured .service-card-media {
-  aspect-ratio: auto;
-  min-height: 0;
-  height: 100%;
-}
-
-.service-card-featured .service-card-media img {
-  height: 100%;
-  object-fit: cover;
-}
-
-.service-card-featured .service-card-body {
-  padding: clamp(1.55rem, 2.2vw, 2rem);
+  align-items: start;
 }
