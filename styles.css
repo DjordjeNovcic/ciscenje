@@ -883,7 +883,7 @@ body.is-modal-open .social-rail {
   min-height: inherit;
   grid-template-columns: minmax(0, 1fr);
   align-items: center;
-  padding-left: clamp(5.75rem, 6vw, 7rem);
+  padding-left: var(--layout-inline-padding);
   padding-right: var(--layout-inline-padding);
   padding-top: calc(var(--header-height) + clamp(3.4rem, 8vw, 6.4rem));
   padding-bottom: clamp(3.2rem, 6vw, 5.4rem);
