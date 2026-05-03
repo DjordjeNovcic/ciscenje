@@ -5685,6 +5685,7 @@ body.is-modal-open .social-rail {
 
   body.home-page .hero-section {
     min-height: 0;
+    height: auto;
     padding-top: 0.4rem;
     padding-bottom: 1.4rem;
     background: transparent;
