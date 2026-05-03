@@ -3099,13 +3099,13 @@ body.is-modal-open .social-rail {
 .about-spotlight-column {
   display: grid;
   gap: 1rem;
-  align-content: space-between;
 }
 
 .about-spotlight-item {
   display: grid;
   gap: 0.7rem;
   align-content: start;
+  min-height: 100%;
   padding: 1.25rem 1.2rem;
   border-radius: calc(var(--radius-md) + 4px);
   background: linear-gradient(180deg, rgba(255, 252, 247, 0.9), rgba(246, 236, 219, 0.72));
