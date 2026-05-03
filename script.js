@@ -107,7 +107,7 @@ function getPartialFallback(url) {
             <a href="about.html">O nama</a>
             <a href="services.html">Usluge</a>
             <a href="works.html">Naši radovi</a>
-            <a href="#kontakt" class="header-cta">Zatražite ponudu</a>
+            <a href="#kontakt" class="header-cta">Zatražite procenu</a>
             <div class="mobile-nav-meta">
               <a href="tel:+381643937000" class="mobile-nav-phone">Pozovite: 064 / 393-7000</a>
               <div class="mobile-nav-socials" aria-label="Društvene mreže">
