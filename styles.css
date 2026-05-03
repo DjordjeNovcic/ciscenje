@@ -7637,3 +7637,72 @@ main {
 .home-page .section-faq {
   padding-block: clamp(2.2rem, 3.4vw, 3.4rem);
 }
+
+/* ============================================================
+   Design-review action list (R1–R6)
+   ============================================================ */
+
+/* R2 — Cards do not levitate. Drop the v2 hover translate; keep
+   the deeper shadow + warm inner ring + image scale to carry the
+   affordance per brief: "the photograph moves, the card frame
+   does not." */
+.service-card:hover,
+.service-card:focus-within {
+  transform: none;
+}
+
+/* R3 — Hero secondary copy contrast against the dark photo.
+   Lift the alpha on lead and note, and deepen the lower-left
+   slice of the backdrop wash so the copy column always reads
+   AA against the underlying image. */
+.hero-copy-overlay .hero-lead {
+  color: rgba(255, 250, 242, 0.96);
+}
+
+.hero-copy-overlay .hero-note {
+  color: rgba(255, 246, 232, 0.92);
+}
+
+.hero-backdrop::after {
+  background:
+    linear-gradient(90deg, rgba(20, 20, 20, 0.72) 0%, rgba(20, 20, 20, 0.52) 34%, rgba(20, 20, 20, 0.18) 60%, rgba(20, 20, 20, 0.02) 100%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.05), transparent 22%, transparent 74%, rgba(255, 255, 255, 0.05)),
+    radial-gradient(circle at 78% 22%, rgba(255, 255, 255, 0.08), transparent 18%);
+}
+
+/* R4 — Pristup window ornament: bring it back to perceptible.
+   At opacity 0.78 + width 260 it was readable; the cleanup pass
+   shrank it past the legibility line. Restore presence without
+   colliding with the section ordinal. */
+.section-why .section-ornament {
+  top: clamp(3rem, 5vw, 4.6rem);
+  right: clamp(1.6rem, 3vw, 3.4rem);
+  width: clamp(220px, 22vw, 300px);
+  opacity: 0.92;
+}
+
+/* R6 — Featured service card fills its column. Stretch the body
+   so it doesn't leave 100–150px of empty cream below the title;
+   the photo and copy together now own the full column height. */
+.services-editorial {
+  align-items: stretch;
+}
+
+.service-card-featured {
+  grid-template-rows: minmax(0, 1.05fr) auto;
+}
+
+.service-card-featured .service-card-media {
+  aspect-ratio: auto;
+  min-height: 0;
+  height: 100%;
+}
+
+.service-card-featured .service-card-media img {
+  height: 100%;
+  object-fit: cover;
+}
+
+.service-card-featured .service-card-body {
+  padding: clamp(1.55rem, 2.2vw, 2rem);
+}
