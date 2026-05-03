@@ -7247,92 +7247,6 @@ main {
 }
 
 /* ============================================================
-   Editorial spot illustrations — used as section ornaments,
-   one per page, never as a matched set.
-   ============================================================ */
-.section-ornament {
-  position: absolute;
-  top: clamp(4.5rem, 7vw, 6.5rem);
-  right: clamp(1.4rem, 2.6vw, 3rem);
-  width: clamp(280px, 32vw, 460px);
-  margin: 0;
-  pointer-events: none;
-  user-select: none;
-  opacity: 1;
-}
-
-.section-ornament img {
-  display: block;
-  width: 100%;
-  height: auto;
-}
-
-/* Story section on about uses a centered single-column shell;
-   pin the ornament inside that without breaking the centering. */
-.section-story .section-ornament {
-  top: clamp(0.5rem, 1.6vw, 1.6rem);
-  width: clamp(300px, 34vw, 480px);
-}
-
-/* Process on services has a taller section-head; let the supplies
-   illustration sit a touch higher so it aligns with the eyebrow row. */
-.section-process .section-ornament {
-  top: clamp(3.5rem, 6vw, 5.5rem);
-}
-
-/* Home Pristup section: shrink the window ornament and tuck it higher so
-   it stays a corner mark instead of crowding the lift cards row below. */
-.section-why .section-ornament {
-  top: clamp(2.5rem, 4.5vw, 4.5rem);
-  right: clamp(0.8rem, 2vw, 2.4rem);
-  width: clamp(200px, 22vw, 320px);
-  opacity: 0.85;
-}
-
-/* Hide on mobile so the heading column owns the viewport. */
-@media (max-width: 880px) {
-  .section-ornament {
-    display: none;
-  }
-}
-
-/* Editorial annotation arrow — points from negative space toward
-   the comparison slider. Used once on the home Dokaz section. */
-.section-arrow-mark {
-  position: absolute;
-  display: block;
-  pointer-events: none;
-  user-select: none;
-  opacity: 0.78;
-  width: clamp(240px, 26vw, 360px);
-  height: auto;
-  top: clamp(0.8rem, 1.5vw, 1.2rem);
-  right: clamp(2.5rem, 6vw, 7rem);
-  z-index: 0;
-  transform: rotate(2deg);
-}
-
-@media (max-width: 980px) {
-  .section-arrow-mark {
-    display: none;
-  }
-}
-
-/* Kontakt hero: hand-drawn envelope sits opposite the copy column,
-   only visible at wider widths where the hero has breathing room. */
-.page-hero-kontakt {
-  position: relative;
-}
-
-.page-hero-kontakt .section-ornament-letter {
-  top: clamp(1.6rem, 4.5vw, 4rem);
-  right: clamp(1rem, 3.4vw, 3.6rem);
-  width: clamp(240px, 24vw, 360px);
-  opacity: 0.92;
-  transform: rotate(4deg);
-}
-
-/* ============================================================
    Stronger polish pass — CSS-only, additive overrides.
    Goal: visibly more premium cards, tighter rhythm, more
    intentional ornaments. Touches services, lift cards, FAQ,
@@ -7632,36 +7546,10 @@ main {
   padding-block: clamp(1.8rem, 3vw, 3rem);
 }
 
-/* 8 — Home Dokaz flow ornament: a single elegant taupe S-curve
-   with a soft arrow tip that guides the eye down toward the
-   before/after slider, plus 3 quiet sparkle accents. */
-.section-before-after .section-ornament-flow {
-  top: clamp(0.4rem, 1vw, 1.2rem);
-  right: clamp(1rem, 2.6vw, 3rem);
-  width: clamp(280px, 32vw, 420px);
-  opacity: 0.7;
-  z-index: 0;
-}
-
-.section-before-after .section-head,
-.section-before-after .before-after-compare-layout {
-  position: relative;
-  z-index: 1;
-}
-
 /* ============================================================
    Cleanup pass — alignment, padding and rhythm refinements only.
    ============================================================ */
 
-/* C1 — Approach (home Pristup) ornament: pull it slightly
-   inward and down so the section number "02" has clear breathing
-   room above it, and the illustration sits cleanly inside. */
-.section-why .section-ornament {
-  top: clamp(3.5rem, 6vw, 5.5rem);
-  right: clamp(1.4rem, 2.8vw, 3.4rem);
-  width: clamp(180px, 19vw, 260px);
-  opacity: 0.78;
-}
 
 /* C2 — Service compact cards: a touch more padding and a
    slightly wider image column so the two card sizes feel like
@@ -7727,16 +7615,6 @@ main {
     radial-gradient(circle at 78% 22%, rgba(255, 255, 255, 0.08), transparent 18%);
 }
 
-/* R4 — Pristup window ornament: bring it back to perceptible.
-   At opacity 0.78 + width 260 it was readable; the cleanup pass
-   shrank it past the legibility line. Restore presence without
-   colliding with the section ordinal. */
-.section-why .section-ornament {
-  top: clamp(3rem, 5vw, 4.6rem);
-  right: clamp(1.6rem, 3vw, 3.4rem);
-  width: clamp(220px, 22vw, 300px);
-  opacity: 0.92;
-}
 
 /* R6 — Featured service card fills its column. Stretch the body
    so it doesn't leave 100–150px of empty cream below the title;
