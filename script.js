@@ -104,10 +104,9 @@ function getPartialFallback(url) {
           </button>
           <nav class="site-nav" id="siteNav" aria-label="Glavna navigacija">
             <a href="index.html">Početna</a>
-            <a href="about.html">O nama</a>
-            <a href="services.html">Usluge</a>
             <a href="works.html">Naši radovi</a>
-            <a href="#kontakt" class="header-cta">Brza procena</a>
+            <a href="index.html#kontakt">Kontakt</a>
+            <a href="index.html#kontakt" class="header-cta">Brza procena</a>
             <div class="mobile-nav-meta">
               <a href="tel:+381643937000" class="mobile-nav-phone">Pozovite: 064 / 393-7000</a>
               <div class="mobile-nav-socials" aria-label="Društvene mreže">
@@ -134,7 +133,7 @@ function getPartialFallback(url) {
           <i class="fab fa-whatsapp" aria-hidden="true"></i>
           <span>WhatsApp</span>
         </a>
-        <a href="#kontakt">
+        <a href="index.html#kontakt">
           <i class="fas fa-paper-plane" aria-hidden="true"></i>
           <span>Upit</span>
         </a>
@@ -161,9 +160,8 @@ function getPartialFallback(url) {
           <nav class="footer-b-nav-column" aria-label="Stranice">
             <span class="eyebrow">Stranice</span>
             <a href="index.html">Početna</a>
-            <a href="about.html">O nama</a>
-            <a href="services.html">Usluge</a>
             <a href="works.html">Naši radovi</a>
+            <a href="index.html#kontakt">Kontakt</a>
           </nav>
           <div class="footer-b-contact">
             <div class="footer-b-contact-block">
