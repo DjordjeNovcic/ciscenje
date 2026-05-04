@@ -4782,7 +4782,7 @@ body.is-modal-open .social-rail {
 
   main {
     padding-top: calc(var(--header-height) + 0.15rem);
-    padding-bottom: calc(96px + env(safe-area-inset-bottom));
+    padding-bottom: env(safe-area-inset-bottom);
   }
 
   body.home-page main {
