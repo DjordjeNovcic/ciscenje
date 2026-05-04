@@ -29,7 +29,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
     <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"></noscript>
-    <link rel="stylesheet" href="styles.css?v=20260504ia2">
+    <link rel="stylesheet" href="styles.css?v=20260504ia4">
     <link rel="icon" href="./favicon.ico">
     <link rel="icon" type="image/png" sizes="32x32" href="./favicon-32.png">
     <script type="application/ld+json">
@@ -53,6 +53,11 @@
       },
       "areaServed": [
         { "@type": "City", "name": "Kragujevac" },
+        { "@type": "City", "name": "Aranđelovac" },
+        { "@type": "City", "name": "Topola" },
+        { "@type": "City", "name": "Rača" },
+        { "@type": "City", "name": "Lapovo" },
+        { "@type": "City", "name": "Knić" },
         { "@type": "AdministrativeArea", "name": "Šumadijski okrug" }
       ],
       "openingHoursSpecification": [
@@ -95,6 +100,70 @@
           { "@type": "OfferCatalog", "name": "Čišćenje nameštaja i tekstila" }
         ]
       }
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Kako izgleda zakazivanje?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Pošaljete upit ili nas pozovete, a mi definišemo tip prostora, obim rada, termin i očekivani rezultat pre dolaska tima."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Kako određujete cenu?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Cena zavisi od kvadrature, stanja prostora i nivoa tretmana. Procenu šaljemo u roku od 24 sata, po opisu prostora ili kratkom obilasku, bez obaveze."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Kako da znam da li mi treba dubinsko čišćenje?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Kada želite više od osnovnog održavanja, posebno u kuhinji, kupatilu ili opterećenim zonama, dubinsko čišćenje je pravi izbor."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Da li je moguće dogovoriti redovno održavanje?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Moguće je. Nakon prvog angažmana možemo definisati ritam održavanja koji odgovara vašem prostoru i obavezama, kako za stanove tako i za kancelarije."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Da li radite čišćenje nameštaja na adresi klijenta?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Da. Tretmani nameštaja i tekstila izvode se u prostoru klijenta, uz plan rada prilagođen situaciji na terenu."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Da li čistite prostor odmah nakon završetka radova?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Da. Čišćenje nakon radova organizujemo kada je potrebno da prostor bude spreman za useljenje, predaju ili početak korišćenja."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Da li radite van Kragujevca?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Pokrivamo Kragujevac, Aranđelovac, Topolu, Raču, Lapovo i Knić. Za udaljenije lokacije dolazimo po posebnom dogovoru."
+          }
+        }
+      ]
     }
     </script>
   </head>
@@ -372,7 +441,7 @@
                 <span class="service-process-card-number">01</span>
                 <span class="service-process-card-kicker">Poziv ili upit</span>
                 <h3>Kažete nam koji prostor imate i šta želite da rešite.</h3>
-                <p>Par informacija ili nekoliko fotografija dovoljno je da odmah dobijete konkretan odgovor.</p>
+                <p>Dovoljno je par informacija o prostoru da odmah dobijete konkretan odgovor.</p>
               </article>
 
               <article class="service-process-card reveal reveal-delay-1">
@@ -410,6 +479,28 @@
               <span>Vlasnik kancelarije, Kragujevac</span>
             </figcaption>
           </figure>
+
+          <div class="testimonial-grid">
+            <figure class="testimonial-card reveal reveal-delay-1">
+              <blockquote>
+                Stan smo predali kupcu istog dana posle radova — bez liste primedbi i bez vraćanja u prostor.
+              </blockquote>
+              <figcaption>
+                <strong>Klijent — agencija za nekretnine</strong>
+                <span>Kragujevac</span>
+              </figcaption>
+            </figure>
+
+            <figure class="testimonial-card reveal reveal-delay-2">
+              <blockquote>
+                Tim dolazi na vreme, radi po dogovorenom planu i ne zove zbog sitnica koje sami rešavaju.
+              </blockquote>
+              <figcaption>
+                <strong>Klijent — projektni menadžer</strong>
+                <span>Šumadija</span>
+              </figcaption>
+            </figure>
+          </div>
         </div>
       </section>
 
@@ -437,7 +528,7 @@
             </details>
             <details class="faq-item reveal reveal-delay-1">
               <summary>Kako određujete cenu?</summary>
-              <p>Cena zavisi od kvadrature, stanja prostora i nivoa tretmana. Procenu šaljemo u roku od 24 sata po fotografijama ili kratkom obilasku, bez obaveze.</p>
+              <p>Cena zavisi od kvadrature, stanja prostora i nivoa tretmana. Procenu šaljemo u roku od 24 sata, po opisu prostora ili kratkom obilasku, bez obaveze.</p>
             </details>
             <details class="faq-item reveal reveal-delay-2">
               <summary>Kako da znam da li mi treba dubinsko čišćenje?</summary>
@@ -455,6 +546,10 @@
               <summary>Da li čistite prostor odmah nakon završetka radova?</summary>
               <p>Da. Čišćenje nakon radova organizujemo kada je potrebno da prostor bude spreman za useljenje, predaju ili početak korišćenja.</p>
             </details>
+            <details class="faq-item reveal reveal-delay-3">
+              <summary>Da li radite van Kragujevca?</summary>
+              <p>Pokrivamo Kragujevac, Aranđelovac, Topolu, Raču, Lapovo i Knić. Za udaljenije lokacije dolazimo po posebnom dogovoru.</p>
+            </details>
           </div>
         </div>
       </section>
@@ -467,8 +562,8 @@
                 <span class="eyebrow">Sledeći korak</span>
                 <h2>Kratak upit, jasan odgovor — bez nejasnih koraka.</h2>
                 <p>
-                  Ostavite osnovne podatke o prostoru i, ako želite, fotografije. Vraćamo vam
-                  predlog usluge i termin koji ima smisla za vaš prostor.
+                  Ostavite osnovne podatke o prostoru. Vraćamo vam predlog usluge i termin
+                  koji ima smisla za vaš prostor.
                 </p>
                 <ul class="cta-points">
                   <li>Odgovor istog dana, u toku radnog vremena</li>
