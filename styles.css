@@ -7667,50 +7667,113 @@ a.footer-b-card:focus-visible .footer-b-card-lines > span:not(.footer-b-card-sub
   height: 13px;
 }
 
-.about-card-stats {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding: clamp(1.2rem, 2vw, 1.6rem) clamp(1.4rem, 2vw, 1.8rem);
-  background: rgba(255, 253, 248, 0.7);
-  border: 1px solid rgba(217, 154, 43, 0.18);
+.about-card-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  margin-top: 1.4rem;
+  padding-bottom: 0.25rem;
+  width: fit-content;
+  font-size: 0.96rem;
+  font-weight: 600;
+  letter-spacing: 0.005em;
+  color: var(--color-primary);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(217, 154, 43, 0.4);
+  transition:
+    color 200ms var(--ease-premium),
+    border-color 200ms var(--ease-premium),
+    transform 200ms var(--ease-premium);
+}
+
+.about-card-link i {
+  font-size: 0.78rem;
+  transition: transform 220ms var(--ease-premium);
+}
+
+.about-card-link:hover,
+.about-card-link:focus-visible {
+  color: var(--color-ink);
+  border-color: var(--color-ink);
+}
+
+.about-card-link:hover i,
+.about-card-link:focus-visible i {
+  transform: translateX(3px);
+}
+
+.about-card-media {
+  position: relative;
+  margin: 0;
   border-radius: var(--radius-md);
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.7);
+  overflow: hidden;
+  min-height: 380px;
+  box-shadow: 0 24px 60px rgba(34, 29, 24, 0.18);
+}
+
+.about-card-media::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(34, 29, 24, 0) 30%, rgba(34, 29, 24, 0.55) 100%);
+  pointer-events: none;
+}
+
+.about-card-media img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.about-card-stats {
+  position: absolute;
+  left: 1.2rem;
+  right: 1.2rem;
+  bottom: 1.2rem;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0;
+  padding: 0.95rem 1.1rem;
+  background: rgba(251, 247, 241, 0.94);
+  border: 1px solid rgba(217, 154, 43, 0.28);
+  border-radius: 18px;
+  box-shadow: 0 16px 36px rgba(34, 29, 24, 0.18);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
 }
 
 .about-stat {
   display: flex;
   flex-direction: column;
-  gap: 0.2rem;
-  padding: 0.95rem 0;
+  align-items: center;
+  text-align: center;
+  gap: 0.18rem;
+  padding: 0 0.6rem;
 }
 
 .about-stat + .about-stat {
-  border-top: 1px solid rgba(217, 154, 43, 0.18);
-}
-
-.about-stat:first-child {
-  padding-top: 0;
-}
-
-.about-stat:last-child {
-  padding-bottom: 0;
+  border-left: 1px solid rgba(217, 154, 43, 0.24);
 }
 
 .about-stat-number {
   font-family: "Cormorant Garamond", serif;
   font-weight: 600;
-  font-size: clamp(2.4rem, 4vw, 3.2rem);
+  font-size: clamp(1.7rem, 2.4vw, 2.1rem);
   line-height: 1;
-  letter-spacing: -0.03em;
+  letter-spacing: -0.025em;
   color: var(--color-primary);
 }
 
 .about-stat-label {
   font-family: "Manrope", sans-serif;
-  font-size: 0.86rem;
+  font-size: 0.72rem;
   font-weight: 500;
   letter-spacing: 0.01em;
+  line-height: 1.25;
   color: var(--color-ink-soft);
 }
 
@@ -7734,59 +7797,34 @@ a.footer-b-card:focus-visible .footer-b-card-lines > span:not(.footer-b-card-sub
     margin-top: 0.4rem;
   }
 
-  .about-card-stats {
-    flex-direction: row;
-    justify-content: space-between;
-    gap: 0.4rem;
-    padding: 1rem 1.2rem;
-  }
-
-  .about-stat {
-    flex: 1;
-    padding: 0;
-    gap: 0.15rem;
-    text-align: center;
-    align-items: center;
-  }
-
-  .about-stat + .about-stat {
-    border-top: 0;
-    border-left: 1px solid rgba(217, 154, 43, 0.18);
-    padding-left: 0.6rem;
-    margin-left: 0.6rem;
-  }
-
-  .about-stat-number {
-    font-size: clamp(2rem, 8vw, 2.4rem);
-  }
-
-  .about-stat-label {
-    font-size: 0.74rem;
-    line-height: 1.25;
+  .about-card-media {
+    min-height: 280px;
   }
 }
 
 @media (max-width: 480px) {
+  .about-card-media {
+    min-height: 240px;
+  }
+
   .about-card-stats {
-    flex-direction: column;
-    align-items: stretch;
+    left: 0.7rem;
+    right: 0.7rem;
+    bottom: 0.7rem;
+    padding: 0.7rem 0.6rem;
+    border-radius: 14px;
   }
 
   .about-stat {
-    text-align: left;
-    align-items: flex-start;
-    padding: 0.85rem 0;
+    padding: 0 0.3rem;
   }
 
-  .about-stat:first-child { padding-top: 0; }
-  .about-stat:last-child { padding-bottom: 0; }
+  .about-stat-number {
+    font-size: 1.45rem;
+  }
 
-  .about-stat + .about-stat {
-    border-top: 1px solid rgba(217, 154, 43, 0.18);
-    border-left: 0;
-    padding-left: 0;
-    margin-left: 0;
-    padding-top: 0.85rem;
+  .about-stat-label {
+    font-size: 0.62rem;
   }
 }
 
