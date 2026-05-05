@@ -29,7 +29,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
     <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"></noscript>
-    <link rel="stylesheet" href="styles.css?v=20260504ia4">
+    <link rel="stylesheet" href="styles.css?v=20260505dfoot1">
     <link rel="icon" href="./favicon.ico">
     <link rel="icon" type="image/png" sizes="32x32" href="./favicon-32.png">
     <script type="application/ld+json">
@@ -197,32 +197,95 @@
         </div>
         <div class="hero-mobile-stack">
           <div class="hero-mobile-card">
-            <p class="hero-location">MS Sjaj · Kragujevac</p>
-            <p class="hero-mobile-heading">Dubinsko čišćenje nameštaja, stanova i lokala.</p>
-            <p class="hero-mobile-lead">Stanovi, lokali, kancelarije, nameštaj. Kragujevac i okolina.</p>
-            <ul class="hero-trust" aria-label="Šta očekivati">
-              <li>Brza procena</li>
-              <li>Diskretan dolazak</li>
-              <li>Čišćenje bez odlaganja</li>
+            <div class="hero-mobile-head">
+              <div class="hero-mobile-head-text">
+                <p class="hero-location">
+                  <i class="fas fa-map-marker-alt" aria-hidden="true"></i>
+                  <span>MS Sjaj · Kragujevac</span>
+                </p>
+                <p class="hero-mobile-heading">Dubinsko čišćenje koje vraća svežinu<span class="hero-mobile-heading-dot">.</span></p>
+              </div>
+              <span class="hero-mobile-badge" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M12 3 L13.4 9.2 L19.6 10.6 L13.4 12 L12 18.2 L10.6 12 L4.4 10.6 L10.6 9.2 Z"/>
+                </svg>
+                <span>Čistoća<br>bez<br>kompromisa</span>
+              </span>
+            </div>
+
+            <p class="hero-mobile-lead">Nameštaj, stanovi i lokali. Kragujevac i okolina.</p>
+
+            <article class="hero-mobile-compare" data-image-comparison data-initial="50" aria-label="Pre i posle dubinskog tretmana stolice">
+              <div class="hero-mobile-compare-stage">
+                <div class="hero-mobile-compare-layer hero-mobile-compare-layer-base">
+                  <img src="assets/work-chair-after.jpeg" alt="Stolica posle dubinskog tretmana" loading="lazy" decoding="async">
+                </div>
+                <div class="hero-mobile-compare-layer hero-mobile-compare-layer-overlay" data-comparison-overlay>
+                  <img src="assets/work-chair-before.jpeg" alt="Stolica pre dubinskog tretmana" loading="lazy" decoding="async">
+                </div>
+                <span class="hero-mobile-compare-badge hero-mobile-compare-badge-left">Pre</span>
+                <span class="hero-mobile-compare-badge hero-mobile-compare-badge-right">Posle</span>
+                <div class="hero-mobile-compare-divider" data-comparison-divider aria-hidden="true">
+                  <span class="hero-mobile-compare-handle">
+                    <i class="fas fa-arrows-left-right" aria-hidden="true"></i>
+                  </span>
+                </div>
+                <input
+                  class="hero-mobile-compare-range"
+                  data-comparison-range
+                  type="range"
+                  min="0"
+                  max="100"
+                  value="50"
+                  aria-label="Pomerite klizač za poređenje stolice pre i posle dubinskog tretmana"
+                >
+              </div>
+            </article>
+
+            <ul class="hero-mobile-trust" aria-label="Šta očekivati">
+              <li>
+                <span class="hero-mobile-trust-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M13 3 L5 13 L11 13 L11 21 L19 11 L13 11 Z"/>
+                  </svg>
+                </span>
+                <strong>Brza procena</strong>
+                <span class="hero-mobile-trust-sub">Odmah i besplatno</span>
+              </li>
+              <li>
+                <span class="hero-mobile-trust-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="5" y="11" width="14" height="9" rx="2"/>
+                    <path d="M8 11 V7.5 a4 4 0 0 1 8 0 V11"/>
+                  </svg>
+                </span>
+                <strong>Diskretan dolazak</strong>
+                <span class="hero-mobile-trust-sub">Poštujemo vašu privatnost</span>
+              </li>
+              <li>
+                <span class="hero-mobile-trust-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="5 12.5 10 17.5 19 7.5"/>
+                  </svg>
+                </span>
+                <strong>Čišćenje bez odlaganja</strong>
+                <span class="hero-mobile-trust-sub">Brzo i efikasno</span>
+              </li>
             </ul>
-            <div class="hero-actions">
-              <a href="#kontakt" class="btn btn-primary">Brza procena</a>
+
+            <div class="hero-mobile-actions">
+              <a href="#kontakt" class="btn btn-primary hero-mobile-cta">
+                <i class="far fa-calendar-alt" aria-hidden="true"></i>
+                <span>Zakaži čišćenje</span>
+                <i class="fas fa-arrow-right hero-mobile-cta-arrow" aria-hidden="true"></i>
+              </a>
+              <p class="hero-mobile-wait">
+                <i class="far fa-clock" aria-hidden="true"></i>
+                <span>Odgovaramo u roku od 15 min</span>
+              </p>
             </div>
           </div>
 
-          <figure class="hero-mobile-visual" aria-label="Pre i posle dubinskog tretmana stolice">
-            <div class="hero-mobile-visual-pair">
-              <div class="hero-mobile-visual-half">
-                <img src="assets/work-chair-before.jpeg" alt="Stolica pre dubinskog tretmana" loading="lazy" decoding="async">
-                <span class="hero-mobile-visual-label">Pre</span>
-              </div>
-              <div class="hero-mobile-visual-half">
-                <img src="assets/work-chair-after.jpeg" alt="Stolica posle dubinskog tretmana" loading="lazy" decoding="async">
-                <span class="hero-mobile-visual-label hero-mobile-visual-label-after">Posle</span>
-              </div>
-            </div>
-            <figcaption class="hero-mobile-visual-caption">Jedna stolica, jasna razlika.</figcaption>
-          </figure>
         </div>
       </section>
 
