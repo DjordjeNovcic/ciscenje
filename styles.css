@@ -4939,6 +4939,10 @@ a.footer-b-card:focus-visible .footer-b-card-lines > span:not(.footer-b-card-sub
   transition-delay: 260ms;
 }
 
+.reveal-delay-4 {
+  transition-delay: 340ms;
+}
+
 @media (prefers-reduced-motion: no-preference) {
   .js-reveals .service-card.reveal:not(.is-visible),
   .js-reveals .lift-card.reveal:not(.is-visible),
