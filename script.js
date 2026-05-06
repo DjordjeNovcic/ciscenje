@@ -158,23 +158,19 @@ function getPartialFallback(url) {
             </p>
           </div>
           <nav class="footer-b-nav-column" aria-label="Stranice">
-            <span class="eyebrow">Stranice</span>
             <a href="index.html">Početna</a>
             <a href="works.html">Naši radovi</a>
             <a href="index.html#kontakt">Kontakt</a>
           </nav>
           <div class="footer-b-contact">
             <div class="footer-b-contact-block">
-              <span class="eyebrow">Pozovite</span>
               <a href="tel:+381643937000">064 / 393-7000</a>
               <a href="tel:+381655625876">065 / 562-5876</a>
             </div>
             <div class="footer-b-contact-block">
-              <span class="eyebrow">Pišite</span>
               <a href="mailto:11mssjaj@gmail.com">11mssjaj@gmail.com</a>
             </div>
             <div class="footer-b-contact-block">
-              <span class="eyebrow">Radno vreme</span>
               <div class="hours-line">
                 <p>Pon–Pet · 08:00 – 20:00</p>
                 <p>Subota po dogovoru</p>
