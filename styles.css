@@ -2906,14 +2906,14 @@ body.is-modal-open .social-rail {
   color: rgba(255, 253, 248, 0.65);
 }
 
-.footer-b-location {
+.site-footer .footer-b-location {
   display: inline-flex;
   align-items: center;
   gap: 0.55rem;
   margin: 0.35rem 0 0;
   font-size: 0.88rem;
   font-weight: 500;
-  color: rgba(255, 253, 248, 0.75);
+  color: #fff;
 }
 
 .footer-b-location i {
