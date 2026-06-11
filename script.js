@@ -572,10 +572,10 @@ function handleLightboxKeyboard(event) {
   }
 }
 
-// Replace WEB3FORMS_ACCESS_KEY with the real key from web3forms.com to enable
-// direct submission. Until then, the form falls back to opening the user's
-// email client with the inquiry pre-filled.
-const WEB3FORMS_ACCESS_KEY = '';
+// Web3Forms key is public by design (client-side); submissions are limited
+// to the domain registered in the Web3Forms dashboard. If the key is ever
+// emptied, the form falls back to opening the user's email client.
+const WEB3FORMS_ACCESS_KEY = 'a8025a1b-f58e-442a-a618-00f932fb4dcb';
 const INQUIRY_RECIPIENT = '11mssjaj@gmail.com';
 
 function setupInquiryForms() {
@@ -659,7 +659,6 @@ async function sendViaWeb3Forms({ context, name, phone, space, message }) {
         access_key: WEB3FORMS_ACCESS_KEY,
         subject: `Upit za uslugu — ${context}`,
         from_name: name,
-        replyto: phone,
         page: context,
         name,
         phone,
