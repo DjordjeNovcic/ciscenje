@@ -32,7 +32,56 @@
     <link rel="icon" type="image/png" sizes="32x32" href="./favicon-32.png">
   </head>
   <body class="site-body works-page">
-    <div id="site-header"></div>
+    <header class="site-header" id="vrh">
+      <div class="shell shell-wide header-shell">
+        <a href="index.html" class="brand" aria-label="Početna stranica MS Sjaj">
+          <img src="logo.png" alt="MS Sjaj znak" class="brand-logo">
+          <strong class="brand-name">MS Sjaj</strong>
+        </a>
+        <button class="nav-toggle" id="navToggle" type="button" aria-expanded="false" aria-controls="siteNav" aria-label="Otvori navigaciju">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+        <nav class="site-nav" id="siteNav" aria-label="Glavna navigacija">
+          <a href="index.html">Početna</a>
+          <a href="works.html">Naši radovi</a>
+          <a href="index.html#kontakt">Kontakt</a>
+          <a href="index.html#kontakt" class="header-cta">Brza procena</a>
+          <div class="mobile-nav-meta">
+            <a href="tel:+381643937000" class="mobile-nav-phone">Pozovite: 064 / 393-7000</a>
+            <div class="mobile-nav-socials" aria-label="Društvene mreže">
+              <a href="tel:+381643937000" class="social-call" aria-label="Pozovite nas">
+                <i class="fas fa-phone-alt" aria-hidden="true"></i>
+              </a>
+              <a href="https://www.facebook.com/" target="_blank" rel="noreferrer" aria-label="Fejsbuk">
+                <i class="fab fa-facebook-f" aria-hidden="true"></i>
+              </a>
+              <a href="https://www.instagram.com/mssjaj.kg?igsh=ZjlzajBydXIxemMy" target="_blank" rel="noreferrer" aria-label="Instagram">
+                <i class="fab fa-instagram" aria-hidden="true"></i>
+              </a>
+            </div>
+          </div>
+        </nav>
+      </div>
+    </header>
+
+    <nav class="mobile-action-bar" aria-label="Brzi kontakt">
+      <a class="mobile-action-bar-btn mobile-action-bar-whatsapp" href="https://wa.me/381643937000" target="_blank" rel="noreferrer">
+        <i class="fab fa-whatsapp" aria-hidden="true"></i>
+        <span class="mobile-action-bar-label">
+          <strong>WhatsApp</strong>
+          <span>Pišite nam</span>
+        </span>
+      </a>
+      <a class="mobile-action-bar-btn mobile-action-bar-call" href="tel:+381643937000">
+        <i class="fas fa-phone-alt" aria-hidden="true"></i>
+        <span class="mobile-action-bar-label">
+          <strong>Pozovite</strong>
+          <span>Brza pomoć</span>
+        </span>
+      </a>
+    </nav>
 
     <main>
       <section class="page-hero page-hero-works">
@@ -200,8 +249,89 @@
       </section>
     </main>
 
-    <div id="site-footer"></div>
+    <footer class="site-footer">
+      <div class="footer-b">
+        <div class="footer-b-grid">
+          <div class="footer-b-brand">
+            <a href="index.html" class="footer-b-mark" aria-label="Početna stranica MS Sjaj">
+              <img src="logo.png" alt="MS Sjaj logo">
+              <span>
+                <strong>MS Sjaj</strong>
+                <span>Kragujevac · od 2016.</span>
+              </span>
+            </a>
+            <p class="footer-b-tagline">
+              Profesionalne usluge čišćenja za domove, kancelarije i post-građevinske prostore. Čistoća kojoj možete da verujete.
+            </p>
+            <p class="footer-b-location">
+              <i class="fas fa-map-marker-alt" aria-hidden="true"></i>
+              <span>Kragujevac · od 2016.</span>
+            </p>
+          </div>
 
-    <script src="script.js?v=20260502big15"></script>
+          <nav class="footer-b-nav-column" aria-label="Stranice">
+            <span class="footer-b-label">Stranice</span>
+            <a href="index.html"><i class="fas fa-chevron-right" aria-hidden="true"></i><span>Početna</span></a>
+            <a href="works.html"><i class="fas fa-chevron-right" aria-hidden="true"></i><span>Naši radovi</span></a>
+            <a href="index.html#kontakt"><i class="fas fa-chevron-right" aria-hidden="true"></i><span>Kontakt</span></a>
+          </nav>
+
+          <div class="footer-b-contact">
+            <a class="footer-b-contact-block footer-b-card footer-b-card--phone" href="tel:+381643937000">
+              <span class="footer-b-card-icon" aria-hidden="true">
+                <i class="fas fa-phone-alt"></i>
+              </span>
+              <span class="footer-b-card-body">
+                <span class="footer-b-label">Pozovite</span>
+                <span class="footer-b-card-lines">
+                  <span>064 / 393-7000</span>
+                  <span>065 / 562-5876</span>
+                </span>
+              </span>
+              <i class="fas fa-chevron-right footer-b-card-chevron" aria-hidden="true"></i>
+            </a>
+
+            <a class="footer-b-contact-block footer-b-card footer-b-card--mail" href="mailto:11mssjaj@gmail.com">
+              <span class="footer-b-card-icon" aria-hidden="true">
+                <i class="fas fa-envelope"></i>
+              </span>
+              <span class="footer-b-card-body">
+                <span class="footer-b-label">Pišite</span>
+                <span class="footer-b-card-lines">
+                  <span>11mssjaj@gmail.com</span>
+                </span>
+              </span>
+              <i class="fas fa-chevron-right footer-b-card-chevron" aria-hidden="true"></i>
+            </a>
+          </div>
+
+          <div class="footer-b-hours">
+            <div class="footer-b-contact-block footer-b-card footer-b-card-static footer-b-card--clock">
+              <span class="footer-b-card-icon" aria-hidden="true">
+                <i class="far fa-clock"></i>
+              </span>
+              <span class="footer-b-card-body">
+                <span class="footer-b-label">Radno vreme</span>
+                <span class="footer-b-card-lines">
+                  <span>Pon–Pet · 08:00 – 20:00</span>
+                  <span class="footer-b-card-sub">Subota po dogovoru</span>
+                </span>
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <div class="footer-b-bottom">
+          <span>&copy; <span id="currentYear"></span> MS Sjaj. Sva prava zadržana.</span>
+          <div class="footer-b-socials" aria-label="Društvene mreže">
+            <a href="https://www.instagram.com/mssjaj.kg?igsh=ZjlzajBydXIxemMy" target="_blank" rel="noreferrer" aria-label="Instagram"><i class="fab fa-instagram" aria-hidden="true"></i></a>
+            <a href="https://www.facebook.com/" target="_blank" rel="noreferrer" aria-label="Fejsbuk"><i class="fab fa-facebook-f" aria-hidden="true"></i></a>
+            <a href="https://wa.me/381643937000" target="_blank" rel="noreferrer" aria-label="WhatsApp"><i class="fab fa-whatsapp" aria-hidden="true"></i></a>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script src="script.js?v=20260611inline"></script>
   </body>
 </html>

@@ -3,13 +3,14 @@ let activeLightboxIndex = 0;
 let lastFocusedElement = null;
 
 document.addEventListener('DOMContentLoaded', () => {
-  initializeSite().catch(error => {
+  try {
+    initializeSite();
+  } catch (error) {
     console.error('Greška pri pokretanju sajta:', error);
-  });
+  }
 });
 
-async function initializeSite() {
-  await loadSharedPartials();
+function initializeSite() {
   setupPremiumEntrance();
   setupCurrentYear();
   setupScrollProgress();
@@ -53,146 +54,6 @@ function setupMagneticButtons() {
     btn.addEventListener('pointerleave', reset);
     btn.addEventListener('blur', reset);
   });
-}
-
-async function loadSharedPartials() {
-  const headerSlot = document.getElementById('site-header');
-  const footerSlot = document.getElementById('site-footer');
-  const formSlots = [...document.querySelectorAll('[data-inquiry-form-slot]')];
-
-  await Promise.all([
-    injectPartial(headerSlot, 'partials/header.html'),
-    injectPartial(footerSlot, 'partials/footer.html'),
-    ...formSlots.map(slot => injectInquiryForm(slot))
-  ]);
-}
-
-async function injectInquiryForm(slot) {
-  await injectPartial(slot, 'partials/inquiry-form.html');
-  const form = slot.querySelector('[data-inquiry-form]');
-  if (!form) return;
-  const context = slot.getAttribute('data-form-context');
-  if (context) form.setAttribute('data-form-context', context);
-}
-
-async function injectPartial(slot, url) {
-  if (!slot) return;
-
-  try {
-    const response = await fetch(url, { cache: 'no-store' });
-    if (!response.ok) throw new Error(`Neuspešno učitavanje: ${url}`);
-    slot.innerHTML = await response.text();
-  } catch (error) {
-    console.error(error);
-    slot.innerHTML = getPartialFallback(url);
-  }
-}
-
-function getPartialFallback(url) {
-  if (url.includes('header')) {
-    return `
-      <header class="site-header" id="vrh">
-        <div class="shell shell-wide header-shell">
-          <a href="index.html" class="brand" aria-label="Početna stranica MS Sjaj">
-            <img src="logo.png" alt="MS Sjaj znak" class="brand-logo">
-            <strong class="brand-name">MS Sjaj</strong>
-          </a>
-          <button class="nav-toggle" id="navToggle" type="button" aria-expanded="false" aria-controls="siteNav" aria-label="Otvori navigaciju">
-            <span></span>
-            <span></span>
-            <span></span>
-          </button>
-          <nav class="site-nav" id="siteNav" aria-label="Glavna navigacija">
-            <a href="index.html">Početna</a>
-            <a href="works.html">Naši radovi</a>
-            <a href="index.html#kontakt">Kontakt</a>
-            <a href="index.html#kontakt" class="header-cta">Brza procena</a>
-            <div class="mobile-nav-meta">
-              <a href="tel:+381643937000" class="mobile-nav-phone">Pozovite: 064 / 393-7000</a>
-              <div class="mobile-nav-socials" aria-label="Društvene mreže">
-                <a href="tel:+381643937000" class="social-call" aria-label="Pozovite nas">
-                  <i class="fas fa-phone-alt" aria-hidden="true"></i>
-                </a>
-                <a href="https://www.facebook.com/" target="_blank" rel="noreferrer" aria-label="Fejsbuk">
-                  <i class="fab fa-facebook-f" aria-hidden="true"></i>
-                </a>
-                <a href="https://www.instagram.com/mssjaj.kg?igsh=ZjlzajBydXIxemMy" target="_blank" rel="noreferrer" aria-label="Instagram">
-                  <i class="fab fa-instagram" aria-hidden="true"></i>
-                </a>
-              </div>
-            </div>
-          </nav>
-        </div>
-      </header>
-      <nav class="mobile-action-bar" aria-label="Brzi kontakt">
-        <a href="tel:+381643937000">
-          <i class="fas fa-phone-alt" aria-hidden="true"></i>
-          <span>Pozovi</span>
-        </a>
-        <a href="https://wa.me/381643937000" target="_blank" rel="noreferrer">
-          <i class="fab fa-whatsapp" aria-hidden="true"></i>
-          <span>WhatsApp</span>
-        </a>
-        <a href="index.html#kontakt">
-          <i class="fas fa-paper-plane" aria-hidden="true"></i>
-          <span>Upit</span>
-        </a>
-      </nav>
-    `;
-  }
-
-  return `
-    <footer class="site-footer">
-      <div class="footer-b">
-        <div class="footer-b-grid">
-          <div class="footer-b-brand">
-            <a href="index.html" class="footer-b-mark" aria-label="Početna stranica MS Sjaj">
-              <img src="logo.png" alt="MS Sjaj logo">
-              <span>
-                <strong>MS Sjaj</strong>
-                <span>Kragujevac · od 2016.</span>
-              </span>
-            </a>
-            <p class="footer-b-tagline">
-              Pouzdan tim za <em>predaju bez dorade</em> — stanovi, kancelarije i prostori posle radova.
-            </p>
-          </div>
-          <nav class="footer-b-nav-column" aria-label="Stranice">
-            <span class="footer-b-label">Stranice</span>
-            <a href="index.html">Početna</a>
-            <a href="works.html">Naši radovi</a>
-            <a href="index.html#kontakt">Kontakt</a>
-          </nav>
-          <div class="footer-b-contact">
-            <div class="footer-b-contact-block">
-              <span class="footer-b-label">Pozovite</span>
-              <a href="tel:+381643937000">064 / 393-7000</a>
-              <a href="tel:+381655625876">065 / 562-5876</a>
-            </div>
-            <div class="footer-b-contact-block">
-              <span class="footer-b-label">Pišite</span>
-              <a href="mailto:11mssjaj@gmail.com">11mssjaj@gmail.com</a>
-            </div>
-            <div class="footer-b-contact-block">
-              <span class="footer-b-label">Radno vreme</span>
-              <div class="hours-line">
-                <p>Pon–Pet · 08:00 – 20:00</p>
-                <p>Subota po dogovoru</p>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="footer-b-bottom">
-          <span>&copy; <span id="currentYear"></span> MS Sjaj. Sva prava zadržana.</span>
-          <div class="footer-b-socials" aria-label="Društvene mreže">
-            <a href="https://www.instagram.com/mssjaj.kg?igsh=ZjlzajBydXIxemMy" target="_blank" rel="noreferrer" aria-label="Instagram"><i class="fab fa-instagram" aria-hidden="true"></i></a>
-            <a href="https://www.facebook.com/" target="_blank" rel="noreferrer" aria-label="Fejsbuk"><i class="fab fa-facebook-f" aria-hidden="true"></i></a>
-            <a href="https://wa.me/381643937000" target="_blank" rel="noreferrer" aria-label="WhatsApp"><i class="fab fa-whatsapp" aria-hidden="true"></i></a>
-          </div>
-        </div>
-      </div>
-    </footer>
-  `;
 }
 
 function setupCurrentYear() {

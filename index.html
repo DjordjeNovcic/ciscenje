@@ -160,7 +160,56 @@
     </script>
   </head>
   <body class="site-body home-page">
-    <div id="site-header"></div>
+    <header class="site-header" id="vrh">
+      <div class="shell shell-wide header-shell">
+        <a href="index.html" class="brand" aria-label="Početna stranica MS Sjaj">
+          <img src="logo.png" alt="MS Sjaj znak" class="brand-logo">
+          <strong class="brand-name">MS Sjaj</strong>
+        </a>
+        <button class="nav-toggle" id="navToggle" type="button" aria-expanded="false" aria-controls="siteNav" aria-label="Otvori navigaciju">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+        <nav class="site-nav" id="siteNav" aria-label="Glavna navigacija">
+          <a href="index.html">Početna</a>
+          <a href="works.html">Naši radovi</a>
+          <a href="index.html#kontakt">Kontakt</a>
+          <a href="index.html#kontakt" class="header-cta">Brza procena</a>
+          <div class="mobile-nav-meta">
+            <a href="tel:+381643937000" class="mobile-nav-phone">Pozovite: 064 / 393-7000</a>
+            <div class="mobile-nav-socials" aria-label="Društvene mreže">
+              <a href="tel:+381643937000" class="social-call" aria-label="Pozovite nas">
+                <i class="fas fa-phone-alt" aria-hidden="true"></i>
+              </a>
+              <a href="https://www.facebook.com/" target="_blank" rel="noreferrer" aria-label="Fejsbuk">
+                <i class="fab fa-facebook-f" aria-hidden="true"></i>
+              </a>
+              <a href="https://www.instagram.com/mssjaj.kg?igsh=ZjlzajBydXIxemMy" target="_blank" rel="noreferrer" aria-label="Instagram">
+                <i class="fab fa-instagram" aria-hidden="true"></i>
+              </a>
+            </div>
+          </div>
+        </nav>
+      </div>
+    </header>
+
+    <nav class="mobile-action-bar" aria-label="Brzi kontakt">
+      <a class="mobile-action-bar-btn mobile-action-bar-whatsapp" href="https://wa.me/381643937000" target="_blank" rel="noreferrer">
+        <i class="fab fa-whatsapp" aria-hidden="true"></i>
+        <span class="mobile-action-bar-label">
+          <strong>WhatsApp</strong>
+          <span>Pišite nam</span>
+        </span>
+      </a>
+      <a class="mobile-action-bar-btn mobile-action-bar-call" href="tel:+381643937000">
+        <i class="fas fa-phone-alt" aria-hidden="true"></i>
+        <span class="mobile-action-bar-label">
+          <strong>Pozovite</strong>
+          <span>Brza pomoć</span>
+        </span>
+      </a>
+    </nav>
 
     <main>
       <section class="hero-section">
@@ -940,7 +989,81 @@
                   <p>Popunite formu i odgovorićemo u najkraćem roku.</p>
                 </div>
 
-                <div data-inquiry-form-slot data-form-context="Početna"></div>
+                <form class="contact-form" data-inquiry-form data-form-context="Početna">
+                  <div class="form-grid">
+                    <label class="form-field" for="inquiry-name">
+                      <span class="form-field-icon" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                          <circle cx="12" cy="8.5" r="3.6"/>
+                          <path d="M5 19.5 C5 16 8 14 12 14 C16 14 19 16 19 19.5"/>
+                        </svg>
+                      </span>
+                      <span class="form-field-body">
+                        <span class="form-field-label">Ime i prezime <span class="form-required-mark" aria-hidden="true">*</span></span>
+                        <input id="inquiry-name" type="text" name="name" placeholder="Unesite vaše ime i prezime" autocomplete="name" required aria-required="true">
+                      </span>
+                    </label>
+                    <label class="form-field" for="inquiry-phone">
+                      <span class="form-field-icon" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                          <path d="M5 4 C5 3 6 3 7 3 L9 3 C9.5 3 10 3.3 10 4 L10.5 7 C10.5 7.5 10.3 8 10 8.3 L8.5 9.2 C9.4 11.2 11.5 13.3 13.5 14.2 L14.4 12.8 C14.7 12.5 15.2 12.3 15.7 12.3 L18.7 12.8 C19.4 12.8 19.7 13.3 19.7 13.8 L19.7 16.8 C19.7 18 18.7 19 17.5 19 C9.5 18.5 4.5 13.5 4 5.5 C4 4.3 4.7 4 5 4 Z"/>
+                        </svg>
+                      </span>
+                      <span class="form-field-body">
+                        <span class="form-field-label">Telefon <span class="form-required-mark" aria-hidden="true">*</span></span>
+                        <input id="inquiry-phone" type="tel" name="phone" placeholder="Unesite broj telefona" inputmode="tel" autocomplete="tel" required aria-required="true">
+                      </span>
+                    </label>
+                    <label class="form-field form-field-full" for="inquiry-space">
+                      <span class="form-field-icon" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                          <circle cx="12" cy="12" r="9"/>
+                          <path d="M9 9.5 C9 8 10.3 7 12 7 C13.7 7 15 8 15 9.5 C15 11 13 11.6 12 12.5 L12 13.6"/>
+                          <circle cx="12" cy="16.5" r="0.7" fill="currentColor"/>
+                        </svg>
+                      </span>
+                      <span class="form-field-body">
+                        <span class="form-field-label">Šta vam treba <span class="form-required-mark" aria-hidden="true">*</span></span>
+                        <select id="inquiry-space" name="space" required aria-required="true">
+                          <option value="">Izaberite opciju</option>
+                          <option>Stan ili kuća</option>
+                          <option>Kancelarija ili salon</option>
+                          <option>Nameštaj ili tekstil</option>
+                          <option>Dubinsko čišćenje</option>
+                          <option>Prostor nakon radova</option>
+                        </select>
+                      </span>
+                    </label>
+                    <label class="form-field form-field-full" for="inquiry-message">
+                      <span class="form-field-icon" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                          <path d="M5 4.5 L5 19.5 C5 20 5.4 20.5 6 20.5 L18 20.5 C18.6 20.5 19 20 19 19.5 L19 8 L15 4.5 Z"/>
+                          <polyline points="15 4.5 15 8 19 8"/>
+                          <line x1="8.5" y1="12" x2="15.5" y2="12"/>
+                          <line x1="8.5" y1="15" x2="15.5" y2="15"/>
+                        </svg>
+                      </span>
+                      <span class="form-field-body">
+                        <span class="form-field-label">Kratka napomena <span class="form-field-label-optional">(opciono)</span></span>
+                        <textarea id="inquiry-message" name="message" rows="4" placeholder="Površina, termin ili posebna napomena."></textarea>
+                      </span>
+                    </label>
+                  </div>
+                  <p class="form-privacy">
+                    <span class="form-privacy-icon" aria-hidden="true">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M12 3 L19 5.5 L19 11 C19 15.5 16 18.5 12 20 C8 18.5 5 15.5 5 11 L5 5.5 Z"/>
+                        <polyline points="9 11.8 11.2 14 15 9.8"/>
+                      </svg>
+                    </span>
+                    <span>Vaši podaci su sigurni i koristićemo ih samo za odgovor.</span>
+                  </p>
+                  <button type="submit" class="btn btn-primary contact-form-submit">
+                    <i class="fas fa-paper-plane" aria-hidden="true"></i>
+                    <span>Pošaljite upit</span>
+                  </button>
+                  <p class="form-status" data-form-status aria-live="polite"></p>
+                </form>
 
                 <p class="form-mobile-response">
                   <span class="form-mobile-response-icon" aria-hidden="true">
@@ -958,7 +1081,88 @@
       </section>
     </main>
 
-    <div id="site-footer"></div>
-    <script src="script.js?v=20260504ia1"></script>
+    <footer class="site-footer">
+      <div class="footer-b">
+        <div class="footer-b-grid">
+          <div class="footer-b-brand">
+            <a href="index.html" class="footer-b-mark" aria-label="Početna stranica MS Sjaj">
+              <img src="logo.png" alt="MS Sjaj logo">
+              <span>
+                <strong>MS Sjaj</strong>
+                <span>Kragujevac · od 2016.</span>
+              </span>
+            </a>
+            <p class="footer-b-tagline">
+              Profesionalne usluge čišćenja za domove, kancelarije i post-građevinske prostore. Čistoća kojoj možete da verujete.
+            </p>
+            <p class="footer-b-location">
+              <i class="fas fa-map-marker-alt" aria-hidden="true"></i>
+              <span>Kragujevac · od 2016.</span>
+            </p>
+          </div>
+
+          <nav class="footer-b-nav-column" aria-label="Stranice">
+            <span class="footer-b-label">Stranice</span>
+            <a href="index.html"><i class="fas fa-chevron-right" aria-hidden="true"></i><span>Početna</span></a>
+            <a href="works.html"><i class="fas fa-chevron-right" aria-hidden="true"></i><span>Naši radovi</span></a>
+            <a href="index.html#kontakt"><i class="fas fa-chevron-right" aria-hidden="true"></i><span>Kontakt</span></a>
+          </nav>
+
+          <div class="footer-b-contact">
+            <a class="footer-b-contact-block footer-b-card footer-b-card--phone" href="tel:+381643937000">
+              <span class="footer-b-card-icon" aria-hidden="true">
+                <i class="fas fa-phone-alt"></i>
+              </span>
+              <span class="footer-b-card-body">
+                <span class="footer-b-label">Pozovite</span>
+                <span class="footer-b-card-lines">
+                  <span>064 / 393-7000</span>
+                  <span>065 / 562-5876</span>
+                </span>
+              </span>
+              <i class="fas fa-chevron-right footer-b-card-chevron" aria-hidden="true"></i>
+            </a>
+
+            <a class="footer-b-contact-block footer-b-card footer-b-card--mail" href="mailto:11mssjaj@gmail.com">
+              <span class="footer-b-card-icon" aria-hidden="true">
+                <i class="fas fa-envelope"></i>
+              </span>
+              <span class="footer-b-card-body">
+                <span class="footer-b-label">Pišite</span>
+                <span class="footer-b-card-lines">
+                  <span>11mssjaj@gmail.com</span>
+                </span>
+              </span>
+              <i class="fas fa-chevron-right footer-b-card-chevron" aria-hidden="true"></i>
+            </a>
+          </div>
+
+          <div class="footer-b-hours">
+            <div class="footer-b-contact-block footer-b-card footer-b-card-static footer-b-card--clock">
+              <span class="footer-b-card-icon" aria-hidden="true">
+                <i class="far fa-clock"></i>
+              </span>
+              <span class="footer-b-card-body">
+                <span class="footer-b-label">Radno vreme</span>
+                <span class="footer-b-card-lines">
+                  <span>Pon–Pet · 08:00 – 20:00</span>
+                  <span class="footer-b-card-sub">Subota po dogovoru</span>
+                </span>
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <div class="footer-b-bottom">
+          <span>&copy; <span id="currentYear"></span> MS Sjaj. Sva prava zadržana.</span>
+          <div class="footer-b-socials" aria-label="Društvene mreže">
+            <a href="https://www.instagram.com/mssjaj.kg?igsh=ZjlzajBydXIxemMy" target="_blank" rel="noreferrer" aria-label="Instagram"><i class="fab fa-instagram" aria-hidden="true"></i></a>
+            <a href="https://www.facebook.com/" target="_blank" rel="noreferrer" aria-label="Fejsbuk"><i class="fab fa-facebook-f" aria-hidden="true"></i></a>
+            <a href="https://wa.me/381643937000" target="_blank" rel="noreferrer" aria-label="WhatsApp"><i class="fab fa-whatsapp" aria-hidden="true"></i></a>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <script src="script.js?v=20260611inline"></script>
   </body>
 </html>
