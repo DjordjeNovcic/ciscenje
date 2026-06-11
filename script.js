@@ -76,6 +76,21 @@ function setupPremiumEntrance() {
   });
 }
 
+function bindScrollUpdate(update) {
+  let scheduled = false;
+  const schedule = () => {
+    if (scheduled) return;
+    scheduled = true;
+    window.requestAnimationFrame(() => {
+      scheduled = false;
+      update();
+    });
+  };
+  window.addEventListener('scroll', schedule, { passive: true });
+  window.addEventListener('resize', schedule);
+  update();
+}
+
 function setupScrollProgress() {
   if (document.querySelector('.scroll-progress')) return;
 
@@ -92,9 +107,7 @@ function setupScrollProgress() {
     bar.style.transform = `scaleX(${ratio})`;
   };
 
-  window.addEventListener('scroll', updateProgress, { passive: true });
-  window.addEventListener('resize', updateProgress);
-  updateProgress();
+  bindScrollUpdate(updateProgress);
 }
 
 function setupHeaderState() {
@@ -102,8 +115,7 @@ function setupHeaderState() {
     document.body.classList.toggle('is-scrolled', window.scrollY > 14);
   };
 
-  window.addEventListener('scroll', updateState, { passive: true });
-  updateState();
+  bindScrollUpdate(updateState);
 }
 
 function setupNavigation() {
@@ -210,9 +222,7 @@ function setupHeroParallax() {
     hero.style.setProperty('--hero-shift', `${shift}px`);
   };
 
-  window.addEventListener('scroll', updateHero, { passive: true });
-  window.addEventListener('resize', updateHero);
-  updateHero();
+  bindScrollUpdate(updateHero);
 }
 
 function setupScrollStories() {
@@ -285,10 +295,8 @@ function setupScrollStories() {
     });
   });
 
-  window.addEventListener('scroll', updateAllStories, { passive: true });
-  window.addEventListener('resize', updateAllStories);
+  bindScrollUpdate(updateAllStories);
   reducedMotion.addEventListener('change', updateAllStories);
-  updateAllStories();
 }
 
 function setupTextParallaxSections() {
@@ -337,10 +345,8 @@ function setupTextParallaxSections() {
     sections.forEach(updateSection);
   };
 
-  window.addEventListener('scroll', updateAll, { passive: true });
-  window.addEventListener('resize', updateAll);
+  bindScrollUpdate(updateAll);
   reducedMotion.addEventListener('change', updateAll);
-  updateAll();
 }
 
 function setupPointerGlow() {
