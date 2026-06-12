@@ -631,7 +631,7 @@ function setupInquiryForms() {
       if (sent) {
         if (status) {
           status.dataset.state = 'success';
-          status.textContent = 'Upit je poslat. Javljamo se u najkraćem roku.';
+          status.textContent = 'Upit je poslat. Javljamo se u roku od 24 sata.';
         }
         form.reset();
       } else {
@@ -639,7 +639,7 @@ function setupInquiryForms() {
         const body = encodeURIComponent(details);
         if (status) {
           status.dataset.state = 'pending';
-          status.textContent = 'Otvaramo email — pošaljite poruku da završite upit. Ako se klijent ne otvori, pozovite nas direktno.';
+          status.textContent = 'Otvaramo program za poštu: pošaljite poruku da završite upit. Ako se ništa ne otvori, pozovite nas direktno.';
         }
         window.location.href = `mailto:${INQUIRY_RECIPIENT}?subject=${subject}&body=${body}`;
       }
